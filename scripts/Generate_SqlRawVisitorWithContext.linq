@@ -1,22 +1,14 @@
 <Query Kind="Program">
-  <Reference Relative="..\XLibFs\Binaries\FsSqlDom.dll">C:\src\xledger\XLibFs\Binaries\FsSqlDom.dll</Reference>
-  <Reference Relative="..\XLibFs\Binaries\Microsoft.SqlServer.TransactSql.ScriptDom.dll">C:\src\xledger\XLibFs\Binaries\Microsoft.SqlServer.TransactSql.ScriptDom.dll</Reference>
-  <Reference Relative="..\XLibFs\Binaries\Microsoft.SqlServer.Types.dll">C:\src\xledger\XLibFs\Binaries\Microsoft.SqlServer.Types.dll</Reference>
-  <NuGetReference Version="5.0.2">FSharp.Core</NuGetReference>
-  <NuGetReference>Newtonsoft.Json</NuGetReference>
-  <NuGetReference>System.Threading.Channels</NuGetReference>
-  <Namespace>FsSqlDom</Namespace>
+  <NuGetReference>Microsoft.SqlServer.DacFx</NuGetReference>
   <Namespace>Microsoft.SqlServer.TransactSql.ScriptDom</Namespace>
-  <Namespace>Newtonsoft.Json</Namespace>
-  <Namespace>Newtonsoft.Json.Linq</Namespace>
-  <Namespace>System.Threading.Channels</Namespace>
 </Query>
 
 void Main() {
+	var className = "ScopedEditingFragmentVisitor";
     var sb = new StringBuilder();
     sb.AppendLine("// GENERATED via script (Generate_SqlRawVisitorWithContext.linq)");
     sb.AppendLine("// DO NOT EDIT DIRECTLY.");
-    sb.AppendLine("public class SqlRawVisitorWithContext : TSqlConcreteFragmentVisitor {");
+    sb.AppendLine($"public class {className} : TSqlConcreteFragmentVisitor {{");
     sb.AppendLine("    public bool ShouldStop { get; set;}");
     sb.AppendLine("    public Stack<TSqlFragment> Parents { get; set; } = new Stack<TSqlFragment>(30);");
     sb.AppendLine("    public HashSet<TSqlFragment> SkipList { get; } = new HashSet<TSqlFragment>();");
@@ -40,7 +32,7 @@ void Main() {
     sb.AppendLine("    }");
     sb.AppendLine("");
 
-    sb.AppendLine("    void PopContext(TSqlFragment node) {");
+    sb.AppendLine("    void PopContext() {");
     sb.AppendLine("        Parents.Pop();");
     sb.AppendLine("    }");
     sb.AppendLine("");
@@ -78,7 +70,7 @@ void Main() {
         sb.AppendLine($"");
         sb.AppendLine($"        PushContext(node);");
         sb.AppendLine($"        base.ExplicitVisit(node);");
-        sb.AppendLine($"        PopContext(node);");
+        sb.AppendLine($"        PopContext();");
         sb.AppendLine($"");
         sb.AppendLine($"        HandleOnLeave(node);");
         sb.AppendLine($"    }}");
@@ -102,8 +94,8 @@ using System.Collections.Generic;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace X.Data.DB {" + "\n" + txt + "\n}";
-    File.WriteAllText("C:\\src\\xledger\\XLib\\Data\\DB\\SqlRawVisitorWithContext.cs", txt);
-    
+	var outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.SqlUtilities/{className}.cs";
+	File.WriteAllText(outputFile, txt, new System.Text.UTF8Encoding(false));
 }
 
 string VisitFnName(Type t) => $"VisFor{t.Name}";
