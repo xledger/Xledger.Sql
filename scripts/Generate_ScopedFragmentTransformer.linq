@@ -4,12 +4,12 @@
 </Query>
 
 void Main() {
-	var className = "ScopedEditingFragmentVisitor";
-    var sb = new StringBuilder();
-    sb.AppendLine("// GENERATED via script (Generate_SqlRawVisitorWithContext.linq)");
+	var className = "ScopedFragmentTransformer";
+	var sb = new StringBuilder();
+	sb.AppendLine($"// GENERATED via script ({Path.GetFileName(Util.CurrentQueryPath)})");
     sb.AppendLine("// DO NOT EDIT DIRECTLY.");
     sb.AppendLine($"public class {className} : TSqlConcreteFragmentVisitor {{");
-    sb.AppendLine("    public bool ShouldStop { get; set;}");
+    sb.AppendLine("    public bool ShouldStop { get; set; }");
     sb.AppendLine("    public Stack<TSqlFragment> Parents { get; set; } = new Stack<TSqlFragment>(30);");
     sb.AppendLine("    public HashSet<TSqlFragment> SkipList { get; } = new HashSet<TSqlFragment>();");
     sb.AppendLine("    ///<summary>Actions to perform when leaving a node.</summary>");
@@ -20,11 +20,11 @@ void Main() {
     foreach (var t in VisitableTypes()) {
         var varName = VisitFnName(t);
         varNameByType[t] = varName;
-        sb.AppendLine($"    public Action<SqlRawVisitorWithContext, {t.Name}> {varName};");
+        sb.AppendLine($"    public Action<{className}, {t.Name}> {varName};");
     }
     sb.AppendLine();
 
-    sb.AppendLine("    public SqlRawVisitorWithContext() : base() {}");
+	sb.AppendLine($"    public {className}() : base() {{}}");
     sb.AppendLine("");
     
     sb.AppendLine("    void PushContext(TSqlFragment node) {");
@@ -93,7 +93,7 @@ void Main() {
 using System.Collections.Generic;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 
-namespace X.Data.DB {" + "\n" + txt + "\n}";
+namespace Xledger.Sql {" + "\n" + txt + "\n}";
 	var outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.SqlUtilities/{className}.cs";
 	File.WriteAllText(outputFile, txt, new System.Text.UTF8Encoding(false));
 }
@@ -136,7 +136,7 @@ string VisitFnName(Type t) => $"VisFor{t.Name}";
             var listTyp = propType.GenericTypeArguments.Single();
             if (listTyp.IsAssignableFrom(scalarExprTyp)) {
                 var s = 
-                    $"for (int i = 0; i < parent2.{prop.Name}.Count; i++) {{\n" +
+                    $"for (var i = 0; i < parent2.{prop.Name}.Count; i++) {{\n" +
                     $"    if (Equals(parent2.{prop.Name}[i], toReplace)) {{\n" +
                     $"        parent2.{prop.Name}[i] = replacement;\n" +
                     $"        success = true;\n" + 
