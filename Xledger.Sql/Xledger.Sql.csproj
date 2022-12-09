@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Xledger.Sql</PackageId>
+    <TargetFrameworks>net48;net6.0</TargetFrameworks>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RootNamespace>Xledger.Sql</RootNamespace>
+    <AssemblyName>Xledger.Sql</AssemblyName>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Authors>Isak Sky, Matthew O'Connor</Authors>
+    <Company>Xledger</Company>
+    <Description>Utilities to aid in the analysis, generation, and transformation of Transact SQL.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../LICENSE" Pack="true" PackagePath="/" />
+    <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SqlServer.DacFx" Version="161.6374.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
