@@ -7,10 +7,12 @@
     <RootNamespace>Xledger.Sql</RootNamespace>
     <AssemblyName>Xledger.Sql</AssemblyName>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <VersionSuffix>alpha</VersionSuffix>
+    <VersionSuffix>alpha2</VersionSuffix>
     <Authors>Isak Sky, Matthew O'Connor</Authors>
     <Company>Xledger</Company>
     <Description>Utilities to aid in the analysis, generation, and transformation of Transact SQL.</Description>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,9 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SqlServer.DacFx" Version="161.6374.0">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.SqlServer.DacFx" Version="161.6374.0" />
   </ItemGroup>
 
 </Project>
