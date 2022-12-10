@@ -4,6 +4,9 @@
 </Query>
 
 void Main() {
+	//////////////////////////////////////////////////////////////////////
+	// Generate ScopedFragmentTransformer class
+	//////////////////////////////////////////////////////////////////////
 	var className = "ScopedFragmentTransformer";
 	var sb = new StringBuilder();
 	sb.AppendLine($"// GENERATED via script ({Path.GetFileName(Util.CurrentQueryPath)})");
@@ -76,16 +79,7 @@ void Main() {
         sb.AppendLine($"    }}");
         first = false;
     }
-   
-
-    (string replaceScalarFn, string replaceScalarDict) = GetReplaceScalarMembers();
-    sb.AppendLine();
-    sb.AppendLine(replaceScalarDict.IndentLines(4));
-    sb.AppendLine();
-
-    sb.AppendLine(replaceScalarFn.IndentLines(4));
-    
-    sb.AppendLine("}");
+   	sb.AppendLine("}");
 
     var txt = sb.ToString();
     txt = txt.IndentLines(4);
@@ -94,8 +88,34 @@ using System.Collections.Generic;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql {" + "\n" + txt + "\n}";
-	var outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.SqlUtilities/{className}.cs";
+	var outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.Sql/{className}.cs";
 	File.WriteAllText(outputFile, txt, new System.Text.UTF8Encoding(false));
+	Console.WriteLine($"Wrote {className} to {outputFile}.\n");
+
+	//////////////////////////////////////////////////////////////////////
+	// Generate Extensions class
+	//////////////////////////////////////////////////////////////////////
+	className = "Extensions";
+	sb.Clear();
+	sb.AppendLine($"// GENERATED via script ({Path.GetFileName(Util.CurrentQueryPath)})");
+	sb.AppendLine("// DO NOT EDIT DIRECTLY.");
+	sb.AppendLine($"public static class {className} {{");
+	(string replaceScalarFn, string replaceScalarDict) = GetReplaceScalarMembers();
+	sb.AppendLine(replaceScalarFn.IndentLines(4));
+	sb.AppendLine();
+	sb.AppendLine(replaceScalarDict.IndentLines(4));
+	sb.AppendLine("}");
+
+	txt = sb.ToString();
+	txt = txt.IndentLines(4);
+	txt = @"using System;
+using System.Collections.Generic;
+using Microsoft.SqlServer.TransactSql.ScriptDom;
+
+namespace Xledger.Sql {" + "\n" + txt + "\n}";
+	outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.Sql/{className}.cs";
+	File.WriteAllText(outputFile, txt, new System.Text.UTF8Encoding(false));
+	Console.WriteLine($"Wrote {className} to {outputFile}.\n");
 }
 
 string VisitFnName(Type t) => $"VisFor{t.Name}";
@@ -159,7 +179,7 @@ string VisitFnName(Type t) => $"VisFor{t.Name}";
     var fnBody = string.Join("\n\n", cases);
     
     var fn = new [] {
-        $"public static bool ReplaceScalarInParent(TSqlFragment parent, ScalarExpression toReplace, ScalarExpression replacement) {{",
+        $"public static bool ReplaceScalar(this TSqlFragment parent, ScalarExpression toReplace, ScalarExpression replacement) {{",
         $"    var success = false;",
         $"    _ = ReplaceCaseNumberByType.TryGetValue(parent.GetType().Name, out var caseNum);",
         $"    switch (caseNum) {{",
