@@ -11,6 +11,46 @@ namespace Xledger.Sql {
             _ = ReplaceCaseNumberByType.TryGetValue(parent.GetType().Name, out var caseNum);
             switch (caseNum) {
                 case 1: {
+                    var parent2 = (ExternalLibraryFileOption)parent;
+                    if (Equals(parent2.Content, toReplace)) {
+                        parent2.Content = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 2: {
+                    var parent2 = (ExternalLanguageFileOption)parent;
+                    if (Equals(parent2.Content, toReplace)) {
+                        parent2.Content = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 3: {
+                    var parent2 = (BoundingBoxParameter)parent;
+                    if (Equals(parent2.Value, toReplace)) {
+                        parent2.Value = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 4: {
+                    var parent2 = (AlterFederationStatement)parent;
+                    if (Equals(parent2.Boundary, toReplace)) {
+                        parent2.Boundary = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 5: {
+                    var parent2 = (UseFederationStatement)parent;
+                    if (Equals(parent2.Value, toReplace)) {
+                        parent2.Value = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 6: {
                     var parent2 = (WindowDelimiter)parent;
                     if (Equals(parent2.OffsetValue, toReplace)) {
                         parent2.OffsetValue = replacement;
@@ -18,7 +58,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 2: {
+                case 7: {
                     var parent2 = (TemporalClause)parent;
                     if (Equals(parent2.StartTime, toReplace)) {
                         parent2.StartTime = replacement;
@@ -30,7 +70,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 3: {
+                case 8: {
                     var parent2 = (CompressionDelayIndexOption)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -38,23 +78,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 4: {
-                    var parent2 = (ExternalLibraryFileOption)parent;
-                    if (Equals(parent2.Content, toReplace)) {
-                        parent2.Content = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 5: {
-                    var parent2 = (ExternalLanguageFileOption)parent;
-                    if (Equals(parent2.Content, toReplace)) {
-                        parent2.Content = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 6: {
+                case 9: {
                     var parent2 = (EventDeclarationSetParameter)parent;
                     if (Equals(parent2.EventValue, toReplace)) {
                         parent2.EventValue = replacement;
@@ -62,7 +86,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 7: {
+                case 10: {
                     var parent2 = (EventDeclarationCompareFunctionParameter)parent;
                     if (Equals(parent2.EventValue, toReplace)) {
                         parent2.EventValue = replacement;
@@ -70,51 +94,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 8: {
-                    var parent2 = (BoundingBoxParameter)parent;
-                    if (Equals(parent2.Value, toReplace)) {
-                        parent2.Value = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 9: {
-                    var parent2 = (AlterFederationStatement)parent;
-                    if (Equals(parent2.Boundary, toReplace)) {
-                        parent2.Boundary = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 10: {
-                    var parent2 = (UseFederationStatement)parent;
-                    if (Equals(parent2.Value, toReplace)) {
-                        parent2.Value = replacement;
-                        success = true;
-                    }
-                    break;
-                }
                 case 11: {
-                    var parent2 = (EndConversationStatement)parent;
-                    if (Equals(parent2.Conversation, toReplace)) {
-                        parent2.Conversation = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 12: {
-                    var parent2 = (MoveConversationStatement)parent;
-                    if (Equals(parent2.Conversation, toReplace)) {
-                        parent2.Conversation = replacement;
-                        success = true;
-                    }
-                    if (Equals(parent2.Group, toReplace)) {
-                        parent2.Group = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 13: {
                     var parent2 = (ReceiveStatement)parent;
                     if (Equals(parent2.Top, toReplace)) {
                         parent2.Top = replacement;
@@ -122,7 +102,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 14: {
+                case 12: {
                     var parent2 = (SendStatement)parent;
                     for (var i = 0; i < parent2.ConversationHandles.Count; i++) {
                         if (Equals(parent2.ConversationHandles[i], toReplace)) {
@@ -136,7 +116,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 15: {
+                case 13: {
                     var parent2 = (BeginConversationTimerStatement)parent;
                     if (Equals(parent2.Handle, toReplace)) {
                         parent2.Handle = replacement;
@@ -148,7 +128,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 16: {
+                case 14: {
                     var parent2 = (ScalarExpressionDialogOption)parent;
                     if (Equals(parent2.Value, toReplace)) {
                         parent2.Value = replacement;
@@ -156,45 +136,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 17: {
-                    var parent2 = (TopRowFilter)parent;
-                    if (Equals(parent2.Expression, toReplace)) {
-                        parent2.Expression = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 18: {
-                    var parent2 = (OffsetClause)parent;
-                    if (Equals(parent2.OffsetExpression, toReplace)) {
-                        parent2.OffsetExpression = replacement;
-                        success = true;
-                    }
-                    if (Equals(parent2.FetchExpression, toReplace)) {
-                        parent2.FetchExpression = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 19: {
-                    var parent2 = (UnaryExpression)parent;
-                    if (Equals(parent2.Expression, toReplace)) {
-                        parent2.Expression = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 20: {
-                    var parent2 = (VariableMethodCallTableReference)parent;
-                    for (var i = 0; i < parent2.Parameters.Count; i++) {
-                        if (Equals(parent2.Parameters[i], toReplace)) {
-                            parent2.Parameters[i] = replacement;
-                            success = true;
-                        }
-                    }
-                    break;
-                }
-                case 21: {
+                case 15: {
                     var parent2 = (AlterPartitionFunctionStatement)parent;
                     if (Equals(parent2.Boundary, toReplace)) {
                         parent2.Boundary = replacement;
@@ -202,7 +144,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 22: {
+                case 16: {
                     var parent2 = (RevertStatement)parent;
                     if (Equals(parent2.Cookie, toReplace)) {
                         parent2.Cookie = replacement;
@@ -210,7 +152,27 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 23: {
+                case 17: {
+                    var parent2 = (EndConversationStatement)parent;
+                    if (Equals(parent2.Conversation, toReplace)) {
+                        parent2.Conversation = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 18: {
+                    var parent2 = (MoveConversationStatement)parent;
+                    if (Equals(parent2.Conversation, toReplace)) {
+                        parent2.Conversation = replacement;
+                        success = true;
+                    }
+                    if (Equals(parent2.Group, toReplace)) {
+                        parent2.Group = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 19: {
                     var parent2 = (BinaryExpression)parent;
                     if (Equals(parent2.FirstExpression, toReplace)) {
                         parent2.FirstExpression = replacement;
@@ -222,7 +184,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 24: {
+                case 20: {
                     var parent2 = (BuiltInFunctionTableReference)parent;
                     for (var i = 0; i < parent2.Parameters.Count; i++) {
                         if (Equals(parent2.Parameters[i], toReplace)) {
@@ -232,7 +194,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 25: {
+                case 21: {
                     var parent2 = (GlobalFunctionTableReference)parent;
                     for (var i = 0; i < parent2.Parameters.Count; i++) {
                         if (Equals(parent2.Parameters[i], toReplace)) {
@@ -242,7 +204,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 26: {
+                case 22: {
                     var parent2 = (ComputeClause)parent;
                     for (var i = 0; i < parent2.ByExpressions.Count; i++) {
                         if (Equals(parent2.ByExpressions[i], toReplace)) {
@@ -252,7 +214,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 27: {
+                case 23: {
                     var parent2 = (ComputeFunction)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -260,7 +222,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 28: {
+                case 24: {
                     var parent2 = (TableSampleClause)parent;
                     if (Equals(parent2.SampleNumber, toReplace)) {
                         parent2.SampleNumber = replacement;
@@ -272,7 +234,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 29: {
+                case 25: {
                     var parent2 = (BooleanComparisonExpression)parent;
                     if (Equals(parent2.FirstExpression, toReplace)) {
                         parent2.FirstExpression = replacement;
@@ -284,7 +246,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 30: {
+                case 26: {
                     var parent2 = (BooleanIsNullExpression)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -292,7 +254,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 31: {
+                case 27: {
                     var parent2 = (ExpressionWithSortOrder)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -300,7 +262,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 32: {
+                case 28: {
                     var parent2 = (ExpressionGroupingSpecification)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -308,7 +270,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 33: {
+                case 29: {
                     var parent2 = (IdentityFunctionCall)parent;
                     if (Equals(parent2.Seed, toReplace)) {
                         parent2.Seed = replacement;
@@ -320,7 +282,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 34: {
+                case 30: {
                     var parent2 = (PredictTableReference)parent;
                     if (Equals(parent2.ModelVariable, toReplace)) {
                         parent2.ModelVariable = replacement;
@@ -328,7 +290,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 35: {
+                case 31: {
                     var parent2 = (SelectScalarExpression)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -336,7 +298,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 36: {
+                case 32: {
                     var parent2 = (SelectSetVariable)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -344,7 +306,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 37: {
+                case 33: {
                     var parent2 = (ChangeTableVersionTableReference)parent;
                     for (var i = 0; i < parent2.PrimaryKeyValues.Count; i++) {
                         if (Equals(parent2.PrimaryKeyValues[i], toReplace)) {
@@ -354,7 +316,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 38: {
+                case 34: {
                     var parent2 = (BooleanTernaryExpression)parent;
                     if (Equals(parent2.FirstExpression, toReplace)) {
                         parent2.FirstExpression = replacement;
@@ -370,37 +332,45 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 39: {
-                    var parent2 = (DbccNamedLiteral)parent;
-                    if (Equals(parent2.Value, toReplace)) {
-                        parent2.Value = replacement;
+                case 35: {
+                    var parent2 = (TopRowFilter)parent;
+                    if (Equals(parent2.Expression, toReplace)) {
+                        parent2.Expression = replacement;
                         success = true;
                     }
                     break;
                 }
-                case 40: {
-                    var parent2 = (CreatePartitionFunctionStatement)parent;
-                    for (var i = 0; i < parent2.BoundaryValues.Count; i++) {
-                        if (Equals(parent2.BoundaryValues[i], toReplace)) {
-                            parent2.BoundaryValues[i] = replacement;
+                case 36: {
+                    var parent2 = (OffsetClause)parent;
+                    if (Equals(parent2.OffsetExpression, toReplace)) {
+                        parent2.OffsetExpression = replacement;
+                        success = true;
+                    }
+                    if (Equals(parent2.FetchExpression, toReplace)) {
+                        parent2.FetchExpression = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 37: {
+                    var parent2 = (UnaryExpression)parent;
+                    if (Equals(parent2.Expression, toReplace)) {
+                        parent2.Expression = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 38: {
+                    var parent2 = (VariableMethodCallTableReference)parent;
+                    for (var i = 0; i < parent2.Parameters.Count; i++) {
+                        if (Equals(parent2.Parameters[i], toReplace)) {
+                            parent2.Parameters[i] = replacement;
                             success = true;
                         }
                     }
                     break;
                 }
-                case 41: {
-                    var parent2 = (IdentityOptions)parent;
-                    if (Equals(parent2.IdentitySeed, toReplace)) {
-                        parent2.IdentitySeed = replacement;
-                        success = true;
-                    }
-                    if (Equals(parent2.IdentityIncrement, toReplace)) {
-                        parent2.IdentityIncrement = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 42: {
+                case 39: {
                     var parent2 = (TablePartitionOptionSpecifications)parent;
                     for (var i = 0; i < parent2.BoundaryValues.Count; i++) {
                         if (Equals(parent2.BoundaryValues[i], toReplace)) {
@@ -410,7 +380,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 43: {
+                case 40: {
                     var parent2 = (CopyColumnOption)parent;
                     if (Equals(parent2.DefaultValue, toReplace)) {
                         parent2.DefaultValue = replacement;
@@ -418,7 +388,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 44: {
+                case 41: {
                     var parent2 = (CompressionPartitionRange)parent;
                     if (Equals(parent2.From, toReplace)) {
                         parent2.From = replacement;
@@ -430,7 +400,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 45: {
+                case 42: {
                     var parent2 = (DefaultConstraintDefinition)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -438,7 +408,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 46: {
+                case 43: {
                     var parent2 = (ScalarExpressionRestoreOption)parent;
                     if (Equals(parent2.Value, toReplace)) {
                         parent2.Value = replacement;
@@ -446,7 +416,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 47: {
+                case 44: {
                     var parent2 = (BackupOption)parent;
                     if (Equals(parent2.Value, toReplace)) {
                         parent2.Value = replacement;
@@ -454,7 +424,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 48: {
+                case 45: {
                     var parent2 = (BackupEncryptionOption)parent;
                     if (Equals(parent2.Value, toReplace)) {
                         parent2.Value = replacement;
@@ -462,10 +432,40 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 49: {
+                case 46: {
+                    var parent2 = (DbccNamedLiteral)parent;
+                    if (Equals(parent2.Value, toReplace)) {
+                        parent2.Value = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 47: {
+                    var parent2 = (CreatePartitionFunctionStatement)parent;
+                    for (var i = 0; i < parent2.BoundaryValues.Count; i++) {
+                        if (Equals(parent2.BoundaryValues[i], toReplace)) {
+                            parent2.BoundaryValues[i] = replacement;
+                            success = true;
+                        }
+                    }
+                    break;
+                }
+                case 48: {
                     var parent2 = (ColumnDefinition)parent;
                     if (Equals(parent2.ComputedColumnExpression, toReplace)) {
                         parent2.ComputedColumnExpression = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 49: {
+                    var parent2 = (IdentityOptions)parent;
+                    if (Equals(parent2.IdentitySeed, toReplace)) {
+                        parent2.IdentitySeed = replacement;
+                        success = true;
+                    }
+                    if (Equals(parent2.IdentityIncrement, toReplace)) {
+                        parent2.IdentityIncrement = replacement;
                         success = true;
                     }
                     break;
@@ -713,26 +713,6 @@ namespace Xledger.Sql {
                     break;
                 }
                 case 76: {
-                    var parent2 = (TryCastCall)parent;
-                    if (Equals(parent2.Parameter, toReplace)) {
-                        parent2.Parameter = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 77: {
-                    var parent2 = (AtTimeZoneCall)parent;
-                    if (Equals(parent2.DateValue, toReplace)) {
-                        parent2.DateValue = replacement;
-                        success = true;
-                    }
-                    if (Equals(parent2.TimeZone, toReplace)) {
-                        parent2.TimeZone = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 78: {
                     var parent2 = (FunctionCall)parent;
                     for (var i = 0; i < parent2.Parameters.Count; i++) {
                         if (Equals(parent2.Parameters[i], toReplace)) {
@@ -742,7 +722,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 79: {
+                case 77: {
                     var parent2 = (ExpressionCallTarget)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -750,7 +730,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 80: {
+                case 78: {
                     var parent2 = (LeftFunctionCall)parent;
                     for (var i = 0; i < parent2.Parameters.Count; i++) {
                         if (Equals(parent2.Parameters[i], toReplace)) {
@@ -760,7 +740,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 81: {
+                case 79: {
                     var parent2 = (RightFunctionCall)parent;
                     for (var i = 0; i < parent2.Parameters.Count; i++) {
                         if (Equals(parent2.Parameters[i], toReplace)) {
@@ -770,7 +750,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 82: {
+                case 80: {
                     var parent2 = (PartitionFunctionCall)parent;
                     for (var i = 0; i < parent2.Parameters.Count; i++) {
                         if (Equals(parent2.Parameters[i], toReplace)) {
@@ -780,7 +760,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 83: {
+                case 81: {
                     var parent2 = (OverClause)parent;
                     for (var i = 0; i < parent2.Partitions.Count; i++) {
                         if (Equals(parent2.Partitions[i], toReplace)) {
@@ -790,7 +770,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 84: {
+                case 82: {
                     var parent2 = (WindowDefinition)parent;
                     for (var i = 0; i < parent2.Partitions.Count; i++) {
                         if (Equals(parent2.Partitions[i], toReplace)) {
@@ -800,7 +780,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 85: {
+                case 83: {
                     var parent2 = (OdbcFunctionCall)parent;
                     for (var i = 0; i < parent2.Parameters.Count; i++) {
                         if (Equals(parent2.Parameters[i], toReplace)) {
@@ -810,7 +790,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 86: {
+                case 84: {
                     var parent2 = (ExtractFromExpression)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -818,7 +798,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 87: {
+                case 85: {
                     var parent2 = (CreateDefaultStatement)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -826,7 +806,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 88: {
+                case 86: {
                     var parent2 = (DeclareVariableElement)parent;
                     if (Equals(parent2.Value, toReplace)) {
                         parent2.Value = replacement;
@@ -834,7 +814,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 89: {
+                case 87: {
                     var parent2 = (ProcedureParameter)parent;
                     if (Equals(parent2.Value, toReplace)) {
                         parent2.Value = replacement;
@@ -842,7 +822,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 90: {
+                case 88: {
                     var parent2 = (WaitForStatement)parent;
                     if (Equals(parent2.Timeout, toReplace)) {
                         parent2.Timeout = replacement;
@@ -850,7 +830,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 91: {
+                case 89: {
                     var parent2 = (UpdateTextStatement)parent;
                     if (Equals(parent2.InsertOffset, toReplace)) {
                         parent2.InsertOffset = replacement;
@@ -862,7 +842,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 92: {
+                case 90: {
                     var parent2 = (SchemaObjectFunctionTableReference)parent;
                     for (var i = 0; i < parent2.Parameters.Count; i++) {
                         if (Equals(parent2.Parameters[i], toReplace)) {
@@ -872,7 +852,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 93: {
+                case 91: {
                     var parent2 = (SubqueryComparisonPredicate)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -880,7 +860,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 94: {
+                case 92: {
                     var parent2 = (LikePredicate)parent;
                     if (Equals(parent2.FirstExpression, toReplace)) {
                         parent2.FirstExpression = replacement;
@@ -896,7 +876,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 95: {
+                case 93: {
                     var parent2 = (DistinctPredicate)parent;
                     if (Equals(parent2.FirstExpression, toReplace)) {
                         parent2.FirstExpression = replacement;
@@ -908,7 +888,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 96: {
+                case 94: {
                     var parent2 = (InPredicate)parent;
                     if (Equals(parent2.Expression, toReplace)) {
                         parent2.Expression = replacement;
@@ -922,19 +902,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 97: {
-                    var parent2 = (JsonKeyValue)parent;
-                    if (Equals(parent2.JsonKeyName, toReplace)) {
-                        parent2.JsonKeyName = replacement;
-                        success = true;
-                    }
-                    if (Equals(parent2.JsonValue, toReplace)) {
-                        parent2.JsonValue = replacement;
-                        success = true;
-                    }
-                    break;
-                }
-                case 98: {
+                case 95: {
                     var parent2 = (VariableValuePair)parent;
                     if (Equals(parent2.Value, toReplace)) {
                         parent2.Value = replacement;
@@ -942,7 +910,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 99: {
+                case 96: {
                     var parent2 = (SimpleWhenClause)parent;
                     if (Equals(parent2.WhenExpression, toReplace)) {
                         parent2.WhenExpression = replacement;
@@ -954,7 +922,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 100: {
+                case 97: {
                     var parent2 = (SearchedWhenClause)parent;
                     if (Equals(parent2.ThenExpression, toReplace)) {
                         parent2.ThenExpression = replacement;
@@ -962,7 +930,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 101: {
+                case 98: {
                     var parent2 = (SimpleCaseExpression)parent;
                     if (Equals(parent2.InputExpression, toReplace)) {
                         parent2.InputExpression = replacement;
@@ -974,7 +942,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 102: {
+                case 99: {
                     var parent2 = (SearchedCaseExpression)parent;
                     if (Equals(parent2.ElseExpression, toReplace)) {
                         parent2.ElseExpression = replacement;
@@ -982,7 +950,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 103: {
+                case 100: {
                     var parent2 = (NullIfExpression)parent;
                     if (Equals(parent2.FirstExpression, toReplace)) {
                         parent2.FirstExpression = replacement;
@@ -994,7 +962,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 104: {
+                case 101: {
                     var parent2 = (CoalesceExpression)parent;
                     for (var i = 0; i < parent2.Expressions.Count; i++) {
                         if (Equals(parent2.Expressions[i], toReplace)) {
@@ -1004,7 +972,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 105: {
+                case 102: {
                     var parent2 = (IIfCall)parent;
                     if (Equals(parent2.ThenExpression, toReplace)) {
                         parent2.ThenExpression = replacement;
@@ -1016,7 +984,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 106: {
+                case 103: {
                     var parent2 = (SemanticTableReference)parent;
                     if (Equals(parent2.SourceKey, toReplace)) {
                         parent2.SourceKey = replacement;
@@ -1028,7 +996,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 107: {
+                case 104: {
                     var parent2 = (OpenJsonTableReference)parent;
                     if (Equals(parent2.Variable, toReplace)) {
                         parent2.Variable = replacement;
@@ -1040,7 +1008,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 108: {
+                case 105: {
                     var parent2 = (InternalOpenRowset)parent;
                     for (var i = 0; i < parent2.VarArgs.Count; i++) {
                         if (Equals(parent2.VarArgs[i], toReplace)) {
@@ -1050,7 +1018,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 109: {
+                case 106: {
                     var parent2 = (ConvertCall)parent;
                     if (Equals(parent2.Parameter, toReplace)) {
                         parent2.Parameter = replacement;
@@ -1062,7 +1030,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 110: {
+                case 107: {
                     var parent2 = (TryConvertCall)parent;
                     if (Equals(parent2.Parameter, toReplace)) {
                         parent2.Parameter = replacement;
@@ -1074,7 +1042,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 111: {
+                case 108: {
                     var parent2 = (ParseCall)parent;
                     if (Equals(parent2.StringValue, toReplace)) {
                         parent2.StringValue = replacement;
@@ -1086,7 +1054,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 112: {
+                case 109: {
                     var parent2 = (TryParseCall)parent;
                     if (Equals(parent2.StringValue, toReplace)) {
                         parent2.StringValue = replacement;
@@ -1098,7 +1066,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 113: {
+                case 110: {
                     var parent2 = (CastCall)parent;
                     if (Equals(parent2.Parameter, toReplace)) {
                         parent2.Parameter = replacement;
@@ -1106,7 +1074,27 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 114: {
+                case 111: {
+                    var parent2 = (TryCastCall)parent;
+                    if (Equals(parent2.Parameter, toReplace)) {
+                        parent2.Parameter = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 112: {
+                    var parent2 = (AtTimeZoneCall)parent;
+                    if (Equals(parent2.DateValue, toReplace)) {
+                        parent2.DateValue = replacement;
+                        success = true;
+                    }
+                    if (Equals(parent2.TimeZone, toReplace)) {
+                        parent2.TimeZone = replacement;
+                        success = true;
+                    }
+                    break;
+                }
+                case 113: {
                     var parent2 = (ExecuteContext)parent;
                     if (Equals(parent2.Principal, toReplace)) {
                         parent2.Principal = replacement;
@@ -1114,7 +1102,7 @@ namespace Xledger.Sql {
                     }
                     break;
                 }
-                case 115: {
+                case 114: {
                     var parent2 = (ExecuteParameter)parent;
                     if (Equals(parent2.ParameterValue, toReplace)) {
                         parent2.ParameterValue = replacement;
@@ -1129,55 +1117,55 @@ namespace Xledger.Sql {
 
         static readonly IReadOnlyDictionary<string, int> ReplaceCaseNumberByType =
             new Dictionary<string, int> {
-                [nameof(WindowDelimiter)] = 1,
-                [nameof(TemporalClause)] = 2,
-                [nameof(CompressionDelayIndexOption)] = 3,
-                [nameof(ExternalLibraryFileOption)] = 4,
-                [nameof(ExternalLanguageFileOption)] = 5,
-                [nameof(EventDeclarationSetParameter)] = 6,
-                [nameof(EventDeclarationCompareFunctionParameter)] = 7,
-                [nameof(BoundingBoxParameter)] = 8,
-                [nameof(AlterFederationStatement)] = 9,
-                [nameof(UseFederationStatement)] = 10,
-                [nameof(EndConversationStatement)] = 11,
-                [nameof(MoveConversationStatement)] = 12,
-                [nameof(ReceiveStatement)] = 13,
-                [nameof(SendStatement)] = 14,
-                [nameof(BeginConversationTimerStatement)] = 15,
-                [nameof(ScalarExpressionDialogOption)] = 16,
-                [nameof(TopRowFilter)] = 17,
-                [nameof(OffsetClause)] = 18,
-                [nameof(UnaryExpression)] = 19,
-                [nameof(VariableMethodCallTableReference)] = 20,
-                [nameof(AlterPartitionFunctionStatement)] = 21,
-                [nameof(RevertStatement)] = 22,
-                [nameof(BinaryExpression)] = 23,
-                [nameof(BuiltInFunctionTableReference)] = 24,
-                [nameof(GlobalFunctionTableReference)] = 25,
-                [nameof(ComputeClause)] = 26,
-                [nameof(ComputeFunction)] = 27,
-                [nameof(TableSampleClause)] = 28,
-                [nameof(BooleanComparisonExpression)] = 29,
-                [nameof(BooleanIsNullExpression)] = 30,
-                [nameof(ExpressionWithSortOrder)] = 31,
-                [nameof(ExpressionGroupingSpecification)] = 32,
-                [nameof(IdentityFunctionCall)] = 33,
-                [nameof(PredictTableReference)] = 34,
-                [nameof(SelectScalarExpression)] = 35,
-                [nameof(SelectSetVariable)] = 36,
-                [nameof(ChangeTableVersionTableReference)] = 37,
-                [nameof(BooleanTernaryExpression)] = 38,
-                [nameof(DbccNamedLiteral)] = 39,
-                [nameof(CreatePartitionFunctionStatement)] = 40,
-                [nameof(IdentityOptions)] = 41,
-                [nameof(TablePartitionOptionSpecifications)] = 42,
-                [nameof(CopyColumnOption)] = 43,
-                [nameof(CompressionPartitionRange)] = 44,
-                [nameof(DefaultConstraintDefinition)] = 45,
-                [nameof(ScalarExpressionRestoreOption)] = 46,
-                [nameof(BackupOption)] = 47,
-                [nameof(BackupEncryptionOption)] = 48,
-                [nameof(ColumnDefinition)] = 49,
+                [nameof(ExternalLibraryFileOption)] = 1,
+                [nameof(ExternalLanguageFileOption)] = 2,
+                [nameof(BoundingBoxParameter)] = 3,
+                [nameof(AlterFederationStatement)] = 4,
+                [nameof(UseFederationStatement)] = 5,
+                [nameof(WindowDelimiter)] = 6,
+                [nameof(TemporalClause)] = 7,
+                [nameof(CompressionDelayIndexOption)] = 8,
+                [nameof(EventDeclarationSetParameter)] = 9,
+                [nameof(EventDeclarationCompareFunctionParameter)] = 10,
+                [nameof(ReceiveStatement)] = 11,
+                [nameof(SendStatement)] = 12,
+                [nameof(BeginConversationTimerStatement)] = 13,
+                [nameof(ScalarExpressionDialogOption)] = 14,
+                [nameof(AlterPartitionFunctionStatement)] = 15,
+                [nameof(RevertStatement)] = 16,
+                [nameof(EndConversationStatement)] = 17,
+                [nameof(MoveConversationStatement)] = 18,
+                [nameof(BinaryExpression)] = 19,
+                [nameof(BuiltInFunctionTableReference)] = 20,
+                [nameof(GlobalFunctionTableReference)] = 21,
+                [nameof(ComputeClause)] = 22,
+                [nameof(ComputeFunction)] = 23,
+                [nameof(TableSampleClause)] = 24,
+                [nameof(BooleanComparisonExpression)] = 25,
+                [nameof(BooleanIsNullExpression)] = 26,
+                [nameof(ExpressionWithSortOrder)] = 27,
+                [nameof(ExpressionGroupingSpecification)] = 28,
+                [nameof(IdentityFunctionCall)] = 29,
+                [nameof(PredictTableReference)] = 30,
+                [nameof(SelectScalarExpression)] = 31,
+                [nameof(SelectSetVariable)] = 32,
+                [nameof(ChangeTableVersionTableReference)] = 33,
+                [nameof(BooleanTernaryExpression)] = 34,
+                [nameof(TopRowFilter)] = 35,
+                [nameof(OffsetClause)] = 36,
+                [nameof(UnaryExpression)] = 37,
+                [nameof(VariableMethodCallTableReference)] = 38,
+                [nameof(TablePartitionOptionSpecifications)] = 39,
+                [nameof(CopyColumnOption)] = 40,
+                [nameof(CompressionPartitionRange)] = 41,
+                [nameof(DefaultConstraintDefinition)] = 42,
+                [nameof(ScalarExpressionRestoreOption)] = 43,
+                [nameof(BackupOption)] = 44,
+                [nameof(BackupEncryptionOption)] = 45,
+                [nameof(DbccNamedLiteral)] = 46,
+                [nameof(CreatePartitionFunctionStatement)] = 47,
+                [nameof(ColumnDefinition)] = 48,
+                [nameof(IdentityOptions)] = 49,
                 [nameof(FetchType)] = 50,
                 [nameof(RaiseErrorLegacyStatement)] = 51,
                 [nameof(RaiseErrorStatement)] = 52,
@@ -1204,46 +1192,49 @@ namespace Xledger.Sql {
                 [nameof(IdentifierOrScalarExpression)] = 73,
                 [nameof(ParenthesisExpression)] = 74,
                 [nameof(ScalarExpressionSequenceOption)] = 75,
-                [nameof(TryCastCall)] = 76,
-                [nameof(AtTimeZoneCall)] = 77,
-                [nameof(FunctionCall)] = 78,
-                [nameof(ExpressionCallTarget)] = 79,
-                [nameof(LeftFunctionCall)] = 80,
-                [nameof(RightFunctionCall)] = 81,
-                [nameof(PartitionFunctionCall)] = 82,
-                [nameof(OverClause)] = 83,
-                [nameof(WindowDefinition)] = 84,
-                [nameof(OdbcFunctionCall)] = 85,
-                [nameof(ExtractFromExpression)] = 86,
-                [nameof(CreateDefaultStatement)] = 87,
-                [nameof(DeclareVariableElement)] = 88,
-                [nameof(ProcedureParameter)] = 89,
-                [nameof(WaitForStatement)] = 90,
-                [nameof(UpdateTextStatement)] = 91,
-                [nameof(SchemaObjectFunctionTableReference)] = 92,
-                [nameof(SubqueryComparisonPredicate)] = 93,
-                [nameof(LikePredicate)] = 94,
-                [nameof(DistinctPredicate)] = 95,
-                [nameof(InPredicate)] = 96,
-                [nameof(JsonKeyValue)] = 97,
-                [nameof(VariableValuePair)] = 98,
-                [nameof(SimpleWhenClause)] = 99,
-                [nameof(SearchedWhenClause)] = 100,
-                [nameof(SimpleCaseExpression)] = 101,
-                [nameof(SearchedCaseExpression)] = 102,
-                [nameof(NullIfExpression)] = 103,
-                [nameof(CoalesceExpression)] = 104,
-                [nameof(IIfCall)] = 105,
-                [nameof(SemanticTableReference)] = 106,
-                [nameof(OpenJsonTableReference)] = 107,
-                [nameof(InternalOpenRowset)] = 108,
-                [nameof(ConvertCall)] = 109,
-                [nameof(TryConvertCall)] = 110,
-                [nameof(ParseCall)] = 111,
-                [nameof(TryParseCall)] = 112,
-                [nameof(CastCall)] = 113,
-                [nameof(ExecuteContext)] = 114,
-                [nameof(ExecuteParameter)] = 115
+                [nameof(FunctionCall)] = 76,
+                [nameof(ExpressionCallTarget)] = 77,
+                [nameof(LeftFunctionCall)] = 78,
+                [nameof(RightFunctionCall)] = 79,
+                [nameof(PartitionFunctionCall)] = 80,
+                [nameof(OverClause)] = 81,
+                [nameof(WindowDefinition)] = 82,
+                [nameof(OdbcFunctionCall)] = 83,
+                [nameof(ExtractFromExpression)] = 84,
+                [nameof(CreateDefaultStatement)] = 85,
+                [nameof(DeclareVariableElement)] = 86,
+                [nameof(ProcedureParameter)] = 87,
+                [nameof(WaitForStatement)] = 88,
+                [nameof(UpdateTextStatement)] = 89,
+                [nameof(SchemaObjectFunctionTableReference)] = 90,
+                [nameof(SubqueryComparisonPredicate)] = 91,
+                [nameof(LikePredicate)] = 92,
+                [nameof(DistinctPredicate)] = 93,
+                [nameof(InPredicate)] = 94,
+                [nameof(VariableValuePair)] = 95,
+                [nameof(SimpleWhenClause)] = 96,
+                [nameof(SearchedWhenClause)] = 97,
+                [nameof(SimpleCaseExpression)] = 98,
+                [nameof(SearchedCaseExpression)] = 99,
+                [nameof(NullIfExpression)] = 100,
+                [nameof(CoalesceExpression)] = 101,
+                [nameof(IIfCall)] = 102,
+                [nameof(SemanticTableReference)] = 103,
+                [nameof(OpenJsonTableReference)] = 104,
+                [nameof(InternalOpenRowset)] = 105,
+                [nameof(ConvertCall)] = 106,
+                [nameof(TryConvertCall)] = 107,
+                [nameof(ParseCall)] = 108,
+                [nameof(TryParseCall)] = 109,
+                [nameof(CastCall)] = 110,
+                [nameof(TryCastCall)] = 111,
+                [nameof(AtTimeZoneCall)] = 112,
+                [nameof(ExecuteContext)] = 113,
+                [nameof(ExecuteParameter)] = 114
             };
+
+        internal static void AddRange<T>(this IList<T> @this, IEnumerable<T> xs) {
+            foreach (var x in xs) { @this.Add(x); }
+        }
     }
 }

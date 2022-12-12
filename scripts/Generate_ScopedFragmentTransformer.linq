@@ -103,8 +103,15 @@ namespace Xledger.Sql {" + "\n" + txt + "\n}";
 	(string replaceScalarFn, string replaceScalarDict) = GetReplaceScalarMembers();
 	sb.AppendLine(replaceScalarFn.IndentLines(4));
 	sb.AppendLine();
-	sb.AppendLine(replaceScalarDict.IndentLines(4));
-	sb.AppendLine("}");
+    sb.AppendLine(replaceScalarDict.IndentLines(4));
+  
+    sb.AppendLine($"");
+    sb.AppendLine($"    internal static void AddRange<T>(this IList<T> @this, IEnumerable<T> xs) {{");
+    sb.AppendLine($"        foreach (var x in xs) {{ @this.Add(x); }}");
+    sb.AppendLine($"    }}");
+    sb.AppendLine("}");
+    
+    
 
 	txt = sb.ToString();
 	txt = txt.IndentLines(4);

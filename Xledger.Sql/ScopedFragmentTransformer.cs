@@ -12,11 +12,6 @@ namespace Xledger.Sql {
         ///<summary>Actions to perform when leaving a node.</summary>
         public Dictionary<TSqlFragment, Queue<Action<TSqlFragment>>> PendingOnLeaveActionsByFragment { get; set; } = new Dictionary<TSqlFragment, Queue<Action<TSqlFragment>>>();
 
-        public Action<ScopedFragmentTransformer, WindowDelimiter> VisForWindowDelimiter;
-        public Action<ScopedFragmentTransformer, WithinGroupClause> VisForWithinGroupClause;
-        public Action<ScopedFragmentTransformer, SelectiveXmlIndexPromotedPath> VisForSelectiveXmlIndexPromotedPath;
-        public Action<ScopedFragmentTransformer, TemporalClause> VisForTemporalClause;
-        public Action<ScopedFragmentTransformer, CompressionDelayIndexOption> VisForCompressionDelayIndexOption;
         public Action<ScopedFragmentTransformer, CreateExternalLibraryStatement> VisForCreateExternalLibraryStatement;
         public Action<ScopedFragmentTransformer, AlterExternalLibraryStatement> VisForAlterExternalLibraryStatement;
         public Action<ScopedFragmentTransformer, ExternalLibraryFileOption> VisForExternalLibraryFileOption;
@@ -25,11 +20,6 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, AlterExternalLanguageStatement> VisForAlterExternalLanguageStatement;
         public Action<ScopedFragmentTransformer, ExternalLanguageFileOption> VisForExternalLanguageFileOption;
         public Action<ScopedFragmentTransformer, DropExternalLanguageStatement> VisForDropExternalLanguageStatement;
-        public Action<ScopedFragmentTransformer, EventDeclaration> VisForEventDeclaration;
-        public Action<ScopedFragmentTransformer, EventDeclarationSetParameter> VisForEventDeclarationSetParameter;
-        public Action<ScopedFragmentTransformer, SourceDeclaration> VisForSourceDeclaration;
-        public Action<ScopedFragmentTransformer, EventDeclarationCompareFunctionParameter> VisForEventDeclarationCompareFunctionParameter;
-        public Action<ScopedFragmentTransformer, TargetDeclaration> VisForTargetDeclaration;
         public Action<ScopedFragmentTransformer, EventRetentionSessionOption> VisForEventRetentionSessionOption;
         public Action<ScopedFragmentTransformer, MemoryPartitionSessionOption> VisForMemoryPartitionSessionOption;
         public Action<ScopedFragmentTransformer, LiteralSessionOption> VisForLiteralSessionOption;
@@ -84,11 +74,11 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, DiskStatementOption> VisForDiskStatementOption;
         public Action<ScopedFragmentTransformer, CreateColumnStoreIndexStatement> VisForCreateColumnStoreIndexStatement;
         public Action<ScopedFragmentTransformer, WindowFrameClause> VisForWindowFrameClause;
-        public Action<ScopedFragmentTransformer, DropServerAuditStatement> VisForDropServerAuditStatement;
-        public Action<ScopedFragmentTransformer, AuditTarget> VisForAuditTarget;
-        public Action<ScopedFragmentTransformer, QueueDelayAuditOption> VisForQueueDelayAuditOption;
-        public Action<ScopedFragmentTransformer, AuditGuidAuditOption> VisForAuditGuidAuditOption;
-        public Action<ScopedFragmentTransformer, OnFailureAuditOption> VisForOnFailureAuditOption;
+        public Action<ScopedFragmentTransformer, WindowDelimiter> VisForWindowDelimiter;
+        public Action<ScopedFragmentTransformer, WithinGroupClause> VisForWithinGroupClause;
+        public Action<ScopedFragmentTransformer, SelectiveXmlIndexPromotedPath> VisForSelectiveXmlIndexPromotedPath;
+        public Action<ScopedFragmentTransformer, TemporalClause> VisForTemporalClause;
+        public Action<ScopedFragmentTransformer, CompressionDelayIndexOption> VisForCompressionDelayIndexOption;
         public Action<ScopedFragmentTransformer, OperatorAuditOption> VisForOperatorAuditOption;
         public Action<ScopedFragmentTransformer, StateAuditOption> VisForStateAuditOption;
         public Action<ScopedFragmentTransformer, MaxSizeAuditTargetOption> VisForMaxSizeAuditTargetOption;
@@ -140,12 +130,11 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, EventSessionObjectName> VisForEventSessionObjectName;
         public Action<ScopedFragmentTransformer, EventSessionStatement> VisForEventSessionStatement;
         public Action<ScopedFragmentTransformer, CreateEventSessionStatement> VisForCreateEventSessionStatement;
-        public Action<ScopedFragmentTransformer, AddSignatureStatement> VisForAddSignatureStatement;
-        public Action<ScopedFragmentTransformer, DropSignatureStatement> VisForDropSignatureStatement;
-        public Action<ScopedFragmentTransformer, DropEventNotificationStatement> VisForDropEventNotificationStatement;
-        public Action<ScopedFragmentTransformer, ExecuteAsStatement> VisForExecuteAsStatement;
-        public Action<ScopedFragmentTransformer, EndConversationStatement> VisForEndConversationStatement;
-        public Action<ScopedFragmentTransformer, MoveConversationStatement> VisForMoveConversationStatement;
+        public Action<ScopedFragmentTransformer, EventDeclaration> VisForEventDeclaration;
+        public Action<ScopedFragmentTransformer, EventDeclarationSetParameter> VisForEventDeclarationSetParameter;
+        public Action<ScopedFragmentTransformer, SourceDeclaration> VisForSourceDeclaration;
+        public Action<ScopedFragmentTransformer, EventDeclarationCompareFunctionParameter> VisForEventDeclarationCompareFunctionParameter;
+        public Action<ScopedFragmentTransformer, TargetDeclaration> VisForTargetDeclaration;
         public Action<ScopedFragmentTransformer, GetConversationGroupStatement> VisForGetConversationGroupStatement;
         public Action<ScopedFragmentTransformer, ReceiveStatement> VisForReceiveStatement;
         public Action<ScopedFragmentTransformer, SendStatement> VisForSendStatement;
@@ -193,12 +182,11 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, DropServerAuditSpecificationStatement> VisForDropServerAuditSpecificationStatement;
         public Action<ScopedFragmentTransformer, CreateServerAuditStatement> VisForCreateServerAuditStatement;
         public Action<ScopedFragmentTransformer, AlterServerAuditStatement> VisForAlterServerAuditStatement;
-        public Action<ScopedFragmentTransformer, TopRowFilter> VisForTopRowFilter;
-        public Action<ScopedFragmentTransformer, OffsetClause> VisForOffsetClause;
-        public Action<ScopedFragmentTransformer, UnaryExpression> VisForUnaryExpression;
-        public Action<ScopedFragmentTransformer, BinaryQueryExpression> VisForBinaryQueryExpression;
-        public Action<ScopedFragmentTransformer, VariableTableReference> VisForVariableTableReference;
-        public Action<ScopedFragmentTransformer, VariableMethodCallTableReference> VisForVariableMethodCallTableReference;
+        public Action<ScopedFragmentTransformer, DropServerAuditStatement> VisForDropServerAuditStatement;
+        public Action<ScopedFragmentTransformer, AuditTarget> VisForAuditTarget;
+        public Action<ScopedFragmentTransformer, QueueDelayAuditOption> VisForQueueDelayAuditOption;
+        public Action<ScopedFragmentTransformer, AuditGuidAuditOption> VisForAuditGuidAuditOption;
+        public Action<ScopedFragmentTransformer, OnFailureAuditOption> VisForOnFailureAuditOption;
         public Action<ScopedFragmentTransformer, DropPartitionFunctionStatement> VisForDropPartitionFunctionStatement;
         public Action<ScopedFragmentTransformer, DropPartitionSchemeStatement> VisForDropPartitionSchemeStatement;
         public Action<ScopedFragmentTransformer, DropSynonymStatement> VisForDropSynonymStatement;
@@ -252,11 +240,12 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, DropRemoteServiceBindingStatement> VisForDropRemoteServiceBindingStatement;
         public Action<ScopedFragmentTransformer, DropRouteStatement> VisForDropRouteStatement;
         public Action<ScopedFragmentTransformer, DropServiceStatement> VisForDropServiceStatement;
-        public Action<ScopedFragmentTransformer, OnOffFullTextCatalogOption> VisForOnOffFullTextCatalogOption;
-        public Action<ScopedFragmentTransformer, CreateFullTextCatalogStatement> VisForCreateFullTextCatalogStatement;
-        public Action<ScopedFragmentTransformer, AlterFullTextCatalogStatement> VisForAlterFullTextCatalogStatement;
-        public Action<ScopedFragmentTransformer, CreateServiceStatement> VisForCreateServiceStatement;
-        public Action<ScopedFragmentTransformer, AlterServiceStatement> VisForAlterServiceStatement;
+        public Action<ScopedFragmentTransformer, AddSignatureStatement> VisForAddSignatureStatement;
+        public Action<ScopedFragmentTransformer, DropSignatureStatement> VisForDropSignatureStatement;
+        public Action<ScopedFragmentTransformer, DropEventNotificationStatement> VisForDropEventNotificationStatement;
+        public Action<ScopedFragmentTransformer, ExecuteAsStatement> VisForExecuteAsStatement;
+        public Action<ScopedFragmentTransformer, EndConversationStatement> VisForEndConversationStatement;
+        public Action<ScopedFragmentTransformer, MoveConversationStatement> VisForMoveConversationStatement;
         public Action<ScopedFragmentTransformer, ServiceContract> VisForServiceContract;
         public Action<ScopedFragmentTransformer, BinaryExpression> VisForBinaryExpression;
         public Action<ScopedFragmentTransformer, BuiltInFunctionTableReference> VisForBuiltInFunctionTableReference;
@@ -306,12 +295,12 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, ChangeTableChangesTableReference> VisForChangeTableChangesTableReference;
         public Action<ScopedFragmentTransformer, ChangeTableVersionTableReference> VisForChangeTableVersionTableReference;
         public Action<ScopedFragmentTransformer, BooleanTernaryExpression> VisForBooleanTernaryExpression;
-        public Action<ScopedFragmentTransformer, DbccStatement> VisForDbccStatement;
-        public Action<ScopedFragmentTransformer, DbccOption> VisForDbccOption;
-        public Action<ScopedFragmentTransformer, DbccNamedLiteral> VisForDbccNamedLiteral;
-        public Action<ScopedFragmentTransformer, CreateAsymmetricKeyStatement> VisForCreateAsymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, CreatePartitionFunctionStatement> VisForCreatePartitionFunctionStatement;
-        public Action<ScopedFragmentTransformer, PartitionParameterType> VisForPartitionParameterType;
+        public Action<ScopedFragmentTransformer, TopRowFilter> VisForTopRowFilter;
+        public Action<ScopedFragmentTransformer, OffsetClause> VisForOffsetClause;
+        public Action<ScopedFragmentTransformer, UnaryExpression> VisForUnaryExpression;
+        public Action<ScopedFragmentTransformer, BinaryQueryExpression> VisForBinaryQueryExpression;
+        public Action<ScopedFragmentTransformer, VariableTableReference> VisForVariableTableReference;
+        public Action<ScopedFragmentTransformer, VariableMethodCallTableReference> VisForVariableMethodCallTableReference;
         public Action<ScopedFragmentTransformer, CreatePartitionSchemeStatement> VisForCreatePartitionSchemeStatement;
         public Action<ScopedFragmentTransformer, OnOffRemoteServiceBindingOption> VisForOnOffRemoteServiceBindingOption;
         public Action<ScopedFragmentTransformer, UserRemoteServiceBindingOption> VisForUserRemoteServiceBindingOption;
@@ -357,13 +346,15 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, ProviderKeyNameKeyOption> VisForProviderKeyNameKeyOption;
         public Action<ScopedFragmentTransformer, CreationDispositionKeyOption> VisForCreationDispositionKeyOption;
         public Action<ScopedFragmentTransformer, AlterSymmetricKeyStatement> VisForAlterSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionAlgorithmParameter> VisForColumnEncryptionAlgorithmParameter;
-        public Action<ScopedFragmentTransformer, IdentityOptions> VisForIdentityOptions;
+        public Action<ScopedFragmentTransformer, OnOffFullTextCatalogOption> VisForOnOffFullTextCatalogOption;
+        public Action<ScopedFragmentTransformer, CreateFullTextCatalogStatement> VisForCreateFullTextCatalogStatement;
+        public Action<ScopedFragmentTransformer, AlterFullTextCatalogStatement> VisForAlterFullTextCatalogStatement;
+        public Action<ScopedFragmentTransformer, CreateServiceStatement> VisForCreateServiceStatement;
+        public Action<ScopedFragmentTransformer, AlterServiceStatement> VisForAlterServiceStatement;
         public Action<ScopedFragmentTransformer, ColumnStorageOptions> VisForColumnStorageOptions;
         public Action<ScopedFragmentTransformer, CreateTableStatement> VisForCreateTableStatement;
         public Action<ScopedFragmentTransformer, FederationScheme> VisForFederationScheme;
         public Action<ScopedFragmentTransformer, TableDataCompressionOption> VisForTableDataCompressionOption;
-        public Action<ScopedFragmentTransformer, TableXmlCompressionOption> VisForTableXmlCompressionOption;
         public Action<ScopedFragmentTransformer, TableDistributionOption> VisForTableDistributionOption;
         public Action<ScopedFragmentTransformer, TableReplicateDistributionPolicy> VisForTableReplicateDistributionPolicy;
         public Action<ScopedFragmentTransformer, TableRoundRobinDistributionPolicy> VisForTableRoundRobinDistributionPolicy;
@@ -382,7 +373,6 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, ListTypeCopyOption> VisForListTypeCopyOption;
         public Action<ScopedFragmentTransformer, CopyColumnOption> VisForCopyColumnOption;
         public Action<ScopedFragmentTransformer, DataCompressionOption> VisForDataCompressionOption;
-        public Action<ScopedFragmentTransformer, XmlCompressionOption> VisForXmlCompressionOption;
         public Action<ScopedFragmentTransformer, CompressionPartitionRange> VisForCompressionPartitionRange;
         public Action<ScopedFragmentTransformer, CheckConstraintDefinition> VisForCheckConstraintDefinition;
         public Action<ScopedFragmentTransformer, DefaultConstraintDefinition> VisForDefaultConstraintDefinition;
@@ -407,15 +397,17 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, BulkInsertStatement> VisForBulkInsertStatement;
         public Action<ScopedFragmentTransformer, InsertBulkStatement> VisForInsertBulkStatement;
         public Action<ScopedFragmentTransformer, BulkInsertOption> VisForBulkInsertOption;
-        public Action<ScopedFragmentTransformer, OpenRowsetCosmosOption> VisForOpenRowsetCosmosOption;
-        public Action<ScopedFragmentTransformer, LiteralOpenRowsetCosmosOption> VisForLiteralOpenRowsetCosmosOption;
         public Action<ScopedFragmentTransformer, LiteralBulkInsertOption> VisForLiteralBulkInsertOption;
         public Action<ScopedFragmentTransformer, OrderBulkInsertOption> VisForOrderBulkInsertOption;
         public Action<ScopedFragmentTransformer, ColumnDefinitionBase> VisForColumnDefinitionBase;
         public Action<ScopedFragmentTransformer, ExternalTableColumnDefinition> VisForExternalTableColumnDefinition;
         public Action<ScopedFragmentTransformer, InsertBulkColumnDefinition> VisForInsertBulkColumnDefinition;
-        public Action<ScopedFragmentTransformer, DatabaseConfigurationClearOption> VisForDatabaseConfigurationClearOption;
-        public Action<ScopedFragmentTransformer, DatabaseConfigurationSetOption> VisForDatabaseConfigurationSetOption;
+        public Action<ScopedFragmentTransformer, DbccStatement> VisForDbccStatement;
+        public Action<ScopedFragmentTransformer, DbccOption> VisForDbccOption;
+        public Action<ScopedFragmentTransformer, DbccNamedLiteral> VisForDbccNamedLiteral;
+        public Action<ScopedFragmentTransformer, CreateAsymmetricKeyStatement> VisForCreateAsymmetricKeyStatement;
+        public Action<ScopedFragmentTransformer, CreatePartitionFunctionStatement> VisForCreatePartitionFunctionStatement;
+        public Action<ScopedFragmentTransformer, PartitionParameterType> VisForPartitionParameterType;
         public Action<ScopedFragmentTransformer, OnOffPrimaryConfigurationOption> VisForOnOffPrimaryConfigurationOption;
         public Action<ScopedFragmentTransformer, MaxDopConfigurationOption> VisForMaxDopConfigurationOption;
         public Action<ScopedFragmentTransformer, GenericConfigurationOption> VisForGenericConfigurationOption;
@@ -475,8 +467,8 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, ColumnEncryptionDefinition> VisForColumnEncryptionDefinition;
         public Action<ScopedFragmentTransformer, ColumnEncryptionKeyNameParameter> VisForColumnEncryptionKeyNameParameter;
         public Action<ScopedFragmentTransformer, ColumnEncryptionTypeParameter> VisForColumnEncryptionTypeParameter;
-        public Action<ScopedFragmentTransformer, CloseSymmetricKeyStatement> VisForCloseSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, OpenMasterKeyStatement> VisForOpenMasterKeyStatement;
+        public Action<ScopedFragmentTransformer, ColumnEncryptionAlgorithmParameter> VisForColumnEncryptionAlgorithmParameter;
+        public Action<ScopedFragmentTransformer, IdentityOptions> VisForIdentityOptions;
         public Action<ScopedFragmentTransformer, CloseMasterKeyStatement> VisForCloseMasterKeyStatement;
         public Action<ScopedFragmentTransformer, DeallocateCursorStatement> VisForDeallocateCursorStatement;
         public Action<ScopedFragmentTransformer, FetchType> VisForFetchType;
@@ -531,7 +523,8 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, FileGroupDefinition> VisForFileGroupDefinition;
         public Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationSetStatement> VisForAlterDatabaseScopedConfigurationSetStatement;
         public Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationClearStatement> VisForAlterDatabaseScopedConfigurationClearStatement;
-        public Action<ScopedFragmentTransformer, CreateIndexStatement> VisForCreateIndexStatement;
+        public Action<ScopedFragmentTransformer, DatabaseConfigurationClearOption> VisForDatabaseConfigurationClearOption;
+        public Action<ScopedFragmentTransformer, DatabaseConfigurationSetOption> VisForDatabaseConfigurationSetOption;
         public Action<ScopedFragmentTransformer, IndexStateOption> VisForIndexStateOption;
         public Action<ScopedFragmentTransformer, IndexExpressionOption> VisForIndexExpressionOption;
         public Action<ScopedFragmentTransformer, MaxDurationOption> VisForMaxDurationOption;
@@ -585,8 +578,8 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, CloseCursorStatement> VisForCloseCursorStatement;
         public Action<ScopedFragmentTransformer, CryptoMechanism> VisForCryptoMechanism;
         public Action<ScopedFragmentTransformer, OpenSymmetricKeyStatement> VisForOpenSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, AlterTableFileTableNamespaceStatement> VisForAlterTableFileTableNamespaceStatement;
-        public Action<ScopedFragmentTransformer, AlterTableSetStatement> VisForAlterTableSetStatement;
+        public Action<ScopedFragmentTransformer, CloseSymmetricKeyStatement> VisForCloseSymmetricKeyStatement;
+        public Action<ScopedFragmentTransformer, OpenMasterKeyStatement> VisForOpenMasterKeyStatement;
         public Action<ScopedFragmentTransformer, LockEscalationTableOption> VisForLockEscalationTableOption;
         public Action<ScopedFragmentTransformer, FileStreamOnTableOption> VisForFileStreamOnTableOption;
         public Action<ScopedFragmentTransformer, FileTableDirectoryTableOption> VisForFileTableDirectoryTableOption;
@@ -641,8 +634,7 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, CreateXmlIndexStatement> VisForCreateXmlIndexStatement;
         public Action<ScopedFragmentTransformer, CreateSelectiveXmlIndexStatement> VisForCreateSelectiveXmlIndexStatement;
         public Action<ScopedFragmentTransformer, FileGroupOrPartitionScheme> VisForFileGroupOrPartitionScheme;
-        public Action<ScopedFragmentTransformer, AlterSecurityPolicyStatement> VisForAlterSecurityPolicyStatement;
-        public Action<ScopedFragmentTransformer, DropSecurityPolicyStatement> VisForDropSecurityPolicyStatement;
+        public Action<ScopedFragmentTransformer, CreateIndexStatement> VisForCreateIndexStatement;
         public Action<ScopedFragmentTransformer, CreateColumnMasterKeyStatement> VisForCreateColumnMasterKeyStatement;
         public Action<ScopedFragmentTransformer, ColumnMasterKeyStoreProviderNameParameter> VisForColumnMasterKeyStoreProviderNameParameter;
         public Action<ScopedFragmentTransformer, ColumnMasterKeyPathParameter> VisForColumnMasterKeyPathParameter;
@@ -690,8 +682,8 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, AlterTableAlterPartitionStatement> VisForAlterTableAlterPartitionStatement;
         public Action<ScopedFragmentTransformer, AlterTableRebuildStatement> VisForAlterTableRebuildStatement;
         public Action<ScopedFragmentTransformer, AlterTableChangeTrackingModificationStatement> VisForAlterTableChangeTrackingModificationStatement;
-        public Action<ScopedFragmentTransformer, RevokeStatement> VisForRevokeStatement;
-        public Action<ScopedFragmentTransformer, AlterAuthorizationStatement> VisForAlterAuthorizationStatement;
+        public Action<ScopedFragmentTransformer, AlterTableFileTableNamespaceStatement> VisForAlterTableFileTableNamespaceStatement;
+        public Action<ScopedFragmentTransformer, AlterTableSetStatement> VisForAlterTableSetStatement;
         public Action<ScopedFragmentTransformer, Permission> VisForPermission;
         public Action<ScopedFragmentTransformer, SecurityTargetObject> VisForSecurityTargetObject;
         public Action<ScopedFragmentTransformer, SecurityTargetObjectName> VisForSecurityTargetObjectName;
@@ -744,8 +736,8 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, SecurityPredicateAction> VisForSecurityPredicateAction;
         public Action<ScopedFragmentTransformer, SecurityPolicyOption> VisForSecurityPolicyOption;
         public Action<ScopedFragmentTransformer, CreateSecurityPolicyStatement> VisForCreateSecurityPolicyStatement;
-        public Action<ScopedFragmentTransformer, TryCastCall> VisForTryCastCall;
-        public Action<ScopedFragmentTransformer, AtTimeZoneCall> VisForAtTimeZoneCall;
+        public Action<ScopedFragmentTransformer, AlterSecurityPolicyStatement> VisForAlterSecurityPolicyStatement;
+        public Action<ScopedFragmentTransformer, DropSecurityPolicyStatement> VisForDropSecurityPolicyStatement;
         public Action<ScopedFragmentTransformer, FunctionCall> VisForFunctionCall;
         public Action<ScopedFragmentTransformer, ExpressionCallTarget> VisForExpressionCallTarget;
         public Action<ScopedFragmentTransformer, MultiPartIdentifierCallTarget> VisForMultiPartIdentifierCallTarget;
@@ -802,6 +794,8 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, LineNoStatement> VisForLineNoStatement;
         public Action<ScopedFragmentTransformer, GrantStatement> VisForGrantStatement;
         public Action<ScopedFragmentTransformer, DenyStatement> VisForDenyStatement;
+        public Action<ScopedFragmentTransformer, RevokeStatement> VisForRevokeStatement;
+        public Action<ScopedFragmentTransformer, AlterAuthorizationStatement> VisForAlterAuthorizationStatement;
         public Action<ScopedFragmentTransformer, ScalarFunctionReturnType> VisForScalarFunctionReturnType;
         public Action<ScopedFragmentTransformer, SelectFunctionReturnType> VisForSelectFunctionReturnType;
         public Action<ScopedFragmentTransformer, TableDefinition> VisForTableDefinition;
@@ -827,7 +821,6 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, XmlForClause> VisForXmlForClause;
         public Action<ScopedFragmentTransformer, XmlForClauseOption> VisForXmlForClauseOption;
         public Action<ScopedFragmentTransformer, JsonForClause> VisForJsonForClause;
-        public Action<ScopedFragmentTransformer, JsonKeyValue> VisForJsonKeyValue;
         public Action<ScopedFragmentTransformer, JsonForClauseOption> VisForJsonForClauseOption;
         public Action<ScopedFragmentTransformer, UpdateForClause> VisForUpdateForClause;
         public Action<ScopedFragmentTransformer, OptimizerHint> VisForOptimizerHint;
@@ -850,7 +843,6 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, OpenJsonTableReference> VisForOpenJsonTableReference;
         public Action<ScopedFragmentTransformer, OpenRowsetTableReference> VisForOpenRowsetTableReference;
         public Action<ScopedFragmentTransformer, InternalOpenRowset> VisForInternalOpenRowset;
-        public Action<ScopedFragmentTransformer, OpenRowsetCosmos> VisForOpenRowsetCosmos;
         public Action<ScopedFragmentTransformer, BulkOpenRowset> VisForBulkOpenRowset;
         public Action<ScopedFragmentTransformer, OpenRowsetColumnDefinition> VisForOpenRowsetColumnDefinition;
         public Action<ScopedFragmentTransformer, OpenQueryTableReference> VisForOpenQueryTableReference;
@@ -862,6 +854,8 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, ParseCall> VisForParseCall;
         public Action<ScopedFragmentTransformer, TryParseCall> VisForTryParseCall;
         public Action<ScopedFragmentTransformer, CastCall> VisForCastCall;
+        public Action<ScopedFragmentTransformer, TryCastCall> VisForTryCastCall;
+        public Action<ScopedFragmentTransformer, AtTimeZoneCall> VisForAtTimeZoneCall;
         public Action<ScopedFragmentTransformer, StatementList> VisForStatementList;
         public Action<ScopedFragmentTransformer, ExecuteStatement> VisForExecuteStatement;
         public Action<ScopedFragmentTransformer, ExecuteOption> VisForExecuteOption;
@@ -939,71 +933,6 @@ namespace Xledger.Sql {
             }
 
             PendingOnLeaveActionsByFragment.Remove(node);
-        }
-
-        public override void ExplicitVisit(WindowDelimiter node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForWindowDelimiter?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(WithinGroupClause node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForWithinGroupClause?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(SelectiveXmlIndexPromotedPath node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForSelectiveXmlIndexPromotedPath?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(TemporalClause node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForTemporalClause?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(CompressionDelayIndexOption node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForCompressionDelayIndexOption?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
         }
 
         public override void ExplicitVisit(CreateExternalLibraryStatement node) {
@@ -1101,71 +1030,6 @@ namespace Xledger.Sql {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
             VisForDropExternalLanguageStatement?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(EventDeclaration node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForEventDeclaration?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(EventDeclarationSetParameter node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForEventDeclarationSetParameter?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(SourceDeclaration node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForSourceDeclaration?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(EventDeclarationCompareFunctionParameter node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForEventDeclarationCompareFunctionParameter?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(TargetDeclaration node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForTargetDeclaration?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -1877,10 +1741,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(DropServerAuditStatement node) {
+        public override void ExplicitVisit(WindowDelimiter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForDropServerAuditStatement?.Invoke(this, node);
+            VisForWindowDelimiter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -1890,10 +1754,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AuditTarget node) {
+        public override void ExplicitVisit(WithinGroupClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAuditTarget?.Invoke(this, node);
+            VisForWithinGroupClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -1903,10 +1767,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(QueueDelayAuditOption node) {
+        public override void ExplicitVisit(SelectiveXmlIndexPromotedPath node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForQueueDelayAuditOption?.Invoke(this, node);
+            VisForSelectiveXmlIndexPromotedPath?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -1916,10 +1780,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AuditGuidAuditOption node) {
+        public override void ExplicitVisit(TemporalClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAuditGuidAuditOption?.Invoke(this, node);
+            VisForTemporalClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -1929,10 +1793,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(OnFailureAuditOption node) {
+        public override void ExplicitVisit(CompressionDelayIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForOnFailureAuditOption?.Invoke(this, node);
+            VisForCompressionDelayIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -2605,10 +2469,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AddSignatureStatement node) {
+        public override void ExplicitVisit(EventDeclaration node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAddSignatureStatement?.Invoke(this, node);
+            VisForEventDeclaration?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -2618,10 +2482,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(DropSignatureStatement node) {
+        public override void ExplicitVisit(EventDeclarationSetParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForDropSignatureStatement?.Invoke(this, node);
+            VisForEventDeclarationSetParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -2631,10 +2495,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(DropEventNotificationStatement node) {
+        public override void ExplicitVisit(SourceDeclaration node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForDropEventNotificationStatement?.Invoke(this, node);
+            VisForSourceDeclaration?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -2644,10 +2508,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(ExecuteAsStatement node) {
+        public override void ExplicitVisit(EventDeclarationCompareFunctionParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForExecuteAsStatement?.Invoke(this, node);
+            VisForEventDeclarationCompareFunctionParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -2657,23 +2521,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(EndConversationStatement node) {
+        public override void ExplicitVisit(TargetDeclaration node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForEndConversationStatement?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(MoveConversationStatement node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForMoveConversationStatement?.Invoke(this, node);
+            VisForTargetDeclaration?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -3294,10 +3145,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(TopRowFilter node) {
+        public override void ExplicitVisit(DropServerAuditStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForTopRowFilter?.Invoke(this, node);
+            VisForDropServerAuditStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -3307,10 +3158,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(OffsetClause node) {
+        public override void ExplicitVisit(AuditTarget node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForOffsetClause?.Invoke(this, node);
+            VisForAuditTarget?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -3320,10 +3171,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(UnaryExpression node) {
+        public override void ExplicitVisit(QueueDelayAuditOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForUnaryExpression?.Invoke(this, node);
+            VisForQueueDelayAuditOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -3333,10 +3184,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(BinaryQueryExpression node) {
+        public override void ExplicitVisit(AuditGuidAuditOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForBinaryQueryExpression?.Invoke(this, node);
+            VisForAuditGuidAuditOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -3346,23 +3197,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(VariableTableReference node) {
+        public override void ExplicitVisit(OnFailureAuditOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForVariableTableReference?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(VariableMethodCallTableReference node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForVariableMethodCallTableReference?.Invoke(this, node);
+            VisForOnFailureAuditOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4061,10 +3899,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(OnOffFullTextCatalogOption node) {
+        public override void ExplicitVisit(AddSignatureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForOnOffFullTextCatalogOption?.Invoke(this, node);
+            VisForAddSignatureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4074,10 +3912,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(CreateFullTextCatalogStatement node) {
+        public override void ExplicitVisit(DropSignatureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForCreateFullTextCatalogStatement?.Invoke(this, node);
+            VisForDropSignatureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4087,10 +3925,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AlterFullTextCatalogStatement node) {
+        public override void ExplicitVisit(DropEventNotificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAlterFullTextCatalogStatement?.Invoke(this, node);
+            VisForDropEventNotificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4100,10 +3938,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(CreateServiceStatement node) {
+        public override void ExplicitVisit(ExecuteAsStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForCreateServiceStatement?.Invoke(this, node);
+            VisForExecuteAsStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4113,10 +3951,23 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AlterServiceStatement node) {
+        public override void ExplicitVisit(EndConversationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAlterServiceStatement?.Invoke(this, node);
+            VisForEndConversationStatement?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(MoveConversationStatement node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForMoveConversationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4763,10 +4614,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(DbccStatement node) {
+        public override void ExplicitVisit(TopRowFilter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForDbccStatement?.Invoke(this, node);
+            VisForTopRowFilter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4776,10 +4627,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(DbccOption node) {
+        public override void ExplicitVisit(OffsetClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForDbccOption?.Invoke(this, node);
+            VisForOffsetClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4789,10 +4640,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(DbccNamedLiteral node) {
+        public override void ExplicitVisit(UnaryExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForDbccNamedLiteral?.Invoke(this, node);
+            VisForUnaryExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4802,10 +4653,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(CreateAsymmetricKeyStatement node) {
+        public override void ExplicitVisit(BinaryQueryExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForCreateAsymmetricKeyStatement?.Invoke(this, node);
+            VisForBinaryQueryExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4815,10 +4666,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(CreatePartitionFunctionStatement node) {
+        public override void ExplicitVisit(VariableTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForCreatePartitionFunctionStatement?.Invoke(this, node);
+            VisForVariableTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -4828,10 +4679,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(PartitionParameterType node) {
+        public override void ExplicitVisit(VariableMethodCallTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForPartitionParameterType?.Invoke(this, node);
+            VisForVariableMethodCallTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -5426,10 +5277,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(ColumnEncryptionAlgorithmParameter node) {
+        public override void ExplicitVisit(OnOffFullTextCatalogOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForColumnEncryptionAlgorithmParameter?.Invoke(this, node);
+            VisForOnOffFullTextCatalogOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -5439,10 +5290,49 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(IdentityOptions node) {
+        public override void ExplicitVisit(CreateFullTextCatalogStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForIdentityOptions?.Invoke(this, node);
+            VisForCreateFullTextCatalogStatement?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(AlterFullTextCatalogStatement node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForAlterFullTextCatalogStatement?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(CreateServiceStatement node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForCreateServiceStatement?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(AlterServiceStatement node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForAlterServiceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -5495,19 +5385,6 @@ namespace Xledger.Sql {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
             VisForTableDataCompressionOption?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(TableXmlCompressionOption node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForTableXmlCompressionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -5742,19 +5619,6 @@ namespace Xledger.Sql {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
             VisForDataCompressionOption?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(XmlCompressionOption node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForXmlCompressionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -6076,32 +5940,6 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(OpenRowsetCosmosOption node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForOpenRowsetCosmosOption?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(LiteralOpenRowsetCosmosOption node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForLiteralOpenRowsetCosmosOption?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
         public override void ExplicitVisit(LiteralBulkInsertOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
@@ -6167,10 +6005,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(DatabaseConfigurationClearOption node) {
+        public override void ExplicitVisit(DbccStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForDatabaseConfigurationClearOption?.Invoke(this, node);
+            VisForDbccStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -6180,10 +6018,62 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(DatabaseConfigurationSetOption node) {
+        public override void ExplicitVisit(DbccOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForDatabaseConfigurationSetOption?.Invoke(this, node);
+            VisForDbccOption?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(DbccNamedLiteral node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForDbccNamedLiteral?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(CreateAsymmetricKeyStatement node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForCreateAsymmetricKeyStatement?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(CreatePartitionFunctionStatement node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForCreatePartitionFunctionStatement?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(PartitionParameterType node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForPartitionParameterType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -6960,10 +6850,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(CloseSymmetricKeyStatement node) {
+        public override void ExplicitVisit(ColumnEncryptionAlgorithmParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForCloseSymmetricKeyStatement?.Invoke(this, node);
+            VisForColumnEncryptionAlgorithmParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -6973,10 +6863,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(OpenMasterKeyStatement node) {
+        public override void ExplicitVisit(IdentityOptions node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForOpenMasterKeyStatement?.Invoke(this, node);
+            VisForIdentityOptions?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -7688,10 +7578,23 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(CreateIndexStatement node) {
+        public override void ExplicitVisit(DatabaseConfigurationClearOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForCreateIndexStatement?.Invoke(this, node);
+            VisForDatabaseConfigurationClearOption?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(DatabaseConfigurationSetOption node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForDatabaseConfigurationSetOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -8390,10 +8293,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AlterTableFileTableNamespaceStatement node) {
+        public override void ExplicitVisit(CloseSymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAlterTableFileTableNamespaceStatement?.Invoke(this, node);
+            VisForCloseSymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -8403,10 +8306,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AlterTableSetStatement node) {
+        public override void ExplicitVisit(OpenMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAlterTableSetStatement?.Invoke(this, node);
+            VisForOpenMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -9118,23 +9021,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AlterSecurityPolicyStatement node) {
+        public override void ExplicitVisit(CreateIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAlterSecurityPolicyStatement?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
-        public override void ExplicitVisit(DropSecurityPolicyStatement node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForDropSecurityPolicyStatement?.Invoke(this, node);
+            VisForCreateIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -9755,10 +9645,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(RevokeStatement node) {
+        public override void ExplicitVisit(AlterTableFileTableNamespaceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForRevokeStatement?.Invoke(this, node);
+            VisForAlterTableFileTableNamespaceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -9768,10 +9658,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AlterAuthorizationStatement node) {
+        public override void ExplicitVisit(AlterTableSetStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAlterAuthorizationStatement?.Invoke(this, node);
+            VisForAlterTableSetStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -10457,10 +10347,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(TryCastCall node) {
+        public override void ExplicitVisit(AlterSecurityPolicyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForTryCastCall?.Invoke(this, node);
+            VisForAlterSecurityPolicyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -10470,10 +10360,10 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(AtTimeZoneCall node) {
+        public override void ExplicitVisit(DropSecurityPolicyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
-            VisForAtTimeZoneCall?.Invoke(this, node);
+            VisForDropSecurityPolicyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
@@ -11211,6 +11101,32 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
+        public override void ExplicitVisit(RevokeStatement node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForRevokeStatement?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(AlterAuthorizationStatement node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForAlterAuthorizationStatement?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
         public override void ExplicitVisit(ScalarFunctionReturnType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
@@ -11536,19 +11452,6 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(JsonKeyValue node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForJsonKeyValue?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
         public override void ExplicitVisit(JsonForClauseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
@@ -11835,19 +11738,6 @@ namespace Xledger.Sql {
             HandleOnLeave(node);
         }
 
-        public override void ExplicitVisit(OpenRowsetCosmos node) {
-            if (SkipList.Contains(node)) { return; }
-            if (ShouldStop) { return; }
-            VisForOpenRowsetCosmos?.Invoke(this, node);
-            if (ShouldStop) { return; }
-
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
-
-            HandleOnLeave(node);
-        }
-
         public override void ExplicitVisit(BulkOpenRowset node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
@@ -11982,6 +11872,32 @@ namespace Xledger.Sql {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
             VisForCastCall?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(TryCastCall node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForTryCastCall?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(AtTimeZoneCall node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForAtTimeZoneCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
