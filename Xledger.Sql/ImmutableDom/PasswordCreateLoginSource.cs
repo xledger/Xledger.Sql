@@ -1,0 +1,83 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Xledger.Sql.Collections;
+using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
+
+
+namespace Xledger.Sql.ImmutableDom {
+    public class PasswordCreateLoginSource : CreateLoginSource, IEquatable<PasswordCreateLoginSource> {
+        Literal password;
+        bool hashed = false;
+        bool mustChange = false;
+        IReadOnlyList<PrincipalOption> options;
+    
+        public Literal Password => password;
+        public bool Hashed => hashed;
+        public bool MustChange => mustChange;
+        public IReadOnlyList<PrincipalOption> Options => options;
+    
+        public PasswordCreateLoginSource(Literal password = null, bool hashed = false, bool mustChange = false, IReadOnlyList<PrincipalOption> options = null) {
+            this.password = password;
+            this.hashed = hashed;
+            this.mustChange = mustChange;
+            this.options = options is null ? ImmList<PrincipalOption>.Empty : ImmList<PrincipalOption>.FromList(options);
+        }
+    
+        public ScriptDom.PasswordCreateLoginSource ToMutableConcrete() {
+            var ret = new ScriptDom.PasswordCreateLoginSource();
+            ret.Password = (ScriptDom.Literal)password.ToMutable();
+            ret.Hashed = hashed;
+            ret.MustChange = mustChange;
+            ret.Options.AddRange(options.Select(c => (ScriptDom.PrincipalOption)c.ToMutable()));
+            return ret;
+        }
+        
+        public override ScriptDom.TSqlFragment ToMutable() {
+            return ToMutableConcrete();
+        }
+    
+        public override int GetHashCode() {
+            var h = 17;
+            if (!(password is null)) {
+                h = h * 23 + password.GetHashCode();
+            }
+            h = h * 23 + hashed.GetHashCode();
+            h = h * 23 + mustChange.GetHashCode();
+            h = h * 23 + options.GetHashCode();
+            return h;
+        }
+    
+        public override bool Equals(object obj) {
+            return Equals(obj as PasswordCreateLoginSource);
+        } 
+        
+        public bool Equals(PasswordCreateLoginSource other) {
+            if (other is null) { return false; }
+            if (!EqualityComparer<Literal>.Default.Equals(other.Password, password)) {
+                return false;
+            }
+            if (!EqualityComparer<bool>.Default.Equals(other.Hashed, hashed)) {
+                return false;
+            }
+            if (!EqualityComparer<bool>.Default.Equals(other.MustChange, mustChange)) {
+                return false;
+            }
+            if (!EqualityComparer<IReadOnlyList<PrincipalOption>>.Default.Equals(other.Options, options)) {
+                return false;
+            }
+            return true;
+        } 
+        
+        public static bool operator ==(PasswordCreateLoginSource left, PasswordCreateLoginSource right) {
+            return EqualityComparer<PasswordCreateLoginSource>.Default.Equals(left, right);
+        }
+        
+        public static bool operator !=(PasswordCreateLoginSource left, PasswordCreateLoginSource right) {
+            return !(left == right);
+        }
+    
+    }
+
+}
