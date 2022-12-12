@@ -18,6 +18,11 @@ namespace Xledger.Sql.Collections {
                 if (list is null) {
                     throw new ArgumentNullException(nameof(list));
                 }
+
+                if (list.Count == 0) {
+                    return Empty;
+                }
+
                 var data = new T[list.Count];
                 for (int i = 0; i < list.Count; i++) {
                     data[i] = list[i];
