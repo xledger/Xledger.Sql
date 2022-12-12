@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateEventNotificationStatement : TSqlStatement, IEquatable<CreateEventNotificationStatement> {
-        Identifier name;
-        EventNotificationObjectScope scope;
-        bool withFanIn = false;
-        IReadOnlyList<EventTypeGroupContainer> eventTypeGroups;
-        Literal brokerService;
-        Literal brokerInstanceSpecifier;
+        protected Identifier name;
+        protected EventNotificationObjectScope scope;
+        protected bool withFanIn = false;
+        protected IReadOnlyList<EventTypeGroupContainer> eventTypeGroups;
+        protected Literal brokerService;
+        protected Literal brokerInstanceSpecifier;
     
         public Identifier Name => name;
         public EventNotificationObjectScope Scope => scope;
@@ -36,7 +36,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.Scope = (ScriptDom.EventNotificationObjectScope)scope.ToMutable();
             ret.WithFanIn = withFanIn;
-            ret.EventTypeGroups.AddRange(eventTypeGroups.Select(c => (ScriptDom.EventTypeGroupContainer)c.ToMutable()));
+            ret.EventTypeGroups.AddRange(eventTypeGroups.SelectList(c => (ScriptDom.EventTypeGroupContainer)c.ToMutable()));
             ret.BrokerService = (ScriptDom.Literal)brokerService.ToMutable();
             ret.BrokerInstanceSpecifier = (ScriptDom.Literal)brokerInstanceSpecifier.ToMutable();
             return ret;

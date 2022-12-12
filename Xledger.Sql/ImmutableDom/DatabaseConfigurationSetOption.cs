@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DatabaseConfigurationSetOption : TSqlFragment, IEquatable<DatabaseConfigurationSetOption> {
-        ScriptDom.DatabaseConfigSetOptionKind optionKind = ScriptDom.DatabaseConfigSetOptionKind.MaxDop;
-        Identifier genericOptionKind;
+        protected ScriptDom.DatabaseConfigSetOptionKind optionKind = ScriptDom.DatabaseConfigSetOptionKind.MaxDop;
+        protected Identifier genericOptionKind;
     
         public ScriptDom.DatabaseConfigSetOptionKind OptionKind => optionKind;
         public Identifier GenericOptionKind => genericOptionKind;

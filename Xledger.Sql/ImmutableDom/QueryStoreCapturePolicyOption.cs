@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreCapturePolicyOption : QueryStoreOption, IEquatable<QueryStoreCapturePolicyOption> {
-        ScriptDom.QueryStoreCapturePolicyOptionKind @value = ScriptDom.QueryStoreCapturePolicyOptionKind.NONE;
+        protected ScriptDom.QueryStoreCapturePolicyOptionKind @value = ScriptDom.QueryStoreCapturePolicyOptionKind.NONE;
     
         public ScriptDom.QueryStoreCapturePolicyOptionKind Value => @value;
     

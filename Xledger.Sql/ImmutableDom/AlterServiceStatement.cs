@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterServiceStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.QueueName = (ScriptDom.SchemaObjectName)queueName.ToMutable();
-            ret.ServiceContracts.AddRange(serviceContracts.Select(c => (ScriptDom.ServiceContract)c.ToMutable()));
+            ret.ServiceContracts.AddRange(serviceContracts.SelectList(c => (ScriptDom.ServiceContract)c.ToMutable()));
             return ret;
         }
         

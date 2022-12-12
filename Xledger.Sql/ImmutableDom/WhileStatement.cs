@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WhileStatement : TSqlStatement, IEquatable<WhileStatement> {
-        BooleanExpression predicate;
-        TSqlStatement statement;
+        protected BooleanExpression predicate;
+        protected TSqlStatement statement;
     
         public BooleanExpression Predicate => predicate;
         public TSqlStatement Statement => statement;

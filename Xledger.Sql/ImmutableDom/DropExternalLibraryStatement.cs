@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropExternalLibraryStatement : TSqlStatement, IEquatable<DropExternalLibraryStatement> {
-        Identifier name;
-        Identifier owner;
+        protected Identifier name;
+        protected Identifier owner;
     
         public Identifier Name => name;
         public Identifier Owner => owner;

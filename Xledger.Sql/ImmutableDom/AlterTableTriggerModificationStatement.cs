@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableTriggerModificationStatement : AlterTableStatement, IEquatable<AlterTableTriggerModificationStatement> {
-        ScriptDom.TriggerEnforcement triggerEnforcement = ScriptDom.TriggerEnforcement.Disable;
-        bool all = false;
-        IReadOnlyList<Identifier> triggerNames;
+        protected ScriptDom.TriggerEnforcement triggerEnforcement = ScriptDom.TriggerEnforcement.Disable;
+        protected bool all = false;
+        protected IReadOnlyList<Identifier> triggerNames;
     
         public ScriptDom.TriggerEnforcement TriggerEnforcement => triggerEnforcement;
         public bool All => all;
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTableTriggerModificationStatement();
             ret.TriggerEnforcement = triggerEnforcement;
             ret.All = all;
-            ret.TriggerNames.AddRange(triggerNames.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.TriggerNames.AddRange(triggerNames.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
             return ret;
         }

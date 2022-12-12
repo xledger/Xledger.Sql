@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteAsFunctionOption : FunctionOption, IEquatable<ExecuteAsFunctionOption> {
-        ExecuteAsClause executeAs;
+        protected ExecuteAsClause executeAs;
     
         public ExecuteAsClause ExecuteAs => executeAs;
     

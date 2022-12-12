@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateFullTextCatalogStatement : FullTextCatalogStatement, IEquatable<CreateFullTextCatalogStatement> {
-        Identifier fileGroup;
-        Literal path;
-        bool isDefault = false;
-        Identifier owner;
+        protected Identifier fileGroup;
+        protected Literal path;
+        protected bool isDefault = false;
+        protected Identifier owner;
     
         public Identifier FileGroup => fileGroup;
         public Literal Path => path;
@@ -34,7 +34,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.IsDefault = isDefault;
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.FullTextCatalogOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextCatalogOption)c.ToMutable()));
             return ret;
         }
         

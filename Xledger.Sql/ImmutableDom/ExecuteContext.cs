@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteContext : TSqlFragment, IEquatable<ExecuteContext> {
-        ScalarExpression principal;
-        ScriptDom.ExecuteAsOption kind = ScriptDom.ExecuteAsOption.Caller;
+        protected ScalarExpression principal;
+        protected ScriptDom.ExecuteAsOption kind = ScriptDom.ExecuteAsOption.Caller;
     
         public ScalarExpression Principal => principal;
         public ScriptDom.ExecuteAsOption Kind => kind;

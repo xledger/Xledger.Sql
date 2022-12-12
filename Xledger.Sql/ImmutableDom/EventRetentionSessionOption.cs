@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EventRetentionSessionOption : SessionOption, IEquatable<EventRetentionSessionOption> {
-        ScriptDom.EventSessionEventRetentionModeType @value = ScriptDom.EventSessionEventRetentionModeType.Unknown;
+        protected ScriptDom.EventSessionEventRetentionModeType @value = ScriptDom.EventSessionEventRetentionModeType.Unknown;
     
         public ScriptDom.EventSessionEventRetentionModeType Value => @value;
     

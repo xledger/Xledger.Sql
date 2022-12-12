@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RevokeStatement : SecurityStatement, IEquatable<RevokeStatement> {
-        bool grantOptionFor = false;
-        bool cascadeOption = false;
+        protected bool grantOptionFor = false;
+        protected bool cascadeOption = false;
     
         public bool GrantOptionFor => grantOptionFor;
         public bool CascadeOption => cascadeOption;
@@ -27,9 +27,9 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.RevokeStatement();
             ret.GrantOptionFor = grantOptionFor;
             ret.CascadeOption = cascadeOption;
-            ret.Permissions.AddRange(permissions.Select(c => (ScriptDom.Permission)c.ToMutable()));
+            ret.Permissions.AddRange(permissions.SelectList(c => (ScriptDom.Permission)c.ToMutable()));
             ret.SecurityTargetObject = (ScriptDom.SecurityTargetObject)securityTargetObject.ToMutable();
-            ret.Principals.AddRange(principals.Select(c => (ScriptDom.SecurityPrincipal)c.ToMutable()));
+            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c.ToMutable()));
             ret.AsClause = (ScriptDom.Identifier)asClause.ToMutable();
             return ret;
         }

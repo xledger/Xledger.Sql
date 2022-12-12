@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ComputeClause : TSqlFragment, IEquatable<ComputeClause> {
-        IReadOnlyList<ComputeFunction> computeFunctions;
-        IReadOnlyList<ScalarExpression> byExpressions;
+        protected IReadOnlyList<ComputeFunction> computeFunctions;
+        protected IReadOnlyList<ScalarExpression> byExpressions;
     
         public IReadOnlyList<ComputeFunction> ComputeFunctions => computeFunctions;
         public IReadOnlyList<ScalarExpression> ByExpressions => byExpressions;
@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ComputeClause ToMutableConcrete() {
             var ret = new ScriptDom.ComputeClause();
-            ret.ComputeFunctions.AddRange(computeFunctions.Select(c => (ScriptDom.ComputeFunction)c.ToMutable()));
-            ret.ByExpressions.AddRange(byExpressions.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.ComputeFunctions.AddRange(computeFunctions.SelectList(c => (ScriptDom.ComputeFunction)c.ToMutable()));
+            ret.ByExpressions.AddRange(byExpressions.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             return ret;
         }
         

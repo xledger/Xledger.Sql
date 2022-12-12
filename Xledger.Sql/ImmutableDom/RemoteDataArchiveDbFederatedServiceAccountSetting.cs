@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RemoteDataArchiveDbFederatedServiceAccountSetting : RemoteDataArchiveDatabaseSetting, IEquatable<RemoteDataArchiveDbFederatedServiceAccountSetting> {
-        bool isOn = false;
+        protected bool isOn = false;
     
         public bool IsOn => isOn;
     

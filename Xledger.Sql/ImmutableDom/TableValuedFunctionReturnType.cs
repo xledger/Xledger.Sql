@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableValuedFunctionReturnType : FunctionReturnType, IEquatable<TableValuedFunctionReturnType> {
-        DeclareTableVariableBody declareTableVariableBody;
+        protected DeclareTableVariableBody declareTableVariableBody;
     
         public DeclareTableVariableBody DeclareTableVariableBody => declareTableVariableBody;
     

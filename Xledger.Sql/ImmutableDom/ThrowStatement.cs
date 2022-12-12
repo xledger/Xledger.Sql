@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ThrowStatement : TSqlStatement, IEquatable<ThrowStatement> {
-        ValueExpression errorNumber;
-        ValueExpression message;
-        ValueExpression state;
+        protected ValueExpression errorNumber;
+        protected ValueExpression message;
+        protected ValueExpression state;
     
         public ValueExpression ErrorNumber => errorNumber;
         public ValueExpression Message => message;

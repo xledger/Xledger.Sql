@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GenericConfigurationOption : DatabaseConfigurationSetOption, IEquatable<GenericConfigurationOption> {
-        IdentifierOrScalarExpression genericOptionState;
+        protected IdentifierOrScalarExpression genericOptionState;
     
         public IdentifierOrScalarExpression GenericOptionState => genericOptionState;
     

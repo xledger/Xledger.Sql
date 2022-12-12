@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BeginEndAtomicBlockStatement : BeginEndBlockStatement, IEquatable<BeginEndAtomicBlockStatement> {
-        IReadOnlyList<AtomicBlockOption> options;
+        protected IReadOnlyList<AtomicBlockOption> options;
     
         public IReadOnlyList<AtomicBlockOption> Options => options;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BeginEndAtomicBlockStatement ToMutableConcrete() {
             var ret = new ScriptDom.BeginEndAtomicBlockStatement();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AtomicBlockOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AtomicBlockOption)c.ToMutable()));
             ret.StatementList = (ScriptDom.StatementList)statementList.ToMutable();
             return ret;
         }

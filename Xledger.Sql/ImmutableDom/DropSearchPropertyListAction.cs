@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropSearchPropertyListAction : SearchPropertyListAction, IEquatable<DropSearchPropertyListAction> {
-        StringLiteral propertyName;
+        protected StringLiteral propertyName;
     
         public StringLiteral PropertyName => propertyName;
     

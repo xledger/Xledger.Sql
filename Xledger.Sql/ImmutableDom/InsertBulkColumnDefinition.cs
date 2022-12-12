@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InsertBulkColumnDefinition : TSqlFragment, IEquatable<InsertBulkColumnDefinition> {
-        ColumnDefinitionBase column;
-        ScriptDom.NullNotNull nullNotNull = ScriptDom.NullNotNull.NotSpecified;
+        protected ColumnDefinitionBase column;
+        protected ScriptDom.NullNotNull nullNotNull = ScriptDom.NullNotNull.NotSpecified;
     
         public ColumnDefinitionBase Column => column;
         public ScriptDom.NullNotNull NullNotNull => nullNotNull;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterAvailabilityGroupAction : TSqlFragment, IEquatable<AlterAvailabilityGroupAction> {
-        ScriptDom.AlterAvailabilityGroupActionType actionType = ScriptDom.AlterAvailabilityGroupActionType.Failover;
+        protected ScriptDom.AlterAvailabilityGroupActionType actionType = ScriptDom.AlterAvailabilityGroupActionType.Failover;
     
         public ScriptDom.AlterAvailabilityGroupActionType ActionType => actionType;
     

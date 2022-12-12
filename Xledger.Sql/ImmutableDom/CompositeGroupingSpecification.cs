@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CompositeGroupingSpecification : GroupingSpecification, IEquatable<CompositeGroupingSpecification> {
-        IReadOnlyList<GroupingSpecification> items;
+        protected IReadOnlyList<GroupingSpecification> items;
     
         public IReadOnlyList<GroupingSpecification> Items => items;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CompositeGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.CompositeGroupingSpecification();
-            ret.Items.AddRange(items.Select(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
+            ret.Items.AddRange(items.SelectList(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
             return ret;
         }
         

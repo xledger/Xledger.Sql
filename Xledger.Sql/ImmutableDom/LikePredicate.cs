@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LikePredicate : BooleanExpression, IEquatable<LikePredicate> {
-        ScalarExpression firstExpression;
-        ScalarExpression secondExpression;
-        bool notDefined = false;
-        bool odbcEscape = false;
-        ScalarExpression escapeExpression;
+        protected ScalarExpression firstExpression;
+        protected ScalarExpression secondExpression;
+        protected bool notDefined = false;
+        protected bool odbcEscape = false;
+        protected ScalarExpression escapeExpression;
     
         public ScalarExpression FirstExpression => firstExpression;
         public ScalarExpression SecondExpression => secondExpression;

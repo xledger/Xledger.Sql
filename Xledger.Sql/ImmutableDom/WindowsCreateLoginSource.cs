@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WindowsCreateLoginSource : CreateLoginSource, IEquatable<WindowsCreateLoginSource> {
-        IReadOnlyList<PrincipalOption> options;
+        protected IReadOnlyList<PrincipalOption> options;
     
         public IReadOnlyList<PrincipalOption> Options => options;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WindowsCreateLoginSource ToMutableConcrete() {
             var ret = new ScriptDom.WindowsCreateLoginSource();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.PrincipalOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c.ToMutable()));
             return ret;
         }
         

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OdbcQualifiedJoinTableReference : TableReference, IEquatable<OdbcQualifiedJoinTableReference> {
-        TableReference tableReference;
+        protected TableReference tableReference;
     
         public TableReference TableReference => tableReference;
     

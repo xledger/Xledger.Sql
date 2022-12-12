@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CursorId : TSqlFragment, IEquatable<CursorId> {
-        bool isGlobal = false;
-        IdentifierOrValueExpression name;
+        protected bool isGlobal = false;
+        protected IdentifierOrValueExpression name;
     
         public bool IsGlobal => isGlobal;
         public IdentifierOrValueExpression Name => name;

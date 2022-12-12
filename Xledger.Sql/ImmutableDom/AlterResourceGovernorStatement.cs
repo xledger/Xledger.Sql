@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterResourceGovernorStatement : TSqlStatement, IEquatable<AlterResourceGovernorStatement> {
-        ScriptDom.AlterResourceGovernorCommandType command = ScriptDom.AlterResourceGovernorCommandType.Unknown;
-        SchemaObjectName classifierFunction;
+        protected ScriptDom.AlterResourceGovernorCommandType command = ScriptDom.AlterResourceGovernorCommandType.Unknown;
+        protected SchemaObjectName classifierFunction;
     
         public ScriptDom.AlterResourceGovernorCommandType Command => command;
         public SchemaObjectName ClassifierFunction => classifierFunction;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SimpleWhenClause : WhenClause, IEquatable<SimpleWhenClause> {
-        ScalarExpression whenExpression;
+        protected ScalarExpression whenExpression;
     
         public ScalarExpression WhenExpression => whenExpression;
     

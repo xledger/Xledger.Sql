@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ConvertCall : PrimaryExpression, IEquatable<ConvertCall> {
-        DataTypeReference dataType;
-        ScalarExpression parameter;
-        ScalarExpression style;
+        protected DataTypeReference dataType;
+        protected ScalarExpression parameter;
+        protected ScalarExpression style;
     
         public DataTypeReference DataType => dataType;
         public ScalarExpression Parameter => parameter;

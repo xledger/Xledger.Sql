@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BoundingBoxParameter : TSqlFragment, IEquatable<BoundingBoxParameter> {
-        ScriptDom.BoundingBoxParameterType parameter = ScriptDom.BoundingBoxParameterType.None;
-        ScalarExpression @value;
+        protected ScriptDom.BoundingBoxParameterType parameter = ScriptDom.BoundingBoxParameterType.None;
+        protected ScalarExpression @value;
     
         public ScriptDom.BoundingBoxParameterType Parameter => parameter;
         public ScalarExpression Value => @value;

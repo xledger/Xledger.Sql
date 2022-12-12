@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateXmlIndexStatement : IndexStatement, IEquatable<CreateXmlIndexStatement> {
-        bool primary = false;
-        Identifier xmlColumn;
-        Identifier secondaryXmlIndexName;
-        ScriptDom.SecondaryXmlIndexType secondaryXmlIndexType = ScriptDom.SecondaryXmlIndexType.NotSpecified;
-        FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
+        protected bool primary = false;
+        protected Identifier xmlColumn;
+        protected Identifier secondaryXmlIndexName;
+        protected ScriptDom.SecondaryXmlIndexType secondaryXmlIndexType = ScriptDom.SecondaryXmlIndexType.NotSpecified;
+        protected FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
     
         public bool Primary => primary;
         public Identifier XmlColumn => xmlColumn;
@@ -40,7 +40,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             return ret;
         }
         

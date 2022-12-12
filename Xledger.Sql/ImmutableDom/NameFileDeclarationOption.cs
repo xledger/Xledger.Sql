@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class NameFileDeclarationOption : FileDeclarationOption, IEquatable<NameFileDeclarationOption> {
-        IdentifierOrValueExpression logicalFileName;
-        bool isNewName = false;
+        protected IdentifierOrValueExpression logicalFileName;
+        protected bool isNewName = false;
     
         public IdentifierOrValueExpression LogicalFileName => logicalFileName;
         public bool IsNewName => isNewName;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LiteralAvailabilityGroupOption : AvailabilityGroupOption, IEquatable<LiteralAvailabilityGroupOption> {
-        Literal @value;
+        protected Literal @value;
     
         public Literal Value => @value;
     

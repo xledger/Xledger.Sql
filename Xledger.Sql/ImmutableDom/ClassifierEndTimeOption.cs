@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ClassifierEndTimeOption : WorkloadClassifierOption, IEquatable<ClassifierEndTimeOption> {
-        WlmTimeLiteral time;
+        protected WlmTimeLiteral time;
     
         public WlmTimeLiteral Time => time;
     

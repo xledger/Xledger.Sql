@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MultiPartIdentifier : TSqlFragment, IEquatable<MultiPartIdentifier> {
-        IReadOnlyList<Identifier> identifiers;
+        protected IReadOnlyList<Identifier> identifiers;
     
         public IReadOnlyList<Identifier> Identifiers => identifiers;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MultiPartIdentifier ToMutableConcrete() {
             var ret = new ScriptDom.MultiPartIdentifier();
-            ret.Identifiers.AddRange(identifiers.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             return ret;
         }
         

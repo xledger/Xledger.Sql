@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SelectStarExpression : SelectElement, IEquatable<SelectStarExpression> {
-        MultiPartIdentifier qualifier;
+        protected MultiPartIdentifier qualifier;
     
         public MultiPartIdentifier Qualifier => qualifier;
     

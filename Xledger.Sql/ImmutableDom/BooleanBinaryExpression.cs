@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BooleanBinaryExpression : BooleanExpression, IEquatable<BooleanBinaryExpression> {
-        ScriptDom.BooleanBinaryExpressionType binaryExpressionType = ScriptDom.BooleanBinaryExpressionType.And;
-        BooleanExpression firstExpression;
-        BooleanExpression secondExpression;
+        protected ScriptDom.BooleanBinaryExpressionType binaryExpressionType = ScriptDom.BooleanBinaryExpressionType.And;
+        protected BooleanExpression firstExpression;
+        protected BooleanExpression secondExpression;
     
         public ScriptDom.BooleanBinaryExpressionType BinaryExpressionType => binaryExpressionType;
         public BooleanExpression FirstExpression => firstExpression;

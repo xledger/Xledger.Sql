@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SearchedWhenClause : WhenClause, IEquatable<SearchedWhenClause> {
-        BooleanExpression whenExpression;
+        protected BooleanExpression whenExpression;
     
         public BooleanExpression WhenExpression => whenExpression;
     

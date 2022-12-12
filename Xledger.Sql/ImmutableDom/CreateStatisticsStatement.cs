@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateStatisticsStatement : TSqlStatement, IEquatable<CreateStatisticsStatement> {
-        Identifier name;
-        SchemaObjectName onName;
-        IReadOnlyList<ColumnReferenceExpression> columns;
-        IReadOnlyList<StatisticsOption> statisticsOptions;
-        BooleanExpression filterPredicate;
+        protected Identifier name;
+        protected SchemaObjectName onName;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
+        protected IReadOnlyList<StatisticsOption> statisticsOptions;
+        protected BooleanExpression filterPredicate;
     
         public Identifier Name => name;
         public SchemaObjectName OnName => onName;
@@ -32,8 +32,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateStatisticsStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.StatisticsOptions.AddRange(statisticsOptions.Select(c => (ScriptDom.StatisticsOption)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.StatisticsOptions.AddRange(statisticsOptions.SelectList(c => (ScriptDom.StatisticsOption)c.ToMutable()));
             ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate.ToMutable();
             return ret;
         }

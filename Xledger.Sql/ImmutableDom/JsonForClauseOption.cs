@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class JsonForClauseOption : ForClause, IEquatable<JsonForClauseOption> {
-        ScriptDom.JsonForClauseOptions optionKind = ScriptDom.JsonForClauseOptions.None;
-        Literal @value;
+        protected ScriptDom.JsonForClauseOptions optionKind = ScriptDom.JsonForClauseOptions.None;
+        protected Literal @value;
     
         public ScriptDom.JsonForClauseOptions OptionKind => optionKind;
         public Literal Value => @value;

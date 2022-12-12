@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PageVerifyDatabaseOption : DatabaseOption, IEquatable<PageVerifyDatabaseOption> {
-        ScriptDom.PageVerifyDatabaseOptionKind @value = ScriptDom.PageVerifyDatabaseOptionKind.None;
+        protected ScriptDom.PageVerifyDatabaseOptionKind @value = ScriptDom.PageVerifyDatabaseOptionKind.None;
     
         public ScriptDom.PageVerifyDatabaseOptionKind Value => @value;
     

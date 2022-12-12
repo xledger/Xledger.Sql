@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PartnerDatabaseOption : DatabaseOption, IEquatable<PartnerDatabaseOption> {
-        Literal partnerServer;
-        ScriptDom.PartnerDatabaseOptionKind partnerOption = ScriptDom.PartnerDatabaseOptionKind.None;
-        Literal timeout;
+        protected Literal partnerServer;
+        protected ScriptDom.PartnerDatabaseOptionKind partnerOption = ScriptDom.PartnerDatabaseOptionKind.None;
+        protected Literal timeout;
     
         public Literal PartnerServer => partnerServer;
         public ScriptDom.PartnerDatabaseOptionKind PartnerOption => partnerOption;

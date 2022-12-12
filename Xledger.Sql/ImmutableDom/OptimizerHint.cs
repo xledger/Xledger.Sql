@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OptimizerHint : TSqlFragment, IEquatable<OptimizerHint> {
-        ScriptDom.OptimizerHintKind hintKind = ScriptDom.OptimizerHintKind.Unspecified;
+        protected ScriptDom.OptimizerHintKind hintKind = ScriptDom.OptimizerHintKind.Unspecified;
     
         public ScriptDom.OptimizerHintKind HintKind => hintKind;
     

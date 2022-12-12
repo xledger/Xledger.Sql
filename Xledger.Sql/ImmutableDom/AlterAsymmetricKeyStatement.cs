@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterAsymmetricKeyStatement : TSqlStatement, IEquatable<AlterAsymmetricKeyStatement> {
-        Identifier name;
-        Literal attestedBy;
-        ScriptDom.AlterCertificateStatementKind kind = ScriptDom.AlterCertificateStatementKind.None;
-        Literal encryptionPassword;
-        Literal decryptionPassword;
+        protected Identifier name;
+        protected Literal attestedBy;
+        protected ScriptDom.AlterCertificateStatementKind kind = ScriptDom.AlterCertificateStatementKind.None;
+        protected Literal encryptionPassword;
+        protected Literal decryptionPassword;
     
         public Identifier Name => name;
         public Literal AttestedBy => attestedBy;

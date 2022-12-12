@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InsertSpecification : DataModificationSpecification, IEquatable<InsertSpecification> {
-        ScriptDom.InsertOption insertOption = ScriptDom.InsertOption.None;
-        InsertSource insertSource;
-        IReadOnlyList<ColumnReferenceExpression> columns;
+        protected ScriptDom.InsertOption insertOption = ScriptDom.InsertOption.None;
+        protected InsertSource insertSource;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
     
         public ScriptDom.InsertOption InsertOption => insertOption;
         public InsertSource InsertSource => insertSource;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.InsertSpecification();
             ret.InsertOption = insertOption;
             ret.InsertSource = (ScriptDom.InsertSource)insertSource.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.Target = (ScriptDom.TableReference)target.ToMutable();
             ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter.ToMutable();
             ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause.ToMutable();

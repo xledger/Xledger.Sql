@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RetentionDaysAuditTargetOption : AuditTargetOption, IEquatable<RetentionDaysAuditTargetOption> {
-        Literal days;
+        protected Literal days;
     
         public Literal Days => days;
     

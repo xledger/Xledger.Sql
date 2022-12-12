@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OrderBulkInsertOption : BulkInsertOption, IEquatable<OrderBulkInsertOption> {
-        IReadOnlyList<ColumnWithSortOrder> columns;
-        bool isUnique = false;
+        protected IReadOnlyList<ColumnWithSortOrder> columns;
+        protected bool isUnique = false;
     
         public IReadOnlyList<ColumnWithSortOrder> Columns => columns;
         public bool IsUnique => isUnique;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OrderBulkInsertOption ToMutableConcrete() {
             var ret = new ScriptDom.OrderBulkInsertOption();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
             ret.IsUnique = isUnique;
             ret.OptionKind = optionKind;
             return ret;

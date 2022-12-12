@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DbccOption : TSqlFragment, IEquatable<DbccOption> {
-        ScriptDom.DbccOptionKind optionKind = ScriptDom.DbccOptionKind.AllErrorMessages;
+        protected ScriptDom.DbccOptionKind optionKind = ScriptDom.DbccOptionKind.AllErrorMessages;
     
         public ScriptDom.DbccOptionKind OptionKind => optionKind;
     

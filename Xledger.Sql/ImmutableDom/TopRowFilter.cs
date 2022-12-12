@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TopRowFilter : TSqlFragment, IEquatable<TopRowFilter> {
-        ScalarExpression expression;
-        bool percent = false;
-        bool withTies = false;
+        protected ScalarExpression expression;
+        protected bool percent = false;
+        protected bool withTies = false;
     
         public ScalarExpression Expression => expression;
         public bool Percent => percent;

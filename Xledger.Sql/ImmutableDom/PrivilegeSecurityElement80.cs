@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PrivilegeSecurityElement80 : SecurityElement80, IEquatable<PrivilegeSecurityElement80> {
-        IReadOnlyList<Privilege80> privileges;
-        SchemaObjectName schemaObjectName;
-        IReadOnlyList<Identifier> columns;
+        protected IReadOnlyList<Privilege80> privileges;
+        protected SchemaObjectName schemaObjectName;
+        protected IReadOnlyList<Identifier> columns;
     
         public IReadOnlyList<Privilege80> Privileges => privileges;
         public SchemaObjectName SchemaObjectName => schemaObjectName;
@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PrivilegeSecurityElement80 ToMutableConcrete() {
             var ret = new ScriptDom.PrivilegeSecurityElement80();
-            ret.Privileges.AddRange(privileges.Select(c => (ScriptDom.Privilege80)c.ToMutable()));
+            ret.Privileges.AddRange(privileges.SelectList(c => (ScriptDom.Privilege80)c.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             return ret;
         }
         

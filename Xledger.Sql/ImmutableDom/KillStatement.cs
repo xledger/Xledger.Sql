@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class KillStatement : TSqlStatement, IEquatable<KillStatement> {
-        ScalarExpression parameter;
-        bool withStatusOnly = false;
+        protected ScalarExpression parameter;
+        protected bool withStatusOnly = false;
     
         public ScalarExpression Parameter => parameter;
         public bool WithStatusOnly => withStatusOnly;

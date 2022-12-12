@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MaxRolloverFilesAuditTargetOption : AuditTargetOption, IEquatable<MaxRolloverFilesAuditTargetOption> {
-        Literal @value;
-        bool isUnlimited = false;
+        protected Literal @value;
+        protected bool isUnlimited = false;
     
         public Literal Value => @value;
         public bool IsUnlimited => isUnlimited;

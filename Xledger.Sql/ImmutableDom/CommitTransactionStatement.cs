@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CommitTransactionStatement : TransactionStatement, IEquatable<CommitTransactionStatement> {
-        ScriptDom.OptionState delayedDurabilityOption = ScriptDom.OptionState.NotSet;
+        protected ScriptDom.OptionState delayedDurabilityOption = ScriptDom.OptionState.NotSet;
     
         public ScriptDom.OptionState DelayedDurabilityOption => delayedDurabilityOption;
     

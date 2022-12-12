@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableHintsOptimizerHint : OptimizerHint, IEquatable<TableHintsOptimizerHint> {
-        SchemaObjectName objectName;
-        IReadOnlyList<TableHint> tableHints;
+        protected SchemaObjectName objectName;
+        protected IReadOnlyList<TableHint> tableHints;
     
         public SchemaObjectName ObjectName => objectName;
         public IReadOnlyList<TableHint> TableHints => tableHints;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.TableHintsOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.TableHintsOptimizerHint();
             ret.ObjectName = (ScriptDom.SchemaObjectName)objectName.ToMutable();
-            ret.TableHints.AddRange(tableHints.Select(c => (ScriptDom.TableHint)c.ToMutable()));
+            ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }

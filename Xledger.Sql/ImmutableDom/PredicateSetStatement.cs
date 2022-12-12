@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PredicateSetStatement : SetOnOffStatement, IEquatable<PredicateSetStatement> {
-        ScriptDom.SetOptions options = ScriptDom.SetOptions.None;
+        protected ScriptDom.SetOptions options = ScriptDom.SetOptions.None;
     
         public ScriptDom.SetOptions Options => options;
     

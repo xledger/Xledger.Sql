@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropQueueStatement : TSqlStatement, IEquatable<DropQueueStatement> {
-        SchemaObjectName name;
+        protected SchemaObjectName name;
     
         public SchemaObjectName Name => name;
     

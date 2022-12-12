@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RestoreServiceMasterKeyStatement : BackupRestoreMasterKeyStatementBase, IEquatable<RestoreServiceMasterKeyStatement> {
-        bool isForce = false;
+        protected bool isForce = false;
     
         public bool IsForce => isForce;
     

@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterBrokerPriorityStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterBrokerPriorityStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.BrokerPriorityParameters.AddRange(brokerPriorityParameters.Select(c => (ScriptDom.BrokerPriorityParameter)c.ToMutable()));
+            ret.BrokerPriorityParameters.AddRange(brokerPriorityParameters.SelectList(c => (ScriptDom.BrokerPriorityParameter)c.ToMutable()));
             return ret;
         }
         

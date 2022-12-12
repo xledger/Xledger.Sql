@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EnableDisableTriggerStatement : TSqlStatement, IEquatable<EnableDisableTriggerStatement> {
-        ScriptDom.TriggerEnforcement triggerEnforcement = ScriptDom.TriggerEnforcement.Disable;
-        bool all = false;
-        IReadOnlyList<SchemaObjectName> triggerNames;
-        TriggerObject triggerObject;
+        protected ScriptDom.TriggerEnforcement triggerEnforcement = ScriptDom.TriggerEnforcement.Disable;
+        protected bool all = false;
+        protected IReadOnlyList<SchemaObjectName> triggerNames;
+        protected TriggerObject triggerObject;
     
         public ScriptDom.TriggerEnforcement TriggerEnforcement => triggerEnforcement;
         public bool All => all;
@@ -29,7 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.EnableDisableTriggerStatement();
             ret.TriggerEnforcement = triggerEnforcement;
             ret.All = all;
-            ret.TriggerNames.AddRange(triggerNames.Select(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
+            ret.TriggerNames.AddRange(triggerNames.SelectList(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
             ret.TriggerObject = (ScriptDom.TriggerObject)triggerObject.ToMutable();
             return ret;
         }

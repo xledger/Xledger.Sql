@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RenameAlterRoleAction : AlterRoleAction, IEquatable<RenameAlterRoleAction> {
-        Identifier newName;
+        protected Identifier newName;
     
         public Identifier NewName => newName;
     

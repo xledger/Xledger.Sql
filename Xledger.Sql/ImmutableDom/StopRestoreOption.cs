@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class StopRestoreOption : RestoreOption, IEquatable<StopRestoreOption> {
-        ValueExpression mark;
-        ValueExpression after;
-        bool isStopAt = false;
+        protected ValueExpression mark;
+        protected ValueExpression after;
+        protected bool isStopAt = false;
     
         public ValueExpression Mark => mark;
         public ValueExpression After => after;

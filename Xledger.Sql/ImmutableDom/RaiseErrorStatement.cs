@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RaiseErrorStatement : TSqlStatement, IEquatable<RaiseErrorStatement> {
-        ScalarExpression firstParameter;
-        ScalarExpression secondParameter;
-        ScalarExpression thirdParameter;
-        IReadOnlyList<ScalarExpression> optionalParameters;
-        ScriptDom.RaiseErrorOptions raiseErrorOptions = ScriptDom.RaiseErrorOptions.None;
+        protected ScalarExpression firstParameter;
+        protected ScalarExpression secondParameter;
+        protected ScalarExpression thirdParameter;
+        protected IReadOnlyList<ScalarExpression> optionalParameters;
+        protected ScriptDom.RaiseErrorOptions raiseErrorOptions = ScriptDom.RaiseErrorOptions.None;
     
         public ScalarExpression FirstParameter => firstParameter;
         public ScalarExpression SecondParameter => secondParameter;
@@ -33,7 +33,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.FirstParameter = (ScriptDom.ScalarExpression)firstParameter.ToMutable();
             ret.SecondParameter = (ScriptDom.ScalarExpression)secondParameter.ToMutable();
             ret.ThirdParameter = (ScriptDom.ScalarExpression)thirdParameter.ToMutable();
-            ret.OptionalParameters.AddRange(optionalParameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.OptionalParameters.AddRange(optionalParameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.RaiseErrorOptions = raiseErrorOptions;
             return ret;
         }

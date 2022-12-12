@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterExternalLanguageStatement : ExternalLanguageStatement, IEquatable<AlterExternalLanguageStatement> {
-        Identifier platform;
-        Identifier operation;
-        Identifier owner;
+        protected Identifier platform;
+        protected Identifier operation;
+        protected Identifier owner;
     
         public Identifier Platform => platform;
         public Identifier Operation => operation;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Operation = (ScriptDom.Identifier)operation.ToMutable();
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ExternalLanguageFiles.AddRange(externalLanguageFiles.Select(c => (ScriptDom.ExternalLanguageFileOption)c.ToMutable()));
+            ret.ExternalLanguageFiles.AddRange(externalLanguageFiles.SelectList(c => (ScriptDom.ExternalLanguageFileOption)c.ToMutable()));
             return ret;
         }
         

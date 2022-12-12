@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TryParseCall : PrimaryExpression, IEquatable<TryParseCall> {
-        ScalarExpression stringValue;
-        DataTypeReference dataType;
-        ScalarExpression culture;
+        protected ScalarExpression stringValue;
+        protected DataTypeReference dataType;
+        protected ScalarExpression culture;
     
         public ScalarExpression StringValue => stringValue;
         public DataTypeReference DataType => dataType;

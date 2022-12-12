@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateTypeUddtStatement : CreateTypeStatement, IEquatable<CreateTypeUddtStatement> {
-        DataTypeReference dataType;
-        NullableConstraintDefinition nullableConstraint;
+        protected DataTypeReference dataType;
+        protected NullableConstraintDefinition nullableConstraint;
     
         public DataTypeReference DataType => dataType;
         public NullableConstraintDefinition NullableConstraint => nullableConstraint;

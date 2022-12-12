@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerAuditStatement : ServerAuditStatement, IEquatable<AlterServerAuditStatement> {
-        Identifier newName;
-        bool removeWhere = false;
+        protected Identifier newName;
+        protected bool removeWhere = false;
     
         public Identifier NewName => newName;
         public bool RemoveWhere => removeWhere;
@@ -29,7 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.RemoveWhere = removeWhere;
             ret.AuditName = (ScriptDom.Identifier)auditName.ToMutable();
             ret.AuditTarget = (ScriptDom.AuditTarget)auditTarget.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AuditOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AuditOption)c.ToMutable()));
             ret.PredicateExpression = (ScriptDom.BooleanExpression)predicateExpression.ToMutable();
             return ret;
         }

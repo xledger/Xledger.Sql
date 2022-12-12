@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OpenJsonTableReference : TableReferenceWithAlias, IEquatable<OpenJsonTableReference> {
-        ScalarExpression variable;
-        ScalarExpression rowPattern;
-        IReadOnlyList<SchemaDeclarationItemOpenjson> schemaDeclarationItems;
+        protected ScalarExpression variable;
+        protected ScalarExpression rowPattern;
+        protected IReadOnlyList<SchemaDeclarationItemOpenjson> schemaDeclarationItems;
     
         public ScalarExpression Variable => variable;
         public ScalarExpression RowPattern => rowPattern;
@@ -28,7 +28,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.OpenJsonTableReference();
             ret.Variable = (ScriptDom.ScalarExpression)variable.ToMutable();
             ret.RowPattern = (ScriptDom.ScalarExpression)rowPattern.ToMutable();
-            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.Select(c => (ScriptDom.SchemaDeclarationItemOpenjson)c.ToMutable()));
+            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItemOpenjson)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

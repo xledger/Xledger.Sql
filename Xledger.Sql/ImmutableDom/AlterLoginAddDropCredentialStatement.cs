@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterLoginAddDropCredentialStatement : AlterLoginStatement, IEquatable<AlterLoginAddDropCredentialStatement> {
-        bool isAdd = false;
-        Identifier credentialName;
+        protected bool isAdd = false;
+        protected Identifier credentialName;
     
         public bool IsAdd => isAdd;
         public Identifier CredentialName => credentialName;

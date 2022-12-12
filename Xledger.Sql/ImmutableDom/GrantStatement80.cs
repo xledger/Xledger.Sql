@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GrantStatement80 : SecurityStatementBody80, IEquatable<GrantStatement80> {
-        bool withGrantOption = false;
-        Identifier asClause;
+        protected bool withGrantOption = false;
+        protected Identifier asClause;
     
         public bool WithGrantOption => withGrantOption;
         public Identifier AsClause => asClause;

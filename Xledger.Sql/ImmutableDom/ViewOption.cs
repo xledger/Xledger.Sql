@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ViewOption : TSqlFragment, IEquatable<ViewOption> {
-        ScriptDom.ViewOptionKind optionKind = ScriptDom.ViewOptionKind.Encryption;
+        protected ScriptDom.ViewOptionKind optionKind = ScriptDom.ViewOptionKind.Encryption;
     
         public ScriptDom.ViewOptionKind OptionKind => optionKind;
     

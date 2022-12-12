@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServiceMasterKeyStatement : TSqlStatement, IEquatable<AlterServiceMasterKeyStatement> {
-        Literal account;
-        Literal password;
-        ScriptDom.AlterServiceMasterKeyOption kind = ScriptDom.AlterServiceMasterKeyOption.None;
+        protected Literal account;
+        protected Literal password;
+        protected ScriptDom.AlterServiceMasterKeyOption kind = ScriptDom.AlterServiceMasterKeyOption.None;
     
         public Literal Account => account;
         public Literal Password => password;

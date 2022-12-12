@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AddSearchPropertyListAction : SearchPropertyListAction, IEquatable<AddSearchPropertyListAction> {
-        StringLiteral propertyName;
-        StringLiteral guid;
-        IntegerLiteral id;
-        StringLiteral description;
+        protected StringLiteral propertyName;
+        protected StringLiteral guid;
+        protected IntegerLiteral id;
+        protected StringLiteral description;
     
         public StringLiteral PropertyName => propertyName;
         public StringLiteral Guid => guid;

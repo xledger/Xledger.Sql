@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MaxDispatchLatencySessionOption : SessionOption, IEquatable<MaxDispatchLatencySessionOption> {
-        bool isInfinite = false;
-        Literal @value;
+        protected bool isInfinite = false;
+        protected Literal @value;
     
         public bool IsInfinite => isInfinite;
         public Literal Value => @value;

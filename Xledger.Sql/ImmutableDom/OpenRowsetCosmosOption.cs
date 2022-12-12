@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OpenRowsetCosmosOption : TSqlFragment, IEquatable<OpenRowsetCosmosOption> {
-        ScriptDom.OpenRowsetCosmosOptionKind optionKind = ScriptDom.OpenRowsetCosmosOptionKind.Provider;
+        protected ScriptDom.OpenRowsetCosmosOptionKind optionKind = ScriptDom.OpenRowsetCosmosOptionKind.Provider;
     
         public ScriptDom.OpenRowsetCosmosOptionKind OptionKind => optionKind;
     

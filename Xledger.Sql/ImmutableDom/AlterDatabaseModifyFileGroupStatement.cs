@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseModifyFileGroupStatement : AlterDatabaseStatement, IEquatable<AlterDatabaseModifyFileGroupStatement> {
-        Identifier fileGroup;
-        Identifier newFileGroupName;
-        bool makeDefault = false;
-        ScriptDom.ModifyFileGroupOption updatabilityOption = ScriptDom.ModifyFileGroupOption.None;
-        AlterDatabaseTermination termination;
+        protected Identifier fileGroup;
+        protected Identifier newFileGroupName;
+        protected bool makeDefault = false;
+        protected ScriptDom.ModifyFileGroupOption updatabilityOption = ScriptDom.ModifyFileGroupOption.None;
+        protected AlterDatabaseTermination termination;
     
         public Identifier FileGroup => fileGroup;
         public Identifier NewFileGroupName => newFileGroupName;

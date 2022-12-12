@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AvailabilityReplica : TSqlFragment, IEquatable<AvailabilityReplica> {
-        StringLiteral serverName;
-        IReadOnlyList<AvailabilityReplicaOption> options;
+        protected StringLiteral serverName;
+        protected IReadOnlyList<AvailabilityReplicaOption> options;
     
         public StringLiteral ServerName => serverName;
         public IReadOnlyList<AvailabilityReplicaOption> Options => options;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AvailabilityReplica ToMutableConcrete() {
             var ret = new ScriptDom.AvailabilityReplica();
             ret.ServerName = (ScriptDom.StringLiteral)serverName.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AvailabilityReplicaOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityReplicaOption)c.ToMutable()));
             return ret;
         }
         

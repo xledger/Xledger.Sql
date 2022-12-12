@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalLanguageFileOption : TSqlFragment, IEquatable<ExternalLanguageFileOption> {
-        ScalarExpression content;
-        StringLiteral fileName;
-        StringLiteral path;
-        Identifier platform;
-        StringLiteral parameters;
-        StringLiteral environmentVariables;
+        protected ScalarExpression content;
+        protected StringLiteral fileName;
+        protected StringLiteral path;
+        protected Identifier platform;
+        protected StringLiteral parameters;
+        protected StringLiteral environmentVariables;
     
         public ScalarExpression Content => content;
         public StringLiteral FileName => fileName;

@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GroupByClause : TSqlFragment, IEquatable<GroupByClause> {
-        ScriptDom.GroupByOption groupByOption = ScriptDom.GroupByOption.None;
-        bool all = false;
-        IReadOnlyList<GroupingSpecification> groupingSpecifications;
+        protected ScriptDom.GroupByOption groupByOption = ScriptDom.GroupByOption.None;
+        protected bool all = false;
+        protected IReadOnlyList<GroupingSpecification> groupingSpecifications;
     
         public ScriptDom.GroupByOption GroupByOption => groupByOption;
         public bool All => all;
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.GroupByClause();
             ret.GroupByOption = groupByOption;
             ret.All = all;
-            ret.GroupingSpecifications.AddRange(groupingSpecifications.Select(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
+            ret.GroupingSpecifications.AddRange(groupingSpecifications.SelectList(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
             return ret;
         }
         

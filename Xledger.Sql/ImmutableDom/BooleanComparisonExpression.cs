@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BooleanComparisonExpression : BooleanExpression, IEquatable<BooleanComparisonExpression> {
-        ScriptDom.BooleanComparisonType comparisonType = ScriptDom.BooleanComparisonType.Equals;
-        ScalarExpression firstExpression;
-        ScalarExpression secondExpression;
+        protected ScriptDom.BooleanComparisonType comparisonType = ScriptDom.BooleanComparisonType.Equals;
+        protected ScalarExpression firstExpression;
+        protected ScalarExpression secondExpression;
     
         public ScriptDom.BooleanComparisonType ComparisonType => comparisonType;
         public ScalarExpression FirstExpression => firstExpression;

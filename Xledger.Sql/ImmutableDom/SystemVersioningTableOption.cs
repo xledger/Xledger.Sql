@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SystemVersioningTableOption : TableOption, IEquatable<SystemVersioningTableOption> {
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
-        ScriptDom.OptionState consistencyCheckEnabled = ScriptDom.OptionState.NotSet;
-        SchemaObjectName historyTable;
-        RetentionPeriodDefinition retentionPeriod;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected ScriptDom.OptionState consistencyCheckEnabled = ScriptDom.OptionState.NotSet;
+        protected SchemaObjectName historyTable;
+        protected RetentionPeriodDefinition retentionPeriod;
     
         public ScriptDom.OptionState OptionState => optionState;
         public ScriptDom.OptionState ConsistencyCheckEnabled => consistencyCheckEnabled;

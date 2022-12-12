@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WhereClause : TSqlFragment, IEquatable<WhereClause> {
-        BooleanExpression searchCondition;
-        CursorId cursor;
+        protected BooleanExpression searchCondition;
+        protected CursorId cursor;
     
         public BooleanExpression SearchCondition => searchCondition;
         public CursorId Cursor => cursor;

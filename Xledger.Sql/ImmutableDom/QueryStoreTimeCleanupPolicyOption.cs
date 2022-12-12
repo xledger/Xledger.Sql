@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreTimeCleanupPolicyOption : QueryStoreOption, IEquatable<QueryStoreTimeCleanupPolicyOption> {
-        Literal staleQueryThreshold;
+        protected Literal staleQueryThreshold;
     
         public Literal StaleQueryThreshold => staleQueryThreshold;
     

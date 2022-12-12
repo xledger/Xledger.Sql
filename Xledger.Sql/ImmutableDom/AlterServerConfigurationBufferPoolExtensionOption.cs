@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationBufferPoolExtensionOption : TSqlFragment, IEquatable<AlterServerConfigurationBufferPoolExtensionOption> {
-        ScriptDom.AlterServerConfigurationBufferPoolExtensionOptionKind optionKind = ScriptDom.AlterServerConfigurationBufferPoolExtensionOptionKind.None;
-        OptionValue optionValue;
+        protected ScriptDom.AlterServerConfigurationBufferPoolExtensionOptionKind optionKind = ScriptDom.AlterServerConfigurationBufferPoolExtensionOptionKind.None;
+        protected OptionValue optionValue;
     
         public ScriptDom.AlterServerConfigurationBufferPoolExtensionOptionKind OptionKind => optionKind;
         public OptionValue OptionValue => optionValue;

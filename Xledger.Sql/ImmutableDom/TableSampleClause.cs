@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableSampleClause : TSqlFragment, IEquatable<TableSampleClause> {
-        bool system = false;
-        ScalarExpression sampleNumber;
-        ScriptDom.TableSampleClauseOption tableSampleClauseOption = ScriptDom.TableSampleClauseOption.NotSpecified;
-        ScalarExpression repeatSeed;
+        protected bool system = false;
+        protected ScalarExpression sampleNumber;
+        protected ScriptDom.TableSampleClauseOption tableSampleClauseOption = ScriptDom.TableSampleClauseOption.NotSpecified;
+        protected ScalarExpression repeatSeed;
     
         public bool System => system;
         public ScalarExpression SampleNumber => sampleNumber;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OffsetClause : TSqlFragment, IEquatable<OffsetClause> {
-        ScalarExpression offsetExpression;
-        ScalarExpression fetchExpression;
+        protected ScalarExpression offsetExpression;
+        protected ScalarExpression fetchExpression;
     
         public ScalarExpression OffsetExpression => offsetExpression;
         public ScalarExpression FetchExpression => fetchExpression;

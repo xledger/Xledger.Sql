@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LeftFunctionCall : PrimaryExpression, IEquatable<LeftFunctionCall> {
-        IReadOnlyList<ScalarExpression> parameters;
+        protected IReadOnlyList<ScalarExpression> parameters;
     
         public IReadOnlyList<ScalarExpression> Parameters => parameters;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LeftFunctionCall ToMutableConcrete() {
             var ret = new ScriptDom.LeftFunctionCall();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
             return ret;
         }

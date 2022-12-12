@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterCertificateStatement : CertificateStatementBase, IEquatable<AlterCertificateStatement> {
-        ScriptDom.AlterCertificateStatementKind kind = ScriptDom.AlterCertificateStatementKind.None;
-        Literal attestedBy;
+        protected ScriptDom.AlterCertificateStatementKind kind = ScriptDom.AlterCertificateStatementKind.None;
+        protected Literal attestedBy;
     
         public ScriptDom.AlterCertificateStatementKind Kind => kind;
         public Literal AttestedBy => attestedBy;

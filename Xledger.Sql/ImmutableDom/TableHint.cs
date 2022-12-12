@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableHint : TSqlFragment, IEquatable<TableHint> {
-        ScriptDom.TableHintKind hintKind = ScriptDom.TableHintKind.None;
+        protected ScriptDom.TableHintKind hintKind = ScriptDom.TableHintKind.None;
     
         public ScriptDom.TableHintKind HintKind => hintKind;
     

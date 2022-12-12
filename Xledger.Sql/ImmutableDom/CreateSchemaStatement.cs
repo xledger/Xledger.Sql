@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateSchemaStatement : TSqlStatement, IEquatable<CreateSchemaStatement> {
-        Identifier name;
-        StatementList statementList;
-        Identifier owner;
+        protected Identifier name;
+        protected StatementList statementList;
+        protected Identifier owner;
     
         public Identifier Name => name;
         public StatementList StatementList => statementList;

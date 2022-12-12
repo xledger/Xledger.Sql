@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SelectStatement : StatementWithCtesAndXmlNamespaces, IEquatable<SelectStatement> {
-        QueryExpression queryExpression;
-        SchemaObjectName into;
-        Identifier on;
-        IReadOnlyList<ComputeClause> computeClauses;
+        protected QueryExpression queryExpression;
+        protected SchemaObjectName into;
+        protected Identifier on;
+        protected IReadOnlyList<ComputeClause> computeClauses;
     
         public QueryExpression QueryExpression => queryExpression;
         public SchemaObjectName Into => into;
@@ -32,9 +32,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression.ToMutable();
             ret.Into = (ScriptDom.SchemaObjectName)into.ToMutable();
             ret.On = (ScriptDom.Identifier)on.ToMutable();
-            ret.ComputeClauses.AddRange(computeClauses.Select(c => (ScriptDom.ComputeClause)c.ToMutable()));
+            ret.ComputeClauses.AddRange(computeClauses.SelectList(c => (ScriptDom.ComputeClause)c.ToMutable()));
             ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
             return ret;
         }
         

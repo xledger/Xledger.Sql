@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DeviceInfo : TSqlFragment, IEquatable<DeviceInfo> {
-        IdentifierOrValueExpression logicalDevice;
-        ValueExpression physicalDevice;
-        ScriptDom.DeviceType deviceType = ScriptDom.DeviceType.None;
+        protected IdentifierOrValueExpression logicalDevice;
+        protected ValueExpression physicalDevice;
+        protected ScriptDom.DeviceType deviceType = ScriptDom.DeviceType.None;
     
         public IdentifierOrValueExpression LogicalDevice => logicalDevice;
         public ValueExpression PhysicalDevice => physicalDevice;

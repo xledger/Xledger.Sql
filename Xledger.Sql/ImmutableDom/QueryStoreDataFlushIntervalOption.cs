@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreDataFlushIntervalOption : QueryStoreOption, IEquatable<QueryStoreDataFlushIntervalOption> {
-        Literal flushInterval;
+        protected Literal flushInterval;
     
         public Literal FlushInterval => flushInterval;
     

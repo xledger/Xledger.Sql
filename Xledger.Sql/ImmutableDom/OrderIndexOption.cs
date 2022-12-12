@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OrderIndexOption : IndexOption, IEquatable<OrderIndexOption> {
-        IReadOnlyList<ColumnReferenceExpression> columns;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
     
         public IReadOnlyList<ColumnReferenceExpression> Columns => columns;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OrderIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.OrderIndexOption();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OpenMasterKeyStatement : TSqlStatement, IEquatable<OpenMasterKeyStatement> {
-        Literal password;
+        protected Literal password;
     
         public Literal Password => password;
     

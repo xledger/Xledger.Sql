@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SchemaObjectFunctionTableReference : TableReferenceWithAliasAndColumns, IEquatable<SchemaObjectFunctionTableReference> {
-        SchemaObjectName schemaObject;
-        IReadOnlyList<ScalarExpression> parameters;
+        protected SchemaObjectName schemaObject;
+        protected IReadOnlyList<ScalarExpression> parameters;
     
         public SchemaObjectName SchemaObject => schemaObject;
         public IReadOnlyList<ScalarExpression> Parameters => parameters;
@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SchemaObjectFunctionTableReference ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectFunctionTableReference();
             ret.SchemaObject = (ScriptDom.SchemaObjectName)schemaObject.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

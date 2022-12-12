@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CompressionPartitionRange : TSqlFragment, IEquatable<CompressionPartitionRange> {
-        ScalarExpression from;
-        ScalarExpression to;
+        protected ScalarExpression from;
+        protected ScalarExpression to;
     
         public ScalarExpression From => from;
         public ScalarExpression To => to;

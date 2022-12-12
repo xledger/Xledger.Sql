@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FullTextIndexColumn : TSqlFragment, IEquatable<FullTextIndexColumn> {
-        Identifier name;
-        Identifier typeColumn;
-        IdentifierOrValueExpression languageTerm;
-        bool statisticalSemantics = false;
+        protected Identifier name;
+        protected Identifier typeColumn;
+        protected IdentifierOrValueExpression languageTerm;
+        protected bool statisticalSemantics = false;
     
         public Identifier Name => name;
         public Identifier TypeColumn => typeColumn;

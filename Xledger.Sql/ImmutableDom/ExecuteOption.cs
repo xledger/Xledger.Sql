@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteOption : TSqlFragment, IEquatable<ExecuteOption> {
-        ScriptDom.ExecuteOptionKind optionKind = ScriptDom.ExecuteOptionKind.Recompile;
+        protected ScriptDom.ExecuteOptionKind optionKind = ScriptDom.ExecuteOptionKind.Recompile;
     
         public ScriptDom.ExecuteOptionKind OptionKind => optionKind;
     

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DeclareCursorStatement : TSqlStatement, IEquatable<DeclareCursorStatement> {
-        Identifier name;
-        CursorDefinition cursorDefinition;
+        protected Identifier name;
+        protected CursorDefinition cursorDefinition;
     
         public Identifier Name => name;
         public CursorDefinition CursorDefinition => cursorDefinition;

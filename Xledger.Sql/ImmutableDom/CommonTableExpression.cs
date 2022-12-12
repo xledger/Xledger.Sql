@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CommonTableExpression : TSqlFragment, IEquatable<CommonTableExpression> {
-        Identifier expressionName;
-        IReadOnlyList<Identifier> columns;
-        QueryExpression queryExpression;
+        protected Identifier expressionName;
+        protected IReadOnlyList<Identifier> columns;
+        protected QueryExpression queryExpression;
     
         public Identifier ExpressionName => expressionName;
         public IReadOnlyList<Identifier> Columns => columns;
@@ -25,7 +25,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CommonTableExpression ToMutableConcrete() {
             var ret = new ScriptDom.CommonTableExpression();
             ret.ExpressionName = (ScriptDom.Identifier)expressionName.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression.ToMutable();
             return ret;
         }

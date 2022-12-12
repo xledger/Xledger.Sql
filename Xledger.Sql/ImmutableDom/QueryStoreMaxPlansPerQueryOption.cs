@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreMaxPlansPerQueryOption : QueryStoreOption, IEquatable<QueryStoreMaxPlansPerQueryOption> {
-        Literal maxPlansPerQuery;
+        protected Literal maxPlansPerQuery;
     
         public Literal MaxPlansPerQuery => maxPlansPerQuery;
     

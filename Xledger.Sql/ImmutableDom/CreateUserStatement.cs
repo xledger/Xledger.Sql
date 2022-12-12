@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateUserStatement : UserStatement, IEquatable<CreateUserStatement> {
-        UserLoginOption userLoginOption;
+        protected UserLoginOption userLoginOption;
     
         public UserLoginOption UserLoginOption => userLoginOption;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateUserStatement();
             ret.UserLoginOption = (ScriptDom.UserLoginOption)userLoginOption.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.UserOptions.AddRange(userOptions.Select(c => (ScriptDom.PrincipalOption)c.ToMutable()));
+            ret.UserOptions.AddRange(userOptions.SelectList(c => (ScriptDom.PrincipalOption)c.ToMutable()));
             return ret;
         }
         

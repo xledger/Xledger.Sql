@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CopyColumnOption : CopyStatementOptionBase, IEquatable<CopyColumnOption> {
-        Identifier columnName;
-        ScalarExpression defaultValue;
-        IntegerLiteral fieldNumber;
+        protected Identifier columnName;
+        protected ScalarExpression defaultValue;
+        protected IntegerLiteral fieldNumber;
     
         public Identifier ColumnName => columnName;
         public ScalarExpression DefaultValue => defaultValue;

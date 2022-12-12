@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteAsClause : TSqlFragment, IEquatable<ExecuteAsClause> {
-        ScriptDom.ExecuteAsOption executeAsOption = ScriptDom.ExecuteAsOption.Caller;
-        Literal literal;
+        protected ScriptDom.ExecuteAsOption executeAsOption = ScriptDom.ExecuteAsOption.Caller;
+        protected Literal literal;
     
         public ScriptDom.ExecuteAsOption ExecuteAsOption => executeAsOption;
         public Literal Literal => literal;

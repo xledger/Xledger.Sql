@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SearchPropertyListFullTextIndexOption : FullTextIndexOption, IEquatable<SearchPropertyListFullTextIndexOption> {
-        bool isOff = false;
-        Identifier propertyListName;
+        protected bool isOff = false;
+        protected Identifier propertyListName;
     
         public bool IsOff => isOff;
         public Identifier PropertyListName => propertyListName;

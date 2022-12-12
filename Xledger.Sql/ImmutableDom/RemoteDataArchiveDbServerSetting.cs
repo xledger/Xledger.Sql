@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RemoteDataArchiveDbServerSetting : RemoteDataArchiveDatabaseSetting, IEquatable<RemoteDataArchiveDbServerSetting> {
-        StringLiteral server;
+        protected StringLiteral server;
     
         public StringLiteral Server => server;
     

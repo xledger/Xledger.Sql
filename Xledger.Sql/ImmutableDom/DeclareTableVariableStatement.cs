@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DeclareTableVariableStatement : TSqlStatement, IEquatable<DeclareTableVariableStatement> {
-        DeclareTableVariableBody body;
+        protected DeclareTableVariableBody body;
     
         public DeclareTableVariableBody Body => body;
     

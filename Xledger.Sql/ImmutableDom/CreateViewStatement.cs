@@ -20,8 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateViewStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateViewStatement();
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.ViewOptions.AddRange(viewOptions.Select(c => (ScriptDom.ViewOption)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.ViewOptions.AddRange(viewOptions.SelectList(c => (ScriptDom.ViewOption)c.ToMutable()));
             ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement.ToMutable();
             ret.WithCheckOption = withCheckOption;
             ret.IsMaterialized = isMaterialized;

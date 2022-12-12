@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ScalarExpressionRestoreOption : RestoreOption, IEquatable<ScalarExpressionRestoreOption> {
-        ScalarExpression @value;
+        protected ScalarExpression @value;
     
         public ScalarExpression Value => @value;
     

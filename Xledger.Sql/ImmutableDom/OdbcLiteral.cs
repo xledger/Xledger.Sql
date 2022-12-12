@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OdbcLiteral : Literal, IEquatable<OdbcLiteral> {
-        ScriptDom.OdbcLiteralType odbcLiteralType = ScriptDom.OdbcLiteralType.Time;
-        bool isNational = false;
+        protected ScriptDom.OdbcLiteralType odbcLiteralType = ScriptDom.OdbcLiteralType.Time;
+        protected bool isNational = false;
     
         public ScriptDom.OdbcLiteralType OdbcLiteralType => odbcLiteralType;
         public bool IsNational => isNational;

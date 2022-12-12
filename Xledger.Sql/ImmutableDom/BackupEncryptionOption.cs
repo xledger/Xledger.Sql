@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BackupEncryptionOption : BackupOption, IEquatable<BackupEncryptionOption> {
-        ScriptDom.EncryptionAlgorithm algorithm = ScriptDom.EncryptionAlgorithm.None;
-        CryptoMechanism encryptor;
+        protected ScriptDom.EncryptionAlgorithm algorithm = ScriptDom.EncryptionAlgorithm.None;
+        protected CryptoMechanism encryptor;
     
         public ScriptDom.EncryptionAlgorithm Algorithm => algorithm;
         public CryptoMechanism Encryptor => encryptor;

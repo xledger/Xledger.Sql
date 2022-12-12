@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterAvailabilityGroupFailoverOption : TSqlFragment, IEquatable<AlterAvailabilityGroupFailoverOption> {
-        ScriptDom.FailoverActionOptionKind optionKind = ScriptDom.FailoverActionOptionKind.Target;
-        Literal @value;
+        protected ScriptDom.FailoverActionOptionKind optionKind = ScriptDom.FailoverActionOptionKind.Target;
+        protected Literal @value;
     
         public ScriptDom.FailoverActionOptionKind OptionKind => optionKind;
         public Literal Value => @value;

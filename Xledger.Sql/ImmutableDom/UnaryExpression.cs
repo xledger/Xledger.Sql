@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UnaryExpression : ScalarExpression, IEquatable<UnaryExpression> {
-        ScriptDom.UnaryExpressionType unaryExpressionType = ScriptDom.UnaryExpressionType.Positive;
-        ScalarExpression expression;
+        protected ScriptDom.UnaryExpressionType unaryExpressionType = ScriptDom.UnaryExpressionType.Positive;
+        protected ScalarExpression expression;
     
         public ScriptDom.UnaryExpressionType UnaryExpressionType => unaryExpressionType;
         public ScalarExpression Expression => expression;

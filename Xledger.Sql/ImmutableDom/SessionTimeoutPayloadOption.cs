@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SessionTimeoutPayloadOption : PayloadOption, IEquatable<SessionTimeoutPayloadOption> {
-        bool isNever = false;
-        Literal timeout;
+        protected bool isNever = false;
+        protected Literal timeout;
     
         public bool IsNever => isNever;
         public Literal Timeout => timeout;

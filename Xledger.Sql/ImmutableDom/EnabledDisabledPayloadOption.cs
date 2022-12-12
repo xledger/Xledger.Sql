@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EnabledDisabledPayloadOption : PayloadOption, IEquatable<EnabledDisabledPayloadOption> {
-        bool isEnabled = false;
+        protected bool isEnabled = false;
     
         public bool IsEnabled => isEnabled;
     

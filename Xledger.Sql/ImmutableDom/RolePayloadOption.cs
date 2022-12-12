@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RolePayloadOption : PayloadOption, IEquatable<RolePayloadOption> {
-        ScriptDom.DatabaseMirroringEndpointRole role = ScriptDom.DatabaseMirroringEndpointRole.NotSpecified;
+        protected ScriptDom.DatabaseMirroringEndpointRole role = ScriptDom.DatabaseMirroringEndpointRole.NotSpecified;
     
         public ScriptDom.DatabaseMirroringEndpointRole Role => role;
     

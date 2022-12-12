@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MoveRestoreOption : RestoreOption, IEquatable<MoveRestoreOption> {
-        ValueExpression logicalFileName;
-        ValueExpression oSFileName;
+        protected ValueExpression logicalFileName;
+        protected ValueExpression oSFileName;
     
         public ValueExpression LogicalFileName => logicalFileName;
         public ValueExpression OSFileName => oSFileName;

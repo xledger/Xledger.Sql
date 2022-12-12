@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteInsertSource : InsertSource, IEquatable<ExecuteInsertSource> {
-        ExecuteSpecification execute;
+        protected ExecuteSpecification execute;
     
         public ExecuteSpecification Execute => execute;
     

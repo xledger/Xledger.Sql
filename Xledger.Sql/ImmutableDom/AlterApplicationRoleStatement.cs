@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterApplicationRoleStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterApplicationRoleStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ApplicationRoleOptions.AddRange(applicationRoleOptions.Select(c => (ScriptDom.ApplicationRoleOption)c.ToMutable()));
+            ret.ApplicationRoleOptions.AddRange(applicationRoleOptions.SelectList(c => (ScriptDom.ApplicationRoleOption)c.ToMutable()));
             return ret;
         }
         

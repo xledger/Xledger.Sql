@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterLoginEnableDisableStatement : AlterLoginStatement, IEquatable<AlterLoginEnableDisableStatement> {
-        bool isEnable = false;
+        protected bool isEnable = false;
     
         public bool IsEnable => isEnable;
     

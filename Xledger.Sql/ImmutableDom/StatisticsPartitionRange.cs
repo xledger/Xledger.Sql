@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class StatisticsPartitionRange : TSqlFragment, IEquatable<StatisticsPartitionRange> {
-        IntegerLiteral from;
-        IntegerLiteral to;
+        protected IntegerLiteral from;
+        protected IntegerLiteral to;
     
         public IntegerLiteral From => from;
         public IntegerLiteral To => to;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PartitionSpecifier : TSqlFragment, IEquatable<PartitionSpecifier> {
-        ScalarExpression number;
-        bool all = false;
+        protected ScalarExpression number;
+        protected bool all = false;
     
         public ScalarExpression Number => number;
         public bool All => all;

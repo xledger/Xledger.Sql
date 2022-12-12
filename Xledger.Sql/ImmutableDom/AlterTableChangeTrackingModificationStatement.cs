@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableChangeTrackingModificationStatement : AlterTableStatement, IEquatable<AlterTableChangeTrackingModificationStatement> {
-        bool isEnable = false;
-        ScriptDom.OptionState trackColumnsUpdated = ScriptDom.OptionState.NotSet;
+        protected bool isEnable = false;
+        protected ScriptDom.OptionState trackColumnsUpdated = ScriptDom.OptionState.NotSet;
     
         public bool IsEnable => isEnable;
         public ScriptDom.OptionState TrackColumnsUpdated => trackColumnsUpdated;

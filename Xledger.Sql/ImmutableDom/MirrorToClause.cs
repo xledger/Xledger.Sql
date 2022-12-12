@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MirrorToClause : TSqlFragment, IEquatable<MirrorToClause> {
-        IReadOnlyList<DeviceInfo> devices;
+        protected IReadOnlyList<DeviceInfo> devices;
     
         public IReadOnlyList<DeviceInfo> Devices => devices;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MirrorToClause ToMutableConcrete() {
             var ret = new ScriptDom.MirrorToClause();
-            ret.Devices.AddRange(devices.Select(c => (ScriptDom.DeviceInfo)c.ToMutable()));
+            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c.ToMutable()));
             return ret;
         }
         

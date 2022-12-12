@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateCryptographicProviderStatement : TSqlStatement, IEquatable<CreateCryptographicProviderStatement> {
-        Identifier name;
-        Literal file;
+        protected Identifier name;
+        protected Literal file;
     
         public Identifier Name => name;
         public Literal File => file;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MoveToDropIndexOption : IndexOption, IEquatable<MoveToDropIndexOption> {
-        FileGroupOrPartitionScheme moveTo;
+        protected FileGroupOrPartitionScheme moveTo;
     
         public FileGroupOrPartitionScheme MoveTo => moveTo;
     

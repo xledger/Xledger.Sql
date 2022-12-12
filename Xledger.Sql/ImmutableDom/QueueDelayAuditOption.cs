@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueueDelayAuditOption : AuditOption, IEquatable<QueueDelayAuditOption> {
-        Literal delay;
+        protected Literal delay;
     
         public Literal Delay => delay;
     

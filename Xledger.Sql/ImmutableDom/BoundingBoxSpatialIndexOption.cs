@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BoundingBoxSpatialIndexOption : SpatialIndexOption, IEquatable<BoundingBoxSpatialIndexOption> {
-        IReadOnlyList<BoundingBoxParameter> boundingBoxParameters;
+        protected IReadOnlyList<BoundingBoxParameter> boundingBoxParameters;
     
         public IReadOnlyList<BoundingBoxParameter> BoundingBoxParameters => boundingBoxParameters;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BoundingBoxSpatialIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.BoundingBoxSpatialIndexOption();
-            ret.BoundingBoxParameters.AddRange(boundingBoxParameters.Select(c => (ScriptDom.BoundingBoxParameter)c.ToMutable()));
+            ret.BoundingBoxParameters.AddRange(boundingBoxParameters.SelectList(c => (ScriptDom.BoundingBoxParameter)c.ToMutable()));
             return ret;
         }
         

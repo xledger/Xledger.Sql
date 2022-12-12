@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropCredentialStatement : DropUnownedObjectStatement, IEquatable<DropCredentialStatement> {
-        bool isDatabaseScoped = false;
+        protected bool isDatabaseScoped = false;
     
         public bool IsDatabaseScoped => isDatabaseScoped;
     

@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ReadTextStatement : TSqlStatement, IEquatable<ReadTextStatement> {
-        ColumnReferenceExpression column;
-        ValueExpression textPointer;
-        ValueExpression offset;
-        ValueExpression size;
-        bool holdLock = false;
+        protected ColumnReferenceExpression column;
+        protected ValueExpression textPointer;
+        protected ValueExpression offset;
+        protected ValueExpression size;
+        protected bool holdLock = false;
     
         public ColumnReferenceExpression Column => column;
         public ValueExpression TextPointer => textPointer;

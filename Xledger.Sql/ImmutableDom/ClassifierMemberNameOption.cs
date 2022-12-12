@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ClassifierMemberNameOption : WorkloadClassifierOption, IEquatable<ClassifierMemberNameOption> {
-        StringLiteral memberName;
+        protected StringLiteral memberName;
     
         public StringLiteral MemberName => memberName;
     

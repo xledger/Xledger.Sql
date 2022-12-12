@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableClusteredIndexType : TableIndexType, IEquatable<TableClusteredIndexType> {
-        IReadOnlyList<ColumnWithSortOrder> columns;
-        bool columnStore = false;
-        IReadOnlyList<ColumnReferenceExpression> orderedColumns;
+        protected IReadOnlyList<ColumnWithSortOrder> columns;
+        protected bool columnStore = false;
+        protected IReadOnlyList<ColumnReferenceExpression> orderedColumns;
     
         public IReadOnlyList<ColumnWithSortOrder> Columns => columns;
         public bool ColumnStore => columnStore;
@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TableClusteredIndexType ToMutableConcrete() {
             var ret = new ScriptDom.TableClusteredIndexType();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
             ret.ColumnStore = columnStore;
-            ret.OrderedColumns.AddRange(orderedColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.OrderedColumns.AddRange(orderedColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             return ret;
         }
         

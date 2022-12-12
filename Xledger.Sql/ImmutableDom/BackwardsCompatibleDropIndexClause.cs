@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BackwardsCompatibleDropIndexClause : DropIndexClauseBase, IEquatable<BackwardsCompatibleDropIndexClause> {
-        ChildObjectName index;
+        protected ChildObjectName index;
     
         public ChildObjectName Index => index;
     

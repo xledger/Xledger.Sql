@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterAuthorizationStatement : TSqlStatement, IEquatable<AlterAuthorizationStatement> {
-        SecurityTargetObject securityTargetObject;
-        bool toSchemaOwner = false;
-        Identifier principalName;
+        protected SecurityTargetObject securityTargetObject;
+        protected bool toSchemaOwner = false;
+        protected Identifier principalName;
     
         public SecurityTargetObject SecurityTargetObject => securityTargetObject;
         public bool ToSchemaOwner => toSchemaOwner;

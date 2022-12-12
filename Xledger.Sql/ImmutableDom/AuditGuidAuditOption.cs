@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AuditGuidAuditOption : AuditOption, IEquatable<AuditGuidAuditOption> {
-        Literal guid;
+        protected Literal guid;
     
         public Literal Guid => guid;
     

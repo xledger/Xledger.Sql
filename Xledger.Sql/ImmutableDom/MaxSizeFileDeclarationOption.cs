@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MaxSizeFileDeclarationOption : FileDeclarationOption, IEquatable<MaxSizeFileDeclarationOption> {
-        Literal maxSize;
-        ScriptDom.MemoryUnit units = ScriptDom.MemoryUnit.Unspecified;
-        bool unlimited = false;
+        protected Literal maxSize;
+        protected ScriptDom.MemoryUnit units = ScriptDom.MemoryUnit.Unspecified;
+        protected bool unlimited = false;
     
         public Literal MaxSize => maxSize;
         public ScriptDom.MemoryUnit Units => units;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class HadrDatabaseOption : DatabaseOption, IEquatable<HadrDatabaseOption> {
-        ScriptDom.HadrDatabaseOptionKind hadrOption = ScriptDom.HadrDatabaseOptionKind.Suspend;
+        protected ScriptDom.HadrDatabaseOptionKind hadrOption = ScriptDom.HadrDatabaseOptionKind.Suspend;
     
         public ScriptDom.HadrDatabaseOptionKind HadrOption => hadrOption;
     

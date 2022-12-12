@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ApplicationRoleOption : TSqlFragment, IEquatable<ApplicationRoleOption> {
-        ScriptDom.ApplicationRoleOptionKind optionKind = ScriptDom.ApplicationRoleOptionKind.Name;
-        IdentifierOrValueExpression @value;
+        protected ScriptDom.ApplicationRoleOptionKind optionKind = ScriptDom.ApplicationRoleOptionKind.Name;
+        protected IdentifierOrValueExpression @value;
     
         public ScriptDom.ApplicationRoleOptionKind OptionKind => optionKind;
         public IdentifierOrValueExpression Value => @value;

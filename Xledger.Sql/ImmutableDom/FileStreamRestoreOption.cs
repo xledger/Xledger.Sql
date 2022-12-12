@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileStreamRestoreOption : RestoreOption, IEquatable<FileStreamRestoreOption> {
-        FileStreamDatabaseOption fileStreamOption;
+        protected FileStreamDatabaseOption fileStreamOption;
     
         public FileStreamDatabaseOption FileStreamOption => fileStreamOption;
     

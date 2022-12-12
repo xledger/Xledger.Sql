@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ParameterizationDatabaseOption : DatabaseOption, IEquatable<ParameterizationDatabaseOption> {
-        bool isSimple = false;
+        protected bool isSimple = false;
     
         public bool IsSimple => isSimple;
     

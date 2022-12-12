@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WorkloadGroupImportanceParameter : WorkloadGroupParameter, IEquatable<WorkloadGroupImportanceParameter> {
-        ScriptDom.ImportanceParameterType parameterValue = ScriptDom.ImportanceParameterType.Unknown;
+        protected ScriptDom.ImportanceParameterType parameterValue = ScriptDom.ImportanceParameterType.Unknown;
     
         public ScriptDom.ImportanceParameterType ParameterValue => parameterValue;
     

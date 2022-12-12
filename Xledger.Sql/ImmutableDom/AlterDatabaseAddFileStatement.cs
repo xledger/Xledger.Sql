@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseAddFileStatement : AlterDatabaseStatement, IEquatable<AlterDatabaseAddFileStatement> {
-        IReadOnlyList<FileDeclaration> fileDeclarations;
-        Identifier fileGroup;
-        bool isLog = false;
+        protected IReadOnlyList<FileDeclaration> fileDeclarations;
+        protected Identifier fileGroup;
+        protected bool isLog = false;
     
         public IReadOnlyList<FileDeclaration> FileDeclarations => fileDeclarations;
         public Identifier FileGroup => fileGroup;
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterDatabaseAddFileStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseAddFileStatement();
-            ret.FileDeclarations.AddRange(fileDeclarations.Select(c => (ScriptDom.FileDeclaration)c.ToMutable()));
+            ret.FileDeclarations.AddRange(fileDeclarations.SelectList(c => (ScriptDom.FileDeclaration)c.ToMutable()));
             ret.FileGroup = (ScriptDom.Identifier)fileGroup.ToMutable();
             ret.IsLog = isLog;
             ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();

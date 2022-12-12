@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropAsymmetricKeyStatement : DropUnownedObjectStatement, IEquatable<DropAsymmetricKeyStatement> {
-        bool removeProviderKey = false;
+        protected bool removeProviderKey = false;
     
         public bool RemoveProviderKey => removeProviderKey;
     

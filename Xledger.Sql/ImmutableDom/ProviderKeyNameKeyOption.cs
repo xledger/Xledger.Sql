@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ProviderKeyNameKeyOption : KeyOption, IEquatable<ProviderKeyNameKeyOption> {
-        Literal keyName;
+        protected Literal keyName;
     
         public Literal KeyName => keyName;
     

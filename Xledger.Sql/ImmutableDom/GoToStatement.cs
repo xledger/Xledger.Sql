@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GoToStatement : TSqlStatement, IEquatable<GoToStatement> {
-        Identifier labelName;
+        protected Identifier labelName;
     
         public Identifier LabelName => labelName;
     

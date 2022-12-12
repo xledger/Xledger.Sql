@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SecurityPrincipal : TSqlFragment, IEquatable<SecurityPrincipal> {
-        ScriptDom.PrincipalType principalType = ScriptDom.PrincipalType.Null;
-        Identifier identifier;
+        protected ScriptDom.PrincipalType principalType = ScriptDom.PrincipalType.Null;
+        protected Identifier identifier;
     
         public ScriptDom.PrincipalType PrincipalType => principalType;
         public Identifier Identifier => identifier;

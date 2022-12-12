@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BooleanParenthesisExpression : BooleanExpression, IEquatable<BooleanParenthesisExpression> {
-        BooleanExpression expression;
+        protected BooleanExpression expression;
     
         public BooleanExpression Expression => expression;
     

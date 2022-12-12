@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UserDefinedTypePropertyAccess : PrimaryExpression, IEquatable<UserDefinedTypePropertyAccess> {
-        CallTarget callTarget;
-        Identifier propertyName;
+        protected CallTarget callTarget;
+        protected Identifier propertyName;
     
         public CallTarget CallTarget => callTarget;
         public Identifier PropertyName => propertyName;

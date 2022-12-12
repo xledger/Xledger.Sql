@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterAvailabilityGroupStatement : AvailabilityGroupStatement, IEquatable<AlterAvailabilityGroupStatement> {
-        ScriptDom.AlterAvailabilityGroupStatementType alterAvailabilityGroupStatementType = ScriptDom.AlterAvailabilityGroupStatementType.AddDatabase;
-        AlterAvailabilityGroupAction action;
+        protected ScriptDom.AlterAvailabilityGroupStatementType alterAvailabilityGroupStatementType = ScriptDom.AlterAvailabilityGroupStatementType.AddDatabase;
+        protected AlterAvailabilityGroupAction action;
     
         public ScriptDom.AlterAvailabilityGroupStatementType AlterAvailabilityGroupStatementType => alterAvailabilityGroupStatementType;
         public AlterAvailabilityGroupAction Action => action;
@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.AlterAvailabilityGroupStatementType = alterAvailabilityGroupStatementType;
             ret.Action = (ScriptDom.AlterAvailabilityGroupAction)action.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AvailabilityGroupOption)c.ToMutable()));
-            ret.Databases.AddRange(databases.Select(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Replicas.AddRange(replicas.Select(c => (ScriptDom.AvailabilityReplica)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityGroupOption)c.ToMutable()));
+            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Replicas.AddRange(replicas.SelectList(c => (ScriptDom.AvailabilityReplica)c.ToMutable()));
             return ret;
         }
         

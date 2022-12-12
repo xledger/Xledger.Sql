@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreationDispositionKeyOption : KeyOption, IEquatable<CreationDispositionKeyOption> {
-        bool isCreateNew = false;
+        protected bool isCreateNew = false;
     
         public bool IsCreateNew => isCreateNew;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PrincipalOption : TSqlFragment, IEquatable<PrincipalOption> {
-        ScriptDom.PrincipalOptionKind optionKind = ScriptDom.PrincipalOptionKind.CheckExpiration;
+        protected ScriptDom.PrincipalOptionKind optionKind = ScriptDom.PrincipalOptionKind.CheckExpiration;
     
         public ScriptDom.PrincipalOptionKind OptionKind => optionKind;
     

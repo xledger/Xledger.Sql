@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableDropTableElementStatement : AlterTableStatement, IEquatable<AlterTableDropTableElementStatement> {
-        IReadOnlyList<AlterTableDropTableElement> alterTableDropTableElements;
+        protected IReadOnlyList<AlterTableDropTableElement> alterTableDropTableElements;
     
         public IReadOnlyList<AlterTableDropTableElement> AlterTableDropTableElements => alterTableDropTableElements;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterTableDropTableElementStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableDropTableElementStatement();
-            ret.AlterTableDropTableElements.AddRange(alterTableDropTableElements.Select(c => (ScriptDom.AlterTableDropTableElement)c.ToMutable()));
+            ret.AlterTableDropTableElements.AddRange(alterTableDropTableElements.SelectList(c => (ScriptDom.AlterTableDropTableElement)c.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
             return ret;
         }

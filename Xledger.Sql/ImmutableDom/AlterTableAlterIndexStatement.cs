@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableAlterIndexStatement : AlterTableStatement, IEquatable<AlterTableAlterIndexStatement> {
-        Identifier indexIdentifier;
-        ScriptDom.AlterIndexType alterIndexType = ScriptDom.AlterIndexType.Rebuild;
-        IReadOnlyList<IndexOption> indexOptions;
+        protected Identifier indexIdentifier;
+        protected ScriptDom.AlterIndexType alterIndexType = ScriptDom.AlterIndexType.Rebuild;
+        protected IReadOnlyList<IndexOption> indexOptions;
     
         public Identifier IndexIdentifier => indexIdentifier;
         public ScriptDom.AlterIndexType AlterIndexType => alterIndexType;
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTableAlterIndexStatement();
             ret.IndexIdentifier = (ScriptDom.Identifier)indexIdentifier.ToMutable();
             ret.AlterIndexType = alterIndexType;
-            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
             return ret;
         }

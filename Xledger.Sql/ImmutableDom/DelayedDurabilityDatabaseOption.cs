@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DelayedDurabilityDatabaseOption : DatabaseOption, IEquatable<DelayedDurabilityDatabaseOption> {
-        ScriptDom.DelayedDurabilityOptionKind @value = ScriptDom.DelayedDurabilityOptionKind.Disabled;
+        protected ScriptDom.DelayedDurabilityOptionKind @value = ScriptDom.DelayedDurabilityOptionKind.Disabled;
     
         public ScriptDom.DelayedDurabilityOptionKind Value => @value;
     

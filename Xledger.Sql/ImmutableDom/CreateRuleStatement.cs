@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateRuleStatement : TSqlStatement, IEquatable<CreateRuleStatement> {
-        SchemaObjectName name;
-        BooleanExpression expression;
+        protected SchemaObjectName name;
+        protected BooleanExpression expression;
     
         public SchemaObjectName Name => name;
         public BooleanExpression Expression => expression;

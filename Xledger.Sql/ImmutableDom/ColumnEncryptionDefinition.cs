@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnEncryptionDefinition : TSqlFragment, IEquatable<ColumnEncryptionDefinition> {
-        IReadOnlyList<ColumnEncryptionDefinitionParameter> parameters;
+        protected IReadOnlyList<ColumnEncryptionDefinitionParameter> parameters;
     
         public IReadOnlyList<ColumnEncryptionDefinitionParameter> Parameters => parameters;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ColumnEncryptionDefinition ToMutableConcrete() {
             var ret = new ScriptDom.ColumnEncryptionDefinition();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ColumnEncryptionDefinitionParameter)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ColumnEncryptionDefinitionParameter)c.ToMutable()));
             return ret;
         }
         

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SecurityPolicyOption : TSqlFragment, IEquatable<SecurityPolicyOption> {
-        ScriptDom.SecurityPolicyOptionKind optionKind = ScriptDom.SecurityPolicyOptionKind.State;
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected ScriptDom.SecurityPolicyOptionKind optionKind = ScriptDom.SecurityPolicyOptionKind.State;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
     
         public ScriptDom.SecurityPolicyOptionKind OptionKind => optionKind;
         public ScriptDom.OptionState OptionState => optionState;

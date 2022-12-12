@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WriteTextStatement : TextModificationStatement, IEquatable<WriteTextStatement> {
-        ValueExpression sourceParameter;
+        protected ValueExpression sourceParameter;
     
         public ValueExpression SourceParameter => sourceParameter;
     

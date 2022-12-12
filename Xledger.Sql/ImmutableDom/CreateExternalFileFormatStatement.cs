@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateExternalFileFormatStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.FormatType = formatType;
-            ret.ExternalFileFormatOptions.AddRange(externalFileFormatOptions.Select(c => (ScriptDom.ExternalFileFormatOption)c.ToMutable()));
+            ret.ExternalFileFormatOptions.AddRange(externalFileFormatOptions.SelectList(c => (ScriptDom.ExternalFileFormatOption)c.ToMutable()));
             return ret;
         }
         

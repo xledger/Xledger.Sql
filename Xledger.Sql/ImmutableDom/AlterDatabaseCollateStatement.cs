@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseCollateStatement : AlterDatabaseStatement, IEquatable<AlterDatabaseCollateStatement> {
-        Identifier collation;
+        protected Identifier collation;
     
         public Identifier Collation => collation;
     

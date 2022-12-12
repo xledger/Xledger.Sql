@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreatePartitionSchemeStatement : TSqlStatement, IEquatable<CreatePartitionSchemeStatement> {
-        Identifier name;
-        Identifier partitionFunction;
-        bool isAll = false;
-        IReadOnlyList<IdentifierOrValueExpression> fileGroups;
+        protected Identifier name;
+        protected Identifier partitionFunction;
+        protected bool isAll = false;
+        protected IReadOnlyList<IdentifierOrValueExpression> fileGroups;
     
         public Identifier Name => name;
         public Identifier PartitionFunction => partitionFunction;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.PartitionFunction = (ScriptDom.Identifier)partitionFunction.ToMutable();
             ret.IsAll = isAll;
-            ret.FileGroups.AddRange(fileGroups.Select(c => (ScriptDom.IdentifierOrValueExpression)c.ToMutable()));
+            ret.FileGroups.AddRange(fileGroups.SelectList(c => (ScriptDom.IdentifierOrValueExpression)c.ToMutable()));
             return ret;
         }
         

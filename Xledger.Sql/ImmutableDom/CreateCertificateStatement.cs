@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateCertificateStatement : CertificateStatementBase, IEquatable<CreateCertificateStatement> {
-        EncryptionSource certificateSource;
-        IReadOnlyList<CertificateOption> certificateOptions;
-        Identifier owner;
+        protected EncryptionSource certificateSource;
+        protected IReadOnlyList<CertificateOption> certificateOptions;
+        protected Identifier owner;
     
         public EncryptionSource CertificateSource => certificateSource;
         public IReadOnlyList<CertificateOption> CertificateOptions => certificateOptions;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateCertificateStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateCertificateStatement();
             ret.CertificateSource = (ScriptDom.EncryptionSource)certificateSource.ToMutable();
-            ret.CertificateOptions.AddRange(certificateOptions.Select(c => (ScriptDom.CertificateOption)c.ToMutable()));
+            ret.CertificateOptions.AddRange(certificateOptions.SelectList(c => (ScriptDom.CertificateOption)c.ToMutable()));
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.ActiveForBeginDialog = activeForBeginDialog;

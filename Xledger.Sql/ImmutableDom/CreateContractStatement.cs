@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateContractStatement : TSqlStatement, IEquatable<CreateContractStatement> {
-        Identifier name;
-        IReadOnlyList<ContractMessage> messages;
-        Identifier owner;
+        protected Identifier name;
+        protected IReadOnlyList<ContractMessage> messages;
+        protected Identifier owner;
     
         public Identifier Name => name;
         public IReadOnlyList<ContractMessage> Messages => messages;
@@ -25,7 +25,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateContractStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateContractStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Messages.AddRange(messages.Select(c => (ScriptDom.ContractMessage)c.ToMutable()));
+            ret.Messages.AddRange(messages.SelectList(c => (ScriptDom.ContractMessage)c.ToMutable()));
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             return ret;
         }

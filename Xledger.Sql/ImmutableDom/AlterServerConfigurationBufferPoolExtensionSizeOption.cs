@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationBufferPoolExtensionSizeOption : AlterServerConfigurationBufferPoolExtensionOption, IEquatable<AlterServerConfigurationBufferPoolExtensionSizeOption> {
-        ScriptDom.MemoryUnit sizeUnit = ScriptDom.MemoryUnit.Unspecified;
+        protected ScriptDom.MemoryUnit sizeUnit = ScriptDom.MemoryUnit.Unspecified;
     
         public ScriptDom.MemoryUnit SizeUnit => sizeUnit;
     

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MaxSizeDatabaseOption : DatabaseOption, IEquatable<MaxSizeDatabaseOption> {
-        Literal maxSize;
-        ScriptDom.MemoryUnit units = ScriptDom.MemoryUnit.Unspecified;
+        protected Literal maxSize;
+        protected ScriptDom.MemoryUnit units = ScriptDom.MemoryUnit.Unspecified;
     
         public Literal MaxSize => maxSize;
         public ScriptDom.MemoryUnit Units => units;

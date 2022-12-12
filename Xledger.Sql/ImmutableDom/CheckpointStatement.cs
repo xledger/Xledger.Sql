@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CheckpointStatement : TSqlStatement, IEquatable<CheckpointStatement> {
-        Literal duration;
+        protected Literal duration;
     
         public Literal Duration => duration;
     

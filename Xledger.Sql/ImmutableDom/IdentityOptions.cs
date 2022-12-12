@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IdentityOptions : TSqlFragment, IEquatable<IdentityOptions> {
-        ScalarExpression identitySeed;
-        ScalarExpression identityIncrement;
-        bool isIdentityNotForReplication = false;
+        protected ScalarExpression identitySeed;
+        protected ScalarExpression identityIncrement;
+        protected bool isIdentityNotForReplication = false;
     
         public ScalarExpression IdentitySeed => identitySeed;
         public ScalarExpression IdentityIncrement => identityIncrement;

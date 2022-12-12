@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class XmlForClauseOption : ForClause, IEquatable<XmlForClauseOption> {
-        ScriptDom.XmlForClauseOptions optionKind = ScriptDom.XmlForClauseOptions.None;
-        Literal @value;
+        protected ScriptDom.XmlForClauseOptions optionKind = ScriptDom.XmlForClauseOptions.None;
+        protected Literal @value;
     
         public ScriptDom.XmlForClauseOptions OptionKind => optionKind;
         public Literal Value => @value;

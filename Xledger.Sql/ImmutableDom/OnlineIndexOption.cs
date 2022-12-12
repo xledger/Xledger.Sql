@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OnlineIndexOption : IndexStateOption, IEquatable<OnlineIndexOption> {
-        OnlineIndexLowPriorityLockWaitOption lowPriorityLockWaitOption;
+        protected OnlineIndexLowPriorityLockWaitOption lowPriorityLockWaitOption;
     
         public OnlineIndexLowPriorityLockWaitOption LowPriorityLockWaitOption => lowPriorityLockWaitOption;
     

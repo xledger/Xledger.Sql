@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ChangeTableChangesTableReference : TableReferenceWithAliasAndColumns, IEquatable<ChangeTableChangesTableReference> {
-        SchemaObjectName target;
-        ValueExpression sinceVersion;
+        protected SchemaObjectName target;
+        protected ValueExpression sinceVersion;
     
         public SchemaObjectName Target => target;
         public ValueExpression SinceVersion => sinceVersion;
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.ChangeTableChangesTableReference();
             ret.Target = (ScriptDom.SchemaObjectName)target.ToMutable();
             ret.SinceVersion = (ScriptDom.ValueExpression)sinceVersion.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

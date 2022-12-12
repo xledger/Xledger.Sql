@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AssemblyOption : TSqlFragment, IEquatable<AssemblyOption> {
-        ScriptDom.AssemblyOptionKind optionKind = ScriptDom.AssemblyOptionKind.PermissionSet;
+        protected ScriptDom.AssemblyOptionKind optionKind = ScriptDom.AssemblyOptionKind.PermissionSet;
     
         public ScriptDom.AssemblyOptionKind OptionKind => optionKind;
     

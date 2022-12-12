@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OperatorAuditOption : AuditOption, IEquatable<OperatorAuditOption> {
-        ScriptDom.OptionState @value = ScriptDom.OptionState.NotSet;
+        protected ScriptDom.OptionState @value = ScriptDom.OptionState.NotSet;
     
         public ScriptDom.OptionState Value => @value;
     

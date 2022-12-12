@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GetConversationGroupStatement : WaitForSupportedStatement, IEquatable<GetConversationGroupStatement> {
-        VariableReference groupId;
-        SchemaObjectName queue;
+        protected VariableReference groupId;
+        protected SchemaObjectName queue;
     
         public VariableReference GroupId => groupId;
         public SchemaObjectName Queue => queue;

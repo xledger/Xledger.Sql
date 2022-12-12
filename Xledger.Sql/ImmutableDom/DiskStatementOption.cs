@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DiskStatementOption : TSqlFragment, IEquatable<DiskStatementOption> {
-        ScriptDom.DiskStatementOptionKind optionKind = ScriptDom.DiskStatementOptionKind.Name;
-        IdentifierOrValueExpression @value;
+        protected ScriptDom.DiskStatementOptionKind optionKind = ScriptDom.DiskStatementOptionKind.Name;
+        protected IdentifierOrValueExpression @value;
     
         public ScriptDom.DiskStatementOptionKind OptionKind => optionKind;
         public IdentifierOrValueExpression Value => @value;

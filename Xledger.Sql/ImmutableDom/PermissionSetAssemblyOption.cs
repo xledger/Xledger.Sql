@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PermissionSetAssemblyOption : AssemblyOption, IEquatable<PermissionSetAssemblyOption> {
-        ScriptDom.PermissionSetOption permissionSetOption = ScriptDom.PermissionSetOption.None;
+        protected ScriptDom.PermissionSetOption permissionSetOption = ScriptDom.PermissionSetOption.None;
     
         public ScriptDom.PermissionSetOption PermissionSetOption => permissionSetOption;
     

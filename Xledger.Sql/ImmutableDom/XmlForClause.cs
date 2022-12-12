@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class XmlForClause : ForClause, IEquatable<XmlForClause> {
-        IReadOnlyList<XmlForClauseOption> options;
+        protected IReadOnlyList<XmlForClauseOption> options;
     
         public IReadOnlyList<XmlForClauseOption> Options => options;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.XmlForClause ToMutableConcrete() {
             var ret = new ScriptDom.XmlForClause();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.XmlForClauseOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.XmlForClauseOption)c.ToMutable()));
             return ret;
         }
         

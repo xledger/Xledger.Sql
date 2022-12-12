@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DenyStatement80 : SecurityStatementBody80, IEquatable<DenyStatement80> {
-        bool cascadeOption = false;
+        protected bool cascadeOption = false;
     
         public bool CascadeOption => cascadeOption;
     

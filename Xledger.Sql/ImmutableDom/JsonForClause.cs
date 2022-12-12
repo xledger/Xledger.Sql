@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class JsonForClause : ForClause, IEquatable<JsonForClause> {
-        IReadOnlyList<JsonForClauseOption> options;
+        protected IReadOnlyList<JsonForClauseOption> options;
     
         public IReadOnlyList<JsonForClauseOption> Options => options;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.JsonForClause ToMutableConcrete() {
             var ret = new ScriptDom.JsonForClause();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.JsonForClauseOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.JsonForClauseOption)c.ToMutable()));
             return ret;
         }
         

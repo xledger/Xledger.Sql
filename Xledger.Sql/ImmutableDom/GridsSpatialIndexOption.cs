@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GridsSpatialIndexOption : SpatialIndexOption, IEquatable<GridsSpatialIndexOption> {
-        IReadOnlyList<GridParameter> gridParameters;
+        protected IReadOnlyList<GridParameter> gridParameters;
     
         public IReadOnlyList<GridParameter> GridParameters => gridParameters;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GridsSpatialIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.GridsSpatialIndexOption();
-            ret.GridParameters.AddRange(gridParameters.Select(c => (ScriptDom.GridParameter)c.ToMutable()));
+            ret.GridParameters.AddRange(gridParameters.SelectList(c => (ScriptDom.GridParameter)c.ToMutable()));
             return ret;
         }
         

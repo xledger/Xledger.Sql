@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IndexType : TSqlFragment, IEquatable<IndexType> {
-        ScriptDom.IndexTypeKind? indexTypeKind;
+        protected ScriptDom.IndexTypeKind? indexTypeKind;
     
         public ScriptDom.IndexTypeKind? IndexTypeKind => indexTypeKind;
     

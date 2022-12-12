@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RaiseErrorLegacyStatement : TSqlStatement, IEquatable<RaiseErrorLegacyStatement> {
-        ScalarExpression firstParameter;
-        ValueExpression secondParameter;
+        protected ScalarExpression firstParameter;
+        protected ValueExpression secondParameter;
     
         public ScalarExpression FirstParameter => firstParameter;
         public ValueExpression SecondParameter => secondParameter;

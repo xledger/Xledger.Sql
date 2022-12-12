@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class KillQueryNotificationSubscriptionStatement : TSqlStatement, IEquatable<KillQueryNotificationSubscriptionStatement> {
-        Literal subscriptionId;
-        bool all = false;
+        protected Literal subscriptionId;
+        protected bool all = false;
     
         public Literal SubscriptionId => subscriptionId;
         public bool All => all;

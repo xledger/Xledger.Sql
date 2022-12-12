@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MethodSpecifier : TSqlFragment, IEquatable<MethodSpecifier> {
-        Identifier assemblyName;
-        Identifier className;
-        Identifier methodName;
+        protected Identifier assemblyName;
+        protected Identifier className;
+        protected Identifier methodName;
     
         public Identifier AssemblyName => assemblyName;
         public Identifier ClassName => className;

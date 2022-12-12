@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CryptoMechanism : TSqlFragment, IEquatable<CryptoMechanism> {
-        ScriptDom.CryptoMechanismType cryptoMechanismType = ScriptDom.CryptoMechanismType.Certificate;
-        Identifier identifier;
-        Literal passwordOrSignature;
+        protected ScriptDom.CryptoMechanismType cryptoMechanismType = ScriptDom.CryptoMechanismType.Certificate;
+        protected Identifier identifier;
+        protected Literal passwordOrSignature;
     
         public ScriptDom.CryptoMechanismType CryptoMechanismType => cryptoMechanismType;
         public Identifier Identifier => identifier;

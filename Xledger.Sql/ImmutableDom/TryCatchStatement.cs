@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TryCatchStatement : TSqlStatement, IEquatable<TryCatchStatement> {
-        StatementList tryStatements;
-        StatementList catchStatements;
+        protected StatementList tryStatements;
+        protected StatementList catchStatements;
     
         public StatementList TryStatements => tryStatements;
         public StatementList CatchStatements => catchStatements;

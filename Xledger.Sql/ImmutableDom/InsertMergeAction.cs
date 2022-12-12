@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InsertMergeAction : MergeAction, IEquatable<InsertMergeAction> {
-        IReadOnlyList<ColumnReferenceExpression> columns;
-        ValuesInsertSource source;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
+        protected ValuesInsertSource source;
     
         public IReadOnlyList<ColumnReferenceExpression> Columns => columns;
         public ValuesInsertSource Source => source;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InsertMergeAction ToMutableConcrete() {
             var ret = new ScriptDom.InsertMergeAction();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.Source = (ScriptDom.ValuesInsertSource)source.ToMutable();
             return ret;
         }

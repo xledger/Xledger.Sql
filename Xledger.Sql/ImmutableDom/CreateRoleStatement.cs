@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateRoleStatement : RoleStatement, IEquatable<CreateRoleStatement> {
-        Identifier owner;
+        protected Identifier owner;
     
         public Identifier Owner => owner;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GraphMatchPredicate : BooleanExpression, IEquatable<GraphMatchPredicate> {
-        BooleanExpression expression;
+        protected BooleanExpression expression;
     
         public BooleanExpression Expression => expression;
     

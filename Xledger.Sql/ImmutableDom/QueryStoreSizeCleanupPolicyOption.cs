@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreSizeCleanupPolicyOption : QueryStoreOption, IEquatable<QueryStoreSizeCleanupPolicyOption> {
-        ScriptDom.QueryStoreSizeCleanupPolicyOptionKind @value = ScriptDom.QueryStoreSizeCleanupPolicyOptionKind.OFF;
+        protected ScriptDom.QueryStoreSizeCleanupPolicyOptionKind @value = ScriptDom.QueryStoreSizeCleanupPolicyOptionKind.OFF;
     
         public ScriptDom.QueryStoreSizeCleanupPolicyOptionKind Value => @value;
     

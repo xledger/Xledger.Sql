@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DeclareTableVariableBody : TSqlFragment, IEquatable<DeclareTableVariableBody> {
-        Identifier variableName;
-        bool asDefined = false;
-        TableDefinition definition;
+        protected Identifier variableName;
+        protected bool asDefined = false;
+        protected TableDefinition definition;
     
         public Identifier VariableName => variableName;
         public bool AsDefined => asDefined;

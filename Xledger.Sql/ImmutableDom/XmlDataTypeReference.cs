@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class XmlDataTypeReference : DataTypeReference, IEquatable<XmlDataTypeReference> {
-        ScriptDom.XmlDataTypeOption xmlDataTypeOption = ScriptDom.XmlDataTypeOption.None;
-        SchemaObjectName xmlSchemaCollection;
+        protected ScriptDom.XmlDataTypeOption xmlDataTypeOption = ScriptDom.XmlDataTypeOption.None;
+        protected SchemaObjectName xmlSchemaCollection;
     
         public ScriptDom.XmlDataTypeOption XmlDataTypeOption => xmlDataTypeOption;
         public SchemaObjectName XmlSchemaCollection => xmlSchemaCollection;

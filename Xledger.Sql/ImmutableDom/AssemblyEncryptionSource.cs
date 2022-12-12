@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AssemblyEncryptionSource : EncryptionSource, IEquatable<AssemblyEncryptionSource> {
-        Identifier assembly;
+        protected Identifier assembly;
     
         public Identifier Assembly => assembly;
     

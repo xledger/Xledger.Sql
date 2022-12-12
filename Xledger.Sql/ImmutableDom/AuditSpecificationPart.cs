@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AuditSpecificationPart : TSqlFragment, IEquatable<AuditSpecificationPart> {
-        bool isDrop = false;
-        AuditSpecificationDetail details;
+        protected bool isDrop = false;
+        protected AuditSpecificationDetail details;
     
         public bool IsDrop => isDrop;
         public AuditSpecificationDetail Details => details;

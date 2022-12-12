@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SingleValueTypeCopyOption : CopyStatementOptionBase, IEquatable<SingleValueTypeCopyOption> {
-        IdentifierOrValueExpression singleValue;
+        protected IdentifierOrValueExpression singleValue;
     
         public IdentifierOrValueExpression SingleValue => singleValue;
     

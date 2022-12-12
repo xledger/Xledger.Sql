@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExistsPredicate : BooleanExpression, IEquatable<ExistsPredicate> {
-        ScalarSubquery subquery;
+        protected ScalarSubquery subquery;
     
         public ScalarSubquery Subquery => subquery;
     

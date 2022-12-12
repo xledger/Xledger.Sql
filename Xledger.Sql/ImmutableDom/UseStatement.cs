@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UseStatement : TSqlStatement, IEquatable<UseStatement> {
-        Identifier databaseName;
+        protected Identifier databaseName;
     
         public Identifier DatabaseName => databaseName;
     

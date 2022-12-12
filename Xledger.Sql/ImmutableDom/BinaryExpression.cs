@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BinaryExpression : ScalarExpression, IEquatable<BinaryExpression> {
-        ScriptDom.BinaryExpressionType binaryExpressionType = ScriptDom.BinaryExpressionType.Add;
-        ScalarExpression firstExpression;
-        ScalarExpression secondExpression;
+        protected ScriptDom.BinaryExpressionType binaryExpressionType = ScriptDom.BinaryExpressionType.Add;
+        protected ScalarExpression firstExpression;
+        protected ScalarExpression secondExpression;
     
         public ScriptDom.BinaryExpressionType BinaryExpressionType => binaryExpressionType;
         public ScalarExpression FirstExpression => firstExpression;

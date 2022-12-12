@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PartitionParameterType : TSqlFragment, IEquatable<PartitionParameterType> {
-        DataTypeReference dataType;
-        Identifier collation;
+        protected DataTypeReference dataType;
+        protected Identifier collation;
     
         public DataTypeReference DataType => dataType;
         public Identifier Collation => collation;

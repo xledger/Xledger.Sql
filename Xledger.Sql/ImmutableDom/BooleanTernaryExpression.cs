@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BooleanTernaryExpression : BooleanExpression, IEquatable<BooleanTernaryExpression> {
-        ScriptDom.BooleanTernaryExpressionType ternaryExpressionType = ScriptDom.BooleanTernaryExpressionType.Between;
-        ScalarExpression firstExpression;
-        ScalarExpression secondExpression;
-        ScalarExpression thirdExpression;
+        protected ScriptDom.BooleanTernaryExpressionType ternaryExpressionType = ScriptDom.BooleanTernaryExpressionType.Between;
+        protected ScalarExpression firstExpression;
+        protected ScalarExpression secondExpression;
+        protected ScalarExpression thirdExpression;
     
         public ScriptDom.BooleanTernaryExpressionType TernaryExpressionType => ternaryExpressionType;
         public ScalarExpression FirstExpression => firstExpression;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ParenthesisExpression : PrimaryExpression, IEquatable<ParenthesisExpression> {
-        ScalarExpression expression;
+        protected ScalarExpression expression;
     
         public ScalarExpression Expression => expression;
     

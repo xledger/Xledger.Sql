@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EventTypeContainer : EventTypeGroupContainer, IEquatable<EventTypeContainer> {
-        ScriptDom.EventNotificationEventType eventType = ScriptDom.EventNotificationEventType.Unknown;
+        protected ScriptDom.EventNotificationEventType eventType = ScriptDom.EventNotificationEventType.Unknown;
     
         public ScriptDom.EventNotificationEventType EventType => eventType;
     

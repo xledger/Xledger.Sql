@@ -8,19 +8,19 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnDefinition : ColumnDefinitionBase, IEquatable<ColumnDefinition> {
-        ScalarExpression computedColumnExpression;
-        bool isPersisted = false;
-        DefaultConstraintDefinition defaultConstraint;
-        IdentityOptions identityOptions;
-        bool isRowGuidCol = false;
-        IReadOnlyList<ConstraintDefinition> constraints;
-        ColumnStorageOptions storageOptions;
-        IndexDefinition index;
-        ScriptDom.GeneratedAlwaysType? generatedAlways;
-        bool isHidden = false;
-        ColumnEncryptionDefinition encryption;
-        bool isMasked = false;
-        StringLiteral maskingFunction;
+        protected ScalarExpression computedColumnExpression;
+        protected bool isPersisted = false;
+        protected DefaultConstraintDefinition defaultConstraint;
+        protected IdentityOptions identityOptions;
+        protected bool isRowGuidCol = false;
+        protected IReadOnlyList<ConstraintDefinition> constraints;
+        protected ColumnStorageOptions storageOptions;
+        protected IndexDefinition index;
+        protected ScriptDom.GeneratedAlwaysType? generatedAlways;
+        protected bool isHidden = false;
+        protected ColumnEncryptionDefinition encryption;
+        protected bool isMasked = false;
+        protected StringLiteral maskingFunction;
     
         public ScalarExpression ComputedColumnExpression => computedColumnExpression;
         public bool IsPersisted => isPersisted;
@@ -62,7 +62,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DefaultConstraint = (ScriptDom.DefaultConstraintDefinition)defaultConstraint.ToMutable();
             ret.IdentityOptions = (ScriptDom.IdentityOptions)identityOptions.ToMutable();
             ret.IsRowGuidCol = isRowGuidCol;
-            ret.Constraints.AddRange(constraints.Select(c => (ScriptDom.ConstraintDefinition)c.ToMutable()));
+            ret.Constraints.AddRange(constraints.SelectList(c => (ScriptDom.ConstraintDefinition)c.ToMutable()));
             ret.StorageOptions = (ScriptDom.ColumnStorageOptions)storageOptions.ToMutable();
             ret.Index = (ScriptDom.IndexDefinition)index.ToMutable();
             ret.GeneratedAlways = generatedAlways;

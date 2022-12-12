@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropMemberAlterRoleAction : AlterRoleAction, IEquatable<DropMemberAlterRoleAction> {
-        Identifier member;
+        protected Identifier member;
     
         public Identifier Member => member;
     

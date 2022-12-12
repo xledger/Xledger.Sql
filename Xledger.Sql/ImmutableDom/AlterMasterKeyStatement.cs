@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterMasterKeyStatement : MasterKeyStatement, IEquatable<AlterMasterKeyStatement> {
-        ScriptDom.AlterMasterKeyOption option = ScriptDom.AlterMasterKeyOption.None;
+        protected ScriptDom.AlterMasterKeyOption option = ScriptDom.AlterMasterKeyOption.None;
     
         public ScriptDom.AlterMasterKeyOption Option => option;
     

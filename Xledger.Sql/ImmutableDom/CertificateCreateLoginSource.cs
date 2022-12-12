@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CertificateCreateLoginSource : CreateLoginSource, IEquatable<CertificateCreateLoginSource> {
-        Identifier certificate;
-        Identifier credential;
+        protected Identifier certificate;
+        protected Identifier credential;
     
         public Identifier Certificate => certificate;
         public Identifier Credential => credential;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SimpleAlterFullTextIndexAction : AlterFullTextIndexAction, IEquatable<SimpleAlterFullTextIndexAction> {
-        ScriptDom.SimpleAlterFullTextIndexActionKind actionKind = ScriptDom.SimpleAlterFullTextIndexActionKind.None;
+        protected ScriptDom.SimpleAlterFullTextIndexActionKind actionKind = ScriptDom.SimpleAlterFullTextIndexActionKind.None;
     
         public ScriptDom.SimpleAlterFullTextIndexActionKind ActionKind => actionKind;
     

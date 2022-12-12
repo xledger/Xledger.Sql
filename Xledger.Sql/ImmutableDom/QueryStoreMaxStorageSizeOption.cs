@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreMaxStorageSizeOption : QueryStoreOption, IEquatable<QueryStoreMaxStorageSizeOption> {
-        Literal maxQdsSize;
+        protected Literal maxQdsSize;
     
         public Literal MaxQdsSize => maxQdsSize;
     

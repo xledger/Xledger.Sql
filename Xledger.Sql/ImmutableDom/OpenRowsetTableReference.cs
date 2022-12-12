@@ -8,13 +8,13 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OpenRowsetTableReference : TableReferenceWithAlias, IEquatable<OpenRowsetTableReference> {
-        StringLiteral providerName;
-        StringLiteral dataSource;
-        StringLiteral userId;
-        StringLiteral password;
-        StringLiteral providerString;
-        StringLiteral query;
-        SchemaObjectName @object;
+        protected StringLiteral providerName;
+        protected StringLiteral dataSource;
+        protected StringLiteral userId;
+        protected StringLiteral password;
+        protected StringLiteral providerString;
+        protected StringLiteral query;
+        protected SchemaObjectName @object;
     
         public StringLiteral ProviderName => providerName;
         public StringLiteral DataSource => dataSource;

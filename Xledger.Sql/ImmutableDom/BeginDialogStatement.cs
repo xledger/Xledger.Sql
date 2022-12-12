@@ -8,13 +8,13 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BeginDialogStatement : TSqlStatement, IEquatable<BeginDialogStatement> {
-        bool isConversation = false;
-        VariableReference handle;
-        IdentifierOrValueExpression initiatorServiceName;
-        ValueExpression targetServiceName;
-        ValueExpression instanceSpec;
-        IdentifierOrValueExpression contractName;
-        IReadOnlyList<DialogOption> options;
+        protected bool isConversation = false;
+        protected VariableReference handle;
+        protected IdentifierOrValueExpression initiatorServiceName;
+        protected ValueExpression targetServiceName;
+        protected ValueExpression instanceSpec;
+        protected IdentifierOrValueExpression contractName;
+        protected IReadOnlyList<DialogOption> options;
     
         public bool IsConversation => isConversation;
         public VariableReference Handle => handle;
@@ -42,7 +42,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.TargetServiceName = (ScriptDom.ValueExpression)targetServiceName.ToMutable();
             ret.InstanceSpec = (ScriptDom.ValueExpression)instanceSpec.ToMutable();
             ret.ContractName = (ScriptDom.IdentifierOrValueExpression)contractName.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.DialogOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DialogOption)c.ToMutable()));
             return ret;
         }
         

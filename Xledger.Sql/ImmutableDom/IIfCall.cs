@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IIfCall : PrimaryExpression, IEquatable<IIfCall> {
-        BooleanExpression predicate;
-        ScalarExpression thenExpression;
-        ScalarExpression elseExpression;
+        protected BooleanExpression predicate;
+        protected ScalarExpression thenExpression;
+        protected ScalarExpression elseExpression;
     
         public BooleanExpression Predicate => predicate;
         public ScalarExpression ThenExpression => thenExpression;

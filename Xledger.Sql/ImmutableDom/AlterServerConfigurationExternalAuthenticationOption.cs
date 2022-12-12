@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationExternalAuthenticationOption : TSqlFragment, IEquatable<AlterServerConfigurationExternalAuthenticationOption> {
-        ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind optionKind = ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind.None;
-        OptionValue optionValue;
+        protected ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind optionKind = ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind.None;
+        protected OptionValue optionValue;
     
         public ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind OptionKind => optionKind;
         public OptionValue OptionValue => optionValue;

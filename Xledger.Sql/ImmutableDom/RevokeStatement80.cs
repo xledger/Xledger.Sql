@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RevokeStatement80 : SecurityStatementBody80, IEquatable<RevokeStatement80> {
-        bool grantOptionFor = false;
-        bool cascadeOption = false;
-        Identifier asClause;
+        protected bool grantOptionFor = false;
+        protected bool cascadeOption = false;
+        protected Identifier asClause;
     
         public bool GrantOptionFor => grantOptionFor;
         public bool CascadeOption => cascadeOption;

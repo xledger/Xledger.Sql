@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DatabaseConfigurationClearOption : TSqlFragment, IEquatable<DatabaseConfigurationClearOption> {
-        ScriptDom.DatabaseConfigClearOptionKind optionKind = 0;
-        BinaryLiteral planHandle;
+        protected ScriptDom.DatabaseConfigClearOptionKind optionKind = 0;
+        protected BinaryLiteral planHandle;
     
         public ScriptDom.DatabaseConfigClearOptionKind OptionKind => optionKind;
         public BinaryLiteral PlanHandle => planHandle;

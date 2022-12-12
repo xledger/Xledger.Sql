@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterFullTextStopListStatement : TSqlStatement, IEquatable<AlterFullTextStopListStatement> {
-        Identifier name;
-        FullTextStopListAction action;
+        protected Identifier name;
+        protected FullTextStopListAction action;
     
         public Identifier Name => name;
         public FullTextStopListAction Action => action;

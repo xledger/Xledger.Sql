@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalTableShardedDistributionPolicy : ExternalTableDistributionPolicy, IEquatable<ExternalTableShardedDistributionPolicy> {
-        Identifier shardingColumn;
+        protected Identifier shardingColumn;
     
         public Identifier ShardingColumn => shardingColumn;
     

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ForceSeekTableHint : TableHint, IEquatable<ForceSeekTableHint> {
-        IdentifierOrValueExpression indexValue;
-        IReadOnlyList<ColumnReferenceExpression> columnValues;
+        protected IdentifierOrValueExpression indexValue;
+        protected IReadOnlyList<ColumnReferenceExpression> columnValues;
     
         public IdentifierOrValueExpression IndexValue => indexValue;
         public IReadOnlyList<ColumnReferenceExpression> ColumnValues => columnValues;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ForceSeekTableHint ToMutableConcrete() {
             var ret = new ScriptDom.ForceSeekTableHint();
             ret.IndexValue = (ScriptDom.IdentifierOrValueExpression)indexValue.ToMutable();
-            ret.ColumnValues.AddRange(columnValues.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.ColumnValues.AddRange(columnValues.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }

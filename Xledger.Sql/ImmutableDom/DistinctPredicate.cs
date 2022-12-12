@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DistinctPredicate : BooleanExpression, IEquatable<DistinctPredicate> {
-        ScalarExpression firstExpression;
-        ScalarExpression secondExpression;
-        bool isNot = false;
+        protected ScalarExpression firstExpression;
+        protected ScalarExpression secondExpression;
+        protected bool isNot = false;
     
         public ScalarExpression FirstExpression => firstExpression;
         public ScalarExpression SecondExpression => secondExpression;

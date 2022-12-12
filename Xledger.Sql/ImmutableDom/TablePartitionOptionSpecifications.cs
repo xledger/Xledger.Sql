@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TablePartitionOptionSpecifications : PartitionSpecifications, IEquatable<TablePartitionOptionSpecifications> {
-        ScriptDom.PartitionTableOptionRange range = ScriptDom.PartitionTableOptionRange.NotSpecified;
-        IReadOnlyList<ScalarExpression> boundaryValues;
+        protected ScriptDom.PartitionTableOptionRange range = ScriptDom.PartitionTableOptionRange.NotSpecified;
+        protected IReadOnlyList<ScalarExpression> boundaryValues;
     
         public ScriptDom.PartitionTableOptionRange Range => range;
         public IReadOnlyList<ScalarExpression> BoundaryValues => boundaryValues;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.TablePartitionOptionSpecifications ToMutableConcrete() {
             var ret = new ScriptDom.TablePartitionOptionSpecifications();
             ret.Range = range;
-            ret.BoundaryValues.AddRange(boundaryValues.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.BoundaryValues.AddRange(boundaryValues.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             return ret;
         }
         

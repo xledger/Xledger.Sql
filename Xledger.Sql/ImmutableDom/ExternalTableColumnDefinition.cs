@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalTableColumnDefinition : TSqlFragment, IEquatable<ExternalTableColumnDefinition> {
-        ColumnDefinitionBase columnDefinition;
-        NullableConstraintDefinition nullableConstraint;
+        protected ColumnDefinitionBase columnDefinition;
+        protected NullableConstraintDefinition nullableConstraint;
     
         public ColumnDefinitionBase ColumnDefinition => columnDefinition;
         public NullableConstraintDefinition NullableConstraint => nullableConstraint;

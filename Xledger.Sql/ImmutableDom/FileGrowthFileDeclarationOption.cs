@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileGrowthFileDeclarationOption : FileDeclarationOption, IEquatable<FileGrowthFileDeclarationOption> {
-        Literal growthIncrement;
-        ScriptDom.MemoryUnit units = ScriptDom.MemoryUnit.Unspecified;
+        protected Literal growthIncrement;
+        protected ScriptDom.MemoryUnit units = ScriptDom.MemoryUnit.Unspecified;
     
         public Literal GrowthIncrement => growthIncrement;
         public ScriptDom.MemoryUnit Units => units;

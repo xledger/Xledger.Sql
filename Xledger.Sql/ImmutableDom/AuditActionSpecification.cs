@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AuditActionSpecification : AuditSpecificationDetail, IEquatable<AuditActionSpecification> {
-        IReadOnlyList<DatabaseAuditAction> actions;
-        IReadOnlyList<SecurityPrincipal> principals;
-        SecurityTargetObject targetObject;
+        protected IReadOnlyList<DatabaseAuditAction> actions;
+        protected IReadOnlyList<SecurityPrincipal> principals;
+        protected SecurityTargetObject targetObject;
     
         public IReadOnlyList<DatabaseAuditAction> Actions => actions;
         public IReadOnlyList<SecurityPrincipal> Principals => principals;
@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AuditActionSpecification ToMutableConcrete() {
             var ret = new ScriptDom.AuditActionSpecification();
-            ret.Actions.AddRange(actions.Select(c => (ScriptDom.DatabaseAuditAction)c.ToMutable()));
-            ret.Principals.AddRange(principals.Select(c => (ScriptDom.SecurityPrincipal)c.ToMutable()));
+            ret.Actions.AddRange(actions.SelectList(c => (ScriptDom.DatabaseAuditAction)c.ToMutable()));
+            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c.ToMutable()));
             ret.TargetObject = (ScriptDom.SecurityTargetObject)targetObject.ToMutable();
             return ret;
         }

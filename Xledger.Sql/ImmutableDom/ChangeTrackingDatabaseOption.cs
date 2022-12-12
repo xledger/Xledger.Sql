@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ChangeTrackingDatabaseOption : DatabaseOption, IEquatable<ChangeTrackingDatabaseOption> {
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
-        IReadOnlyList<ChangeTrackingOptionDetail> details;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected IReadOnlyList<ChangeTrackingOptionDetail> details;
     
         public ScriptDom.OptionState OptionState => optionState;
         public IReadOnlyList<ChangeTrackingOptionDetail> Details => details;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ChangeTrackingDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.ChangeTrackingDatabaseOption();
             ret.OptionState = optionState;
-            ret.Details.AddRange(details.Select(c => (ScriptDom.ChangeTrackingOptionDetail)c.ToMutable()));
+            ret.Details.AddRange(details.SelectList(c => (ScriptDom.ChangeTrackingOptionDetail)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

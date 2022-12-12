@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MergeSpecification : DataModificationSpecification, IEquatable<MergeSpecification> {
-        Identifier tableAlias;
-        TableReference tableReference;
-        BooleanExpression searchCondition;
-        IReadOnlyList<MergeActionClause> actionClauses;
+        protected Identifier tableAlias;
+        protected TableReference tableReference;
+        protected BooleanExpression searchCondition;
+        protected IReadOnlyList<MergeActionClause> actionClauses;
     
         public Identifier TableAlias => tableAlias;
         public TableReference TableReference => tableReference;
@@ -34,7 +34,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.TableAlias = (ScriptDom.Identifier)tableAlias.ToMutable();
             ret.TableReference = (ScriptDom.TableReference)tableReference.ToMutable();
             ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition.ToMutable();
-            ret.ActionClauses.AddRange(actionClauses.Select(c => (ScriptDom.MergeActionClause)c.ToMutable()));
+            ret.ActionClauses.AddRange(actionClauses.SelectList(c => (ScriptDom.MergeActionClause)c.ToMutable()));
             ret.Target = (ScriptDom.TableReference)target.ToMutable();
             ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter.ToMutable();
             ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause.ToMutable();

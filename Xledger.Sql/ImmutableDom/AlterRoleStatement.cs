@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterRoleStatement : RoleStatement, IEquatable<AlterRoleStatement> {
-        AlterRoleAction action;
+        protected AlterRoleAction action;
     
         public AlterRoleAction Action => action;
     

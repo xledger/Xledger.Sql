@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AuditTarget : TSqlFragment, IEquatable<AuditTarget> {
-        ScriptDom.AuditTargetKind targetKind = ScriptDom.AuditTargetKind.File;
-        IReadOnlyList<AuditTargetOption> targetOptions;
+        protected ScriptDom.AuditTargetKind targetKind = ScriptDom.AuditTargetKind.File;
+        protected IReadOnlyList<AuditTargetOption> targetOptions;
     
         public ScriptDom.AuditTargetKind TargetKind => targetKind;
         public IReadOnlyList<AuditTargetOption> TargetOptions => targetOptions;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AuditTarget ToMutableConcrete() {
             var ret = new ScriptDom.AuditTarget();
             ret.TargetKind = targetKind;
-            ret.TargetOptions.AddRange(targetOptions.Select(c => (ScriptDom.AuditTargetOption)c.ToMutable()));
+            ret.TargetOptions.AddRange(targetOptions.SelectList(c => (ScriptDom.AuditTargetOption)c.ToMutable()));
             return ret;
         }
         

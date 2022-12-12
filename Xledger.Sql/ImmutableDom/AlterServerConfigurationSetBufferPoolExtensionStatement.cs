@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationSetBufferPoolExtensionStatement : TSqlStatement, IEquatable<AlterServerConfigurationSetBufferPoolExtensionStatement> {
-        IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> options;
+        protected IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> options;
     
         public IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> Options => options;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)c.ToMutable()));
             return ret;
         }
         

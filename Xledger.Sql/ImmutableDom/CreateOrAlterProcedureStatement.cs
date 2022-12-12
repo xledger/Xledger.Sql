@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateOrAlterProcedureStatement();
             ret.ProcedureReference = (ScriptDom.ProcedureReference)procedureReference.ToMutable();
             ret.IsForReplication = isForReplication;
-            ret.Options.AddRange(options.Select(c => (ScriptDom.ProcedureOption)c.ToMutable()));
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ProcedureParameter)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.ProcedureOption)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c.ToMutable()));
             ret.StatementList = (ScriptDom.StatementList)statementList.ToMutable();
             ret.MethodSpecifier = (ScriptDom.MethodSpecifier)methodSpecifier.ToMutable();
             return ret;

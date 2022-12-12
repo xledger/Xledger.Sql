@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class StringLiteral : Literal, IEquatable<StringLiteral> {
-        bool isNational = false;
-        bool isLargeObject = false;
+        protected bool isNational = false;
+        protected bool isLargeObject = false;
     
         public bool IsNational => isNational;
         public bool IsLargeObject => isLargeObject;

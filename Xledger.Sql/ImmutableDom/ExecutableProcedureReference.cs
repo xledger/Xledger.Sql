@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecutableProcedureReference : ExecutableEntity, IEquatable<ExecutableProcedureReference> {
-        ProcedureReferenceName procedureReference;
-        AdHocDataSource adHocDataSource;
+        protected ProcedureReferenceName procedureReference;
+        protected AdHocDataSource adHocDataSource;
     
         public ProcedureReferenceName ProcedureReference => procedureReference;
         public AdHocDataSource AdHocDataSource => adHocDataSource;
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.ExecutableProcedureReference();
             ret.ProcedureReference = (ScriptDom.ProcedureReferenceName)procedureReference.ToMutable();
             ret.AdHocDataSource = (ScriptDom.AdHocDataSource)adHocDataSource.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ExecuteParameter)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ExecuteParameter)c.ToMutable()));
             return ret;
         }
         

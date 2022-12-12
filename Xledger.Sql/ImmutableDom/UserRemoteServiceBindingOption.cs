@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UserRemoteServiceBindingOption : RemoteServiceBindingOption, IEquatable<UserRemoteServiceBindingOption> {
-        Identifier user;
+        protected Identifier user;
     
         public Identifier User => user;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SourceDeclaration : ScalarExpression, IEquatable<SourceDeclaration> {
-        EventSessionObjectName @value;
+        protected EventSessionObjectName @value;
     
         public EventSessionObjectName Value => @value;
     

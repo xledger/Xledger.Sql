@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class VariableTableReference : TableReferenceWithAlias, IEquatable<VariableTableReference> {
-        VariableReference variable;
+        protected VariableReference variable;
     
         public VariableReference Variable => variable;
     

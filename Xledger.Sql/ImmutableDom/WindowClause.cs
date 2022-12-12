@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WindowClause : TSqlFragment, IEquatable<WindowClause> {
-        IReadOnlyList<WindowDefinition> windowDefinition;
+        protected IReadOnlyList<WindowDefinition> windowDefinition;
     
         public IReadOnlyList<WindowDefinition> WindowDefinition => windowDefinition;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WindowClause ToMutableConcrete() {
             var ret = new ScriptDom.WindowClause();
-            ret.WindowDefinition.AddRange(windowDefinition.Select(c => (ScriptDom.WindowDefinition)c.ToMutable()));
+            ret.WindowDefinition.AddRange(windowDefinition.SelectList(c => (ScriptDom.WindowDefinition)c.ToMutable()));
             return ret;
         }
         

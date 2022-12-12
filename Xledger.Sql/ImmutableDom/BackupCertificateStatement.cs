@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BackupCertificateStatement : CertificateStatementBase, IEquatable<BackupCertificateStatement> {
-        Literal file;
+        protected Literal file;
     
         public Literal File => file;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ShutdownStatement : TSqlStatement, IEquatable<ShutdownStatement> {
-        bool withNoWait = false;
+        protected bool withNoWait = false;
     
         public bool WithNoWait => withNoWait;
     

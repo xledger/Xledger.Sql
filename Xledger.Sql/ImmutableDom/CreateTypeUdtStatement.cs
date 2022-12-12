@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateTypeUdtStatement : CreateTypeStatement, IEquatable<CreateTypeUdtStatement> {
-        AssemblyName assemblyName;
+        protected AssemblyName assemblyName;
     
         public AssemblyName AssemblyName => assemblyName;
     

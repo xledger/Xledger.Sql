@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterFullTextIndexStatement : TSqlStatement, IEquatable<AlterFullTextIndexStatement> {
-        SchemaObjectName onName;
-        AlterFullTextIndexAction action;
+        protected SchemaObjectName onName;
+        protected AlterFullTextIndexAction action;
     
         public SchemaObjectName OnName => onName;
         public AlterFullTextIndexAction Action => action;

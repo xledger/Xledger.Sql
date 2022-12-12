@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.IsCounter = isCounter;
             ret.ElementKind = elementKind;
             ret.Element = (ScriptDom.SchemaObjectName)element.ToMutable();
-            ret.Cryptos.AddRange(cryptos.Select(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
+            ret.Cryptos.AddRange(cryptos.SelectList(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
             return ret;
         }
         

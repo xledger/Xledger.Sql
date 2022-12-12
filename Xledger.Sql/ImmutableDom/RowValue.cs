@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RowValue : TSqlFragment, IEquatable<RowValue> {
-        IReadOnlyList<ScalarExpression> columnValues;
+        protected IReadOnlyList<ScalarExpression> columnValues;
     
         public IReadOnlyList<ScalarExpression> ColumnValues => columnValues;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RowValue ToMutableConcrete() {
             var ret = new ScriptDom.RowValue();
-            ret.ColumnValues.AddRange(columnValues.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.ColumnValues.AddRange(columnValues.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             return ret;
         }
         

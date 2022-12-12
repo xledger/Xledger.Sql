@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BeginConversationTimerStatement : TSqlStatement, IEquatable<BeginConversationTimerStatement> {
-        ScalarExpression handle;
-        ScalarExpression timeout;
+        protected ScalarExpression handle;
+        protected ScalarExpression timeout;
     
         public ScalarExpression Handle => handle;
         public ScalarExpression Timeout => timeout;

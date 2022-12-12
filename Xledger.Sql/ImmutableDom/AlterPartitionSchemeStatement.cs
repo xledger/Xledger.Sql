@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterPartitionSchemeStatement : TSqlStatement, IEquatable<AlterPartitionSchemeStatement> {
-        Identifier name;
-        IdentifierOrValueExpression fileGroup;
+        protected Identifier name;
+        protected IdentifierOrValueExpression fileGroup;
     
         public Identifier Name => name;
         public IdentifierOrValueExpression FileGroup => fileGroup;

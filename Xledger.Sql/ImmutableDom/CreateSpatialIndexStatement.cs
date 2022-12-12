@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateSpatialIndexStatement : TSqlStatement, IEquatable<CreateSpatialIndexStatement> {
-        Identifier name;
-        SchemaObjectName @object;
-        Identifier spatialColumnName;
-        ScriptDom.SpatialIndexingSchemeType spatialIndexingScheme = ScriptDom.SpatialIndexingSchemeType.None;
-        IReadOnlyList<SpatialIndexOption> spatialIndexOptions;
-        IdentifierOrValueExpression onFileGroup;
+        protected Identifier name;
+        protected SchemaObjectName @object;
+        protected Identifier spatialColumnName;
+        protected ScriptDom.SpatialIndexingSchemeType spatialIndexingScheme = ScriptDom.SpatialIndexingSchemeType.None;
+        protected IReadOnlyList<SpatialIndexOption> spatialIndexOptions;
+        protected IdentifierOrValueExpression onFileGroup;
     
         public Identifier Name => name;
         public SchemaObjectName Object => @object;
@@ -37,7 +37,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Object = (ScriptDom.SchemaObjectName)@object.ToMutable();
             ret.SpatialColumnName = (ScriptDom.Identifier)spatialColumnName.ToMutable();
             ret.SpatialIndexingScheme = spatialIndexingScheme;
-            ret.SpatialIndexOptions.AddRange(spatialIndexOptions.Select(c => (ScriptDom.SpatialIndexOption)c.ToMutable()));
+            ret.SpatialIndexOptions.AddRange(spatialIndexOptions.SelectList(c => (ScriptDom.SpatialIndexOption)c.ToMutable()));
             ret.OnFileGroup = (ScriptDom.IdentifierOrValueExpression)onFileGroup.ToMutable();
             return ret;
         }

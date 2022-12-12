@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LedgerTableOption : TableOption, IEquatable<LedgerTableOption> {
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
-        ScriptDom.OptionState appendOnly = ScriptDom.OptionState.NotSet;
-        LedgerViewOption ledgerViewOption;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected ScriptDom.OptionState appendOnly = ScriptDom.OptionState.NotSet;
+        protected LedgerViewOption ledgerViewOption;
     
         public ScriptDom.OptionState OptionState => optionState;
         public ScriptDom.OptionState AppendOnly => appendOnly;

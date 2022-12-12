@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UpdateSpecification : UpdateDeleteSpecificationBase, IEquatable<UpdateSpecification> {
-        IReadOnlyList<SetClause> setClauses;
+        protected IReadOnlyList<SetClause> setClauses;
     
         public IReadOnlyList<SetClause> SetClauses => setClauses;
     
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateSpecification ToMutableConcrete() {
             var ret = new ScriptDom.UpdateSpecification();
-            ret.SetClauses.AddRange(setClauses.Select(c => (ScriptDom.SetClause)c.ToMutable()));
+            ret.SetClauses.AddRange(setClauses.SelectList(c => (ScriptDom.SetClause)c.ToMutable()));
             ret.FromClause = (ScriptDom.FromClause)fromClause.ToMutable();
             ret.WhereClause = (ScriptDom.WhereClause)whereClause.ToMutable();
             ret.Target = (ScriptDom.TableReference)target.ToMutable();

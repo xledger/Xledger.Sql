@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropEventNotificationStatement : TSqlStatement, IEquatable<DropEventNotificationStatement> {
-        IReadOnlyList<Identifier> notifications;
-        EventNotificationObjectScope scope;
+        protected IReadOnlyList<Identifier> notifications;
+        protected EventNotificationObjectScope scope;
     
         public IReadOnlyList<Identifier> Notifications => notifications;
         public EventNotificationObjectScope Scope => scope;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropEventNotificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropEventNotificationStatement();
-            ret.Notifications.AddRange(notifications.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Notifications.AddRange(notifications.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Scope = (ScriptDom.EventNotificationObjectScope)scope.ToMutable();
             return ret;
         }

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileStreamOnDropIndexOption : IndexOption, IEquatable<FileStreamOnDropIndexOption> {
-        IdentifierOrValueExpression fileStreamOn;
+        protected IdentifierOrValueExpression fileStreamOn;
     
         public IdentifierOrValueExpression FileStreamOn => fileStreamOn;
     

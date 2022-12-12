@@ -8,15 +8,15 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IndexDefinition : TSqlStatement, IEquatable<IndexDefinition> {
-        Identifier name;
-        bool unique = false;
-        IndexType indexType;
-        IReadOnlyList<IndexOption> indexOptions;
-        IReadOnlyList<ColumnWithSortOrder> columns;
-        IReadOnlyList<ColumnReferenceExpression> includeColumns;
-        FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
-        BooleanExpression filterPredicate;
-        IdentifierOrValueExpression fileStreamOn;
+        protected Identifier name;
+        protected bool unique = false;
+        protected IndexType indexType;
+        protected IReadOnlyList<IndexOption> indexOptions;
+        protected IReadOnlyList<ColumnWithSortOrder> columns;
+        protected IReadOnlyList<ColumnReferenceExpression> includeColumns;
+        protected FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
+        protected BooleanExpression filterPredicate;
+        protected IdentifierOrValueExpression fileStreamOn;
     
         public Identifier Name => name;
         public bool Unique => unique;
@@ -45,9 +45,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.Unique = unique;
             ret.IndexType = (ScriptDom.IndexType)indexType.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
-            ret.IncludeColumns.AddRange(includeColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
+            ret.IncludeColumns.AddRange(includeColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
             ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate.ToMutable();
             ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn.ToMutable();

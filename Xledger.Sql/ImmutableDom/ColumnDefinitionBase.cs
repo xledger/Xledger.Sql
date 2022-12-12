@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnDefinitionBase : TSqlFragment, IEquatable<ColumnDefinitionBase> {
-        Identifier columnIdentifier;
-        DataTypeReference dataType;
-        Identifier collation;
+        protected Identifier columnIdentifier;
+        protected DataTypeReference dataType;
+        protected Identifier collation;
     
         public Identifier ColumnIdentifier => columnIdentifier;
         public DataTypeReference DataType => dataType;

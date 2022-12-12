@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FetchCursorStatement : CursorStatement, IEquatable<FetchCursorStatement> {
-        FetchType fetchType;
-        IReadOnlyList<VariableReference> intoVariables;
+        protected FetchType fetchType;
+        protected IReadOnlyList<VariableReference> intoVariables;
     
         public FetchType FetchType => fetchType;
         public IReadOnlyList<VariableReference> IntoVariables => intoVariables;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FetchCursorStatement ToMutableConcrete() {
             var ret = new ScriptDom.FetchCursorStatement();
             ret.FetchType = (ScriptDom.FetchType)fetchType.ToMutable();
-            ret.IntoVariables.AddRange(intoVariables.Select(c => (ScriptDom.VariableReference)c.ToMutable()));
+            ret.IntoVariables.AddRange(intoVariables.SelectList(c => (ScriptDom.VariableReference)c.ToMutable()));
             ret.Cursor = (ScriptDom.CursorId)cursor.ToMutable();
             return ret;
         }

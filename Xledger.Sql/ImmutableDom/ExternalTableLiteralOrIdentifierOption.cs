@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalTableLiteralOrIdentifierOption : ExternalTableOption, IEquatable<ExternalTableLiteralOrIdentifierOption> {
-        IdentifierOrValueExpression @value;
+        protected IdentifierOrValueExpression @value;
     
         public IdentifierOrValueExpression Value => @value;
     

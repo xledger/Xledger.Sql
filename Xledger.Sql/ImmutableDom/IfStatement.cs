@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IfStatement : TSqlStatement, IEquatable<IfStatement> {
-        BooleanExpression predicate;
-        TSqlStatement thenStatement;
-        TSqlStatement elseStatement;
+        protected BooleanExpression predicate;
+        protected TSqlStatement thenStatement;
+        protected TSqlStatement elseStatement;
     
         public BooleanExpression Predicate => predicate;
         public TSqlStatement ThenStatement => thenStatement;

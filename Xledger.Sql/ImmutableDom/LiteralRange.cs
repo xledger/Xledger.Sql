@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LiteralRange : TSqlFragment, IEquatable<LiteralRange> {
-        Literal from;
-        Literal to;
+        protected Literal from;
+        protected Literal to;
     
         public Literal From => from;
         public Literal To => to;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LiteralTableHint : TableHint, IEquatable<LiteralTableHint> {
-        Literal @value;
+        protected Literal @value;
     
         public Literal Value => @value;
     

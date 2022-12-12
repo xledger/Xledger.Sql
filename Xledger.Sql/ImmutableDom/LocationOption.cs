@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LocationOption : TableOption, IEquatable<LocationOption> {
-        Identifier locationValue;
+        protected Identifier locationValue;
     
         public Identifier LocationValue => locationValue;
     

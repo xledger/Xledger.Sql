@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IndexStateOption : IndexOption, IEquatable<IndexStateOption> {
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
     
         public ScriptDom.OptionState OptionState => optionState;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SchemaPayloadOption : PayloadOption, IEquatable<SchemaPayloadOption> {
-        bool isStandard = false;
+        protected bool isStandard = false;
     
         public bool IsStandard => isStandard;
     

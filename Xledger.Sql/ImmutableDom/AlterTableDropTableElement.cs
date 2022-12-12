@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableDropTableElement : TSqlFragment, IEquatable<AlterTableDropTableElement> {
-        ScriptDom.TableElementType tableElementType = ScriptDom.TableElementType.NotSpecified;
-        Identifier name;
-        IReadOnlyList<DropClusteredConstraintOption> dropClusteredConstraintOptions;
-        bool isIfExists = false;
+        protected ScriptDom.TableElementType tableElementType = ScriptDom.TableElementType.NotSpecified;
+        protected Identifier name;
+        protected IReadOnlyList<DropClusteredConstraintOption> dropClusteredConstraintOptions;
+        protected bool isIfExists = false;
     
         public ScriptDom.TableElementType TableElementType => tableElementType;
         public Identifier Name => name;
@@ -29,7 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTableDropTableElement();
             ret.TableElementType = tableElementType;
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.DropClusteredConstraintOptions.AddRange(dropClusteredConstraintOptions.Select(c => (ScriptDom.DropClusteredConstraintOption)c.ToMutable()));
+            ret.DropClusteredConstraintOptions.AddRange(dropClusteredConstraintOptions.SelectList(c => (ScriptDom.DropClusteredConstraintOption)c.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

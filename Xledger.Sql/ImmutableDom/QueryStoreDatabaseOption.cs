@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreDatabaseOption : DatabaseOption, IEquatable<QueryStoreDatabaseOption> {
-        bool clear = false;
-        bool clearAll = false;
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
-        IReadOnlyList<QueryStoreOption> options;
+        protected bool clear = false;
+        protected bool clearAll = false;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected IReadOnlyList<QueryStoreOption> options;
     
         public bool Clear => clear;
         public bool ClearAll => clearAll;
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Clear = clear;
             ret.ClearAll = clearAll;
             ret.OptionState = optionState;
-            ret.Options.AddRange(options.Select(c => (ScriptDom.QueryStoreOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.QueryStoreOption)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

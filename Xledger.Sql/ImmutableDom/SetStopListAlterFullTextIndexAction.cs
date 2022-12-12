@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetStopListAlterFullTextIndexAction : AlterFullTextIndexAction, IEquatable<SetStopListAlterFullTextIndexAction> {
-        StopListFullTextIndexOption stopListOption;
-        bool withNoPopulation = false;
+        protected StopListFullTextIndexOption stopListOption;
+        protected bool withNoPopulation = false;
     
         public StopListFullTextIndexOption StopListOption => stopListOption;
         public bool WithNoPopulation => withNoPopulation;

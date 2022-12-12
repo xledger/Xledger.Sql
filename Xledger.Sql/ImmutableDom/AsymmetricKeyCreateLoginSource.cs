@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AsymmetricKeyCreateLoginSource : CreateLoginSource, IEquatable<AsymmetricKeyCreateLoginSource> {
-        Identifier key;
-        Identifier credential;
+        protected Identifier key;
+        protected Identifier credential;
     
         public Identifier Key => key;
         public Identifier Credential => credential;

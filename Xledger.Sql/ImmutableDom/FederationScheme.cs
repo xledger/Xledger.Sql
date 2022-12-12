@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FederationScheme : TSqlFragment, IEquatable<FederationScheme> {
-        Identifier distributionName;
-        Identifier columnName;
+        protected Identifier distributionName;
+        protected Identifier columnName;
     
         public Identifier DistributionName => distributionName;
         public Identifier ColumnName => columnName;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseEncryptionKeyStatement : DatabaseEncryptionKeyStatement, IEquatable<AlterDatabaseEncryptionKeyStatement> {
-        bool regenerate = false;
+        protected bool regenerate = false;
     
         public bool Regenerate => regenerate;
     

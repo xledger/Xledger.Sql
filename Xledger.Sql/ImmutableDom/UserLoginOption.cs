@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UserLoginOption : TSqlFragment, IEquatable<UserLoginOption> {
-        ScriptDom.UserLoginOptionType userLoginOptionType = ScriptDom.UserLoginOptionType.Login;
-        Identifier identifier;
+        protected ScriptDom.UserLoginOptionType userLoginOptionType = ScriptDom.UserLoginOptionType.Login;
+        protected Identifier identifier;
     
         public ScriptDom.UserLoginOptionType UserLoginOptionType => userLoginOptionType;
         public Identifier Identifier => identifier;

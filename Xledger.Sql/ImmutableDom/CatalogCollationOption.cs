@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CatalogCollationOption : DatabaseOption, IEquatable<CatalogCollationOption> {
-        ScriptDom.CatalogCollation? catalogCollation;
+        protected ScriptDom.CatalogCollation? catalogCollation;
     
         public ScriptDom.CatalogCollation? CatalogCollation => catalogCollation;
     

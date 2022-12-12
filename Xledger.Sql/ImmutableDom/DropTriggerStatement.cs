@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropTriggerStatement : DropObjectsStatement, IEquatable<DropTriggerStatement> {
-        ScriptDom.TriggerScope triggerScope = ScriptDom.TriggerScope.Normal;
+        protected ScriptDom.TriggerScope triggerScope = ScriptDom.TriggerScope.Normal;
     
         public ScriptDom.TriggerScope TriggerScope => triggerScope;
     
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DropTriggerStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropTriggerStatement();
             ret.TriggerScope = triggerScope;
-            ret.Objects.AddRange(objects.Select(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
+            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

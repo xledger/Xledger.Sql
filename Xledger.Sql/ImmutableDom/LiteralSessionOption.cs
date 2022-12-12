@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LiteralSessionOption : SessionOption, IEquatable<LiteralSessionOption> {
-        Literal @value;
-        ScriptDom.MemoryUnit unit = ScriptDom.MemoryUnit.Unspecified;
+        protected Literal @value;
+        protected ScriptDom.MemoryUnit unit = ScriptDom.MemoryUnit.Unspecified;
     
         public Literal Value => @value;
         public ScriptDom.MemoryUnit Unit => unit;

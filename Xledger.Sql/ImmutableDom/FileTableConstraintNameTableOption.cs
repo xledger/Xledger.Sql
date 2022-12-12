@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileTableConstraintNameTableOption : TableOption, IEquatable<FileTableConstraintNameTableOption> {
-        Identifier @value;
+        protected Identifier @value;
     
         public Identifier Value => @value;
     

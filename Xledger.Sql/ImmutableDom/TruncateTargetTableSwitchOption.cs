@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TruncateTargetTableSwitchOption : TableSwitchOption, IEquatable<TruncateTargetTableSwitchOption> {
-        bool truncateTarget = false;
+        protected bool truncateTarget = false;
     
         public bool TruncateTarget => truncateTarget;
     

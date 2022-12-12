@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CastCall : PrimaryExpression, IEquatable<CastCall> {
-        DataTypeReference dataType;
-        ScalarExpression parameter;
+        protected DataTypeReference dataType;
+        protected ScalarExpression parameter;
     
         public DataTypeReference DataType => dataType;
         public ScalarExpression Parameter => parameter;

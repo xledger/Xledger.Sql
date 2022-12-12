@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ResultSetsExecuteOption : ExecuteOption, IEquatable<ResultSetsExecuteOption> {
-        ScriptDom.ResultSetsOptionKind resultSetsOptionKind = ScriptDom.ResultSetsOptionKind.Undefined;
-        IReadOnlyList<ResultSetDefinition> definitions;
+        protected ScriptDom.ResultSetsOptionKind resultSetsOptionKind = ScriptDom.ResultSetsOptionKind.Undefined;
+        protected IReadOnlyList<ResultSetDefinition> definitions;
     
         public ScriptDom.ResultSetsOptionKind ResultSetsOptionKind => resultSetsOptionKind;
         public IReadOnlyList<ResultSetDefinition> Definitions => definitions;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ResultSetsExecuteOption ToMutableConcrete() {
             var ret = new ScriptDom.ResultSetsExecuteOption();
             ret.ResultSetsOptionKind = resultSetsOptionKind;
-            ret.Definitions.AddRange(definitions.Select(c => (ScriptDom.ResultSetDefinition)c.ToMutable()));
+            ret.Definitions.AddRange(definitions.SelectList(c => (ScriptDom.ResultSetDefinition)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

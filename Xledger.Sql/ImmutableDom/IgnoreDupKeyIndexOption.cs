@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IgnoreDupKeyIndexOption : IndexStateOption, IEquatable<IgnoreDupKeyIndexOption> {
-        bool? suppressMessagesOption;
+        protected bool? suppressMessagesOption;
     
         public bool? SuppressMessagesOption => suppressMessagesOption;
     

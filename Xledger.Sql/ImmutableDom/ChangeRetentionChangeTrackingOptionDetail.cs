@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ChangeRetentionChangeTrackingOptionDetail : ChangeTrackingOptionDetail, IEquatable<ChangeRetentionChangeTrackingOptionDetail> {
-        Literal retentionPeriod;
-        ScriptDom.TimeUnit unit = ScriptDom.TimeUnit.Seconds;
+        protected Literal retentionPeriod;
+        protected ScriptDom.TimeUnit unit = ScriptDom.TimeUnit.Seconds;
     
         public Literal RetentionPeriod => retentionPeriod;
         public ScriptDom.TimeUnit Unit => unit;

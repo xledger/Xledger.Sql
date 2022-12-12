@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GraphMatchRecursivePredicate : BooleanExpression, IEquatable<GraphMatchRecursivePredicate> {
-        ScriptDom.GraphMatchRecursivePredicateKind function = ScriptDom.GraphMatchRecursivePredicateKind.ShortestPath;
-        GraphMatchNodeExpression outerNodeExpression;
-        IReadOnlyList<BooleanExpression> expression;
-        GraphRecursiveMatchQuantifier recursiveQuantifier;
-        bool anchorOnLeft = false;
+        protected ScriptDom.GraphMatchRecursivePredicateKind function = ScriptDom.GraphMatchRecursivePredicateKind.ShortestPath;
+        protected GraphMatchNodeExpression outerNodeExpression;
+        protected IReadOnlyList<BooleanExpression> expression;
+        protected GraphRecursiveMatchQuantifier recursiveQuantifier;
+        protected bool anchorOnLeft = false;
     
         public ScriptDom.GraphMatchRecursivePredicateKind Function => function;
         public GraphMatchNodeExpression OuterNodeExpression => outerNodeExpression;
@@ -32,7 +32,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.GraphMatchRecursivePredicate();
             ret.Function = function;
             ret.OuterNodeExpression = (ScriptDom.GraphMatchNodeExpression)outerNodeExpression.ToMutable();
-            ret.Expression.AddRange(expression.Select(c => (ScriptDom.BooleanExpression)c.ToMutable()));
+            ret.Expression.AddRange(expression.SelectList(c => (ScriptDom.BooleanExpression)c.ToMutable()));
             ret.RecursiveQuantifier = (ScriptDom.GraphRecursiveMatchQuantifier)recursiveQuantifier.ToMutable();
             ret.AnchorOnLeft = anchorOnLeft;
             return ret;

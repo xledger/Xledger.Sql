@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InsertStatement : DataModificationStatement, IEquatable<InsertStatement> {
-        InsertSpecification insertSpecification;
+        protected InsertSpecification insertSpecification;
     
         public InsertSpecification InsertSpecification => insertSpecification;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.InsertStatement();
             ret.InsertSpecification = (ScriptDom.InsertSpecification)insertSpecification.ToMutable();
             ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
             return ret;
         }
         

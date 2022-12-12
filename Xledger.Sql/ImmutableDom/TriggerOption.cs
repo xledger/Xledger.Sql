@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TriggerOption : TSqlFragment, IEquatable<TriggerOption> {
-        ScriptDom.TriggerOptionKind optionKind = ScriptDom.TriggerOptionKind.Encryption;
+        protected ScriptDom.TriggerOptionKind optionKind = ScriptDom.TriggerOptionKind.Encryption;
     
         public ScriptDom.TriggerOptionKind OptionKind => optionKind;
     

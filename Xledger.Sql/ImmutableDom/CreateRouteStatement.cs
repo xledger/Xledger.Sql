@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateRouteStatement : RouteStatement, IEquatable<CreateRouteStatement> {
-        Identifier owner;
+        protected Identifier owner;
     
         public Identifier Owner => owner;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateRouteStatement();
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.RouteOptions.AddRange(routeOptions.Select(c => (ScriptDom.RouteOption)c.ToMutable()));
+            ret.RouteOptions.AddRange(routeOptions.SelectList(c => (ScriptDom.RouteOption)c.ToMutable()));
             return ret;
         }
         

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BulkInsertStatement : BulkInsertBase, IEquatable<BulkInsertStatement> {
-        IdentifierOrValueExpression from;
+        protected IdentifierOrValueExpression from;
     
         public IdentifierOrValueExpression From => from;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.BulkInsertStatement();
             ret.From = (ScriptDom.IdentifierOrValueExpression)from.ToMutable();
             ret.To = (ScriptDom.SchemaObjectName)to.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.BulkInsertOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c.ToMutable()));
             return ret;
         }
         

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterColumnEncryptionKeyStatement : ColumnEncryptionKeyStatement, IEquatable<AlterColumnEncryptionKeyStatement> {
-        ScriptDom.ColumnEncryptionKeyAlterType alterType = ScriptDom.ColumnEncryptionKeyAlterType.Add;
+        protected ScriptDom.ColumnEncryptionKeyAlterType alterType = ScriptDom.ColumnEncryptionKeyAlterType.Add;
     
         public ScriptDom.ColumnEncryptionKeyAlterType AlterType => alterType;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterColumnEncryptionKeyStatement();
             ret.AlterType = alterType;
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ColumnEncryptionKeyValues.AddRange(columnEncryptionKeyValues.Select(c => (ScriptDom.ColumnEncryptionKeyValue)c.ToMutable()));
+            ret.ColumnEncryptionKeyValues.AddRange(columnEncryptionKeyValues.SelectList(c => (ScriptDom.ColumnEncryptionKeyValue)c.ToMutable()));
             return ret;
         }
         

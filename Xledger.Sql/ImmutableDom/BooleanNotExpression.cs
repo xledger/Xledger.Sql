@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BooleanNotExpression : BooleanExpression, IEquatable<BooleanNotExpression> {
-        BooleanExpression expression;
+        protected BooleanExpression expression;
     
         public BooleanExpression Expression => expression;
     

@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ChangeTableVersionTableReference : TableReferenceWithAliasAndColumns, IEquatable<ChangeTableVersionTableReference> {
-        SchemaObjectName target;
-        IReadOnlyList<Identifier> primaryKeyColumns;
-        IReadOnlyList<ScalarExpression> primaryKeyValues;
+        protected SchemaObjectName target;
+        protected IReadOnlyList<Identifier> primaryKeyColumns;
+        protected IReadOnlyList<ScalarExpression> primaryKeyValues;
     
         public SchemaObjectName Target => target;
         public IReadOnlyList<Identifier> PrimaryKeyColumns => primaryKeyColumns;
@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ChangeTableVersionTableReference ToMutableConcrete() {
             var ret = new ScriptDom.ChangeTableVersionTableReference();
             ret.Target = (ScriptDom.SchemaObjectName)target.ToMutable();
-            ret.PrimaryKeyColumns.AddRange(primaryKeyColumns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.PrimaryKeyValues.AddRange(primaryKeyValues.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.PrimaryKeyColumns.AddRange(primaryKeyColumns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.PrimaryKeyValues.AddRange(primaryKeyValues.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

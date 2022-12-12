@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CompressionDelayIndexOption : IndexOption, IEquatable<CompressionDelayIndexOption> {
-        ScalarExpression expression;
-        ScriptDom.CompressionDelayTimeUnit timeUnit = ScriptDom.CompressionDelayTimeUnit.Unitless;
+        protected ScalarExpression expression;
+        protected ScriptDom.CompressionDelayTimeUnit timeUnit = ScriptDom.CompressionDelayTimeUnit.Unitless;
     
         public ScalarExpression Expression => expression;
         public ScriptDom.CompressionDelayTimeUnit TimeUnit => timeUnit;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AssemblyName : TSqlFragment, IEquatable<AssemblyName> {
-        Identifier name;
-        Identifier className;
+        protected Identifier name;
+        protected Identifier className;
     
         public Identifier Name => name;
         public Identifier ClassName => className;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DurabilityTableOption : TableOption, IEquatable<DurabilityTableOption> {
-        ScriptDom.DurabilityTableOptionKind durabilityTableOptionKind = ScriptDom.DurabilityTableOptionKind.SchemaOnly;
+        protected ScriptDom.DurabilityTableOptionKind durabilityTableOptionKind = ScriptDom.DurabilityTableOptionKind.SchemaOnly;
     
         public ScriptDom.DurabilityTableOptionKind DurabilityTableOptionKind => durabilityTableOptionKind;
     

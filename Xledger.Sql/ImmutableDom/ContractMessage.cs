@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ContractMessage : TSqlFragment, IEquatable<ContractMessage> {
-        Identifier name;
-        ScriptDom.MessageSender sentBy = ScriptDom.MessageSender.None;
+        protected Identifier name;
+        protected ScriptDom.MessageSender sentBy = ScriptDom.MessageSender.None;
     
         public Identifier Name => name;
         public ScriptDom.MessageSender SentBy => sentBy;

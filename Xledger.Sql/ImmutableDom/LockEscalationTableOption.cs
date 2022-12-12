@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LockEscalationTableOption : TableOption, IEquatable<LockEscalationTableOption> {
-        ScriptDom.LockEscalationMethod @value = ScriptDom.LockEscalationMethod.Table;
+        protected ScriptDom.LockEscalationMethod @value = ScriptDom.LockEscalationMethod.Table;
     
         public ScriptDom.LockEscalationMethod Value => @value;
     

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateLoginStatement : TSqlStatement, IEquatable<CreateLoginStatement> {
-        Identifier name;
-        CreateLoginSource source;
+        protected Identifier name;
+        protected CreateLoginSource source;
     
         public Identifier Name => name;
         public CreateLoginSource Source => source;

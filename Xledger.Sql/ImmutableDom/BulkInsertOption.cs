@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BulkInsertOption : TSqlFragment, IEquatable<BulkInsertOption> {
-        ScriptDom.BulkInsertOptionKind optionKind = ScriptDom.BulkInsertOptionKind.None;
+        protected ScriptDom.BulkInsertOptionKind optionKind = ScriptDom.BulkInsertOptionKind.None;
     
         public ScriptDom.BulkInsertOptionKind OptionKind => optionKind;
     

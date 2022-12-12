@@ -8,14 +8,14 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QuerySpecification : QueryExpression, IEquatable<QuerySpecification> {
-        ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified;
-        TopRowFilter topRowFilter;
-        IReadOnlyList<SelectElement> selectElements;
-        FromClause fromClause;
-        WhereClause whereClause;
-        GroupByClause groupByClause;
-        HavingClause havingClause;
-        WindowClause windowClause;
+        protected ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified;
+        protected TopRowFilter topRowFilter;
+        protected IReadOnlyList<SelectElement> selectElements;
+        protected FromClause fromClause;
+        protected WhereClause whereClause;
+        protected GroupByClause groupByClause;
+        protected HavingClause havingClause;
+        protected WindowClause windowClause;
     
         public ScriptDom.UniqueRowFilter UniqueRowFilter => uniqueRowFilter;
         public TopRowFilter TopRowFilter => topRowFilter;
@@ -44,7 +44,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.QuerySpecification();
             ret.UniqueRowFilter = uniqueRowFilter;
             ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter.ToMutable();
-            ret.SelectElements.AddRange(selectElements.Select(c => (ScriptDom.SelectElement)c.ToMutable()));
+            ret.SelectElements.AddRange(selectElements.SelectList(c => (ScriptDom.SelectElement)c.ToMutable()));
             ret.FromClause = (ScriptDom.FromClause)fromClause.ToMutable();
             ret.WhereClause = (ScriptDom.WhereClause)whereClause.ToMutable();
             ret.GroupByClause = (ScriptDom.GroupByClause)groupByClause.ToMutable();

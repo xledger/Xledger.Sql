@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateQueueStatement : QueueStatement, IEquatable<CreateQueueStatement> {
-        IdentifierOrValueExpression onFileGroup;
+        protected IdentifierOrValueExpression onFileGroup;
     
         public IdentifierOrValueExpression OnFileGroup => onFileGroup;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateQueueStatement();
             ret.OnFileGroup = (ScriptDom.IdentifierOrValueExpression)onFileGroup.ToMutable();
             ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.QueueOptions.AddRange(queueOptions.Select(c => (ScriptDom.QueueOption)c.ToMutable()));
+            ret.QueueOptions.AddRange(queueOptions.SelectList(c => (ScriptDom.QueueOption)c.ToMutable()));
             return ret;
         }
         

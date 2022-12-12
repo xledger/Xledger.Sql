@@ -8,14 +8,14 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateColumnStoreIndexStatement : TSqlStatement, IEquatable<CreateColumnStoreIndexStatement> {
-        Identifier name;
-        bool? clustered;
-        SchemaObjectName onName;
-        IReadOnlyList<ColumnReferenceExpression> columns;
-        BooleanExpression filterPredicate;
-        IReadOnlyList<IndexOption> indexOptions;
-        FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
-        IReadOnlyList<ColumnReferenceExpression> orderedColumns;
+        protected Identifier name;
+        protected bool? clustered;
+        protected SchemaObjectName onName;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
+        protected BooleanExpression filterPredicate;
+        protected IReadOnlyList<IndexOption> indexOptions;
+        protected FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
+        protected IReadOnlyList<ColumnReferenceExpression> orderedColumns;
     
         public Identifier Name => name;
         public bool? Clustered => clustered;
@@ -42,11 +42,11 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.Clustered = clustered;
             ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
-            ret.OrderedColumns.AddRange(orderedColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.OrderedColumns.AddRange(orderedColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             return ret;
         }
         

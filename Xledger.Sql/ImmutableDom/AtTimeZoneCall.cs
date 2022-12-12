@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AtTimeZoneCall : PrimaryExpression, IEquatable<AtTimeZoneCall> {
-        ScalarExpression dateValue;
-        ScalarExpression timeZone;
+        protected ScalarExpression dateValue;
+        protected ScalarExpression timeZone;
     
         public ScalarExpression DateValue => dateValue;
         public ScalarExpression TimeZone => timeZone;

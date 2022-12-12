@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropEventSessionStatement : DropUnownedObjectStatement, IEquatable<DropEventSessionStatement> {
-        ScriptDom.EventSessionScope sessionScope = ScriptDom.EventSessionScope.Server;
+        protected ScriptDom.EventSessionScope sessionScope = ScriptDom.EventSessionScope.Server;
     
         public ScriptDom.EventSessionScope SessionScope => sessionScope;
     

@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PartitionFunctionCall : PrimaryExpression, IEquatable<PartitionFunctionCall> {
-        Identifier databaseName;
-        Identifier functionName;
-        IReadOnlyList<ScalarExpression> parameters;
+        protected Identifier databaseName;
+        protected Identifier functionName;
+        protected IReadOnlyList<ScalarExpression> parameters;
     
         public Identifier DatabaseName => databaseName;
         public Identifier FunctionName => functionName;
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.PartitionFunctionCall();
             ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
             ret.FunctionName = (ScriptDom.Identifier)functionName.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
             return ret;
         }

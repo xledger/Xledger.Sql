@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RestoreOption : TSqlFragment, IEquatable<RestoreOption> {
-        ScriptDom.RestoreOptionKind optionKind = 0;
+        protected ScriptDom.RestoreOptionKind optionKind = 0;
     
         public ScriptDom.RestoreOptionKind OptionKind => optionKind;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InlineDerivedTable : TableReferenceWithAliasAndColumns, IEquatable<InlineDerivedTable> {
-        IReadOnlyList<RowValue> rowValues;
+        protected IReadOnlyList<RowValue> rowValues;
     
         public IReadOnlyList<RowValue> RowValues => rowValues;
     
@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InlineDerivedTable ToMutableConcrete() {
             var ret = new ScriptDom.InlineDerivedTable();
-            ret.RowValues.AddRange(rowValues.Select(c => (ScriptDom.RowValue)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.RowValues.AddRange(rowValues.SelectList(c => (ScriptDom.RowValue)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

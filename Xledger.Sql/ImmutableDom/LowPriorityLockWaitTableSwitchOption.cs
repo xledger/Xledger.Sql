@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LowPriorityLockWaitTableSwitchOption : TableSwitchOption, IEquatable<LowPriorityLockWaitTableSwitchOption> {
-        IReadOnlyList<LowPriorityLockWaitOption> options;
+        protected IReadOnlyList<LowPriorityLockWaitOption> options;
     
         public IReadOnlyList<LowPriorityLockWaitOption> Options => options;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LowPriorityLockWaitTableSwitchOption ToMutableConcrete() {
             var ret = new ScriptDom.LowPriorityLockWaitTableSwitchOption();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.LowPriorityLockWaitOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.LowPriorityLockWaitOption)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

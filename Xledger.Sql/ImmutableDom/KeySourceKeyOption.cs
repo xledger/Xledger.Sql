@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class KeySourceKeyOption : KeyOption, IEquatable<KeySourceKeyOption> {
-        Literal passPhrase;
+        protected Literal passPhrase;
     
         public Literal PassPhrase => passPhrase;
     

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableConstraintModificationStatement : AlterTableStatement, IEquatable<AlterTableConstraintModificationStatement> {
-        ScriptDom.ConstraintEnforcement existingRowsCheckEnforcement = ScriptDom.ConstraintEnforcement.NotSpecified;
-        ScriptDom.ConstraintEnforcement constraintEnforcement = ScriptDom.ConstraintEnforcement.NotSpecified;
-        bool all = false;
-        IReadOnlyList<Identifier> constraintNames;
+        protected ScriptDom.ConstraintEnforcement existingRowsCheckEnforcement = ScriptDom.ConstraintEnforcement.NotSpecified;
+        protected ScriptDom.ConstraintEnforcement constraintEnforcement = ScriptDom.ConstraintEnforcement.NotSpecified;
+        protected bool all = false;
+        protected IReadOnlyList<Identifier> constraintNames;
     
         public ScriptDom.ConstraintEnforcement ExistingRowsCheckEnforcement => existingRowsCheckEnforcement;
         public ScriptDom.ConstraintEnforcement ConstraintEnforcement => constraintEnforcement;
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.ExistingRowsCheckEnforcement = existingRowsCheckEnforcement;
             ret.ConstraintEnforcement = constraintEnforcement;
             ret.All = all;
-            ret.ConstraintNames.AddRange(constraintNames.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.ConstraintNames.AddRange(constraintNames.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
             return ret;
         }

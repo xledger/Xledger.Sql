@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ListenerIPEndpointProtocolOption : EndpointProtocolOption, IEquatable<ListenerIPEndpointProtocolOption> {
-        bool isAll = false;
-        Literal iPv6;
-        IPv4 iPv4PartOne;
-        IPv4 iPv4PartTwo;
+        protected bool isAll = false;
+        protected Literal iPv6;
+        protected IPv4 iPv4PartOne;
+        protected IPv4 iPv4PartTwo;
     
         public bool IsAll => isAll;
         public Literal IPv6 => iPv6;

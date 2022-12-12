@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SecurityTargetObject : TSqlFragment, IEquatable<SecurityTargetObject> {
-        ScriptDom.SecurityObjectKind objectKind = ScriptDom.SecurityObjectKind.NotSpecified;
-        SecurityTargetObjectName objectName;
-        IReadOnlyList<Identifier> columns;
+        protected ScriptDom.SecurityObjectKind objectKind = ScriptDom.SecurityObjectKind.NotSpecified;
+        protected SecurityTargetObjectName objectName;
+        protected IReadOnlyList<Identifier> columns;
     
         public ScriptDom.SecurityObjectKind ObjectKind => objectKind;
         public SecurityTargetObjectName ObjectName => objectName;
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.SecurityTargetObject();
             ret.ObjectKind = objectKind;
             ret.ObjectName = (ScriptDom.SecurityTargetObjectName)objectName.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             return ret;
         }
         

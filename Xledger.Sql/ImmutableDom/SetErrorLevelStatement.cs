@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetErrorLevelStatement : TSqlStatement, IEquatable<SetErrorLevelStatement> {
-        ScalarExpression level;
+        protected ScalarExpression level;
     
         public ScalarExpression Level => level;
     

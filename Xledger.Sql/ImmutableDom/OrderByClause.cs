@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OrderByClause : TSqlFragment, IEquatable<OrderByClause> {
-        IReadOnlyList<ExpressionWithSortOrder> orderByElements;
+        protected IReadOnlyList<ExpressionWithSortOrder> orderByElements;
     
         public IReadOnlyList<ExpressionWithSortOrder> OrderByElements => orderByElements;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OrderByClause ToMutableConcrete() {
             var ret = new ScriptDom.OrderByClause();
-            ret.OrderByElements.AddRange(orderByElements.Select(c => (ScriptDom.ExpressionWithSortOrder)c.ToMutable()));
+            ret.OrderByElements.AddRange(orderByElements.SelectList(c => (ScriptDom.ExpressionWithSortOrder)c.ToMutable()));
             return ret;
         }
         

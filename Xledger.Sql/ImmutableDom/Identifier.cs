@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class Identifier : TSqlFragment, IEquatable<Identifier> {
-        string @value;
-        ScriptDom.QuoteType quoteType = ScriptDom.QuoteType.NotQuoted;
+        protected string @value;
+        protected ScriptDom.QuoteType quoteType = ScriptDom.QuoteType.NotQuoted;
     
         public string Value => @value;
         public ScriptDom.QuoteType QuoteType => quoteType;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetIdentityInsertStatement : SetOnOffStatement, IEquatable<SetIdentityInsertStatement> {
-        SchemaObjectName table;
+        protected SchemaObjectName table;
     
         public SchemaObjectName Table => table;
     

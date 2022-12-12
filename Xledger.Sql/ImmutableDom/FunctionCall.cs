@@ -8,16 +8,16 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FunctionCall : PrimaryExpression, IEquatable<FunctionCall> {
-        CallTarget callTarget;
-        Identifier functionName;
-        IReadOnlyList<ScalarExpression> parameters;
-        ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified;
-        OverClause overClause;
-        WithinGroupClause withinGroupClause;
-        IReadOnlyList<Identifier> ignoreRespectNulls;
-        Identifier trimOptions;
-        IReadOnlyList<JsonKeyValue> jsonParameters;
-        IReadOnlyList<Identifier> absentOrNullOnNull;
+        protected CallTarget callTarget;
+        protected Identifier functionName;
+        protected IReadOnlyList<ScalarExpression> parameters;
+        protected ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified;
+        protected OverClause overClause;
+        protected WithinGroupClause withinGroupClause;
+        protected IReadOnlyList<Identifier> ignoreRespectNulls;
+        protected Identifier trimOptions;
+        protected IReadOnlyList<JsonKeyValue> jsonParameters;
+        protected IReadOnlyList<Identifier> absentOrNullOnNull;
     
         public CallTarget CallTarget => callTarget;
         public Identifier FunctionName => functionName;
@@ -48,14 +48,14 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.FunctionCall();
             ret.CallTarget = (ScriptDom.CallTarget)callTarget.ToMutable();
             ret.FunctionName = (ScriptDom.Identifier)functionName.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.UniqueRowFilter = uniqueRowFilter;
             ret.OverClause = (ScriptDom.OverClause)overClause.ToMutable();
             ret.WithinGroupClause = (ScriptDom.WithinGroupClause)withinGroupClause.ToMutable();
-            ret.IgnoreRespectNulls.AddRange(ignoreRespectNulls.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.IgnoreRespectNulls.AddRange(ignoreRespectNulls.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.TrimOptions = (ScriptDom.Identifier)trimOptions.ToMutable();
-            ret.JsonParameters.AddRange(jsonParameters.Select(c => (ScriptDom.JsonKeyValue)c.ToMutable()));
-            ret.AbsentOrNullOnNull.AddRange(absentOrNullOnNull.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.JsonParameters.AddRange(jsonParameters.SelectList(c => (ScriptDom.JsonKeyValue)c.ToMutable()));
+            ret.AbsentOrNullOnNull.AddRange(absentOrNullOnNull.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
             return ret;
         }

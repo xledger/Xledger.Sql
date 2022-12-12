@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterExternalLibraryStatement : ExternalLibraryStatement, IEquatable<AlterExternalLibraryStatement> {
-        Identifier owner;
+        protected Identifier owner;
     
         public Identifier Owner => owner;
     
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.Language = (ScriptDom.StringLiteral)language.ToMutable();
-            ret.ExternalLibraryFiles.AddRange(externalLibraryFiles.Select(c => (ScriptDom.ExternalLibraryFileOption)c.ToMutable()));
+            ret.ExternalLibraryFiles.AddRange(externalLibraryFiles.SelectList(c => (ScriptDom.ExternalLibraryFileOption)c.ToMutable()));
             return ret;
         }
         

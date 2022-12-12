@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DbccStatement : TSqlStatement, IEquatable<DbccStatement> {
-        string dllName;
-        ScriptDom.DbccCommand command = ScriptDom.DbccCommand.None;
-        bool parenthesisRequired = false;
-        IReadOnlyList<DbccNamedLiteral> literals;
-        IReadOnlyList<DbccOption> options;
-        bool optionsUseJoin = false;
+        protected string dllName;
+        protected ScriptDom.DbccCommand command = ScriptDom.DbccCommand.None;
+        protected bool parenthesisRequired = false;
+        protected IReadOnlyList<DbccNamedLiteral> literals;
+        protected IReadOnlyList<DbccOption> options;
+        protected bool optionsUseJoin = false;
     
         public string DllName => dllName;
         public ScriptDom.DbccCommand Command => command;
@@ -36,8 +36,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DllName = dllName;
             ret.Command = command;
             ret.ParenthesisRequired = parenthesisRequired;
-            ret.Literals.AddRange(literals.Select(c => (ScriptDom.DbccNamedLiteral)c.ToMutable()));
-            ret.Options.AddRange(options.Select(c => (ScriptDom.DbccOption)c.ToMutable()));
+            ret.Literals.AddRange(literals.SelectList(c => (ScriptDom.DbccNamedLiteral)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DbccOption)c.ToMutable()));
             ret.OptionsUseJoin = optionsUseJoin;
             return ret;
         }

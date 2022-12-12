@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlgorithmKeyOption : KeyOption, IEquatable<AlgorithmKeyOption> {
-        ScriptDom.EncryptionAlgorithm algorithm = ScriptDom.EncryptionAlgorithm.None;
+        protected ScriptDom.EncryptionAlgorithm algorithm = ScriptDom.EncryptionAlgorithm.None;
     
         public ScriptDom.EncryptionAlgorithm Algorithm => algorithm;
     

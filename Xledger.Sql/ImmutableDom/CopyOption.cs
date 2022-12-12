@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CopyOption : TSqlFragment, IEquatable<CopyOption> {
-        ScriptDom.CopyOptionKind kind = 0;
-        CopyStatementOptionBase @value;
+        protected ScriptDom.CopyOptionKind kind = 0;
+        protected CopyStatementOptionBase @value;
     
         public ScriptDom.CopyOptionKind Kind => kind;
         public CopyStatementOptionBase Value => @value;

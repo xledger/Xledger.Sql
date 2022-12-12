@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class XmlNamespaces : TSqlFragment, IEquatable<XmlNamespaces> {
-        IReadOnlyList<XmlNamespacesElement> xmlNamespacesElements;
+        protected IReadOnlyList<XmlNamespacesElement> xmlNamespacesElements;
     
         public IReadOnlyList<XmlNamespacesElement> XmlNamespacesElements => xmlNamespacesElements;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.XmlNamespaces ToMutableConcrete() {
             var ret = new ScriptDom.XmlNamespaces();
-            ret.XmlNamespacesElements.AddRange(xmlNamespacesElements.Select(c => (ScriptDom.XmlNamespacesElement)c.ToMutable()));
+            ret.XmlNamespacesElements.AddRange(xmlNamespacesElements.SelectList(c => (ScriptDom.XmlNamespacesElement)c.ToMutable()));
             return ret;
         }
         

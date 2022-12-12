@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class HavingClause : TSqlFragment, IEquatable<HavingClause> {
-        BooleanExpression searchCondition;
+        protected BooleanExpression searchCondition;
     
         public BooleanExpression SearchCondition => searchCondition;
     

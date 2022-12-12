@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EventDeclarationSetParameter : TSqlFragment, IEquatable<EventDeclarationSetParameter> {
-        Identifier eventField;
-        ScalarExpression eventValue;
+        protected Identifier eventField;
+        protected ScalarExpression eventValue;
     
         public Identifier EventField => eventField;
         public ScalarExpression EventValue => eventValue;

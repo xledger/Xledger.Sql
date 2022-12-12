@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OptimizeForOptimizerHint : OptimizerHint, IEquatable<OptimizeForOptimizerHint> {
-        IReadOnlyList<VariableValuePair> pairs;
-        bool isForUnknown = false;
+        protected IReadOnlyList<VariableValuePair> pairs;
+        protected bool isForUnknown = false;
     
         public IReadOnlyList<VariableValuePair> Pairs => pairs;
         public bool IsForUnknown => isForUnknown;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OptimizeForOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.OptimizeForOptimizerHint();
-            ret.Pairs.AddRange(pairs.Select(c => (ScriptDom.VariableValuePair)c.ToMutable()));
+            ret.Pairs.AddRange(pairs.SelectList(c => (ScriptDom.VariableValuePair)c.ToMutable()));
             ret.IsForUnknown = isForUnknown;
             ret.HintKind = hintKind;
             return ret;

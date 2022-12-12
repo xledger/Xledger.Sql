@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class StatisticsOption : TSqlFragment, IEquatable<StatisticsOption> {
-        ScriptDom.StatisticsOptionKind optionKind = ScriptDom.StatisticsOptionKind.FullScan;
+        protected ScriptDom.StatisticsOptionKind optionKind = ScriptDom.StatisticsOptionKind.FullScan;
     
         public ScriptDom.StatisticsOptionKind OptionKind => optionKind;
     

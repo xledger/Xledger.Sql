@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IPv4 : TSqlFragment, IEquatable<IPv4> {
-        Literal octetOne;
-        Literal octetTwo;
-        Literal octetThree;
-        Literal octetFour;
+        protected Literal octetOne;
+        protected Literal octetTwo;
+        protected Literal octetThree;
+        protected Literal octetFour;
     
         public Literal OctetOne => octetOne;
         public Literal OctetTwo => octetTwo;

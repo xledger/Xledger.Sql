@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateColumnMasterKeyStatement : TSqlStatement, IEquatable<CreateColumnMasterKeyStatement> {
-        Identifier name;
-        IReadOnlyList<ColumnMasterKeyParameter> parameters;
+        protected Identifier name;
+        protected IReadOnlyList<ColumnMasterKeyParameter> parameters;
     
         public Identifier Name => name;
         public IReadOnlyList<ColumnMasterKeyParameter> Parameters => parameters;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateColumnMasterKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateColumnMasterKeyStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ColumnMasterKeyParameter)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ColumnMasterKeyParameter)c.ToMutable()));
             return ret;
         }
         

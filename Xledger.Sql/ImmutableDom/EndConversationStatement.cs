@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EndConversationStatement : TSqlStatement, IEquatable<EndConversationStatement> {
-        ScalarExpression conversation;
-        bool withCleanup = false;
-        ValueExpression errorCode;
-        ValueExpression errorDescription;
+        protected ScalarExpression conversation;
+        protected bool withCleanup = false;
+        protected ValueExpression errorCode;
+        protected ValueExpression errorDescription;
     
         public ScalarExpression Conversation => conversation;
         public bool WithCleanup => withCleanup;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateTypeTableStatement : CreateTypeStatement, IEquatable<CreateTypeTableStatement> {
-        TableDefinition definition;
-        IReadOnlyList<TableOption> options;
+        protected TableDefinition definition;
+        protected IReadOnlyList<TableOption> options;
     
         public TableDefinition Definition => definition;
         public IReadOnlyList<TableOption> Options => options;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateTypeTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateTypeTableStatement();
             ret.Definition = (ScriptDom.TableDefinition)definition.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.TableOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c.ToMutable()));
             ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
             return ret;
         }

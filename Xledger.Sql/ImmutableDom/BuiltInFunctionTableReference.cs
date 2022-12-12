@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BuiltInFunctionTableReference : TableReferenceWithAlias, IEquatable<BuiltInFunctionTableReference> {
-        Identifier name;
-        IReadOnlyList<ScalarExpression> parameters;
+        protected Identifier name;
+        protected IReadOnlyList<ScalarExpression> parameters;
     
         public Identifier Name => name;
         public IReadOnlyList<ScalarExpression> Parameters => parameters;
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BuiltInFunctionTableReference ToMutableConcrete() {
             var ret = new ScriptDom.BuiltInFunctionTableReference();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

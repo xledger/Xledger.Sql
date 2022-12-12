@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableHashDistributionPolicy : TableDistributionPolicy, IEquatable<TableHashDistributionPolicy> {
-        Identifier distributionColumn;
+        protected Identifier distributionColumn;
     
         public Identifier DistributionColumn => distributionColumn;
     

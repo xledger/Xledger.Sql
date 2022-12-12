@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OdbcFunctionCall : PrimaryExpression, IEquatable<OdbcFunctionCall> {
-        Identifier name;
-        bool parametersUsed = false;
-        IReadOnlyList<ScalarExpression> parameters;
+        protected Identifier name;
+        protected bool parametersUsed = false;
+        protected IReadOnlyList<ScalarExpression> parameters;
     
         public Identifier Name => name;
         public bool ParametersUsed => parametersUsed;
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.OdbcFunctionCall();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.ParametersUsed = parametersUsed;
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
             return ret;
         }

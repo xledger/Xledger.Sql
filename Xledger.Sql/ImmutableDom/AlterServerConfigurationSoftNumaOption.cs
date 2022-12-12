@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationSoftNumaOption : TSqlFragment, IEquatable<AlterServerConfigurationSoftNumaOption> {
-        ScriptDom.AlterServerConfigurationSoftNumaOptionKind optionKind = ScriptDom.AlterServerConfigurationSoftNumaOptionKind.None;
-        OptionValue optionValue;
+        protected ScriptDom.AlterServerConfigurationSoftNumaOptionKind optionKind = ScriptDom.AlterServerConfigurationSoftNumaOptionKind.None;
+        protected OptionValue optionValue;
     
         public ScriptDom.AlterServerConfigurationSoftNumaOptionKind OptionKind => optionKind;
         public OptionValue OptionValue => optionValue;

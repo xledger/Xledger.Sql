@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteStatement : TSqlStatement, IEquatable<ExecuteStatement> {
-        ExecuteSpecification executeSpecification;
-        IReadOnlyList<ExecuteOption> options;
+        protected ExecuteSpecification executeSpecification;
+        protected IReadOnlyList<ExecuteOption> options;
     
         public ExecuteSpecification ExecuteSpecification => executeSpecification;
         public IReadOnlyList<ExecuteOption> Options => options;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ExecuteStatement ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteStatement();
             ret.ExecuteSpecification = (ScriptDom.ExecuteSpecification)executeSpecification.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.ExecuteOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.ExecuteOption)c.ToMutable()));
             return ret;
         }
         

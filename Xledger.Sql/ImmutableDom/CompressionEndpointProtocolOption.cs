@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CompressionEndpointProtocolOption : EndpointProtocolOption, IEquatable<CompressionEndpointProtocolOption> {
-        bool isEnabled = false;
+        protected bool isEnabled = false;
     
         public bool IsEnabled => isEnabled;
     

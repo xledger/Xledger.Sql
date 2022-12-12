@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ParameterlessCall : PrimaryExpression, IEquatable<ParameterlessCall> {
-        ScriptDom.ParameterlessCallType parameterlessCallType = ScriptDom.ParameterlessCallType.User;
+        protected ScriptDom.ParameterlessCallType parameterlessCallType = ScriptDom.ParameterlessCallType.User;
     
         public ScriptDom.ParameterlessCallType ParameterlessCallType => parameterlessCallType;
     

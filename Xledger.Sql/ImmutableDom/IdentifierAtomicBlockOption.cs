@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IdentifierAtomicBlockOption : AtomicBlockOption, IEquatable<IdentifierAtomicBlockOption> {
-        Identifier @value;
+        protected Identifier @value;
     
         public Identifier Value => @value;
     

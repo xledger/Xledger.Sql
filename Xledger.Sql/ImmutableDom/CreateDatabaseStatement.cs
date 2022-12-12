@@ -8,15 +8,15 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateDatabaseStatement : TSqlStatement, IEquatable<CreateDatabaseStatement> {
-        Identifier databaseName;
-        ContainmentDatabaseOption containment;
-        IReadOnlyList<FileGroupDefinition> fileGroups;
-        IReadOnlyList<FileDeclaration> logOn;
-        IReadOnlyList<DatabaseOption> options;
-        ScriptDom.AttachMode attachMode = ScriptDom.AttachMode.None;
-        Identifier databaseSnapshot;
-        MultiPartIdentifier copyOf;
-        Identifier collation;
+        protected Identifier databaseName;
+        protected ContainmentDatabaseOption containment;
+        protected IReadOnlyList<FileGroupDefinition> fileGroups;
+        protected IReadOnlyList<FileDeclaration> logOn;
+        protected IReadOnlyList<DatabaseOption> options;
+        protected ScriptDom.AttachMode attachMode = ScriptDom.AttachMode.None;
+        protected Identifier databaseSnapshot;
+        protected MultiPartIdentifier copyOf;
+        protected Identifier collation;
     
         public Identifier DatabaseName => databaseName;
         public ContainmentDatabaseOption Containment => containment;
@@ -44,9 +44,9 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateDatabaseStatement();
             ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
             ret.Containment = (ScriptDom.ContainmentDatabaseOption)containment.ToMutable();
-            ret.FileGroups.AddRange(fileGroups.Select(c => (ScriptDom.FileGroupDefinition)c.ToMutable()));
-            ret.LogOn.AddRange(logOn.Select(c => (ScriptDom.FileDeclaration)c.ToMutable()));
-            ret.Options.AddRange(options.Select(c => (ScriptDom.DatabaseOption)c.ToMutable()));
+            ret.FileGroups.AddRange(fileGroups.SelectList(c => (ScriptDom.FileGroupDefinition)c.ToMutable()));
+            ret.LogOn.AddRange(logOn.SelectList(c => (ScriptDom.FileDeclaration)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DatabaseOption)c.ToMutable()));
             ret.AttachMode = attachMode;
             ret.DatabaseSnapshot = (ScriptDom.Identifier)databaseSnapshot.ToMutable();
             ret.CopyOf = (ScriptDom.MultiPartIdentifier)copyOf.ToMutable();

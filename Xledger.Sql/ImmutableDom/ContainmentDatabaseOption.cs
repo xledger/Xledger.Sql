@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ContainmentDatabaseOption : DatabaseOption, IEquatable<ContainmentDatabaseOption> {
-        ScriptDom.ContainmentOptionKind @value = ScriptDom.ContainmentOptionKind.None;
+        protected ScriptDom.ContainmentOptionKind @value = ScriptDom.ContainmentOptionKind.None;
     
         public ScriptDom.ContainmentOptionKind Value => @value;
     

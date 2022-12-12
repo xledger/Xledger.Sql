@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FullTextPredicate : BooleanExpression, IEquatable<FullTextPredicate> {
-        ScriptDom.FullTextFunctionType fullTextFunctionType = ScriptDom.FullTextFunctionType.None;
-        IReadOnlyList<ColumnReferenceExpression> columns;
-        ValueExpression @value;
-        ValueExpression languageTerm;
-        StringLiteral propertyName;
+        protected ScriptDom.FullTextFunctionType fullTextFunctionType = ScriptDom.FullTextFunctionType.None;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
+        protected ValueExpression @value;
+        protected ValueExpression languageTerm;
+        protected StringLiteral propertyName;
     
         public ScriptDom.FullTextFunctionType FullTextFunctionType => fullTextFunctionType;
         public IReadOnlyList<ColumnReferenceExpression> Columns => columns;
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FullTextPredicate ToMutableConcrete() {
             var ret = new ScriptDom.FullTextPredicate();
             ret.FullTextFunctionType = fullTextFunctionType;
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.Value = (ScriptDom.ValueExpression)@value.ToMutable();
             ret.LanguageTerm = (ScriptDom.ValueExpression)languageTerm.ToMutable();
             ret.PropertyName = (ScriptDom.StringLiteral)propertyName.ToMutable();

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UpdateCall : BooleanExpression, IEquatable<UpdateCall> {
-        Identifier identifier;
+        protected Identifier identifier;
     
         public Identifier Identifier => identifier;
     

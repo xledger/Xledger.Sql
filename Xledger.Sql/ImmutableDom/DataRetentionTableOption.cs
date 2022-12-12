@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DataRetentionTableOption : TableOption, IEquatable<DataRetentionTableOption> {
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
-        Identifier filterColumn;
-        RetentionPeriodDefinition retentionPeriod;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected Identifier filterColumn;
+        protected RetentionPeriodDefinition retentionPeriod;
     
         public ScriptDom.OptionState OptionState => optionState;
         public Identifier FilterColumn => filterColumn;

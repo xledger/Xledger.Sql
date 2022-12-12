@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IndexTableHint : TableHint, IEquatable<IndexTableHint> {
-        IReadOnlyList<IdentifierOrValueExpression> indexValues;
+        protected IReadOnlyList<IdentifierOrValueExpression> indexValues;
     
         public IReadOnlyList<IdentifierOrValueExpression> IndexValues => indexValues;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IndexTableHint ToMutableConcrete() {
             var ret = new ScriptDom.IndexTableHint();
-            ret.IndexValues.AddRange(indexValues.Select(c => (ScriptDom.IdentifierOrValueExpression)c.ToMutable()));
+            ret.IndexValues.AddRange(indexValues.SelectList(c => (ScriptDom.IdentifierOrValueExpression)c.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }

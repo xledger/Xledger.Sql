@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class NextValueForExpression : PrimaryExpression, IEquatable<NextValueForExpression> {
-        SchemaObjectName sequenceName;
-        OverClause overClause;
+        protected SchemaObjectName sequenceName;
+        protected OverClause overClause;
     
         public SchemaObjectName SequenceName => sequenceName;
         public OverClause OverClause => overClause;

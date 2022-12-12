@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnEncryptionAlgorithmNameParameter : ColumnEncryptionKeyValueParameter, IEquatable<ColumnEncryptionAlgorithmNameParameter> {
-        StringLiteral algorithm;
+        protected StringLiteral algorithm;
     
         public StringLiteral Algorithm => algorithm;
     

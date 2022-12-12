@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TriggerAction : TSqlFragment, IEquatable<TriggerAction> {
-        ScriptDom.TriggerActionType triggerActionType = ScriptDom.TriggerActionType.Delete;
-        EventTypeGroupContainer eventTypeGroup;
+        protected ScriptDom.TriggerActionType triggerActionType = ScriptDom.TriggerActionType.Delete;
+        protected EventTypeGroupContainer eventTypeGroup;
     
         public ScriptDom.TriggerActionType TriggerActionType => triggerActionType;
         public EventTypeGroupContainer EventTypeGroup => eventTypeGroup;

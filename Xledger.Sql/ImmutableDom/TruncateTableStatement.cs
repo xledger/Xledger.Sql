@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TruncateTableStatement : TSqlStatement, IEquatable<TruncateTableStatement> {
-        SchemaObjectName tableName;
-        IReadOnlyList<CompressionPartitionRange> partitionRanges;
+        protected SchemaObjectName tableName;
+        protected IReadOnlyList<CompressionPartitionRange> partitionRanges;
     
         public SchemaObjectName TableName => tableName;
         public IReadOnlyList<CompressionPartitionRange> PartitionRanges => partitionRanges;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.TruncateTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.TruncateTableStatement();
             ret.TableName = (ScriptDom.SchemaObjectName)tableName.ToMutable();
-            ret.PartitionRanges.AddRange(partitionRanges.Select(c => (ScriptDom.CompressionPartitionRange)c.ToMutable()));
+            ret.PartitionRanges.AddRange(partitionRanges.SelectList(c => (ScriptDom.CompressionPartitionRange)c.ToMutable()));
             return ret;
         }
         

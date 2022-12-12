@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DataCompressionOption : IndexOption, IEquatable<DataCompressionOption> {
-        ScriptDom.DataCompressionLevel compressionLevel = ScriptDom.DataCompressionLevel.None;
-        IReadOnlyList<CompressionPartitionRange> partitionRanges;
+        protected ScriptDom.DataCompressionLevel compressionLevel = ScriptDom.DataCompressionLevel.None;
+        protected IReadOnlyList<CompressionPartitionRange> partitionRanges;
     
         public ScriptDom.DataCompressionLevel CompressionLevel => compressionLevel;
         public IReadOnlyList<CompressionPartitionRange> PartitionRanges => partitionRanges;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DataCompressionOption ToMutableConcrete() {
             var ret = new ScriptDom.DataCompressionOption();
             ret.CompressionLevel = compressionLevel;
-            ret.PartitionRanges.AddRange(partitionRanges.Select(c => (ScriptDom.CompressionPartitionRange)c.ToMutable()));
+            ret.PartitionRanges.AddRange(partitionRanges.SelectList(c => (ScriptDom.CompressionPartitionRange)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ResourcePoolAffinitySpecification : TSqlFragment, IEquatable<ResourcePoolAffinitySpecification> {
-        ScriptDom.ResourcePoolAffinityType affinityType = ScriptDom.ResourcePoolAffinityType.None;
-        Literal parameterValue;
-        bool isAuto = false;
-        IReadOnlyList<LiteralRange> poolAffinityRanges;
+        protected ScriptDom.ResourcePoolAffinityType affinityType = ScriptDom.ResourcePoolAffinityType.None;
+        protected Literal parameterValue;
+        protected bool isAuto = false;
+        protected IReadOnlyList<LiteralRange> poolAffinityRanges;
     
         public ScriptDom.ResourcePoolAffinityType AffinityType => affinityType;
         public Literal ParameterValue => parameterValue;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.AffinityType = affinityType;
             ret.ParameterValue = (ScriptDom.Literal)parameterValue.ToMutable();
             ret.IsAuto = isAuto;
-            ret.PoolAffinityRanges.AddRange(poolAffinityRanges.Select(c => (ScriptDom.LiteralRange)c.ToMutable()));
+            ret.PoolAffinityRanges.AddRange(poolAffinityRanges.SelectList(c => (ScriptDom.LiteralRange)c.ToMutable()));
             return ret;
         }
         

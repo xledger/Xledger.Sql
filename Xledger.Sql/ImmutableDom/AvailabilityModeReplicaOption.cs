@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AvailabilityModeReplicaOption : AvailabilityReplicaOption, IEquatable<AvailabilityModeReplicaOption> {
-        ScriptDom.AvailabilityModeOptionKind @value = ScriptDom.AvailabilityModeOptionKind.SynchronousCommit;
+        protected ScriptDom.AvailabilityModeOptionKind @value = ScriptDom.AvailabilityModeOptionKind.SynchronousCommit;
     
         public ScriptDom.AvailabilityModeOptionKind Value => @value;
     

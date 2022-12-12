@@ -8,14 +8,14 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetVariableStatement : TSqlStatement, IEquatable<SetVariableStatement> {
-        VariableReference variable;
-        ScriptDom.SeparatorType separatorType = ScriptDom.SeparatorType.NotSpecified;
-        Identifier identifier;
-        bool functionCallExists = false;
-        IReadOnlyList<ScalarExpression> parameters;
-        ScalarExpression expression;
-        CursorDefinition cursorDefinition;
-        ScriptDom.AssignmentKind assignmentKind = ScriptDom.AssignmentKind.Equals;
+        protected VariableReference variable;
+        protected ScriptDom.SeparatorType separatorType = ScriptDom.SeparatorType.NotSpecified;
+        protected Identifier identifier;
+        protected bool functionCallExists = false;
+        protected IReadOnlyList<ScalarExpression> parameters;
+        protected ScalarExpression expression;
+        protected CursorDefinition cursorDefinition;
+        protected ScriptDom.AssignmentKind assignmentKind = ScriptDom.AssignmentKind.Equals;
     
         public VariableReference Variable => variable;
         public ScriptDom.SeparatorType SeparatorType => separatorType;
@@ -43,7 +43,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.SeparatorType = separatorType;
             ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
             ret.FunctionCallExists = functionCallExists;
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
             ret.CursorDefinition = (ScriptDom.CursorDefinition)cursorDefinition.ToMutable();
             ret.AssignmentKind = assignmentKind;

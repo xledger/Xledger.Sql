@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropClusteredConstraintValueOption : DropClusteredConstraintOption, IEquatable<DropClusteredConstraintValueOption> {
-        Literal optionValue;
+        protected Literal optionValue;
     
         public Literal OptionValue => optionValue;
     

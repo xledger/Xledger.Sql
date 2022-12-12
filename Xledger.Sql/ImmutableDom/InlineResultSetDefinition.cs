@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InlineResultSetDefinition : ResultSetDefinition, IEquatable<InlineResultSetDefinition> {
-        IReadOnlyList<ResultColumnDefinition> resultColumnDefinitions;
+        protected IReadOnlyList<ResultColumnDefinition> resultColumnDefinitions;
     
         public IReadOnlyList<ResultColumnDefinition> ResultColumnDefinitions => resultColumnDefinitions;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InlineResultSetDefinition ToMutableConcrete() {
             var ret = new ScriptDom.InlineResultSetDefinition();
-            ret.ResultColumnDefinitions.AddRange(resultColumnDefinitions.Select(c => (ScriptDom.ResultColumnDefinition)c.ToMutable()));
+            ret.ResultColumnDefinitions.AddRange(resultColumnDefinitions.SelectList(c => (ScriptDom.ResultColumnDefinition)c.ToMutable()));
             ret.ResultSetType = resultSetType;
             return ret;
         }

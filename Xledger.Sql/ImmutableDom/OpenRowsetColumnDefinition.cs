@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OpenRowsetColumnDefinition : ColumnDefinitionBase, IEquatable<OpenRowsetColumnDefinition> {
-        IntegerLiteral columnOrdinal;
-        StringLiteral jsonPath;
+        protected IntegerLiteral columnOrdinal;
+        protected StringLiteral jsonPath;
     
         public IntegerLiteral ColumnOrdinal => columnOrdinal;
         public StringLiteral JsonPath => jsonPath;

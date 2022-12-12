@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BulkOpenRowset : TableReferenceWithAliasAndColumns, IEquatable<BulkOpenRowset> {
-        IReadOnlyList<StringLiteral> dataFiles;
-        IReadOnlyList<BulkInsertOption> options;
-        IReadOnlyList<OpenRowsetColumnDefinition> withColumns;
+        protected IReadOnlyList<StringLiteral> dataFiles;
+        protected IReadOnlyList<BulkInsertOption> options;
+        protected IReadOnlyList<OpenRowsetColumnDefinition> withColumns;
     
         public IReadOnlyList<StringLiteral> DataFiles => dataFiles;
         public IReadOnlyList<BulkInsertOption> Options => options;
@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BulkOpenRowset ToMutableConcrete() {
             var ret = new ScriptDom.BulkOpenRowset();
-            ret.DataFiles.AddRange(dataFiles.Select(c => (ScriptDom.StringLiteral)c.ToMutable()));
-            ret.Options.AddRange(options.Select(c => (ScriptDom.BulkInsertOption)c.ToMutable()));
-            ret.WithColumns.AddRange(withColumns.Select(c => (ScriptDom.OpenRowsetColumnDefinition)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.DataFiles.AddRange(dataFiles.SelectList(c => (ScriptDom.StringLiteral)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c.ToMutable()));
+            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

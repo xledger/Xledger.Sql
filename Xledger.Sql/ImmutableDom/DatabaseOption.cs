@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DatabaseOption : TSqlFragment, IEquatable<DatabaseOption> {
-        ScriptDom.DatabaseOptionKind optionKind = ScriptDom.DatabaseOptionKind.Online;
+        protected ScriptDom.DatabaseOptionKind optionKind = ScriptDom.DatabaseOptionKind.Online;
     
         public ScriptDom.DatabaseOptionKind OptionKind => optionKind;
     

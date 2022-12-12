@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreIntervalLengthOption : QueryStoreOption, IEquatable<QueryStoreIntervalLengthOption> {
-        Literal statsIntervalLength;
+        protected Literal statsIntervalLength;
     
         public Literal StatsIntervalLength => statsIntervalLength;
     

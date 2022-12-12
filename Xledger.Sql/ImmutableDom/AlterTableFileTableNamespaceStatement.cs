@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableFileTableNamespaceStatement : AlterTableStatement, IEquatable<AlterTableFileTableNamespaceStatement> {
-        bool isEnable = false;
+        protected bool isEnable = false;
     
         public bool IsEnable => isEnable;
     

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterXmlSchemaCollectionStatement : TSqlStatement, IEquatable<AlterXmlSchemaCollectionStatement> {
-        SchemaObjectName name;
-        ScalarExpression expression;
+        protected SchemaObjectName name;
+        protected ScalarExpression expression;
     
         public SchemaObjectName Name => name;
         public ScalarExpression Expression => expression;

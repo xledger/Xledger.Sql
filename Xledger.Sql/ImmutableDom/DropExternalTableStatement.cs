@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropExternalTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropExternalTableStatement();
-            ret.Objects.AddRange(objects.Select(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
+            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

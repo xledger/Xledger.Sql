@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EventSessionObjectName : TSqlFragment, IEquatable<EventSessionObjectName> {
-        MultiPartIdentifier multiPartIdentifier;
+        protected MultiPartIdentifier multiPartIdentifier;
     
         public MultiPartIdentifier MultiPartIdentifier => multiPartIdentifier;
     

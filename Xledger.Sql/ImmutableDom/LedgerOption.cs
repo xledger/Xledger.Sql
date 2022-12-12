@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LedgerOption : DatabaseOption, IEquatable<LedgerOption> {
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
     
         public ScriptDom.OptionState OptionState => optionState;
     

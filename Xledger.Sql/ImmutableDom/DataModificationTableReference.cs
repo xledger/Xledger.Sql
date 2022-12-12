@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DataModificationTableReference : TableReferenceWithAliasAndColumns, IEquatable<DataModificationTableReference> {
-        DataModificationSpecification dataModificationSpecification;
+        protected DataModificationSpecification dataModificationSpecification;
     
         public DataModificationSpecification DataModificationSpecification => dataModificationSpecification;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DataModificationTableReference ToMutableConcrete() {
             var ret = new ScriptDom.DataModificationTableReference();
             ret.DataModificationSpecification = (ScriptDom.DataModificationSpecification)dataModificationSpecification.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

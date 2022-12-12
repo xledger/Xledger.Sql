@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropFullTextIndexStatement : TSqlStatement, IEquatable<DropFullTextIndexStatement> {
-        SchemaObjectName tableName;
+        protected SchemaObjectName tableName;
     
         public SchemaObjectName TableName => tableName;
     

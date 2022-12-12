@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OutputClause : TSqlFragment, IEquatable<OutputClause> {
-        IReadOnlyList<SelectElement> selectColumns;
+        protected IReadOnlyList<SelectElement> selectColumns;
     
         public IReadOnlyList<SelectElement> SelectColumns => selectColumns;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OutputClause ToMutableConcrete() {
             var ret = new ScriptDom.OutputClause();
-            ret.SelectColumns.AddRange(selectColumns.Select(c => (ScriptDom.SelectElement)c.ToMutable()));
+            ret.SelectColumns.AddRange(selectColumns.SelectList(c => (ScriptDom.SelectElement)c.ToMutable()));
             return ret;
         }
         

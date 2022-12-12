@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SystemTimePeriodDefinition : TSqlFragment, IEquatable<SystemTimePeriodDefinition> {
-        Identifier startTimeColumn;
-        Identifier endTimeColumn;
+        protected Identifier startTimeColumn;
+        protected Identifier endTimeColumn;
     
         public Identifier StartTimeColumn => startTimeColumn;
         public Identifier EndTimeColumn => endTimeColumn;

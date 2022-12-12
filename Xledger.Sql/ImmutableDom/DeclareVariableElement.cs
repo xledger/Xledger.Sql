@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DeclareVariableElement : TSqlFragment, IEquatable<DeclareVariableElement> {
-        Identifier variableName;
-        DataTypeReference dataType;
-        NullableConstraintDefinition nullable;
-        ScalarExpression @value;
+        protected Identifier variableName;
+        protected DataTypeReference dataType;
+        protected NullableConstraintDefinition nullable;
+        protected ScalarExpression @value;
     
         public Identifier VariableName => variableName;
         public DataTypeReference DataType => dataType;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropTypeStatement : TSqlStatement, IEquatable<DropTypeStatement> {
-        SchemaObjectName name;
-        bool isIfExists = false;
+        protected SchemaObjectName name;
+        protected bool isIfExists = false;
     
         public SchemaObjectName Name => name;
         public bool IsIfExists => isIfExists;

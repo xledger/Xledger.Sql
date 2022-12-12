@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SecurityTargetObjectName : TSqlFragment, IEquatable<SecurityTargetObjectName> {
-        MultiPartIdentifier multiPartIdentifier;
+        protected MultiPartIdentifier multiPartIdentifier;
     
         public MultiPartIdentifier MultiPartIdentifier => multiPartIdentifier;
     

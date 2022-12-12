@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CommandSecurityElement80 : SecurityElement80, IEquatable<CommandSecurityElement80> {
-        bool all = false;
-        ScriptDom.CommandOptions commandOptions = ScriptDom.CommandOptions.None;
+        protected bool all = false;
+        protected ScriptDom.CommandOptions commandOptions = ScriptDom.CommandOptions.None;
     
         public bool All => all;
         public ScriptDom.CommandOptions CommandOptions => commandOptions;

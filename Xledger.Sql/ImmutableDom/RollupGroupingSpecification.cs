@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RollupGroupingSpecification : GroupingSpecification, IEquatable<RollupGroupingSpecification> {
-        IReadOnlyList<GroupingSpecification> arguments;
+        protected IReadOnlyList<GroupingSpecification> arguments;
     
         public IReadOnlyList<GroupingSpecification> Arguments => arguments;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RollupGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.RollupGroupingSpecification();
-            ret.Arguments.AddRange(arguments.Select(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
+            ret.Arguments.AddRange(arguments.SelectList(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
             return ret;
         }
         

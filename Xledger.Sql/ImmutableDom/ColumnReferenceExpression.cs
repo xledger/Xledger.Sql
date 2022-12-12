@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnReferenceExpression : PrimaryExpression, IEquatable<ColumnReferenceExpression> {
-        ScriptDom.ColumnType columnType = ScriptDom.ColumnType.Regular;
-        MultiPartIdentifier multiPartIdentifier;
+        protected ScriptDom.ColumnType columnType = ScriptDom.ColumnType.Regular;
+        protected MultiPartIdentifier multiPartIdentifier;
     
         public ScriptDom.ColumnType ColumnType => columnType;
         public MultiPartIdentifier MultiPartIdentifier => multiPartIdentifier;

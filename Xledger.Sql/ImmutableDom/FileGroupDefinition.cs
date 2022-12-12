@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileGroupDefinition : TSqlFragment, IEquatable<FileGroupDefinition> {
-        Identifier name;
-        IReadOnlyList<FileDeclaration> fileDeclarations;
-        bool isDefault = false;
-        bool containsFileStream = false;
-        bool containsMemoryOptimizedData = false;
+        protected Identifier name;
+        protected IReadOnlyList<FileDeclaration> fileDeclarations;
+        protected bool isDefault = false;
+        protected bool containsFileStream = false;
+        protected bool containsMemoryOptimizedData = false;
     
         public Identifier Name => name;
         public IReadOnlyList<FileDeclaration> FileDeclarations => fileDeclarations;
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FileGroupDefinition ToMutableConcrete() {
             var ret = new ScriptDom.FileGroupDefinition();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.FileDeclarations.AddRange(fileDeclarations.Select(c => (ScriptDom.FileDeclaration)c.ToMutable()));
+            ret.FileDeclarations.AddRange(fileDeclarations.SelectList(c => (ScriptDom.FileDeclaration)c.ToMutable()));
             ret.IsDefault = isDefault;
             ret.ContainsFileStream = containsFileStream;
             ret.ContainsMemoryOptimizedData = containsMemoryOptimizedData;

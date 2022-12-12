@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalTableRejectTypeOption : ExternalTableOption, IEquatable<ExternalTableRejectTypeOption> {
-        ScriptDom.ExternalTableRejectType @value = ScriptDom.ExternalTableRejectType.Value;
+        protected ScriptDom.ExternalTableRejectType @value = ScriptDom.ExternalTableRejectType.Value;
     
         public ScriptDom.ExternalTableRejectType Value => @value;
     

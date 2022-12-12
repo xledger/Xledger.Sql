@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class NullableConstraintDefinition : ConstraintDefinition, IEquatable<NullableConstraintDefinition> {
-        bool nullable = false;
+        protected bool nullable = false;
     
         public bool Nullable => nullable;
     

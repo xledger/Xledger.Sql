@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateSymmetricKeyStatement : SymmetricKeyStatement, IEquatable<CreateSymmetricKeyStatement> {
-        IReadOnlyList<KeyOption> keyOptions;
-        Identifier provider;
-        Identifier owner;
+        protected IReadOnlyList<KeyOption> keyOptions;
+        protected Identifier provider;
+        protected Identifier owner;
     
         public IReadOnlyList<KeyOption> KeyOptions => keyOptions;
         public Identifier Provider => provider;
@@ -26,11 +26,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateSymmetricKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSymmetricKeyStatement();
-            ret.KeyOptions.AddRange(keyOptions.Select(c => (ScriptDom.KeyOption)c.ToMutable()));
+            ret.KeyOptions.AddRange(keyOptions.SelectList(c => (ScriptDom.KeyOption)c.ToMutable()));
             ret.Provider = (ScriptDom.Identifier)provider.ToMutable();
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.Select(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
+            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.SelectList(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
             return ret;
         }
         

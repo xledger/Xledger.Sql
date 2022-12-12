@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CheckConstraintDefinition : ConstraintDefinition, IEquatable<CheckConstraintDefinition> {
-        BooleanExpression checkCondition;
-        bool notForReplication = false;
+        protected BooleanExpression checkCondition;
+        protected bool notForReplication = false;
     
         public BooleanExpression CheckCondition => checkCondition;
         public bool NotForReplication => notForReplication;

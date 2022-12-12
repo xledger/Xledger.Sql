@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RetentionPeriodDefinition : TSqlFragment, IEquatable<RetentionPeriodDefinition> {
-        IntegerLiteral duration;
-        ScriptDom.TemporalRetentionPeriodUnit units = ScriptDom.TemporalRetentionPeriodUnit.Day;
-        bool isInfinity = false;
+        protected IntegerLiteral duration;
+        protected ScriptDom.TemporalRetentionPeriodUnit units = ScriptDom.TemporalRetentionPeriodUnit.Day;
+        protected bool isInfinity = false;
     
         public IntegerLiteral Duration => duration;
         public ScriptDom.TemporalRetentionPeriodUnit Units => units;

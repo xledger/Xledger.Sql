@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterAvailabilityGroupFailoverAction : AlterAvailabilityGroupAction, IEquatable<AlterAvailabilityGroupFailoverAction> {
-        IReadOnlyList<AlterAvailabilityGroupFailoverOption> options;
+        protected IReadOnlyList<AlterAvailabilityGroupFailoverOption> options;
     
         public IReadOnlyList<AlterAvailabilityGroupFailoverOption> Options => options;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterAvailabilityGroupFailoverAction ToMutableConcrete() {
             var ret = new ScriptDom.AlterAvailabilityGroupFailoverAction();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterAvailabilityGroupFailoverOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterAvailabilityGroupFailoverOption)c.ToMutable()));
             ret.ActionType = actionType;
             return ret;
         }

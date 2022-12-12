@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AssignmentSetClause : SetClause, IEquatable<AssignmentSetClause> {
-        VariableReference variable;
-        ColumnReferenceExpression column;
-        ScalarExpression newValue;
-        ScriptDom.AssignmentKind assignmentKind = ScriptDom.AssignmentKind.Equals;
+        protected VariableReference variable;
+        protected ColumnReferenceExpression column;
+        protected ScalarExpression newValue;
+        protected ScriptDom.AssignmentKind assignmentKind = ScriptDom.AssignmentKind.Equals;
     
         public VariableReference Variable => variable;
         public ColumnReferenceExpression Column => column;

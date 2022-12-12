@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LiteralAuditTargetOption : AuditTargetOption, IEquatable<LiteralAuditTargetOption> {
-        Literal @value;
+        protected Literal @value;
     
         public Literal Value => @value;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileDeclarationOption : TSqlFragment, IEquatable<FileDeclarationOption> {
-        ScriptDom.FileDeclarationOptionKind optionKind = ScriptDom.FileDeclarationOptionKind.Name;
+        protected ScriptDom.FileDeclarationOptionKind optionKind = ScriptDom.FileDeclarationOptionKind.Name;
     
         public ScriptDom.FileDeclarationOptionKind OptionKind => optionKind;
     

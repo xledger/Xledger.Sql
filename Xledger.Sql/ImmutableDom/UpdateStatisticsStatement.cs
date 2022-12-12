@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UpdateStatisticsStatement : TSqlStatement, IEquatable<UpdateStatisticsStatement> {
-        SchemaObjectName schemaObjectName;
-        IReadOnlyList<Identifier> subElements;
-        IReadOnlyList<StatisticsOption> statisticsOptions;
+        protected SchemaObjectName schemaObjectName;
+        protected IReadOnlyList<Identifier> subElements;
+        protected IReadOnlyList<StatisticsOption> statisticsOptions;
     
         public SchemaObjectName SchemaObjectName => schemaObjectName;
         public IReadOnlyList<Identifier> SubElements => subElements;
@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.UpdateStatisticsStatement ToMutableConcrete() {
             var ret = new ScriptDom.UpdateStatisticsStatement();
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
-            ret.SubElements.AddRange(subElements.Select(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.StatisticsOptions.AddRange(statisticsOptions.Select(c => (ScriptDom.StatisticsOption)c.ToMutable()));
+            ret.SubElements.AddRange(subElements.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.StatisticsOptions.AddRange(statisticsOptions.SelectList(c => (ScriptDom.StatisticsOption)c.ToMutable()));
             return ret;
         }
         

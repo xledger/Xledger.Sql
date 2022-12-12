@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateCredentialStatement : CredentialStatement, IEquatable<CreateCredentialStatement> {
-        Identifier cryptographicProviderName;
+        protected Identifier cryptographicProviderName;
     
         public Identifier CryptographicProviderName => cryptographicProviderName;
     

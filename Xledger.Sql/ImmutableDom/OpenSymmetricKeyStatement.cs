@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OpenSymmetricKeyStatement : TSqlStatement, IEquatable<OpenSymmetricKeyStatement> {
-        Identifier name;
-        CryptoMechanism decryptionMechanism;
+        protected Identifier name;
+        protected CryptoMechanism decryptionMechanism;
     
         public Identifier Name => name;
         public CryptoMechanism DecryptionMechanism => decryptionMechanism;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GlobalVariableExpression : ValueExpression, IEquatable<GlobalVariableExpression> {
-        string name;
+        protected string name;
     
         public string Name => name;
     

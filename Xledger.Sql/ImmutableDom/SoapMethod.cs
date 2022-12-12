@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SoapMethod : PayloadOption, IEquatable<SoapMethod> {
-        Literal alias;
-        Literal @namespace;
-        ScriptDom.SoapMethodAction action = ScriptDom.SoapMethodAction.None;
-        Literal name;
-        ScriptDom.SoapMethodFormat format = ScriptDom.SoapMethodFormat.NotSpecified;
-        ScriptDom.SoapMethodSchemas schema = ScriptDom.SoapMethodSchemas.NotSpecified;
+        protected Literal alias;
+        protected Literal @namespace;
+        protected ScriptDom.SoapMethodAction action = ScriptDom.SoapMethodAction.None;
+        protected Literal name;
+        protected ScriptDom.SoapMethodFormat format = ScriptDom.SoapMethodFormat.NotSpecified;
+        protected ScriptDom.SoapMethodSchemas schema = ScriptDom.SoapMethodSchemas.NotSpecified;
     
         public Literal Alias => alias;
         public Literal Namespace => @namespace;

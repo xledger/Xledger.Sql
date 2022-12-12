@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BinaryLiteral : Literal, IEquatable<BinaryLiteral> {
-        bool isLargeObject = false;
+        protected bool isLargeObject = false;
     
         public bool IsLargeObject => isLargeObject;
     

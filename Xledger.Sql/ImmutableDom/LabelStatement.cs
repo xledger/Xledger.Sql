@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LabelStatement : TSqlStatement, IEquatable<LabelStatement> {
-        string @value;
+        protected string @value;
     
         public string Value => @value;
     

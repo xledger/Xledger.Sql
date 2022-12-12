@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TriggerObject : TSqlFragment, IEquatable<TriggerObject> {
-        SchemaObjectName name;
-        ScriptDom.TriggerScope triggerScope = ScriptDom.TriggerScope.Normal;
+        protected SchemaObjectName name;
+        protected ScriptDom.TriggerScope triggerScope = ScriptDom.TriggerScope.Normal;
     
         public SchemaObjectName Name => name;
         public ScriptDom.TriggerScope TriggerScope => triggerScope;

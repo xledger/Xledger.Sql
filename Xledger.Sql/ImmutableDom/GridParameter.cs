@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GridParameter : TSqlFragment, IEquatable<GridParameter> {
-        ScriptDom.GridParameterType parameter = ScriptDom.GridParameterType.None;
-        ScriptDom.ImportanceParameterType @value = ScriptDom.ImportanceParameterType.Unknown;
+        protected ScriptDom.GridParameterType parameter = ScriptDom.GridParameterType.None;
+        protected ScriptDom.ImportanceParameterType @value = ScriptDom.ImportanceParameterType.Unknown;
     
         public ScriptDom.GridParameterType Parameter => parameter;
         public ScriptDom.ImportanceParameterType Value => @value;

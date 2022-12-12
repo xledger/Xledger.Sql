@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterQueueStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterQueueStatement();
             ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.QueueOptions.AddRange(queueOptions.Select(c => (ScriptDom.QueueOption)c.ToMutable()));
+            ret.QueueOptions.AddRange(queueOptions.SelectList(c => (ScriptDom.QueueOption)c.ToMutable()));
             return ret;
         }
         

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SequenceOption : TSqlFragment, IEquatable<SequenceOption> {
-        ScriptDom.SequenceOptionKind optionKind = ScriptDom.SequenceOptionKind.As;
-        bool noValue = false;
+        protected ScriptDom.SequenceOptionKind optionKind = ScriptDom.SequenceOptionKind.As;
+        protected bool noValue = false;
     
         public ScriptDom.SequenceOptionKind OptionKind => optionKind;
         public bool NoValue => noValue;

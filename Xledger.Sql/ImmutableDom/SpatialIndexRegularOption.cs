@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SpatialIndexRegularOption : SpatialIndexOption, IEquatable<SpatialIndexRegularOption> {
-        IndexOption option;
+        protected IndexOption option;
     
         public IndexOption Option => option;
     

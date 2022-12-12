@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OpenRowsetCosmos : TableReferenceWithAliasAndColumns, IEquatable<OpenRowsetCosmos> {
-        IReadOnlyList<OpenRowsetCosmosOption> options;
-        IReadOnlyList<OpenRowsetColumnDefinition> withColumns;
+        protected IReadOnlyList<OpenRowsetCosmosOption> options;
+        protected IReadOnlyList<OpenRowsetColumnDefinition> withColumns;
     
         public IReadOnlyList<OpenRowsetCosmosOption> Options => options;
         public IReadOnlyList<OpenRowsetColumnDefinition> WithColumns => withColumns;
@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OpenRowsetCosmos ToMutableConcrete() {
             var ret = new ScriptDom.OpenRowsetCosmos();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.OpenRowsetCosmosOption)c.ToMutable()));
-            ret.WithColumns.AddRange(withColumns.Select(c => (ScriptDom.OpenRowsetColumnDefinition)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.OpenRowsetCosmosOption)c.ToMutable()));
+            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

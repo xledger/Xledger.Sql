@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MemoryPartitionSessionOption : SessionOption, IEquatable<MemoryPartitionSessionOption> {
-        ScriptDom.EventSessionMemoryPartitionModeType @value = ScriptDom.EventSessionMemoryPartitionModeType.Unknown;
+        protected ScriptDom.EventSessionMemoryPartitionModeType @value = ScriptDom.EventSessionMemoryPartitionModeType.Unknown;
     
         public ScriptDom.EventSessionMemoryPartitionModeType Value => @value;
     

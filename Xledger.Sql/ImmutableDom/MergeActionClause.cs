@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MergeActionClause : TSqlFragment, IEquatable<MergeActionClause> {
-        ScriptDom.MergeCondition condition = ScriptDom.MergeCondition.NotSpecified;
-        BooleanExpression searchCondition;
-        MergeAction action;
+        protected ScriptDom.MergeCondition condition = ScriptDom.MergeCondition.NotSpecified;
+        protected BooleanExpression searchCondition;
+        protected MergeAction action;
     
         public ScriptDom.MergeCondition Condition => condition;
         public BooleanExpression SearchCondition => searchCondition;

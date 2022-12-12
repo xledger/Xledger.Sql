@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableDataCompressionOption : TableOption, IEquatable<TableDataCompressionOption> {
-        DataCompressionOption dataCompressionOption;
+        protected DataCompressionOption dataCompressionOption;
     
         public DataCompressionOption DataCompressionOption => dataCompressionOption;
     

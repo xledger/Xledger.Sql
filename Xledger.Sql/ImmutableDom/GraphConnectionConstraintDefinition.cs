@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GraphConnectionConstraintDefinition : ConstraintDefinition, IEquatable<GraphConnectionConstraintDefinition> {
-        IReadOnlyList<GraphConnectionBetweenNodes> fromNodeToNodeList;
-        ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified;
+        protected IReadOnlyList<GraphConnectionBetweenNodes> fromNodeToNodeList;
+        protected ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified;
     
         public IReadOnlyList<GraphConnectionBetweenNodes> FromNodeToNodeList => fromNodeToNodeList;
         public ScriptDom.DeleteUpdateAction DeleteAction => deleteAction;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GraphConnectionConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.GraphConnectionConstraintDefinition();
-            ret.FromNodeToNodeList.AddRange(fromNodeToNodeList.Select(c => (ScriptDom.GraphConnectionBetweenNodes)c.ToMutable()));
+            ret.FromNodeToNodeList.AddRange(fromNodeToNodeList.SelectList(c => (ScriptDom.GraphConnectionBetweenNodes)c.ToMutable()));
             ret.DeleteAction = deleteAction;
             ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier.ToMutable();
             return ret;

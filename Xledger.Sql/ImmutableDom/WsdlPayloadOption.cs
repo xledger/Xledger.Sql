@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WsdlPayloadOption : PayloadOption, IEquatable<WsdlPayloadOption> {
-        bool isNone = false;
-        Literal @value;
+        protected bool isNone = false;
+        protected Literal @value;
     
         public bool IsNone => isNone;
         public Literal Value => @value;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BooleanIsNullExpression : BooleanExpression, IEquatable<BooleanIsNullExpression> {
-        bool isNot = false;
-        ScalarExpression expression;
+        protected bool isNot = false;
+        protected ScalarExpression expression;
     
         public bool IsNot => isNot;
         public ScalarExpression Expression => expression;

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BinaryQueryExpression : QueryExpression, IEquatable<BinaryQueryExpression> {
-        ScriptDom.BinaryQueryExpressionType binaryQueryExpressionType = ScriptDom.BinaryQueryExpressionType.Union;
-        bool all = false;
-        QueryExpression firstQueryExpression;
-        QueryExpression secondQueryExpression;
+        protected ScriptDom.BinaryQueryExpressionType binaryQueryExpressionType = ScriptDom.BinaryQueryExpressionType.Union;
+        protected bool all = false;
+        protected QueryExpression firstQueryExpression;
+        protected QueryExpression secondQueryExpression;
     
         public ScriptDom.BinaryQueryExpressionType BinaryQueryExpressionType => binaryQueryExpressionType;
         public bool All => all;

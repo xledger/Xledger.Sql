@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DbccNamedLiteral : TSqlFragment, IEquatable<DbccNamedLiteral> {
-        string name;
-        ScalarExpression @value;
+        protected string name;
+        protected ScalarExpression @value;
     
         public string Name => name;
         public ScalarExpression Value => @value;

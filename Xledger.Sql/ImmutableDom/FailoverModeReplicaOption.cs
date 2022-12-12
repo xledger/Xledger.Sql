@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FailoverModeReplicaOption : AvailabilityReplicaOption, IEquatable<FailoverModeReplicaOption> {
-        ScriptDom.FailoverModeOptionKind @value = ScriptDom.FailoverModeOptionKind.Automatic;
+        protected ScriptDom.FailoverModeOptionKind @value = ScriptDom.FailoverModeOptionKind.Automatic;
     
         public ScriptDom.FailoverModeOptionKind Value => @value;
     

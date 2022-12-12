@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ScalarFunctionReturnType : FunctionReturnType, IEquatable<ScalarFunctionReturnType> {
-        DataTypeReference dataType;
+        protected DataTypeReference dataType;
     
         public DataTypeReference DataType => dataType;
     

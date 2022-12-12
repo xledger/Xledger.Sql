@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseAddFileGroupStatement : AlterDatabaseStatement, IEquatable<AlterDatabaseAddFileGroupStatement> {
-        Identifier fileGroup;
-        bool containsFileStream = false;
-        bool containsMemoryOptimizedData = false;
+        protected Identifier fileGroup;
+        protected bool containsFileStream = false;
+        protected bool containsMemoryOptimizedData = false;
     
         public Identifier FileGroup => fileGroup;
         public bool ContainsFileStream => containsFileStream;

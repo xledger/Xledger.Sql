@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FullTextStopListAction : TSqlFragment, IEquatable<FullTextStopListAction> {
-        bool isAdd = false;
-        bool isAll = false;
-        Literal stopWord;
-        IdentifierOrValueExpression languageTerm;
+        protected bool isAdd = false;
+        protected bool isAll = false;
+        protected Literal stopWord;
+        protected IdentifierOrValueExpression languageTerm;
     
         public bool IsAdd => isAdd;
         public bool IsAll => isAll;

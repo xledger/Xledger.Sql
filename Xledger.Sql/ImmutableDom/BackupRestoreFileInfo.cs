@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BackupRestoreFileInfo : TSqlFragment, IEquatable<BackupRestoreFileInfo> {
-        IReadOnlyList<ValueExpression> items;
-        ScriptDom.BackupRestoreItemKind itemKind = ScriptDom.BackupRestoreItemKind.None;
+        protected IReadOnlyList<ValueExpression> items;
+        protected ScriptDom.BackupRestoreItemKind itemKind = ScriptDom.BackupRestoreItemKind.None;
     
         public IReadOnlyList<ValueExpression> Items => items;
         public ScriptDom.BackupRestoreItemKind ItemKind => itemKind;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BackupRestoreFileInfo ToMutableConcrete() {
             var ret = new ScriptDom.BackupRestoreFileInfo();
-            ret.Items.AddRange(items.Select(c => (ScriptDom.ValueExpression)c.ToMutable()));
+            ret.Items.AddRange(items.SelectList(c => (ScriptDom.ValueExpression)c.ToMutable()));
             ret.ItemKind = itemKind;
             return ret;
         }

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationSetExternalAuthenticationStatement : TSqlStatement, IEquatable<AlterServerConfigurationSetExternalAuthenticationStatement> {
-        IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> options;
+        protected IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> options;
     
         public IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> Options => options;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)c.ToMutable()));
             return ret;
         }
         

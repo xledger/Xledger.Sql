@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropIndexClause : DropIndexClauseBase, IEquatable<DropIndexClause> {
-        Identifier index;
-        SchemaObjectName @object;
-        IReadOnlyList<IndexOption> options;
+        protected Identifier index;
+        protected SchemaObjectName @object;
+        protected IReadOnlyList<IndexOption> options;
     
         public Identifier Index => index;
         public SchemaObjectName Object => @object;
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.DropIndexClause();
             ret.Index = (ScriptDom.Identifier)index.ToMutable();
             ret.Object = (ScriptDom.SchemaObjectName)@object.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             return ret;
         }
         

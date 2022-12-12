@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateMessageTypeStatement : MessageTypeStatementBase, IEquatable<CreateMessageTypeStatement> {
-        Identifier owner;
+        protected Identifier owner;
     
         public Identifier Owner => owner;
     

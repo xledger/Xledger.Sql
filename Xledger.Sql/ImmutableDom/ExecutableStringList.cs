@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecutableStringList : ExecutableEntity, IEquatable<ExecutableStringList> {
-        IReadOnlyList<ValueExpression> strings;
+        protected IReadOnlyList<ValueExpression> strings;
     
         public IReadOnlyList<ValueExpression> Strings => strings;
     
@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExecutableStringList ToMutableConcrete() {
             var ret = new ScriptDom.ExecutableStringList();
-            ret.Strings.AddRange(strings.Select(c => (ScriptDom.ValueExpression)c.ToMutable()));
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ExecuteParameter)c.ToMutable()));
+            ret.Strings.AddRange(strings.SelectList(c => (ScriptDom.ValueExpression)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ExecuteParameter)c.ToMutable()));
             return ret;
         }
         

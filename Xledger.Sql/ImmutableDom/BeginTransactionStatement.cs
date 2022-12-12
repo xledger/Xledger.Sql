@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BeginTransactionStatement : TransactionStatement, IEquatable<BeginTransactionStatement> {
-        bool distributed = false;
-        bool markDefined = false;
-        ValueExpression markDescription;
+        protected bool distributed = false;
+        protected bool markDefined = false;
+        protected ValueExpression markDescription;
     
         public bool Distributed => distributed;
         public bool MarkDefined => markDefined;

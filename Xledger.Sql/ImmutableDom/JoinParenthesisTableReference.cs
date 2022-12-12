@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class JoinParenthesisTableReference : TableReference, IEquatable<JoinParenthesisTableReference> {
-        TableReference join;
+        protected TableReference join;
     
         public TableReference Join => join;
     

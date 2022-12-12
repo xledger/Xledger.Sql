@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SelectScalarExpression : SelectElement, IEquatable<SelectScalarExpression> {
-        ScalarExpression expression;
-        IdentifierOrValueExpression columnName;
+        protected ScalarExpression expression;
+        protected IdentifierOrValueExpression columnName;
     
         public ScalarExpression Expression => expression;
         public IdentifierOrValueExpression ColumnName => columnName;

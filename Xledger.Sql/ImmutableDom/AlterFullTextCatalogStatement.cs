@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterFullTextCatalogStatement : FullTextCatalogStatement, IEquatable<AlterFullTextCatalogStatement> {
-        ScriptDom.AlterFullTextCatalogAction action = ScriptDom.AlterFullTextCatalogAction.None;
+        protected ScriptDom.AlterFullTextCatalogAction action = ScriptDom.AlterFullTextCatalogAction.None;
     
         public ScriptDom.AlterFullTextCatalogAction Action => action;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterFullTextCatalogStatement();
             ret.Action = action;
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.FullTextCatalogOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextCatalogOption)c.ToMutable()));
             return ret;
         }
         

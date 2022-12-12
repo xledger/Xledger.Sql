@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseScopedConfigurationSetStatement : AlterDatabaseScopedConfigurationStatement, IEquatable<AlterDatabaseScopedConfigurationSetStatement> {
-        DatabaseConfigurationSetOption option;
+        protected DatabaseConfigurationSetOption option;
     
         public DatabaseConfigurationSetOption Option => option;
     

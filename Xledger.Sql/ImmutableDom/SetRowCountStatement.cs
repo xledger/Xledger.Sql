@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetRowCountStatement : TSqlStatement, IEquatable<SetRowCountStatement> {
-        ValueExpression numberRows;
+        protected ValueExpression numberRows;
     
         public ValueExpression NumberRows => numberRows;
     

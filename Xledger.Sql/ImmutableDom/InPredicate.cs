@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InPredicate : BooleanExpression, IEquatable<InPredicate> {
-        ScalarExpression expression;
-        ScalarSubquery subquery;
-        bool notDefined = false;
-        IReadOnlyList<ScalarExpression> values;
+        protected ScalarExpression expression;
+        protected ScalarSubquery subquery;
+        protected bool notDefined = false;
+        protected IReadOnlyList<ScalarExpression> values;
     
         public ScalarExpression Expression => expression;
         public ScalarSubquery Subquery => subquery;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
             ret.Subquery = (ScriptDom.ScalarSubquery)subquery.ToMutable();
             ret.NotDefined = notDefined;
-            ret.Values.AddRange(values.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Values.AddRange(values.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             return ret;
         }
         

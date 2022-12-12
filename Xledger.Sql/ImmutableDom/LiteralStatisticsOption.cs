@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LiteralStatisticsOption : StatisticsOption, IEquatable<LiteralStatisticsOption> {
-        Literal literal;
+        protected Literal literal;
     
         public Literal Literal => literal;
     

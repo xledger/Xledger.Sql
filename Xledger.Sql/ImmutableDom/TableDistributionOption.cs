@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableDistributionOption : TableOption, IEquatable<TableDistributionOption> {
-        TableDistributionPolicy @value;
+        protected TableDistributionPolicy @value;
     
         public TableDistributionPolicy Value => @value;
     

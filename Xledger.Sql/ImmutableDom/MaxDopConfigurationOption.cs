@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MaxDopConfigurationOption : DatabaseConfigurationSetOption, IEquatable<MaxDopConfigurationOption> {
-        Literal @value;
-        bool primary = false;
+        protected Literal @value;
+        protected bool primary = false;
     
         public Literal Value => @value;
         public bool Primary => primary;

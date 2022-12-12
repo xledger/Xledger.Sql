@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalResourcePoolParameter : TSqlFragment, IEquatable<ExternalResourcePoolParameter> {
-        ScriptDom.ExternalResourcePoolParameterType parameterType = ScriptDom.ExternalResourcePoolParameterType.Unknown;
-        Literal parameterValue;
-        ExternalResourcePoolAffinitySpecification affinitySpecification;
+        protected ScriptDom.ExternalResourcePoolParameterType parameterType = ScriptDom.ExternalResourcePoolParameterType.Unknown;
+        protected Literal parameterValue;
+        protected ExternalResourcePoolAffinitySpecification affinitySpecification;
     
         public ScriptDom.ExternalResourcePoolParameterType ParameterType => parameterType;
         public Literal ParameterValue => parameterValue;

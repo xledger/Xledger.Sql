@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WlmTimeLiteral : TSqlFragment, IEquatable<WlmTimeLiteral> {
-        StringLiteral timeString;
+        protected StringLiteral timeString;
     
         public StringLiteral TimeString => timeString;
     

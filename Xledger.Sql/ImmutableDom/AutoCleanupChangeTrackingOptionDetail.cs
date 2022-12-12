@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AutoCleanupChangeTrackingOptionDetail : ChangeTrackingOptionDetail, IEquatable<AutoCleanupChangeTrackingOptionDetail> {
-        bool isOn = false;
+        protected bool isOn = false;
     
         public bool IsOn => isOn;
     

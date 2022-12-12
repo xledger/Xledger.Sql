@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WitnessDatabaseOption : DatabaseOption, IEquatable<WitnessDatabaseOption> {
-        Literal witnessServer;
-        bool isOff = false;
+        protected Literal witnessServer;
+        protected bool isOff = false;
     
         public Literal WitnessServer => witnessServer;
         public bool IsOff => isOff;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ProcedureParameter : DeclareVariableElement, IEquatable<ProcedureParameter> {
-        bool isVarying = false;
-        ScriptDom.ParameterModifier modifier = ScriptDom.ParameterModifier.None;
+        protected bool isVarying = false;
+        protected ScriptDom.ParameterModifier modifier = ScriptDom.ParameterModifier.None;
     
         public bool IsVarying => isVarying;
         public ScriptDom.ParameterModifier Modifier => modifier;

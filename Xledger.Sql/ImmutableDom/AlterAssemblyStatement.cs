@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterAssemblyStatement : AssemblyStatement, IEquatable<AlterAssemblyStatement> {
-        IReadOnlyList<Literal> dropFiles;
-        bool isDropAll = false;
-        IReadOnlyList<AddFileSpec> addFiles;
+        protected IReadOnlyList<Literal> dropFiles;
+        protected bool isDropAll = false;
+        protected IReadOnlyList<AddFileSpec> addFiles;
     
         public IReadOnlyList<Literal> DropFiles => dropFiles;
         public bool IsDropAll => isDropAll;
@@ -27,12 +27,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterAssemblyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterAssemblyStatement();
-            ret.DropFiles.AddRange(dropFiles.Select(c => (ScriptDom.Literal)c.ToMutable()));
+            ret.DropFiles.AddRange(dropFiles.SelectList(c => (ScriptDom.Literal)c.ToMutable()));
             ret.IsDropAll = isDropAll;
-            ret.AddFiles.AddRange(addFiles.Select(c => (ScriptDom.AddFileSpec)c.ToMutable()));
+            ret.AddFiles.AddRange(addFiles.SelectList(c => (ScriptDom.AddFileSpec)c.ToMutable()));
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AssemblyOption)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AssemblyOption)c.ToMutable()));
             return ret;
         }
         

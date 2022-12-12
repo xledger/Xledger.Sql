@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AuthenticationPayloadOption : PayloadOption, IEquatable<AuthenticationPayloadOption> {
-        ScriptDom.AuthenticationProtocol protocol = ScriptDom.AuthenticationProtocol.NotSpecified;
-        Identifier certificate;
-        bool tryCertificateFirst = false;
+        protected ScriptDom.AuthenticationProtocol protocol = ScriptDom.AuthenticationProtocol.NotSpecified;
+        protected Identifier certificate;
+        protected bool tryCertificateFirst = false;
     
         public ScriptDom.AuthenticationProtocol Protocol => protocol;
         public Identifier Certificate => certificate;

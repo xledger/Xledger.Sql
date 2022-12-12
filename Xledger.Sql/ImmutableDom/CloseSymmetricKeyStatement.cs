@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CloseSymmetricKeyStatement : TSqlStatement, IEquatable<CloseSymmetricKeyStatement> {
-        Identifier name;
-        bool all = false;
+        protected Identifier name;
+        protected bool all = false;
     
         public Identifier Name => name;
         public bool All => all;

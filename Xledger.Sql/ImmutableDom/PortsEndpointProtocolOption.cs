@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PortsEndpointProtocolOption : EndpointProtocolOption, IEquatable<PortsEndpointProtocolOption> {
-        ScriptDom.PortTypes portTypes = ScriptDom.PortTypes.None;
+        protected ScriptDom.PortTypes portTypes = ScriptDom.PortTypes.None;
     
         public ScriptDom.PortTypes PortTypes => portTypes;
     

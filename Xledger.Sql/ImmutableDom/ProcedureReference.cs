@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ProcedureReference : TSqlFragment, IEquatable<ProcedureReference> {
-        SchemaObjectName name;
-        Literal number;
+        protected SchemaObjectName name;
+        protected Literal number;
     
         public SchemaObjectName Name => name;
         public Literal Number => number;

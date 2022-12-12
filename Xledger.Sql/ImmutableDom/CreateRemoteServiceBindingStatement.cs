@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateRemoteServiceBindingStatement : RemoteServiceBindingStatementBase, IEquatable<CreateRemoteServiceBindingStatement> {
-        Literal service;
-        Identifier owner;
+        protected Literal service;
+        protected Identifier owner;
     
         public Literal Service => service;
         public Identifier Owner => owner;
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Service = (ScriptDom.Literal)service.ToMutable();
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.RemoteServiceBindingOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RemoteServiceBindingOption)c.ToMutable()));
             return ret;
         }
         

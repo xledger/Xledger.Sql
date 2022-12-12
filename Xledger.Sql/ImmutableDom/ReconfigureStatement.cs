@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ReconfigureStatement : TSqlStatement, IEquatable<ReconfigureStatement> {
-        bool withOverride = false;
+        protected bool withOverride = false;
     
         public bool WithOverride => withOverride;
     

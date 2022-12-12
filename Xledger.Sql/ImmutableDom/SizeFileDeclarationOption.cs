@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SizeFileDeclarationOption : FileDeclarationOption, IEquatable<SizeFileDeclarationOption> {
-        Literal size;
-        ScriptDom.MemoryUnit units = ScriptDom.MemoryUnit.Unspecified;
+        protected Literal size;
+        protected ScriptDom.MemoryUnit units = ScriptDom.MemoryUnit.Unspecified;
     
         public Literal Size => size;
         public ScriptDom.MemoryUnit Units => units;

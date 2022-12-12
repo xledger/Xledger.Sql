@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UseHintList : OptimizerHint, IEquatable<UseHintList> {
-        IReadOnlyList<StringLiteral> hints;
+        protected IReadOnlyList<StringLiteral> hints;
     
         public IReadOnlyList<StringLiteral> Hints => hints;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UseHintList ToMutableConcrete() {
             var ret = new ScriptDom.UseHintList();
-            ret.Hints.AddRange(hints.Select(c => (ScriptDom.StringLiteral)c.ToMutable()));
+            ret.Hints.AddRange(hints.SelectList(c => (ScriptDom.StringLiteral)c.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }

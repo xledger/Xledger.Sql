@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SelectInsertSource : InsertSource, IEquatable<SelectInsertSource> {
-        QueryExpression select;
+        protected QueryExpression select;
     
         public QueryExpression Select => select;
     

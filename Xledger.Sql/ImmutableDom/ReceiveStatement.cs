@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ReceiveStatement : WaitForSupportedStatement, IEquatable<ReceiveStatement> {
-        ScalarExpression top;
-        IReadOnlyList<SelectElement> selectElements;
-        SchemaObjectName queue;
-        VariableTableReference into;
-        ValueExpression where;
-        bool isConversationGroupIdWhere = false;
+        protected ScalarExpression top;
+        protected IReadOnlyList<SelectElement> selectElements;
+        protected SchemaObjectName queue;
+        protected VariableTableReference into;
+        protected ValueExpression where;
+        protected bool isConversationGroupIdWhere = false;
     
         public ScalarExpression Top => top;
         public IReadOnlyList<SelectElement> SelectElements => selectElements;
@@ -34,7 +34,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ReceiveStatement ToMutableConcrete() {
             var ret = new ScriptDom.ReceiveStatement();
             ret.Top = (ScriptDom.ScalarExpression)top.ToMutable();
-            ret.SelectElements.AddRange(selectElements.Select(c => (ScriptDom.SelectElement)c.ToMutable()));
+            ret.SelectElements.AddRange(selectElements.SelectList(c => (ScriptDom.SelectElement)c.ToMutable()));
             ret.Queue = (ScriptDom.SchemaObjectName)queue.ToMutable();
             ret.Into = (ScriptDom.VariableTableReference)into.ToMutable();
             ret.Where = (ScriptDom.ValueExpression)where.ToMutable();

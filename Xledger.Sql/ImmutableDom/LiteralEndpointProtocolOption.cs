@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LiteralEndpointProtocolOption : EndpointProtocolOption, IEquatable<LiteralEndpointProtocolOption> {
-        Literal @value;
+        protected Literal @value;
     
         public Literal Value => @value;
     

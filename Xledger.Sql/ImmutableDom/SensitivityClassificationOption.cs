@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SensitivityClassificationOption : TSqlFragment, IEquatable<SensitivityClassificationOption> {
-        ScriptDom.SensitivityClassification.OptionType type = ScriptDom.SensitivityClassification.OptionType.Label;
-        Literal @value;
+        protected ScriptDom.SensitivityClassification.OptionType type = ScriptDom.SensitivityClassification.OptionType.Label;
+        protected Literal @value;
     
         public ScriptDom.SensitivityClassification.OptionType Type => type;
         public Literal Value => @value;

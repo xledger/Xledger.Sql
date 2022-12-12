@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PivotedTableReference : TableReferenceWithAlias, IEquatable<PivotedTableReference> {
-        TableReference tableReference;
-        IReadOnlyList<Identifier> inColumns;
-        ColumnReferenceExpression pivotColumn;
-        IReadOnlyList<ColumnReferenceExpression> valueColumns;
-        MultiPartIdentifier aggregateFunctionIdentifier;
+        protected TableReference tableReference;
+        protected IReadOnlyList<Identifier> inColumns;
+        protected ColumnReferenceExpression pivotColumn;
+        protected IReadOnlyList<ColumnReferenceExpression> valueColumns;
+        protected MultiPartIdentifier aggregateFunctionIdentifier;
     
         public TableReference TableReference => tableReference;
         public IReadOnlyList<Identifier> InColumns => inColumns;
@@ -33,9 +33,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.PivotedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.PivotedTableReference();
             ret.TableReference = (ScriptDom.TableReference)tableReference.ToMutable();
-            ret.InColumns.AddRange(inColumns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.InColumns.AddRange(inColumns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.PivotColumn = (ScriptDom.ColumnReferenceExpression)pivotColumn.ToMutable();
-            ret.ValueColumns.AddRange(valueColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.ValueColumns.AddRange(valueColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.AggregateFunctionIdentifier = (ScriptDom.MultiPartIdentifier)aggregateFunctionIdentifier.ToMutable();
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;

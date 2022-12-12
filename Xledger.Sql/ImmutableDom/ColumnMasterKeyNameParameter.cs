@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnMasterKeyNameParameter : ColumnEncryptionKeyValueParameter, IEquatable<ColumnMasterKeyNameParameter> {
-        Identifier name;
+        protected Identifier name;
     
         public Identifier Name => name;
     

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RenameEntityStatement : TSqlStatement, IEquatable<RenameEntityStatement> {
-        ScriptDom.SecurityObjectKind renameEntityType = ScriptDom.SecurityObjectKind.NotSpecified;
-        ScriptDom.SeparatorType? separatorType;
-        SchemaObjectName oldName;
-        Identifier newName;
+        protected ScriptDom.SecurityObjectKind renameEntityType = ScriptDom.SecurityObjectKind.NotSpecified;
+        protected ScriptDom.SeparatorType? separatorType;
+        protected SchemaObjectName oldName;
+        protected Identifier newName;
     
         public ScriptDom.SecurityObjectKind RenameEntityType => renameEntityType;
         public ScriptDom.SeparatorType? SeparatorType => separatorType;

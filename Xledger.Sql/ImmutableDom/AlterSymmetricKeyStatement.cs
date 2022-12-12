@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterSymmetricKeyStatement : SymmetricKeyStatement, IEquatable<AlterSymmetricKeyStatement> {
-        bool isAdd = false;
+        protected bool isAdd = false;
     
         public bool IsAdd => isAdd;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterSymmetricKeyStatement();
             ret.IsAdd = isAdd;
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.Select(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
+            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.SelectList(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
             return ret;
         }
         

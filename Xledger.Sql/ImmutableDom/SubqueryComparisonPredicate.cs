@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SubqueryComparisonPredicate : BooleanExpression, IEquatable<SubqueryComparisonPredicate> {
-        ScalarExpression expression;
-        ScriptDom.BooleanComparisonType comparisonType = ScriptDom.BooleanComparisonType.Equals;
-        ScalarSubquery subquery;
-        ScriptDom.SubqueryComparisonPredicateType subqueryComparisonPredicateType = ScriptDom.SubqueryComparisonPredicateType.None;
+        protected ScalarExpression expression;
+        protected ScriptDom.BooleanComparisonType comparisonType = ScriptDom.BooleanComparisonType.Equals;
+        protected ScalarSubquery subquery;
+        protected ScriptDom.SubqueryComparisonPredicateType subqueryComparisonPredicateType = ScriptDom.SubqueryComparisonPredicateType.None;
     
         public ScalarExpression Expression => expression;
         public ScriptDom.BooleanComparisonType ComparisonType => comparisonType;

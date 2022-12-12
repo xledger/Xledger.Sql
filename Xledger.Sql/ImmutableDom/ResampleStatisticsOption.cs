@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ResampleStatisticsOption : StatisticsOption, IEquatable<ResampleStatisticsOption> {
-        IReadOnlyList<StatisticsPartitionRange> partitions;
+        protected IReadOnlyList<StatisticsPartitionRange> partitions;
     
         public IReadOnlyList<StatisticsPartitionRange> Partitions => partitions;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ResampleStatisticsOption ToMutableConcrete() {
             var ret = new ScriptDom.ResampleStatisticsOption();
-            ret.Partitions.AddRange(partitions.Select(c => (ScriptDom.StatisticsPartitionRange)c.ToMutable()));
+            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.StatisticsPartitionRange)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

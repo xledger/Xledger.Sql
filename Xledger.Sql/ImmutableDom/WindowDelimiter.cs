@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WindowDelimiter : TSqlFragment, IEquatable<WindowDelimiter> {
-        ScriptDom.WindowDelimiterType windowDelimiterType = ScriptDom.WindowDelimiterType.UnboundedPreceding;
-        ScalarExpression offsetValue;
+        protected ScriptDom.WindowDelimiterType windowDelimiterType = ScriptDom.WindowDelimiterType.UnboundedPreceding;
+        protected ScalarExpression offsetValue;
     
         public ScriptDom.WindowDelimiterType WindowDelimiterType => windowDelimiterType;
         public ScalarExpression OffsetValue => offsetValue;

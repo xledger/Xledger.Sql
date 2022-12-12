@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseSetStatement : AlterDatabaseStatement, IEquatable<AlterDatabaseSetStatement> {
-        AlterDatabaseTermination termination;
-        IReadOnlyList<DatabaseOption> options;
+        protected AlterDatabaseTermination termination;
+        protected IReadOnlyList<DatabaseOption> options;
     
         public AlterDatabaseTermination Termination => termination;
         public IReadOnlyList<DatabaseOption> Options => options;
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterDatabaseSetStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseSetStatement();
             ret.Termination = (ScriptDom.AlterDatabaseTermination)termination.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.DatabaseOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DatabaseOption)c.ToMutable()));
             ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
             ret.UseCurrent = useCurrent;
             return ret;

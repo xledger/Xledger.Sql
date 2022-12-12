@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EndpointAffinity : TSqlFragment, IEquatable<EndpointAffinity> {
-        ScriptDom.AffinityKind kind = ScriptDom.AffinityKind.NotSpecified;
-        Literal @value;
+        protected ScriptDom.AffinityKind kind = ScriptDom.AffinityKind.NotSpecified;
+        protected Literal @value;
     
         public ScriptDom.AffinityKind Kind => kind;
         public Literal Value => @value;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TargetDeclaration : TSqlFragment, IEquatable<TargetDeclaration> {
-        EventSessionObjectName objectName;
-        IReadOnlyList<EventDeclarationSetParameter> targetDeclarationParameters;
+        protected EventSessionObjectName objectName;
+        protected IReadOnlyList<EventDeclarationSetParameter> targetDeclarationParameters;
     
         public EventSessionObjectName ObjectName => objectName;
         public IReadOnlyList<EventDeclarationSetParameter> TargetDeclarationParameters => targetDeclarationParameters;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.TargetDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.TargetDeclaration();
             ret.ObjectName = (ScriptDom.EventSessionObjectName)objectName.ToMutable();
-            ret.TargetDeclarationParameters.AddRange(targetDeclarationParameters.Select(c => (ScriptDom.EventDeclarationSetParameter)c.ToMutable()));
+            ret.TargetDeclarationParameters.AddRange(targetDeclarationParameters.SelectList(c => (ScriptDom.EventDeclarationSetParameter)c.ToMutable()));
             return ret;
         }
         

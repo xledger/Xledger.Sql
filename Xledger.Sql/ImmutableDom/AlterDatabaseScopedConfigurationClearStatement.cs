@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseScopedConfigurationClearStatement : AlterDatabaseScopedConfigurationStatement, IEquatable<AlterDatabaseScopedConfigurationClearStatement> {
-        DatabaseConfigurationClearOption option;
+        protected DatabaseConfigurationClearOption option;
     
         public DatabaseConfigurationClearOption Option => option;
     

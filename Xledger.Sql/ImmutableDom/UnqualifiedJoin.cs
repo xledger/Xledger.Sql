@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UnqualifiedJoin : JoinTableReference, IEquatable<UnqualifiedJoin> {
-        ScriptDom.UnqualifiedJoinType unqualifiedJoinType = ScriptDom.UnqualifiedJoinType.CrossJoin;
+        protected ScriptDom.UnqualifiedJoinType unqualifiedJoinType = ScriptDom.UnqualifiedJoinType.CrossJoin;
     
         public ScriptDom.UnqualifiedJoinType UnqualifiedJoinType => unqualifiedJoinType;
     

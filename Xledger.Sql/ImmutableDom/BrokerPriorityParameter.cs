@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BrokerPriorityParameter : TSqlFragment, IEquatable<BrokerPriorityParameter> {
-        ScriptDom.BrokerPriorityParameterSpecialType isDefaultOrAny = ScriptDom.BrokerPriorityParameterSpecialType.None;
-        ScriptDom.BrokerPriorityParameterType parameterType = ScriptDom.BrokerPriorityParameterType.Unknown;
-        IdentifierOrValueExpression parameterValue;
+        protected ScriptDom.BrokerPriorityParameterSpecialType isDefaultOrAny = ScriptDom.BrokerPriorityParameterSpecialType.None;
+        protected ScriptDom.BrokerPriorityParameterType parameterType = ScriptDom.BrokerPriorityParameterType.Unknown;
+        protected IdentifierOrValueExpression parameterValue;
     
         public ScriptDom.BrokerPriorityParameterSpecialType IsDefaultOrAny => isDefaultOrAny;
         public ScriptDom.BrokerPriorityParameterType ParameterType => parameterType;

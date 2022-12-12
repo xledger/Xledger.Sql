@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WindowDefinition : TSqlFragment, IEquatable<WindowDefinition> {
-        Identifier windowName;
-        Identifier refWindowName;
-        IReadOnlyList<ScalarExpression> partitions;
-        OrderByClause orderByClause;
-        WindowFrameClause windowFrameClause;
+        protected Identifier windowName;
+        protected Identifier refWindowName;
+        protected IReadOnlyList<ScalarExpression> partitions;
+        protected OrderByClause orderByClause;
+        protected WindowFrameClause windowFrameClause;
     
         public Identifier WindowName => windowName;
         public Identifier RefWindowName => refWindowName;
@@ -32,7 +32,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.WindowDefinition();
             ret.WindowName = (ScriptDom.Identifier)windowName.ToMutable();
             ret.RefWindowName = (ScriptDom.Identifier)refWindowName.ToMutable();
-            ret.Partitions.AddRange(partitions.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause.ToMutable();
             ret.WindowFrameClause = (ScriptDom.WindowFrameClause)windowFrameClause.ToMutable();
             return ret;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationFailoverClusterPropertyOption : TSqlFragment, IEquatable<AlterServerConfigurationFailoverClusterPropertyOption> {
-        ScriptDom.AlterServerConfigurationFailoverClusterPropertyOptionKind optionKind = ScriptDom.AlterServerConfigurationFailoverClusterPropertyOptionKind.None;
-        OptionValue optionValue;
+        protected ScriptDom.AlterServerConfigurationFailoverClusterPropertyOptionKind optionKind = ScriptDom.AlterServerConfigurationFailoverClusterPropertyOptionKind.None;
+        protected OptionValue optionValue;
     
         public ScriptDom.AlterServerConfigurationFailoverClusterPropertyOptionKind OptionKind => optionKind;
         public OptionValue OptionValue => optionValue;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class HadrAvailabilityGroupDatabaseOption : HadrDatabaseOption, IEquatable<HadrAvailabilityGroupDatabaseOption> {
-        Identifier groupName;
+        protected Identifier groupName;
     
         public Identifier GroupName => groupName;
     

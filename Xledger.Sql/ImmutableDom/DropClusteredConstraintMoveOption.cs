@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropClusteredConstraintMoveOption : DropClusteredConstraintOption, IEquatable<DropClusteredConstraintMoveOption> {
-        FileGroupOrPartitionScheme optionValue;
+        protected FileGroupOrPartitionScheme optionValue;
     
         public FileGroupOrPartitionScheme OptionValue => optionValue;
     

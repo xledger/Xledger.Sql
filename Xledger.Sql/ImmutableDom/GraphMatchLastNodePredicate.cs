@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GraphMatchLastNodePredicate : BooleanExpression, IEquatable<GraphMatchLastNodePredicate> {
-        GraphMatchNodeExpression leftExpression;
-        GraphMatchNodeExpression rightExpression;
+        protected GraphMatchNodeExpression leftExpression;
+        protected GraphMatchNodeExpression rightExpression;
     
         public GraphMatchNodeExpression LeftExpression => leftExpression;
         public GraphMatchNodeExpression RightExpression => rightExpression;

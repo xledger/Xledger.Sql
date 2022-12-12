@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationStatement : TSqlStatement, IEquatable<AlterServerConfigurationStatement> {
-        ScriptDom.ProcessAffinityType processAffinity = ScriptDom.ProcessAffinityType.CpuAuto;
-        IReadOnlyList<ProcessAffinityRange> processAffinityRanges;
+        protected ScriptDom.ProcessAffinityType processAffinity = ScriptDom.ProcessAffinityType.CpuAuto;
+        protected IReadOnlyList<ProcessAffinityRange> processAffinityRanges;
     
         public ScriptDom.ProcessAffinityType ProcessAffinity => processAffinity;
         public IReadOnlyList<ProcessAffinityRange> ProcessAffinityRanges => processAffinityRanges;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterServerConfigurationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationStatement();
             ret.ProcessAffinity = processAffinity;
-            ret.ProcessAffinityRanges.AddRange(processAffinityRanges.Select(c => (ScriptDom.ProcessAffinityRange)c.ToMutable()));
+            ret.ProcessAffinityRanges.AddRange(processAffinityRanges.SelectList(c => (ScriptDom.ProcessAffinityRange)c.ToMutable()));
             return ret;
         }
         

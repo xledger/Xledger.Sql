@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CertificateOption : TSqlFragment, IEquatable<CertificateOption> {
-        ScriptDom.CertificateOptionKinds kind = ScriptDom.CertificateOptionKinds.None;
-        Literal @value;
+        protected ScriptDom.CertificateOptionKinds kind = ScriptDom.CertificateOptionKinds.None;
+        protected Literal @value;
     
         public ScriptDom.CertificateOptionKinds Kind => kind;
         public Literal Value => @value;

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UseFederationStatement : TSqlStatement, IEquatable<UseFederationStatement> {
-        Identifier federationName;
-        Identifier distributionName;
-        ScalarExpression @value;
-        bool filtering = false;
+        protected Identifier federationName;
+        protected Identifier distributionName;
+        protected ScalarExpression @value;
+        protected bool filtering = false;
     
         public Identifier FederationName => federationName;
         public Identifier DistributionName => distributionName;

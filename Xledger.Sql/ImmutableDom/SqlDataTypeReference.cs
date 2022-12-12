@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SqlDataTypeReference : ParameterizedDataTypeReference, IEquatable<SqlDataTypeReference> {
-        ScriptDom.SqlDataTypeOption sqlDataTypeOption = ScriptDom.SqlDataTypeOption.None;
+        protected ScriptDom.SqlDataTypeOption sqlDataTypeOption = ScriptDom.SqlDataTypeOption.None;
     
         public ScriptDom.SqlDataTypeOption SqlDataTypeOption => sqlDataTypeOption;
     
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SqlDataTypeReference ToMutableConcrete() {
             var ret = new ScriptDom.SqlDataTypeReference();
             ret.SqlDataTypeOption = sqlDataTypeOption;
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.Literal)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.Literal)c.ToMutable()));
             ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
             return ret;
         }

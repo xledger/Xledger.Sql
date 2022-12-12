@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ProviderEncryptionSource : EncryptionSource, IEquatable<ProviderEncryptionSource> {
-        Identifier name;
-        IReadOnlyList<KeyOption> keyOptions;
+        protected Identifier name;
+        protected IReadOnlyList<KeyOption> keyOptions;
     
         public Identifier Name => name;
         public IReadOnlyList<KeyOption> KeyOptions => keyOptions;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ProviderEncryptionSource ToMutableConcrete() {
             var ret = new ScriptDom.ProviderEncryptionSource();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.KeyOptions.AddRange(keyOptions.Select(c => (ScriptDom.KeyOption)c.ToMutable()));
+            ret.KeyOptions.AddRange(keyOptions.SelectList(c => (ScriptDom.KeyOption)c.ToMutable()));
             return ret;
         }
         

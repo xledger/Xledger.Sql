@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class StatementList : TSqlFragment, IEquatable<StatementList> {
-        IReadOnlyList<TSqlStatement> statements;
+        protected IReadOnlyList<TSqlStatement> statements;
     
         public IReadOnlyList<TSqlStatement> Statements => statements;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.StatementList ToMutableConcrete() {
             var ret = new ScriptDom.StatementList();
-            ret.Statements.AddRange(statements.Select(c => (ScriptDom.TSqlStatement)c.ToMutable()));
+            ret.Statements.AddRange(statements.SelectList(c => (ScriptDom.TSqlStatement)c.ToMutable()));
             return ret;
         }
         

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IdentifierOrValueExpression : TSqlFragment, IEquatable<IdentifierOrValueExpression> {
-        Identifier identifier;
-        ValueExpression valueExpression;
+        protected Identifier identifier;
+        protected ValueExpression valueExpression;
     
         public Identifier Identifier => identifier;
         public ValueExpression ValueExpression => valueExpression;

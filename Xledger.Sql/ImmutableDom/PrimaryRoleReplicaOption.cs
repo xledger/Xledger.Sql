@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PrimaryRoleReplicaOption : AvailabilityReplicaOption, IEquatable<PrimaryRoleReplicaOption> {
-        ScriptDom.AllowConnectionsOptionKind allowConnections = ScriptDom.AllowConnectionsOptionKind.No;
+        protected ScriptDom.AllowConnectionsOptionKind allowConnections = ScriptDom.AllowConnectionsOptionKind.No;
     
         public ScriptDom.AllowConnectionsOptionKind AllowConnections => allowConnections;
     

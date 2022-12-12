@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CopyStatement : TSqlStatement, IEquatable<CopyStatement> {
-        IReadOnlyList<StringLiteral> from;
-        SchemaObjectName into;
-        IReadOnlyList<CopyOption> options;
-        IReadOnlyList<OptimizerHint> optimizerHints;
+        protected IReadOnlyList<StringLiteral> from;
+        protected SchemaObjectName into;
+        protected IReadOnlyList<CopyOption> options;
+        protected IReadOnlyList<OptimizerHint> optimizerHints;
     
         public IReadOnlyList<StringLiteral> From => from;
         public SchemaObjectName Into => into;
@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CopyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CopyStatement();
-            ret.From.AddRange(from.Select(c => (ScriptDom.StringLiteral)c.ToMutable()));
+            ret.From.AddRange(from.SelectList(c => (ScriptDom.StringLiteral)c.ToMutable()));
             ret.Into = (ScriptDom.SchemaObjectName)into.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.CopyOption)c.ToMutable()));
-            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CopyOption)c.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
             return ret;
         }
         

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DenyStatement : SecurityStatement, IEquatable<DenyStatement> {
-        bool cascadeOption = false;
+        protected bool cascadeOption = false;
     
         public bool CascadeOption => cascadeOption;
     
@@ -23,9 +23,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DenyStatement ToMutableConcrete() {
             var ret = new ScriptDom.DenyStatement();
             ret.CascadeOption = cascadeOption;
-            ret.Permissions.AddRange(permissions.Select(c => (ScriptDom.Permission)c.ToMutable()));
+            ret.Permissions.AddRange(permissions.SelectList(c => (ScriptDom.Permission)c.ToMutable()));
             ret.SecurityTargetObject = (ScriptDom.SecurityTargetObject)securityTargetObject.ToMutable();
-            ret.Principals.AddRange(principals.Select(c => (ScriptDom.SecurityPrincipal)c.ToMutable()));
+            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c.ToMutable()));
             ret.AsClause = (ScriptDom.Identifier)asClause.ToMutable();
             return ret;
         }

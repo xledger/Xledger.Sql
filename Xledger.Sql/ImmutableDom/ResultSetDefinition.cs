@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ResultSetDefinition : TSqlFragment, IEquatable<ResultSetDefinition> {
-        ScriptDom.ResultSetType resultSetType = ScriptDom.ResultSetType.Inline;
+        protected ScriptDom.ResultSetType resultSetType = ScriptDom.ResultSetType.Inline;
     
         public ScriptDom.ResultSetType ResultSetType => resultSetType;
     

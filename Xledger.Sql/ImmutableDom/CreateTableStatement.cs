@@ -8,18 +8,18 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateTableStatement : TSqlStatement, IEquatable<CreateTableStatement> {
-        SchemaObjectName schemaObjectName;
-        bool asEdge = false;
-        bool asFileTable = false;
-        bool asNode = false;
-        TableDefinition definition;
-        FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
-        FederationScheme federationScheme;
-        IdentifierOrValueExpression textImageOn;
-        IReadOnlyList<TableOption> options;
-        SelectStatement selectStatement;
-        IReadOnlyList<Identifier> ctasColumns;
-        IdentifierOrValueExpression fileStreamOn;
+        protected SchemaObjectName schemaObjectName;
+        protected bool asEdge = false;
+        protected bool asFileTable = false;
+        protected bool asNode = false;
+        protected TableDefinition definition;
+        protected FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
+        protected FederationScheme federationScheme;
+        protected IdentifierOrValueExpression textImageOn;
+        protected IReadOnlyList<TableOption> options;
+        protected SelectStatement selectStatement;
+        protected IReadOnlyList<Identifier> ctasColumns;
+        protected IdentifierOrValueExpression fileStreamOn;
     
         public SchemaObjectName SchemaObjectName => schemaObjectName;
         public bool AsEdge => asEdge;
@@ -59,9 +59,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
             ret.FederationScheme = (ScriptDom.FederationScheme)federationScheme.ToMutable();
             ret.TextImageOn = (ScriptDom.IdentifierOrValueExpression)textImageOn.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.TableOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c.ToMutable()));
             ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement.ToMutable();
-            ret.CtasColumns.AddRange(ctasColumns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.CtasColumns.AddRange(ctasColumns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn.ToMutable();
             return ret;
         }

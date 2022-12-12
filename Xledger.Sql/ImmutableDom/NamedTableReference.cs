@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class NamedTableReference : TableReferenceWithAlias, IEquatable<NamedTableReference> {
-        SchemaObjectName schemaObject;
-        IReadOnlyList<TableHint> tableHints;
-        TableSampleClause tableSampleClause;
-        TemporalClause temporalClause;
+        protected SchemaObjectName schemaObject;
+        protected IReadOnlyList<TableHint> tableHints;
+        protected TableSampleClause tableSampleClause;
+        protected TemporalClause temporalClause;
     
         public SchemaObjectName SchemaObject => schemaObject;
         public IReadOnlyList<TableHint> TableHints => tableHints;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.NamedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.NamedTableReference();
             ret.SchemaObject = (ScriptDom.SchemaObjectName)schemaObject.ToMutable();
-            ret.TableHints.AddRange(tableHints.Select(c => (ScriptDom.TableHint)c.ToMutable()));
+            ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c.ToMutable()));
             ret.TableSampleClause = (ScriptDom.TableSampleClause)tableSampleClause.ToMutable();
             ret.TemporalClause = (ScriptDom.TemporalClause)temporalClause.ToMutable();
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();

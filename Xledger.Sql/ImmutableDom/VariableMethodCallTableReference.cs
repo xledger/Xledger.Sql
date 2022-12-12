@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class VariableMethodCallTableReference : TableReferenceWithAliasAndColumns, IEquatable<VariableMethodCallTableReference> {
-        VariableReference variable;
-        Identifier methodName;
-        IReadOnlyList<ScalarExpression> parameters;
+        protected VariableReference variable;
+        protected Identifier methodName;
+        protected IReadOnlyList<ScalarExpression> parameters;
     
         public VariableReference Variable => variable;
         public Identifier MethodName => methodName;
@@ -29,8 +29,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.VariableMethodCallTableReference();
             ret.Variable = (ScriptDom.VariableReference)variable.ToMutable();
             ret.MethodName = (ScriptDom.Identifier)methodName.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

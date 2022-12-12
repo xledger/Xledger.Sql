@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SecurityPredicateAction : TSqlFragment, IEquatable<SecurityPredicateAction> {
-        ScriptDom.SecurityPredicateActionType actionType = ScriptDom.SecurityPredicateActionType.Create;
-        ScriptDom.SecurityPredicateType securityPredicateType = ScriptDom.SecurityPredicateType.Filter;
-        FunctionCall functionCall;
-        SchemaObjectName targetObjectName;
-        ScriptDom.SecurityPredicateOperation securityPredicateOperation = ScriptDom.SecurityPredicateOperation.All;
+        protected ScriptDom.SecurityPredicateActionType actionType = ScriptDom.SecurityPredicateActionType.Create;
+        protected ScriptDom.SecurityPredicateType securityPredicateType = ScriptDom.SecurityPredicateType.Filter;
+        protected FunctionCall functionCall;
+        protected SchemaObjectName targetObjectName;
+        protected ScriptDom.SecurityPredicateOperation securityPredicateOperation = ScriptDom.SecurityPredicateOperation.All;
     
         public ScriptDom.SecurityPredicateActionType ActionType => actionType;
         public ScriptDom.SecurityPredicateType SecurityPredicateType => securityPredicateType;

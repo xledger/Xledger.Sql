@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MoveConversationStatement : TSqlStatement, IEquatable<MoveConversationStatement> {
-        ScalarExpression conversation;
-        ScalarExpression group;
+        protected ScalarExpression conversation;
+        protected ScalarExpression group;
     
         public ScalarExpression Conversation => conversation;
         public ScalarExpression Group => group;

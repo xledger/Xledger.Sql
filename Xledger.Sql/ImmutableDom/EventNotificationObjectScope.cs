@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EventNotificationObjectScope : TSqlFragment, IEquatable<EventNotificationObjectScope> {
-        ScriptDom.EventNotificationTarget target = ScriptDom.EventNotificationTarget.Unknown;
-        SchemaObjectName queueName;
+        protected ScriptDom.EventNotificationTarget target = ScriptDom.EventNotificationTarget.Unknown;
+        protected SchemaObjectName queueName;
     
         public ScriptDom.EventNotificationTarget Target => target;
         public SchemaObjectName QueueName => queueName;

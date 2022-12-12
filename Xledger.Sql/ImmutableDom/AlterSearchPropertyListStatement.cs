@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterSearchPropertyListStatement : TSqlStatement, IEquatable<AlterSearchPropertyListStatement> {
-        Identifier name;
-        SearchPropertyListAction action;
+        protected Identifier name;
+        protected SearchPropertyListAction action;
     
         public Identifier Name => name;
         public SearchPropertyListAction Action => action;

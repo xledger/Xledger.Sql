@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetFipsFlaggerCommand : SetCommand, IEquatable<SetFipsFlaggerCommand> {
-        ScriptDom.FipsComplianceLevel complianceLevel = ScriptDom.FipsComplianceLevel.Off;
+        protected ScriptDom.FipsComplianceLevel complianceLevel = ScriptDom.FipsComplianceLevel.Off;
     
         public ScriptDom.FipsComplianceLevel ComplianceLevel => complianceLevel;
     

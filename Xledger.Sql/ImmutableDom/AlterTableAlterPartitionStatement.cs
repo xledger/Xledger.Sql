@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableAlterPartitionStatement : AlterTableStatement, IEquatable<AlterTableAlterPartitionStatement> {
-        ScalarExpression boundaryValue;
-        bool isSplit = false;
+        protected ScalarExpression boundaryValue;
+        protected bool isSplit = false;
     
         public ScalarExpression BoundaryValue => boundaryValue;
         public bool IsSplit => isSplit;

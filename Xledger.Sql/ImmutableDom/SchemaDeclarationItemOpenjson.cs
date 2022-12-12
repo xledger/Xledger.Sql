@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SchemaDeclarationItemOpenjson : SchemaDeclarationItem, IEquatable<SchemaDeclarationItemOpenjson> {
-        bool asJson = false;
+        protected bool asJson = false;
     
         public bool AsJson => asJson;
     

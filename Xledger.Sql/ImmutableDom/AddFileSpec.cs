@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AddFileSpec : TSqlFragment, IEquatable<AddFileSpec> {
-        ScalarExpression file;
-        Literal fileName;
+        protected ScalarExpression file;
+        protected Literal fileName;
     
         public ScalarExpression File => file;
         public Literal FileName => fileName;

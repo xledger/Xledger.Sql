@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OnlineIndexLowPriorityLockWaitOption : TSqlFragment, IEquatable<OnlineIndexLowPriorityLockWaitOption> {
-        IReadOnlyList<LowPriorityLockWaitOption> options;
+        protected IReadOnlyList<LowPriorityLockWaitOption> options;
     
         public IReadOnlyList<LowPriorityLockWaitOption> Options => options;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OnlineIndexLowPriorityLockWaitOption ToMutableConcrete() {
             var ret = new ScriptDom.OnlineIndexLowPriorityLockWaitOption();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.LowPriorityLockWaitOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.LowPriorityLockWaitOption)c.ToMutable()));
             return ret;
         }
         

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WaitForStatement : TSqlStatement, IEquatable<WaitForStatement> {
-        ScriptDom.WaitForOption waitForOption = ScriptDom.WaitForOption.Delay;
-        ValueExpression parameter;
-        ScalarExpression timeout;
-        WaitForSupportedStatement statement;
+        protected ScriptDom.WaitForOption waitForOption = ScriptDom.WaitForOption.Delay;
+        protected ValueExpression parameter;
+        protected ScalarExpression timeout;
+        protected WaitForSupportedStatement statement;
     
         public ScriptDom.WaitForOption WaitForOption => waitForOption;
         public ValueExpression Parameter => parameter;

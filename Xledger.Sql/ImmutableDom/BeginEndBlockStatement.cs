@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BeginEndBlockStatement : TSqlStatement, IEquatable<BeginEndBlockStatement> {
-        StatementList statementList;
+        protected StatementList statementList;
     
         public StatementList StatementList => statementList;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DataTypeSequenceOption : SequenceOption, IEquatable<DataTypeSequenceOption> {
-        DataTypeReference dataType;
+        protected DataTypeReference dataType;
     
         public DataTypeReference DataType => dataType;
     

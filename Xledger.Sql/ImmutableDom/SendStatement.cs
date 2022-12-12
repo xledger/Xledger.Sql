@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SendStatement : TSqlStatement, IEquatable<SendStatement> {
-        IReadOnlyList<ScalarExpression> conversationHandles;
-        IdentifierOrValueExpression messageTypeName;
-        ScalarExpression messageBody;
+        protected IReadOnlyList<ScalarExpression> conversationHandles;
+        protected IdentifierOrValueExpression messageTypeName;
+        protected ScalarExpression messageBody;
     
         public IReadOnlyList<ScalarExpression> ConversationHandles => conversationHandles;
         public IdentifierOrValueExpression MessageTypeName => messageTypeName;
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SendStatement ToMutableConcrete() {
             var ret = new ScriptDom.SendStatement();
-            ret.ConversationHandles.AddRange(conversationHandles.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.ConversationHandles.AddRange(conversationHandles.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.MessageTypeName = (ScriptDom.IdentifierOrValueExpression)messageTypeName.ToMutable();
             ret.MessageBody = (ScriptDom.ScalarExpression)messageBody.ToMutable();
             return ret;

@@ -19,9 +19,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateExternalTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateExternalTableStatement();
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
-            ret.ColumnDefinitions.AddRange(columnDefinitions.Select(c => (ScriptDom.ExternalTableColumnDefinition)c.ToMutable()));
+            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.ExternalTableColumnDefinition)c.ToMutable()));
             ret.DataSource = (ScriptDom.Identifier)dataSource.ToMutable();
-            ret.ExternalTableOptions.AddRange(externalTableOptions.Select(c => (ScriptDom.ExternalTableOption)c.ToMutable()));
+            ret.ExternalTableOptions.AddRange(externalTableOptions.SelectList(c => (ScriptDom.ExternalTableOption)c.ToMutable()));
             ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement.ToMutable();
             return ret;
         }

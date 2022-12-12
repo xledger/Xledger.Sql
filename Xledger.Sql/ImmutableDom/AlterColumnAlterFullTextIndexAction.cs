@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterColumnAlterFullTextIndexAction : AlterFullTextIndexAction, IEquatable<AlterColumnAlterFullTextIndexAction> {
-        FullTextIndexColumn column;
-        bool withNoPopulation = false;
+        protected FullTextIndexColumn column;
+        protected bool withNoPopulation = false;
     
         public FullTextIndexColumn Column => column;
         public bool WithNoPopulation => withNoPopulation;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetUserStatement : TSqlStatement, IEquatable<SetUserStatement> {
-        ValueExpression userName;
-        bool withNoReset = false;
+        protected ValueExpression userName;
+        protected bool withNoReset = false;
     
         public ValueExpression UserName => userName;
         public bool WithNoReset => withNoReset;

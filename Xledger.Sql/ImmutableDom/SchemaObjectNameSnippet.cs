@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SchemaObjectNameSnippet : SchemaObjectName, IEquatable<SchemaObjectNameSnippet> {
-        string script;
+        protected string script;
     
         public string Script => script;
     
@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SchemaObjectNameSnippet ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectNameSnippet();
             ret.Script = script;
-            ret.Identifiers.AddRange(identifiers.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             return ret;
         }
         

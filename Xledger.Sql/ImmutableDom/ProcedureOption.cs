@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ProcedureOption : TSqlFragment, IEquatable<ProcedureOption> {
-        ScriptDom.ProcedureOptionKind optionKind = ScriptDom.ProcedureOptionKind.Encryption;
+        protected ScriptDom.ProcedureOptionKind optionKind = ScriptDom.ProcedureOptionKind.Encryption;
     
         public ScriptDom.ProcedureOptionKind OptionKind => optionKind;
     

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UnpivotedTableReference : TableReferenceWithAlias, IEquatable<UnpivotedTableReference> {
-        TableReference tableReference;
-        IReadOnlyList<ColumnReferenceExpression> inColumns;
-        Identifier pivotColumn;
-        Identifier valueColumn;
+        protected TableReference tableReference;
+        protected IReadOnlyList<ColumnReferenceExpression> inColumns;
+        protected Identifier pivotColumn;
+        protected Identifier valueColumn;
     
         public TableReference TableReference => tableReference;
         public IReadOnlyList<ColumnReferenceExpression> InColumns => inColumns;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.UnpivotedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.UnpivotedTableReference();
             ret.TableReference = (ScriptDom.TableReference)tableReference.ToMutable();
-            ret.InColumns.AddRange(inColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.InColumns.AddRange(inColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.PivotColumn = (ScriptDom.Identifier)pivotColumn.ToMutable();
             ret.ValueColumn = (ScriptDom.Identifier)valueColumn.ToMutable();
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();

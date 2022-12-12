@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SelectStatementSnippet : SelectStatement, IEquatable<SelectStatementSnippet> {
-        string script;
+        protected string script;
     
         public string Script => script;
     
@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression.ToMutable();
             ret.Into = (ScriptDom.SchemaObjectName)into.ToMutable();
             ret.On = (ScriptDom.Identifier)on.ToMutable();
-            ret.ComputeClauses.AddRange(computeClauses.Select(c => (ScriptDom.ComputeClause)c.ToMutable()));
+            ret.ComputeClauses.AddRange(computeClauses.SelectList(c => (ScriptDom.ComputeClause)c.ToMutable()));
             ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
             return ret;
         }
         

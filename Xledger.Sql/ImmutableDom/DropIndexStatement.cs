@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropIndexStatement : TSqlStatement, IEquatable<DropIndexStatement> {
-        IReadOnlyList<DropIndexClauseBase> dropIndexClauses;
-        bool isIfExists = false;
+        protected IReadOnlyList<DropIndexClauseBase> dropIndexClauses;
+        protected bool isIfExists = false;
     
         public IReadOnlyList<DropIndexClauseBase> DropIndexClauses => dropIndexClauses;
         public bool IsIfExists => isIfExists;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropIndexStatement();
-            ret.DropIndexClauses.AddRange(dropIndexClauses.Select(c => (ScriptDom.DropIndexClauseBase)c.ToMutable()));
+            ret.DropIndexClauses.AddRange(dropIndexClauses.SelectList(c => (ScriptDom.DropIndexClauseBase)c.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

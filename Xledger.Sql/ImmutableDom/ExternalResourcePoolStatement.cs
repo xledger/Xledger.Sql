@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalResourcePoolStatement : TSqlStatement, IEquatable<ExternalResourcePoolStatement> {
-        Identifier name;
-        IReadOnlyList<ExternalResourcePoolParameter> externalResourcePoolParameters;
+        protected Identifier name;
+        protected IReadOnlyList<ExternalResourcePoolParameter> externalResourcePoolParameters;
     
         public Identifier Name => name;
         public IReadOnlyList<ExternalResourcePoolParameter> ExternalResourcePoolParameters => externalResourcePoolParameters;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ExternalResourcePoolStatement ToMutableConcrete() {
             var ret = new ScriptDom.ExternalResourcePoolStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ExternalResourcePoolParameters.AddRange(externalResourcePoolParameters.Select(c => (ScriptDom.ExternalResourcePoolParameter)c.ToMutable()));
+            ret.ExternalResourcePoolParameters.AddRange(externalResourcePoolParameters.SelectList(c => (ScriptDom.ExternalResourcePoolParameter)c.ToMutable()));
             return ret;
         }
         

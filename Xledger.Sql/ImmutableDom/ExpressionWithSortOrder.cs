@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExpressionWithSortOrder : TSqlFragment, IEquatable<ExpressionWithSortOrder> {
-        ScriptDom.SortOrder sortOrder = ScriptDom.SortOrder.NotSpecified;
-        ScalarExpression expression;
+        protected ScriptDom.SortOrder sortOrder = ScriptDom.SortOrder.NotSpecified;
+        protected ScalarExpression expression;
     
         public ScriptDom.SortOrder SortOrder => sortOrder;
         public ScalarExpression Expression => expression;

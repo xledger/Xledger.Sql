@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FullTextCatalogAndFileGroup : TSqlFragment, IEquatable<FullTextCatalogAndFileGroup> {
-        Identifier catalogName;
-        Identifier fileGroupName;
-        bool fileGroupIsFirst = false;
+        protected Identifier catalogName;
+        protected Identifier fileGroupName;
+        protected bool fileGroupIsFirst = false;
     
         public Identifier CatalogName => catalogName;
         public Identifier FileGroupName => fileGroupName;

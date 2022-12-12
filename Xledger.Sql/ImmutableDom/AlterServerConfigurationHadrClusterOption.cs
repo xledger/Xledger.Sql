@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationHadrClusterOption : TSqlFragment, IEquatable<AlterServerConfigurationHadrClusterOption> {
-        ScriptDom.AlterServerConfigurationHadrClusterOptionKind optionKind = ScriptDom.AlterServerConfigurationHadrClusterOptionKind.None;
-        OptionValue optionValue;
-        bool isLocal = false;
+        protected ScriptDom.AlterServerConfigurationHadrClusterOptionKind optionKind = ScriptDom.AlterServerConfigurationHadrClusterOptionKind.None;
+        protected OptionValue optionValue;
+        protected bool isLocal = false;
     
         public ScriptDom.AlterServerConfigurationHadrClusterOptionKind OptionKind => optionKind;
         public OptionValue OptionValue => optionValue;

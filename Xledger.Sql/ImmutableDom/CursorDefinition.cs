@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CursorDefinition : TSqlFragment, IEquatable<CursorDefinition> {
-        IReadOnlyList<CursorOption> options;
-        SelectStatement select;
+        protected IReadOnlyList<CursorOption> options;
+        protected SelectStatement select;
     
         public IReadOnlyList<CursorOption> Options => options;
         public SelectStatement Select => select;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CursorDefinition ToMutableConcrete() {
             var ret = new ScriptDom.CursorDefinition();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.CursorOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CursorOption)c.ToMutable()));
             ret.Select = (ScriptDom.SelectStatement)select.ToMutable();
             return ret;
         }

@@ -8,13 +8,13 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FullTextTableReference : TableReferenceWithAlias, IEquatable<FullTextTableReference> {
-        ScriptDom.FullTextFunctionType fullTextFunctionType = ScriptDom.FullTextFunctionType.None;
-        SchemaObjectName tableName;
-        IReadOnlyList<ColumnReferenceExpression> columns;
-        ValueExpression searchCondition;
-        ValueExpression topN;
-        ValueExpression language;
-        StringLiteral propertyName;
+        protected ScriptDom.FullTextFunctionType fullTextFunctionType = ScriptDom.FullTextFunctionType.None;
+        protected SchemaObjectName tableName;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
+        protected ValueExpression searchCondition;
+        protected ValueExpression topN;
+        protected ValueExpression language;
+        protected StringLiteral propertyName;
     
         public ScriptDom.FullTextFunctionType FullTextFunctionType => fullTextFunctionType;
         public SchemaObjectName TableName => tableName;
@@ -40,7 +40,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.FullTextTableReference();
             ret.FullTextFunctionType = fullTextFunctionType;
             ret.TableName = (ScriptDom.SchemaObjectName)tableName.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.SearchCondition = (ScriptDom.ValueExpression)searchCondition.ToMutable();
             ret.TopN = (ScriptDom.ValueExpression)topN.ToMutable();
             ret.Language = (ScriptDom.ValueExpression)language.ToMutable();

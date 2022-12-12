@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueueProcedureOption : QueueOption, IEquatable<QueueProcedureOption> {
-        SchemaObjectName optionValue;
+        protected SchemaObjectName optionValue;
     
         public SchemaObjectName OptionValue => optionValue;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EncryptedValueParameter : ColumnEncryptionKeyValueParameter, IEquatable<EncryptedValueParameter> {
-        BinaryLiteral @value;
+        protected BinaryLiteral @value;
     
         public BinaryLiteral Value => @value;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IdentifierLiteral : Literal, IEquatable<IdentifierLiteral> {
-        ScriptDom.QuoteType quoteType = ScriptDom.QuoteType.NotQuoted;
+        protected ScriptDom.QuoteType quoteType = ScriptDom.QuoteType.NotQuoted;
     
         public ScriptDom.QuoteType QuoteType => quoteType;
     

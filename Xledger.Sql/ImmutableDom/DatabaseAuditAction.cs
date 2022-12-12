@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DatabaseAuditAction : TSqlFragment, IEquatable<DatabaseAuditAction> {
-        ScriptDom.DatabaseAuditActionKind actionKind = ScriptDom.DatabaseAuditActionKind.Select;
+        protected ScriptDom.DatabaseAuditActionKind actionKind = ScriptDom.DatabaseAuditActionKind.Select;
     
         public ScriptDom.DatabaseAuditActionKind ActionKind => actionKind;
     

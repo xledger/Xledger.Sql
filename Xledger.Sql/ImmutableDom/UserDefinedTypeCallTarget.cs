@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UserDefinedTypeCallTarget : CallTarget, IEquatable<UserDefinedTypeCallTarget> {
-        SchemaObjectName schemaObjectName;
+        protected SchemaObjectName schemaObjectName;
     
         public SchemaObjectName SchemaObjectName => schemaObjectName;
     

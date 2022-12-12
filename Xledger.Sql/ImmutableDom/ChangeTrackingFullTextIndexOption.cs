@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ChangeTrackingFullTextIndexOption : FullTextIndexOption, IEquatable<ChangeTrackingFullTextIndexOption> {
-        ScriptDom.ChangeTrackingOption @value = ScriptDom.ChangeTrackingOption.NotSpecified;
+        protected ScriptDom.ChangeTrackingOption @value = ScriptDom.ChangeTrackingOption.NotSpecified;
     
         public ScriptDom.ChangeTrackingOption Value => @value;
     

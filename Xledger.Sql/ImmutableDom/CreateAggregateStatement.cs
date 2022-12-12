@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateAggregateStatement : TSqlStatement, IEquatable<CreateAggregateStatement> {
-        SchemaObjectName name;
-        AssemblyName assemblyName;
-        IReadOnlyList<ProcedureParameter> parameters;
-        DataTypeReference returnType;
+        protected SchemaObjectName name;
+        protected AssemblyName assemblyName;
+        protected IReadOnlyList<ProcedureParameter> parameters;
+        protected DataTypeReference returnType;
     
         public SchemaObjectName Name => name;
         public AssemblyName AssemblyName => assemblyName;
@@ -29,7 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateAggregateStatement();
             ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
             ret.AssemblyName = (ScriptDom.AssemblyName)assemblyName.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ProcedureParameter)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c.ToMutable()));
             ret.ReturnType = (ScriptDom.DataTypeReference)returnType.ToMutable();
             return ret;
         }

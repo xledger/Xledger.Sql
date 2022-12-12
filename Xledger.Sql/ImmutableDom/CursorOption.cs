@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CursorOption : TSqlFragment, IEquatable<CursorOption> {
-        ScriptDom.CursorOptionKind optionKind = ScriptDom.CursorOptionKind.Local;
+        protected ScriptDom.CursorOptionKind optionKind = ScriptDom.CursorOptionKind.Local;
     
         public ScriptDom.CursorOptionKind OptionKind => optionKind;
     

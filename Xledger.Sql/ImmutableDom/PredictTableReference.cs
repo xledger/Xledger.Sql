@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PredictTableReference : TableReferenceWithAlias, IEquatable<PredictTableReference> {
-        ScalarExpression modelVariable;
-        ScalarSubquery modelSubquery;
-        TableReferenceWithAlias dataSource;
-        Identifier runTime;
-        IReadOnlyList<SchemaDeclarationItem> schemaDeclarationItems;
+        protected ScalarExpression modelVariable;
+        protected ScalarSubquery modelSubquery;
+        protected TableReferenceWithAlias dataSource;
+        protected Identifier runTime;
+        protected IReadOnlyList<SchemaDeclarationItem> schemaDeclarationItems;
     
         public ScalarExpression ModelVariable => modelVariable;
         public ScalarSubquery ModelSubquery => modelSubquery;
@@ -36,7 +36,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.ModelSubquery = (ScriptDom.ScalarSubquery)modelSubquery.ToMutable();
             ret.DataSource = (ScriptDom.TableReferenceWithAlias)dataSource.ToMutable();
             ret.RunTime = (ScriptDom.Identifier)runTime.ToMutable();
-            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.Select(c => (ScriptDom.SchemaDeclarationItem)c.ToMutable()));
+            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItem)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

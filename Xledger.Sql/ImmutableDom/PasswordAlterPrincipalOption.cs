@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class PasswordAlterPrincipalOption : PrincipalOption, IEquatable<PasswordAlterPrincipalOption> {
-        Literal password;
-        Literal oldPassword;
-        bool mustChange = false;
-        bool unlock = false;
-        bool hashed = false;
+        protected Literal password;
+        protected Literal oldPassword;
+        protected bool mustChange = false;
+        protected bool unlock = false;
+        protected bool hashed = false;
     
         public Literal Password => password;
         public Literal OldPassword => oldPassword;

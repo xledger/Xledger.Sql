@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationSetHadrClusterStatement : TSqlStatement, IEquatable<AlterServerConfigurationSetHadrClusterStatement> {
-        IReadOnlyList<AlterServerConfigurationHadrClusterOption> options;
+        protected IReadOnlyList<AlterServerConfigurationHadrClusterOption> options;
     
         public IReadOnlyList<AlterServerConfigurationHadrClusterOption> Options => options;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetHadrClusterStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetHadrClusterStatement();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationHadrClusterOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationHadrClusterOption)c.ToMutable()));
             return ret;
         }
         

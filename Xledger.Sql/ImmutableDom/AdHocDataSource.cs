@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AdHocDataSource : TSqlFragment, IEquatable<AdHocDataSource> {
-        StringLiteral providerName;
-        StringLiteral initString;
+        protected StringLiteral providerName;
+        protected StringLiteral initString;
     
         public StringLiteral ProviderName => providerName;
         public StringLiteral InitString => initString;

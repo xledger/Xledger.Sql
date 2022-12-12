@@ -24,7 +24,7 @@ void Main() {
     }
 
     foreach (var t in types) {
-        //if (t.Name != "AlterCreateEndpointStatementBase") {
+        //if (t.Name != "TSqlFragment") {
         //    continue;
         //}
         var newClassDef = GetImmClassdef(t);
@@ -43,7 +43,7 @@ void Main() {
 
         pathsToDelete.Remove(f);
 
-        //fullFileDef.Dump("Full");
+        fullFileDef.Dump("Full");
     }
 
     //foreach (var f in pathsToDelete) {
@@ -58,7 +58,7 @@ static HashSet<string> SkipPropNames = new HashSet<string> {
     "ScriptTokenStream"
 };
 
-ClassDef GetImmClassdef(Type t) {
+static ClassDef GetImmClassdef(Type t) {
     var d = new ClassDef { Name = t.Name, IsAbstract = t.IsAbstract };
 
     if (t.BaseType is Type baseTyp && typeof(TSqlFragment).IsAssignableFrom(baseTyp)) {
@@ -75,7 +75,7 @@ ClassDef GetImmClassdef(Type t) {
     return d;
 }
 
-PropDef GetPropDef(Type t, PropertyInfo p) {
+static PropDef GetPropDef(Type t, PropertyInfo p) {
     var pd = new PropDef {
         Name = p.Name,
         TypeLiteral = GetPropTypeLiteral(p.PropertyType),
@@ -96,9 +96,9 @@ PropDef GetPropDef(Type t, PropertyInfo p) {
     return pd;
 }
 
-Dictionary<Type, TSqlFragment> DefaultInstanceByType = new Dictionary<Type, TSqlFragment>();
+static Dictionary<Type, TSqlFragment> DefaultInstanceByType = new Dictionary<Type, TSqlFragment>();
 
-TSqlFragment GetDefaultInstance(Type t) {
+static TSqlFragment GetDefaultInstance(Type t) {
     if (t.IsAbstract) {
         return null;
     }
@@ -109,7 +109,7 @@ TSqlFragment GetDefaultInstance(Type t) {
     return inst;
 }
 
-string GetDefaultLiteral(Type onType, PropertyInfo prop, bool isList) {
+static string GetDefaultLiteral(Type onType, PropertyInfo prop, bool isList) {
     if (isList) {
         return null;
     }
@@ -134,7 +134,7 @@ string GetDefaultLiteral(Type onType, PropertyInfo prop, bool isList) {
     }
 }
 
-string GetPropTypeLiteral(Type type) {
+static string GetPropTypeLiteral(Type type) {
     if (typeof(TSqlFragment).IsAssignableFrom(type)) {
         return type.Name;
     } else if (type.IsEnum) {
@@ -177,7 +177,7 @@ public bool IsList(Type t) {
     return t.GetInterfaces().Any(it => it.IsGenericType && it.Name == "ICollection`1");
 }
 
-bool SkipProp(PropertyInfo p) {
+static bool SkipProp(PropertyInfo p) {
     if (!p.CanRead
         || (!p.CanWrite && !p.PropertyType.GetInterfaces().Any(it => it.IsGenericType && it.Name == "ICollection`1"))
         || p.GetIndexParameters().Any()) {
@@ -283,7 +283,7 @@ public class ClassDef {
         "while",
     }.ToHashSet();
 
-    string LowerName(string name) {
+    static string LowerName(string name) {
         var sb = new StringBuilder(name.Length);
 
         for (int i = 0; i < name.Length; i++) {
@@ -304,11 +304,10 @@ public class ClassDef {
         var sb = new StringBuilder();
         foreach (var prop in Props) {
             if (prop.IsInherited) { continue; }
-            var protectedStr = IsAbstract ? "protected " : "";
             if (prop.DefaultLiteral is null) {
-                sb.AppendLine($"{protectedStr}{prop.TypeLiteral} {LowerName(prop.Name)};");
+                sb.AppendLine($"protected {prop.TypeLiteral} {LowerName(prop.Name)};");
             } else {
-                sb.AppendLine($"{protectedStr}{prop.TypeLiteral} {LowerName(prop.Name)} = {prop.DefaultLiteral};");
+                sb.AppendLine($"protected {prop.TypeLiteral} {LowerName(prop.Name)} = {prop.DefaultLiteral};");
             }
         }
         return sb.ToString();
@@ -356,7 +355,7 @@ public class ClassDef {
         sb.AppendLine($"    var ret = new ScriptDom.{Name}();");
         foreach (var prop in this.Props) {
             if (prop.IsScriptDomType && prop.IsList) {
-                sb.AppendLine($"    ret.{prop.Name}.AddRange({LowerName(prop.Name)}.Select(c => (ScriptDom.{prop.InnerTypeLiteral})c.ToMutable()));");
+                sb.AppendLine($"    ret.{prop.Name}.AddRange({LowerName(prop.Name)}.SelectList(c => (ScriptDom.{prop.InnerTypeLiteral})c.ToMutable()));");
             } else if (prop.IsScriptDomType) {
                 sb.AppendLine($"    ret.{prop.Name} = (ScriptDom.{prop.TypeLiteral}){LowerName(prop.Name)}.ToMutable();");
             } else {
@@ -479,9 +478,70 @@ public class ClassDef {
         wl(GetHashCodeMethod().IndentLines(4).NullIfBlank(), false);
 
         wl(GetEqualsMethods().IndentLines(4).NullIfBlank(), false);
+        
+        if (Name == "TSqlFragment") {
+            wl("");
+            wl(TagDict().IndentLines(4));
+            wl("");
+            wl(FromCsFunction().IndentLines(4));
+        }
 
         wl($"}}");
 
+        return sb.ToString();
+    }
+    
+    public static string TagDict() {
+        var sb = new StringBuilder();
+        void wl(string s) { sb.AppendLine(s); }
+        
+        wl($"static readonly IReadOnlyDictionary<string, int> TagNumberByTypeName = new Dictionary<string, int> {{");
+        foreach ((var idx, var typ)  in TaggedConcreteFragmentTypes()) {
+             wl($"    [\"{typ.Name}\"] = {idx},");
+        }
+        
+        wl($"}};");
+        
+        return sb.ToString();
+    }
+
+    public static string FromCsFunction() {
+        var sb = new StringBuilder();
+        void wl(string s) { sb.AppendLine(s); }
+        
+        wl($"public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {{");
+        wl($"    if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {{");
+        wl($"        throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
+        wl($"    }}");
+        wl($"");
+        
+        wl($"    switch (tag) {{");
+        foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
+            var def = UserQuery.GetImmClassdef(typ);
+            wl($"        case {idx}: {{");
+            wl($"            var node = (ScriptDom.{typ.Name})fragment;");
+            wl($"            return new {typ.Name}(");
+            var ctorPms = new List<string>();
+            foreach (var prop in def.Props) {
+                if (prop.IsScriptDomType && prop.IsList) {
+                    ctorPms.Add($"{LowerName(prop.Name)}: node.{prop.Name}.SelectList(c => ({prop.InnerTypeLiteral})FromMutable(c))");
+                } else if (prop.IsList) {
+                    ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList(node.{prop.Name})");
+                } else if (prop.IsScriptDomType) {
+                    ctorPms.Add($"{LowerName(prop.Name)}: ({prop.TypeLiteral})FromMutable(node.{prop.Name})");
+                } else {
+                    ctorPms.Add($"{LowerName(prop.Name)}: node.{prop.Name}");    
+                }
+            }
+            wl(ctorPms.StringJoin(",\n").IndentLines(16));
+            
+            wl($"            );");
+            wl($"        }}");
+        }
+        wl($"        default: throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
+        wl($"    }}");
+        
+        wl($"}}");
         return sb.ToString();
     }
 
@@ -505,6 +565,15 @@ public class ClassDef {
     }
 }
 
+public static IEnumerable<(int idx, Type typ)> TaggedConcreteFragmentTypes() {
+    var i = 1;
+    foreach (var typ in FragmentTypes().OrderBy(t => t.Name)) {
+        if (typ.IsAbstract) { continue; }
+        yield return (i, typ);
+        i += 1;
+    }
+}
+
 public class PropDef {
     public string Name { get; set; }
     public bool IsList { get; set; }
@@ -516,7 +585,7 @@ public class PropDef {
     public bool IsInherited { get; set; }
 }
 
-List<Type> FragmentTypes() {
+static List<Type> FragmentTypes() {
     var asm = typeof(TSqlFragment).Assembly;
     var types = asm.GetTypes();
     return types

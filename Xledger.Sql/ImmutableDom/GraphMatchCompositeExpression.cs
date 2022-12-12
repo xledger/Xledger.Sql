@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GraphMatchCompositeExpression : BooleanExpression, IEquatable<GraphMatchCompositeExpression> {
-        GraphMatchNodeExpression leftNode;
-        Identifier edge;
-        GraphMatchNodeExpression rightNode;
-        bool arrowOnRight = false;
+        protected GraphMatchNodeExpression leftNode;
+        protected Identifier edge;
+        protected GraphMatchNodeExpression rightNode;
+        protected bool arrowOnRight = false;
     
         public GraphMatchNodeExpression LeftNode => leftNode;
         public Identifier Edge => edge;

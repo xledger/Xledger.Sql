@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WithinGroupClause : TSqlFragment, IEquatable<WithinGroupClause> {
-        OrderByClause orderByClause;
-        bool hasGraphPath = false;
+        protected OrderByClause orderByClause;
+        protected bool hasGraphPath = false;
     
         public OrderByClause OrderByClause => orderByClause;
         public bool HasGraphPath => hasGraphPath;

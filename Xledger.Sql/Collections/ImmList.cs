@@ -12,23 +12,75 @@ namespace Xledger.Sql.Collections {
         }
 
         internal static IReadOnlyList<T> FromList(IReadOnlyList<T> list) {
-            if (list is ImmList<T>) {
-                return list;
+            if (list is null || list.Count == 0) {
+                return Empty;
+            } else if (list is ImmList<T> immList) {
+                return immList;
             } else {
-                if (list is null) {
-                    throw new ArgumentNullException(nameof(list));
-                }
-
-                if (list.Count == 0) {
-                    return Empty;
-                }
-
                 var data = new T[list.Count];
                 for (int i = 0; i < list.Count; i++) {
                     data[i] = list[i];
                 }
                 return new ImmList<T>(data);
             }
+        }
+
+        internal static IReadOnlyList<T> FromList(IList<T> list) {
+            if (list is null || list.Count == 0) {
+                return Empty;
+            } else if (list is ImmList<T> immList) {
+                return immList;
+            } else {
+                var data = new T[list.Count];
+                for (int i = 0; i < list.Count; i++) {
+                    data[i] = list[i];
+                }
+                return new ImmList<T>(data);
+            }
+        }
+
+        /// <summary>
+        /// Returns a mapped list, treating null empty;
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        internal static IReadOnlyList<U> SelectList<U>(IReadOnlyList<T> list, Func<T, U> f) {
+            if (f is null) {
+                throw new ArgumentNullException(nameof(f));
+            }
+            if (list is null || list.Count == 0) {
+                return ImmList<U>.Empty;
+            }
+            var data = new U[list.Count];
+            for (int i = 0; i < list.Count; i++) {
+                data[i] = f(list[i]);
+            }
+            return new ImmList<U>(data);
+        }
+
+        /// <summary>
+        /// Returns a mapped list, treating null empty;
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        internal static IReadOnlyList<U> SelectList<U>(IList<T> list, Func<T, U> f) {
+            if (f is null) {
+                throw new ArgumentNullException(nameof(f));
+            }
+            if (list is null || list.Count == 0) {
+                return ImmList<U>.Empty;
+            }
+            var data = new U[list.Count];
+            for (int i = 0; i < list.Count; i++) {
+                data[i] = f(list[i]);
+            }
+            return new ImmList<U>(data);
         }
 
         internal static ImmList<T> Empty = new ImmList<T>(new T[0]);

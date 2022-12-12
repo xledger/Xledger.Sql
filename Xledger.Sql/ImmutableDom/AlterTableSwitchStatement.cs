@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableSwitchStatement : AlterTableStatement, IEquatable<AlterTableSwitchStatement> {
-        ScalarExpression sourcePartitionNumber;
-        ScalarExpression targetPartitionNumber;
-        SchemaObjectName targetTable;
-        IReadOnlyList<TableSwitchOption> options;
+        protected ScalarExpression sourcePartitionNumber;
+        protected ScalarExpression targetPartitionNumber;
+        protected SchemaObjectName targetTable;
+        protected IReadOnlyList<TableSwitchOption> options;
     
         public ScalarExpression SourcePartitionNumber => sourcePartitionNumber;
         public ScalarExpression TargetPartitionNumber => targetPartitionNumber;
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.SourcePartitionNumber = (ScriptDom.ScalarExpression)sourcePartitionNumber.ToMutable();
             ret.TargetPartitionNumber = (ScriptDom.ScalarExpression)targetPartitionNumber.ToMutable();
             ret.TargetTable = (ScriptDom.SchemaObjectName)targetTable.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.TableSwitchOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableSwitchOption)c.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
             return ret;
         }

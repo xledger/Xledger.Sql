@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnStorageOptions : TSqlFragment, IEquatable<ColumnStorageOptions> {
-        bool isFileStream = false;
-        ScriptDom.SparseColumnOption sparseOption = ScriptDom.SparseColumnOption.None;
+        protected bool isFileStream = false;
+        protected ScriptDom.SparseColumnOption sparseOption = ScriptDom.SparseColumnOption.None;
     
         public bool IsFileStream => isFileStream;
         public ScriptDom.SparseColumnOption SparseOption => sparseOption;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RemoteDataArchiveTableOption : TableOption, IEquatable<RemoteDataArchiveTableOption> {
-        ScriptDom.RdaTableOption rdaTableOption = ScriptDom.RdaTableOption.Disable;
-        ScriptDom.MigrationState migrationState = ScriptDom.MigrationState.Paused;
+        protected ScriptDom.RdaTableOption rdaTableOption = ScriptDom.RdaTableOption.Disable;
+        protected ScriptDom.MigrationState migrationState = ScriptDom.MigrationState.Paused;
     
         public ScriptDom.RdaTableOption RdaTableOption => rdaTableOption;
         public ScriptDom.MigrationState MigrationState => migrationState;

@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateFederationStatement : TSqlStatement, IEquatable<CreateFederationStatement> {
-        Identifier name;
-        Identifier distributionName;
-        DataTypeReference dataType;
+        protected Identifier name;
+        protected Identifier distributionName;
+        protected DataTypeReference dataType;
     
         public Identifier Name => name;
         public Identifier DistributionName => distributionName;

@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalLibraryFileOption : TSqlFragment, IEquatable<ExternalLibraryFileOption> {
-        ScalarExpression content;
-        StringLiteral path;
-        Identifier platform;
+        protected ScalarExpression content;
+        protected StringLiteral path;
+        protected Identifier platform;
     
         public ScalarExpression Content => content;
         public StringLiteral Path => path;

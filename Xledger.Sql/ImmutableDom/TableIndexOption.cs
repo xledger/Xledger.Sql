@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableIndexOption : TableOption, IEquatable<TableIndexOption> {
-        TableIndexType @value;
+        protected TableIndexType @value;
     
         public TableIndexType Value => @value;
     

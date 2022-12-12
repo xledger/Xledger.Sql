@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OnOffPrimaryConfigurationOption : DatabaseConfigurationSetOption, IEquatable<OnOffPrimaryConfigurationOption> {
-        ScriptDom.DatabaseConfigurationOptionState optionState = ScriptDom.DatabaseConfigurationOptionState.NotSet;
+        protected ScriptDom.DatabaseConfigurationOptionState optionState = ScriptDom.DatabaseConfigurationOptionState.NotSet;
     
         public ScriptDom.DatabaseConfigurationOptionState OptionState => optionState;
     

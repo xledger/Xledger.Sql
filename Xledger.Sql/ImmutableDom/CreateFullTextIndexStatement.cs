@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateFullTextIndexStatement : TSqlStatement, IEquatable<CreateFullTextIndexStatement> {
-        SchemaObjectName onName;
-        IReadOnlyList<FullTextIndexColumn> fullTextIndexColumns;
-        Identifier keyIndexName;
-        FullTextCatalogAndFileGroup catalogAndFileGroup;
-        IReadOnlyList<FullTextIndexOption> options;
+        protected SchemaObjectName onName;
+        protected IReadOnlyList<FullTextIndexColumn> fullTextIndexColumns;
+        protected Identifier keyIndexName;
+        protected FullTextCatalogAndFileGroup catalogAndFileGroup;
+        protected IReadOnlyList<FullTextIndexOption> options;
     
         public SchemaObjectName OnName => onName;
         public IReadOnlyList<FullTextIndexColumn> FullTextIndexColumns => fullTextIndexColumns;
@@ -31,10 +31,10 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateFullTextIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateFullTextIndexStatement();
             ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.FullTextIndexColumns.AddRange(fullTextIndexColumns.Select(c => (ScriptDom.FullTextIndexColumn)c.ToMutable()));
+            ret.FullTextIndexColumns.AddRange(fullTextIndexColumns.SelectList(c => (ScriptDom.FullTextIndexColumn)c.ToMutable()));
             ret.KeyIndexName = (ScriptDom.Identifier)keyIndexName.ToMutable();
             ret.CatalogAndFileGroup = (ScriptDom.FullTextCatalogAndFileGroup)catalogAndFileGroup.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.FullTextIndexOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextIndexOption)c.ToMutable()));
             return ret;
         }
         

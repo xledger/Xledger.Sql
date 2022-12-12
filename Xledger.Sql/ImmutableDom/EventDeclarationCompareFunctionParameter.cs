@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EventDeclarationCompareFunctionParameter : BooleanExpression, IEquatable<EventDeclarationCompareFunctionParameter> {
-        EventSessionObjectName name;
-        SourceDeclaration sourceDeclaration;
-        ScalarExpression eventValue;
+        protected EventSessionObjectName name;
+        protected SourceDeclaration sourceDeclaration;
+        protected ScalarExpression eventValue;
     
         public EventSessionObjectName Name => name;
         public SourceDeclaration SourceDeclaration => sourceDeclaration;

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EventDeclaration : TSqlFragment, IEquatable<EventDeclaration> {
-        EventSessionObjectName objectName;
-        IReadOnlyList<EventDeclarationSetParameter> eventDeclarationSetParameters;
-        IReadOnlyList<EventSessionObjectName> eventDeclarationActionParameters;
-        BooleanExpression eventDeclarationPredicateParameter;
+        protected EventSessionObjectName objectName;
+        protected IReadOnlyList<EventDeclarationSetParameter> eventDeclarationSetParameters;
+        protected IReadOnlyList<EventSessionObjectName> eventDeclarationActionParameters;
+        protected BooleanExpression eventDeclarationPredicateParameter;
     
         public EventSessionObjectName ObjectName => objectName;
         public IReadOnlyList<EventDeclarationSetParameter> EventDeclarationSetParameters => eventDeclarationSetParameters;
@@ -28,8 +28,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.EventDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.EventDeclaration();
             ret.ObjectName = (ScriptDom.EventSessionObjectName)objectName.ToMutable();
-            ret.EventDeclarationSetParameters.AddRange(eventDeclarationSetParameters.Select(c => (ScriptDom.EventDeclarationSetParameter)c.ToMutable()));
-            ret.EventDeclarationActionParameters.AddRange(eventDeclarationActionParameters.Select(c => (ScriptDom.EventSessionObjectName)c.ToMutable()));
+            ret.EventDeclarationSetParameters.AddRange(eventDeclarationSetParameters.SelectList(c => (ScriptDom.EventDeclarationSetParameter)c.ToMutable()));
+            ret.EventDeclarationActionParameters.AddRange(eventDeclarationActionParameters.SelectList(c => (ScriptDom.EventSessionObjectName)c.ToMutable()));
             ret.EventDeclarationPredicateParameter = (ScriptDom.BooleanExpression)eventDeclarationPredicateParameter.ToMutable();
             return ret;
         }

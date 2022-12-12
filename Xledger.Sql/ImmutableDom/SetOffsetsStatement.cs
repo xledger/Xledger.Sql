@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetOffsetsStatement : SetOnOffStatement, IEquatable<SetOffsetsStatement> {
-        ScriptDom.SetOffsets options = ScriptDom.SetOffsets.None;
+        protected ScriptDom.SetOffsets options = ScriptDom.SetOffsets.None;
     
         public ScriptDom.SetOffsets Options => options;
     

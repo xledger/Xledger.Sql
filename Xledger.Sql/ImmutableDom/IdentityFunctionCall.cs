@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class IdentityFunctionCall : ScalarExpression, IEquatable<IdentityFunctionCall> {
-        DataTypeReference dataType;
-        ScalarExpression seed;
-        ScalarExpression increment;
+        protected DataTypeReference dataType;
+        protected ScalarExpression seed;
+        protected ScalarExpression increment;
     
         public DataTypeReference DataType => dataType;
         public ScalarExpression Seed => seed;

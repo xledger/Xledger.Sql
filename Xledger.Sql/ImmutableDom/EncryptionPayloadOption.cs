@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class EncryptionPayloadOption : PayloadOption, IEquatable<EncryptionPayloadOption> {
-        ScriptDom.EndpointEncryptionSupport encryptionSupport = ScriptDom.EndpointEncryptionSupport.NotSpecified;
-        ScriptDom.EncryptionAlgorithmPreference algorithmPartOne = ScriptDom.EncryptionAlgorithmPreference.NotSpecified;
-        ScriptDom.EncryptionAlgorithmPreference algorithmPartTwo = ScriptDom.EncryptionAlgorithmPreference.NotSpecified;
+        protected ScriptDom.EndpointEncryptionSupport encryptionSupport = ScriptDom.EndpointEncryptionSupport.NotSpecified;
+        protected ScriptDom.EncryptionAlgorithmPreference algorithmPartOne = ScriptDom.EncryptionAlgorithmPreference.NotSpecified;
+        protected ScriptDom.EncryptionAlgorithmPreference algorithmPartTwo = ScriptDom.EncryptionAlgorithmPreference.NotSpecified;
     
         public ScriptDom.EndpointEncryptionSupport EncryptionSupport => encryptionSupport;
         public ScriptDom.EncryptionAlgorithmPreference AlgorithmPartOne => algorithmPartOne;

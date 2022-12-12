@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SelectiveXmlIndexPromotedPath : TSqlFragment, IEquatable<SelectiveXmlIndexPromotedPath> {
-        Identifier name;
-        Literal path;
-        DataTypeReference sQLDataType;
-        Literal xQueryDataType;
-        IntegerLiteral maxLength;
-        bool isSingleton = false;
+        protected Identifier name;
+        protected Literal path;
+        protected DataTypeReference sQLDataType;
+        protected Literal xQueryDataType;
+        protected IntegerLiteral maxLength;
+        protected bool isSingleton = false;
     
         public Identifier Name => name;
         public Literal Path => path;

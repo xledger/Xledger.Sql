@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UpdateTextStatement : TextModificationStatement, IEquatable<UpdateTextStatement> {
-        ScalarExpression insertOffset;
-        ScalarExpression deleteLength;
-        ColumnReferenceExpression sourceColumn;
-        ValueExpression sourceParameter;
+        protected ScalarExpression insertOffset;
+        protected ScalarExpression deleteLength;
+        protected ColumnReferenceExpression sourceColumn;
+        protected ValueExpression sourceParameter;
     
         public ScalarExpression InsertOffset => insertOffset;
         public ScalarExpression DeleteLength => deleteLength;

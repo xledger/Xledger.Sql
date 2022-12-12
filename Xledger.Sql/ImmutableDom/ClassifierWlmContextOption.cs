@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ClassifierWlmContextOption : WorkloadClassifierOption, IEquatable<ClassifierWlmContextOption> {
-        StringLiteral wlmContext;
+        protected StringLiteral wlmContext;
     
         public StringLiteral WlmContext => wlmContext;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileNameFileDeclarationOption : FileDeclarationOption, IEquatable<FileNameFileDeclarationOption> {
-        Literal oSFileName;
+        protected Literal oSFileName;
     
         public Literal OSFileName => oSFileName;
     

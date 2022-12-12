@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileEncryptionSource : EncryptionSource, IEquatable<FileEncryptionSource> {
-        bool isExecutable = false;
-        Literal file;
+        protected bool isExecutable = false;
+        protected Literal file;
     
         public bool IsExecutable => isExecutable;
         public Literal File => file;

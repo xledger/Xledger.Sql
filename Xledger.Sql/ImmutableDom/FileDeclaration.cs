@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileDeclaration : TSqlFragment, IEquatable<FileDeclaration> {
-        IReadOnlyList<FileDeclarationOption> options;
-        bool isPrimary = false;
+        protected IReadOnlyList<FileDeclarationOption> options;
+        protected bool isPrimary = false;
     
         public IReadOnlyList<FileDeclarationOption> Options => options;
         public bool IsPrimary => isPrimary;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FileDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.FileDeclaration();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.FileDeclarationOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FileDeclarationOption)c.ToMutable()));
             ret.IsPrimary = isPrimary;
             return ret;
         }

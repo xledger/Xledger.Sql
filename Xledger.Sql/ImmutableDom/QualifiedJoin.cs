@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QualifiedJoin : JoinTableReference, IEquatable<QualifiedJoin> {
-        BooleanExpression searchCondition;
-        ScriptDom.QualifiedJoinType qualifiedJoinType = ScriptDom.QualifiedJoinType.Inner;
-        ScriptDom.JoinHint joinHint = ScriptDom.JoinHint.None;
+        protected BooleanExpression searchCondition;
+        protected ScriptDom.QualifiedJoinType qualifiedJoinType = ScriptDom.QualifiedJoinType.Inner;
+        protected ScriptDom.JoinHint joinHint = ScriptDom.JoinHint.None;
     
         public BooleanExpression SearchCondition => searchCondition;
         public ScriptDom.QualifiedJoinType QualifiedJoinType => qualifiedJoinType;

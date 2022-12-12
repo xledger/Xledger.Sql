@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableSetStatement : AlterTableStatement, IEquatable<AlterTableSetStatement> {
-        IReadOnlyList<TableOption> options;
+        protected IReadOnlyList<TableOption> options;
     
         public IReadOnlyList<TableOption> Options => options;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterTableSetStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableSetStatement();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.TableOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
             return ret;
         }

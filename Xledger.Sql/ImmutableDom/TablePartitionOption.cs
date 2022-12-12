@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TablePartitionOption : TableOption, IEquatable<TablePartitionOption> {
-        Identifier partitionColumn;
-        TablePartitionOptionSpecifications partitionOptionSpecs;
+        protected Identifier partitionColumn;
+        protected TablePartitionOptionSpecifications partitionOptionSpecs;
     
         public Identifier PartitionColumn => partitionColumn;
         public TablePartitionOptionSpecifications PartitionOptionSpecs => partitionOptionSpecs;

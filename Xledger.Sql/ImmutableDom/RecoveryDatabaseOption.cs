@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RecoveryDatabaseOption : DatabaseOption, IEquatable<RecoveryDatabaseOption> {
-        ScriptDom.RecoveryDatabaseOptionKind @value = ScriptDom.RecoveryDatabaseOptionKind.None;
+        protected ScriptDom.RecoveryDatabaseOptionKind @value = ScriptDom.RecoveryDatabaseOptionKind.None;
     
         public ScriptDom.RecoveryDatabaseOptionKind Value => @value;
     

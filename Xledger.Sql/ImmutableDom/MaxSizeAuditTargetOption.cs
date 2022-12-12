@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MaxSizeAuditTargetOption : AuditTargetOption, IEquatable<MaxSizeAuditTargetOption> {
-        bool isUnlimited = false;
-        Literal size;
-        ScriptDom.MemoryUnit unit = ScriptDom.MemoryUnit.Unspecified;
+        protected bool isUnlimited = false;
+        protected Literal size;
+        protected ScriptDom.MemoryUnit unit = ScriptDom.MemoryUnit.Unspecified;
     
         public bool IsUnlimited => isUnlimited;
         public Literal Size => size;

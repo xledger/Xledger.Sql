@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterPartitionFunctionStatement : TSqlStatement, IEquatable<AlterPartitionFunctionStatement> {
-        Identifier name;
-        bool isSplit = false;
-        ScalarExpression boundary;
+        protected Identifier name;
+        protected bool isSplit = false;
+        protected ScalarExpression boundary;
     
         public Identifier Name => name;
         public bool IsSplit => isSplit;

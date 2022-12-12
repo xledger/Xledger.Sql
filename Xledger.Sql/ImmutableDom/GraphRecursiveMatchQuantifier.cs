@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GraphRecursiveMatchQuantifier : BooleanExpression, IEquatable<GraphRecursiveMatchQuantifier> {
-        bool isPlusSign = false;
-        Literal lowerLimit;
-        Literal upperLimit;
+        protected bool isPlusSign = false;
+        protected Literal lowerLimit;
+        protected Literal upperLimit;
     
         public bool IsPlusSign => isPlusSign;
         public Literal LowerLimit => lowerLimit;

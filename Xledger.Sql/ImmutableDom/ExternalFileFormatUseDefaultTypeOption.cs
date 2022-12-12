@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalFileFormatUseDefaultTypeOption : ExternalFileFormatOption, IEquatable<ExternalFileFormatUseDefaultTypeOption> {
-        ScriptDom.ExternalFileFormatUseDefaultType externalFileFormatUseDefaultType = ScriptDom.ExternalFileFormatUseDefaultType.False;
+        protected ScriptDom.ExternalFileFormatUseDefaultType externalFileFormatUseDefaultType = ScriptDom.ExternalFileFormatUseDefaultType.False;
     
         public ScriptDom.ExternalFileFormatUseDefaultType ExternalFileFormatUseDefaultType => externalFileFormatUseDefaultType;
     

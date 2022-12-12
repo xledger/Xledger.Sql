@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateFullTextStopListStatement : TSqlStatement, IEquatable<CreateFullTextStopListStatement> {
-        Identifier name;
-        bool isSystemStopList = false;
-        Identifier databaseName;
-        Identifier sourceStopListName;
-        Identifier owner;
+        protected Identifier name;
+        protected bool isSystemStopList = false;
+        protected Identifier databaseName;
+        protected Identifier sourceStopListName;
+        protected Identifier owner;
     
         public Identifier Name => name;
         public bool IsSystemStopList => isSystemStopList;

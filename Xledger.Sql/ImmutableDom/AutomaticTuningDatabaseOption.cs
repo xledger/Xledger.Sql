@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AutomaticTuningDatabaseOption : DatabaseOption, IEquatable<AutomaticTuningDatabaseOption> {
-        ScriptDom.AutomaticTuningState automaticTuningState = ScriptDom.AutomaticTuningState.NotSet;
-        IReadOnlyList<AutomaticTuningOption> options;
+        protected ScriptDom.AutomaticTuningState automaticTuningState = ScriptDom.AutomaticTuningState.NotSet;
+        protected IReadOnlyList<AutomaticTuningOption> options;
     
         public ScriptDom.AutomaticTuningState AutomaticTuningState => automaticTuningState;
         public IReadOnlyList<AutomaticTuningOption> Options => options;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AutomaticTuningDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.AutomaticTuningDatabaseOption();
             ret.AutomaticTuningState = automaticTuningState;
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AutomaticTuningOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AutomaticTuningOption)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

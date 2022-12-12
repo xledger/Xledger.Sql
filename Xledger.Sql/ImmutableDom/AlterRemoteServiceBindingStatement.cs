@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterRemoteServiceBindingStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterRemoteServiceBindingStatement();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.RemoteServiceBindingOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RemoteServiceBindingOption)c.ToMutable()));
             return ret;
         }
         

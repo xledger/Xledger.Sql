@@ -8,14 +8,14 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateIndexStatement : IndexStatement, IEquatable<CreateIndexStatement> {
-        bool translated80SyntaxTo90 = false;
-        bool unique = false;
-        bool? clustered;
-        IReadOnlyList<ColumnWithSortOrder> columns;
-        IReadOnlyList<ColumnReferenceExpression> includeColumns;
-        FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
-        BooleanExpression filterPredicate;
-        IdentifierOrValueExpression fileStreamOn;
+        protected bool translated80SyntaxTo90 = false;
+        protected bool unique = false;
+        protected bool? clustered;
+        protected IReadOnlyList<ColumnWithSortOrder> columns;
+        protected IReadOnlyList<ColumnReferenceExpression> includeColumns;
+        protected FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
+        protected BooleanExpression filterPredicate;
+        protected IdentifierOrValueExpression fileStreamOn;
     
         public bool Translated80SyntaxTo90 => translated80SyntaxTo90;
         public bool Unique => unique;
@@ -45,14 +45,14 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Translated80SyntaxTo90 = translated80SyntaxTo90;
             ret.Unique = unique;
             ret.Clustered = clustered;
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
-            ret.IncludeColumns.AddRange(includeColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
+            ret.IncludeColumns.AddRange(includeColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
             ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate.ToMutable();
             ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             return ret;
         }
         

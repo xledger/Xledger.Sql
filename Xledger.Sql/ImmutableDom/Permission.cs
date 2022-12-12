@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class Permission : TSqlFragment, IEquatable<Permission> {
-        IReadOnlyList<Identifier> identifiers;
-        IReadOnlyList<Identifier> columns;
+        protected IReadOnlyList<Identifier> identifiers;
+        protected IReadOnlyList<Identifier> columns;
     
         public IReadOnlyList<Identifier> Identifiers => identifiers;
         public IReadOnlyList<Identifier> Columns => columns;
@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.Permission ToMutableConcrete() {
             var ret = new ScriptDom.Permission();
-            ret.Identifiers.AddRange(identifiers.Select(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             return ret;
         }
         

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SearchedCaseExpression : CaseExpression, IEquatable<SearchedCaseExpression> {
-        IReadOnlyList<SearchedWhenClause> whenClauses;
+        protected IReadOnlyList<SearchedWhenClause> whenClauses;
     
         public IReadOnlyList<SearchedWhenClause> WhenClauses => whenClauses;
     
@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SearchedCaseExpression ToMutableConcrete() {
             var ret = new ScriptDom.SearchedCaseExpression();
-            ret.WhenClauses.AddRange(whenClauses.Select(c => (ScriptDom.SearchedWhenClause)c.ToMutable()));
+            ret.WhenClauses.AddRange(whenClauses.SelectList(c => (ScriptDom.SearchedWhenClause)c.ToMutable()));
             ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression.ToMutable();
             ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
             return ret;

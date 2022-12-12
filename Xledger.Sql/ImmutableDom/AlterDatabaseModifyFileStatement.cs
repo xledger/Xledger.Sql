@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseModifyFileStatement : AlterDatabaseStatement, IEquatable<AlterDatabaseModifyFileStatement> {
-        FileDeclaration fileDeclaration;
+        protected FileDeclaration fileDeclaration;
     
         public FileDeclaration FileDeclaration => fileDeclaration;
     

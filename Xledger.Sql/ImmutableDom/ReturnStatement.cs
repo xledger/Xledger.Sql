@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ReturnStatement : TSqlStatement, IEquatable<ReturnStatement> {
-        ScalarExpression expression;
+        protected ScalarExpression expression;
     
         public ScalarExpression Expression => expression;
     

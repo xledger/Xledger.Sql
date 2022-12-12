@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SemanticTableReference : TableReferenceWithAlias, IEquatable<SemanticTableReference> {
-        ScriptDom.SemanticFunctionType semanticFunctionType = ScriptDom.SemanticFunctionType.None;
-        SchemaObjectName tableName;
-        IReadOnlyList<ColumnReferenceExpression> columns;
-        ScalarExpression sourceKey;
-        ColumnReferenceExpression matchedColumn;
-        ScalarExpression matchedKey;
+        protected ScriptDom.SemanticFunctionType semanticFunctionType = ScriptDom.SemanticFunctionType.None;
+        protected SchemaObjectName tableName;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
+        protected ScalarExpression sourceKey;
+        protected ColumnReferenceExpression matchedColumn;
+        protected ScalarExpression matchedKey;
     
         public ScriptDom.SemanticFunctionType SemanticFunctionType => semanticFunctionType;
         public SchemaObjectName TableName => tableName;
@@ -37,7 +37,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.SemanticTableReference();
             ret.SemanticFunctionType = semanticFunctionType;
             ret.TableName = (ScriptDom.SchemaObjectName)tableName.ToMutable();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             ret.SourceKey = (ScriptDom.ScalarExpression)sourceKey.ToMutable();
             ret.MatchedColumn = (ScriptDom.ColumnReferenceExpression)matchedColumn.ToMutable();
             ret.MatchedKey = (ScriptDom.ScalarExpression)matchedKey.ToMutable();

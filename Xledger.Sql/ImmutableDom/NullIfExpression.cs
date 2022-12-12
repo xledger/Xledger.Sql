@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class NullIfExpression : PrimaryExpression, IEquatable<NullIfExpression> {
-        ScalarExpression firstExpression;
-        ScalarExpression secondExpression;
+        protected ScalarExpression firstExpression;
+        protected ScalarExpression secondExpression;
     
         public ScalarExpression FirstExpression => firstExpression;
         public ScalarExpression SecondExpression => secondExpression;

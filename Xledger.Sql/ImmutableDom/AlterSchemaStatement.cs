@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterSchemaStatement : TSqlStatement, IEquatable<AlterSchemaStatement> {
-        Identifier name;
-        SchemaObjectName objectName;
-        ScriptDom.SecurityObjectKind objectKind = ScriptDom.SecurityObjectKind.NotSpecified;
+        protected Identifier name;
+        protected SchemaObjectName objectName;
+        protected ScriptDom.SecurityObjectKind objectKind = ScriptDom.SecurityObjectKind.NotSpecified;
     
         public Identifier Name => name;
         public SchemaObjectName ObjectName => objectName;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AddAlterFullTextIndexAction : AlterFullTextIndexAction, IEquatable<AddAlterFullTextIndexAction> {
-        IReadOnlyList<FullTextIndexColumn> columns;
-        bool withNoPopulation = false;
+        protected IReadOnlyList<FullTextIndexColumn> columns;
+        protected bool withNoPopulation = false;
     
         public IReadOnlyList<FullTextIndexColumn> Columns => columns;
         public bool WithNoPopulation => withNoPopulation;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AddAlterFullTextIndexAction ToMutableConcrete() {
             var ret = new ScriptDom.AddAlterFullTextIndexAction();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.FullTextIndexColumn)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.FullTextIndexColumn)c.ToMutable()));
             ret.WithNoPopulation = withNoPopulation;
             return ret;
         }

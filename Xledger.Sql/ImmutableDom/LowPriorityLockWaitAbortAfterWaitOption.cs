@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LowPriorityLockWaitAbortAfterWaitOption : LowPriorityLockWaitOption, IEquatable<LowPriorityLockWaitAbortAfterWaitOption> {
-        ScriptDom.AbortAfterWaitType abortAfterWait = ScriptDom.AbortAfterWaitType.None;
+        protected ScriptDom.AbortAfterWaitType abortAfterWait = ScriptDom.AbortAfterWaitType.None;
     
         public ScriptDom.AbortAfterWaitType AbortAfterWait => abortAfterWait;
     

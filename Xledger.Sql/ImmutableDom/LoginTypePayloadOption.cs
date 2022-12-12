@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LoginTypePayloadOption : PayloadOption, IEquatable<LoginTypePayloadOption> {
-        bool isWindows = false;
+        protected bool isWindows = false;
     
         public bool IsWindows => isWindows;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExternalFileFormatContainerOption : ExternalFileFormatOption, IEquatable<ExternalFileFormatContainerOption> {
-        IReadOnlyList<ExternalFileFormatOption> suboptions;
+        protected IReadOnlyList<ExternalFileFormatOption> suboptions;
     
         public IReadOnlyList<ExternalFileFormatOption> Suboptions => suboptions;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalFileFormatContainerOption ToMutableConcrete() {
             var ret = new ScriptDom.ExternalFileFormatContainerOption();
-            ret.Suboptions.AddRange(suboptions.Select(c => (ScriptDom.ExternalFileFormatOption)c.ToMutable()));
+            ret.Suboptions.AddRange(suboptions.SelectList(c => (ScriptDom.ExternalFileFormatOption)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnMasterKeyEnclaveComputationsParameter : ColumnMasterKeyParameter, IEquatable<ColumnMasterKeyEnclaveComputationsParameter> {
-        BinaryLiteral signature;
+        protected BinaryLiteral signature;
     
         public BinaryLiteral Signature => signature;
     

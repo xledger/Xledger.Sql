@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class KillStatsJobStatement : TSqlStatement, IEquatable<KillStatsJobStatement> {
-        ScalarExpression jobId;
+        protected ScalarExpression jobId;
     
         public ScalarExpression JobId => jobId;
     

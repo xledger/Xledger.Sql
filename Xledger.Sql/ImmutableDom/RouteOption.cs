@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RouteOption : TSqlFragment, IEquatable<RouteOption> {
-        ScriptDom.RouteOptionKind optionKind = ScriptDom.RouteOptionKind.Address;
-        Literal literal;
+        protected ScriptDom.RouteOptionKind optionKind = ScriptDom.RouteOptionKind.Address;
+        protected Literal literal;
     
         public ScriptDom.RouteOptionKind OptionKind => optionKind;
         public Literal Literal => literal;

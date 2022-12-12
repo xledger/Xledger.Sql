@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AuthenticationEndpointProtocolOption : EndpointProtocolOption, IEquatable<AuthenticationEndpointProtocolOption> {
-        ScriptDom.AuthenticationTypes authenticationTypes = ScriptDom.AuthenticationTypes.None;
+        protected ScriptDom.AuthenticationTypes authenticationTypes = ScriptDom.AuthenticationTypes.None;
     
         public ScriptDom.AuthenticationTypes AuthenticationTypes => authenticationTypes;
     

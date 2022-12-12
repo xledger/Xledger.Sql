@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RestoreStatement : TSqlStatement, IEquatable<RestoreStatement> {
-        IdentifierOrValueExpression databaseName;
-        IReadOnlyList<DeviceInfo> devices;
-        IReadOnlyList<BackupRestoreFileInfo> files;
-        IReadOnlyList<RestoreOption> options;
-        ScriptDom.RestoreStatementKind kind = ScriptDom.RestoreStatementKind.None;
+        protected IdentifierOrValueExpression databaseName;
+        protected IReadOnlyList<DeviceInfo> devices;
+        protected IReadOnlyList<BackupRestoreFileInfo> files;
+        protected IReadOnlyList<RestoreOption> options;
+        protected ScriptDom.RestoreStatementKind kind = ScriptDom.RestoreStatementKind.None;
     
         public IdentifierOrValueExpression DatabaseName => databaseName;
         public IReadOnlyList<DeviceInfo> Devices => devices;
@@ -31,9 +31,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.RestoreStatement ToMutableConcrete() {
             var ret = new ScriptDom.RestoreStatement();
             ret.DatabaseName = (ScriptDom.IdentifierOrValueExpression)databaseName.ToMutable();
-            ret.Devices.AddRange(devices.Select(c => (ScriptDom.DeviceInfo)c.ToMutable()));
-            ret.Files.AddRange(files.Select(c => (ScriptDom.BackupRestoreFileInfo)c.ToMutable()));
-            ret.Options.AddRange(options.Select(c => (ScriptDom.RestoreOption)c.ToMutable()));
+            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c.ToMutable()));
+            ret.Files.AddRange(files.SelectList(c => (ScriptDom.BackupRestoreFileInfo)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RestoreOption)c.ToMutable()));
             ret.Kind = kind;
             return ret;
         }

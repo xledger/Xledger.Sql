@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ComputeFunction : TSqlFragment, IEquatable<ComputeFunction> {
-        ScriptDom.ComputeFunctionType computeFunctionType = ScriptDom.ComputeFunctionType.NotSpecified;
-        ScalarExpression expression;
+        protected ScriptDom.ComputeFunctionType computeFunctionType = ScriptDom.ComputeFunctionType.NotSpecified;
+        protected ScalarExpression expression;
     
         public ScriptDom.ComputeFunctionType ComputeFunctionType => computeFunctionType;
         public ScalarExpression Expression => expression;

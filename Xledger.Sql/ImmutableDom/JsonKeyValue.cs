@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class JsonKeyValue : ScalarExpression, IEquatable<JsonKeyValue> {
-        ScalarExpression jsonKeyName;
-        ScalarExpression jsonValue;
+        protected ScalarExpression jsonKeyName;
+        protected ScalarExpression jsonValue;
     
         public ScalarExpression JsonKeyName => jsonKeyName;
         public ScalarExpression JsonValue => jsonValue;

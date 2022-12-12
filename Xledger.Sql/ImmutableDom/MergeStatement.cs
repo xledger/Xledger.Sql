@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MergeStatement : DataModificationStatement, IEquatable<MergeStatement> {
-        MergeSpecification mergeSpecification;
+        protected MergeSpecification mergeSpecification;
     
         public MergeSpecification MergeSpecification => mergeSpecification;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.MergeStatement();
             ret.MergeSpecification = (ScriptDom.MergeSpecification)mergeSpecification.ToMutable();
             ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
             return ret;
         }
         

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FunctionCallSetClause : SetClause, IEquatable<FunctionCallSetClause> {
-        FunctionCall mutatorFunction;
+        protected FunctionCall mutatorFunction;
     
         public FunctionCall MutatorFunction => mutatorFunction;
     

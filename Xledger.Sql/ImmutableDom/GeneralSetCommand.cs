@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GeneralSetCommand : SetCommand, IEquatable<GeneralSetCommand> {
-        ScriptDom.GeneralSetCommandType commandType = ScriptDom.GeneralSetCommandType.None;
-        ScalarExpression parameter;
+        protected ScriptDom.GeneralSetCommandType commandType = ScriptDom.GeneralSetCommandType.None;
+        protected ScalarExpression parameter;
     
         public ScriptDom.GeneralSetCommandType CommandType => commandType;
         public ScalarExpression Parameter => parameter;

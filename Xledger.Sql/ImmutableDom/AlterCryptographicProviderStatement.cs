@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterCryptographicProviderStatement : TSqlStatement, IEquatable<AlterCryptographicProviderStatement> {
-        Identifier name;
-        ScriptDom.EnableDisableOptionType option = ScriptDom.EnableDisableOptionType.None;
-        Literal file;
+        protected Identifier name;
+        protected ScriptDom.EnableDisableOptionType option = ScriptDom.EnableDisableOptionType.None;
+        protected Literal file;
     
         public Identifier Name => name;
         public ScriptDom.EnableDisableOptionType Option => option;

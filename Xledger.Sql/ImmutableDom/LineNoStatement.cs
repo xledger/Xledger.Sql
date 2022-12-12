@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LineNoStatement : TSqlStatement, IEquatable<LineNoStatement> {
-        IntegerLiteral lineNo;
+        protected IntegerLiteral lineNo;
     
         public IntegerLiteral LineNo => lineNo;
     

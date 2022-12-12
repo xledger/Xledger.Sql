@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExpressionGroupingSpecification : GroupingSpecification, IEquatable<ExpressionGroupingSpecification> {
-        ScalarExpression expression;
-        bool distributedAggregation = false;
+        protected ScalarExpression expression;
+        protected bool distributedAggregation = false;
     
         public ScalarExpression Expression => expression;
         public bool DistributedAggregation => distributedAggregation;

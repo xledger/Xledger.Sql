@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ViewDistributionOption : ViewOption, IEquatable<ViewDistributionOption> {
-        ViewDistributionPolicy @value;
+        protected ViewDistributionPolicy @value;
     
         public ViewDistributionPolicy Value => @value;
     

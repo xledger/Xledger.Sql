@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Location = (ScriptDom.Literal)location.ToMutable();
             ret.InputOptions = (ScriptDom.Literal)inputOptions.ToMutable();
             ret.OutputOptions = (ScriptDom.Literal)outputOptions.ToMutable();
-            ret.ExternalStreamOptions.AddRange(externalStreamOptions.Select(c => (ScriptDom.ExternalStreamOption)c.ToMutable()));
+            ret.ExternalStreamOptions.AddRange(externalStreamOptions.SelectList(c => (ScriptDom.ExternalStreamOption)c.ToMutable()));
             return ret;
         }
         

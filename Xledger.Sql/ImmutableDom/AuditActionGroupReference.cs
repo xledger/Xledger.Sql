@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AuditActionGroupReference : AuditSpecificationDetail, IEquatable<AuditActionGroupReference> {
-        ScriptDom.AuditActionGroup group = ScriptDom.AuditActionGroup.None;
+        protected ScriptDom.AuditActionGroup group = ScriptDom.AuditActionGroup.None;
     
         public ScriptDom.AuditActionGroup Group => group;
     

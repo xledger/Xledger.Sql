@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RemoteDataArchiveDatabaseOption : DatabaseOption, IEquatable<RemoteDataArchiveDatabaseOption> {
-        ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
-        IReadOnlyList<RemoteDataArchiveDatabaseSetting> settings;
+        protected ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet;
+        protected IReadOnlyList<RemoteDataArchiveDatabaseSetting> settings;
     
         public ScriptDom.OptionState OptionState => optionState;
         public IReadOnlyList<RemoteDataArchiveDatabaseSetting> Settings => settings;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.RemoteDataArchiveDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.RemoteDataArchiveDatabaseOption();
             ret.OptionState = optionState;
-            ret.Settings.AddRange(settings.Select(c => (ScriptDom.RemoteDataArchiveDatabaseSetting)c.ToMutable()));
+            ret.Settings.AddRange(settings.SelectList(c => (ScriptDom.RemoteDataArchiveDatabaseSetting)c.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

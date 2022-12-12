@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteAsStatement : TSqlStatement, IEquatable<ExecuteAsStatement> {
-        bool withNoRevert = false;
-        VariableReference cookie;
-        ExecuteContext executeContext;
+        protected bool withNoRevert = false;
+        protected VariableReference cookie;
+        protected ExecuteContext executeContext;
     
         public bool WithNoRevert => withNoRevert;
         public VariableReference Cookie => cookie;

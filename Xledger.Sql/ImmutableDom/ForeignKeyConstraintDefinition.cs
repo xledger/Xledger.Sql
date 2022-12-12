@@ -8,12 +8,12 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ForeignKeyConstraintDefinition : ConstraintDefinition, IEquatable<ForeignKeyConstraintDefinition> {
-        IReadOnlyList<Identifier> columns;
-        SchemaObjectName referenceTableName;
-        IReadOnlyList<Identifier> referencedTableColumns;
-        ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified;
-        ScriptDom.DeleteUpdateAction updateAction = ScriptDom.DeleteUpdateAction.NotSpecified;
-        bool notForReplication = false;
+        protected IReadOnlyList<Identifier> columns;
+        protected SchemaObjectName referenceTableName;
+        protected IReadOnlyList<Identifier> referencedTableColumns;
+        protected ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified;
+        protected ScriptDom.DeleteUpdateAction updateAction = ScriptDom.DeleteUpdateAction.NotSpecified;
+        protected bool notForReplication = false;
     
         public IReadOnlyList<Identifier> Columns => columns;
         public SchemaObjectName ReferenceTableName => referenceTableName;
@@ -34,9 +34,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ForeignKeyConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.ForeignKeyConstraintDefinition();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.ReferenceTableName = (ScriptDom.SchemaObjectName)referenceTableName.ToMutable();
-            ret.ReferencedTableColumns.AddRange(referencedTableColumns.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.ReferencedTableColumns.AddRange(referencedTableColumns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.DeleteAction = deleteAction;
             ret.UpdateAction = updateAction;
             ret.NotForReplication = notForReplication;

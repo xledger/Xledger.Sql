@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropDatabaseStatement : TSqlStatement, IEquatable<DropDatabaseStatement> {
-        IReadOnlyList<Identifier> databases;
-        bool isIfExists = false;
+        protected IReadOnlyList<Identifier> databases;
+        protected bool isIfExists = false;
     
         public IReadOnlyList<Identifier> Databases => databases;
         public bool IsIfExists => isIfExists;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropDatabaseStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropDatabaseStatement();
-            ret.Databases.AddRange(databases.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

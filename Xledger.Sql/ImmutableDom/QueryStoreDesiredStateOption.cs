@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryStoreDesiredStateOption : QueryStoreOption, IEquatable<QueryStoreDesiredStateOption> {
-        ScriptDom.QueryStoreDesiredStateOptionKind @value = ScriptDom.QueryStoreDesiredStateOptionKind.Off;
-        bool operationModeSpecified = false;
+        protected ScriptDom.QueryStoreDesiredStateOptionKind @value = ScriptDom.QueryStoreDesiredStateOptionKind.Off;
+        protected bool operationModeSpecified = false;
     
         public ScriptDom.QueryStoreDesiredStateOptionKind Value => @value;
         public bool OperationModeSpecified => operationModeSpecified;

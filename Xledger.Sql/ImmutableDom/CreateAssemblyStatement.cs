@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateAssemblyStatement : AssemblyStatement, IEquatable<CreateAssemblyStatement> {
-        Identifier owner;
+        protected Identifier owner;
     
         public Identifier Owner => owner;
     
@@ -23,8 +23,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateAssemblyStatement();
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AssemblyOption)c.ToMutable()));
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AssemblyOption)c.ToMutable()));
             return ret;
         }
         

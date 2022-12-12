@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DeleteStatement : DataModificationStatement, IEquatable<DeleteStatement> {
-        DeleteSpecification deleteSpecification;
+        protected DeleteSpecification deleteSpecification;
     
         public DeleteSpecification DeleteSpecification => deleteSpecification;
     
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.DeleteStatement();
             ret.DeleteSpecification = (ScriptDom.DeleteSpecification)deleteSpecification.ToMutable();
             ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
             return ret;
         }
         

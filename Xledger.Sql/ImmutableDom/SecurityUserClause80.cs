@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SecurityUserClause80 : TSqlFragment, IEquatable<SecurityUserClause80> {
-        IReadOnlyList<Identifier> users;
-        ScriptDom.UserType80 userType80 = ScriptDom.UserType80.Null;
+        protected IReadOnlyList<Identifier> users;
+        protected ScriptDom.UserType80 userType80 = ScriptDom.UserType80.Null;
     
         public IReadOnlyList<Identifier> Users => users;
         public ScriptDom.UserType80 UserType80 => userType80;
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SecurityUserClause80 ToMutableConcrete() {
             var ret = new ScriptDom.SecurityUserClause80();
-            ret.Users.AddRange(users.Select(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Users.AddRange(users.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
             ret.UserType80 = userType80;
             return ret;
         }

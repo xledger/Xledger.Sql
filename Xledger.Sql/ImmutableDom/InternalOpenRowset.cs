@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InternalOpenRowset : TableReferenceWithAlias, IEquatable<InternalOpenRowset> {
-        Identifier identifier;
-        IReadOnlyList<ScalarExpression> varArgs;
+        protected Identifier identifier;
+        protected IReadOnlyList<ScalarExpression> varArgs;
     
         public Identifier Identifier => identifier;
         public IReadOnlyList<ScalarExpression> VarArgs => varArgs;
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.InternalOpenRowset ToMutableConcrete() {
             var ret = new ScriptDom.InternalOpenRowset();
             ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
-            ret.VarArgs.AddRange(varArgs.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.VarArgs.AddRange(varArgs.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
             ret.ForPath = forPath;
             return ret;

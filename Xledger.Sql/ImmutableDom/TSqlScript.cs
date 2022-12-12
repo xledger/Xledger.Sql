@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TSqlScript : TSqlFragment, IEquatable<TSqlScript> {
-        IReadOnlyList<TSqlBatch> batches;
+        protected IReadOnlyList<TSqlBatch> batches;
     
         public IReadOnlyList<TSqlBatch> Batches => batches;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TSqlScript ToMutableConcrete() {
             var ret = new ScriptDom.TSqlScript();
-            ret.Batches.AddRange(batches.Select(c => (ScriptDom.TSqlBatch)c.ToMutable()));
+            ret.Batches.AddRange(batches.SelectList(c => (ScriptDom.TSqlBatch)c.ToMutable()));
             return ret;
         }
         

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseModifyNameStatement : AlterDatabaseStatement, IEquatable<AlterDatabaseModifyNameStatement> {
-        Identifier newDatabaseName;
+        protected Identifier newDatabaseName;
     
         public Identifier NewDatabaseName => newDatabaseName;
     

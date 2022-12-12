@@ -8,14 +8,14 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UniqueConstraintDefinition : ConstraintDefinition, IEquatable<UniqueConstraintDefinition> {
-        bool? clustered;
-        bool isPrimaryKey = false;
-        bool? isEnforced;
-        IReadOnlyList<ColumnWithSortOrder> columns;
-        IReadOnlyList<IndexOption> indexOptions;
-        FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
-        IndexType indexType;
-        IdentifierOrValueExpression fileStreamOn;
+        protected bool? clustered;
+        protected bool isPrimaryKey = false;
+        protected bool? isEnforced;
+        protected IReadOnlyList<ColumnWithSortOrder> columns;
+        protected IReadOnlyList<IndexOption> indexOptions;
+        protected FileGroupOrPartitionScheme onFileGroupOrPartitionScheme;
+        protected IndexType indexType;
+        protected IdentifierOrValueExpression fileStreamOn;
     
         public bool? Clustered => clustered;
         public bool IsPrimaryKey => isPrimaryKey;
@@ -43,8 +43,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Clustered = clustered;
             ret.IsPrimaryKey = isPrimaryKey;
             ret.IsEnforced = isEnforced;
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
-            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
             ret.IndexType = (ScriptDom.IndexType)indexType.ToMutable();
             ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn.ToMutable();

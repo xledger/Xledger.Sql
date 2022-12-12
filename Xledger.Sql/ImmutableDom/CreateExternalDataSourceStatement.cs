@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DataSourceType = dataSourceType;
             ret.Location = (ScriptDom.Literal)location.ToMutable();
             ret.PushdownOption = pushdownOption;
-            ret.ExternalDataSourceOptions.AddRange(externalDataSourceOptions.Select(c => (ScriptDom.ExternalDataSourceOption)c.ToMutable()));
+            ret.ExternalDataSourceOptions.AddRange(externalDataSourceOptions.SelectList(c => (ScriptDom.ExternalDataSourceOption)c.ToMutable()));
             return ret;
         }
         

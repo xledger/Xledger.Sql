@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SelectFunctionReturnType : FunctionReturnType, IEquatable<SelectFunctionReturnType> {
-        SelectStatement selectStatement;
+        protected SelectStatement selectStatement;
     
         public SelectStatement SelectStatement => selectStatement;
     

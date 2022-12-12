@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TemporalClause : TSqlFragment, IEquatable<TemporalClause> {
-        ScriptDom.TemporalClauseType temporalClauseType = ScriptDom.TemporalClauseType.AsOf;
-        ScalarExpression startTime;
-        ScalarExpression endTime;
+        protected ScriptDom.TemporalClauseType temporalClauseType = ScriptDom.TemporalClauseType.AsOf;
+        protected ScalarExpression startTime;
+        protected ScalarExpression endTime;
     
         public ScriptDom.TemporalClauseType TemporalClauseType => temporalClauseType;
         public ScalarExpression StartTime => startTime;

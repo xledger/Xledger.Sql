@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ClassifierImportanceOption : WorkloadClassifierOption, IEquatable<ClassifierImportanceOption> {
-        ScriptDom.ImportanceParameterType importance = ScriptDom.ImportanceParameterType.Unknown;
+        protected ScriptDom.ImportanceParameterType importance = ScriptDom.ImportanceParameterType.Unknown;
     
         public ScriptDom.ImportanceParameterType Importance => importance;
     

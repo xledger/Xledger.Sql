@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropSchemaStatement : TSqlStatement, IEquatable<DropSchemaStatement> {
-        SchemaObjectName schema;
-        ScriptDom.DropSchemaBehavior dropBehavior = ScriptDom.DropSchemaBehavior.None;
-        bool isIfExists = false;
+        protected SchemaObjectName schema;
+        protected ScriptDom.DropSchemaBehavior dropBehavior = ScriptDom.DropSchemaBehavior.None;
+        protected bool isIfExists = false;
     
         public SchemaObjectName Schema => schema;
         public ScriptDom.DropSchemaBehavior DropBehavior => dropBehavior;

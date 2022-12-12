@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueueOption : TSqlFragment, IEquatable<QueueOption> {
-        ScriptDom.QueueOptionKind optionKind = ScriptDom.QueueOptionKind.Status;
+        protected ScriptDom.QueueOptionKind optionKind = ScriptDom.QueueOptionKind.Status;
     
         public ScriptDom.QueueOptionKind OptionKind => optionKind;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterServerConfigurationSetDiagnosticsLogStatement : TSqlStatement, IEquatable<AlterServerConfigurationSetDiagnosticsLogStatement> {
-        IReadOnlyList<AlterServerConfigurationDiagnosticsLogOption> options;
+        protected IReadOnlyList<AlterServerConfigurationDiagnosticsLogOption> options;
     
         public IReadOnlyList<AlterServerConfigurationDiagnosticsLogOption> Options => options;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationDiagnosticsLogOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationDiagnosticsLogOption)c.ToMutable()));
             return ret;
         }
         

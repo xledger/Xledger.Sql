@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnMasterKeyPathParameter : ColumnMasterKeyParameter, IEquatable<ColumnMasterKeyPathParameter> {
-        StringLiteral path;
+        protected StringLiteral path;
     
         public StringLiteral Path => path;
     

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CursorDefaultDatabaseOption : DatabaseOption, IEquatable<CursorDefaultDatabaseOption> {
-        bool isLocal = false;
+        protected bool isLocal = false;
     
         public bool IsLocal => isLocal;
     

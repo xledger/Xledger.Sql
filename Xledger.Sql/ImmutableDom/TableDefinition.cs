@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TableDefinition : TSqlFragment, IEquatable<TableDefinition> {
-        IReadOnlyList<ColumnDefinition> columnDefinitions;
-        IReadOnlyList<ConstraintDefinition> tableConstraints;
-        IReadOnlyList<IndexDefinition> indexes;
-        SystemTimePeriodDefinition systemTimePeriod;
+        protected IReadOnlyList<ColumnDefinition> columnDefinitions;
+        protected IReadOnlyList<ConstraintDefinition> tableConstraints;
+        protected IReadOnlyList<IndexDefinition> indexes;
+        protected SystemTimePeriodDefinition systemTimePeriod;
     
         public IReadOnlyList<ColumnDefinition> ColumnDefinitions => columnDefinitions;
         public IReadOnlyList<ConstraintDefinition> TableConstraints => tableConstraints;
@@ -27,9 +27,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TableDefinition ToMutableConcrete() {
             var ret = new ScriptDom.TableDefinition();
-            ret.ColumnDefinitions.AddRange(columnDefinitions.Select(c => (ScriptDom.ColumnDefinition)c.ToMutable()));
-            ret.TableConstraints.AddRange(tableConstraints.Select(c => (ScriptDom.ConstraintDefinition)c.ToMutable()));
-            ret.Indexes.AddRange(indexes.Select(c => (ScriptDom.IndexDefinition)c.ToMutable()));
+            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.ColumnDefinition)c.ToMutable()));
+            ret.TableConstraints.AddRange(tableConstraints.SelectList(c => (ScriptDom.ConstraintDefinition)c.ToMutable()));
+            ret.Indexes.AddRange(indexes.SelectList(c => (ScriptDom.IndexDefinition)c.ToMutable()));
             ret.SystemTimePeriod = (ScriptDom.SystemTimePeriodDefinition)systemTimePeriod.ToMutable();
             return ret;
         }

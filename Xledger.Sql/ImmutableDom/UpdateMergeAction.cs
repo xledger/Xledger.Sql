@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UpdateMergeAction : MergeAction, IEquatable<UpdateMergeAction> {
-        IReadOnlyList<SetClause> setClauses;
+        protected IReadOnlyList<SetClause> setClauses;
     
         public IReadOnlyList<SetClause> SetClauses => setClauses;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateMergeAction ToMutableConcrete() {
             var ret = new ScriptDom.UpdateMergeAction();
-            ret.SetClauses.AddRange(setClauses.Select(c => (ScriptDom.SetClause)c.ToMutable()));
+            ret.SetClauses.AddRange(setClauses.SelectList(c => (ScriptDom.SetClause)c.ToMutable()));
             return ret;
         }
         

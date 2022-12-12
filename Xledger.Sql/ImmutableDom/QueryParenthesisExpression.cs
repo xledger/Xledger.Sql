@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class QueryParenthesisExpression : QueryExpression, IEquatable<QueryParenthesisExpression> {
-        QueryExpression queryExpression;
+        protected QueryExpression queryExpression;
     
         public QueryExpression QueryExpression => queryExpression;
     

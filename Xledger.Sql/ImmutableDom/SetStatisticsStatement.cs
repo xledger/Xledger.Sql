@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetStatisticsStatement : SetOnOffStatement, IEquatable<SetStatisticsStatement> {
-        ScriptDom.SetStatisticsOptions options = ScriptDom.SetStatisticsOptions.None;
+        protected ScriptDom.SetStatisticsOptions options = ScriptDom.SetStatisticsOptions.None;
     
         public ScriptDom.SetStatisticsOptions Options => options;
     

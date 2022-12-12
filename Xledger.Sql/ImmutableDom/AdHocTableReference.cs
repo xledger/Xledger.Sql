@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AdHocTableReference : TableReferenceWithAlias, IEquatable<AdHocTableReference> {
-        AdHocDataSource dataSource;
-        SchemaObjectNameOrValueExpression @object;
+        protected AdHocDataSource dataSource;
+        protected SchemaObjectNameOrValueExpression @object;
     
         public AdHocDataSource DataSource => dataSource;
         public SchemaObjectNameOrValueExpression Object => @object;

@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateServiceStatement : AlterCreateServiceStatementBase, IEquatable<CreateServiceStatement> {
-        Identifier owner;
+        protected Identifier owner;
     
         public Identifier Owner => owner;
     
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.QueueName = (ScriptDom.SchemaObjectName)queueName.ToMutable();
-            ret.ServiceContracts.AddRange(serviceContracts.Select(c => (ScriptDom.ServiceContract)c.ToMutable()));
+            ret.ServiceContracts.AddRange(serviceContracts.SelectList(c => (ScriptDom.ServiceContract)c.ToMutable()));
             return ret;
         }
         

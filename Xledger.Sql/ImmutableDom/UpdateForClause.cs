@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class UpdateForClause : ForClause, IEquatable<UpdateForClause> {
-        IReadOnlyList<ColumnReferenceExpression> columns;
+        protected IReadOnlyList<ColumnReferenceExpression> columns;
     
         public IReadOnlyList<ColumnReferenceExpression> Columns => columns;
     
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateForClause ToMutableConcrete() {
             var ret = new ScriptDom.UpdateForClause();
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             return ret;
         }
         

@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WithCtesAndXmlNamespaces : TSqlFragment, IEquatable<WithCtesAndXmlNamespaces> {
-        XmlNamespaces xmlNamespaces;
-        IReadOnlyList<CommonTableExpression> commonTableExpressions;
-        ValueExpression changeTrackingContext;
+        protected XmlNamespaces xmlNamespaces;
+        protected IReadOnlyList<CommonTableExpression> commonTableExpressions;
+        protected ValueExpression changeTrackingContext;
     
         public XmlNamespaces XmlNamespaces => xmlNamespaces;
         public IReadOnlyList<CommonTableExpression> CommonTableExpressions => commonTableExpressions;
@@ -25,7 +25,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.WithCtesAndXmlNamespaces ToMutableConcrete() {
             var ret = new ScriptDom.WithCtesAndXmlNamespaces();
             ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces.ToMutable();
-            ret.CommonTableExpressions.AddRange(commonTableExpressions.Select(c => (ScriptDom.CommonTableExpression)c.ToMutable()));
+            ret.CommonTableExpressions.AddRange(commonTableExpressions.SelectList(c => (ScriptDom.CommonTableExpression)c.ToMutable()));
             ret.ChangeTrackingContext = (ScriptDom.ValueExpression)changeTrackingContext.ToMutable();
             return ret;
         }

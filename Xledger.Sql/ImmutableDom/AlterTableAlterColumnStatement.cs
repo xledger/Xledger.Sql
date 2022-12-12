@@ -8,17 +8,17 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableAlterColumnStatement : AlterTableStatement, IEquatable<AlterTableAlterColumnStatement> {
-        Identifier columnIdentifier;
-        DataTypeReference dataType;
-        ScriptDom.AlterTableAlterColumnOption alterTableAlterColumnOption = ScriptDom.AlterTableAlterColumnOption.NoOptionDefined;
-        ColumnStorageOptions storageOptions;
-        IReadOnlyList<IndexOption> options;
-        ScriptDom.GeneratedAlwaysType? generatedAlways;
-        bool isHidden = false;
-        ColumnEncryptionDefinition encryption;
-        Identifier collation;
-        bool isMasked = false;
-        StringLiteral maskingFunction;
+        protected Identifier columnIdentifier;
+        protected DataTypeReference dataType;
+        protected ScriptDom.AlterTableAlterColumnOption alterTableAlterColumnOption = ScriptDom.AlterTableAlterColumnOption.NoOptionDefined;
+        protected ColumnStorageOptions storageOptions;
+        protected IReadOnlyList<IndexOption> options;
+        protected ScriptDom.GeneratedAlwaysType? generatedAlways;
+        protected bool isHidden = false;
+        protected ColumnEncryptionDefinition encryption;
+        protected Identifier collation;
+        protected bool isMasked = false;
+        protected StringLiteral maskingFunction;
     
         public Identifier ColumnIdentifier => columnIdentifier;
         public DataTypeReference DataType => dataType;
@@ -53,7 +53,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
             ret.AlterTableAlterColumnOption = alterTableAlterColumnOption;
             ret.StorageOptions = (ScriptDom.ColumnStorageOptions)storageOptions.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             ret.GeneratedAlways = generatedAlways;
             ret.IsHidden = isHidden;
             ret.Encryption = (ScriptDom.ColumnEncryptionDefinition)encryption.ToMutable();

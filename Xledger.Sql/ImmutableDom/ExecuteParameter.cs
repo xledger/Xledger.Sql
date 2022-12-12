@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteParameter : TSqlFragment, IEquatable<ExecuteParameter> {
-        VariableReference variable;
-        ScalarExpression parameterValue;
-        bool isOutput = false;
+        protected VariableReference variable;
+        protected ScalarExpression parameterValue;
+        protected bool isOutput = false;
     
         public VariableReference Variable => variable;
         public ScalarExpression ParameterValue => parameterValue;

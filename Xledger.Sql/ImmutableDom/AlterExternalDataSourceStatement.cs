@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterExternalDataSourceStatement : ExternalDataSourceStatement, IEquatable<AlterExternalDataSourceStatement> {
-        ScriptDom.ExternalDataSourcePushdownOption previousPushDownOption = ScriptDom.ExternalDataSourcePushdownOption.ON;
+        protected ScriptDom.ExternalDataSourcePushdownOption previousPushDownOption = ScriptDom.ExternalDataSourcePushdownOption.ON;
     
         public ScriptDom.ExternalDataSourcePushdownOption PreviousPushDownOption => previousPushDownOption;
     
@@ -28,7 +28,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DataSourceType = dataSourceType;
             ret.Location = (ScriptDom.Literal)location.ToMutable();
             ret.PushdownOption = pushdownOption;
-            ret.ExternalDataSourceOptions.AddRange(externalDataSourceOptions.Select(c => (ScriptDom.ExternalDataSourceOption)c.ToMutable()));
+            ret.ExternalDataSourceOptions.AddRange(externalDataSourceOptions.SelectList(c => (ScriptDom.ExternalDataSourceOption)c.ToMutable()));
             return ret;
         }
         

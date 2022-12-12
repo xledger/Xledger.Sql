@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetTextSizeStatement : TSqlStatement, IEquatable<SetTextSizeStatement> {
-        ScalarExpression textSize;
+        protected ScalarExpression textSize;
     
         public ScalarExpression TextSize => textSize;
     

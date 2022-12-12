@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SimpleCaseExpression : CaseExpression, IEquatable<SimpleCaseExpression> {
-        ScalarExpression inputExpression;
-        IReadOnlyList<SimpleWhenClause> whenClauses;
+        protected ScalarExpression inputExpression;
+        protected IReadOnlyList<SimpleWhenClause> whenClauses;
     
         public ScalarExpression InputExpression => inputExpression;
         public IReadOnlyList<SimpleWhenClause> WhenClauses => whenClauses;
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SimpleCaseExpression ToMutableConcrete() {
             var ret = new ScriptDom.SimpleCaseExpression();
             ret.InputExpression = (ScriptDom.ScalarExpression)inputExpression.ToMutable();
-            ret.WhenClauses.AddRange(whenClauses.Select(c => (ScriptDom.SimpleWhenClause)c.ToMutable()));
+            ret.WhenClauses.AddRange(whenClauses.SelectList(c => (ScriptDom.SimpleWhenClause)c.ToMutable()));
             ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression.ToMutable();
             ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
             return ret;

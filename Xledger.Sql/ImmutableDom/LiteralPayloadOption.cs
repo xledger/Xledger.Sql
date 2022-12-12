@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LiteralPayloadOption : PayloadOption, IEquatable<LiteralPayloadOption> {
-        Literal @value;
+        protected Literal @value;
     
         public Literal Value => @value;
     

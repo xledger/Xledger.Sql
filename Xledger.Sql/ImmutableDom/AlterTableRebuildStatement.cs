@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterTableRebuildStatement : AlterTableStatement, IEquatable<AlterTableRebuildStatement> {
-        PartitionSpecifier partition;
-        IReadOnlyList<IndexOption> indexOptions;
+        protected PartitionSpecifier partition;
+        protected IReadOnlyList<IndexOption> indexOptions;
     
         public PartitionSpecifier Partition => partition;
         public IReadOnlyList<IndexOption> IndexOptions => indexOptions;
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterTableRebuildStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableRebuildStatement();
             ret.Partition = (ScriptDom.PartitionSpecifier)partition.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
             return ret;
         }

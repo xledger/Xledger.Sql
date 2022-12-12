@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class MaxDurationOption : IndexOption, IEquatable<MaxDurationOption> {
-        Literal maxDuration;
-        ScriptDom.TimeUnit? unit;
+        protected Literal maxDuration;
+        protected ScriptDom.TimeUnit? unit;
     
         public Literal MaxDuration => maxDuration;
         public ScriptDom.TimeUnit? Unit => unit;

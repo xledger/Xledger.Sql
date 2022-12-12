@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseTermination : TSqlFragment, IEquatable<AlterDatabaseTermination> {
-        bool immediateRollback = false;
-        Literal rollbackAfter;
-        bool noWait = false;
+        protected bool immediateRollback = false;
+        protected Literal rollbackAfter;
+        protected bool noWait = false;
     
         public bool ImmediateRollback => immediateRollback;
         public Literal RollbackAfter => rollbackAfter;

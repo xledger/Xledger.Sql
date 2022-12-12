@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnMasterKeyStoreProviderNameParameter : ColumnMasterKeyParameter, IEquatable<ColumnMasterKeyStoreProviderNameParameter> {
-        StringLiteral name;
+        protected StringLiteral name;
     
         public StringLiteral Name => name;
     

@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AlterIndexStatement : IndexStatement, IEquatable<AlterIndexStatement> {
-        bool all = false;
-        ScriptDom.AlterIndexType alterIndexType = ScriptDom.AlterIndexType.Rebuild;
-        PartitionSpecifier partition;
-        IReadOnlyList<SelectiveXmlIndexPromotedPath> promotedPaths;
-        XmlNamespaces xmlNamespaces;
+        protected bool all = false;
+        protected ScriptDom.AlterIndexType alterIndexType = ScriptDom.AlterIndexType.Rebuild;
+        protected PartitionSpecifier partition;
+        protected IReadOnlyList<SelectiveXmlIndexPromotedPath> promotedPaths;
+        protected XmlNamespaces xmlNamespaces;
     
         public bool All => all;
         public ScriptDom.AlterIndexType AlterIndexType => alterIndexType;
@@ -36,11 +36,11 @@ namespace Xledger.Sql.ImmutableDom {
             ret.All = all;
             ret.AlterIndexType = alterIndexType;
             ret.Partition = (ScriptDom.PartitionSpecifier)partition.ToMutable();
-            ret.PromotedPaths.AddRange(promotedPaths.Select(c => (ScriptDom.SelectiveXmlIndexPromotedPath)c.ToMutable()));
+            ret.PromotedPaths.AddRange(promotedPaths.SelectList(c => (ScriptDom.SelectiveXmlIndexPromotedPath)c.ToMutable()));
             ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces.ToMutable();
             ret.Name = (ScriptDom.Identifier)name.ToMutable();
             ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
             return ret;
         }
         

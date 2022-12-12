@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SelectSetVariable : SelectElement, IEquatable<SelectSetVariable> {
-        VariableReference variable;
-        ScalarExpression expression;
-        ScriptDom.AssignmentKind assignmentKind = ScriptDom.AssignmentKind.Equals;
+        protected VariableReference variable;
+        protected ScalarExpression expression;
+        protected ScriptDom.AssignmentKind assignmentKind = ScriptDom.AssignmentKind.Equals;
     
         public VariableReference Variable => variable;
         public ScalarExpression Expression => expression;

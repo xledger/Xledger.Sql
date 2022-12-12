@@ -8,11 +8,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class LedgerViewOption : TableOption, IEquatable<LedgerViewOption> {
-        SchemaObjectName viewName;
-        Identifier transactionIdColumnName;
-        Identifier sequenceNumberColumnName;
-        Identifier operationTypeColumnName;
-        Identifier operationTypeDescColumnName;
+        protected SchemaObjectName viewName;
+        protected Identifier transactionIdColumnName;
+        protected Identifier sequenceNumberColumnName;
+        protected Identifier operationTypeColumnName;
+        protected Identifier operationTypeDescColumnName;
     
         public SchemaObjectName ViewName => viewName;
         public Identifier TransactionIdColumnName => transactionIdColumnName;

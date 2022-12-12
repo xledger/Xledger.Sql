@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropAssemblyStatement : DropObjectsStatement, IEquatable<DropAssemblyStatement> {
-        bool withNoDependents = false;
+        protected bool withNoDependents = false;
     
         public bool WithNoDependents => withNoDependents;
     
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DropAssemblyStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropAssemblyStatement();
             ret.WithNoDependents = withNoDependents;
-            ret.Objects.AddRange(objects.Select(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
+            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

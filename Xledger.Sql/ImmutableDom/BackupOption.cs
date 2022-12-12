@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class BackupOption : TSqlFragment, IEquatable<BackupOption> {
-        ScriptDom.BackupOptionKind optionKind = ScriptDom.BackupOptionKind.None;
-        ScalarExpression @value;
+        protected ScriptDom.BackupOptionKind optionKind = ScriptDom.BackupOptionKind.None;
+        protected ScalarExpression @value;
     
         public ScriptDom.BackupOptionKind OptionKind => optionKind;
         public ScalarExpression Value => @value;

@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class TargetRecoveryTimeDatabaseOption : DatabaseOption, IEquatable<TargetRecoveryTimeDatabaseOption> {
-        Literal recoveryTime;
-        ScriptDom.TimeUnit unit = ScriptDom.TimeUnit.Seconds;
+        protected Literal recoveryTime;
+        protected ScriptDom.TimeUnit unit = ScriptDom.TimeUnit.Seconds;
     
         public Literal RecoveryTime => recoveryTime;
         public ScriptDom.TimeUnit Unit => unit;

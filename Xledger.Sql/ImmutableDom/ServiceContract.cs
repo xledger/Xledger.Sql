@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ServiceContract : TSqlFragment, IEquatable<ServiceContract> {
-        Identifier name;
-        ScriptDom.AlterAction action = ScriptDom.AlterAction.None;
+        protected Identifier name;
+        protected ScriptDom.AlterAction action = ScriptDom.AlterAction.None;
     
         public Identifier Name => name;
         public ScriptDom.AlterAction Action => action;

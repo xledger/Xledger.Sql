@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ValuesInsertSource : InsertSource, IEquatable<ValuesInsertSource> {
-        bool isDefaultValues = false;
-        IReadOnlyList<RowValue> rowValues;
+        protected bool isDefaultValues = false;
+        protected IReadOnlyList<RowValue> rowValues;
     
         public bool IsDefaultValues => isDefaultValues;
         public IReadOnlyList<RowValue> RowValues => rowValues;
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ValuesInsertSource ToMutableConcrete() {
             var ret = new ScriptDom.ValuesInsertSource();
             ret.IsDefaultValues = isDefaultValues;
-            ret.RowValues.AddRange(rowValues.Select(c => (ScriptDom.RowValue)c.ToMutable()));
+            ret.RowValues.AddRange(rowValues.SelectList(c => (ScriptDom.RowValue)c.ToMutable()));
             return ret;
         }
         

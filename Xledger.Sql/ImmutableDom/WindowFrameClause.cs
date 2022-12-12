@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class WindowFrameClause : TSqlFragment, IEquatable<WindowFrameClause> {
-        WindowDelimiter top;
-        WindowDelimiter bottom;
-        ScriptDom.WindowFrameType windowFrameType = ScriptDom.WindowFrameType.Rows;
+        protected WindowDelimiter top;
+        protected WindowDelimiter bottom;
+        protected ScriptDom.WindowFrameType windowFrameType = ScriptDom.WindowFrameType.Rows;
     
         public WindowDelimiter Top => top;
         public WindowDelimiter Bottom => bottom;

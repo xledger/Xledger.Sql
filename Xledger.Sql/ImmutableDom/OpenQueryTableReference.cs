@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OpenQueryTableReference : TableReferenceWithAlias, IEquatable<OpenQueryTableReference> {
-        Identifier linkedServer;
-        StringLiteral query;
+        protected Identifier linkedServer;
+        protected StringLiteral query;
     
         public Identifier LinkedServer => linkedServer;
         public StringLiteral Query => query;

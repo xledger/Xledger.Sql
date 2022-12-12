@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class DefaultConstraintDefinition : ConstraintDefinition, IEquatable<DefaultConstraintDefinition> {
-        ScalarExpression expression;
-        bool withValues = false;
-        Identifier column;
+        protected ScalarExpression expression;
+        protected bool withValues = false;
+        protected Identifier column;
     
         public ScalarExpression Expression => expression;
         public bool WithValues => withValues;

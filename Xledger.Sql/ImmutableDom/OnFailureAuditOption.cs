@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OnFailureAuditOption : AuditOption, IEquatable<OnFailureAuditOption> {
-        ScriptDom.AuditFailureActionType onFailureAction = ScriptDom.AuditFailureActionType.Continue;
+        protected ScriptDom.AuditFailureActionType onFailureAction = ScriptDom.AuditFailureActionType.Continue;
     
         public ScriptDom.AuditFailureActionType OnFailureAction => onFailureAction;
     

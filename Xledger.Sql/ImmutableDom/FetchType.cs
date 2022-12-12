@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FetchType : TSqlFragment, IEquatable<FetchType> {
-        ScriptDom.FetchOrientation orientation = ScriptDom.FetchOrientation.None;
-        ScalarExpression rowOffset;
+        protected ScriptDom.FetchOrientation orientation = ScriptDom.FetchOrientation.None;
+        protected ScalarExpression rowOffset;
     
         public ScriptDom.FetchOrientation Orientation => orientation;
         public ScalarExpression RowOffset => rowOffset;

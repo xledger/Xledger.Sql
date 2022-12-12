@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RevertStatement : TSqlStatement, IEquatable<RevertStatement> {
-        ScalarExpression cookie;
+        protected ScalarExpression cookie;
     
         public ScalarExpression Cookie => cookie;
     

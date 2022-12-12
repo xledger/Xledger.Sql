@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class SetTransactionIsolationLevelStatement : TSqlStatement, IEquatable<SetTransactionIsolationLevelStatement> {
-        ScriptDom.IsolationLevel level = ScriptDom.IsolationLevel.None;
+        protected ScriptDom.IsolationLevel level = ScriptDom.IsolationLevel.None;
     
         public ScriptDom.IsolationLevel Level => level;
     

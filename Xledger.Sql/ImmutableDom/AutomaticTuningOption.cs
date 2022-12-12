@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AutomaticTuningOption : TSqlFragment, IEquatable<AutomaticTuningOption> {
-        ScriptDom.AutomaticTuningOptionKind optionKind = ScriptDom.AutomaticTuningOptionKind.Force_Last_Good_Plan;
-        ScriptDom.AutomaticTuningOptionState @value = ScriptDom.AutomaticTuningOptionState.Off;
+        protected ScriptDom.AutomaticTuningOptionKind optionKind = ScriptDom.AutomaticTuningOptionKind.Force_Last_Good_Plan;
+        protected ScriptDom.AutomaticTuningOptionState @value = ScriptDom.AutomaticTuningOptionState.Off;
     
         public ScriptDom.AutomaticTuningOptionKind OptionKind => optionKind;
         public ScriptDom.AutomaticTuningOptionState Value => @value;

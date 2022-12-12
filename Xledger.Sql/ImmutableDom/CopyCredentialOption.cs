@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CopyCredentialOption : CopyStatementOptionBase, IEquatable<CopyCredentialOption> {
-        StringLiteral identity;
-        StringLiteral secret;
+        protected StringLiteral identity;
+        protected StringLiteral secret;
     
         public StringLiteral Identity => identity;
         public StringLiteral Secret => secret;

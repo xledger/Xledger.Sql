@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AddSensitivityClassificationStatement : SensitivityClassificationStatement, IEquatable<AddSensitivityClassificationStatement> {
-        IReadOnlyList<SensitivityClassificationOption> options;
+        protected IReadOnlyList<SensitivityClassificationOption> options;
     
         public IReadOnlyList<SensitivityClassificationOption> Options => options;
     
@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AddSensitivityClassificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AddSensitivityClassificationStatement();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.SensitivityClassificationOption)c.ToMutable()));
-            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.SensitivityClassificationOption)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             return ret;
         }
         

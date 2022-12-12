@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class InsertBulkStatement : BulkInsertBase, IEquatable<InsertBulkStatement> {
-        IReadOnlyList<InsertBulkColumnDefinition> columnDefinitions;
+        protected IReadOnlyList<InsertBulkColumnDefinition> columnDefinitions;
     
         public IReadOnlyList<InsertBulkColumnDefinition> ColumnDefinitions => columnDefinitions;
     
@@ -20,9 +20,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InsertBulkStatement ToMutableConcrete() {
             var ret = new ScriptDom.InsertBulkStatement();
-            ret.ColumnDefinitions.AddRange(columnDefinitions.Select(c => (ScriptDom.InsertBulkColumnDefinition)c.ToMutable()));
+            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.InsertBulkColumnDefinition)c.ToMutable()));
             ret.To = (ScriptDom.SchemaObjectName)to.ToMutable();
-            ret.Options.AddRange(options.Select(c => (ScriptDom.BulkInsertOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c.ToMutable()));
             return ret;
         }
         

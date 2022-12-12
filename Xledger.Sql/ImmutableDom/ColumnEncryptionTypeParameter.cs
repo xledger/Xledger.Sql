@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ColumnEncryptionTypeParameter : ColumnEncryptionDefinitionParameter, IEquatable<ColumnEncryptionTypeParameter> {
-        ScriptDom.ColumnEncryptionType encryptionType = ScriptDom.ColumnEncryptionType.Deterministic;
+        protected ScriptDom.ColumnEncryptionType encryptionType = ScriptDom.ColumnEncryptionType.Deterministic;
     
         public ScriptDom.ColumnEncryptionType EncryptionType => encryptionType;
     

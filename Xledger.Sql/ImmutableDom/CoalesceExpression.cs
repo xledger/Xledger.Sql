@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CoalesceExpression : PrimaryExpression, IEquatable<CoalesceExpression> {
-        IReadOnlyList<ScalarExpression> expressions;
+        protected IReadOnlyList<ScalarExpression> expressions;
     
         public IReadOnlyList<ScalarExpression> Expressions => expressions;
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CoalesceExpression ToMutableConcrete() {
             var ret = new ScriptDom.CoalesceExpression();
-            ret.Expressions.AddRange(expressions.Select(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Expressions.AddRange(expressions.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
             return ret;
         }

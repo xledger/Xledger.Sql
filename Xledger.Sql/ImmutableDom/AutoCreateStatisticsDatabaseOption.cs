@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class AutoCreateStatisticsDatabaseOption : OnOffDatabaseOption, IEquatable<AutoCreateStatisticsDatabaseOption> {
-        bool hasIncremental = false;
-        ScriptDom.OptionState incrementalState = ScriptDom.OptionState.NotSet;
+        protected bool hasIncremental = false;
+        protected ScriptDom.OptionState incrementalState = ScriptDom.OptionState.NotSet;
     
         public bool HasIncremental => hasIncremental;
         public ScriptDom.OptionState IncrementalState => incrementalState;

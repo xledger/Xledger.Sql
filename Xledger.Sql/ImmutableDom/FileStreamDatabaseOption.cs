@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class FileStreamDatabaseOption : DatabaseOption, IEquatable<FileStreamDatabaseOption> {
-        ScriptDom.NonTransactedFileStreamAccess? nonTransactedAccess;
-        Literal directoryName;
+        protected ScriptDom.NonTransactedFileStreamAccess? nonTransactedAccess;
+        protected Literal directoryName;
     
         public ScriptDom.NonTransactedFileStreamAccess? NonTransactedAccess => nonTransactedAccess;
         public Literal DirectoryName => directoryName;

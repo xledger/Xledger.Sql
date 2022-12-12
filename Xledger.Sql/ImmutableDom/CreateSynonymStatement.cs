@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateSynonymStatement : TSqlStatement, IEquatable<CreateSynonymStatement> {
-        SchemaObjectName name;
-        SchemaObjectName forName;
+        protected SchemaObjectName name;
+        protected SchemaObjectName forName;
     
         public SchemaObjectName Name => name;
         public SchemaObjectName ForName => forName;

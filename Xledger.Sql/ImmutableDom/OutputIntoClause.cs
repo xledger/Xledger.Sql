@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class OutputIntoClause : TSqlFragment, IEquatable<OutputIntoClause> {
-        IReadOnlyList<SelectElement> selectColumns;
-        TableReference intoTable;
-        IReadOnlyList<ColumnReferenceExpression> intoTableColumns;
+        protected IReadOnlyList<SelectElement> selectColumns;
+        protected TableReference intoTable;
+        protected IReadOnlyList<ColumnReferenceExpression> intoTableColumns;
     
         public IReadOnlyList<SelectElement> SelectColumns => selectColumns;
         public TableReference IntoTable => intoTable;
@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OutputIntoClause ToMutableConcrete() {
             var ret = new ScriptDom.OutputIntoClause();
-            ret.SelectColumns.AddRange(selectColumns.Select(c => (ScriptDom.SelectElement)c.ToMutable()));
+            ret.SelectColumns.AddRange(selectColumns.SelectList(c => (ScriptDom.SelectElement)c.ToMutable()));
             ret.IntoTable = (ScriptDom.TableReference)intoTable.ToMutable();
-            ret.IntoTableColumns.AddRange(intoTableColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.IntoTableColumns.AddRange(intoTableColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
             return ret;
         }
         

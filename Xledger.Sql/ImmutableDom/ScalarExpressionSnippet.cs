@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ScalarExpressionSnippet : ScalarExpression, IEquatable<ScalarExpressionSnippet> {
-        string script;
+        protected string script;
     
         public string Script => script;
     

@@ -8,10 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class ExecuteSpecification : TSqlFragment, IEquatable<ExecuteSpecification> {
-        VariableReference variable;
-        Identifier linkedServer;
-        ExecuteContext executeContext;
-        ExecutableEntity executableEntity;
+        protected VariableReference variable;
+        protected Identifier linkedServer;
+        protected ExecuteContext executeContext;
+        protected ExecutableEntity executableEntity;
     
         public VariableReference Variable => variable;
         public Identifier LinkedServer => linkedServer;

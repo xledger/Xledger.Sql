@@ -8,8 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class GraphConnectionBetweenNodes : TSqlFragment, IEquatable<GraphConnectionBetweenNodes> {
-        SchemaObjectName fromNode;
-        SchemaObjectName toNode;
+        protected SchemaObjectName fromNode;
+        protected SchemaObjectName toNode;
     
         public SchemaObjectName FromNode => fromNode;
         public SchemaObjectName ToNode => toNode;

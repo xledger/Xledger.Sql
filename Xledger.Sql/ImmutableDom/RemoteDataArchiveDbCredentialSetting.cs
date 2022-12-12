@@ -8,7 +8,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class RemoteDataArchiveDbCredentialSetting : RemoteDataArchiveDatabaseSetting, IEquatable<RemoteDataArchiveDbCredentialSetting> {
-        Identifier credential;
+        protected Identifier credential;
     
         public Identifier Credential => credential;
     

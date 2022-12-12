@@ -8,9 +8,9 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public class CreateSearchPropertyListStatement : TSqlStatement, IEquatable<CreateSearchPropertyListStatement> {
-        Identifier name;
-        MultiPartIdentifier sourceSearchPropertyList;
-        Identifier owner;
+        protected Identifier name;
+        protected MultiPartIdentifier sourceSearchPropertyList;
+        protected Identifier owner;
     
         public Identifier Name => name;
         public MultiPartIdentifier SourceSearchPropertyList => sourceSearchPropertyList;
