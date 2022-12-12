@@ -86,7 +86,6 @@ void Main() {
     txt = @"using System;
 using System.Collections.Generic;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
-
 namespace Xledger.Sql {" + "\n" + txt + "\n}";
 	var outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.Sql/{className}.cs";
 	File.WriteAllText(outputFile, txt, new System.Text.UTF8Encoding(false));
@@ -103,22 +102,14 @@ namespace Xledger.Sql {" + "\n" + txt + "\n}";
 	(string replaceScalarFn, string replaceScalarDict) = GetReplaceScalarMembers();
 	sb.AppendLine(replaceScalarFn.IndentLines(4));
 	sb.AppendLine();
-    sb.AppendLine(replaceScalarDict.IndentLines(4));
-  
-    sb.AppendLine($"");
-    sb.AppendLine($"    internal static void AddRange<T>(this IList<T> @this, IEnumerable<T> xs) {{");
-    sb.AppendLine($"        foreach (var x in xs) {{ @this.Add(x); }}");
-    sb.AppendLine($"    }}");
-    sb.AppendLine("}");
-    
-    
+	sb.AppendLine(replaceScalarDict.IndentLines(4));
+	sb.AppendLine("}");
 
 	txt = sb.ToString();
 	txt = txt.IndentLines(4);
 	txt = @"using System;
 using System.Collections.Generic;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
-
 namespace Xledger.Sql {" + "\n" + txt + "\n}";
 	outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.Sql/{className}.cs";
 	File.WriteAllText(outputFile, txt, new System.Text.UTF8Encoding(false));
