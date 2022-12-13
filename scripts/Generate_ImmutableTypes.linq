@@ -1,13 +1,7 @@
 <Query Kind="Program">
-  <NuGetReference Version="5.0.2">FSharp.Core</NuGetReference>
   <NuGetReference>Microsoft.SqlServer.DacFx</NuGetReference>
-  <NuGetReference>Newtonsoft.Json</NuGetReference>
-  <NuGetReference>System.Threading.Channels</NuGetReference>
   <Namespace>Microsoft.SqlServer.TransactSql.ScriptDom</Namespace>
-  <Namespace>Newtonsoft.Json</Namespace>
-  <Namespace>Newtonsoft.Json.Linq</Namespace>
   <Namespace>System.Globalization</Namespace>
-  <Namespace>System.Threading.Channels</Namespace>
 </Query>
 
 void Main() {
