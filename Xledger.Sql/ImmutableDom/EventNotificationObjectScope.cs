@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static EventNotificationObjectScope FromMutable(ScriptDom.EventNotificationObjectScope fragment) {
+            return (EventNotificationObjectScope)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

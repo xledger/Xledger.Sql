@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ResourcePoolParameter FromMutable(ScriptDom.ResourcePoolParameter fragment) {
+            return (ResourcePoolParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

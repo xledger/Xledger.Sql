@@ -70,6 +70,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterDatabaseTermination FromMutable(ScriptDom.AlterDatabaseTermination fragment) {
+            return (AlterDatabaseTermination)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

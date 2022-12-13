@@ -82,6 +82,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterFederationStatement FromMutable(ScriptDom.AlterFederationStatement fragment) {
+            return (AlterFederationStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

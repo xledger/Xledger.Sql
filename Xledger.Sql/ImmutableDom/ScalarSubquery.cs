@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ScalarSubquery FromMutable(ScriptDom.ScalarSubquery fragment) {
+            return (ScalarSubquery)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

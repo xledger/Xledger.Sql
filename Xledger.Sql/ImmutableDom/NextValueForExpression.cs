@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static NextValueForExpression FromMutable(ScriptDom.NextValueForExpression fragment) {
+            return (NextValueForExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

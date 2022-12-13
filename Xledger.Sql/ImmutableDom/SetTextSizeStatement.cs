@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SetTextSizeStatement FromMutable(ScriptDom.SetTextSizeStatement fragment) {
+            return (SetTextSizeStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

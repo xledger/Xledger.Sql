@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AsymmetricKeyCreateLoginSource FromMutable(ScriptDom.AsymmetricKeyCreateLoginSource fragment) {
+            return (AsymmetricKeyCreateLoginSource)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -104,6 +104,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PivotedTableReference FromMutable(ScriptDom.PivotedTableReference fragment) {
+            return (PivotedTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

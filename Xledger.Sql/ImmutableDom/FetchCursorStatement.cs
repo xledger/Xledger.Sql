@@ -70,6 +70,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FetchCursorStatement FromMutable(ScriptDom.FetchCursorStatement fragment) {
+            return (FetchCursorStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

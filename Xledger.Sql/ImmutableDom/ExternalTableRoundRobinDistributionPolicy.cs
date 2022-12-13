@@ -43,6 +43,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExternalTableRoundRobinDistributionPolicy FromMutable(ScriptDom.ExternalTableRoundRobinDistributionPolicy fragment) {
+            return (ExternalTableRoundRobinDistributionPolicy)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

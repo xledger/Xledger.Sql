@@ -84,6 +84,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static IPv4 FromMutable(ScriptDom.IPv4 fragment) {
+            return (IPv4)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

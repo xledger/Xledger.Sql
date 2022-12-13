@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TryCatchStatement FromMutable(ScriptDom.TryCatchStatement fragment) {
+            return (TryCatchStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropPartitionFunctionStatement FromMutable(ScriptDom.DropPartitionFunctionStatement fragment) {
+            return (DropPartitionFunctionStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

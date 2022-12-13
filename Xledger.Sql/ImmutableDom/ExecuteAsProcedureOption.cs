@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExecuteAsProcedureOption FromMutable(ScriptDom.ExecuteAsProcedureOption fragment) {
+            return (ExecuteAsProcedureOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

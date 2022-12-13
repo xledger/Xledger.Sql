@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CheckpointStatement FromMutable(ScriptDom.CheckpointStatement fragment) {
+            return (CheckpointStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

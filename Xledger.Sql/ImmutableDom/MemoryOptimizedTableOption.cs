@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MemoryOptimizedTableOption FromMutable(ScriptDom.MemoryOptimizedTableOption fragment) {
+            return (MemoryOptimizedTableOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropAlterFullTextIndexAction FromMutable(ScriptDom.DropAlterFullTextIndexAction fragment) {
+            return (DropAlterFullTextIndexAction)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

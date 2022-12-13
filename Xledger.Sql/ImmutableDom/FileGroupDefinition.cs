@@ -86,6 +86,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FileGroupDefinition FromMutable(ScriptDom.FileGroupDefinition fragment) {
+            return (FileGroupDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

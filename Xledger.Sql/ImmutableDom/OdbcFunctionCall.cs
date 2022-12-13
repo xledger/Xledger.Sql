@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OdbcFunctionCall FromMutable(ScriptDom.OdbcFunctionCall fragment) {
+            return (OdbcFunctionCall)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CompressionDelayIndexOption FromMutable(ScriptDom.CompressionDelayIndexOption fragment) {
+            return (CompressionDelayIndexOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

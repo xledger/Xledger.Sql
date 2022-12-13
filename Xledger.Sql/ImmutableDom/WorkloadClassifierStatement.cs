@@ -14,6 +14,10 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier ClassifierName => classifierName;
         public IReadOnlyList<WorkloadClassifierOption> Options => options;
     
+        public static WorkloadClassifierStatement FromMutable(ScriptDom.WorkloadClassifierStatement fragment) {
+            return (WorkloadClassifierStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

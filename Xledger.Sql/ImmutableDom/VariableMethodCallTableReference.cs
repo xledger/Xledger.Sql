@@ -92,6 +92,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static VariableMethodCallTableReference FromMutable(ScriptDom.VariableMethodCallTableReference fragment) {
+            return (VariableMethodCallTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

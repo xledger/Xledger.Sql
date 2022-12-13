@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SystemTimePeriodDefinition FromMutable(ScriptDom.SystemTimePeriodDefinition fragment) {
+            return (SystemTimePeriodDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

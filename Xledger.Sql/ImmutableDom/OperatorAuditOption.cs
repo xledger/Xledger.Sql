@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OperatorAuditOption FromMutable(ScriptDom.OperatorAuditOption fragment) {
+            return (OperatorAuditOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TSEqualCall FromMutable(ScriptDom.TSEqualCall fragment) {
+            return (TSEqualCall)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CubeGroupingSpecification FromMutable(ScriptDom.CubeGroupingSpecification fragment) {
+            return (CubeGroupingSpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

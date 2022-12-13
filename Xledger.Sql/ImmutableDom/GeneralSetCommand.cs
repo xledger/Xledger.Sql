@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GeneralSetCommand FromMutable(ScriptDom.GeneralSetCommand fragment) {
+            return (GeneralSetCommand)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

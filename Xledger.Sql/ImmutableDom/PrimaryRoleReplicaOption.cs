@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PrimaryRoleReplicaOption FromMutable(ScriptDom.PrimaryRoleReplicaOption fragment) {
+            return (PrimaryRoleReplicaOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

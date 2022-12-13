@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BooleanParenthesisExpression FromMutable(ScriptDom.BooleanParenthesisExpression fragment) {
+            return (BooleanParenthesisExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

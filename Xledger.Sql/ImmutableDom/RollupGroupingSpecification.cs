@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static RollupGroupingSpecification FromMutable(ScriptDom.RollupGroupingSpecification fragment) {
+            return (RollupGroupingSpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

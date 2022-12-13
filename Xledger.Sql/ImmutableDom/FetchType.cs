@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FetchType FromMutable(ScriptDom.FetchType fragment) {
+            return (FetchType)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

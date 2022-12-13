@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SubqueryComparisonPredicate FromMutable(ScriptDom.SubqueryComparisonPredicate fragment) {
+            return (SubqueryComparisonPredicate)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AddMemberAlterRoleAction FromMutable(ScriptDom.AddMemberAlterRoleAction fragment) {
+            return (AddMemberAlterRoleAction)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

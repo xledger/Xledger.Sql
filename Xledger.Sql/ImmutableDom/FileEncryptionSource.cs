@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FileEncryptionSource FromMutable(ScriptDom.FileEncryptionSource fragment) {
+            return (FileEncryptionSource)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

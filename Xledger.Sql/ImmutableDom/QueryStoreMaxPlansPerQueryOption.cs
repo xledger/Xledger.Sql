@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static QueryStoreMaxPlansPerQueryOption FromMutable(ScriptDom.QueryStoreMaxPlansPerQueryOption fragment) {
+            return (QueryStoreMaxPlansPerQueryOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

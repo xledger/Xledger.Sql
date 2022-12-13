@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TableValuedFunctionReturnType FromMutable(ScriptDom.TableValuedFunctionReturnType fragment) {
+            return (TableValuedFunctionReturnType)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

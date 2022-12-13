@@ -14,6 +14,10 @@ namespace Xledger.Sql.ImmutableDom {
         public CryptoMechanism Encryptor => encryptor;
         public ScriptDom.DatabaseEncryptionKeyAlgorithm Algorithm => algorithm;
     
+        public static DatabaseEncryptionKeyStatement FromMutable(ScriptDom.DatabaseEncryptionKeyStatement fragment) {
+            return (DatabaseEncryptionKeyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

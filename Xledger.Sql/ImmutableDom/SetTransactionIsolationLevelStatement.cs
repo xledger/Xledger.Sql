@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SetTransactionIsolationLevelStatement FromMutable(ScriptDom.SetTransactionIsolationLevelStatement fragment) {
+            return (SetTransactionIsolationLevelStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

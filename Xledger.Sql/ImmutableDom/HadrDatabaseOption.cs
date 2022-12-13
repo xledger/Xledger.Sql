@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static HadrDatabaseOption FromMutable(ScriptDom.HadrDatabaseOption fragment) {
+            return (HadrDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -76,6 +76,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GlobalFunctionTableReference FromMutable(ScriptDom.GlobalFunctionTableReference fragment) {
+            return (GlobalFunctionTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

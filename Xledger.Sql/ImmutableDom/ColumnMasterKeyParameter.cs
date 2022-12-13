@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ColumnMasterKeyParameterKind ParameterKind => parameterKind;
     
+        public static ColumnMasterKeyParameter FromMutable(ScriptDom.ColumnMasterKeyParameter fragment) {
+            return (ColumnMasterKeyParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

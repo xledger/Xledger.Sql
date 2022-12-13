@@ -88,6 +88,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SecurityPredicateAction FromMutable(ScriptDom.SecurityPredicateAction fragment) {
+            return (SecurityPredicateAction)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

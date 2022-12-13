@@ -70,6 +70,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static RetentionPeriodDefinition FromMutable(ScriptDom.RetentionPeriodDefinition fragment) {
+            return (RetentionPeriodDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

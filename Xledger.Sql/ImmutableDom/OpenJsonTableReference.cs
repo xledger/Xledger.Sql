@@ -86,6 +86,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OpenJsonTableReference FromMutable(ScriptDom.OpenJsonTableReference fragment) {
+            return (OpenJsonTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

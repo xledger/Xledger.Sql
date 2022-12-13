@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static QueryStoreDesiredStateOption FromMutable(ScriptDom.QueryStoreDesiredStateOption fragment) {
+            return (QueryStoreDesiredStateOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

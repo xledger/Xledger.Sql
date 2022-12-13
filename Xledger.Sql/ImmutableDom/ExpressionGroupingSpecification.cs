@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExpressionGroupingSpecification FromMutable(ScriptDom.ExpressionGroupingSpecification fragment) {
+            return (ExpressionGroupingSpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

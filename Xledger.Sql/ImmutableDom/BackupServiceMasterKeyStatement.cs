@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BackupServiceMasterKeyStatement FromMutable(ScriptDom.BackupServiceMasterKeyStatement fragment) {
+            return (BackupServiceMasterKeyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OffsetClause FromMutable(ScriptDom.OffsetClause fragment) {
+            return (OffsetClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

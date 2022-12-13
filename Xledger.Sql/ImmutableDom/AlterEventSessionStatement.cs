@@ -100,6 +100,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterEventSessionStatement FromMutable(ScriptDom.AlterEventSessionStatement fragment) {
+            return (AlterEventSessionStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

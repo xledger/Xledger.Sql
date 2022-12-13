@@ -8,6 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class OptionValue : TSqlFragment {
+        public static OptionValue FromMutable(ScriptDom.OptionValue fragment) {
+            return (OptionValue)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

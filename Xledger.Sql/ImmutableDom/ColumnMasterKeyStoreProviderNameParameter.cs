@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ColumnMasterKeyStoreProviderNameParameter FromMutable(ScriptDom.ColumnMasterKeyStoreProviderNameParameter fragment) {
+            return (ColumnMasterKeyStoreProviderNameParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

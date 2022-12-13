@@ -102,6 +102,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ForeignKeyConstraintDefinition FromMutable(ScriptDom.ForeignKeyConstraintDefinition fragment) {
+            return (ForeignKeyConstraintDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

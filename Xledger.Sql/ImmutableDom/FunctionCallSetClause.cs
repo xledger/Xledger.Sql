@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FunctionCallSetClause FromMutable(ScriptDom.FunctionCallSetClause fragment) {
+            return (FunctionCallSetClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

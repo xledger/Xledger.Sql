@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static RenameEntityStatement FromMutable(ScriptDom.RenameEntityStatement fragment) {
+            return (RenameEntityStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

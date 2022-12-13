@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ViewHashDistributionPolicy FromMutable(ScriptDom.ViewHashDistributionPolicy fragment) {
+            return (ViewHashDistributionPolicy)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

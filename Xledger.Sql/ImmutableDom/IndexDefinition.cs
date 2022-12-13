@@ -126,6 +126,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static IndexDefinition FromMutable(ScriptDom.IndexDefinition fragment) {
+            return (IndexDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

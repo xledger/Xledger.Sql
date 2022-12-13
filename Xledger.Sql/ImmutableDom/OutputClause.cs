@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OutputClause FromMutable(ScriptDom.OutputClause fragment) {
+            return (OutputClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

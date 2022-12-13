@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GraphMatchPredicate FromMutable(ScriptDom.GraphMatchPredicate fragment) {
+            return (GraphMatchPredicate)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

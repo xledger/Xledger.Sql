@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropLoginStatement FromMutable(ScriptDom.DropLoginStatement fragment) {
+            return (DropLoginStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

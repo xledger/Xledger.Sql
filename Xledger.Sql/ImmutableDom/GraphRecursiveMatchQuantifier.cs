@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GraphRecursiveMatchQuantifier FromMutable(ScriptDom.GraphRecursiveMatchQuantifier fragment) {
+            return (GraphRecursiveMatchQuantifier)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

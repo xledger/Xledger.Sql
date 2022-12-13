@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExecuteInsertSource FromMutable(ScriptDom.ExecuteInsertSource fragment) {
+            return (ExecuteInsertSource)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static UserDefinedTypeCallTarget FromMutable(ScriptDom.UserDefinedTypeCallTarget fragment) {
+            return (UserDefinedTypeCallTarget)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

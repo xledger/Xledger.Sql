@@ -74,6 +74,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static EventDeclarationCompareFunctionParameter FromMutable(ScriptDom.EventDeclarationCompareFunctionParameter fragment) {
+            return (EventDeclarationCompareFunctionParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

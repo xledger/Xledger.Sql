@@ -43,6 +43,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CloseMasterKeyStatement FromMutable(ScriptDom.CloseMasterKeyStatement fragment) {
+            return (CloseMasterKeyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PredicateSetStatement FromMutable(ScriptDom.PredicateSetStatement fragment) {
+            return (PredicateSetStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

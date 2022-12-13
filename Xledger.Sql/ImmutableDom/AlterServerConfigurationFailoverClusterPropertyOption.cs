@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterServerConfigurationFailoverClusterPropertyOption FromMutable(ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption fragment) {
+            return (AlterServerConfigurationFailoverClusterPropertyOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

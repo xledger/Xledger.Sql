@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterServerConfigurationExternalAuthenticationOption FromMutable(ScriptDom.AlterServerConfigurationExternalAuthenticationOption fragment) {
+            return (AlterServerConfigurationExternalAuthenticationOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

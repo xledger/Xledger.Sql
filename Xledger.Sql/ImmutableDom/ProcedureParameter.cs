@@ -92,6 +92,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ProcedureParameter FromMutable(ScriptDom.ProcedureParameter fragment) {
+            return (ProcedureParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

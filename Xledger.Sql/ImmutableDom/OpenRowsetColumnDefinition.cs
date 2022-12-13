@@ -88,6 +88,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OpenRowsetColumnDefinition FromMutable(ScriptDom.OpenRowsetColumnDefinition fragment) {
+            return (OpenRowsetColumnDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

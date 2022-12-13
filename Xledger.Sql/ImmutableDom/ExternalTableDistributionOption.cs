@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExternalTableDistributionOption FromMutable(ScriptDom.ExternalTableDistributionOption fragment) {
+            return (ExternalTableDistributionOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

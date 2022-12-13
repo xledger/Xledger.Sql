@@ -82,6 +82,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static QueryStoreDatabaseOption FromMutable(ScriptDom.QueryStoreDatabaseOption fragment) {
+            return (QueryStoreDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

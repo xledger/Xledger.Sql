@@ -8,6 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class ChangeTrackingOptionDetail : TSqlFragment {
+        public static ChangeTrackingOptionDetail FromMutable(ScriptDom.ChangeTrackingOptionDetail fragment) {
+            return (ChangeTrackingOptionDetail)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

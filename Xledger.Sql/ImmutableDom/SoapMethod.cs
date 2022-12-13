@@ -104,6 +104,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SoapMethod FromMutable(ScriptDom.SoapMethod fragment) {
+            return (SoapMethod)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

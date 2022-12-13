@@ -43,6 +43,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BrowseForClause FromMutable(ScriptDom.BrowseForClause fragment) {
+            return (BrowseForClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

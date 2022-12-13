@@ -76,6 +76,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterExternalLibraryStatement FromMutable(ScriptDom.AlterExternalLibraryStatement fragment) {
+            return (AlterExternalLibraryStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

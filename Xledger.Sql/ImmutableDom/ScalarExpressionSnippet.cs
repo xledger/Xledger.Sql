@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ScalarExpressionSnippet FromMutable(ScriptDom.ScalarExpressionSnippet fragment) {
+            return (ScalarExpressionSnippet)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

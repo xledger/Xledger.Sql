@@ -84,6 +84,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateOrAlterProcedureStatement FromMutable(ScriptDom.CreateOrAlterProcedureStatement fragment) {
+            return (CreateOrAlterProcedureStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.KeyOptionKind OptionKind => optionKind;
     
+        public static KeyOption FromMutable(ScriptDom.KeyOption fragment) {
+            return (KeyOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

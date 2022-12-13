@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DefaultConstraintDefinition FromMutable(ScriptDom.DefaultConstraintDefinition fragment) {
+            return (DefaultConstraintDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

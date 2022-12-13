@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterColumnEncryptionKeyStatement FromMutable(ScriptDom.AlterColumnEncryptionKeyStatement fragment) {
+            return (AlterColumnEncryptionKeyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

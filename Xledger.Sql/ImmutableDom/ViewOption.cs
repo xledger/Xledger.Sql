@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ViewOption FromMutable(ScriptDom.ViewOption fragment) {
+            return (ViewOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

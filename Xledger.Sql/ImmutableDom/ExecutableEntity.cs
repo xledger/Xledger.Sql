@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public IReadOnlyList<ExecuteParameter> Parameters => parameters;
     
+        public static ExecutableEntity FromMutable(ScriptDom.ExecutableEntity fragment) {
+            return (ExecutableEntity)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

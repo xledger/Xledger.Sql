@@ -88,6 +88,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterExternalLanguageStatement FromMutable(ScriptDom.AlterExternalLanguageStatement fragment) {
+            return (AlterExternalLanguageStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

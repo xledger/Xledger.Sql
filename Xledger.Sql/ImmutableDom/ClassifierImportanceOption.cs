@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ClassifierImportanceOption FromMutable(ScriptDom.ClassifierImportanceOption fragment) {
+            return (ClassifierImportanceOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

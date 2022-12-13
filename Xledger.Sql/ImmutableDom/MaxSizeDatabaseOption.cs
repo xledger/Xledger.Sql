@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MaxSizeDatabaseOption FromMutable(ScriptDom.MaxSizeDatabaseOption fragment) {
+            return (MaxSizeDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

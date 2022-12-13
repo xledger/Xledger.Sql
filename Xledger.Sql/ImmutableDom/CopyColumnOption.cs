@@ -74,6 +74,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CopyColumnOption FromMutable(ScriptDom.CopyColumnOption fragment) {
+            return (CopyColumnOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

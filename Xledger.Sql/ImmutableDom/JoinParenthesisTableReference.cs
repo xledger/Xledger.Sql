@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static JoinParenthesisTableReference FromMutable(ScriptDom.JoinParenthesisTableReference fragment) {
+            return (JoinParenthesisTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

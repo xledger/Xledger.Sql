@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static InlineDerivedTable FromMutable(ScriptDom.InlineDerivedTable fragment) {
+            return (InlineDerivedTable)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

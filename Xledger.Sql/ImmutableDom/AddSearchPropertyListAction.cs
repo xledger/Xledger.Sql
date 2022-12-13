@@ -84,6 +84,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AddSearchPropertyListAction FromMutable(ScriptDom.AddSearchPropertyListAction fragment) {
+            return (AddSearchPropertyListAction)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

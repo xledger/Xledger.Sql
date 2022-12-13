@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static EventDeclaration FromMutable(ScriptDom.EventDeclaration fragment) {
+            return (EventDeclaration)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

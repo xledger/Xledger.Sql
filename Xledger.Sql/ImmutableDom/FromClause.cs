@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FromClause FromMutable(ScriptDom.FromClause fragment) {
+            return (FromClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -88,6 +88,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GraphMatchRecursivePredicate FromMutable(ScriptDom.GraphMatchRecursivePredicate fragment) {
+            return (GraphMatchRecursivePredicate)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

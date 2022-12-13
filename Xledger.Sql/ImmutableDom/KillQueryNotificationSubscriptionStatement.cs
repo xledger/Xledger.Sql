@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static KillQueryNotificationSubscriptionStatement FromMutable(ScriptDom.KillQueryNotificationSubscriptionStatement fragment) {
+            return (KillQueryNotificationSubscriptionStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OpenQueryTableReference FromMutable(ScriptDom.OpenQueryTableReference fragment) {
+            return (OpenQueryTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

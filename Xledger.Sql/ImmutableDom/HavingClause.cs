@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static HavingClause FromMutable(ScriptDom.HavingClause fragment) {
+            return (HavingClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

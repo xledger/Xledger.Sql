@@ -70,6 +70,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TablePartitionOption FromMutable(ScriptDom.TablePartitionOption fragment) {
+            return (TablePartitionOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

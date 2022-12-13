@@ -43,6 +43,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TableReplicateDistributionPolicy FromMutable(ScriptDom.TableReplicateDistributionPolicy fragment) {
+            return (TableReplicateDistributionPolicy)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

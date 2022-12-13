@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExistsPredicate FromMutable(ScriptDom.ExistsPredicate fragment) {
+            return (ExistsPredicate)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

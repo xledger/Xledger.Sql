@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterServerConfigurationSoftNumaOption FromMutable(ScriptDom.AlterServerConfigurationSoftNumaOption fragment) {
+            return (AlterServerConfigurationSoftNumaOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

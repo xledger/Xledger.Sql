@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static InPredicate FromMutable(ScriptDom.InPredicate fragment) {
+            return (InPredicate)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

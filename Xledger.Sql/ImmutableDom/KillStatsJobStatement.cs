@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static KillStatsJobStatement FromMutable(ScriptDom.KillStatsJobStatement fragment) {
+            return (KillStatsJobStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

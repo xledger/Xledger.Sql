@@ -88,6 +88,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BulkOpenRowset FromMutable(ScriptDom.BulkOpenRowset fragment) {
+            return (BulkOpenRowset)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

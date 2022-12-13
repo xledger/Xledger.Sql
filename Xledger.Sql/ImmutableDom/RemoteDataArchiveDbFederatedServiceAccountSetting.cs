@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static RemoteDataArchiveDbFederatedServiceAccountSetting FromMutable(ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting fragment) {
+            return (RemoteDataArchiveDbFederatedServiceAccountSetting)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

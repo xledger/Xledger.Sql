@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterResourceGovernorStatement FromMutable(ScriptDom.AlterResourceGovernorStatement fragment) {
+            return (AlterResourceGovernorStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

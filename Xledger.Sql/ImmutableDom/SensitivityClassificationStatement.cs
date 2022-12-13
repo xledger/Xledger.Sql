@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public IReadOnlyList<ColumnReferenceExpression> Columns => columns;
     
+        public static SensitivityClassificationStatement FromMutable(ScriptDom.SensitivityClassificationStatement fragment) {
+            return (SensitivityClassificationStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

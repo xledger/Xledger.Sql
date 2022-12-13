@@ -76,6 +76,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BuiltInFunctionTableReference FromMutable(ScriptDom.BuiltInFunctionTableReference fragment) {
+            return (BuiltInFunctionTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

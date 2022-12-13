@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MaxDispatchLatencySessionOption FromMutable(ScriptDom.MaxDispatchLatencySessionOption fragment) {
+            return (MaxDispatchLatencySessionOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

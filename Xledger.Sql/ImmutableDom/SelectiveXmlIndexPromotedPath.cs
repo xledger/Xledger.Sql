@@ -102,6 +102,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SelectiveXmlIndexPromotedPath FromMutable(ScriptDom.SelectiveXmlIndexPromotedPath fragment) {
+            return (SelectiveXmlIndexPromotedPath)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

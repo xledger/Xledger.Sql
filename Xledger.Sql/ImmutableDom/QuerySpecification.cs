@@ -144,6 +144,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static QuerySpecification FromMutable(ScriptDom.QuerySpecification fragment) {
+            return (QuerySpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

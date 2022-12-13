@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MaxRolloverFilesAuditTargetOption FromMutable(ScriptDom.MaxRolloverFilesAuditTargetOption fragment) {
+            return (MaxRolloverFilesAuditTargetOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

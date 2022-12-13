@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MemoryPartitionSessionOption FromMutable(ScriptDom.MemoryPartitionSessionOption fragment) {
+            return (MemoryPartitionSessionOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -16,6 +16,10 @@ namespace Xledger.Sql.ImmutableDom {
         public StatementList StatementList => statementList;
         public MethodSpecifier MethodSpecifier => methodSpecifier;
     
+        public static ProcedureStatementBodyBase FromMutable(ScriptDom.ProcedureStatementBodyBase fragment) {
+            return (ProcedureStatementBodyBase)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

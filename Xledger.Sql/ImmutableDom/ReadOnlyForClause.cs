@@ -43,6 +43,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ReadOnlyForClause FromMutable(ScriptDom.ReadOnlyForClause fragment) {
+            return (ReadOnlyForClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

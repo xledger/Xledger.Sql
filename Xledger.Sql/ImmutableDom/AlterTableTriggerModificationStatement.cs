@@ -76,6 +76,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterTableTriggerModificationStatement FromMutable(ScriptDom.AlterTableTriggerModificationStatement fragment) {
+            return (AlterTableTriggerModificationStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

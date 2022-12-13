@@ -122,6 +122,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateSelectiveXmlIndexStatement FromMutable(ScriptDom.CreateSelectiveXmlIndexStatement fragment) {
+            return (CreateSelectiveXmlIndexStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

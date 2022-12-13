@@ -82,6 +82,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SchemaObjectFunctionTableReference FromMutable(ScriptDom.SchemaObjectFunctionTableReference fragment) {
+            return (SchemaObjectFunctionTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

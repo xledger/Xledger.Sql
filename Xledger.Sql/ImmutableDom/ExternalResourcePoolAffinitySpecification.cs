@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExternalResourcePoolAffinitySpecification FromMutable(ScriptDom.ExternalResourcePoolAffinitySpecification fragment) {
+            return (ExternalResourcePoolAffinitySpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

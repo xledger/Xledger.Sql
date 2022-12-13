@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateExternalStreamStatement FromMutable(ScriptDom.CreateExternalStreamStatement fragment) {
+            return (CreateExternalStreamStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

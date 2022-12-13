@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropFullTextStopListStatement FromMutable(ScriptDom.DropFullTextStopListStatement fragment) {
+            return (DropFullTextStopListStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

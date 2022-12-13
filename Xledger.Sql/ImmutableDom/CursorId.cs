@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CursorId FromMutable(ScriptDom.CursorId fragment) {
+            return (CursorId)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

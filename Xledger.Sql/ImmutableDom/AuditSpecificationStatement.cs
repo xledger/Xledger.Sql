@@ -18,6 +18,10 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier SpecificationName => specificationName;
         public Identifier AuditName => auditName;
     
+        public static AuditSpecificationStatement FromMutable(ScriptDom.AuditSpecificationStatement fragment) {
+            return (AuditSpecificationStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

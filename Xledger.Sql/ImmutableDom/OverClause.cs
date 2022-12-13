@@ -82,6 +82,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OverClause FromMutable(ScriptDom.OverClause fragment) {
+            return (OverClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

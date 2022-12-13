@@ -124,6 +124,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FullTextTableReference FromMutable(ScriptDom.FullTextTableReference fragment) {
+            return (FullTextTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

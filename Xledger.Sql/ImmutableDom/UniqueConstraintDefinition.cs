@@ -122,6 +122,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static UniqueConstraintDefinition FromMutable(ScriptDom.UniqueConstraintDefinition fragment) {
+            return (UniqueConstraintDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

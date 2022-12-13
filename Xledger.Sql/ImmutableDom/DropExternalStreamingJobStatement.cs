@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropExternalStreamingJobStatement FromMutable(ScriptDom.DropExternalStreamingJobStatement fragment) {
+            return (DropExternalStreamingJobStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

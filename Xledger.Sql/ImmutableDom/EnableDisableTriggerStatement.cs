@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static EnableDisableTriggerStatement FromMutable(ScriptDom.EnableDisableTriggerStatement fragment) {
+            return (EnableDisableTriggerStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

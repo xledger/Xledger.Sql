@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AssemblyEncryptionSource FromMutable(ScriptDom.AssemblyEncryptionSource fragment) {
+            return (AssemblyEncryptionSource)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

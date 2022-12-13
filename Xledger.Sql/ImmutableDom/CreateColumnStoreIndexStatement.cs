@@ -116,6 +116,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateColumnStoreIndexStatement FromMutable(ScriptDom.CreateColumnStoreIndexStatement fragment) {
+            return (CreateColumnStoreIndexStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

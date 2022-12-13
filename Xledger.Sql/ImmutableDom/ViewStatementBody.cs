@@ -22,6 +22,10 @@ namespace Xledger.Sql.ImmutableDom {
         public bool WithCheckOption => withCheckOption;
         public bool IsMaterialized => isMaterialized;
     
+        public static ViewStatementBody FromMutable(ScriptDom.ViewStatementBody fragment) {
+            return (ViewStatementBody)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

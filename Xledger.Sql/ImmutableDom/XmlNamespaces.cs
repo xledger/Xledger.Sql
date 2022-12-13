@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static XmlNamespaces FromMutable(ScriptDom.XmlNamespaces fragment) {
+            return (XmlNamespaces)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

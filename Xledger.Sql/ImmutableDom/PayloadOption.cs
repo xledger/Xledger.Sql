@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PayloadOptionKinds Kind => kind;
     
+        public static PayloadOption FromMutable(ScriptDom.PayloadOption fragment) {
+            return (PayloadOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

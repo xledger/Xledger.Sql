@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public string Value => @value;
     
+        public static Literal FromMutable(ScriptDom.Literal fragment) {
+            return (Literal)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -94,6 +94,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PasswordAlterPrincipalOption FromMutable(ScriptDom.PasswordAlterPrincipalOption fragment) {
+            return (PasswordAlterPrincipalOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

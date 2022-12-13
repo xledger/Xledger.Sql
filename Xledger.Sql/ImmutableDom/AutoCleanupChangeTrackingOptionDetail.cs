@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AutoCleanupChangeTrackingOptionDetail FromMutable(ScriptDom.AutoCleanupChangeTrackingOptionDetail fragment) {
+            return (AutoCleanupChangeTrackingOptionDetail)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

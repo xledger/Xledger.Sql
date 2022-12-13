@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static LedgerOption FromMutable(ScriptDom.LedgerOption fragment) {
+            return (LedgerOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

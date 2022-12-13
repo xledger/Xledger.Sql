@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BeginTransactionStatement FromMutable(ScriptDom.BeginTransactionStatement fragment) {
+            return (BeginTransactionStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

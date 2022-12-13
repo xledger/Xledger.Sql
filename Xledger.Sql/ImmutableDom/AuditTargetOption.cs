@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AuditTargetOptionKind OptionKind => optionKind;
     
+        public static AuditTargetOption FromMutable(ScriptDom.AuditTargetOption fragment) {
+            return (AuditTargetOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

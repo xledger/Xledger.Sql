@@ -43,6 +43,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TableNonClusteredIndexType FromMutable(ScriptDom.TableNonClusteredIndexType fragment) {
+            return (TableNonClusteredIndexType)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExternalCreateLoginSource FromMutable(ScriptDom.ExternalCreateLoginSource fragment) {
+            return (ExternalCreateLoginSource)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

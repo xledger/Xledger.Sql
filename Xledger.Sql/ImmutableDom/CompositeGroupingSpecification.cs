@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CompositeGroupingSpecification FromMutable(ScriptDom.CompositeGroupingSpecification fragment) {
+            return (CompositeGroupingSpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -18,6 +18,10 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier PoolName => poolName;
         public Identifier ExternalPoolName => externalPoolName;
     
+        public static WorkloadGroupStatement FromMutable(ScriptDom.WorkloadGroupStatement fragment) {
+            return (WorkloadGroupStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

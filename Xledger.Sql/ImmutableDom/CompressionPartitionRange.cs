@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CompressionPartitionRange FromMutable(ScriptDom.CompressionPartitionRange fragment) {
+            return (CompressionPartitionRange)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

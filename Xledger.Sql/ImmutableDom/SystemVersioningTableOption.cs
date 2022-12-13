@@ -86,6 +86,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SystemVersioningTableOption FromMutable(ScriptDom.SystemVersioningTableOption fragment) {
+            return (SystemVersioningTableOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

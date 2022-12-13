@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SecurityUserClause80 FromMutable(ScriptDom.SecurityUserClause80 fragment) {
+            return (SecurityUserClause80)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

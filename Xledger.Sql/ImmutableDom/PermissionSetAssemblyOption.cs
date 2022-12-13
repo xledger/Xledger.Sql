@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PermissionSetAssemblyOption FromMutable(ScriptDom.PermissionSetAssemblyOption fragment) {
+            return (PermissionSetAssemblyOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

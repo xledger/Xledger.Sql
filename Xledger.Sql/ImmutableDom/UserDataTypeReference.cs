@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static UserDataTypeReference FromMutable(ScriptDom.UserDataTypeReference fragment) {
+            return (UserDataTypeReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

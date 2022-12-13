@@ -110,6 +110,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BeginDialogStatement FromMutable(ScriptDom.BeginDialogStatement fragment) {
+            return (BeginDialogStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

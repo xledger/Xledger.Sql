@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FileTableConstraintNameTableOption FromMutable(ScriptDom.FileTableConstraintNameTableOption fragment) {
+            return (FileTableConstraintNameTableOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

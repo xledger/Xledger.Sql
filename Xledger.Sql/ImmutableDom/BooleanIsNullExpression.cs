@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BooleanIsNullExpression FromMutable(ScriptDom.BooleanIsNullExpression fragment) {
+            return (BooleanIsNullExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

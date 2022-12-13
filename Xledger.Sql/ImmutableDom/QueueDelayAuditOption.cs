@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static QueueDelayAuditOption FromMutable(ScriptDom.QueueDelayAuditOption fragment) {
+            return (QueueDelayAuditOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

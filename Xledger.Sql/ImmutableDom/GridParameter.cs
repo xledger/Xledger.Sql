@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GridParameter FromMutable(ScriptDom.GridParameter fragment) {
+            return (GridParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

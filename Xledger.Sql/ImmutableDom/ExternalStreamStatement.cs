@@ -20,6 +20,10 @@ namespace Xledger.Sql.ImmutableDom {
         public Literal OutputOptions => outputOptions;
         public IReadOnlyList<ExternalStreamOption> ExternalStreamOptions => externalStreamOptions;
     
+        public static ExternalStreamStatement FromMutable(ScriptDom.ExternalStreamStatement fragment) {
+            return (ExternalStreamStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -16,6 +16,10 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> Parameters => parameters;
         public IReadOnlyList<AssemblyOption> Options => options;
     
+        public static AssemblyStatement FromMutable(ScriptDom.AssemblyStatement fragment) {
+            return (AssemblyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

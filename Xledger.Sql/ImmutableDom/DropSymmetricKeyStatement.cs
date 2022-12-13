@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropSymmetricKeyStatement FromMutable(ScriptDom.DropSymmetricKeyStatement fragment) {
+            return (DropSymmetricKeyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

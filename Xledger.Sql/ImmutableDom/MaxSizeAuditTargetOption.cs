@@ -76,6 +76,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MaxSizeAuditTargetOption FromMutable(ScriptDom.MaxSizeAuditTargetOption fragment) {
+            return (MaxSizeAuditTargetOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

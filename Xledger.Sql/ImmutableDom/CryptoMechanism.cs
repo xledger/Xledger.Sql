@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CryptoMechanism FromMutable(ScriptDom.CryptoMechanism fragment) {
+            return (CryptoMechanism)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SelectStarExpression FromMutable(ScriptDom.SelectStarExpression fragment) {
+            return (SelectStarExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

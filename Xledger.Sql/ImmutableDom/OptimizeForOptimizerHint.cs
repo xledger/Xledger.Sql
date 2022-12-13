@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OptimizeForOptimizerHint FromMutable(ScriptDom.OptimizeForOptimizerHint fragment) {
+            return (OptimizeForOptimizerHint)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateServerAuditStatement FromMutable(ScriptDom.CreateServerAuditStatement fragment) {
+            return (CreateServerAuditStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

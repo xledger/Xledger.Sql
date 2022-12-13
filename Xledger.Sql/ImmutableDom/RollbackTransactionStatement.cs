@@ -50,6 +50,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static RollbackTransactionStatement FromMutable(ScriptDom.RollbackTransactionStatement fragment) {
+            return (RollbackTransactionStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

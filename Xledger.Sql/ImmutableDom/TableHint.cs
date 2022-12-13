@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TableHint FromMutable(ScriptDom.TableHint fragment) {
+            return (TableHint)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

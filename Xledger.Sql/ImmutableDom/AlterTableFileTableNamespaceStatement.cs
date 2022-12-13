@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterTableFileTableNamespaceStatement FromMutable(ScriptDom.AlterTableFileTableNamespaceStatement fragment) {
+            return (AlterTableFileTableNamespaceStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

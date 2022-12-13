@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BooleanBinaryExpression FromMutable(ScriptDom.BooleanBinaryExpression fragment) {
+            return (BooleanBinaryExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

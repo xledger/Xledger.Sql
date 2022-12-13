@@ -8,6 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class AlterRoleAction : TSqlFragment {
+        public static AlterRoleAction FromMutable(ScriptDom.AlterRoleAction fragment) {
+            return (AlterRoleAction)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

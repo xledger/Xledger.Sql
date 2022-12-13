@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FullTextCatalogAndFileGroup FromMutable(ScriptDom.FullTextCatalogAndFileGroup fragment) {
+            return (FullTextCatalogAndFileGroup)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

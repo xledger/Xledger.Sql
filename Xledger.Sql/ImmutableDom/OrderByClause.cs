@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OrderByClause FromMutable(ScriptDom.OrderByClause fragment) {
+            return (OrderByClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

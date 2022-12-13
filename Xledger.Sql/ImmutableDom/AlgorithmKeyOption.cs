@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlgorithmKeyOption FromMutable(ScriptDom.AlgorithmKeyOption fragment) {
+            return (AlgorithmKeyOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

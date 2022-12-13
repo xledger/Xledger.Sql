@@ -8,6 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class TableIndexType : TSqlFragment {
+        public static TableIndexType FromMutable(ScriptDom.TableIndexType fragment) {
+            return (TableIndexType)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

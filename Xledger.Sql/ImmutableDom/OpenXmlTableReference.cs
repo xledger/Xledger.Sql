@@ -106,6 +106,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OpenXmlTableReference FromMutable(ScriptDom.OpenXmlTableReference fragment) {
+            return (OpenXmlTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static XmlForClause FromMutable(ScriptDom.XmlForClause fragment) {
+            return (XmlForClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

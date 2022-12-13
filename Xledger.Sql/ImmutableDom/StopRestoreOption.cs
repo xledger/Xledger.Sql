@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static StopRestoreOption FromMutable(ScriptDom.StopRestoreOption fragment) {
+            return (StopRestoreOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

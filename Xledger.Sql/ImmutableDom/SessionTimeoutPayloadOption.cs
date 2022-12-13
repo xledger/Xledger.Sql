@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SessionTimeoutPayloadOption FromMutable(ScriptDom.SessionTimeoutPayloadOption fragment) {
+            return (SessionTimeoutPayloadOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterDatabaseRemoveFileGroupStatement FromMutable(ScriptDom.AlterDatabaseRemoveFileGroupStatement fragment) {
+            return (AlterDatabaseRemoveFileGroupStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

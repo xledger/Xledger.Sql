@@ -88,6 +88,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ListenerIPEndpointProtocolOption FromMutable(ScriptDom.ListenerIPEndpointProtocolOption fragment) {
+            return (ListenerIPEndpointProtocolOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

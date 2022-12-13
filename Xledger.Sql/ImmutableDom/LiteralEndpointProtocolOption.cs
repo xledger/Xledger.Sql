@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static LiteralEndpointProtocolOption FromMutable(ScriptDom.LiteralEndpointProtocolOption fragment) {
+            return (LiteralEndpointProtocolOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

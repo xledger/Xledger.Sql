@@ -70,6 +70,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MoveRestoreOption FromMutable(ScriptDom.MoveRestoreOption fragment) {
+            return (MoveRestoreOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

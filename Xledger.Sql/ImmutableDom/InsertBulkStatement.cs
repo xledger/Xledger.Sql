@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static InsertBulkStatement FromMutable(ScriptDom.InsertBulkStatement fragment) {
+            return (InsertBulkStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

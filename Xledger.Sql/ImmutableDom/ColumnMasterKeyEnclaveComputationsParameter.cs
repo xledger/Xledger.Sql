@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ColumnMasterKeyEnclaveComputationsParameter FromMutable(ScriptDom.ColumnMasterKeyEnclaveComputationsParameter fragment) {
+            return (ColumnMasterKeyEnclaveComputationsParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

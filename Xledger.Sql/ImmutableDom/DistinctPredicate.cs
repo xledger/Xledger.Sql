@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DistinctPredicate FromMutable(ScriptDom.DistinctPredicate fragment) {
+            return (DistinctPredicate)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropExternalDataSourceStatement FromMutable(ScriptDom.DropExternalDataSourceStatement fragment) {
+            return (DropExternalDataSourceStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

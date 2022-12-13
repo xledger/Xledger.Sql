@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterDatabaseScopedConfigurationClearStatement FromMutable(ScriptDom.AlterDatabaseScopedConfigurationClearStatement fragment) {
+            return (AlterDatabaseScopedConfigurationClearStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

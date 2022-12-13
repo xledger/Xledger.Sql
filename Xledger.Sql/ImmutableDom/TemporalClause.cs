@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TemporalClause FromMutable(ScriptDom.TemporalClause fragment) {
+            return (TemporalClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

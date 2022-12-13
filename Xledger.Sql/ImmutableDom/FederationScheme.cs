@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FederationScheme FromMutable(ScriptDom.FederationScheme fragment) {
+            return (FederationScheme)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

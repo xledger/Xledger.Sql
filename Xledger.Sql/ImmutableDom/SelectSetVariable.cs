@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SelectSetVariable FromMutable(ScriptDom.SelectSetVariable fragment) {
+            return (SelectSetVariable)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

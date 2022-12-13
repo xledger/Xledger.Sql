@@ -90,6 +90,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DeleteSpecification FromMutable(ScriptDom.DeleteSpecification fragment) {
+            return (DeleteSpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

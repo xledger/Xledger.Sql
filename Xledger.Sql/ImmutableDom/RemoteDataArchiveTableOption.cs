@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static RemoteDataArchiveTableOption FromMutable(ScriptDom.RemoteDataArchiveTableOption fragment) {
+            return (RemoteDataArchiveTableOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

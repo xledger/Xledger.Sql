@@ -96,6 +96,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static UnpivotedTableReference FromMutable(ScriptDom.UnpivotedTableReference fragment) {
+            return (UnpivotedTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

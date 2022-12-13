@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PortsEndpointProtocolOption FromMutable(ScriptDom.PortsEndpointProtocolOption fragment) {
+            return (PortsEndpointProtocolOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

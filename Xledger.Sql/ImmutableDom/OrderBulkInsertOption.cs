@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OrderBulkInsertOption FromMutable(ScriptDom.OrderBulkInsertOption fragment) {
+            return (OrderBulkInsertOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

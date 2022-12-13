@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static QueryStoreTimeCleanupPolicyOption FromMutable(ScriptDom.QueryStoreTimeCleanupPolicyOption fragment) {
+            return (QueryStoreTimeCleanupPolicyOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

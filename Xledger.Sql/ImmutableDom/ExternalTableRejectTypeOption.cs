@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExternalTableRejectTypeOption FromMutable(ScriptDom.ExternalTableRejectTypeOption fragment) {
+            return (ExternalTableRejectTypeOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

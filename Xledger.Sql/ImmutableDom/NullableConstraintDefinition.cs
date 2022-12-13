@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static NullableConstraintDefinition FromMutable(ScriptDom.NullableConstraintDefinition fragment) {
+            return (NullableConstraintDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

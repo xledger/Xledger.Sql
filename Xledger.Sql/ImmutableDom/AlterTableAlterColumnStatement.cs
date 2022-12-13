@@ -152,6 +152,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterTableAlterColumnStatement FromMutable(ScriptDom.AlterTableAlterColumnStatement fragment) {
+            return (AlterTableAlterColumnStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

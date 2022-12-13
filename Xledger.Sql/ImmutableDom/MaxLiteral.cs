@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MaxLiteral FromMutable(ScriptDom.MaxLiteral fragment) {
+            return (MaxLiteral)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

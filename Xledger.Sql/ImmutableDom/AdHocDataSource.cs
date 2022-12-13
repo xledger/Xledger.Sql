@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AdHocDataSource FromMutable(ScriptDom.AdHocDataSource fragment) {
+            return (AdHocDataSource)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

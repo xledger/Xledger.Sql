@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OpenRowsetCosmos FromMutable(ScriptDom.OpenRowsetCosmos fragment) {
+            return (OpenRowsetCosmos)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -50,6 +50,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateMasterKeyStatement FromMutable(ScriptDom.CreateMasterKeyStatement fragment) {
+            return (CreateMasterKeyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

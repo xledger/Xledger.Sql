@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OdbcConvertSpecification FromMutable(ScriptDom.OdbcConvertSpecification fragment) {
+            return (OdbcConvertSpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

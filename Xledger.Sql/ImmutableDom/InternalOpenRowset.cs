@@ -76,6 +76,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static InternalOpenRowset FromMutable(ScriptDom.InternalOpenRowset fragment) {
+            return (InternalOpenRowset)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

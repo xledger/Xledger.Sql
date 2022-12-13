@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PasswordCreateLoginSource FromMutable(ScriptDom.PasswordCreateLoginSource fragment) {
+            return (PasswordCreateLoginSource)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

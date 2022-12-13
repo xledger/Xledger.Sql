@@ -74,6 +74,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DataModificationTableReference FromMutable(ScriptDom.DataModificationTableReference fragment) {
+            return (DataModificationTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

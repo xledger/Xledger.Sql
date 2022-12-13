@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OnlineIndexOption FromMutable(ScriptDom.OnlineIndexOption fragment) {
+            return (OnlineIndexOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

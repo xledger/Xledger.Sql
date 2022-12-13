@@ -94,6 +94,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DbccStatement FromMutable(ScriptDom.DbccStatement fragment) {
+            return (DbccStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

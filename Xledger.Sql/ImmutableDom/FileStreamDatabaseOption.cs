@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FileStreamDatabaseOption FromMutable(ScriptDom.FileStreamDatabaseOption fragment) {
+            return (FileStreamDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

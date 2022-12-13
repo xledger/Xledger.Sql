@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GraphConnectionBetweenNodes FromMutable(ScriptDom.GraphConnectionBetweenNodes fragment) {
+            return (GraphConnectionBetweenNodes)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

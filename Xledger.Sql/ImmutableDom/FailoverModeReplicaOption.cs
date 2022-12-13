@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FailoverModeReplicaOption FromMutable(ScriptDom.FailoverModeReplicaOption fragment) {
+            return (FailoverModeReplicaOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

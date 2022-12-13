@@ -126,6 +126,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateDatabaseStatement FromMutable(ScriptDom.CreateDatabaseStatement fragment) {
+            return (CreateDatabaseStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

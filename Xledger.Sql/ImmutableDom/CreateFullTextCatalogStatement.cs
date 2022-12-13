@@ -96,6 +96,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateFullTextCatalogStatement FromMutable(ScriptDom.CreateFullTextCatalogStatement fragment) {
+            return (CreateFullTextCatalogStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

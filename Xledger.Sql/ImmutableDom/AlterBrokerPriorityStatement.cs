@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterBrokerPriorityStatement FromMutable(ScriptDom.AlterBrokerPriorityStatement fragment) {
+            return (AlterBrokerPriorityStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

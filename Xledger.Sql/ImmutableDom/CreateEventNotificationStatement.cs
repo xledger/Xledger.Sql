@@ -100,6 +100,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateEventNotificationStatement FromMutable(ScriptDom.CreateEventNotificationStatement fragment) {
+            return (CreateEventNotificationStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

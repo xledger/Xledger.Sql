@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AutomaticTuningCreateIndexOption FromMutable(ScriptDom.AutomaticTuningCreateIndexOption fragment) {
+            return (AutomaticTuningCreateIndexOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

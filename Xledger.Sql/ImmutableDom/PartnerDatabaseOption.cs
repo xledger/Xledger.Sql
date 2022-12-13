@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PartnerDatabaseOption FromMutable(ScriptDom.PartnerDatabaseOption fragment) {
+            return (PartnerDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

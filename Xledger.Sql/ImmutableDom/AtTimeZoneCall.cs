@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AtTimeZoneCall FromMutable(ScriptDom.AtTimeZoneCall fragment) {
+            return (AtTimeZoneCall)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static EventTypeContainer FromMutable(ScriptDom.EventTypeContainer fragment) {
+            return (EventTypeContainer)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

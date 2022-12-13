@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SensitivityClassificationOption FromMutable(ScriptDom.SensitivityClassificationOption fragment) {
+            return (SensitivityClassificationOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static InsertMergeAction FromMutable(ScriptDom.InsertMergeAction fragment) {
+            return (InsertMergeAction)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

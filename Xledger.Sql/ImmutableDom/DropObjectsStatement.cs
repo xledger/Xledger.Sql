@@ -14,6 +14,10 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SchemaObjectName> Objects => objects;
         public bool IsIfExists => isIfExists;
     
+        public static DropObjectsStatement FromMutable(ScriptDom.DropObjectsStatement fragment) {
+            return (DropObjectsStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

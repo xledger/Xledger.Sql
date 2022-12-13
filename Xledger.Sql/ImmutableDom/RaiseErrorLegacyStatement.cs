@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static RaiseErrorLegacyStatement FromMutable(ScriptDom.RaiseErrorLegacyStatement fragment) {
+            return (RaiseErrorLegacyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

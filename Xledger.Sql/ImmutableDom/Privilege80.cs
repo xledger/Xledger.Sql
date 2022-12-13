@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static Privilege80 FromMutable(ScriptDom.Privilege80 fragment) {
+            return (Privilege80)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

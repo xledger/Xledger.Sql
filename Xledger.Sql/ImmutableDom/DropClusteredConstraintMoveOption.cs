@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropClusteredConstraintMoveOption FromMutable(ScriptDom.DropClusteredConstraintMoveOption fragment) {
+            return (DropClusteredConstraintMoveOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

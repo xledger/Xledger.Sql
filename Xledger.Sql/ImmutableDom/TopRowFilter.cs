@@ -70,6 +70,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TopRowFilter FromMutable(ScriptDom.TopRowFilter fragment) {
+            return (TopRowFilter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

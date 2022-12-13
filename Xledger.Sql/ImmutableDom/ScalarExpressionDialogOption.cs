@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ScalarExpressionDialogOption FromMutable(ScriptDom.ScalarExpressionDialogOption fragment) {
+            return (ScalarExpressionDialogOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

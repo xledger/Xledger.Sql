@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SimpleCaseExpression FromMutable(ScriptDom.SimpleCaseExpression fragment) {
+            return (SimpleCaseExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

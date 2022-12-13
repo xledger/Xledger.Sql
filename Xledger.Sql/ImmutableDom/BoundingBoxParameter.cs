@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BoundingBoxParameter FromMutable(ScriptDom.BoundingBoxParameter fragment) {
+            return (BoundingBoxParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ColumnWithSortOrder FromMutable(ScriptDom.ColumnWithSortOrder fragment) {
+            return (ColumnWithSortOrder)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

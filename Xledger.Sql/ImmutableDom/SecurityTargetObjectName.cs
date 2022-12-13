@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SecurityTargetObjectName FromMutable(ScriptDom.SecurityTargetObjectName fragment) {
+            return (SecurityTargetObjectName)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

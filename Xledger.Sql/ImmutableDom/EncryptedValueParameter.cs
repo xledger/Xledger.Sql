@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static EncryptedValueParameter FromMutable(ScriptDom.EncryptedValueParameter fragment) {
+            return (EncryptedValueParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

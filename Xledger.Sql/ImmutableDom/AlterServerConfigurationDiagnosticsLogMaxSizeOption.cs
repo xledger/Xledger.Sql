@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterServerConfigurationDiagnosticsLogMaxSizeOption FromMutable(ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption fragment) {
+            return (AlterServerConfigurationDiagnosticsLogMaxSizeOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

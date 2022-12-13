@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AutomaticTuningForceLastGoodPlanOption FromMutable(ScriptDom.AutomaticTuningForceLastGoodPlanOption fragment) {
+            return (AutomaticTuningForceLastGoodPlanOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

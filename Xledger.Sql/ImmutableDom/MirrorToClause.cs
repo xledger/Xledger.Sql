@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MirrorToClause FromMutable(ScriptDom.MirrorToClause fragment) {
+            return (MirrorToClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

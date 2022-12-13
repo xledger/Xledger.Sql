@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public SchemaObjectName Name => name;
     
+        public static CreateTypeStatement FromMutable(ScriptDom.CreateTypeStatement fragment) {
+            return (CreateTypeStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

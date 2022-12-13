@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterRemoteServiceBindingStatement FromMutable(ScriptDom.AlterRemoteServiceBindingStatement fragment) {
+            return (AlterRemoteServiceBindingStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

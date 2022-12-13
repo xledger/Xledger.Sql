@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static LockEscalationTableOption FromMutable(ScriptDom.LockEscalationTableOption fragment) {
+            return (LockEscalationTableOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

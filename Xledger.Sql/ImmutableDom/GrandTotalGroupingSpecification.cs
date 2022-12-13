@@ -43,6 +43,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GrandTotalGroupingSpecification FromMutable(ScriptDom.GrandTotalGroupingSpecification fragment) {
+            return (GrandTotalGroupingSpecification)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

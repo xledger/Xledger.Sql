@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterDatabaseRebuildLogStatement FromMutable(ScriptDom.AlterDatabaseRebuildLogStatement fragment) {
+            return (AlterDatabaseRebuildLogStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

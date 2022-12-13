@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BeginEndAtomicBlockStatement FromMutable(ScriptDom.BeginEndAtomicBlockStatement fragment) {
+            return (BeginEndAtomicBlockStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PartitionParameterType FromMutable(ScriptDom.PartitionParameterType fragment) {
+            return (PartitionParameterType)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

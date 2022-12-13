@@ -78,6 +78,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DataRetentionTableOption FromMutable(ScriptDom.DataRetentionTableOption fragment) {
+            return (DataRetentionTableOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

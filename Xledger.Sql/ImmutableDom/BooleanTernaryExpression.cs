@@ -82,6 +82,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BooleanTernaryExpression FromMutable(ScriptDom.BooleanTernaryExpression fragment) {
+            return (BooleanTernaryExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

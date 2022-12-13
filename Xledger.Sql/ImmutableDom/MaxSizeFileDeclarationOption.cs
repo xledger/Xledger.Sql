@@ -76,6 +76,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MaxSizeFileDeclarationOption FromMutable(ScriptDom.MaxSizeFileDeclarationOption fragment) {
+            return (MaxSizeFileDeclarationOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

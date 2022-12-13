@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TableSampleClause FromMutable(ScriptDom.TableSampleClause fragment) {
+            return (TableSampleClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

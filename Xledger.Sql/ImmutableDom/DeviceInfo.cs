@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DeviceInfo FromMutable(ScriptDom.DeviceInfo fragment) {
+            return (DeviceInfo)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

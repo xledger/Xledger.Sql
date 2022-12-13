@@ -106,6 +106,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PredictTableReference FromMutable(ScriptDom.PredictTableReference fragment) {
+            return (PredictTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

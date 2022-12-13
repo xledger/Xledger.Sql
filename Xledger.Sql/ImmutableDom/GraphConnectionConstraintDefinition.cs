@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GraphConnectionConstraintDefinition FromMutable(ScriptDom.GraphConnectionConstraintDefinition fragment) {
+            return (GraphConnectionConstraintDefinition)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

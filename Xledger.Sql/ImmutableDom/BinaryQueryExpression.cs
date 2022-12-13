@@ -104,6 +104,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BinaryQueryExpression FromMutable(ScriptDom.BinaryQueryExpression fragment) {
+            return (BinaryQueryExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

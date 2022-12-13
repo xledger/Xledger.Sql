@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ProviderKeyNameKeyOption FromMutable(ScriptDom.ProviderKeyNameKeyOption fragment) {
+            return (ProviderKeyNameKeyOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

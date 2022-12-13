@@ -70,6 +70,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExecutableProcedureReference FromMutable(ScriptDom.ExecutableProcedureReference fragment) {
+            return (ExecutableProcedureReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

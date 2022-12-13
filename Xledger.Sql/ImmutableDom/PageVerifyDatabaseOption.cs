@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PageVerifyDatabaseOption FromMutable(ScriptDom.PageVerifyDatabaseOption fragment) {
+            return (PageVerifyDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

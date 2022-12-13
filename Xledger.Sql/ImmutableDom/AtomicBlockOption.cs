@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AtomicBlockOptionKind OptionKind => optionKind;
     
+        public static AtomicBlockOption FromMutable(ScriptDom.AtomicBlockOption fragment) {
+            return (AtomicBlockOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

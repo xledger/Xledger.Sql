@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TSqlBatch FromMutable(ScriptDom.TSqlBatch fragment) {
+            return (TSqlBatch)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

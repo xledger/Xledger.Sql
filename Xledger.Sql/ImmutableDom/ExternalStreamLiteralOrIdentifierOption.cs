@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ExternalStreamLiteralOrIdentifierOption FromMutable(ScriptDom.ExternalStreamLiteralOrIdentifierOption fragment) {
+            return (ExternalStreamLiteralOrIdentifierOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

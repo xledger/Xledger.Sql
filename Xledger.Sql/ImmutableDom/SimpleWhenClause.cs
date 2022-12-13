@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SimpleWhenClause FromMutable(ScriptDom.SimpleWhenClause fragment) {
+            return (SimpleWhenClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

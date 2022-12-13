@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DatabaseConfigurationClearOption FromMutable(ScriptDom.DatabaseConfigurationClearOption fragment) {
+            return (DatabaseConfigurationClearOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

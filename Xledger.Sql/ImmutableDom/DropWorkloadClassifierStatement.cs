@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DropWorkloadClassifierStatement FromMutable(ScriptDom.DropWorkloadClassifierStatement fragment) {
+            return (DropWorkloadClassifierStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

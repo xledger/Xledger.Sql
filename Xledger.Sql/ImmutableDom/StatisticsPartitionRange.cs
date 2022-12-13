@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static StatisticsPartitionRange FromMutable(ScriptDom.StatisticsPartitionRange fragment) {
+            return (StatisticsPartitionRange)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

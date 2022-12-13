@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static BeginEndBlockStatement FromMutable(ScriptDom.BeginEndBlockStatement fragment) {
+            return (BeginEndBlockStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

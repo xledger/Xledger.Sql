@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CellsPerObjectSpatialIndexOption FromMutable(ScriptDom.CellsPerObjectSpatialIndexOption fragment) {
+            return (CellsPerObjectSpatialIndexOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

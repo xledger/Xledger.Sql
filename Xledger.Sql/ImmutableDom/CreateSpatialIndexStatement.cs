@@ -100,6 +100,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateSpatialIndexStatement FromMutable(ScriptDom.CreateSpatialIndexStatement fragment) {
+            return (CreateSpatialIndexStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

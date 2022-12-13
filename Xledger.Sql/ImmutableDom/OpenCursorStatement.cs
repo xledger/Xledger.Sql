@@ -50,6 +50,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OpenCursorStatement FromMutable(ScriptDom.OpenCursorStatement fragment) {
+            return (OpenCursorStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

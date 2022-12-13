@@ -90,6 +90,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FullTextPredicate FromMutable(ScriptDom.FullTextPredicate fragment) {
+            return (FullTextPredicate)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

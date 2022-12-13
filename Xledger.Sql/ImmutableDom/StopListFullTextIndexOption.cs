@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static StopListFullTextIndexOption FromMutable(ScriptDom.StopListFullTextIndexOption fragment) {
+            return (StopListFullTextIndexOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

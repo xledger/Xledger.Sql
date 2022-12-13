@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterAvailabilityGroupFailoverOption FromMutable(ScriptDom.AlterAvailabilityGroupFailoverOption fragment) {
+            return (AlterAvailabilityGroupFailoverOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

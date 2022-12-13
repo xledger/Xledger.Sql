@@ -82,6 +82,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GraphMatchCompositeExpression FromMutable(ScriptDom.GraphMatchCompositeExpression fragment) {
+            return (GraphMatchCompositeExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

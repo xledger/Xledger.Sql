@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CoalesceExpression FromMutable(ScriptDom.CoalesceExpression fragment) {
+            return (CoalesceExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

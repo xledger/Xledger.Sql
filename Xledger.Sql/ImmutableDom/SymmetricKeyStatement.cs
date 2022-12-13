@@ -14,6 +14,10 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<CryptoMechanism> EncryptingMechanisms => encryptingMechanisms;
     
+        public static SymmetricKeyStatement FromMutable(ScriptDom.SymmetricKeyStatement fragment) {
+            return (SymmetricKeyStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

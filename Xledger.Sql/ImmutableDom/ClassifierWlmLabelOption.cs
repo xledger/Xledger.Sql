@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ClassifierWlmLabelOption FromMutable(ScriptDom.ClassifierWlmLabelOption fragment) {
+            return (ClassifierWlmLabelOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

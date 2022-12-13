@@ -100,6 +100,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterCertificateStatement FromMutable(ScriptDom.AlterCertificateStatement fragment) {
+            return (AlterCertificateStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

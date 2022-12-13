@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static LineNoStatement FromMutable(ScriptDom.LineNoStatement fragment) {
+            return (LineNoStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

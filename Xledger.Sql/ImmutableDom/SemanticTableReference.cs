@@ -114,6 +114,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SemanticTableReference FromMutable(ScriptDom.SemanticTableReference fragment) {
+            return (SemanticTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

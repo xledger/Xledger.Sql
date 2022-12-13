@@ -80,6 +80,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static PartitionFunctionCall FromMutable(ScriptDom.PartitionFunctionCall fragment) {
+            return (PartitionFunctionCall)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

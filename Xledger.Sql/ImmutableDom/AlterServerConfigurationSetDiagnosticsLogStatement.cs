@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterServerConfigurationSetDiagnosticsLogStatement FromMutable(ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement fragment) {
+            return (AlterServerConfigurationSetDiagnosticsLogStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public IdentifierOrValueExpression Name => name;
     
+        public static TransactionStatement FromMutable(ScriptDom.TransactionStatement fragment) {
+            return (TransactionStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

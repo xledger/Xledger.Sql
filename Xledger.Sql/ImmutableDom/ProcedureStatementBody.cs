@@ -16,6 +16,10 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsForReplication => isForReplication;
         public IReadOnlyList<ProcedureOption> Options => options;
     
+        public static ProcedureStatementBody FromMutable(ScriptDom.ProcedureStatementBody fragment) {
+            return (ProcedureStatementBody)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

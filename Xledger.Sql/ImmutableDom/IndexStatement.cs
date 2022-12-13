@@ -16,6 +16,10 @@ namespace Xledger.Sql.ImmutableDom {
         public SchemaObjectName OnName => onName;
         public IReadOnlyList<IndexOption> IndexOptions => indexOptions;
     
+        public static IndexStatement FromMutable(ScriptDom.IndexStatement fragment) {
+            return (IndexStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

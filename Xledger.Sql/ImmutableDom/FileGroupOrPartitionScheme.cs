@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static FileGroupOrPartitionScheme FromMutable(ScriptDom.FileGroupOrPartitionScheme fragment) {
+            return (FileGroupOrPartitionScheme)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

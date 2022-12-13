@@ -72,6 +72,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CommonTableExpression FromMutable(ScriptDom.CommonTableExpression fragment) {
+            return (CommonTableExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

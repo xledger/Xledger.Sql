@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ColumnStorageOptions FromMutable(ScriptDom.ColumnStorageOptions fragment) {
+            return (ColumnStorageOptions)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

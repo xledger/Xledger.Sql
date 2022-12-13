@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SchemaObjectNameSnippet FromMutable(ScriptDom.SchemaObjectNameSnippet fragment) {
+            return (SchemaObjectNameSnippet)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

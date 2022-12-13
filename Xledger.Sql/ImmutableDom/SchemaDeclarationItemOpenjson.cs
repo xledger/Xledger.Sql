@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SchemaDeclarationItemOpenjson FromMutable(ScriptDom.SchemaDeclarationItemOpenjson fragment) {
+            return (SchemaDeclarationItemOpenjson)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

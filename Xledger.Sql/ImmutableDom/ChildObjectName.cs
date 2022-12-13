@@ -48,6 +48,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ChildObjectName FromMutable(ScriptDom.ChildObjectName fragment) {
+            return (ChildObjectName)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

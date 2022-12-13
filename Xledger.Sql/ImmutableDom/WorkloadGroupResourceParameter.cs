@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static WorkloadGroupResourceParameter FromMutable(ScriptDom.WorkloadGroupResourceParameter fragment) {
+            return (WorkloadGroupResourceParameter)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

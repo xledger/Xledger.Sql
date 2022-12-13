@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static TableDataCompressionOption FromMutable(ScriptDom.TableDataCompressionOption fragment) {
+            return (TableDataCompressionOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

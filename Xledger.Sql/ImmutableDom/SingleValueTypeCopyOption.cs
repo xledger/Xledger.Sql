@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SingleValueTypeCopyOption FromMutable(ScriptDom.SingleValueTypeCopyOption fragment) {
+            return (SingleValueTypeCopyOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

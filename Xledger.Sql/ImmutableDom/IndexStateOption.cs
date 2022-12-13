@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static IndexStateOption FromMutable(ScriptDom.IndexStateOption fragment) {
+            return (IndexStateOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

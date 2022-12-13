@@ -8,6 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class ViewDistributionPolicy : TSqlFragment {
+        public static ViewDistributionPolicy FromMutable(ScriptDom.ViewDistributionPolicy fragment) {
+            return (ViewDistributionPolicy)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

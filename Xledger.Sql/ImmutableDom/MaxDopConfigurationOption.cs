@@ -76,6 +76,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MaxDopConfigurationOption FromMutable(ScriptDom.MaxDopConfigurationOption fragment) {
+            return (MaxDopConfigurationOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

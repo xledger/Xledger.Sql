@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CatalogCollationOption FromMutable(ScriptDom.CatalogCollationOption fragment) {
+            return (CatalogCollationOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

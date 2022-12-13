@@ -43,6 +43,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DeleteMergeAction FromMutable(ScriptDom.DeleteMergeAction fragment) {
+            return (DeleteMergeAction)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

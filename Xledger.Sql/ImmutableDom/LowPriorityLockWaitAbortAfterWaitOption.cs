@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static LowPriorityLockWaitAbortAfterWaitOption FromMutable(ScriptDom.LowPriorityLockWaitAbortAfterWaitOption fragment) {
+            return (LowPriorityLockWaitAbortAfterWaitOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

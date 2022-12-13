@@ -16,6 +16,10 @@ namespace Xledger.Sql.ImmutableDom {
         public StringLiteral Language => language;
         public IReadOnlyList<ExternalLibraryFileOption> ExternalLibraryFiles => externalLibraryFiles;
     
+        public static ExternalLibraryStatement FromMutable(ScriptDom.ExternalLibraryStatement fragment) {
+            return (ExternalLibraryStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

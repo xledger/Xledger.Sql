@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateSynonymStatement FromMutable(ScriptDom.CreateSynonymStatement fragment) {
+            return (CreateSynonymStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OnOffSessionOption FromMutable(ScriptDom.OnOffSessionOption fragment) {
+            return (OnOffSessionOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

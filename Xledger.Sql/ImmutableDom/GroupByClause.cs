@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GroupByClause FromMutable(ScriptDom.GroupByClause fragment) {
+            return (GroupByClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

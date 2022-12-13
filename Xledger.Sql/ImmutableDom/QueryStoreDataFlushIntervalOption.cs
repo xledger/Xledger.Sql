@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static QueryStoreDataFlushIntervalOption FromMutable(ScriptDom.QueryStoreDataFlushIntervalOption fragment) {
+            return (QueryStoreDataFlushIntervalOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

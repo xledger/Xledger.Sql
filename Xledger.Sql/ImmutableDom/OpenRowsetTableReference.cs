@@ -128,6 +128,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OpenRowsetTableReference FromMutable(ScriptDom.OpenRowsetTableReference fragment) {
+            return (OpenRowsetTableReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -82,6 +82,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ConvertCall FromMutable(ScriptDom.ConvertCall fragment) {
+            return (ConvertCall)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

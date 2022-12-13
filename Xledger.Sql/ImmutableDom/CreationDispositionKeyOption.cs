@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreationDispositionKeyOption FromMutable(ScriptDom.CreationDispositionKeyOption fragment) {
+            return (CreationDispositionKeyOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

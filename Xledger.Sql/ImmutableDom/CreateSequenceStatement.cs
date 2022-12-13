@@ -56,6 +56,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static CreateSequenceStatement FromMutable(ScriptDom.CreateSequenceStatement fragment) {
+            return (CreateSequenceStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

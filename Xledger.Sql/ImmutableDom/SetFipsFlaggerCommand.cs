@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SetFipsFlaggerCommand FromMutable(ScriptDom.SetFipsFlaggerCommand fragment) {
+            return (SetFipsFlaggerCommand)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

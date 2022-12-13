@@ -86,6 +86,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static QualifiedJoin FromMutable(ScriptDom.QualifiedJoin fragment) {
+            return (QualifiedJoin)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static WithinGroupClause FromMutable(ScriptDom.WithinGroupClause fragment) {
+            return (WithinGroupClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

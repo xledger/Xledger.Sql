@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static MultiPartIdentifierCallTarget FromMutable(ScriptDom.MultiPartIdentifierCallTarget fragment) {
+            return (MultiPartIdentifierCallTarget)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

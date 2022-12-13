@@ -60,6 +60,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterLoginEnableDisableStatement FromMutable(ScriptDom.AlterLoginEnableDisableStatement fragment) {
+            return (AlterLoginEnableDisableStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

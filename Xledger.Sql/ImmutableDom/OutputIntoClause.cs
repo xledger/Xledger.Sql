@@ -70,6 +70,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static OutputIntoClause FromMutable(ScriptDom.OutputIntoClause fragment) {
+            return (OutputIntoClause)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

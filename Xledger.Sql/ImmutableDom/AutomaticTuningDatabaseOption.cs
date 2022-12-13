@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AutomaticTuningDatabaseOption FromMutable(ScriptDom.AutomaticTuningDatabaseOption fragment) {
+            return (AutomaticTuningDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

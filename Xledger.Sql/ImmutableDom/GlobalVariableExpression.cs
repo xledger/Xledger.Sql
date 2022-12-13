@@ -62,6 +62,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static GlobalVariableExpression FromMutable(ScriptDom.GlobalVariableExpression fragment) {
+            return (GlobalVariableExpression)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

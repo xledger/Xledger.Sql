@@ -66,6 +66,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ChangeTrackingDatabaseOption FromMutable(ScriptDom.ChangeTrackingDatabaseOption fragment) {
+            return (ChangeTrackingDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

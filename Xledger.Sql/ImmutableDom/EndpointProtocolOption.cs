@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.EndpointProtocolOptions Kind => kind;
     
+        public static EndpointProtocolOption FromMutable(ScriptDom.EndpointProtocolOption fragment) {
+            return (EndpointProtocolOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

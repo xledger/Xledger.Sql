@@ -52,6 +52,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static AlterServerConfigurationSetBufferPoolExtensionStatement FromMutable(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement fragment) {
+            return (AlterServerConfigurationSetBufferPoolExtensionStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

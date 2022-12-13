@@ -14,6 +14,10 @@ namespace Xledger.Sql.ImmutableDom {
         public SchemaObjectName Name => name;
         public IReadOnlyList<SequenceOption> SequenceOptions => sequenceOptions;
     
+        public static SequenceStatement FromMutable(ScriptDom.SequenceStatement fragment) {
+            return (SequenceStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

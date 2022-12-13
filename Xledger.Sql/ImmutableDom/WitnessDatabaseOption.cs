@@ -68,6 +68,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static WitnessDatabaseOption FromMutable(ScriptDom.WitnessDatabaseOption fragment) {
+            return (WitnessDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

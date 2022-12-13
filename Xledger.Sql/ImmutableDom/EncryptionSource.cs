@@ -8,6 +8,10 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class EncryptionSource : TSqlFragment {
+        public static EncryptionSource FromMutable(ScriptDom.EncryptionSource fragment) {
+            return (EncryptionSource)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

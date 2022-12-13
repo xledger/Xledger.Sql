@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ProcessAffinityRange FromMutable(ScriptDom.ProcessAffinityRange fragment) {
+            return (ProcessAffinityRange)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

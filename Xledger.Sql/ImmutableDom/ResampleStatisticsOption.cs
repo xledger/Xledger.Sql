@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ResampleStatisticsOption FromMutable(ScriptDom.ResampleStatisticsOption fragment) {
+            return (ResampleStatisticsOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

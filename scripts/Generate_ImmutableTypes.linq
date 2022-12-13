@@ -478,7 +478,9 @@ public class ClassDef {
             wl(TagDict().IndentLines(4));
             wl("");
             wl(FromCsFunction().IndentLines(4));
-        }
+		} else {
+			wl(FromMutableFunction().IndentLines(4));
+		}
 
         wl($"}}");
 
@@ -499,16 +501,27 @@ public class ClassDef {
         return sb.ToString();
     }
 
+	public string FromMutableFunction() {
+		var sb = new StringBuilder();
+		void wl(string s) { sb.AppendLine(s); }
+
+		wl($"public static {Name} FromMutable(ScriptDom.{Name} fragment) {{");
+		wl($"    return ({Name})TSqlFragment.FromMutable(fragment);");
+		wl($"}}");
+
+        return sb.ToString();
+    }
+
     public static string FromCsFunction() {
         var sb = new StringBuilder();
         void wl(string s) { sb.AppendLine(s); }
-        
+
         wl($"public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {{");
         wl($"    if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {{");
         wl($"        throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
         wl($"    }}");
         wl($"");
-        
+
         wl($"    switch (tag) {{");
         foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
             var def = UserQuery.GetImmClassdef(typ);
@@ -524,17 +537,17 @@ public class ClassDef {
                 } else if (prop.IsScriptDomType) {
                     ctorPms.Add($"{LowerName(prop.Name)}: ({prop.TypeLiteral})FromMutable(node.{prop.Name})");
                 } else {
-                    ctorPms.Add($"{LowerName(prop.Name)}: node.{prop.Name}");    
+                    ctorPms.Add($"{LowerName(prop.Name)}: node.{prop.Name}");
                 }
             }
             wl(ctorPms.StringJoin(",\n").IndentLines(16));
-            
+
             wl($"            );");
             wl($"        }}");
         }
         wl($"        default: throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
         wl($"    }}");
-        
+
         wl($"}}");
         return sb.ToString();
     }

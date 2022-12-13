@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static JsonKeyValue FromMutable(ScriptDom.JsonKeyValue fragment) {
+            return (JsonKeyValue)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

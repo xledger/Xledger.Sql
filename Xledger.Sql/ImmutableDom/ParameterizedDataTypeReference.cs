@@ -12,6 +12,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public IReadOnlyList<Literal> Parameters => parameters;
     
+        public static ParameterizedDataTypeReference FromMutable(ScriptDom.ParameterizedDataTypeReference fragment) {
+            return (ParameterizedDataTypeReference)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

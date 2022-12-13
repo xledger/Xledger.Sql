@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DelayedDurabilityDatabaseOption FromMutable(ScriptDom.DelayedDurabilityDatabaseOption fragment) {
+            return (DelayedDurabilityDatabaseOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

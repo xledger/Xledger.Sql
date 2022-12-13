@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static IgnoreDupKeyIndexOption FromMutable(ScriptDom.IgnoreDupKeyIndexOption fragment) {
+            return (IgnoreDupKeyIndexOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

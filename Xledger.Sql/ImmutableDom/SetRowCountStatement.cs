@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static SetRowCountStatement FromMutable(ScriptDom.SetRowCountStatement fragment) {
+            return (SetRowCountStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

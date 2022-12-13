@@ -58,6 +58,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static DurabilityTableOption FromMutable(ScriptDom.DurabilityTableOption fragment) {
+            return (DurabilityTableOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

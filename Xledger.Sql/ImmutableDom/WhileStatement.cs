@@ -64,6 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static WhileStatement FromMutable(ScriptDom.WhileStatement fragment) {
+            return (WhileStatement)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }

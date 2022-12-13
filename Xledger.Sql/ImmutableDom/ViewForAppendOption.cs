@@ -48,6 +48,10 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public static ViewForAppendOption FromMutable(ScriptDom.ViewForAppendOption fragment) {
+            return (ViewForAppendOption)TSqlFragment.FromMutable(fragment);
+        }
+    
     }
 
 }
