@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Xledger.Sql.Collections {
     internal class ImmList<T> : IReadOnlyList<T>, IEquatable<ImmList<T>> {
-        T[] data;
+        readonly T[] data;
 
         ImmList(T[] data) {
             this.data = data;
@@ -83,7 +83,7 @@ namespace Xledger.Sql.Collections {
             return new ImmList<U>(data);
         }
 
-        internal static ImmList<T> Empty = new ImmList<T>(new T[0]);
+        internal static ImmList<T> Empty = new ImmList<T>(Array.Empty<T>());
 
         public T this[int index] => data[index];
 
