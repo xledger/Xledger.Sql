@@ -29,6 +29,7 @@ void Main() {
         newClassDef.ToMutableMethod().Dump("toMutable");
         newClassDef.GetHashCodeMethod().Dump("getHashCode");
         newClassDef.GetEqualsMethods().Dump("equals");
+		newClassDef.GetCompareToMethods().Dump("compareTo");
 
         var fullFileDef = newClassDef.FullFileDef();
         var f = Path.Combine(path, $"{t.Name}.cs");
@@ -328,7 +329,7 @@ public class ClassDef {
             var lowerName = LowerName(prop.Name);
             parameters.Add($"{prop.TypeLiteral} {lowerName} = {prop.DefaultLiteral ?? "null"}");
             if (prop.IsList) {
-                assigns.Add($"    this.{lowerName} = {lowerName} is null ? ImmList<{prop.InnerTypeLiteral}>.Empty : ImmList<{prop.InnerTypeLiteral}>.FromList({lowerName});");
+                assigns.Add($"    this.{lowerName} = ImmList<{prop.InnerTypeLiteral}>.FromList({lowerName});");
             } else {
                 assigns.Add($"    this.{lowerName} = {lowerName};");
             }
@@ -426,7 +427,51 @@ public class ClassDef {
         return sb.ToString();
     }
 
-    public string FullClassDef() {
+	public string GetCompareToMethods()	{
+		if (this.IsAbstract && Name != "TSqlFragment") {
+			return "";
+		}
+		var sb = new StringBuilder();
+
+		void wl(string s) { sb.AppendLine(s); }
+
+		if (Name == "TSqlFragment") {
+			wl($@"public abstract int CompareTo(object that);");
+			wl($@"public abstract int CompareTo(TSqlFragment that);");
+		} else {
+			wl($"public override int CompareTo(object that) {{");
+			wl($"    return CompareTo((TSqlFragment)that);");
+			wl($"}} ");
+			wl($"");
+
+			wl($"public override int CompareTo(TSqlFragment that) {{");
+			wl($"    var compare = 1;");
+			wl($"    if (that == null) {{ return compare; }}");
+			wl($"    if (this.GetType() != that.GetType()) {{ return this.GetType().Name.CompareTo(that.GetType().Name); }}");
+			wl($"    var othr = ({Name})that;");
+			foreach (var prop in Props) {
+				wl($"    compare = StructuralComparisons.StructuralComparer.Compare(this.{LowerName(prop.Name)}, othr.{LowerName(prop.Name)});");
+				wl($"    if (compare != 0) {{ return compare; }}");
+			}
+			wl($"    return compare;");
+			wl($"}} ");
+
+			//		wl($"public static bool operator ==({Name} left, {Name} right) {{");
+			//		wl($"    return EqualityComparer<{Name}>.Default.Equals(left, right);");
+			//		wl($"}}");
+			//		wl($"");
+			//
+			//		wl($"public static bool operator !=({Name} left, {Name} right) {{");
+			//		wl($"    return !(left == right);");
+			//		wl($"}}");
+		}
+		
+		return sb.ToString();
+	}
+
+
+	public string FullClassDef()
+	{
         var sb = new StringBuilder();
         void wl(string s, bool extraNewline = false) {
             if (s is null) {
@@ -445,6 +490,10 @@ public class ClassDef {
         if (!IsAbstract) {
             baseTyps.Add($"IEquatable<{Name}>");
         }
+		if (Name == "TSqlFragment") {
+			baseTyps.Add("IComparable");
+			baseTyps.Add($"IComparable<TSqlFragment>");
+		}
         var baseTypStr =
             baseTyps.Count == 0
             ? ""
@@ -472,6 +521,8 @@ public class ClassDef {
         wl(GetHashCodeMethod().IndentLines(4).NullIfBlank(), false);
 
         wl(GetEqualsMethods().IndentLines(4).NullIfBlank(), false);
+		
+		wl(GetCompareToMethods().IndentLines(4).NullIfBlank(), false);
         
         if (Name == "TSqlFragment") {
             wl("");

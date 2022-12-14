@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Xledger.Sql.Collections {
-    internal class ImmList<T> : IReadOnlyList<T>, IEquatable<ImmList<T>> {
+    internal sealed class ImmList<T> : IReadOnlyList<T>, IEquatable<ImmList<T>>, IComparable, IComparable<ImmList<T>> {
         readonly T[] data;
 
         ImmList(T[] data) {
@@ -126,6 +125,14 @@ namespace Xledger.Sql.Collections {
                 }
             }
             return h;
+        }
+
+        public int CompareTo(object that) {
+            return CompareTo((ImmList<T>)that);
+        }
+
+        public int CompareTo(ImmList<T> that) {
+            return StructuralComparisons.StructuralComparer.Compare(this.data, that.data);
         }
 
         public static bool operator ==(ImmList<T> left, ImmList<T> right) {
