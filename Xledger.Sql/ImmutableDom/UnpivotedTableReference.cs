@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public UnpivotedTableReference(TableReference tableReference = null, IReadOnlyList<ColumnReferenceExpression> inColumns = null, Identifier pivotColumn = null, Identifier valueColumn = null, Identifier alias = null, bool forPath = false) {
             this.tableReference = tableReference;
-            this.inColumns = inColumns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(inColumns);
+            this.inColumns = ImmList<ColumnReferenceExpression>.FromList(inColumns);
             this.pivotColumn = pivotColumn;
             this.valueColumn = valueColumn;
             this.alias = alias;
@@ -95,6 +95,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(UnpivotedTableReference left, UnpivotedTableReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (UnpivotedTableReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableReference, othr.tableReference);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.inColumns, othr.inColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.pivotColumn, othr.pivotColumn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.valueColumn, othr.valueColumn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static UnpivotedTableReference FromMutable(ScriptDom.UnpivotedTableReference fragment) {
             return (UnpivotedTableReference)TSqlFragment.FromMutable(fragment);

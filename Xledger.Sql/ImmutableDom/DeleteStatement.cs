@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public DeleteStatement(DeleteSpecification deleteSpecification = null, WithCtesAndXmlNamespaces withCtesAndXmlNamespaces = null, IReadOnlyList<OptimizerHint> optimizerHints = null) {
             this.deleteSpecification = deleteSpecification;
             this.withCtesAndXmlNamespaces = withCtesAndXmlNamespaces;
-            this.optimizerHints = optimizerHints is null ? ImmList<OptimizerHint>.Empty : ImmList<OptimizerHint>.FromList(optimizerHints);
+            this.optimizerHints = ImmList<OptimizerHint>.FromList(optimizerHints);
         }
     
         public ScriptDom.DeleteStatement ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DeleteStatement left, DeleteStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DeleteStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.deleteSpecification, othr.deleteSpecification);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withCtesAndXmlNamespaces, othr.withCtesAndXmlNamespaces);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optimizerHints, othr.optimizerHints);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DeleteStatement FromMutable(ScriptDom.DeleteStatement fragment) {
             return (DeleteStatement)TSqlFragment.FromMutable(fragment);

@@ -104,6 +104,32 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SoapMethod)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.@namespace, othr.@namespace);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.action, othr.action);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.format, othr.format);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schema, othr.schema);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static SoapMethod FromMutable(ScriptDom.SoapMethod fragment) {
             return (SoapMethod)TSqlFragment.FromMutable(fragment);
         }

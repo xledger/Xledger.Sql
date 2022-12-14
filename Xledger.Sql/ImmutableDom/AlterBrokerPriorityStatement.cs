@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterBrokerPriorityStatement : BrokerPriorityStatement, IEquatable<AlterBrokerPriorityStatement> {
         public AlterBrokerPriorityStatement(Identifier name = null, IReadOnlyList<BrokerPriorityParameter> brokerPriorityParameters = null) {
             this.name = name;
-            this.brokerPriorityParameters = brokerPriorityParameters is null ? ImmList<BrokerPriorityParameter>.Empty : ImmList<BrokerPriorityParameter>.FromList(brokerPriorityParameters);
+            this.brokerPriorityParameters = ImmList<BrokerPriorityParameter>.FromList(brokerPriorityParameters);
         }
     
         public ScriptDom.AlterBrokerPriorityStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterBrokerPriorityStatement left, AlterBrokerPriorityStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterBrokerPriorityStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.brokerPriorityParameters, othr.brokerPriorityParameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterBrokerPriorityStatement FromMutable(ScriptDom.AlterBrokerPriorityStatement fragment) {
             return (AlterBrokerPriorityStatement)TSqlFragment.FromMutable(fragment);

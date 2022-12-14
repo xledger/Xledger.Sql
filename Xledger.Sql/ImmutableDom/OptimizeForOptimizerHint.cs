@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsForUnknown => isForUnknown;
     
         public OptimizeForOptimizerHint(IReadOnlyList<VariableValuePair> pairs = null, bool isForUnknown = false, ScriptDom.OptimizerHintKind hintKind = ScriptDom.OptimizerHintKind.Unspecified) {
-            this.pairs = pairs is null ? ImmList<VariableValuePair>.Empty : ImmList<VariableValuePair>.FromList(pairs);
+            this.pairs = ImmList<VariableValuePair>.FromList(pairs);
             this.isForUnknown = isForUnknown;
             this.hintKind = hintKind;
         }
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OptimizeForOptimizerHint)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.pairs, othr.pairs);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isForUnknown, othr.isForUnknown);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.hintKind, othr.hintKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OptimizeForOptimizerHint FromMutable(ScriptDom.OptimizeForOptimizerHint fragment) {
             return (OptimizeForOptimizerHint)TSqlFragment.FromMutable(fragment);

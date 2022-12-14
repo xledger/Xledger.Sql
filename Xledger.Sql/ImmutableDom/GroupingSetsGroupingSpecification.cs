@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<GroupingSpecification> Sets => sets;
     
         public GroupingSetsGroupingSpecification(IReadOnlyList<GroupingSpecification> sets = null) {
-            this.sets = sets is null ? ImmList<GroupingSpecification>.Empty : ImmList<GroupingSpecification>.FromList(sets);
+            this.sets = ImmList<GroupingSpecification>.FromList(sets);
         }
     
         public ScriptDom.GroupingSetsGroupingSpecification ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(GroupingSetsGroupingSpecification left, GroupingSetsGroupingSpecification right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (GroupingSetsGroupingSpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.sets, othr.sets);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static GroupingSetsGroupingSpecification FromMutable(ScriptDom.GroupingSetsGroupingSpecification fragment) {
             return (GroupingSetsGroupingSpecification)TSqlFragment.FromMutable(fragment);

@@ -86,6 +86,28 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (RevokeStatement80)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.grantOptionFor, othr.grantOptionFor);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.cascadeOption, othr.cascadeOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.asClause, othr.asClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.securityElement80, othr.securityElement80);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.securityUserClause80, othr.securityUserClause80);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static RevokeStatement80 FromMutable(ScriptDom.RevokeStatement80 fragment) {
             return (RevokeStatement80)TSqlFragment.FromMutable(fragment);
         }

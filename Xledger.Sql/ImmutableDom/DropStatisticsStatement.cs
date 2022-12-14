@@ -9,7 +9,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 namespace Xledger.Sql.ImmutableDom {
     public class DropStatisticsStatement : DropChildObjectsStatement, IEquatable<DropStatisticsStatement> {
         public DropStatisticsStatement(IReadOnlyList<ChildObjectName> objects = null) {
-            this.objects = objects is null ? ImmList<ChildObjectName>.Empty : ImmList<ChildObjectName>.FromList(objects);
+            this.objects = ImmList<ChildObjectName>.FromList(objects);
         }
     
         public ScriptDom.DropStatisticsStatement ToMutableConcrete() {
@@ -47,6 +47,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DropStatisticsStatement left, DropStatisticsStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DropStatisticsStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.objects, othr.objects);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DropStatisticsStatement FromMutable(ScriptDom.DropStatisticsStatement fragment) {
             return (DropStatisticsStatement)TSqlFragment.FromMutable(fragment);

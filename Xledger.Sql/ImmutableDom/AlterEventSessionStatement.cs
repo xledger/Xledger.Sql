@@ -18,13 +18,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AlterEventSessionStatement(ScriptDom.AlterEventSessionStatementType statementType = ScriptDom.AlterEventSessionStatementType.Unknown, IReadOnlyList<EventSessionObjectName> dropEventDeclarations = null, IReadOnlyList<EventSessionObjectName> dropTargetDeclarations = null, Identifier name = null, ScriptDom.EventSessionScope sessionScope = ScriptDom.EventSessionScope.Server, IReadOnlyList<EventDeclaration> eventDeclarations = null, IReadOnlyList<TargetDeclaration> targetDeclarations = null, IReadOnlyList<SessionOption> sessionOptions = null) {
             this.statementType = statementType;
-            this.dropEventDeclarations = dropEventDeclarations is null ? ImmList<EventSessionObjectName>.Empty : ImmList<EventSessionObjectName>.FromList(dropEventDeclarations);
-            this.dropTargetDeclarations = dropTargetDeclarations is null ? ImmList<EventSessionObjectName>.Empty : ImmList<EventSessionObjectName>.FromList(dropTargetDeclarations);
+            this.dropEventDeclarations = ImmList<EventSessionObjectName>.FromList(dropEventDeclarations);
+            this.dropTargetDeclarations = ImmList<EventSessionObjectName>.FromList(dropTargetDeclarations);
             this.name = name;
             this.sessionScope = sessionScope;
-            this.eventDeclarations = eventDeclarations is null ? ImmList<EventDeclaration>.Empty : ImmList<EventDeclaration>.FromList(eventDeclarations);
-            this.targetDeclarations = targetDeclarations is null ? ImmList<TargetDeclaration>.Empty : ImmList<TargetDeclaration>.FromList(targetDeclarations);
-            this.sessionOptions = sessionOptions is null ? ImmList<SessionOption>.Empty : ImmList<SessionOption>.FromList(sessionOptions);
+            this.eventDeclarations = ImmList<EventDeclaration>.FromList(eventDeclarations);
+            this.targetDeclarations = ImmList<TargetDeclaration>.FromList(targetDeclarations);
+            this.sessionOptions = ImmList<SessionOption>.FromList(sessionOptions);
         }
     
         public ScriptDom.AlterEventSessionStatement ToMutableConcrete() {
@@ -99,6 +99,34 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterEventSessionStatement left, AlterEventSessionStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterEventSessionStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.statementType, othr.statementType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dropEventDeclarations, othr.dropEventDeclarations);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dropTargetDeclarations, othr.dropTargetDeclarations);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.sessionScope, othr.sessionScope);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.eventDeclarations, othr.eventDeclarations);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.targetDeclarations, othr.targetDeclarations);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.sessionOptions, othr.sessionOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterEventSessionStatement FromMutable(ScriptDom.AlterEventSessionStatement fragment) {
             return (AlterEventSessionStatement)TSqlFragment.FromMutable(fragment);

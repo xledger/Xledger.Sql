@@ -13,9 +13,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.state = state;
             this.affinity = affinity;
             this.protocol = protocol;
-            this.protocolOptions = protocolOptions is null ? ImmList<EndpointProtocolOption>.Empty : ImmList<EndpointProtocolOption>.FromList(protocolOptions);
+            this.protocolOptions = ImmList<EndpointProtocolOption>.FromList(protocolOptions);
             this.endpointType = endpointType;
-            this.payloadOptions = payloadOptions is null ? ImmList<PayloadOption>.Empty : ImmList<PayloadOption>.FromList(payloadOptions);
+            this.payloadOptions = ImmList<PayloadOption>.FromList(payloadOptions);
         }
     
         public ScriptDom.AlterEndpointStatement ToMutableConcrete() {
@@ -87,6 +87,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterEndpointStatement left, AlterEndpointStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterEndpointStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.state, othr.state);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.affinity, othr.affinity);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.protocol, othr.protocol);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.protocolOptions, othr.protocolOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.endpointType, othr.endpointType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.payloadOptions, othr.payloadOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterEndpointStatement FromMutable(ScriptDom.AlterEndpointStatement fragment) {
             return (AlterEndpointStatement)TSqlFragment.FromMutable(fragment);

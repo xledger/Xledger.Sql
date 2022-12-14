@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.separatorType = separatorType;
             this.identifier = identifier;
             this.functionCallExists = functionCallExists;
-            this.parameters = parameters is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
             this.expression = expression;
             this.cursorDefinition = cursorDefinition;
             this.assignmentKind = assignmentKind;
@@ -115,6 +115,34 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SetVariableStatement left, SetVariableStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SetVariableStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.separatorType, othr.separatorType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.identifier, othr.identifier);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.functionCallExists, othr.functionCallExists);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.expression, othr.expression);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.cursorDefinition, othr.cursorDefinition);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.assignmentKind, othr.assignmentKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SetVariableStatement FromMutable(ScriptDom.SetVariableStatement fragment) {
             return (SetVariableStatement)TSqlFragment.FromMutable(fragment);

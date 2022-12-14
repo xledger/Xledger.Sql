@@ -17,12 +17,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AddFileSpec> AddFiles => addFiles;
     
         public AlterAssemblyStatement(IReadOnlyList<Literal> dropFiles = null, bool isDropAll = false, IReadOnlyList<AddFileSpec> addFiles = null, Identifier name = null, IReadOnlyList<ScalarExpression> parameters = null, IReadOnlyList<AssemblyOption> options = null) {
-            this.dropFiles = dropFiles is null ? ImmList<Literal>.Empty : ImmList<Literal>.FromList(dropFiles);
+            this.dropFiles = ImmList<Literal>.FromList(dropFiles);
             this.isDropAll = isDropAll;
-            this.addFiles = addFiles is null ? ImmList<AddFileSpec>.Empty : ImmList<AddFileSpec>.FromList(addFiles);
+            this.addFiles = ImmList<AddFileSpec>.FromList(addFiles);
             this.name = name;
-            this.parameters = parameters is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(parameters);
-            this.options = options is null ? ImmList<AssemblyOption>.Empty : ImmList<AssemblyOption>.FromList(options);
+            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.options = ImmList<AssemblyOption>.FromList(options);
         }
     
         public ScriptDom.AlterAssemblyStatement ToMutableConcrete() {
@@ -87,6 +87,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterAssemblyStatement left, AlterAssemblyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterAssemblyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dropFiles, othr.dropFiles);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isDropAll, othr.isDropAll);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.addFiles, othr.addFiles);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterAssemblyStatement FromMutable(ScriptDom.AlterAssemblyStatement fragment) {
             return (AlterAssemblyStatement)TSqlFragment.FromMutable(fragment);

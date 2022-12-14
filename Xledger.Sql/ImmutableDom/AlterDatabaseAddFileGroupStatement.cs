@@ -84,6 +84,28 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterDatabaseAddFileGroupStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroup, othr.fileGroup);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.containsFileStream, othr.containsFileStream);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.containsMemoryOptimizedData, othr.containsMemoryOptimizedData);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.useCurrent, othr.useCurrent);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static AlterDatabaseAddFileGroupStatement FromMutable(ScriptDom.AlterDatabaseAddFileGroupStatement fragment) {
             return (AlterDatabaseAddFileGroupStatement)TSqlFragment.FromMutable(fragment);
         }

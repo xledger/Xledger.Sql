@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateCertificateStatement(EncryptionSource certificateSource = null, IReadOnlyList<CertificateOption> certificateOptions = null, Identifier owner = null, Identifier name = null, ScriptDom.OptionState activeForBeginDialog = ScriptDom.OptionState.NotSet, Literal privateKeyPath = null, Literal encryptionPassword = null, Literal decryptionPassword = null) {
             this.certificateSource = certificateSource;
-            this.certificateOptions = certificateOptions is null ? ImmList<CertificateOption>.Empty : ImmList<CertificateOption>.FromList(certificateOptions);
+            this.certificateOptions = ImmList<CertificateOption>.FromList(certificateOptions);
             this.owner = owner;
             this.name = name;
             this.activeForBeginDialog = activeForBeginDialog;
@@ -109,6 +109,34 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateCertificateStatement left, CreateCertificateStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateCertificateStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.certificateSource, othr.certificateSource);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.certificateOptions, othr.certificateOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.activeForBeginDialog, othr.activeForBeginDialog);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.privateKeyPath, othr.privateKeyPath);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptionPassword, othr.encryptionPassword);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.decryptionPassword, othr.decryptionPassword);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateCertificateStatement FromMutable(ScriptDom.CreateCertificateStatement fragment) {
             return (CreateCertificateStatement)TSqlFragment.FromMutable(fragment);

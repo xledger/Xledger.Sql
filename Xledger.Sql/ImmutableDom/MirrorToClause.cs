@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<DeviceInfo> Devices => devices;
     
         public MirrorToClause(IReadOnlyList<DeviceInfo> devices = null) {
-            this.devices = devices is null ? ImmList<DeviceInfo>.Empty : ImmList<DeviceInfo>.FromList(devices);
+            this.devices = ImmList<DeviceInfo>.FromList(devices);
         }
     
         public ScriptDom.MirrorToClause ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(MirrorToClause left, MirrorToClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (MirrorToClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.devices, othr.devices);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static MirrorToClause FromMutable(ScriptDom.MirrorToClause fragment) {
             return (MirrorToClause)TSqlFragment.FromMutable(fragment);

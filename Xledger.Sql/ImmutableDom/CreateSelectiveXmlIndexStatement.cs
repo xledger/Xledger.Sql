@@ -25,13 +25,13 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateSelectiveXmlIndexStatement(bool isSecondary = false, Identifier xmlColumn = null, IReadOnlyList<SelectiveXmlIndexPromotedPath> promotedPaths = null, XmlNamespaces xmlNamespaces = null, Identifier usingXmlIndexName = null, Identifier pathName = null, Identifier name = null, SchemaObjectName onName = null, IReadOnlyList<IndexOption> indexOptions = null) {
             this.isSecondary = isSecondary;
             this.xmlColumn = xmlColumn;
-            this.promotedPaths = promotedPaths is null ? ImmList<SelectiveXmlIndexPromotedPath>.Empty : ImmList<SelectiveXmlIndexPromotedPath>.FromList(promotedPaths);
+            this.promotedPaths = ImmList<SelectiveXmlIndexPromotedPath>.FromList(promotedPaths);
             this.xmlNamespaces = xmlNamespaces;
             this.usingXmlIndexName = usingXmlIndexName;
             this.pathName = pathName;
             this.name = name;
             this.onName = onName;
-            this.indexOptions = indexOptions is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
         }
     
         public ScriptDom.CreateSelectiveXmlIndexStatement ToMutableConcrete() {
@@ -121,6 +121,36 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateSelectiveXmlIndexStatement left, CreateSelectiveXmlIndexStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateSelectiveXmlIndexStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isSecondary, othr.isSecondary);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlColumn, othr.xmlColumn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.promotedPaths, othr.promotedPaths);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlNamespaces, othr.xmlNamespaces);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.usingXmlIndexName, othr.usingXmlIndexName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.pathName, othr.pathName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateSelectiveXmlIndexStatement FromMutable(ScriptDom.CreateSelectiveXmlIndexStatement fragment) {
             return (CreateSelectiveXmlIndexStatement)TSqlFragment.FromMutable(fragment);

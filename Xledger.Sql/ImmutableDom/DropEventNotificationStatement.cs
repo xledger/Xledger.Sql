@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public EventNotificationObjectScope Scope => scope;
     
         public DropEventNotificationStatement(IReadOnlyList<Identifier> notifications = null, EventNotificationObjectScope scope = null) {
-            this.notifications = notifications is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(notifications);
+            this.notifications = ImmList<Identifier>.FromList(notifications);
             this.scope = scope;
         }
     
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DropEventNotificationStatement left, DropEventNotificationStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DropEventNotificationStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.notifications, othr.notifications);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.scope, othr.scope);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DropEventNotificationStatement FromMutable(ScriptDom.DropEventNotificationStatement fragment) {
             return (DropEventNotificationStatement)TSqlFragment.FromMutable(fragment);

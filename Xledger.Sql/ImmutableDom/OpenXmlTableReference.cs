@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.variable = variable;
             this.rowPattern = rowPattern;
             this.flags = flags;
-            this.schemaDeclarationItems = schemaDeclarationItems is null ? ImmList<SchemaDeclarationItem>.Empty : ImmList<SchemaDeclarationItem>.FromList(schemaDeclarationItems);
+            this.schemaDeclarationItems = ImmList<SchemaDeclarationItem>.FromList(schemaDeclarationItems);
             this.tableName = tableName;
             this.alias = alias;
             this.forPath = forPath;
@@ -105,6 +105,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OpenXmlTableReference left, OpenXmlTableReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OpenXmlTableReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.rowPattern, othr.rowPattern);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.flags, othr.flags);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaDeclarationItems, othr.schemaDeclarationItems);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableName, othr.tableName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OpenXmlTableReference FromMutable(ScriptDom.OpenXmlTableReference fragment) {
             return (OpenXmlTableReference)TSqlFragment.FromMutable(fragment);

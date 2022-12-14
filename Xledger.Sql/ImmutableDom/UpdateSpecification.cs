@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SetClause> SetClauses => setClauses;
     
         public UpdateSpecification(IReadOnlyList<SetClause> setClauses = null, FromClause fromClause = null, WhereClause whereClause = null, TableReference target = null, TopRowFilter topRowFilter = null, OutputIntoClause outputIntoClause = null, OutputClause outputClause = null) {
-            this.setClauses = setClauses is null ? ImmList<SetClause>.Empty : ImmList<SetClause>.FromList(setClauses);
+            this.setClauses = ImmList<SetClause>.FromList(setClauses);
             this.fromClause = fromClause;
             this.whereClause = whereClause;
             this.target = target;
@@ -99,6 +99,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(UpdateSpecification left, UpdateSpecification right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (UpdateSpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.setClauses, othr.setClauses);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fromClause, othr.fromClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.whereClause, othr.whereClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.target, othr.target);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.topRowFilter, othr.topRowFilter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputIntoClause, othr.outputIntoClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputClause, othr.outputClause);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static UpdateSpecification FromMutable(ScriptDom.UpdateSpecification fragment) {
             return (UpdateSpecification)TSqlFragment.FromMutable(fragment);

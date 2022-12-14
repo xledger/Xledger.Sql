@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<LowPriorityLockWaitOption> Options => options;
     
         public DropClusteredConstraintWaitAtLowPriorityLockOption(IReadOnlyList<LowPriorityLockWaitOption> options = null, ScriptDom.DropClusteredConstraintOptionKind optionKind = ScriptDom.DropClusteredConstraintOptionKind.MaxDop) {
-            this.options = options is null ? ImmList<LowPriorityLockWaitOption>.Empty : ImmList<LowPriorityLockWaitOption>.FromList(options);
+            this.options = ImmList<LowPriorityLockWaitOption>.FromList(options);
             this.optionKind = optionKind;
         }
     
@@ -57,6 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DropClusteredConstraintWaitAtLowPriorityLockOption left, DropClusteredConstraintWaitAtLowPriorityLockOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DropClusteredConstraintWaitAtLowPriorityLockOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DropClusteredConstraintWaitAtLowPriorityLockOption FromMutable(ScriptDom.DropClusteredConstraintWaitAtLowPriorityLockOption fragment) {
             return (DropClusteredConstraintWaitAtLowPriorityLockOption)TSqlFragment.FromMutable(fragment);

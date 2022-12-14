@@ -11,9 +11,9 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateOrAlterTriggerStatement(SchemaObjectName name = null, TriggerObject triggerObject = null, IReadOnlyList<TriggerOption> options = null, ScriptDom.TriggerType triggerType = ScriptDom.TriggerType.Unknown, IReadOnlyList<TriggerAction> triggerActions = null, bool withAppend = false, bool isNotForReplication = false, StatementList statementList = null, MethodSpecifier methodSpecifier = null) {
             this.name = name;
             this.triggerObject = triggerObject;
-            this.options = options is null ? ImmList<TriggerOption>.Empty : ImmList<TriggerOption>.FromList(options);
+            this.options = ImmList<TriggerOption>.FromList(options);
             this.triggerType = triggerType;
-            this.triggerActions = triggerActions is null ? ImmList<TriggerAction>.Empty : ImmList<TriggerAction>.FromList(triggerActions);
+            this.triggerActions = ImmList<TriggerAction>.FromList(triggerActions);
             this.withAppend = withAppend;
             this.isNotForReplication = isNotForReplication;
             this.statementList = statementList;
@@ -103,6 +103,36 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateOrAlterTriggerStatement left, CreateOrAlterTriggerStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateOrAlterTriggerStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerObject, othr.triggerObject);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerType, othr.triggerType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerActions, othr.triggerActions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withAppend, othr.withAppend);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isNotForReplication, othr.isNotForReplication);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.statementList, othr.statementList);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.methodSpecifier, othr.methodSpecifier);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateOrAlterTriggerStatement FromMutable(ScriptDom.CreateOrAlterTriggerStatement fragment) {
             return (CreateOrAlterTriggerStatement)TSqlFragment.FromMutable(fragment);

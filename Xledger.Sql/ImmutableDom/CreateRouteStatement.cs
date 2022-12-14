@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateRouteStatement(Identifier owner = null, Identifier name = null, IReadOnlyList<RouteOption> routeOptions = null) {
             this.owner = owner;
             this.name = name;
-            this.routeOptions = routeOptions is null ? ImmList<RouteOption>.Empty : ImmList<RouteOption>.FromList(routeOptions);
+            this.routeOptions = ImmList<RouteOption>.FromList(routeOptions);
         }
     
         public ScriptDom.CreateRouteStatement ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateRouteStatement left, CreateRouteStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateRouteStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.routeOptions, othr.routeOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateRouteStatement FromMutable(ScriptDom.CreateRouteStatement fragment) {
             return (CreateRouteStatement)TSqlFragment.FromMutable(fragment);

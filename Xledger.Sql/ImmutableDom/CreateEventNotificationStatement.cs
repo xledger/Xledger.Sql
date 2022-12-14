@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.scope = scope;
             this.withFanIn = withFanIn;
-            this.eventTypeGroups = eventTypeGroups is null ? ImmList<EventTypeGroupContainer>.Empty : ImmList<EventTypeGroupContainer>.FromList(eventTypeGroups);
+            this.eventTypeGroups = ImmList<EventTypeGroupContainer>.FromList(eventTypeGroups);
             this.brokerService = brokerService;
             this.brokerInstanceSpecifier = brokerInstanceSpecifier;
         }
@@ -99,6 +99,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateEventNotificationStatement left, CreateEventNotificationStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateEventNotificationStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.scope, othr.scope);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withFanIn, othr.withFanIn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.eventTypeGroups, othr.eventTypeGroups);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.brokerService, othr.brokerService);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.brokerInstanceSpecifier, othr.brokerInstanceSpecifier);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateEventNotificationStatement FromMutable(ScriptDom.CreateEventNotificationStatement fragment) {
             return (CreateEventNotificationStatement)TSqlFragment.FromMutable(fragment);

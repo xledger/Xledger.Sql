@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<TSqlBatch> Batches => batches;
     
         public TSqlScript(IReadOnlyList<TSqlBatch> batches = null) {
-            this.batches = batches is null ? ImmList<TSqlBatch>.Empty : ImmList<TSqlBatch>.FromList(batches);
+            this.batches = ImmList<TSqlBatch>.FromList(batches);
         }
     
         public ScriptDom.TSqlScript ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(TSqlScript left, TSqlScript right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (TSqlScript)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.batches, othr.batches);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static TSqlScript FromMutable(ScriptDom.TSqlScript fragment) {
             return (TSqlScript)TSqlFragment.FromMutable(fragment);

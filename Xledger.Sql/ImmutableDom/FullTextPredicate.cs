@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public FullTextPredicate(ScriptDom.FullTextFunctionType fullTextFunctionType = ScriptDom.FullTextFunctionType.None, IReadOnlyList<ColumnReferenceExpression> columns = null, ValueExpression @value = null, ValueExpression languageTerm = null, StringLiteral propertyName = null) {
             this.fullTextFunctionType = fullTextFunctionType;
-            this.columns = columns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
             this.@value = @value;
             this.languageTerm = languageTerm;
             this.propertyName = propertyName;
@@ -89,6 +89,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(FullTextPredicate left, FullTextPredicate right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (FullTextPredicate)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fullTextFunctionType, othr.fullTextFunctionType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.languageTerm, othr.languageTerm);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.propertyName, othr.propertyName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static FullTextPredicate FromMutable(ScriptDom.FullTextPredicate fragment) {
             return (FullTextPredicate)TSqlFragment.FromMutable(fragment);

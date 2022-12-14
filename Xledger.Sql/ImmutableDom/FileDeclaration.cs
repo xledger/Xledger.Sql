@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsPrimary => isPrimary;
     
         public FileDeclaration(IReadOnlyList<FileDeclarationOption> options = null, bool isPrimary = false) {
-            this.options = options is null ? ImmList<FileDeclarationOption>.Empty : ImmList<FileDeclarationOption>.FromList(options);
+            this.options = ImmList<FileDeclarationOption>.FromList(options);
             this.isPrimary = isPrimary;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(FileDeclaration left, FileDeclaration right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (FileDeclaration)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isPrimary, othr.isPrimary);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static FileDeclaration FromMutable(ScriptDom.FileDeclaration fragment) {
             return (FileDeclaration)TSqlFragment.FromMutable(fragment);

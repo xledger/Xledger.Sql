@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public SimpleCaseExpression(ScalarExpression inputExpression = null, IReadOnlyList<SimpleWhenClause> whenClauses = null, ScalarExpression elseExpression = null, Identifier collation = null) {
             this.inputExpression = inputExpression;
-            this.whenClauses = whenClauses is null ? ImmList<SimpleWhenClause>.Empty : ImmList<SimpleWhenClause>.FromList(whenClauses);
+            this.whenClauses = ImmList<SimpleWhenClause>.FromList(whenClauses);
             this.elseExpression = elseExpression;
             this.collation = collation;
         }
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SimpleCaseExpression left, SimpleCaseExpression right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SimpleCaseExpression)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.inputExpression, othr.inputExpression);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.whenClauses, othr.whenClauses);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.elseExpression, othr.elseExpression);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SimpleCaseExpression FromMutable(ScriptDom.SimpleCaseExpression fragment) {
             return (SimpleCaseExpression)TSqlFragment.FromMutable(fragment);

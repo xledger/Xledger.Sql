@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<BoundingBoxParameter> BoundingBoxParameters => boundingBoxParameters;
     
         public BoundingBoxSpatialIndexOption(IReadOnlyList<BoundingBoxParameter> boundingBoxParameters = null) {
-            this.boundingBoxParameters = boundingBoxParameters is null ? ImmList<BoundingBoxParameter>.Empty : ImmList<BoundingBoxParameter>.FromList(boundingBoxParameters);
+            this.boundingBoxParameters = ImmList<BoundingBoxParameter>.FromList(boundingBoxParameters);
         }
     
         public ScriptDom.BoundingBoxSpatialIndexOption ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(BoundingBoxSpatialIndexOption left, BoundingBoxSpatialIndexOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (BoundingBoxSpatialIndexOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.boundingBoxParameters, othr.boundingBoxParameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static BoundingBoxSpatialIndexOption FromMutable(ScriptDom.BoundingBoxSpatialIndexOption fragment) {
             return (BoundingBoxSpatialIndexOption)TSqlFragment.FromMutable(fragment);

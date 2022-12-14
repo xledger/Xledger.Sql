@@ -62,6 +62,22 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (EventNotificationObjectScope)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.target, othr.target);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queueName, othr.queueName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static EventNotificationObjectScope FromMutable(ScriptDom.EventNotificationObjectScope fragment) {
             return (EventNotificationObjectScope)TSqlFragment.FromMutable(fragment);
         }

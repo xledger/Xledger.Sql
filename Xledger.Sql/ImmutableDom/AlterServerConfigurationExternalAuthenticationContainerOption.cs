@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> Suboptions => suboptions;
     
         public AlterServerConfigurationExternalAuthenticationContainerOption(IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> suboptions = null, ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind optionKind = ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind.None, OptionValue optionValue = null) {
-            this.suboptions = suboptions is null ? ImmList<AlterServerConfigurationExternalAuthenticationOption>.Empty : ImmList<AlterServerConfigurationExternalAuthenticationOption>.FromList(suboptions);
+            this.suboptions = ImmList<AlterServerConfigurationExternalAuthenticationOption>.FromList(suboptions);
             this.optionKind = optionKind;
             this.optionValue = optionValue;
         }
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterServerConfigurationExternalAuthenticationContainerOption left, AlterServerConfigurationExternalAuthenticationContainerOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterServerConfigurationExternalAuthenticationContainerOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.suboptions, othr.suboptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionValue, othr.optionValue);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterServerConfigurationExternalAuthenticationContainerOption FromMutable(ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption fragment) {
             return (AlterServerConfigurationExternalAuthenticationContainerOption)TSqlFragment.FromMutable(fragment);

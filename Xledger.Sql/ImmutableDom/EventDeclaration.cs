@@ -20,8 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public EventDeclaration(EventSessionObjectName objectName = null, IReadOnlyList<EventDeclarationSetParameter> eventDeclarationSetParameters = null, IReadOnlyList<EventSessionObjectName> eventDeclarationActionParameters = null, BooleanExpression eventDeclarationPredicateParameter = null) {
             this.objectName = objectName;
-            this.eventDeclarationSetParameters = eventDeclarationSetParameters is null ? ImmList<EventDeclarationSetParameter>.Empty : ImmList<EventDeclarationSetParameter>.FromList(eventDeclarationSetParameters);
-            this.eventDeclarationActionParameters = eventDeclarationActionParameters is null ? ImmList<EventSessionObjectName>.Empty : ImmList<EventSessionObjectName>.FromList(eventDeclarationActionParameters);
+            this.eventDeclarationSetParameters = ImmList<EventDeclarationSetParameter>.FromList(eventDeclarationSetParameters);
+            this.eventDeclarationActionParameters = ImmList<EventSessionObjectName>.FromList(eventDeclarationActionParameters);
             this.eventDeclarationPredicateParameter = eventDeclarationPredicateParameter;
         }
     
@@ -79,6 +79,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(EventDeclaration left, EventDeclaration right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (EventDeclaration)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.objectName, othr.objectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.eventDeclarationSetParameters, othr.eventDeclarationSetParameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.eventDeclarationActionParameters, othr.eventDeclarationActionParameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.eventDeclarationPredicateParameter, othr.eventDeclarationPredicateParameter);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static EventDeclaration FromMutable(ScriptDom.EventDeclaration fragment) {
             return (EventDeclaration)TSqlFragment.FromMutable(fragment);

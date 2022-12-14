@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public DropIndexClause(Identifier index = null, SchemaObjectName @object = null, IReadOnlyList<IndexOption> options = null) {
             this.index = index;
             this.@object = @object;
-            this.options = options is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(options);
+            this.options = ImmList<IndexOption>.FromList(options);
         }
     
         public ScriptDom.DropIndexClause ToMutableConcrete() {
@@ -71,6 +71,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DropIndexClause left, DropIndexClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DropIndexClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.index, othr.index);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.@object, othr.@object);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DropIndexClause FromMutable(ScriptDom.DropIndexClause fragment) {
             return (DropIndexClause)TSqlFragment.FromMutable(fragment);

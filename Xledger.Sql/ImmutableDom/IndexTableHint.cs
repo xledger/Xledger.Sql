@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<IdentifierOrValueExpression> IndexValues => indexValues;
     
         public IndexTableHint(IReadOnlyList<IdentifierOrValueExpression> indexValues = null, ScriptDom.TableHintKind hintKind = ScriptDom.TableHintKind.None) {
-            this.indexValues = indexValues is null ? ImmList<IdentifierOrValueExpression>.Empty : ImmList<IdentifierOrValueExpression>.FromList(indexValues);
+            this.indexValues = ImmList<IdentifierOrValueExpression>.FromList(indexValues);
             this.hintKind = hintKind;
         }
     
@@ -57,6 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(IndexTableHint left, IndexTableHint right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (IndexTableHint)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexValues, othr.indexValues);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.hintKind, othr.hintKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static IndexTableHint FromMutable(ScriptDom.IndexTableHint fragment) {
             return (IndexTableHint)TSqlFragment.FromMutable(fragment);

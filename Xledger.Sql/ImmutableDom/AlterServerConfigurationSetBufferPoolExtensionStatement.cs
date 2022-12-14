@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> Options => options;
     
         public AlterServerConfigurationSetBufferPoolExtensionStatement(IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> options = null) {
-            this.options = options is null ? ImmList<AlterServerConfigurationBufferPoolExtensionOption>.Empty : ImmList<AlterServerConfigurationBufferPoolExtensionOption>.FromList(options);
+            this.options = ImmList<AlterServerConfigurationBufferPoolExtensionOption>.FromList(options);
         }
     
         public ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterServerConfigurationSetBufferPoolExtensionStatement left, AlterServerConfigurationSetBufferPoolExtensionStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterServerConfigurationSetBufferPoolExtensionStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterServerConfigurationSetBufferPoolExtensionStatement FromMutable(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement fragment) {
             return (AlterServerConfigurationSetBufferPoolExtensionStatement)TSqlFragment.FromMutable(fragment);

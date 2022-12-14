@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<GroupingSpecification> Arguments => arguments;
     
         public CubeGroupingSpecification(IReadOnlyList<GroupingSpecification> arguments = null) {
-            this.arguments = arguments is null ? ImmList<GroupingSpecification>.Empty : ImmList<GroupingSpecification>.FromList(arguments);
+            this.arguments = ImmList<GroupingSpecification>.FromList(arguments);
         }
     
         public ScriptDom.CubeGroupingSpecification ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CubeGroupingSpecification left, CubeGroupingSpecification right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CubeGroupingSpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.arguments, othr.arguments);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CubeGroupingSpecification FromMutable(ScriptDom.CubeGroupingSpecification fragment) {
             return (CubeGroupingSpecification)TSqlFragment.FromMutable(fragment);

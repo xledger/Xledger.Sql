@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public WindowDefinition(Identifier windowName = null, Identifier refWindowName = null, IReadOnlyList<ScalarExpression> partitions = null, OrderByClause orderByClause = null, WindowFrameClause windowFrameClause = null) {
             this.windowName = windowName;
             this.refWindowName = refWindowName;
-            this.partitions = partitions is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(partitions);
+            this.partitions = ImmList<ScalarExpression>.FromList(partitions);
             this.orderByClause = orderByClause;
             this.windowFrameClause = windowFrameClause;
         }
@@ -91,6 +91,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(WindowDefinition left, WindowDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (WindowDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.windowName, othr.windowName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.refWindowName, othr.refWindowName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partitions, othr.partitions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.orderByClause, othr.orderByClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.windowFrameClause, othr.windowFrameClause);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static WindowDefinition FromMutable(ScriptDom.WindowDefinition fragment) {
             return (WindowDefinition)TSqlFragment.FromMutable(fragment);

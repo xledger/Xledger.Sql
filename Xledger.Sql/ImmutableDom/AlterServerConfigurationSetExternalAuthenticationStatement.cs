@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> Options => options;
     
         public AlterServerConfigurationSetExternalAuthenticationStatement(IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> options = null) {
-            this.options = options is null ? ImmList<AlterServerConfigurationExternalAuthenticationOption>.Empty : ImmList<AlterServerConfigurationExternalAuthenticationOption>.FromList(options);
+            this.options = ImmList<AlterServerConfigurationExternalAuthenticationOption>.FromList(options);
         }
     
         public ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterServerConfigurationSetExternalAuthenticationStatement left, AlterServerConfigurationSetExternalAuthenticationStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterServerConfigurationSetExternalAuthenticationStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterServerConfigurationSetExternalAuthenticationStatement FromMutable(ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement fragment) {
             return (AlterServerConfigurationSetExternalAuthenticationStatement)TSqlFragment.FromMutable(fragment);

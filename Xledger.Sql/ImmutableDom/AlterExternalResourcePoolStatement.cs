@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterExternalResourcePoolStatement : ExternalResourcePoolStatement, IEquatable<AlterExternalResourcePoolStatement> {
         public AlterExternalResourcePoolStatement(Identifier name = null, IReadOnlyList<ExternalResourcePoolParameter> externalResourcePoolParameters = null) {
             this.name = name;
-            this.externalResourcePoolParameters = externalResourcePoolParameters is null ? ImmList<ExternalResourcePoolParameter>.Empty : ImmList<ExternalResourcePoolParameter>.FromList(externalResourcePoolParameters);
+            this.externalResourcePoolParameters = ImmList<ExternalResourcePoolParameter>.FromList(externalResourcePoolParameters);
         }
     
         public ScriptDom.AlterExternalResourcePoolStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterExternalResourcePoolStatement left, AlterExternalResourcePoolStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterExternalResourcePoolStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.externalResourcePoolParameters, othr.externalResourcePoolParameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterExternalResourcePoolStatement FromMutable(ScriptDom.AlterExternalResourcePoolStatement fragment) {
             return (AlterExternalResourcePoolStatement)TSqlFragment.FromMutable(fragment);

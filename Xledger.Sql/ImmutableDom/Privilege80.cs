@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.PrivilegeType80 PrivilegeType80 => privilegeType80;
     
         public Privilege80(IReadOnlyList<Identifier> columns = null, ScriptDom.PrivilegeType80 privilegeType80 = ScriptDom.PrivilegeType80.All) {
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.privilegeType80 = privilegeType80;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(Privilege80 left, Privilege80 right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (Privilege80)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.privilegeType80, othr.privilegeType80);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static Privilege80 FromMutable(ScriptDom.Privilege80 fragment) {
             return (Privilege80)TSqlFragment.FromMutable(fragment);

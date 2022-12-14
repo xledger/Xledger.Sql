@@ -18,8 +18,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public UpdateStatisticsStatement(SchemaObjectName schemaObjectName = null, IReadOnlyList<Identifier> subElements = null, IReadOnlyList<StatisticsOption> statisticsOptions = null) {
             this.schemaObjectName = schemaObjectName;
-            this.subElements = subElements is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(subElements);
-            this.statisticsOptions = statisticsOptions is null ? ImmList<StatisticsOption>.Empty : ImmList<StatisticsOption>.FromList(statisticsOptions);
+            this.subElements = ImmList<Identifier>.FromList(subElements);
+            this.statisticsOptions = ImmList<StatisticsOption>.FromList(statisticsOptions);
         }
     
         public ScriptDom.UpdateStatisticsStatement ToMutableConcrete() {
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(UpdateStatisticsStatement left, UpdateStatisticsStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (UpdateStatisticsStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.subElements, othr.subElements);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.statisticsOptions, othr.statisticsOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static UpdateStatisticsStatement FromMutable(ScriptDom.UpdateStatisticsStatement fragment) {
             return (UpdateStatisticsStatement)TSqlFragment.FromMutable(fragment);

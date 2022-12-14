@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<WindowDefinition> WindowDefinition => windowDefinition;
     
         public WindowClause(IReadOnlyList<WindowDefinition> windowDefinition = null) {
-            this.windowDefinition = windowDefinition is null ? ImmList<WindowDefinition>.Empty : ImmList<WindowDefinition>.FromList(windowDefinition);
+            this.windowDefinition = ImmList<WindowDefinition>.FromList(windowDefinition);
         }
     
         public ScriptDom.WindowClause ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(WindowClause left, WindowClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (WindowClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.windowDefinition, othr.windowDefinition);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static WindowClause FromMutable(ScriptDom.WindowClause fragment) {
             return (WindowClause)TSqlFragment.FromMutable(fragment);

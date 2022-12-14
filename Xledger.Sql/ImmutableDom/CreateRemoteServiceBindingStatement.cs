@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.service = service;
             this.owner = owner;
             this.name = name;
-            this.options = options is null ? ImmList<RemoteServiceBindingOption>.Empty : ImmList<RemoteServiceBindingOption>.FromList(options);
+            this.options = ImmList<RemoteServiceBindingOption>.FromList(options);
         }
     
         public ScriptDom.CreateRemoteServiceBindingStatement ToMutableConcrete() {
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateRemoteServiceBindingStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.service, othr.service);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateRemoteServiceBindingStatement FromMutable(ScriptDom.CreateRemoteServiceBindingStatement fragment) {
             return (CreateRemoteServiceBindingStatement)TSqlFragment.FromMutable(fragment);

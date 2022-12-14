@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ForceSeekTableHint(IdentifierOrValueExpression indexValue = null, IReadOnlyList<ColumnReferenceExpression> columnValues = null, ScriptDom.TableHintKind hintKind = ScriptDom.TableHintKind.None) {
             this.indexValue = indexValue;
-            this.columnValues = columnValues is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(columnValues);
+            this.columnValues = ImmList<ColumnReferenceExpression>.FromList(columnValues);
             this.hintKind = hintKind;
         }
     
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ForceSeekTableHint left, ForceSeekTableHint right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ForceSeekTableHint)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexValue, othr.indexValue);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnValues, othr.columnValues);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.hintKind, othr.hintKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ForceSeekTableHint FromMutable(ScriptDom.ForceSeekTableHint fragment) {
             return (ForceSeekTableHint)TSqlFragment.FromMutable(fragment);

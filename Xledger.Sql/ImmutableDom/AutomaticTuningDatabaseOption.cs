@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AutomaticTuningDatabaseOption(ScriptDom.AutomaticTuningState automaticTuningState = ScriptDom.AutomaticTuningState.NotSet, IReadOnlyList<AutomaticTuningOption> options = null, ScriptDom.DatabaseOptionKind optionKind = ScriptDom.DatabaseOptionKind.Online) {
             this.automaticTuningState = automaticTuningState;
-            this.options = options is null ? ImmList<AutomaticTuningOption>.Empty : ImmList<AutomaticTuningOption>.FromList(options);
+            this.options = ImmList<AutomaticTuningOption>.FromList(options);
             this.optionKind = optionKind;
         }
     
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AutomaticTuningDatabaseOption left, AutomaticTuningDatabaseOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AutomaticTuningDatabaseOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.automaticTuningState, othr.automaticTuningState);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AutomaticTuningDatabaseOption FromMutable(ScriptDom.AutomaticTuningDatabaseOption fragment) {
             return (AutomaticTuningDatabaseOption)TSqlFragment.FromMutable(fragment);

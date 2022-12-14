@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateQueueStatement(IdentifierOrValueExpression onFileGroup = null, SchemaObjectName name = null, IReadOnlyList<QueueOption> queueOptions = null) {
             this.onFileGroup = onFileGroup;
             this.name = name;
-            this.queueOptions = queueOptions is null ? ImmList<QueueOption>.Empty : ImmList<QueueOption>.FromList(queueOptions);
+            this.queueOptions = ImmList<QueueOption>.FromList(queueOptions);
         }
     
         public ScriptDom.CreateQueueStatement ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateQueueStatement left, CreateQueueStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateQueueStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroup, othr.onFileGroup);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queueOptions, othr.queueOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateQueueStatement FromMutable(ScriptDom.CreateQueueStatement fragment) {
             return (CreateQueueStatement)TSqlFragment.FromMutable(fragment);

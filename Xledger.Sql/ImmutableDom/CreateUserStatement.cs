@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateUserStatement(UserLoginOption userLoginOption = null, Identifier name = null, IReadOnlyList<PrincipalOption> userOptions = null) {
             this.userLoginOption = userLoginOption;
             this.name = name;
-            this.userOptions = userOptions is null ? ImmList<PrincipalOption>.Empty : ImmList<PrincipalOption>.FromList(userOptions);
+            this.userOptions = ImmList<PrincipalOption>.FromList(userOptions);
         }
     
         public ScriptDom.CreateUserStatement ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateUserStatement left, CreateUserStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateUserStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.userLoginOption, othr.userLoginOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.userOptions, othr.userOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateUserStatement FromMutable(ScriptDom.CreateUserStatement fragment) {
             return (CreateUserStatement)TSqlFragment.FromMutable(fragment);

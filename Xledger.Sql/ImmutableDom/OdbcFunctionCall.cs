@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public OdbcFunctionCall(Identifier name = null, bool parametersUsed = false, IReadOnlyList<ScalarExpression> parameters = null, Identifier collation = null) {
             this.name = name;
             this.parametersUsed = parametersUsed;
-            this.parameters = parameters is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
             this.collation = collation;
         }
     
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OdbcFunctionCall left, OdbcFunctionCall right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OdbcFunctionCall)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parametersUsed, othr.parametersUsed);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OdbcFunctionCall FromMutable(ScriptDom.OdbcFunctionCall fragment) {
             return (OdbcFunctionCall)TSqlFragment.FromMutable(fragment);

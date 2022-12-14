@@ -33,14 +33,14 @@ namespace Xledger.Sql.ImmutableDom {
         public FunctionCall(CallTarget callTarget = null, Identifier functionName = null, IReadOnlyList<ScalarExpression> parameters = null, ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified, OverClause overClause = null, WithinGroupClause withinGroupClause = null, IReadOnlyList<Identifier> ignoreRespectNulls = null, Identifier trimOptions = null, IReadOnlyList<JsonKeyValue> jsonParameters = null, IReadOnlyList<Identifier> absentOrNullOnNull = null, Identifier collation = null) {
             this.callTarget = callTarget;
             this.functionName = functionName;
-            this.parameters = parameters is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
             this.uniqueRowFilter = uniqueRowFilter;
             this.overClause = overClause;
             this.withinGroupClause = withinGroupClause;
-            this.ignoreRespectNulls = ignoreRespectNulls is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(ignoreRespectNulls);
+            this.ignoreRespectNulls = ImmList<Identifier>.FromList(ignoreRespectNulls);
             this.trimOptions = trimOptions;
-            this.jsonParameters = jsonParameters is null ? ImmList<JsonKeyValue>.Empty : ImmList<JsonKeyValue>.FromList(jsonParameters);
-            this.absentOrNullOnNull = absentOrNullOnNull is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(absentOrNullOnNull);
+            this.jsonParameters = ImmList<JsonKeyValue>.FromList(jsonParameters);
+            this.absentOrNullOnNull = ImmList<Identifier>.FromList(absentOrNullOnNull);
             this.collation = collation;
         }
     
@@ -141,6 +141,40 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(FunctionCall left, FunctionCall right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (FunctionCall)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.callTarget, othr.callTarget);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.functionName, othr.functionName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.uniqueRowFilter, othr.uniqueRowFilter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.overClause, othr.overClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withinGroupClause, othr.withinGroupClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.ignoreRespectNulls, othr.ignoreRespectNulls);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.trimOptions, othr.trimOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.jsonParameters, othr.jsonParameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.absentOrNullOnNull, othr.absentOrNullOnNull);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static FunctionCall FromMutable(ScriptDom.FunctionCall fragment) {
             return (FunctionCall)TSqlFragment.FromMutable(fragment);

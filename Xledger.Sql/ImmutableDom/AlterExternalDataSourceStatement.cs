@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.dataSourceType = dataSourceType;
             this.location = location;
             this.pushdownOption = pushdownOption;
-            this.externalDataSourceOptions = externalDataSourceOptions is null ? ImmList<ExternalDataSourceOption>.Empty : ImmList<ExternalDataSourceOption>.FromList(externalDataSourceOptions);
+            this.externalDataSourceOptions = ImmList<ExternalDataSourceOption>.FromList(externalDataSourceOptions);
         }
     
         public ScriptDom.AlterExternalDataSourceStatement ToMutableConcrete() {
@@ -85,6 +85,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterExternalDataSourceStatement left, AlterExternalDataSourceStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterExternalDataSourceStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.previousPushDownOption, othr.previousPushDownOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dataSourceType, othr.dataSourceType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.location, othr.location);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.pushdownOption, othr.pushdownOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.externalDataSourceOptions, othr.externalDataSourceOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterExternalDataSourceStatement FromMutable(ScriptDom.AlterExternalDataSourceStatement fragment) {
             return (AlterExternalDataSourceStatement)TSqlFragment.FromMutable(fragment);

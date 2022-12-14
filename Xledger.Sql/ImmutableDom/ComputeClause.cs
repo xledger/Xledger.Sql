@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> ByExpressions => byExpressions;
     
         public ComputeClause(IReadOnlyList<ComputeFunction> computeFunctions = null, IReadOnlyList<ScalarExpression> byExpressions = null) {
-            this.computeFunctions = computeFunctions is null ? ImmList<ComputeFunction>.Empty : ImmList<ComputeFunction>.FromList(computeFunctions);
-            this.byExpressions = byExpressions is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(byExpressions);
+            this.computeFunctions = ImmList<ComputeFunction>.FromList(computeFunctions);
+            this.byExpressions = ImmList<ScalarExpression>.FromList(byExpressions);
         }
     
         public ScriptDom.ComputeClause ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ComputeClause left, ComputeClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ComputeClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.computeFunctions, othr.computeFunctions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.byExpressions, othr.byExpressions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ComputeClause FromMutable(ScriptDom.ComputeClause fragment) {
             return (ComputeClause)TSqlFragment.FromMutable(fragment);

@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> Parameters => parameters;
     
         public LeftFunctionCall(IReadOnlyList<ScalarExpression> parameters = null, Identifier collation = null) {
-            this.parameters = parameters is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
             this.collation = collation;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(LeftFunctionCall left, LeftFunctionCall right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (LeftFunctionCall)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static LeftFunctionCall FromMutable(ScriptDom.LeftFunctionCall fragment) {
             return (LeftFunctionCall)TSqlFragment.FromMutable(fragment);

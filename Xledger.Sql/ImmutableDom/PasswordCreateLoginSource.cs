@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.password = password;
             this.hashed = hashed;
             this.mustChange = mustChange;
-            this.options = options is null ? ImmList<PrincipalOption>.Empty : ImmList<PrincipalOption>.FromList(options);
+            this.options = ImmList<PrincipalOption>.FromList(options);
         }
     
         public ScriptDom.PasswordCreateLoginSource ToMutableConcrete() {
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(PasswordCreateLoginSource left, PasswordCreateLoginSource right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (PasswordCreateLoginSource)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.password, othr.password);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.hashed, othr.hashed);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.mustChange, othr.mustChange);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static PasswordCreateLoginSource FromMutable(ScriptDom.PasswordCreateLoginSource fragment) {
             return (PasswordCreateLoginSource)TSqlFragment.FromMutable(fragment);

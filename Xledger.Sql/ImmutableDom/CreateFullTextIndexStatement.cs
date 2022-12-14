@@ -22,10 +22,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateFullTextIndexStatement(SchemaObjectName onName = null, IReadOnlyList<FullTextIndexColumn> fullTextIndexColumns = null, Identifier keyIndexName = null, FullTextCatalogAndFileGroup catalogAndFileGroup = null, IReadOnlyList<FullTextIndexOption> options = null) {
             this.onName = onName;
-            this.fullTextIndexColumns = fullTextIndexColumns is null ? ImmList<FullTextIndexColumn>.Empty : ImmList<FullTextIndexColumn>.FromList(fullTextIndexColumns);
+            this.fullTextIndexColumns = ImmList<FullTextIndexColumn>.FromList(fullTextIndexColumns);
             this.keyIndexName = keyIndexName;
             this.catalogAndFileGroup = catalogAndFileGroup;
-            this.options = options is null ? ImmList<FullTextIndexOption>.Empty : ImmList<FullTextIndexOption>.FromList(options);
+            this.options = ImmList<FullTextIndexOption>.FromList(options);
         }
     
         public ScriptDom.CreateFullTextIndexStatement ToMutableConcrete() {
@@ -89,6 +89,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateFullTextIndexStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fullTextIndexColumns, othr.fullTextIndexColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.keyIndexName, othr.keyIndexName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.catalogAndFileGroup, othr.catalogAndFileGroup);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateFullTextIndexStatement FromMutable(ScriptDom.CreateFullTextIndexStatement fragment) {
             return (CreateFullTextIndexStatement)TSqlFragment.FromMutable(fragment);

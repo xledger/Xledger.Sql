@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public SelectStatement Select => select;
     
         public CursorDefinition(IReadOnlyList<CursorOption> options = null, SelectStatement select = null) {
-            this.options = options is null ? ImmList<CursorOption>.Empty : ImmList<CursorOption>.FromList(options);
+            this.options = ImmList<CursorOption>.FromList(options);
             this.select = select;
         }
     
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CursorDefinition left, CursorDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CursorDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.select, othr.select);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CursorDefinition FromMutable(ScriptDom.CursorDefinition fragment) {
             return (CursorDefinition)TSqlFragment.FromMutable(fragment);

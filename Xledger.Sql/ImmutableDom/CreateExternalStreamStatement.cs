@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.location = location;
             this.inputOptions = inputOptions;
             this.outputOptions = outputOptions;
-            this.externalStreamOptions = externalStreamOptions is null ? ImmList<ExternalStreamOption>.Empty : ImmList<ExternalStreamOption>.FromList(externalStreamOptions);
+            this.externalStreamOptions = ImmList<ExternalStreamOption>.FromList(externalStreamOptions);
         }
     
         public ScriptDom.CreateExternalStreamStatement ToMutableConcrete() {
@@ -79,6 +79,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateExternalStreamStatement left, CreateExternalStreamStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateExternalStreamStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.location, othr.location);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.inputOptions, othr.inputOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputOptions, othr.outputOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.externalStreamOptions, othr.externalStreamOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateExternalStreamStatement FromMutable(ScriptDom.CreateExternalStreamStatement fragment) {
             return (CreateExternalStreamStatement)TSqlFragment.FromMutable(fragment);

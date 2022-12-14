@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterTableAlterIndexStatement(Identifier indexIdentifier = null, ScriptDom.AlterIndexType alterIndexType = ScriptDom.AlterIndexType.Rebuild, IReadOnlyList<IndexOption> indexOptions = null, SchemaObjectName schemaObjectName = null) {
             this.indexIdentifier = indexIdentifier;
             this.alterIndexType = alterIndexType;
-            this.indexOptions = indexOptions is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterTableAlterIndexStatement left, AlterTableAlterIndexStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterTableAlterIndexStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexIdentifier, othr.indexIdentifier);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alterIndexType, othr.alterIndexType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterTableAlterIndexStatement FromMutable(ScriptDom.AlterTableAlterIndexStatement fragment) {
             return (AlterTableAlterIndexStatement)TSqlFragment.FromMutable(fragment);

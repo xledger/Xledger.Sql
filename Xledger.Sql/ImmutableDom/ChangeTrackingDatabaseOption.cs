@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ChangeTrackingDatabaseOption(ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet, IReadOnlyList<ChangeTrackingOptionDetail> details = null, ScriptDom.DatabaseOptionKind optionKind = ScriptDom.DatabaseOptionKind.Online) {
             this.optionState = optionState;
-            this.details = details is null ? ImmList<ChangeTrackingOptionDetail>.Empty : ImmList<ChangeTrackingOptionDetail>.FromList(details);
+            this.details = ImmList<ChangeTrackingOptionDetail>.FromList(details);
             this.optionKind = optionKind;
         }
     
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ChangeTrackingDatabaseOption left, ChangeTrackingDatabaseOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ChangeTrackingDatabaseOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionState, othr.optionState);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.details, othr.details);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ChangeTrackingDatabaseOption FromMutable(ScriptDom.ChangeTrackingDatabaseOption fragment) {
             return (ChangeTrackingDatabaseOption)TSqlFragment.FromMutable(fragment);

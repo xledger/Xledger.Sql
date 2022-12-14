@@ -23,8 +23,8 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateStatisticsStatement(Identifier name = null, SchemaObjectName onName = null, IReadOnlyList<ColumnReferenceExpression> columns = null, IReadOnlyList<StatisticsOption> statisticsOptions = null, BooleanExpression filterPredicate = null) {
             this.name = name;
             this.onName = onName;
-            this.columns = columns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(columns);
-            this.statisticsOptions = statisticsOptions is null ? ImmList<StatisticsOption>.Empty : ImmList<StatisticsOption>.FromList(statisticsOptions);
+            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.statisticsOptions = ImmList<StatisticsOption>.FromList(statisticsOptions);
             this.filterPredicate = filterPredicate;
         }
     
@@ -89,6 +89,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateStatisticsStatement left, CreateStatisticsStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateStatisticsStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.statisticsOptions, othr.statisticsOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.filterPredicate, othr.filterPredicate);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateStatisticsStatement FromMutable(ScriptDom.CreateStatisticsStatement fragment) {
             return (CreateStatisticsStatement)TSqlFragment.FromMutable(fragment);

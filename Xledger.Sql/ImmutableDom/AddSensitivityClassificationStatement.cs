@@ -13,8 +13,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SensitivityClassificationOption> Options => options;
     
         public AddSensitivityClassificationStatement(IReadOnlyList<SensitivityClassificationOption> options = null, IReadOnlyList<ColumnReferenceExpression> columns = null) {
-            this.options = options is null ? ImmList<SensitivityClassificationOption>.Empty : ImmList<SensitivityClassificationOption>.FromList(options);
-            this.columns = columns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.options = ImmList<SensitivityClassificationOption>.FromList(options);
+            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
         }
     
         public ScriptDom.AddSensitivityClassificationStatement ToMutableConcrete() {
@@ -57,6 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AddSensitivityClassificationStatement left, AddSensitivityClassificationStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AddSensitivityClassificationStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AddSensitivityClassificationStatement FromMutable(ScriptDom.AddSensitivityClassificationStatement fragment) {
             return (AddSensitivityClassificationStatement)TSqlFragment.FromMutable(fragment);

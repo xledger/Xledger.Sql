@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public EnableDisableTriggerStatement(ScriptDom.TriggerEnforcement triggerEnforcement = ScriptDom.TriggerEnforcement.Disable, bool all = false, IReadOnlyList<SchemaObjectName> triggerNames = null, TriggerObject triggerObject = null) {
             this.triggerEnforcement = triggerEnforcement;
             this.all = all;
-            this.triggerNames = triggerNames is null ? ImmList<SchemaObjectName>.Empty : ImmList<SchemaObjectName>.FromList(triggerNames);
+            this.triggerNames = ImmList<SchemaObjectName>.FromList(triggerNames);
             this.triggerObject = triggerObject;
         }
     
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(EnableDisableTriggerStatement left, EnableDisableTriggerStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (EnableDisableTriggerStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerEnforcement, othr.triggerEnforcement);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerNames, othr.triggerNames);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerObject, othr.triggerObject);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static EnableDisableTriggerStatement FromMutable(ScriptDom.EnableDisableTriggerStatement fragment) {
             return (EnableDisableTriggerStatement)TSqlFragment.FromMutable(fragment);

@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<StatisticsPartitionRange> Partitions => partitions;
     
         public ResampleStatisticsOption(IReadOnlyList<StatisticsPartitionRange> partitions = null, ScriptDom.StatisticsOptionKind optionKind = ScriptDom.StatisticsOptionKind.FullScan) {
-            this.partitions = partitions is null ? ImmList<StatisticsPartitionRange>.Empty : ImmList<StatisticsPartitionRange>.FromList(partitions);
+            this.partitions = ImmList<StatisticsPartitionRange>.FromList(partitions);
             this.optionKind = optionKind;
         }
     
@@ -57,6 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ResampleStatisticsOption left, ResampleStatisticsOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ResampleStatisticsOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partitions, othr.partitions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ResampleStatisticsOption FromMutable(ScriptDom.ResampleStatisticsOption fragment) {
             return (ResampleStatisticsOption)TSqlFragment.FromMutable(fragment);

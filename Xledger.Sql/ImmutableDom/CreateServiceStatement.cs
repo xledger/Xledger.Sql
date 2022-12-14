@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.owner = owner;
             this.name = name;
             this.queueName = queueName;
-            this.serviceContracts = serviceContracts is null ? ImmList<ServiceContract>.Empty : ImmList<ServiceContract>.FromList(serviceContracts);
+            this.serviceContracts = ImmList<ServiceContract>.FromList(serviceContracts);
         }
     
         public ScriptDom.CreateServiceStatement ToMutableConcrete() {
@@ -75,6 +75,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateServiceStatement left, CreateServiceStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateServiceStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queueName, othr.queueName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.serviceContracts, othr.serviceContracts);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateServiceStatement FromMutable(ScriptDom.CreateServiceStatement fragment) {
             return (CreateServiceStatement)TSqlFragment.FromMutable(fragment);

@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsLog => isLog;
     
         public AlterDatabaseAddFileStatement(IReadOnlyList<FileDeclaration> fileDeclarations = null, Identifier fileGroup = null, bool isLog = false, Identifier databaseName = null, bool useCurrent = false) {
-            this.fileDeclarations = fileDeclarations is null ? ImmList<FileDeclaration>.Empty : ImmList<FileDeclaration>.FromList(fileDeclarations);
+            this.fileDeclarations = ImmList<FileDeclaration>.FromList(fileDeclarations);
             this.fileGroup = fileGroup;
             this.isLog = isLog;
             this.databaseName = databaseName;
@@ -83,6 +83,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterDatabaseAddFileStatement left, AlterDatabaseAddFileStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterDatabaseAddFileStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileDeclarations, othr.fileDeclarations);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroup, othr.fileGroup);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isLog, othr.isLog);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.useCurrent, othr.useCurrent);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterDatabaseAddFileStatement FromMutable(ScriptDom.AlterDatabaseAddFileStatement fragment) {
             return (AlterDatabaseAddFileStatement)TSqlFragment.FromMutable(fragment);

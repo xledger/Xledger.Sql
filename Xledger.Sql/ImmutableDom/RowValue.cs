@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> ColumnValues => columnValues;
     
         public RowValue(IReadOnlyList<ScalarExpression> columnValues = null) {
-            this.columnValues = columnValues is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(columnValues);
+            this.columnValues = ImmList<ScalarExpression>.FromList(columnValues);
         }
     
         public ScriptDom.RowValue ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(RowValue left, RowValue right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (RowValue)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnValues, othr.columnValues);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static RowValue FromMutable(ScriptDom.RowValue fragment) {
             return (RowValue)TSqlFragment.FromMutable(fragment);

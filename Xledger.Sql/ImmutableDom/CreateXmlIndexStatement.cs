@@ -28,7 +28,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
             this.name = name;
             this.onName = onName;
-            this.indexOptions = indexOptions is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
         }
     
         public ScriptDom.CreateXmlIndexStatement ToMutableConcrete() {
@@ -111,6 +111,34 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateXmlIndexStatement left, CreateXmlIndexStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateXmlIndexStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.primary, othr.primary);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlColumn, othr.xmlColumn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.secondaryXmlIndexName, othr.secondaryXmlIndexName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.secondaryXmlIndexType, othr.secondaryXmlIndexType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateXmlIndexStatement FromMutable(ScriptDom.CreateXmlIndexStatement fragment) {
             return (CreateXmlIndexStatement)TSqlFragment.FromMutable(fragment);

@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public FileGroupDefinition(Identifier name = null, IReadOnlyList<FileDeclaration> fileDeclarations = null, bool isDefault = false, bool containsFileStream = false, bool containsMemoryOptimizedData = false) {
             this.name = name;
-            this.fileDeclarations = fileDeclarations is null ? ImmList<FileDeclaration>.Empty : ImmList<FileDeclaration>.FromList(fileDeclarations);
+            this.fileDeclarations = ImmList<FileDeclaration>.FromList(fileDeclarations);
             this.isDefault = isDefault;
             this.containsFileStream = containsFileStream;
             this.containsMemoryOptimizedData = containsMemoryOptimizedData;
@@ -85,6 +85,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(FileGroupDefinition left, FileGroupDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (FileGroupDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileDeclarations, othr.fileDeclarations);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isDefault, othr.isDefault);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.containsFileStream, othr.containsFileStream);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.containsMemoryOptimizedData, othr.containsMemoryOptimizedData);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static FileGroupDefinition FromMutable(ScriptDom.FileGroupDefinition fragment) {
             return (FileGroupDefinition)TSqlFragment.FromMutable(fragment);

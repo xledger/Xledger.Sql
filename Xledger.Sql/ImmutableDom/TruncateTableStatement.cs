@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TruncateTableStatement(SchemaObjectName tableName = null, IReadOnlyList<CompressionPartitionRange> partitionRanges = null) {
             this.tableName = tableName;
-            this.partitionRanges = partitionRanges is null ? ImmList<CompressionPartitionRange>.Empty : ImmList<CompressionPartitionRange>.FromList(partitionRanges);
+            this.partitionRanges = ImmList<CompressionPartitionRange>.FromList(partitionRanges);
         }
     
         public ScriptDom.TruncateTableStatement ToMutableConcrete() {
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(TruncateTableStatement left, TruncateTableStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (TruncateTableStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableName, othr.tableName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionRanges, othr.partitionRanges);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static TruncateTableStatement FromMutable(ScriptDom.TruncateTableStatement fragment) {
             return (TruncateTableStatement)TSqlFragment.FromMutable(fragment);

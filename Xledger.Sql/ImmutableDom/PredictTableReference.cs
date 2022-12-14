@@ -25,7 +25,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.modelSubquery = modelSubquery;
             this.dataSource = dataSource;
             this.runTime = runTime;
-            this.schemaDeclarationItems = schemaDeclarationItems is null ? ImmList<SchemaDeclarationItem>.Empty : ImmList<SchemaDeclarationItem>.FromList(schemaDeclarationItems);
+            this.schemaDeclarationItems = ImmList<SchemaDeclarationItem>.FromList(schemaDeclarationItems);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -105,6 +105,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(PredictTableReference left, PredictTableReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (PredictTableReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.modelVariable, othr.modelVariable);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.modelSubquery, othr.modelSubquery);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dataSource, othr.dataSource);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.runTime, othr.runTime);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaDeclarationItems, othr.schemaDeclarationItems);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static PredictTableReference FromMutable(ScriptDom.PredictTableReference fragment) {
             return (PredictTableReference)TSqlFragment.FromMutable(fragment);

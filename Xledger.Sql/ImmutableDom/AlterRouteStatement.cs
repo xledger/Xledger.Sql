@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterRouteStatement : RouteStatement, IEquatable<AlterRouteStatement> {
         public AlterRouteStatement(Identifier name = null, IReadOnlyList<RouteOption> routeOptions = null) {
             this.name = name;
-            this.routeOptions = routeOptions is null ? ImmList<RouteOption>.Empty : ImmList<RouteOption>.FromList(routeOptions);
+            this.routeOptions = ImmList<RouteOption>.FromList(routeOptions);
         }
     
         public ScriptDom.AlterRouteStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterRouteStatement left, AlterRouteStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterRouteStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.routeOptions, othr.routeOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterRouteStatement FromMutable(ScriptDom.AlterRouteStatement fragment) {
             return (AlterRouteStatement)TSqlFragment.FromMutable(fragment);

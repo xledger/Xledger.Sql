@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterAvailabilityGroupFailoverOption> Options => options;
     
         public AlterAvailabilityGroupFailoverAction(IReadOnlyList<AlterAvailabilityGroupFailoverOption> options = null, ScriptDom.AlterAvailabilityGroupActionType actionType = ScriptDom.AlterAvailabilityGroupActionType.Failover) {
-            this.options = options is null ? ImmList<AlterAvailabilityGroupFailoverOption>.Empty : ImmList<AlterAvailabilityGroupFailoverOption>.FromList(options);
+            this.options = ImmList<AlterAvailabilityGroupFailoverOption>.FromList(options);
             this.actionType = actionType;
         }
     
@@ -57,6 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterAvailabilityGroupFailoverAction left, AlterAvailabilityGroupFailoverAction right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterAvailabilityGroupFailoverAction)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.actionType, othr.actionType);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterAvailabilityGroupFailoverAction FromMutable(ScriptDom.AlterAvailabilityGroupFailoverAction fragment) {
             return (AlterAvailabilityGroupFailoverAction)TSqlFragment.FromMutable(fragment);

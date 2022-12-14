@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> Expressions => expressions;
     
         public CoalesceExpression(IReadOnlyList<ScalarExpression> expressions = null, Identifier collation = null) {
-            this.expressions = expressions is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(expressions);
+            this.expressions = ImmList<ScalarExpression>.FromList(expressions);
             this.collation = collation;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CoalesceExpression left, CoalesceExpression right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CoalesceExpression)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.expressions, othr.expressions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CoalesceExpression FromMutable(ScriptDom.CoalesceExpression fragment) {
             return (CoalesceExpression)TSqlFragment.FromMutable(fragment);

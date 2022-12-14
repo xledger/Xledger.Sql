@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsIfExists => isIfExists;
     
         public DropDatabaseStatement(IReadOnlyList<Identifier> databases = null, bool isIfExists = false) {
-            this.databases = databases is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(databases);
+            this.databases = ImmList<Identifier>.FromList(databases);
             this.isIfExists = isIfExists;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DropDatabaseStatement left, DropDatabaseStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DropDatabaseStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databases, othr.databases);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isIfExists, othr.isIfExists);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DropDatabaseStatement FromMutable(ScriptDom.DropDatabaseStatement fragment) {
             return (DropDatabaseStatement)TSqlFragment.FromMutable(fragment);

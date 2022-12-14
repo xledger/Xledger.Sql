@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public XmlCompressionOption(ScriptDom.XmlCompressionOptionState isCompressed = ScriptDom.XmlCompressionOptionState.Off, IReadOnlyList<CompressionPartitionRange> partitionRanges = null, ScriptDom.IndexOptionKind optionKind = ScriptDom.IndexOptionKind.PadIndex) {
             this.isCompressed = isCompressed;
-            this.partitionRanges = partitionRanges is null ? ImmList<CompressionPartitionRange>.Empty : ImmList<CompressionPartitionRange>.FromList(partitionRanges);
+            this.partitionRanges = ImmList<CompressionPartitionRange>.FromList(partitionRanges);
             this.optionKind = optionKind;
         }
     
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(XmlCompressionOption left, XmlCompressionOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (XmlCompressionOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isCompressed, othr.isCompressed);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionRanges, othr.partitionRanges);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static XmlCompressionOption FromMutable(ScriptDom.XmlCompressionOption fragment) {
             return (XmlCompressionOption)TSqlFragment.FromMutable(fragment);

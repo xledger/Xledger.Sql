@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterSymmetricKeyStatement(bool isAdd = false, Identifier name = null, IReadOnlyList<CryptoMechanism> encryptingMechanisms = null) {
             this.isAdd = isAdd;
             this.name = name;
-            this.encryptingMechanisms = encryptingMechanisms is null ? ImmList<CryptoMechanism>.Empty : ImmList<CryptoMechanism>.FromList(encryptingMechanisms);
+            this.encryptingMechanisms = ImmList<CryptoMechanism>.FromList(encryptingMechanisms);
         }
     
         public ScriptDom.AlterSymmetricKeyStatement ToMutableConcrete() {
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterSymmetricKeyStatement left, AlterSymmetricKeyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterSymmetricKeyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isAdd, othr.isAdd);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptingMechanisms, othr.encryptingMechanisms);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterSymmetricKeyStatement FromMutable(ScriptDom.AlterSymmetricKeyStatement fragment) {
             return (AlterSymmetricKeyStatement)TSqlFragment.FromMutable(fragment);

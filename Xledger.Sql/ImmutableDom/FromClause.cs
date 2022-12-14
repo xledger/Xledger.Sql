@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<PredictTableReference> PredictTableReference => predictTableReference;
     
         public FromClause(IReadOnlyList<TableReference> tableReferences = null, IReadOnlyList<PredictTableReference> predictTableReference = null) {
-            this.tableReferences = tableReferences is null ? ImmList<TableReference>.Empty : ImmList<TableReference>.FromList(tableReferences);
-            this.predictTableReference = predictTableReference is null ? ImmList<PredictTableReference>.Empty : ImmList<PredictTableReference>.FromList(predictTableReference);
+            this.tableReferences = ImmList<TableReference>.FromList(tableReferences);
+            this.predictTableReference = ImmList<PredictTableReference>.FromList(predictTableReference);
         }
     
         public ScriptDom.FromClause ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(FromClause left, FromClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (FromClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableReferences, othr.tableReferences);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.predictTableReference, othr.predictTableReference);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static FromClause FromMutable(ScriptDom.FromClause fragment) {
             return (FromClause)TSqlFragment.FromMutable(fragment);

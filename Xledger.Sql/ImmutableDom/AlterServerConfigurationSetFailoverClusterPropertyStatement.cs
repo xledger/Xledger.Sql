@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationFailoverClusterPropertyOption> Options => options;
     
         public AlterServerConfigurationSetFailoverClusterPropertyStatement(IReadOnlyList<AlterServerConfigurationFailoverClusterPropertyOption> options = null) {
-            this.options = options is null ? ImmList<AlterServerConfigurationFailoverClusterPropertyOption>.Empty : ImmList<AlterServerConfigurationFailoverClusterPropertyOption>.FromList(options);
+            this.options = ImmList<AlterServerConfigurationFailoverClusterPropertyOption>.FromList(options);
         }
     
         public ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterServerConfigurationSetFailoverClusterPropertyStatement left, AlterServerConfigurationSetFailoverClusterPropertyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterServerConfigurationSetFailoverClusterPropertyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterServerConfigurationSetFailoverClusterPropertyStatement FromMutable(ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement fragment) {
             return (AlterServerConfigurationSetFailoverClusterPropertyStatement)TSqlFragment.FromMutable(fragment);

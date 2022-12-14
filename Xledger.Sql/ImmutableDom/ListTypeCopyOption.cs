@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<CopyStatementOptionBase> Options => options;
     
         public ListTypeCopyOption(IReadOnlyList<CopyStatementOptionBase> options = null) {
-            this.options = options is null ? ImmList<CopyStatementOptionBase>.Empty : ImmList<CopyStatementOptionBase>.FromList(options);
+            this.options = ImmList<CopyStatementOptionBase>.FromList(options);
         }
     
         public ScriptDom.ListTypeCopyOption ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ListTypeCopyOption left, ListTypeCopyOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ListTypeCopyOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ListTypeCopyOption FromMutable(ScriptDom.ListTypeCopyOption fragment) {
             return (ListTypeCopyOption)TSqlFragment.FromMutable(fragment);

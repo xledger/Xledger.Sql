@@ -32,9 +32,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.unique = unique;
             this.indexType = indexType;
-            this.indexOptions = indexOptions is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(indexOptions);
-            this.columns = columns is null ? ImmList<ColumnWithSortOrder>.Empty : ImmList<ColumnWithSortOrder>.FromList(columns);
-            this.includeColumns = includeColumns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(includeColumns);
+            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
+            this.columns = ImmList<ColumnWithSortOrder>.FromList(columns);
+            this.includeColumns = ImmList<ColumnReferenceExpression>.FromList(includeColumns);
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
             this.filterPredicate = filterPredicate;
             this.fileStreamOn = fileStreamOn;
@@ -125,6 +125,36 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(IndexDefinition left, IndexDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (IndexDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.unique, othr.unique);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexType, othr.indexType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.includeColumns, othr.includeColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.filterPredicate, othr.filterPredicate);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileStreamOn, othr.fileStreamOn);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static IndexDefinition FromMutable(ScriptDom.IndexDefinition fragment) {
             return (IndexDefinition)TSqlFragment.FromMutable(fragment);

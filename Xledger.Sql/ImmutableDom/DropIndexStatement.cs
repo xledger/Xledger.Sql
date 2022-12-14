@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsIfExists => isIfExists;
     
         public DropIndexStatement(IReadOnlyList<DropIndexClauseBase> dropIndexClauses = null, bool isIfExists = false) {
-            this.dropIndexClauses = dropIndexClauses is null ? ImmList<DropIndexClauseBase>.Empty : ImmList<DropIndexClauseBase>.FromList(dropIndexClauses);
+            this.dropIndexClauses = ImmList<DropIndexClauseBase>.FromList(dropIndexClauses);
             this.isIfExists = isIfExists;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DropIndexStatement left, DropIndexStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DropIndexStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dropIndexClauses, othr.dropIndexClauses);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isIfExists, othr.isIfExists);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DropIndexStatement FromMutable(ScriptDom.DropIndexStatement fragment) {
             return (DropIndexStatement)TSqlFragment.FromMutable(fragment);

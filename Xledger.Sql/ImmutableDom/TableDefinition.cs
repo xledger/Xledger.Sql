@@ -19,9 +19,9 @@ namespace Xledger.Sql.ImmutableDom {
         public SystemTimePeriodDefinition SystemTimePeriod => systemTimePeriod;
     
         public TableDefinition(IReadOnlyList<ColumnDefinition> columnDefinitions = null, IReadOnlyList<ConstraintDefinition> tableConstraints = null, IReadOnlyList<IndexDefinition> indexes = null, SystemTimePeriodDefinition systemTimePeriod = null) {
-            this.columnDefinitions = columnDefinitions is null ? ImmList<ColumnDefinition>.Empty : ImmList<ColumnDefinition>.FromList(columnDefinitions);
-            this.tableConstraints = tableConstraints is null ? ImmList<ConstraintDefinition>.Empty : ImmList<ConstraintDefinition>.FromList(tableConstraints);
-            this.indexes = indexes is null ? ImmList<IndexDefinition>.Empty : ImmList<IndexDefinition>.FromList(indexes);
+            this.columnDefinitions = ImmList<ColumnDefinition>.FromList(columnDefinitions);
+            this.tableConstraints = ImmList<ConstraintDefinition>.FromList(tableConstraints);
+            this.indexes = ImmList<IndexDefinition>.FromList(indexes);
             this.systemTimePeriod = systemTimePeriod;
         }
     
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(TableDefinition left, TableDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (TableDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnDefinitions, othr.columnDefinitions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableConstraints, othr.tableConstraints);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexes, othr.indexes);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.systemTimePeriod, othr.systemTimePeriod);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static TableDefinition FromMutable(ScriptDom.TableDefinition fragment) {
             return (TableDefinition)TSqlFragment.FromMutable(fragment);

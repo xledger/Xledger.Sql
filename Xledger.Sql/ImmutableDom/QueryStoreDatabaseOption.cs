@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.clear = clear;
             this.clearAll = clearAll;
             this.optionState = optionState;
-            this.options = options is null ? ImmList<QueryStoreOption>.Empty : ImmList<QueryStoreOption>.FromList(options);
+            this.options = ImmList<QueryStoreOption>.FromList(options);
             this.optionKind = optionKind;
         }
     
@@ -81,6 +81,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (QueryStoreDatabaseOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.clear, othr.clear);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.clearAll, othr.clearAll);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionState, othr.optionState);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static QueryStoreDatabaseOption FromMutable(ScriptDom.QueryStoreDatabaseOption fragment) {
             return (QueryStoreDatabaseOption)TSqlFragment.FromMutable(fragment);

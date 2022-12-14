@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.parameterType = parameterType;
             this.range = range;
-            this.boundaryValues = boundaryValues is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(boundaryValues);
+            this.boundaryValues = ImmList<ScalarExpression>.FromList(boundaryValues);
         }
     
         public ScriptDom.CreatePartitionFunctionStatement ToMutableConcrete() {
@@ -79,6 +79,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreatePartitionFunctionStatement left, CreatePartitionFunctionStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreatePartitionFunctionStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterType, othr.parameterType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.range, othr.range);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.boundaryValues, othr.boundaryValues);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreatePartitionFunctionStatement FromMutable(ScriptDom.CreatePartitionFunctionStatement fragment) {
             return (CreatePartitionFunctionStatement)TSqlFragment.FromMutable(fragment);

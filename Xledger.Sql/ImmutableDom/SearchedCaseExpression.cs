@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SearchedWhenClause> WhenClauses => whenClauses;
     
         public SearchedCaseExpression(IReadOnlyList<SearchedWhenClause> whenClauses = null, ScalarExpression elseExpression = null, Identifier collation = null) {
-            this.whenClauses = whenClauses is null ? ImmList<SearchedWhenClause>.Empty : ImmList<SearchedWhenClause>.FromList(whenClauses);
+            this.whenClauses = ImmList<SearchedWhenClause>.FromList(whenClauses);
             this.elseExpression = elseExpression;
             this.collation = collation;
         }
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SearchedCaseExpression left, SearchedCaseExpression right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SearchedCaseExpression)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.whenClauses, othr.whenClauses);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.elseExpression, othr.elseExpression);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SearchedCaseExpression FromMutable(ScriptDom.SearchedCaseExpression fragment) {
             return (SearchedCaseExpression)TSqlFragment.FromMutable(fragment);

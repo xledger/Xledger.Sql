@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public SecurityTargetObject(ScriptDom.SecurityObjectKind objectKind = ScriptDom.SecurityObjectKind.NotSpecified, SecurityTargetObjectName objectName = null, IReadOnlyList<Identifier> columns = null) {
             this.objectKind = objectKind;
             this.objectName = objectName;
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.columns = ImmList<Identifier>.FromList(columns);
         }
     
         public ScriptDom.SecurityTargetObject ToMutableConcrete() {
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SecurityTargetObject left, SecurityTargetObject right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SecurityTargetObject)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.objectKind, othr.objectKind);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.objectName, othr.objectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SecurityTargetObject FromMutable(ScriptDom.SecurityTargetObject fragment) {
             return (SecurityTargetObject)TSqlFragment.FromMutable(fragment);

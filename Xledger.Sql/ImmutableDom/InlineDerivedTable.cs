@@ -13,8 +13,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<RowValue> RowValues => rowValues;
     
         public InlineDerivedTable(IReadOnlyList<RowValue> rowValues = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
-            this.rowValues = rowValues is null ? ImmList<RowValue>.Empty : ImmList<RowValue>.FromList(rowValues);
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.rowValues = ImmList<RowValue>.FromList(rowValues);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -71,6 +71,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(InlineDerivedTable left, InlineDerivedTable right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (InlineDerivedTable)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.rowValues, othr.rowValues);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static InlineDerivedTable FromMutable(ScriptDom.InlineDerivedTable fragment) {
             return (InlineDerivedTable)TSqlFragment.FromMutable(fragment);

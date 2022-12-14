@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterTableDropTableElement> AlterTableDropTableElements => alterTableDropTableElements;
     
         public AlterTableDropTableElementStatement(IReadOnlyList<AlterTableDropTableElement> alterTableDropTableElements = null, SchemaObjectName schemaObjectName = null) {
-            this.alterTableDropTableElements = alterTableDropTableElements is null ? ImmList<AlterTableDropTableElement>.Empty : ImmList<AlterTableDropTableElement>.FromList(alterTableDropTableElements);
+            this.alterTableDropTableElements = ImmList<AlterTableDropTableElement>.FromList(alterTableDropTableElements);
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterTableDropTableElementStatement left, AlterTableDropTableElementStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterTableDropTableElementStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alterTableDropTableElements, othr.alterTableDropTableElements);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterTableDropTableElementStatement FromMutable(ScriptDom.AlterTableDropTableElementStatement fragment) {
             return (AlterTableDropTableElementStatement)TSqlFragment.FromMutable(fragment);

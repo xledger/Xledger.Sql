@@ -11,8 +11,8 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterProcedureStatement(ProcedureReference procedureReference = null, bool isForReplication = false, IReadOnlyList<ProcedureOption> options = null, IReadOnlyList<ProcedureParameter> parameters = null, StatementList statementList = null, MethodSpecifier methodSpecifier = null) {
             this.procedureReference = procedureReference;
             this.isForReplication = isForReplication;
-            this.options = options is null ? ImmList<ProcedureOption>.Empty : ImmList<ProcedureOption>.FromList(options);
-            this.parameters = parameters is null ? ImmList<ProcedureParameter>.Empty : ImmList<ProcedureParameter>.FromList(parameters);
+            this.options = ImmList<ProcedureOption>.FromList(options);
+            this.parameters = ImmList<ProcedureParameter>.FromList(parameters);
             this.statementList = statementList;
             this.methodSpecifier = methodSpecifier;
         }
@@ -83,6 +83,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterProcedureStatement left, AlterProcedureStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterProcedureStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.procedureReference, othr.procedureReference);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isForReplication, othr.isForReplication);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.statementList, othr.statementList);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.methodSpecifier, othr.methodSpecifier);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterProcedureStatement FromMutable(ScriptDom.AlterProcedureStatement fragment) {
             return (AlterProcedureStatement)TSqlFragment.FromMutable(fragment);

@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public FileGroupOrPartitionScheme(IdentifierOrValueExpression name = null, IReadOnlyList<Identifier> partitionSchemeColumns = null) {
             this.name = name;
-            this.partitionSchemeColumns = partitionSchemeColumns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(partitionSchemeColumns);
+            this.partitionSchemeColumns = ImmList<Identifier>.FromList(partitionSchemeColumns);
         }
     
         public ScriptDom.FileGroupOrPartitionScheme ToMutableConcrete() {
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(FileGroupOrPartitionScheme left, FileGroupOrPartitionScheme right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (FileGroupOrPartitionScheme)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionSchemeColumns, othr.partitionSchemeColumns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static FileGroupOrPartitionScheme FromMutable(ScriptDom.FileGroupOrPartitionScheme fragment) {
             return (FileGroupOrPartitionScheme)TSqlFragment.FromMutable(fragment);

@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateWorkloadGroupStatement : WorkloadGroupStatement, IEquatable<CreateWorkloadGroupStatement> {
         public CreateWorkloadGroupStatement(Identifier name = null, IReadOnlyList<WorkloadGroupParameter> workloadGroupParameters = null, Identifier poolName = null, Identifier externalPoolName = null) {
             this.name = name;
-            this.workloadGroupParameters = workloadGroupParameters is null ? ImmList<WorkloadGroupParameter>.Empty : ImmList<WorkloadGroupParameter>.FromList(workloadGroupParameters);
+            this.workloadGroupParameters = ImmList<WorkloadGroupParameter>.FromList(workloadGroupParameters);
             this.poolName = poolName;
             this.externalPoolName = externalPoolName;
         }
@@ -71,6 +71,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateWorkloadGroupStatement left, CreateWorkloadGroupStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateWorkloadGroupStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.workloadGroupParameters, othr.workloadGroupParameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.poolName, othr.poolName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.externalPoolName, othr.externalPoolName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateWorkloadGroupStatement FromMutable(ScriptDom.CreateWorkloadGroupStatement fragment) {
             return (CreateWorkloadGroupStatement)TSqlFragment.FromMutable(fragment);

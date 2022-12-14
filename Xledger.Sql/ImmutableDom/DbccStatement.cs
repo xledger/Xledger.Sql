@@ -26,8 +26,8 @@ namespace Xledger.Sql.ImmutableDom {
             this.dllName = dllName;
             this.command = command;
             this.parenthesisRequired = parenthesisRequired;
-            this.literals = literals is null ? ImmList<DbccNamedLiteral>.Empty : ImmList<DbccNamedLiteral>.FromList(literals);
-            this.options = options is null ? ImmList<DbccOption>.Empty : ImmList<DbccOption>.FromList(options);
+            this.literals = ImmList<DbccNamedLiteral>.FromList(literals);
+            this.options = ImmList<DbccOption>.FromList(options);
             this.optionsUseJoin = optionsUseJoin;
         }
     
@@ -93,6 +93,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DbccStatement left, DbccStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DbccStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dllName, othr.dllName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.command, othr.command);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parenthesisRequired, othr.parenthesisRequired);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.literals, othr.literals);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionsUseJoin, othr.optionsUseJoin);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DbccStatement FromMutable(ScriptDom.DbccStatement fragment) {
             return (DbccStatement)TSqlFragment.FromMutable(fragment);

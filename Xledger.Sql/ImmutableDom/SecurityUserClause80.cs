@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.UserType80 UserType80 => userType80;
     
         public SecurityUserClause80(IReadOnlyList<Identifier> users = null, ScriptDom.UserType80 userType80 = ScriptDom.UserType80.Null) {
-            this.users = users is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(users);
+            this.users = ImmList<Identifier>.FromList(users);
             this.userType80 = userType80;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SecurityUserClause80 left, SecurityUserClause80 right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SecurityUserClause80)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.users, othr.users);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.userType80, othr.userType80);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SecurityUserClause80 FromMutable(ScriptDom.SecurityUserClause80 fragment) {
             return (SecurityUserClause80)TSqlFragment.FromMutable(fragment);

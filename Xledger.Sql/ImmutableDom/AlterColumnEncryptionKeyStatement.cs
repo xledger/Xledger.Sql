@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterColumnEncryptionKeyStatement(ScriptDom.ColumnEncryptionKeyAlterType alterType = ScriptDom.ColumnEncryptionKeyAlterType.Add, Identifier name = null, IReadOnlyList<ColumnEncryptionKeyValue> columnEncryptionKeyValues = null) {
             this.alterType = alterType;
             this.name = name;
-            this.columnEncryptionKeyValues = columnEncryptionKeyValues is null ? ImmList<ColumnEncryptionKeyValue>.Empty : ImmList<ColumnEncryptionKeyValue>.FromList(columnEncryptionKeyValues);
+            this.columnEncryptionKeyValues = ImmList<ColumnEncryptionKeyValue>.FromList(columnEncryptionKeyValues);
         }
     
         public ScriptDom.AlterColumnEncryptionKeyStatement ToMutableConcrete() {
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterColumnEncryptionKeyStatement left, AlterColumnEncryptionKeyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterColumnEncryptionKeyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alterType, othr.alterType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnEncryptionKeyValues, othr.columnEncryptionKeyValues);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterColumnEncryptionKeyStatement FromMutable(ScriptDom.AlterColumnEncryptionKeyStatement fragment) {
             return (AlterColumnEncryptionKeyStatement)TSqlFragment.FromMutable(fragment);

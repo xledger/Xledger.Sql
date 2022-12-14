@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public BulkInsertStatement(IdentifierOrValueExpression from = null, SchemaObjectName to = null, IReadOnlyList<BulkInsertOption> options = null) {
             this.from = from;
             this.to = to;
-            this.options = options is null ? ImmList<BulkInsertOption>.Empty : ImmList<BulkInsertOption>.FromList(options);
+            this.options = ImmList<BulkInsertOption>.FromList(options);
         }
     
         public ScriptDom.BulkInsertStatement ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(BulkInsertStatement left, BulkInsertStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (BulkInsertStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.from, othr.from);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.to, othr.to);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static BulkInsertStatement FromMutable(ScriptDom.BulkInsertStatement fragment) {
             return (BulkInsertStatement)TSqlFragment.FromMutable(fragment);

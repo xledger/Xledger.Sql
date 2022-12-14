@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateContractStatement(Identifier name = null, IReadOnlyList<ContractMessage> messages = null, Identifier owner = null) {
             this.name = name;
-            this.messages = messages is null ? ImmList<ContractMessage>.Empty : ImmList<ContractMessage>.FromList(messages);
+            this.messages = ImmList<ContractMessage>.FromList(messages);
             this.owner = owner;
         }
     
@@ -71,6 +71,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateContractStatement left, CreateContractStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateContractStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.messages, othr.messages);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateContractStatement FromMutable(ScriptDom.CreateContractStatement fragment) {
             return (CreateContractStatement)TSqlFragment.FromMutable(fragment);

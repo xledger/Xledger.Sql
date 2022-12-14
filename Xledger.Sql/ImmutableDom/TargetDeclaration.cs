@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TargetDeclaration(EventSessionObjectName objectName = null, IReadOnlyList<EventDeclarationSetParameter> targetDeclarationParameters = null) {
             this.objectName = objectName;
-            this.targetDeclarationParameters = targetDeclarationParameters is null ? ImmList<EventDeclarationSetParameter>.Empty : ImmList<EventDeclarationSetParameter>.FromList(targetDeclarationParameters);
+            this.targetDeclarationParameters = ImmList<EventDeclarationSetParameter>.FromList(targetDeclarationParameters);
         }
     
         public ScriptDom.TargetDeclaration ToMutableConcrete() {
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(TargetDeclaration left, TargetDeclaration right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (TargetDeclaration)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.objectName, othr.objectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.targetDeclarationParameters, othr.targetDeclarationParameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static TargetDeclaration FromMutable(ScriptDom.TargetDeclaration fragment) {
             return (TargetDeclaration)TSqlFragment.FromMutable(fragment);

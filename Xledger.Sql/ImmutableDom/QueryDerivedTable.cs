@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public QueryDerivedTable(QueryExpression queryExpression = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
             this.queryExpression = queryExpression;
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -73,6 +73,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(QueryDerivedTable left, QueryDerivedTable right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (QueryDerivedTable)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queryExpression, othr.queryExpression);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static QueryDerivedTable FromMutable(ScriptDom.QueryDerivedTable fragment) {
             return (QueryDerivedTable)TSqlFragment.FromMutable(fragment);

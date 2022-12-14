@@ -17,9 +17,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.queryExpression = queryExpression;
             this.into = into;
             this.on = on;
-            this.computeClauses = computeClauses is null ? ImmList<ComputeClause>.Empty : ImmList<ComputeClause>.FromList(computeClauses);
+            this.computeClauses = ImmList<ComputeClause>.FromList(computeClauses);
             this.withCtesAndXmlNamespaces = withCtesAndXmlNamespaces;
-            this.optimizerHints = optimizerHints is null ? ImmList<OptimizerHint>.Empty : ImmList<OptimizerHint>.FromList(optimizerHints);
+            this.optimizerHints = ImmList<OptimizerHint>.FromList(optimizerHints);
         }
     
         public ScriptDom.SelectStatementSnippet ToMutableConcrete() {
@@ -97,6 +97,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SelectStatementSnippet left, SelectStatementSnippet right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SelectStatementSnippet)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.script, othr.script);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queryExpression, othr.queryExpression);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.into, othr.into);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.on, othr.on);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.computeClauses, othr.computeClauses);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withCtesAndXmlNamespaces, othr.withCtesAndXmlNamespaces);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optimizerHints, othr.optimizerHints);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SelectStatementSnippet FromMutable(ScriptDom.SelectStatementSnippet fragment) {
             return (SelectStatementSnippet)TSqlFragment.FromMutable(fragment);

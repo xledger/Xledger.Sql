@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ValuesInsertSource Source => source;
     
         public InsertMergeAction(IReadOnlyList<ColumnReferenceExpression> columns = null, ValuesInsertSource source = null) {
-            this.columns = columns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
             this.source = source;
         }
     
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(InsertMergeAction left, InsertMergeAction right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (InsertMergeAction)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.source, othr.source);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static InsertMergeAction FromMutable(ScriptDom.InsertMergeAction fragment) {
             return (InsertMergeAction)TSqlFragment.FromMutable(fragment);

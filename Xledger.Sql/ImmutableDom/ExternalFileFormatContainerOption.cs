@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ExternalFileFormatOption> Suboptions => suboptions;
     
         public ExternalFileFormatContainerOption(IReadOnlyList<ExternalFileFormatOption> suboptions = null, ScriptDom.ExternalFileFormatOptionKind optionKind = ScriptDom.ExternalFileFormatOptionKind.SerDeMethod) {
-            this.suboptions = suboptions is null ? ImmList<ExternalFileFormatOption>.Empty : ImmList<ExternalFileFormatOption>.FromList(suboptions);
+            this.suboptions = ImmList<ExternalFileFormatOption>.FromList(suboptions);
             this.optionKind = optionKind;
         }
     
@@ -57,6 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ExternalFileFormatContainerOption left, ExternalFileFormatContainerOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ExternalFileFormatContainerOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.suboptions, othr.suboptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ExternalFileFormatContainerOption FromMutable(ScriptDom.ExternalFileFormatContainerOption fragment) {
             return (ExternalFileFormatContainerOption)TSqlFragment.FromMutable(fragment);

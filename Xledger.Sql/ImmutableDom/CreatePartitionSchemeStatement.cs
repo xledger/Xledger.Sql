@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.partitionFunction = partitionFunction;
             this.isAll = isAll;
-            this.fileGroups = fileGroups is null ? ImmList<IdentifierOrValueExpression>.Empty : ImmList<IdentifierOrValueExpression>.FromList(fileGroups);
+            this.fileGroups = ImmList<IdentifierOrValueExpression>.FromList(fileGroups);
         }
     
         public ScriptDom.CreatePartitionSchemeStatement ToMutableConcrete() {
@@ -79,6 +79,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreatePartitionSchemeStatement left, CreatePartitionSchemeStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreatePartitionSchemeStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionFunction, othr.partitionFunction);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isAll, othr.isAll);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroups, othr.fileGroups);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreatePartitionSchemeStatement FromMutable(ScriptDom.CreatePartitionSchemeStatement fragment) {
             return (CreatePartitionSchemeStatement)TSqlFragment.FromMutable(fragment);

@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public StatementListSnippet(string script = null, IReadOnlyList<TSqlStatement> statements = null) {
             this.script = script;
-            this.statements = statements is null ? ImmList<TSqlStatement>.Empty : ImmList<TSqlStatement>.FromList(statements);
+            this.statements = ImmList<TSqlStatement>.FromList(statements);
         }
     
         public ScriptDom.StatementListSnippet ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(StatementListSnippet left, StatementListSnippet right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (StatementListSnippet)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.script, othr.script);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.statements, othr.statements);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static StatementListSnippet FromMutable(ScriptDom.StatementListSnippet fragment) {
             return (StatementListSnippet)TSqlFragment.FromMutable(fragment);

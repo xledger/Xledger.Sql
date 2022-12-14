@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterQueueStatement : QueueStatement, IEquatable<AlterQueueStatement> {
         public AlterQueueStatement(SchemaObjectName name = null, IReadOnlyList<QueueOption> queueOptions = null) {
             this.name = name;
-            this.queueOptions = queueOptions is null ? ImmList<QueueOption>.Empty : ImmList<QueueOption>.FromList(queueOptions);
+            this.queueOptions = ImmList<QueueOption>.FromList(queueOptions);
         }
     
         public ScriptDom.AlterQueueStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterQueueStatement left, AlterQueueStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterQueueStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queueOptions, othr.queueOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterQueueStatement FromMutable(ScriptDom.AlterQueueStatement fragment) {
             return (AlterQueueStatement)TSqlFragment.FromMutable(fragment);

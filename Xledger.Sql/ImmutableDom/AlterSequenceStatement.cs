@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterSequenceStatement : SequenceStatement, IEquatable<AlterSequenceStatement> {
         public AlterSequenceStatement(SchemaObjectName name = null, IReadOnlyList<SequenceOption> sequenceOptions = null) {
             this.name = name;
-            this.sequenceOptions = sequenceOptions is null ? ImmList<SequenceOption>.Empty : ImmList<SequenceOption>.FromList(sequenceOptions);
+            this.sequenceOptions = ImmList<SequenceOption>.FromList(sequenceOptions);
         }
     
         public ScriptDom.AlterSequenceStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterSequenceStatement left, AlterSequenceStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterSequenceStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.sequenceOptions, othr.sequenceOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterSequenceStatement FromMutable(ScriptDom.AlterSequenceStatement fragment) {
             return (AlterSequenceStatement)TSqlFragment.FromMutable(fragment);

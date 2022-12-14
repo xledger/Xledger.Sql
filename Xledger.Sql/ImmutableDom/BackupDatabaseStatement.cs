@@ -13,11 +13,11 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<BackupRestoreFileInfo> Files => files;
     
         public BackupDatabaseStatement(IReadOnlyList<BackupRestoreFileInfo> files = null, IdentifierOrValueExpression databaseName = null, IReadOnlyList<BackupOption> options = null, IReadOnlyList<MirrorToClause> mirrorToClauses = null, IReadOnlyList<DeviceInfo> devices = null) {
-            this.files = files is null ? ImmList<BackupRestoreFileInfo>.Empty : ImmList<BackupRestoreFileInfo>.FromList(files);
+            this.files = ImmList<BackupRestoreFileInfo>.FromList(files);
             this.databaseName = databaseName;
-            this.options = options is null ? ImmList<BackupOption>.Empty : ImmList<BackupOption>.FromList(options);
-            this.mirrorToClauses = mirrorToClauses is null ? ImmList<MirrorToClause>.Empty : ImmList<MirrorToClause>.FromList(mirrorToClauses);
-            this.devices = devices is null ? ImmList<DeviceInfo>.Empty : ImmList<DeviceInfo>.FromList(devices);
+            this.options = ImmList<BackupOption>.FromList(options);
+            this.mirrorToClauses = ImmList<MirrorToClause>.FromList(mirrorToClauses);
+            this.devices = ImmList<DeviceInfo>.FromList(devices);
         }
     
         public ScriptDom.BackupDatabaseStatement ToMutableConcrete() {
@@ -77,6 +77,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(BackupDatabaseStatement left, BackupDatabaseStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (BackupDatabaseStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.files, othr.files);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.mirrorToClauses, othr.mirrorToClauses);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.devices, othr.devices);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static BackupDatabaseStatement FromMutable(ScriptDom.BackupDatabaseStatement fragment) {
             return (BackupDatabaseStatement)TSqlFragment.FromMutable(fragment);

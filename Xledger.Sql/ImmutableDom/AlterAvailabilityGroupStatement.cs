@@ -18,9 +18,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.alterAvailabilityGroupStatementType = alterAvailabilityGroupStatementType;
             this.action = action;
             this.name = name;
-            this.options = options is null ? ImmList<AvailabilityGroupOption>.Empty : ImmList<AvailabilityGroupOption>.FromList(options);
-            this.databases = databases is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(databases);
-            this.replicas = replicas is null ? ImmList<AvailabilityReplica>.Empty : ImmList<AvailabilityReplica>.FromList(replicas);
+            this.options = ImmList<AvailabilityGroupOption>.FromList(options);
+            this.databases = ImmList<Identifier>.FromList(databases);
+            this.replicas = ImmList<AvailabilityReplica>.FromList(replicas);
         }
     
         public ScriptDom.AlterAvailabilityGroupStatement ToMutableConcrete() {
@@ -87,6 +87,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterAvailabilityGroupStatement left, AlterAvailabilityGroupStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterAvailabilityGroupStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alterAvailabilityGroupStatementType, othr.alterAvailabilityGroupStatementType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.action, othr.action);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databases, othr.databases);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.replicas, othr.replicas);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterAvailabilityGroupStatement FromMutable(ScriptDom.AlterAvailabilityGroupStatement fragment) {
             return (AlterAvailabilityGroupStatement)TSqlFragment.FromMutable(fragment);

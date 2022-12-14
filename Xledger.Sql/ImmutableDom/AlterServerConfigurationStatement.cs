@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AlterServerConfigurationStatement(ScriptDom.ProcessAffinityType processAffinity = ScriptDom.ProcessAffinityType.CpuAuto, IReadOnlyList<ProcessAffinityRange> processAffinityRanges = null) {
             this.processAffinity = processAffinity;
-            this.processAffinityRanges = processAffinityRanges is null ? ImmList<ProcessAffinityRange>.Empty : ImmList<ProcessAffinityRange>.FromList(processAffinityRanges);
+            this.processAffinityRanges = ImmList<ProcessAffinityRange>.FromList(processAffinityRanges);
         }
     
         public ScriptDom.AlterServerConfigurationStatement ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterServerConfigurationStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.processAffinity, othr.processAffinity);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.processAffinityRanges, othr.processAffinityRanges);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterServerConfigurationStatement FromMutable(ScriptDom.AlterServerConfigurationStatement fragment) {
             return (AlterServerConfigurationStatement)TSqlFragment.FromMutable(fragment);

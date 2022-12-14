@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public DropAssemblyStatement(bool withNoDependents = false, IReadOnlyList<SchemaObjectName> objects = null, bool isIfExists = false) {
             this.withNoDependents = withNoDependents;
-            this.objects = objects is null ? ImmList<SchemaObjectName>.Empty : ImmList<SchemaObjectName>.FromList(objects);
+            this.objects = ImmList<SchemaObjectName>.FromList(objects);
             this.isIfExists = isIfExists;
         }
     
@@ -63,6 +63,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DropAssemblyStatement left, DropAssemblyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DropAssemblyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withNoDependents, othr.withNoDependents);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.objects, othr.objects);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isIfExists, othr.isIfExists);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DropAssemblyStatement FromMutable(ScriptDom.DropAssemblyStatement fragment) {
             return (DropAssemblyStatement)TSqlFragment.FromMutable(fragment);

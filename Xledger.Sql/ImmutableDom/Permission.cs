@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<Identifier> Columns => columns;
     
         public Permission(IReadOnlyList<Identifier> identifiers = null, IReadOnlyList<Identifier> columns = null) {
-            this.identifiers = identifiers is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(identifiers);
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.identifiers = ImmList<Identifier>.FromList(identifiers);
+            this.columns = ImmList<Identifier>.FromList(columns);
         }
     
         public ScriptDom.Permission ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(Permission left, Permission right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (Permission)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.identifiers, othr.identifiers);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static Permission FromMutable(ScriptDom.Permission fragment) {
             return (Permission)TSqlFragment.FromMutable(fragment);

@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public SqlDataTypeReference(ScriptDom.SqlDataTypeOption sqlDataTypeOption = ScriptDom.SqlDataTypeOption.None, IReadOnlyList<Literal> parameters = null, SchemaObjectName name = null) {
             this.sqlDataTypeOption = sqlDataTypeOption;
-            this.parameters = parameters is null ? ImmList<Literal>.Empty : ImmList<Literal>.FromList(parameters);
+            this.parameters = ImmList<Literal>.FromList(parameters);
             this.name = name;
         }
     
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SqlDataTypeReference left, SqlDataTypeReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SqlDataTypeReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.sqlDataTypeOption, othr.sqlDataTypeOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SqlDataTypeReference FromMutable(ScriptDom.SqlDataTypeReference fragment) {
             return (SqlDataTypeReference)TSqlFragment.FromMutable(fragment);

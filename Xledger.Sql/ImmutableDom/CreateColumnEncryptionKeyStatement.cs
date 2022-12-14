@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateColumnEncryptionKeyStatement : ColumnEncryptionKeyStatement, IEquatable<CreateColumnEncryptionKeyStatement> {
         public CreateColumnEncryptionKeyStatement(Identifier name = null, IReadOnlyList<ColumnEncryptionKeyValue> columnEncryptionKeyValues = null) {
             this.name = name;
-            this.columnEncryptionKeyValues = columnEncryptionKeyValues is null ? ImmList<ColumnEncryptionKeyValue>.Empty : ImmList<ColumnEncryptionKeyValue>.FromList(columnEncryptionKeyValues);
+            this.columnEncryptionKeyValues = ImmList<ColumnEncryptionKeyValue>.FromList(columnEncryptionKeyValues);
         }
     
         public ScriptDom.CreateColumnEncryptionKeyStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateColumnEncryptionKeyStatement left, CreateColumnEncryptionKeyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateColumnEncryptionKeyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnEncryptionKeyValues, othr.columnEncryptionKeyValues);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateColumnEncryptionKeyStatement FromMutable(ScriptDom.CreateColumnEncryptionKeyStatement fragment) {
             return (CreateColumnEncryptionKeyStatement)TSqlFragment.FromMutable(fragment);

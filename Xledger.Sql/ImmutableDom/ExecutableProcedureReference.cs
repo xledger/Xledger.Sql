@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ExecutableProcedureReference(ProcedureReferenceName procedureReference = null, AdHocDataSource adHocDataSource = null, IReadOnlyList<ExecuteParameter> parameters = null) {
             this.procedureReference = procedureReference;
             this.adHocDataSource = adHocDataSource;
-            this.parameters = parameters is null ? ImmList<ExecuteParameter>.Empty : ImmList<ExecuteParameter>.FromList(parameters);
+            this.parameters = ImmList<ExecuteParameter>.FromList(parameters);
         }
     
         public ScriptDom.ExecutableProcedureReference ToMutableConcrete() {
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ExecutableProcedureReference left, ExecutableProcedureReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ExecutableProcedureReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.procedureReference, othr.procedureReference);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.adHocDataSource, othr.adHocDataSource);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ExecutableProcedureReference FromMutable(ScriptDom.ExecutableProcedureReference fragment) {
             return (ExecutableProcedureReference)TSqlFragment.FromMutable(fragment);

@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AuditTarget(ScriptDom.AuditTargetKind targetKind = ScriptDom.AuditTargetKind.File, IReadOnlyList<AuditTargetOption> targetOptions = null) {
             this.targetKind = targetKind;
-            this.targetOptions = targetOptions is null ? ImmList<AuditTargetOption>.Empty : ImmList<AuditTargetOption>.FromList(targetOptions);
+            this.targetOptions = ImmList<AuditTargetOption>.FromList(targetOptions);
         }
     
         public ScriptDom.AuditTarget ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AuditTarget left, AuditTarget right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AuditTarget)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.targetKind, othr.targetKind);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.targetOptions, othr.targetOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AuditTarget FromMutable(ScriptDom.AuditTarget fragment) {
             return (AuditTarget)TSqlFragment.FromMutable(fragment);

@@ -30,8 +30,8 @@ namespace Xledger.Sql.ImmutableDom {
             this.clustered = clustered;
             this.isPrimaryKey = isPrimaryKey;
             this.isEnforced = isEnforced;
-            this.columns = columns is null ? ImmList<ColumnWithSortOrder>.Empty : ImmList<ColumnWithSortOrder>.FromList(columns);
-            this.indexOptions = indexOptions is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(indexOptions);
+            this.columns = ImmList<ColumnWithSortOrder>.FromList(columns);
+            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
             this.indexType = indexType;
             this.fileStreamOn = fileStreamOn;
@@ -121,6 +121,36 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(UniqueConstraintDefinition left, UniqueConstraintDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (UniqueConstraintDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.clustered, othr.clustered);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isPrimaryKey, othr.isPrimaryKey);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isEnforced, othr.isEnforced);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexType, othr.indexType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileStreamOn, othr.fileStreamOn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintIdentifier, othr.constraintIdentifier);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static UniqueConstraintDefinition FromMutable(ScriptDom.UniqueConstraintDefinition fragment) {
             return (UniqueConstraintDefinition)TSqlFragment.FromMutable(fragment);

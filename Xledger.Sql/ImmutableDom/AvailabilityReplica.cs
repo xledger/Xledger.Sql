@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AvailabilityReplica(StringLiteral serverName = null, IReadOnlyList<AvailabilityReplicaOption> options = null) {
             this.serverName = serverName;
-            this.options = options is null ? ImmList<AvailabilityReplicaOption>.Empty : ImmList<AvailabilityReplicaOption>.FromList(options);
+            this.options = ImmList<AvailabilityReplicaOption>.FromList(options);
         }
     
         public ScriptDom.AvailabilityReplica ToMutableConcrete() {
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AvailabilityReplica left, AvailabilityReplica right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AvailabilityReplica)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.serverName, othr.serverName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AvailabilityReplica FromMutable(ScriptDom.AvailabilityReplica fragment) {
             return (AvailabilityReplica)TSqlFragment.FromMutable(fragment);

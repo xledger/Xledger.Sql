@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterTableTriggerModificationStatement(ScriptDom.TriggerEnforcement triggerEnforcement = ScriptDom.TriggerEnforcement.Disable, bool all = false, IReadOnlyList<Identifier> triggerNames = null, SchemaObjectName schemaObjectName = null) {
             this.triggerEnforcement = triggerEnforcement;
             this.all = all;
-            this.triggerNames = triggerNames is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(triggerNames);
+            this.triggerNames = ImmList<Identifier>.FromList(triggerNames);
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -75,6 +75,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterTableTriggerModificationStatement left, AlterTableTriggerModificationStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterTableTriggerModificationStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerEnforcement, othr.triggerEnforcement);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerNames, othr.triggerNames);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterTableTriggerModificationStatement FromMutable(ScriptDom.AlterTableTriggerModificationStatement fragment) {
             return (AlterTableTriggerModificationStatement)TSqlFragment.FromMutable(fragment);

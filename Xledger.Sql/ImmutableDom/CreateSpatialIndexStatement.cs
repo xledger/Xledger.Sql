@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.@object = @object;
             this.spatialColumnName = spatialColumnName;
             this.spatialIndexingScheme = spatialIndexingScheme;
-            this.spatialIndexOptions = spatialIndexOptions is null ? ImmList<SpatialIndexOption>.Empty : ImmList<SpatialIndexOption>.FromList(spatialIndexOptions);
+            this.spatialIndexOptions = ImmList<SpatialIndexOption>.FromList(spatialIndexOptions);
             this.onFileGroup = onFileGroup;
         }
     
@@ -99,6 +99,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateSpatialIndexStatement left, CreateSpatialIndexStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateSpatialIndexStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.@object, othr.@object);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.spatialColumnName, othr.spatialColumnName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.spatialIndexingScheme, othr.spatialIndexingScheme);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.spatialIndexOptions, othr.spatialIndexOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroup, othr.onFileGroup);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateSpatialIndexStatement FromMutable(ScriptDom.CreateSpatialIndexStatement fragment) {
             return (CreateSpatialIndexStatement)TSqlFragment.FromMutable(fragment);

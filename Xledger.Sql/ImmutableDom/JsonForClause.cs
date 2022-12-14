@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<JsonForClauseOption> Options => options;
     
         public JsonForClause(IReadOnlyList<JsonForClauseOption> options = null) {
-            this.options = options is null ? ImmList<JsonForClauseOption>.Empty : ImmList<JsonForClauseOption>.FromList(options);
+            this.options = ImmList<JsonForClauseOption>.FromList(options);
         }
     
         public ScriptDom.JsonForClause ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(JsonForClause left, JsonForClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (JsonForClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static JsonForClause FromMutable(ScriptDom.JsonForClause fragment) {
             return (JsonForClause)TSqlFragment.FromMutable(fragment);

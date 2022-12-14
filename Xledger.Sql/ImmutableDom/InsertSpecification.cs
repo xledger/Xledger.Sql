@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public InsertSpecification(ScriptDom.InsertOption insertOption = ScriptDom.InsertOption.None, InsertSource insertSource = null, IReadOnlyList<ColumnReferenceExpression> columns = null, TableReference target = null, TopRowFilter topRowFilter = null, OutputIntoClause outputIntoClause = null, OutputClause outputClause = null) {
             this.insertOption = insertOption;
             this.insertSource = insertSource;
-            this.columns = columns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
             this.target = target;
             this.topRowFilter = topRowFilter;
             this.outputIntoClause = outputIntoClause;
@@ -101,6 +101,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(InsertSpecification left, InsertSpecification right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (InsertSpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.insertOption, othr.insertOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.insertSource, othr.insertSource);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.target, othr.target);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.topRowFilter, othr.topRowFilter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputIntoClause, othr.outputIntoClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputClause, othr.outputClause);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static InsertSpecification FromMutable(ScriptDom.InsertSpecification fragment) {
             return (InsertSpecification)TSqlFragment.FromMutable(fragment);

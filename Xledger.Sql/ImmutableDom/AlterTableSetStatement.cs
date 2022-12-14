@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<TableOption> Options => options;
     
         public AlterTableSetStatement(IReadOnlyList<TableOption> options = null, SchemaObjectName schemaObjectName = null) {
-            this.options = options is null ? ImmList<TableOption>.Empty : ImmList<TableOption>.FromList(options);
+            this.options = ImmList<TableOption>.FromList(options);
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterTableSetStatement left, AlterTableSetStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterTableSetStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterTableSetStatement FromMutable(ScriptDom.AlterTableSetStatement fragment) {
             return (AlterTableSetStatement)TSqlFragment.FromMutable(fragment);

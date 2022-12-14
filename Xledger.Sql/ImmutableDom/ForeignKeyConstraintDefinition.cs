@@ -23,9 +23,9 @@ namespace Xledger.Sql.ImmutableDom {
         public bool NotForReplication => notForReplication;
     
         public ForeignKeyConstraintDefinition(IReadOnlyList<Identifier> columns = null, SchemaObjectName referenceTableName = null, IReadOnlyList<Identifier> referencedTableColumns = null, ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified, ScriptDom.DeleteUpdateAction updateAction = ScriptDom.DeleteUpdateAction.NotSpecified, bool notForReplication = false, Identifier constraintIdentifier = null) {
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.referenceTableName = referenceTableName;
-            this.referencedTableColumns = referencedTableColumns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(referencedTableColumns);
+            this.referencedTableColumns = ImmList<Identifier>.FromList(referencedTableColumns);
             this.deleteAction = deleteAction;
             this.updateAction = updateAction;
             this.notForReplication = notForReplication;
@@ -101,6 +101,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ForeignKeyConstraintDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.referenceTableName, othr.referenceTableName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.referencedTableColumns, othr.referencedTableColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.deleteAction, othr.deleteAction);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.updateAction, othr.updateAction);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.notForReplication, othr.notForReplication);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintIdentifier, othr.constraintIdentifier);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ForeignKeyConstraintDefinition FromMutable(ScriptDom.ForeignKeyConstraintDefinition fragment) {
             return (ForeignKeyConstraintDefinition)TSqlFragment.FromMutable(fragment);

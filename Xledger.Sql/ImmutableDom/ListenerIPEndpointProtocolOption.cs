@@ -88,6 +88,28 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ListenerIPEndpointProtocolOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isAll, othr.isAll);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.iPv6, othr.iPv6);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.iPv4PartOne, othr.iPv4PartOne);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.iPv4PartTwo, othr.iPv4PartTwo);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static ListenerIPEndpointProtocolOption FromMutable(ScriptDom.ListenerIPEndpointProtocolOption fragment) {
             return (ListenerIPEndpointProtocolOption)TSqlFragment.FromMutable(fragment);
         }

@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ProviderEncryptionSource(Identifier name = null, IReadOnlyList<KeyOption> keyOptions = null) {
             this.name = name;
-            this.keyOptions = keyOptions is null ? ImmList<KeyOption>.Empty : ImmList<KeyOption>.FromList(keyOptions);
+            this.keyOptions = ImmList<KeyOption>.FromList(keyOptions);
         }
     
         public ScriptDom.ProviderEncryptionSource ToMutableConcrete() {
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ProviderEncryptionSource left, ProviderEncryptionSource right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ProviderEncryptionSource)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.keyOptions, othr.keyOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ProviderEncryptionSource FromMutable(ScriptDom.ProviderEncryptionSource fragment) {
             return (ProviderEncryptionSource)TSqlFragment.FromMutable(fragment);

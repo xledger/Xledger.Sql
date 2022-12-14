@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AtomicBlockOption> Options => options;
     
         public BeginEndAtomicBlockStatement(IReadOnlyList<AtomicBlockOption> options = null, StatementList statementList = null) {
-            this.options = options is null ? ImmList<AtomicBlockOption>.Empty : ImmList<AtomicBlockOption>.FromList(options);
+            this.options = ImmList<AtomicBlockOption>.FromList(options);
             this.statementList = statementList;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(BeginEndAtomicBlockStatement left, BeginEndAtomicBlockStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (BeginEndAtomicBlockStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.statementList, othr.statementList);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static BeginEndAtomicBlockStatement FromMutable(ScriptDom.BeginEndAtomicBlockStatement fragment) {
             return (BeginEndAtomicBlockStatement)TSqlFragment.FromMutable(fragment);

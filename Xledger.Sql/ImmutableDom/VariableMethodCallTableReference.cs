@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
         public VariableMethodCallTableReference(VariableReference variable = null, Identifier methodName = null, IReadOnlyList<ScalarExpression> parameters = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
             this.variable = variable;
             this.methodName = methodName;
-            this.parameters = parameters is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(parameters);
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -91,6 +91,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(VariableMethodCallTableReference left, VariableMethodCallTableReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (VariableMethodCallTableReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.methodName, othr.methodName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static VariableMethodCallTableReference FromMutable(ScriptDom.VariableMethodCallTableReference fragment) {
             return (VariableMethodCallTableReference)TSqlFragment.FromMutable(fragment);

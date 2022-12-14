@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public SchemaObjectNameSnippet(string script = null, IReadOnlyList<Identifier> identifiers = null) {
             this.script = script;
-            this.identifiers = identifiers is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(identifiers);
+            this.identifiers = ImmList<Identifier>.FromList(identifiers);
         }
     
         public ScriptDom.SchemaObjectNameSnippet ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SchemaObjectNameSnippet left, SchemaObjectNameSnippet right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SchemaObjectNameSnippet)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.script, othr.script);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.identifiers, othr.identifiers);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SchemaObjectNameSnippet FromMutable(ScriptDom.SchemaObjectNameSnippet fragment) {
             return (SchemaObjectNameSnippet)TSqlFragment.FromMutable(fragment);

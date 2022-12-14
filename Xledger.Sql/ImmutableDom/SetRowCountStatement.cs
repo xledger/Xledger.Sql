@@ -54,6 +54,20 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SetRowCountStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.numberRows, othr.numberRows);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static SetRowCountStatement FromMutable(ScriptDom.SetRowCountStatement fragment) {
             return (SetRowCountStatement)TSqlFragment.FromMutable(fragment);
         }

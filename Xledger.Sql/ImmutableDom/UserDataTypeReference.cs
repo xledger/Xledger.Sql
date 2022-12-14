@@ -9,7 +9,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 namespace Xledger.Sql.ImmutableDom {
     public class UserDataTypeReference : ParameterizedDataTypeReference, IEquatable<UserDataTypeReference> {
         public UserDataTypeReference(IReadOnlyList<Literal> parameters = null, SchemaObjectName name = null) {
-            this.parameters = parameters is null ? ImmList<Literal>.Empty : ImmList<Literal>.FromList(parameters);
+            this.parameters = ImmList<Literal>.FromList(parameters);
             this.name = name;
         }
     
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(UserDataTypeReference left, UserDataTypeReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (UserDataTypeReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static UserDataTypeReference FromMutable(ScriptDom.UserDataTypeReference fragment) {
             return (UserDataTypeReference)TSqlFragment.FromMutable(fragment);

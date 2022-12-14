@@ -18,9 +18,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ChangeTableVersionTableReference(SchemaObjectName target = null, IReadOnlyList<Identifier> primaryKeyColumns = null, IReadOnlyList<ScalarExpression> primaryKeyValues = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
             this.target = target;
-            this.primaryKeyColumns = primaryKeyColumns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(primaryKeyColumns);
-            this.primaryKeyValues = primaryKeyValues is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(primaryKeyValues);
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.primaryKeyColumns = ImmList<Identifier>.FromList(primaryKeyColumns);
+            this.primaryKeyValues = ImmList<ScalarExpression>.FromList(primaryKeyValues);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -89,6 +89,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ChangeTableVersionTableReference left, ChangeTableVersionTableReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ChangeTableVersionTableReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.target, othr.target);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.primaryKeyColumns, othr.primaryKeyColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.primaryKeyValues, othr.primaryKeyValues);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ChangeTableVersionTableReference FromMutable(ScriptDom.ChangeTableVersionTableReference fragment) {
             return (ChangeTableVersionTableReference)TSqlFragment.FromMutable(fragment);

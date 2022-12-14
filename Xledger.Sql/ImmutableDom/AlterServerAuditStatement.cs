@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.removeWhere = removeWhere;
             this.auditName = auditName;
             this.auditTarget = auditTarget;
-            this.options = options is null ? ImmList<AuditOption>.Empty : ImmList<AuditOption>.FromList(options);
+            this.options = ImmList<AuditOption>.FromList(options);
             this.predicateExpression = predicateExpression;
         }
     
@@ -91,6 +91,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterServerAuditStatement left, AlterServerAuditStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterServerAuditStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.newName, othr.newName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.removeWhere, othr.removeWhere);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.auditName, othr.auditName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.auditTarget, othr.auditTarget);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.predicateExpression, othr.predicateExpression);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterServerAuditStatement FromMutable(ScriptDom.AlterServerAuditStatement fragment) {
             return (AlterServerAuditStatement)TSqlFragment.FromMutable(fragment);

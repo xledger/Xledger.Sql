@@ -11,7 +11,7 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterServiceStatement(Identifier name = null, SchemaObjectName queueName = null, IReadOnlyList<ServiceContract> serviceContracts = null) {
             this.name = name;
             this.queueName = queueName;
-            this.serviceContracts = serviceContracts is null ? ImmList<ServiceContract>.Empty : ImmList<ServiceContract>.FromList(serviceContracts);
+            this.serviceContracts = ImmList<ServiceContract>.FromList(serviceContracts);
         }
     
         public ScriptDom.AlterServiceStatement ToMutableConcrete() {
@@ -63,6 +63,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterServiceStatement left, AlterServiceStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterServiceStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queueName, othr.queueName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.serviceContracts, othr.serviceContracts);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterServiceStatement FromMutable(ScriptDom.AlterServiceStatement fragment) {
             return (AlterServiceStatement)TSqlFragment.FromMutable(fragment);

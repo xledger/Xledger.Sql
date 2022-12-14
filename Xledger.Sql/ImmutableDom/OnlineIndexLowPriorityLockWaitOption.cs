@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<LowPriorityLockWaitOption> Options => options;
     
         public OnlineIndexLowPriorityLockWaitOption(IReadOnlyList<LowPriorityLockWaitOption> options = null) {
-            this.options = options is null ? ImmList<LowPriorityLockWaitOption>.Empty : ImmList<LowPriorityLockWaitOption>.FromList(options);
+            this.options = ImmList<LowPriorityLockWaitOption>.FromList(options);
         }
     
         public ScriptDom.OnlineIndexLowPriorityLockWaitOption ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OnlineIndexLowPriorityLockWaitOption left, OnlineIndexLowPriorityLockWaitOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OnlineIndexLowPriorityLockWaitOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OnlineIndexLowPriorityLockWaitOption FromMutable(ScriptDom.OnlineIndexLowPriorityLockWaitOption fragment) {
             return (OnlineIndexLowPriorityLockWaitOption)TSqlFragment.FromMutable(fragment);

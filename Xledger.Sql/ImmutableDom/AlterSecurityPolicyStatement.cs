@@ -11,8 +11,8 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterSecurityPolicyStatement(SchemaObjectName name = null, bool notForReplication = false, IReadOnlyList<SecurityPolicyOption> securityPolicyOptions = null, IReadOnlyList<SecurityPredicateAction> securityPredicateActions = null, ScriptDom.SecurityPolicyActionType actionType = ScriptDom.SecurityPolicyActionType.Create) {
             this.name = name;
             this.notForReplication = notForReplication;
-            this.securityPolicyOptions = securityPolicyOptions is null ? ImmList<SecurityPolicyOption>.Empty : ImmList<SecurityPolicyOption>.FromList(securityPolicyOptions);
-            this.securityPredicateActions = securityPredicateActions is null ? ImmList<SecurityPredicateAction>.Empty : ImmList<SecurityPredicateAction>.FromList(securityPredicateActions);
+            this.securityPolicyOptions = ImmList<SecurityPolicyOption>.FromList(securityPolicyOptions);
+            this.securityPredicateActions = ImmList<SecurityPredicateAction>.FromList(securityPredicateActions);
             this.actionType = actionType;
         }
     
@@ -73,6 +73,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterSecurityPolicyStatement left, AlterSecurityPolicyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterSecurityPolicyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.notForReplication, othr.notForReplication);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.securityPolicyOptions, othr.securityPolicyOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.securityPredicateActions, othr.securityPredicateActions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.actionType, othr.actionType);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterSecurityPolicyStatement FromMutable(ScriptDom.AlterSecurityPolicyStatement fragment) {
             return (AlterSecurityPolicyStatement)TSqlFragment.FromMutable(fragment);

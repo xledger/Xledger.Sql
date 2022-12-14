@@ -17,8 +17,8 @@ namespace Xledger.Sql.ImmutableDom {
         public SecurityTargetObject TargetObject => targetObject;
     
         public AuditActionSpecification(IReadOnlyList<DatabaseAuditAction> actions = null, IReadOnlyList<SecurityPrincipal> principals = null, SecurityTargetObject targetObject = null) {
-            this.actions = actions is null ? ImmList<DatabaseAuditAction>.Empty : ImmList<DatabaseAuditAction>.FromList(actions);
-            this.principals = principals is null ? ImmList<SecurityPrincipal>.Empty : ImmList<SecurityPrincipal>.FromList(principals);
+            this.actions = ImmList<DatabaseAuditAction>.FromList(actions);
+            this.principals = ImmList<SecurityPrincipal>.FromList(principals);
             this.targetObject = targetObject;
         }
     
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AuditActionSpecification left, AuditActionSpecification right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AuditActionSpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.actions, othr.actions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.principals, othr.principals);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.targetObject, othr.targetObject);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AuditActionSpecification FromMutable(ScriptDom.AuditActionSpecification fragment) {
             return (AuditActionSpecification)TSqlFragment.FromMutable(fragment);

@@ -17,11 +17,11 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Owner => owner;
     
         public CreateSymmetricKeyStatement(IReadOnlyList<KeyOption> keyOptions = null, Identifier provider = null, Identifier owner = null, Identifier name = null, IReadOnlyList<CryptoMechanism> encryptingMechanisms = null) {
-            this.keyOptions = keyOptions is null ? ImmList<KeyOption>.Empty : ImmList<KeyOption>.FromList(keyOptions);
+            this.keyOptions = ImmList<KeyOption>.FromList(keyOptions);
             this.provider = provider;
             this.owner = owner;
             this.name = name;
-            this.encryptingMechanisms = encryptingMechanisms is null ? ImmList<CryptoMechanism>.Empty : ImmList<CryptoMechanism>.FromList(encryptingMechanisms);
+            this.encryptingMechanisms = ImmList<CryptoMechanism>.FromList(encryptingMechanisms);
         }
     
         public ScriptDom.CreateSymmetricKeyStatement ToMutableConcrete() {
@@ -85,6 +85,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateSymmetricKeyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.keyOptions, othr.keyOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.provider, othr.provider);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptingMechanisms, othr.encryptingMechanisms);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateSymmetricKeyStatement FromMutable(ScriptDom.CreateSymmetricKeyStatement fragment) {
             return (CreateSymmetricKeyStatement)TSqlFragment.FromMutable(fragment);

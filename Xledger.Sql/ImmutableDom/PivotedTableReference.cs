@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public PivotedTableReference(TableReference tableReference = null, IReadOnlyList<Identifier> inColumns = null, ColumnReferenceExpression pivotColumn = null, IReadOnlyList<ColumnReferenceExpression> valueColumns = null, MultiPartIdentifier aggregateFunctionIdentifier = null, Identifier alias = null, bool forPath = false) {
             this.tableReference = tableReference;
-            this.inColumns = inColumns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(inColumns);
+            this.inColumns = ImmList<Identifier>.FromList(inColumns);
             this.pivotColumn = pivotColumn;
-            this.valueColumns = valueColumns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(valueColumns);
+            this.valueColumns = ImmList<ColumnReferenceExpression>.FromList(valueColumns);
             this.aggregateFunctionIdentifier = aggregateFunctionIdentifier;
             this.alias = alias;
             this.forPath = forPath;
@@ -103,6 +103,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(PivotedTableReference left, PivotedTableReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (PivotedTableReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableReference, othr.tableReference);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.inColumns, othr.inColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.pivotColumn, othr.pivotColumn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.valueColumns, othr.valueColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.aggregateFunctionIdentifier, othr.aggregateFunctionIdentifier);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static PivotedTableReference FromMutable(ScriptDom.PivotedTableReference fragment) {
             return (PivotedTableReference)TSqlFragment.FromMutable(fragment);

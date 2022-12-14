@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SelectElement> SelectColumns => selectColumns;
     
         public OutputClause(IReadOnlyList<SelectElement> selectColumns = null) {
-            this.selectColumns = selectColumns is null ? ImmList<SelectElement>.Empty : ImmList<SelectElement>.FromList(selectColumns);
+            this.selectColumns = ImmList<SelectElement>.FromList(selectColumns);
         }
     
         public ScriptDom.OutputClause ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OutputClause left, OutputClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OutputClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.selectColumns, othr.selectColumns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OutputClause FromMutable(ScriptDom.OutputClause fragment) {
             return (OutputClause)TSqlFragment.FromMutable(fragment);

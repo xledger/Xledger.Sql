@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public RemoteDataArchiveDatabaseOption(ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet, IReadOnlyList<RemoteDataArchiveDatabaseSetting> settings = null, ScriptDom.DatabaseOptionKind optionKind = ScriptDom.DatabaseOptionKind.Online) {
             this.optionState = optionState;
-            this.settings = settings is null ? ImmList<RemoteDataArchiveDatabaseSetting>.Empty : ImmList<RemoteDataArchiveDatabaseSetting>.FromList(settings);
+            this.settings = ImmList<RemoteDataArchiveDatabaseSetting>.FromList(settings);
             this.optionKind = optionKind;
         }
     
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(RemoteDataArchiveDatabaseOption left, RemoteDataArchiveDatabaseOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (RemoteDataArchiveDatabaseOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionState, othr.optionState);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.settings, othr.settings);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static RemoteDataArchiveDatabaseOption FromMutable(ScriptDom.RemoteDataArchiveDatabaseOption fragment) {
             return (RemoteDataArchiveDatabaseOption)TSqlFragment.FromMutable(fragment);

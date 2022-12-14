@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateExternalLanguageStatement(Identifier owner = null, Identifier name = null, IReadOnlyList<ExternalLanguageFileOption> externalLanguageFiles = null) {
             this.owner = owner;
             this.name = name;
-            this.externalLanguageFiles = externalLanguageFiles is null ? ImmList<ExternalLanguageFileOption>.Empty : ImmList<ExternalLanguageFileOption>.FromList(externalLanguageFiles);
+            this.externalLanguageFiles = ImmList<ExternalLanguageFileOption>.FromList(externalLanguageFiles);
         }
     
         public ScriptDom.CreateExternalLanguageStatement ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateExternalLanguageStatement left, CreateExternalLanguageStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateExternalLanguageStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.externalLanguageFiles, othr.externalLanguageFiles);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateExternalLanguageStatement FromMutable(ScriptDom.CreateExternalLanguageStatement fragment) {
             return (CreateExternalLanguageStatement)TSqlFragment.FromMutable(fragment);

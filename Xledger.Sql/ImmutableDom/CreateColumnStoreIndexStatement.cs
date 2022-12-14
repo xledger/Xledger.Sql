@@ -30,11 +30,11 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.clustered = clustered;
             this.onName = onName;
-            this.columns = columns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
             this.filterPredicate = filterPredicate;
-            this.indexOptions = indexOptions is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
-            this.orderedColumns = orderedColumns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(orderedColumns);
+            this.orderedColumns = ImmList<ColumnReferenceExpression>.FromList(orderedColumns);
         }
     
         public ScriptDom.CreateColumnStoreIndexStatement ToMutableConcrete() {
@@ -115,6 +115,34 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateColumnStoreIndexStatement left, CreateColumnStoreIndexStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateColumnStoreIndexStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.clustered, othr.clustered);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.filterPredicate, othr.filterPredicate);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.orderedColumns, othr.orderedColumns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateColumnStoreIndexStatement FromMutable(ScriptDom.CreateColumnStoreIndexStatement fragment) {
             return (CreateColumnStoreIndexStatement)TSqlFragment.FromMutable(fragment);

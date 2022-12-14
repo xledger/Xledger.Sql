@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseAuditSpecificationStatement : AuditSpecificationStatement, IEquatable<AlterDatabaseAuditSpecificationStatement> {
         public AlterDatabaseAuditSpecificationStatement(ScriptDom.OptionState auditState = ScriptDom.OptionState.NotSet, IReadOnlyList<AuditSpecificationPart> parts = null, Identifier specificationName = null, Identifier auditName = null) {
             this.auditState = auditState;
-            this.parts = parts is null ? ImmList<AuditSpecificationPart>.Empty : ImmList<AuditSpecificationPart>.FromList(parts);
+            this.parts = ImmList<AuditSpecificationPart>.FromList(parts);
             this.specificationName = specificationName;
             this.auditName = auditName;
         }
@@ -69,6 +69,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterDatabaseAuditSpecificationStatement left, AlterDatabaseAuditSpecificationStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterDatabaseAuditSpecificationStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.auditState, othr.auditState);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parts, othr.parts);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.specificationName, othr.specificationName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.auditName, othr.auditName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterDatabaseAuditSpecificationStatement FromMutable(ScriptDom.AlterDatabaseAuditSpecificationStatement fragment) {
             return (AlterDatabaseAuditSpecificationStatement)TSqlFragment.FromMutable(fragment);

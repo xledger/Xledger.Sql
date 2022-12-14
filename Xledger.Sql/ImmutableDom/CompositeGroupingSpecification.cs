@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<GroupingSpecification> Items => items;
     
         public CompositeGroupingSpecification(IReadOnlyList<GroupingSpecification> items = null) {
-            this.items = items is null ? ImmList<GroupingSpecification>.Empty : ImmList<GroupingSpecification>.FromList(items);
+            this.items = ImmList<GroupingSpecification>.FromList(items);
         }
     
         public ScriptDom.CompositeGroupingSpecification ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CompositeGroupingSpecification left, CompositeGroupingSpecification right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CompositeGroupingSpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.items, othr.items);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CompositeGroupingSpecification FromMutable(ScriptDom.CompositeGroupingSpecification fragment) {
             return (CompositeGroupingSpecification)TSqlFragment.FromMutable(fragment);

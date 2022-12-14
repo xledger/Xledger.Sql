@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DeleteUpdateAction DeleteAction => deleteAction;
     
         public GraphConnectionConstraintDefinition(IReadOnlyList<GraphConnectionBetweenNodes> fromNodeToNodeList = null, ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified, Identifier constraintIdentifier = null) {
-            this.fromNodeToNodeList = fromNodeToNodeList is null ? ImmList<GraphConnectionBetweenNodes>.Empty : ImmList<GraphConnectionBetweenNodes>.FromList(fromNodeToNodeList);
+            this.fromNodeToNodeList = ImmList<GraphConnectionBetweenNodes>.FromList(fromNodeToNodeList);
             this.deleteAction = deleteAction;
             this.constraintIdentifier = constraintIdentifier;
         }
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(GraphConnectionConstraintDefinition left, GraphConnectionConstraintDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (GraphConnectionConstraintDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fromNodeToNodeList, othr.fromNodeToNodeList);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.deleteAction, othr.deleteAction);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintIdentifier, othr.constraintIdentifier);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static GraphConnectionConstraintDefinition FromMutable(ScriptDom.GraphConnectionConstraintDefinition fragment) {
             return (GraphConnectionConstraintDefinition)TSqlFragment.FromMutable(fragment);

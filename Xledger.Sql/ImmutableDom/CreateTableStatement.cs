@@ -43,9 +43,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
             this.federationScheme = federationScheme;
             this.textImageOn = textImageOn;
-            this.options = options is null ? ImmList<TableOption>.Empty : ImmList<TableOption>.FromList(options);
+            this.options = ImmList<TableOption>.FromList(options);
             this.selectStatement = selectStatement;
-            this.ctasColumns = ctasColumns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(ctasColumns);
+            this.ctasColumns = ImmList<Identifier>.FromList(ctasColumns);
             this.fileStreamOn = fileStreamOn;
         }
     
@@ -153,6 +153,42 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateTableStatement left, CreateTableStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateTableStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.asEdge, othr.asEdge);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.asFileTable, othr.asFileTable);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.asNode, othr.asNode);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.definition, othr.definition);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.federationScheme, othr.federationScheme);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.textImageOn, othr.textImageOn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.selectStatement, othr.selectStatement);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.ctasColumns, othr.ctasColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileStreamOn, othr.fileStreamOn);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateTableStatement FromMutable(ScriptDom.CreateTableStatement fragment) {
             return (CreateTableStatement)TSqlFragment.FromMutable(fragment);

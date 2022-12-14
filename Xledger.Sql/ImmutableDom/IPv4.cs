@@ -84,6 +84,26 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (IPv4)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.octetOne, othr.octetOne);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.octetTwo, othr.octetTwo);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.octetThree, othr.octetThree);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.octetFour, othr.octetFour);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static IPv4 FromMutable(ScriptDom.IPv4 fragment) {
             return (IPv4)TSqlFragment.FromMutable(fragment);
         }

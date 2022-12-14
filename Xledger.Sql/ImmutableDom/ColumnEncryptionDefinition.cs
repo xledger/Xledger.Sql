@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ColumnEncryptionDefinitionParameter> Parameters => parameters;
     
         public ColumnEncryptionDefinition(IReadOnlyList<ColumnEncryptionDefinitionParameter> parameters = null) {
-            this.parameters = parameters is null ? ImmList<ColumnEncryptionDefinitionParameter>.Empty : ImmList<ColumnEncryptionDefinitionParameter>.FromList(parameters);
+            this.parameters = ImmList<ColumnEncryptionDefinitionParameter>.FromList(parameters);
         }
     
         public ScriptDom.ColumnEncryptionDefinition ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ColumnEncryptionDefinition left, ColumnEncryptionDefinition right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ColumnEncryptionDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ColumnEncryptionDefinition FromMutable(ScriptDom.ColumnEncryptionDefinition fragment) {
             return (ColumnEncryptionDefinition)TSqlFragment.FromMutable(fragment);

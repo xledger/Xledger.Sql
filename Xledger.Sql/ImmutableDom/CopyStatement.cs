@@ -19,10 +19,10 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<OptimizerHint> OptimizerHints => optimizerHints;
     
         public CopyStatement(IReadOnlyList<StringLiteral> from = null, SchemaObjectName into = null, IReadOnlyList<CopyOption> options = null, IReadOnlyList<OptimizerHint> optimizerHints = null) {
-            this.from = from is null ? ImmList<StringLiteral>.Empty : ImmList<StringLiteral>.FromList(from);
+            this.from = ImmList<StringLiteral>.FromList(from);
             this.into = into;
-            this.options = options is null ? ImmList<CopyOption>.Empty : ImmList<CopyOption>.FromList(options);
-            this.optimizerHints = optimizerHints is null ? ImmList<OptimizerHint>.Empty : ImmList<OptimizerHint>.FromList(optimizerHints);
+            this.options = ImmList<CopyOption>.FromList(options);
+            this.optimizerHints = ImmList<OptimizerHint>.FromList(optimizerHints);
         }
     
         public ScriptDom.CopyStatement ToMutableConcrete() {
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CopyStatement left, CopyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CopyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.from, othr.from);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.into, othr.into);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optimizerHints, othr.optimizerHints);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CopyStatement FromMutable(ScriptDom.CopyStatement fragment) {
             return (CopyStatement)TSqlFragment.FromMutable(fragment);

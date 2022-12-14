@@ -10,9 +10,9 @@ namespace Xledger.Sql.ImmutableDom {
     public class BackupTransactionLogStatement : BackupStatement, IEquatable<BackupTransactionLogStatement> {
         public BackupTransactionLogStatement(IdentifierOrValueExpression databaseName = null, IReadOnlyList<BackupOption> options = null, IReadOnlyList<MirrorToClause> mirrorToClauses = null, IReadOnlyList<DeviceInfo> devices = null) {
             this.databaseName = databaseName;
-            this.options = options is null ? ImmList<BackupOption>.Empty : ImmList<BackupOption>.FromList(options);
-            this.mirrorToClauses = mirrorToClauses is null ? ImmList<MirrorToClause>.Empty : ImmList<MirrorToClause>.FromList(mirrorToClauses);
-            this.devices = devices is null ? ImmList<DeviceInfo>.Empty : ImmList<DeviceInfo>.FromList(devices);
+            this.options = ImmList<BackupOption>.FromList(options);
+            this.mirrorToClauses = ImmList<MirrorToClause>.FromList(mirrorToClauses);
+            this.devices = ImmList<DeviceInfo>.FromList(devices);
         }
     
         public ScriptDom.BackupTransactionLogStatement ToMutableConcrete() {
@@ -67,6 +67,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(BackupTransactionLogStatement left, BackupTransactionLogStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (BackupTransactionLogStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.mirrorToClauses, othr.mirrorToClauses);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.devices, othr.devices);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static BackupTransactionLogStatement FromMutable(ScriptDom.BackupTransactionLogStatement fragment) {
             return (BackupTransactionLogStatement)TSqlFragment.FromMutable(fragment);

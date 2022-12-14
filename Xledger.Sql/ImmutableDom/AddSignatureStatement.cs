@@ -12,7 +12,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.isCounter = isCounter;
             this.elementKind = elementKind;
             this.element = element;
-            this.cryptos = cryptos is null ? ImmList<CryptoMechanism>.Empty : ImmList<CryptoMechanism>.FromList(cryptos);
+            this.cryptos = ImmList<CryptoMechanism>.FromList(cryptos);
         }
     
         public ScriptDom.AddSignatureStatement ToMutableConcrete() {
@@ -67,6 +67,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AddSignatureStatement left, AddSignatureStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AddSignatureStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isCounter, othr.isCounter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.elementKind, othr.elementKind);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.element, othr.element);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.cryptos, othr.cryptos);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AddSignatureStatement FromMutable(ScriptDom.AddSignatureStatement fragment) {
             return (AddSignatureStatement)TSqlFragment.FromMutable(fragment);

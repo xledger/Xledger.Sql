@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ResourcePoolStatement(Identifier name = null, IReadOnlyList<ResourcePoolParameter> resourcePoolParameters = null) {
             this.name = name;
-            this.resourcePoolParameters = resourcePoolParameters is null ? ImmList<ResourcePoolParameter>.Empty : ImmList<ResourcePoolParameter>.FromList(resourcePoolParameters);
+            this.resourcePoolParameters = ImmList<ResourcePoolParameter>.FromList(resourcePoolParameters);
         }
     
         public ScriptDom.ResourcePoolStatement ToMutableConcrete() {
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ResourcePoolStatement left, ResourcePoolStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ResourcePoolStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.resourcePoolParameters, othr.resourcePoolParameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ResourcePoolStatement FromMutable(ScriptDom.ResourcePoolStatement fragment) {
             return (ResourcePoolStatement)TSqlFragment.FromMutable(fragment);

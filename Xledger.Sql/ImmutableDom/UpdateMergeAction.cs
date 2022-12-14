@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SetClause> SetClauses => setClauses;
     
         public UpdateMergeAction(IReadOnlyList<SetClause> setClauses = null) {
-            this.setClauses = setClauses is null ? ImmList<SetClause>.Empty : ImmList<SetClause>.FromList(setClauses);
+            this.setClauses = ImmList<SetClause>.FromList(setClauses);
         }
     
         public ScriptDom.UpdateMergeAction ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(UpdateMergeAction left, UpdateMergeAction right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (UpdateMergeAction)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.setClauses, othr.setClauses);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static UpdateMergeAction FromMutable(ScriptDom.UpdateMergeAction fragment) {
             return (UpdateMergeAction)TSqlFragment.FromMutable(fragment);

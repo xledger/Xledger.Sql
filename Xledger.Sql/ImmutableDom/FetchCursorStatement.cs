@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public FetchCursorStatement(FetchType fetchType = null, IReadOnlyList<VariableReference> intoVariables = null, CursorId cursor = null) {
             this.fetchType = fetchType;
-            this.intoVariables = intoVariables is null ? ImmList<VariableReference>.Empty : ImmList<VariableReference>.FromList(intoVariables);
+            this.intoVariables = ImmList<VariableReference>.FromList(intoVariables);
             this.cursor = cursor;
         }
     
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(FetchCursorStatement left, FetchCursorStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (FetchCursorStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fetchType, othr.fetchType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.intoVariables, othr.intoVariables);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.cursor, othr.cursor);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static FetchCursorStatement FromMutable(ScriptDom.FetchCursorStatement fragment) {
             return (FetchCursorStatement)TSqlFragment.FromMutable(fragment);

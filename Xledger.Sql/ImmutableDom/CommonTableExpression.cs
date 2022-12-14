@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CommonTableExpression(Identifier expressionName = null, IReadOnlyList<Identifier> columns = null, QueryExpression queryExpression = null) {
             this.expressionName = expressionName;
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.queryExpression = queryExpression;
         }
     
@@ -71,6 +71,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CommonTableExpression left, CommonTableExpression right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CommonTableExpression)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.expressionName, othr.expressionName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queryExpression, othr.queryExpression);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CommonTableExpression FromMutable(ScriptDom.CommonTableExpression fragment) {
             return (CommonTableExpression)TSqlFragment.FromMutable(fragment);

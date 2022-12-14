@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AlterDatabaseSetStatement(AlterDatabaseTermination termination = null, IReadOnlyList<DatabaseOption> options = null, Identifier databaseName = null, bool useCurrent = false) {
             this.termination = termination;
-            this.options = options is null ? ImmList<DatabaseOption>.Empty : ImmList<DatabaseOption>.FromList(options);
+            this.options = ImmList<DatabaseOption>.FromList(options);
             this.databaseName = databaseName;
             this.useCurrent = useCurrent;
         }
@@ -75,6 +75,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterDatabaseSetStatement left, AlterDatabaseSetStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterDatabaseSetStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.termination, othr.termination);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.useCurrent, othr.useCurrent);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterDatabaseSetStatement FromMutable(ScriptDom.AlterDatabaseSetStatement fragment) {
             return (AlterDatabaseSetStatement)TSqlFragment.FromMutable(fragment);

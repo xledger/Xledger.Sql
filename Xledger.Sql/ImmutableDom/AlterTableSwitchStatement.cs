@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.sourcePartitionNumber = sourcePartitionNumber;
             this.targetPartitionNumber = targetPartitionNumber;
             this.targetTable = targetTable;
-            this.options = options is null ? ImmList<TableSwitchOption>.Empty : ImmList<TableSwitchOption>.FromList(options);
+            this.options = ImmList<TableSwitchOption>.FromList(options);
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -89,6 +89,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterTableSwitchStatement left, AlterTableSwitchStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterTableSwitchStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.sourcePartitionNumber, othr.sourcePartitionNumber);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.targetPartitionNumber, othr.targetPartitionNumber);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.targetTable, othr.targetTable);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterTableSwitchStatement FromMutable(ScriptDom.AlterTableSwitchStatement fragment) {
             return (AlterTableSwitchStatement)TSqlFragment.FromMutable(fragment);

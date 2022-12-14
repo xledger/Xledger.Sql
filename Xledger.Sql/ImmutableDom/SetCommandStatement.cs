@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SetCommand> Commands => commands;
     
         public SetCommandStatement(IReadOnlyList<SetCommand> commands = null) {
-            this.commands = commands is null ? ImmList<SetCommand>.Empty : ImmList<SetCommand>.FromList(commands);
+            this.commands = ImmList<SetCommand>.FromList(commands);
         }
     
         public ScriptDom.SetCommandStatement ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SetCommandStatement left, SetCommandStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SetCommandStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.commands, othr.commands);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SetCommandStatement FromMutable(ScriptDom.SetCommandStatement fragment) {
             return (SetCommandStatement)TSqlFragment.FromMutable(fragment);

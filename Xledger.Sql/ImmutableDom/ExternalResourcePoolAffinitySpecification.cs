@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.affinityType = affinityType;
             this.parameterValue = parameterValue;
             this.isAuto = isAuto;
-            this.poolAffinityRanges = poolAffinityRanges is null ? ImmList<LiteralRange>.Empty : ImmList<LiteralRange>.FromList(poolAffinityRanges);
+            this.poolAffinityRanges = ImmList<LiteralRange>.FromList(poolAffinityRanges);
         }
     
         public ScriptDom.ExternalResourcePoolAffinitySpecification ToMutableConcrete() {
@@ -77,6 +77,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ExternalResourcePoolAffinitySpecification left, ExternalResourcePoolAffinitySpecification right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ExternalResourcePoolAffinitySpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.affinityType, othr.affinityType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterValue, othr.parameterValue);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isAuto, othr.isAuto);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.poolAffinityRanges, othr.poolAffinityRanges);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ExternalResourcePoolAffinitySpecification FromMutable(ScriptDom.ExternalResourcePoolAffinitySpecification fragment) {
             return (ExternalResourcePoolAffinitySpecification)TSqlFragment.FromMutable(fragment);

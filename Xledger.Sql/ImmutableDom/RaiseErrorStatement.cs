@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.firstParameter = firstParameter;
             this.secondParameter = secondParameter;
             this.thirdParameter = thirdParameter;
-            this.optionalParameters = optionalParameters is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(optionalParameters);
+            this.optionalParameters = ImmList<ScalarExpression>.FromList(optionalParameters);
             this.raiseErrorOptions = raiseErrorOptions;
         }
     
@@ -89,6 +89,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(RaiseErrorStatement left, RaiseErrorStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (RaiseErrorStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.firstParameter, othr.firstParameter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.secondParameter, othr.secondParameter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.thirdParameter, othr.thirdParameter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionalParameters, othr.optionalParameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.raiseErrorOptions, othr.raiseErrorOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static RaiseErrorStatement FromMutable(ScriptDom.RaiseErrorStatement fragment) {
             return (RaiseErrorStatement)TSqlFragment.FromMutable(fragment);

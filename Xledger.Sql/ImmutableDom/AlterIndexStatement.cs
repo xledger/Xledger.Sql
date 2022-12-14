@@ -24,11 +24,11 @@ namespace Xledger.Sql.ImmutableDom {
             this.all = all;
             this.alterIndexType = alterIndexType;
             this.partition = partition;
-            this.promotedPaths = promotedPaths is null ? ImmList<SelectiveXmlIndexPromotedPath>.Empty : ImmList<SelectiveXmlIndexPromotedPath>.FromList(promotedPaths);
+            this.promotedPaths = ImmList<SelectiveXmlIndexPromotedPath>.FromList(promotedPaths);
             this.xmlNamespaces = xmlNamespaces;
             this.name = name;
             this.onName = onName;
-            this.indexOptions = indexOptions is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
         }
     
         public ScriptDom.AlterIndexStatement ToMutableConcrete() {
@@ -109,6 +109,34 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterIndexStatement left, AlterIndexStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterIndexStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alterIndexType, othr.alterIndexType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partition, othr.partition);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.promotedPaths, othr.promotedPaths);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlNamespaces, othr.xmlNamespaces);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterIndexStatement FromMutable(ScriptDom.AlterIndexStatement fragment) {
             return (AlterIndexStatement)TSqlFragment.FromMutable(fragment);

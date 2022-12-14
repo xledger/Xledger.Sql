@@ -17,10 +17,10 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<OpenRowsetColumnDefinition> WithColumns => withColumns;
     
         public BulkOpenRowset(IReadOnlyList<StringLiteral> dataFiles = null, IReadOnlyList<BulkInsertOption> options = null, IReadOnlyList<OpenRowsetColumnDefinition> withColumns = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
-            this.dataFiles = dataFiles is null ? ImmList<StringLiteral>.Empty : ImmList<StringLiteral>.FromList(dataFiles);
-            this.options = options is null ? ImmList<BulkInsertOption>.Empty : ImmList<BulkInsertOption>.FromList(options);
-            this.withColumns = withColumns is null ? ImmList<OpenRowsetColumnDefinition>.Empty : ImmList<OpenRowsetColumnDefinition>.FromList(withColumns);
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.dataFiles = ImmList<StringLiteral>.FromList(dataFiles);
+            this.options = ImmList<BulkInsertOption>.FromList(options);
+            this.withColumns = ImmList<OpenRowsetColumnDefinition>.FromList(withColumns);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -87,6 +87,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(BulkOpenRowset left, BulkOpenRowset right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (BulkOpenRowset)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dataFiles, othr.dataFiles);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withColumns, othr.withColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static BulkOpenRowset FromMutable(ScriptDom.BulkOpenRowset fragment) {
             return (BulkOpenRowset)TSqlFragment.FromMutable(fragment);

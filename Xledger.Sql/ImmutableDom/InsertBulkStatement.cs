@@ -13,9 +13,9 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<InsertBulkColumnDefinition> ColumnDefinitions => columnDefinitions;
     
         public InsertBulkStatement(IReadOnlyList<InsertBulkColumnDefinition> columnDefinitions = null, SchemaObjectName to = null, IReadOnlyList<BulkInsertOption> options = null) {
-            this.columnDefinitions = columnDefinitions is null ? ImmList<InsertBulkColumnDefinition>.Empty : ImmList<InsertBulkColumnDefinition>.FromList(columnDefinitions);
+            this.columnDefinitions = ImmList<InsertBulkColumnDefinition>.FromList(columnDefinitions);
             this.to = to;
-            this.options = options is null ? ImmList<BulkInsertOption>.Empty : ImmList<BulkInsertOption>.FromList(options);
+            this.options = ImmList<BulkInsertOption>.FromList(options);
         }
     
         public ScriptDom.InsertBulkStatement ToMutableConcrete() {
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(InsertBulkStatement left, InsertBulkStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (InsertBulkStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnDefinitions, othr.columnDefinitions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.to, othr.to);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static InsertBulkStatement FromMutable(ScriptDom.InsertBulkStatement fragment) {
             return (InsertBulkStatement)TSqlFragment.FromMutable(fragment);

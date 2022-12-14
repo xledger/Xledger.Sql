@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public WithCtesAndXmlNamespaces(XmlNamespaces xmlNamespaces = null, IReadOnlyList<CommonTableExpression> commonTableExpressions = null, ValueExpression changeTrackingContext = null) {
             this.xmlNamespaces = xmlNamespaces;
-            this.commonTableExpressions = commonTableExpressions is null ? ImmList<CommonTableExpression>.Empty : ImmList<CommonTableExpression>.FromList(commonTableExpressions);
+            this.commonTableExpressions = ImmList<CommonTableExpression>.FromList(commonTableExpressions);
             this.changeTrackingContext = changeTrackingContext;
         }
     
@@ -71,6 +71,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (WithCtesAndXmlNamespaces)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlNamespaces, othr.xmlNamespaces);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.commonTableExpressions, othr.commonTableExpressions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.changeTrackingContext, othr.changeTrackingContext);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static WithCtesAndXmlNamespaces FromMutable(ScriptDom.WithCtesAndXmlNamespaces fragment) {
             return (WithCtesAndXmlNamespaces)TSqlFragment.FromMutable(fragment);

@@ -15,9 +15,9 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<OpenRowsetColumnDefinition> WithColumns => withColumns;
     
         public OpenRowsetCosmos(IReadOnlyList<OpenRowsetCosmosOption> options = null, IReadOnlyList<OpenRowsetColumnDefinition> withColumns = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
-            this.options = options is null ? ImmList<OpenRowsetCosmosOption>.Empty : ImmList<OpenRowsetCosmosOption>.FromList(options);
-            this.withColumns = withColumns is null ? ImmList<OpenRowsetColumnDefinition>.Empty : ImmList<OpenRowsetColumnDefinition>.FromList(withColumns);
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.options = ImmList<OpenRowsetCosmosOption>.FromList(options);
+            this.withColumns = ImmList<OpenRowsetColumnDefinition>.FromList(withColumns);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -79,6 +79,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OpenRowsetCosmos left, OpenRowsetCosmos right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OpenRowsetCosmos)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withColumns, othr.withColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OpenRowsetCosmos FromMutable(ScriptDom.OpenRowsetCosmos fragment) {
             return (OpenRowsetCosmos)TSqlFragment.FromMutable(fragment);

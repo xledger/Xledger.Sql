@@ -11,9 +11,9 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateOrAlterFunctionStatement(SchemaObjectName name = null, FunctionReturnType returnType = null, IReadOnlyList<FunctionOption> options = null, OrderBulkInsertOption orderHint = null, IReadOnlyList<ProcedureParameter> parameters = null, StatementList statementList = null, MethodSpecifier methodSpecifier = null) {
             this.name = name;
             this.returnType = returnType;
-            this.options = options is null ? ImmList<FunctionOption>.Empty : ImmList<FunctionOption>.FromList(options);
+            this.options = ImmList<FunctionOption>.FromList(options);
             this.orderHint = orderHint;
-            this.parameters = parameters is null ? ImmList<ProcedureParameter>.Empty : ImmList<ProcedureParameter>.FromList(parameters);
+            this.parameters = ImmList<ProcedureParameter>.FromList(parameters);
             this.statementList = statementList;
             this.methodSpecifier = methodSpecifier;
         }
@@ -93,6 +93,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateOrAlterFunctionStatement left, CreateOrAlterFunctionStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateOrAlterFunctionStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.returnType, othr.returnType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.orderHint, othr.orderHint);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.statementList, othr.statementList);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.methodSpecifier, othr.methodSpecifier);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateOrAlterFunctionStatement FromMutable(ScriptDom.CreateOrAlterFunctionStatement fragment) {
             return (CreateOrAlterFunctionStatement)TSqlFragment.FromMutable(fragment);

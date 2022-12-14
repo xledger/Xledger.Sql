@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public DiskStatement(ScriptDom.DiskStatementType diskStatementType = ScriptDom.DiskStatementType.Init, IReadOnlyList<DiskStatementOption> options = null) {
             this.diskStatementType = diskStatementType;
-            this.options = options is null ? ImmList<DiskStatementOption>.Empty : ImmList<DiskStatementOption>.FromList(options);
+            this.options = ImmList<DiskStatementOption>.FromList(options);
         }
     
         public ScriptDom.DiskStatement ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DiskStatement left, DiskStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DiskStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.diskStatementType, othr.diskStatementType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DiskStatement FromMutable(ScriptDom.DiskStatement fragment) {
             return (DiskStatement)TSqlFragment.FromMutable(fragment);

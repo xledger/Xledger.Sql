@@ -37,7 +37,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.dataType = dataType;
             this.alterTableAlterColumnOption = alterTableAlterColumnOption;
             this.storageOptions = storageOptions;
-            this.options = options is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(options);
+            this.options = ImmList<IndexOption>.FromList(options);
             this.generatedAlways = generatedAlways;
             this.isHidden = isHidden;
             this.encryption = encryption;
@@ -151,6 +151,42 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterTableAlterColumnStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnIdentifier, othr.columnIdentifier);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dataType, othr.dataType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alterTableAlterColumnOption, othr.alterTableAlterColumnOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.storageOptions, othr.storageOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.generatedAlways, othr.generatedAlways);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isHidden, othr.isHidden);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.encryption, othr.encryption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isMasked, othr.isMasked);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.maskingFunction, othr.maskingFunction);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterTableAlterColumnStatement FromMutable(ScriptDom.AlterTableAlterColumnStatement fragment) {
             return (AlterTableAlterColumnStatement)TSqlFragment.FromMutable(fragment);

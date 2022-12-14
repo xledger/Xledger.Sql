@@ -31,9 +31,9 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateDatabaseStatement(Identifier databaseName = null, ContainmentDatabaseOption containment = null, IReadOnlyList<FileGroupDefinition> fileGroups = null, IReadOnlyList<FileDeclaration> logOn = null, IReadOnlyList<DatabaseOption> options = null, ScriptDom.AttachMode attachMode = ScriptDom.AttachMode.None, Identifier databaseSnapshot = null, MultiPartIdentifier copyOf = null, Identifier collation = null) {
             this.databaseName = databaseName;
             this.containment = containment;
-            this.fileGroups = fileGroups is null ? ImmList<FileGroupDefinition>.Empty : ImmList<FileGroupDefinition>.FromList(fileGroups);
-            this.logOn = logOn is null ? ImmList<FileDeclaration>.Empty : ImmList<FileDeclaration>.FromList(logOn);
-            this.options = options is null ? ImmList<DatabaseOption>.Empty : ImmList<DatabaseOption>.FromList(options);
+            this.fileGroups = ImmList<FileGroupDefinition>.FromList(fileGroups);
+            this.logOn = ImmList<FileDeclaration>.FromList(logOn);
+            this.options = ImmList<DatabaseOption>.FromList(options);
             this.attachMode = attachMode;
             this.databaseSnapshot = databaseSnapshot;
             this.copyOf = copyOf;
@@ -125,6 +125,36 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateDatabaseStatement left, CreateDatabaseStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateDatabaseStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.containment, othr.containment);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroups, othr.fileGroups);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.logOn, othr.logOn);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.attachMode, othr.attachMode);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseSnapshot, othr.databaseSnapshot);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.copyOf, othr.copyOf);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateDatabaseStatement FromMutable(ScriptDom.CreateDatabaseStatement fragment) {
             return (CreateDatabaseStatement)TSqlFragment.FromMutable(fragment);

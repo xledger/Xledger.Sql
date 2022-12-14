@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScalarExpression MessageBody => messageBody;
     
         public SendStatement(IReadOnlyList<ScalarExpression> conversationHandles = null, IdentifierOrValueExpression messageTypeName = null, ScalarExpression messageBody = null) {
-            this.conversationHandles = conversationHandles is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(conversationHandles);
+            this.conversationHandles = ImmList<ScalarExpression>.FromList(conversationHandles);
             this.messageTypeName = messageTypeName;
             this.messageBody = messageBody;
         }
@@ -71,6 +71,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(SendStatement left, SendStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (SendStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.conversationHandles, othr.conversationHandles);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.messageTypeName, othr.messageTypeName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.messageBody, othr.messageBody);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static SendStatement FromMutable(ScriptDom.SendStatement fragment) {
             return (SendStatement)TSqlFragment.FromMutable(fragment);

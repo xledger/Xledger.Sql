@@ -17,9 +17,9 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ColumnReferenceExpression> OrderedColumns => orderedColumns;
     
         public TableClusteredIndexType(IReadOnlyList<ColumnWithSortOrder> columns = null, bool columnStore = false, IReadOnlyList<ColumnReferenceExpression> orderedColumns = null) {
-            this.columns = columns is null ? ImmList<ColumnWithSortOrder>.Empty : ImmList<ColumnWithSortOrder>.FromList(columns);
+            this.columns = ImmList<ColumnWithSortOrder>.FromList(columns);
             this.columnStore = columnStore;
-            this.orderedColumns = orderedColumns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(orderedColumns);
+            this.orderedColumns = ImmList<ColumnReferenceExpression>.FromList(orderedColumns);
         }
     
         public ScriptDom.TableClusteredIndexType ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(TableClusteredIndexType left, TableClusteredIndexType right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (TableClusteredIndexType)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnStore, othr.columnStore);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.orderedColumns, othr.orderedColumns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static TableClusteredIndexType FromMutable(ScriptDom.TableClusteredIndexType fragment) {
             return (TableClusteredIndexType)TSqlFragment.FromMutable(fragment);

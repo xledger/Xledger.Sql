@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public bool WithNoPopulation => withNoPopulation;
     
         public AddAlterFullTextIndexAction(IReadOnlyList<FullTextIndexColumn> columns = null, bool withNoPopulation = false) {
-            this.columns = columns is null ? ImmList<FullTextIndexColumn>.Empty : ImmList<FullTextIndexColumn>.FromList(columns);
+            this.columns = ImmList<FullTextIndexColumn>.FromList(columns);
             this.withNoPopulation = withNoPopulation;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AddAlterFullTextIndexAction left, AddAlterFullTextIndexAction right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AddAlterFullTextIndexAction)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withNoPopulation, othr.withNoPopulation);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AddAlterFullTextIndexAction FromMutable(ScriptDom.AddAlterFullTextIndexAction fragment) {
             return (AddAlterFullTextIndexAction)TSqlFragment.FromMutable(fragment);

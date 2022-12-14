@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<GridParameter> GridParameters => gridParameters;
     
         public GridsSpatialIndexOption(IReadOnlyList<GridParameter> gridParameters = null) {
-            this.gridParameters = gridParameters is null ? ImmList<GridParameter>.Empty : ImmList<GridParameter>.FromList(gridParameters);
+            this.gridParameters = ImmList<GridParameter>.FromList(gridParameters);
         }
     
         public ScriptDom.GridsSpatialIndexOption ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(GridsSpatialIndexOption left, GridsSpatialIndexOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (GridsSpatialIndexOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.gridParameters, othr.gridParameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static GridsSpatialIndexOption FromMutable(ScriptDom.GridsSpatialIndexOption fragment) {
             return (GridsSpatialIndexOption)TSqlFragment.FromMutable(fragment);

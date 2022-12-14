@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<DeclareVariableElement> Declarations => declarations;
     
         public DeclareVariableStatement(IReadOnlyList<DeclareVariableElement> declarations = null) {
-            this.declarations = declarations is null ? ImmList<DeclareVariableElement>.Empty : ImmList<DeclareVariableElement>.FromList(declarations);
+            this.declarations = ImmList<DeclareVariableElement>.FromList(declarations);
         }
     
         public ScriptDom.DeclareVariableStatement ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DeclareVariableStatement left, DeclareVariableStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DeclareVariableStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.declarations, othr.declarations);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DeclareVariableStatement FromMutable(ScriptDom.DeclareVariableStatement fragment) {
             return (DeclareVariableStatement)TSqlFragment.FromMutable(fragment);

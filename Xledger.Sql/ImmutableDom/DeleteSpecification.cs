@@ -90,6 +90,30 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DeleteSpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fromClause, othr.fromClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.whereClause, othr.whereClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.target, othr.target);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.topRowFilter, othr.topRowFilter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputIntoClause, othr.outputIntoClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputClause, othr.outputClause);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static DeleteSpecification FromMutable(ScriptDom.DeleteSpecification fragment) {
             return (DeleteSpecification)TSqlFragment.FromMutable(fragment);
         }

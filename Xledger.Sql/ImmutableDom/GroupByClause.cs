@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public GroupByClause(ScriptDom.GroupByOption groupByOption = ScriptDom.GroupByOption.None, bool all = false, IReadOnlyList<GroupingSpecification> groupingSpecifications = null) {
             this.groupByOption = groupByOption;
             this.all = all;
-            this.groupingSpecifications = groupingSpecifications is null ? ImmList<GroupingSpecification>.Empty : ImmList<GroupingSpecification>.FromList(groupingSpecifications);
+            this.groupingSpecifications = ImmList<GroupingSpecification>.FromList(groupingSpecifications);
         }
     
         public ScriptDom.GroupByClause ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(GroupByClause left, GroupByClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (GroupByClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.groupByOption, othr.groupByOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.groupingSpecifications, othr.groupingSpecifications);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static GroupByClause FromMutable(ScriptDom.GroupByClause fragment) {
             return (GroupByClause)TSqlFragment.FromMutable(fragment);

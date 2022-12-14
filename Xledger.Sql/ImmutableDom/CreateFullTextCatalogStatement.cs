@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.isDefault = isDefault;
             this.owner = owner;
             this.name = name;
-            this.options = options is null ? ImmList<FullTextCatalogOption>.Empty : ImmList<FullTextCatalogOption>.FromList(options);
+            this.options = ImmList<FullTextCatalogOption>.FromList(options);
         }
     
         public ScriptDom.CreateFullTextCatalogStatement ToMutableConcrete() {
@@ -95,6 +95,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateFullTextCatalogStatement left, CreateFullTextCatalogStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateFullTextCatalogStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroup, othr.fileGroup);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.path, othr.path);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isDefault, othr.isDefault);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateFullTextCatalogStatement FromMutable(ScriptDom.CreateFullTextCatalogStatement fragment) {
             return (CreateFullTextCatalogStatement)TSqlFragment.FromMutable(fragment);

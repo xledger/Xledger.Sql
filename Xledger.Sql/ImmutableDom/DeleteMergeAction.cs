@@ -43,6 +43,18 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DeleteMergeAction)that;
+            return compare;
+        } 
+    
         public static DeleteMergeAction FromMutable(ScriptDom.DeleteMergeAction fragment) {
             return (DeleteMergeAction)TSqlFragment.FromMutable(fragment);
         }

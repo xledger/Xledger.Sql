@@ -10,9 +10,9 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateExternalTableStatement : ExternalTableStatement, IEquatable<CreateExternalTableStatement> {
         public CreateExternalTableStatement(SchemaObjectName schemaObjectName = null, IReadOnlyList<ExternalTableColumnDefinition> columnDefinitions = null, Identifier dataSource = null, IReadOnlyList<ExternalTableOption> externalTableOptions = null, SelectStatement selectStatement = null) {
             this.schemaObjectName = schemaObjectName;
-            this.columnDefinitions = columnDefinitions is null ? ImmList<ExternalTableColumnDefinition>.Empty : ImmList<ExternalTableColumnDefinition>.FromList(columnDefinitions);
+            this.columnDefinitions = ImmList<ExternalTableColumnDefinition>.FromList(columnDefinitions);
             this.dataSource = dataSource;
-            this.externalTableOptions = externalTableOptions is null ? ImmList<ExternalTableOption>.Empty : ImmList<ExternalTableOption>.FromList(externalTableOptions);
+            this.externalTableOptions = ImmList<ExternalTableOption>.FromList(externalTableOptions);
             this.selectStatement = selectStatement;
         }
     
@@ -77,6 +77,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateExternalTableStatement left, CreateExternalTableStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateExternalTableStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columnDefinitions, othr.columnDefinitions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dataSource, othr.dataSource);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.externalTableOptions, othr.externalTableOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.selectStatement, othr.selectStatement);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateExternalTableStatement FromMutable(ScriptDom.CreateExternalTableStatement fragment) {
             return (CreateExternalTableStatement)TSqlFragment.FromMutable(fragment);

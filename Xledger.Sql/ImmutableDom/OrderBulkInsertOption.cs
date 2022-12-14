@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsUnique => isUnique;
     
         public OrderBulkInsertOption(IReadOnlyList<ColumnWithSortOrder> columns = null, bool isUnique = false, ScriptDom.BulkInsertOptionKind optionKind = ScriptDom.BulkInsertOptionKind.None) {
-            this.columns = columns is null ? ImmList<ColumnWithSortOrder>.Empty : ImmList<ColumnWithSortOrder>.FromList(columns);
+            this.columns = ImmList<ColumnWithSortOrder>.FromList(columns);
             this.isUnique = isUnique;
             this.optionKind = optionKind;
         }
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OrderBulkInsertOption left, OrderBulkInsertOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OrderBulkInsertOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isUnique, othr.isUnique);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OrderBulkInsertOption FromMutable(ScriptDom.OrderBulkInsertOption fragment) {
             return (OrderBulkInsertOption)TSqlFragment.FromMutable(fragment);

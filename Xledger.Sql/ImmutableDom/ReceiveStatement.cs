@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ReceiveStatement(ScalarExpression top = null, IReadOnlyList<SelectElement> selectElements = null, SchemaObjectName queue = null, VariableTableReference into = null, ValueExpression where = null, bool isConversationGroupIdWhere = false) {
             this.top = top;
-            this.selectElements = selectElements is null ? ImmList<SelectElement>.Empty : ImmList<SelectElement>.FromList(selectElements);
+            this.selectElements = ImmList<SelectElement>.FromList(selectElements);
             this.queue = queue;
             this.into = into;
             this.where = where;
@@ -99,6 +99,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ReceiveStatement left, ReceiveStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ReceiveStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.top, othr.top);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.selectElements, othr.selectElements);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.queue, othr.queue);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.into, othr.into);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.where, othr.where);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isConversationGroupIdWhere, othr.isConversationGroupIdWhere);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ReceiveStatement FromMutable(ScriptDom.ReceiveStatement fragment) {
             return (ReceiveStatement)TSqlFragment.FromMutable(fragment);

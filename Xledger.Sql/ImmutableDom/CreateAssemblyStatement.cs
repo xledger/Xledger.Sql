@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateAssemblyStatement(Identifier owner = null, Identifier name = null, IReadOnlyList<ScalarExpression> parameters = null, IReadOnlyList<AssemblyOption> options = null) {
             this.owner = owner;
             this.name = name;
-            this.parameters = parameters is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(parameters);
-            this.options = options is null ? ImmList<AssemblyOption>.Empty : ImmList<AssemblyOption>.FromList(options);
+            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.options = ImmList<AssemblyOption>.FromList(options);
         }
     
         public ScriptDom.CreateAssemblyStatement ToMutableConcrete() {
@@ -73,6 +73,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateAssemblyStatement left, CreateAssemblyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateAssemblyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateAssemblyStatement FromMutable(ScriptDom.CreateAssemblyStatement fragment) {
             return (CreateAssemblyStatement)TSqlFragment.FromMutable(fragment);

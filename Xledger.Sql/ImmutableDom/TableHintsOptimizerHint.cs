@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TableHintsOptimizerHint(SchemaObjectName objectName = null, IReadOnlyList<TableHint> tableHints = null, ScriptDom.OptimizerHintKind hintKind = ScriptDom.OptimizerHintKind.Unspecified) {
             this.objectName = objectName;
-            this.tableHints = tableHints is null ? ImmList<TableHint>.Empty : ImmList<TableHint>.FromList(tableHints);
+            this.tableHints = ImmList<TableHint>.FromList(tableHints);
             this.hintKind = hintKind;
         }
     
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(TableHintsOptimizerHint left, TableHintsOptimizerHint right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (TableHintsOptimizerHint)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.objectName, othr.objectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableHints, othr.tableHints);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.hintKind, othr.hintKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static TableHintsOptimizerHint FromMutable(ScriptDom.TableHintsOptimizerHint fragment) {
             return (TableHintsOptimizerHint)TSqlFragment.FromMutable(fragment);

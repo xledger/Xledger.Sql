@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
         public FullTextTableReference(ScriptDom.FullTextFunctionType fullTextFunctionType = ScriptDom.FullTextFunctionType.None, SchemaObjectName tableName = null, IReadOnlyList<ColumnReferenceExpression> columns = null, ValueExpression searchCondition = null, ValueExpression topN = null, ValueExpression language = null, StringLiteral propertyName = null, Identifier alias = null, bool forPath = false) {
             this.fullTextFunctionType = fullTextFunctionType;
             this.tableName = tableName;
-            this.columns = columns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
             this.searchCondition = searchCondition;
             this.topN = topN;
             this.language = language;
@@ -123,6 +123,36 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(FullTextTableReference left, FullTextTableReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (FullTextTableReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.fullTextFunctionType, othr.fullTextFunctionType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableName, othr.tableName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.searchCondition, othr.searchCondition);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.topN, othr.topN);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.language, othr.language);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.propertyName, othr.propertyName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static FullTextTableReference FromMutable(ScriptDom.FullTextTableReference fragment) {
             return (FullTextTableReference)TSqlFragment.FromMutable(fragment);

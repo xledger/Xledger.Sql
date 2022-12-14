@@ -13,8 +13,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ValueExpression> Strings => strings;
     
         public ExecutableStringList(IReadOnlyList<ValueExpression> strings = null, IReadOnlyList<ExecuteParameter> parameters = null) {
-            this.strings = strings is null ? ImmList<ValueExpression>.Empty : ImmList<ValueExpression>.FromList(strings);
-            this.parameters = parameters is null ? ImmList<ExecuteParameter>.Empty : ImmList<ExecuteParameter>.FromList(parameters);
+            this.strings = ImmList<ValueExpression>.FromList(strings);
+            this.parameters = ImmList<ExecuteParameter>.FromList(parameters);
         }
     
         public ScriptDom.ExecutableStringList ToMutableConcrete() {
@@ -57,6 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ExecutableStringList left, ExecutableStringList right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ExecutableStringList)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.strings, othr.strings);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ExecutableStringList FromMutable(ScriptDom.ExecutableStringList fragment) {
             return (ExecutableStringList)TSqlFragment.FromMutable(fragment);

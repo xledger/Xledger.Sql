@@ -17,9 +17,9 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ColumnReferenceExpression> IntoTableColumns => intoTableColumns;
     
         public OutputIntoClause(IReadOnlyList<SelectElement> selectColumns = null, TableReference intoTable = null, IReadOnlyList<ColumnReferenceExpression> intoTableColumns = null) {
-            this.selectColumns = selectColumns is null ? ImmList<SelectElement>.Empty : ImmList<SelectElement>.FromList(selectColumns);
+            this.selectColumns = ImmList<SelectElement>.FromList(selectColumns);
             this.intoTable = intoTable;
-            this.intoTableColumns = intoTableColumns is null ? ImmList<ColumnReferenceExpression>.Empty : ImmList<ColumnReferenceExpression>.FromList(intoTableColumns);
+            this.intoTableColumns = ImmList<ColumnReferenceExpression>.FromList(intoTableColumns);
         }
     
         public ScriptDom.OutputIntoClause ToMutableConcrete() {
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OutputIntoClause left, OutputIntoClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OutputIntoClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.selectColumns, othr.selectColumns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.intoTable, othr.intoTable);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.intoTableColumns, othr.intoTableColumns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OutputIntoClause FromMutable(ScriptDom.OutputIntoClause fragment) {
             return (OutputIntoClause)TSqlFragment.FromMutable(fragment);

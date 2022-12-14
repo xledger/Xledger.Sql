@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BackupRestoreItemKind ItemKind => itemKind;
     
         public BackupRestoreFileInfo(IReadOnlyList<ValueExpression> items = null, ScriptDom.BackupRestoreItemKind itemKind = ScriptDom.BackupRestoreItemKind.None) {
-            this.items = items is null ? ImmList<ValueExpression>.Empty : ImmList<ValueExpression>.FromList(items);
+            this.items = ImmList<ValueExpression>.FromList(items);
             this.itemKind = itemKind;
         }
     
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(BackupRestoreFileInfo left, BackupRestoreFileInfo right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (BackupRestoreFileInfo)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.items, othr.items);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.itemKind, othr.itemKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static BackupRestoreFileInfo FromMutable(ScriptDom.BackupRestoreFileInfo fragment) {
             return (BackupRestoreFileInfo)TSqlFragment.FromMutable(fragment);

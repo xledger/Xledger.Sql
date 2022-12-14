@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AlterTableRebuildStatement(PartitionSpecifier partition = null, IReadOnlyList<IndexOption> indexOptions = null, SchemaObjectName schemaObjectName = null) {
             this.partition = partition;
-            this.indexOptions = indexOptions is null ? ImmList<IndexOption>.Empty : ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterTableRebuildStatement left, AlterTableRebuildStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterTableRebuildStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partition, othr.partition);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterTableRebuildStatement FromMutable(ScriptDom.AlterTableRebuildStatement fragment) {
             return (AlterTableRebuildStatement)TSqlFragment.FromMutable(fragment);

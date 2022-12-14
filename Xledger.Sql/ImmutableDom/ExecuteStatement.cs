@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ExecuteStatement(ExecuteSpecification executeSpecification = null, IReadOnlyList<ExecuteOption> options = null) {
             this.executeSpecification = executeSpecification;
-            this.options = options is null ? ImmList<ExecuteOption>.Empty : ImmList<ExecuteOption>.FromList(options);
+            this.options = ImmList<ExecuteOption>.FromList(options);
         }
     
         public ScriptDom.ExecuteStatement ToMutableConcrete() {
@@ -61,6 +61,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ExecuteStatement left, ExecuteStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ExecuteStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.executeSpecification, othr.executeSpecification);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ExecuteStatement FromMutable(ScriptDom.ExecuteStatement fragment) {
             return (ExecuteStatement)TSqlFragment.FromMutable(fragment);

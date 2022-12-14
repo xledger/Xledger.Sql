@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public NamedTableReference(SchemaObjectName schemaObject = null, IReadOnlyList<TableHint> tableHints = null, TableSampleClause tableSampleClause = null, TemporalClause temporalClause = null, Identifier alias = null, bool forPath = false) {
             this.schemaObject = schemaObject;
-            this.tableHints = tableHints is null ? ImmList<TableHint>.Empty : ImmList<TableHint>.FromList(tableHints);
+            this.tableHints = ImmList<TableHint>.FromList(tableHints);
             this.tableSampleClause = tableSampleClause;
             this.temporalClause = temporalClause;
             this.alias = alias;
@@ -95,6 +95,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(NamedTableReference left, NamedTableReference right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (NamedTableReference)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObject, othr.schemaObject);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableHints, othr.tableHints);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableSampleClause, othr.tableSampleClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.temporalClause, othr.temporalClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static NamedTableReference FromMutable(ScriptDom.NamedTableReference fragment) {
             return (NamedTableReference)TSqlFragment.FromMutable(fragment);

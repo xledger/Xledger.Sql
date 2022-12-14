@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         public InsertStatement(InsertSpecification insertSpecification = null, WithCtesAndXmlNamespaces withCtesAndXmlNamespaces = null, IReadOnlyList<OptimizerHint> optimizerHints = null) {
             this.insertSpecification = insertSpecification;
             this.withCtesAndXmlNamespaces = withCtesAndXmlNamespaces;
-            this.optimizerHints = optimizerHints is null ? ImmList<OptimizerHint>.Empty : ImmList<OptimizerHint>.FromList(optimizerHints);
+            this.optimizerHints = ImmList<OptimizerHint>.FromList(optimizerHints);
         }
     
         public ScriptDom.InsertStatement ToMutableConcrete() {
@@ -67,6 +67,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(InsertStatement left, InsertStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (InsertStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.insertSpecification, othr.insertSpecification);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withCtesAndXmlNamespaces, othr.withCtesAndXmlNamespaces);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optimizerHints, othr.optimizerHints);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static InsertStatement FromMutable(ScriptDom.InsertStatement fragment) {
             return (InsertStatement)TSqlFragment.FromMutable(fragment);

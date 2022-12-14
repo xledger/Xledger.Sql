@@ -10,8 +10,8 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateOrAlterViewStatement : ViewStatementBody, IEquatable<CreateOrAlterViewStatement> {
         public CreateOrAlterViewStatement(SchemaObjectName schemaObjectName = null, IReadOnlyList<Identifier> columns = null, IReadOnlyList<ViewOption> viewOptions = null, SelectStatement selectStatement = null, bool withCheckOption = false, bool isMaterialized = false) {
             this.schemaObjectName = schemaObjectName;
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
-            this.viewOptions = viewOptions is null ? ImmList<ViewOption>.Empty : ImmList<ViewOption>.FromList(viewOptions);
+            this.columns = ImmList<Identifier>.FromList(columns);
+            this.viewOptions = ImmList<ViewOption>.FromList(viewOptions);
             this.selectStatement = selectStatement;
             this.withCheckOption = withCheckOption;
             this.isMaterialized = isMaterialized;
@@ -81,6 +81,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateOrAlterViewStatement left, CreateOrAlterViewStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateOrAlterViewStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.viewOptions, othr.viewOptions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.selectStatement, othr.selectStatement);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.withCheckOption, othr.withCheckOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isMaterialized, othr.isMaterialized);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateOrAlterViewStatement FromMutable(ScriptDom.CreateOrAlterViewStatement fragment) {
             return (CreateOrAlterViewStatement)TSqlFragment.FromMutable(fragment);

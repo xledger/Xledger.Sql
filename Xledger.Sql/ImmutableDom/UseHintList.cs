@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<StringLiteral> Hints => hints;
     
         public UseHintList(IReadOnlyList<StringLiteral> hints = null, ScriptDom.OptimizerHintKind hintKind = ScriptDom.OptimizerHintKind.Unspecified) {
-            this.hints = hints is null ? ImmList<StringLiteral>.Empty : ImmList<StringLiteral>.FromList(hints);
+            this.hints = ImmList<StringLiteral>.FromList(hints);
             this.hintKind = hintKind;
         }
     
@@ -57,6 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(UseHintList left, UseHintList right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (UseHintList)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.hints, othr.hints);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.hintKind, othr.hintKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static UseHintList FromMutable(ScriptDom.UseHintList fragment) {
             return (UseHintList)TSqlFragment.FromMutable(fragment);

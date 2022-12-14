@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<Identifier> Identifiers => identifiers;
     
         public MultiPartIdentifier(IReadOnlyList<Identifier> identifiers = null) {
-            this.identifiers = identifiers is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(identifiers);
+            this.identifiers = ImmList<Identifier>.FromList(identifiers);
         }
     
         public ScriptDom.MultiPartIdentifier ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(MultiPartIdentifier left, MultiPartIdentifier right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (MultiPartIdentifier)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.identifiers, othr.identifiers);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static MultiPartIdentifier FromMutable(ScriptDom.MultiPartIdentifier fragment) {
             return (MultiPartIdentifier)TSqlFragment.FromMutable(fragment);

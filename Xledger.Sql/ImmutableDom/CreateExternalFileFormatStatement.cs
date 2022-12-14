@@ -11,7 +11,7 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateExternalFileFormatStatement(Identifier name = null, ScriptDom.ExternalFileFormatType formatType = ScriptDom.ExternalFileFormatType.DelimitedText, IReadOnlyList<ExternalFileFormatOption> externalFileFormatOptions = null) {
             this.name = name;
             this.formatType = formatType;
-            this.externalFileFormatOptions = externalFileFormatOptions is null ? ImmList<ExternalFileFormatOption>.Empty : ImmList<ExternalFileFormatOption>.FromList(externalFileFormatOptions);
+            this.externalFileFormatOptions = ImmList<ExternalFileFormatOption>.FromList(externalFileFormatOptions);
         }
     
         public ScriptDom.CreateExternalFileFormatStatement ToMutableConcrete() {
@@ -61,6 +61,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateExternalFileFormatStatement left, CreateExternalFileFormatStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateExternalFileFormatStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.formatType, othr.formatType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.externalFileFormatOptions, othr.externalFileFormatOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateExternalFileFormatStatement FromMutable(ScriptDom.CreateExternalFileFormatStatement fragment) {
             return (CreateExternalFileFormatStatement)TSqlFragment.FromMutable(fragment);

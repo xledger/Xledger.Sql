@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.tableAlias = tableAlias;
             this.tableReference = tableReference;
             this.searchCondition = searchCondition;
-            this.actionClauses = actionClauses is null ? ImmList<MergeActionClause>.Empty : ImmList<MergeActionClause>.FromList(actionClauses);
+            this.actionClauses = ImmList<MergeActionClause>.FromList(actionClauses);
             this.target = target;
             this.topRowFilter = topRowFilter;
             this.outputIntoClause = outputIntoClause;
@@ -113,6 +113,34 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(MergeSpecification left, MergeSpecification right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (MergeSpecification)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableAlias, othr.tableAlias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.tableReference, othr.tableReference);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.searchCondition, othr.searchCondition);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.actionClauses, othr.actionClauses);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.target, othr.target);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.topRowFilter, othr.topRowFilter);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputIntoClause, othr.outputIntoClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outputClause, othr.outputClause);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static MergeSpecification FromMutable(ScriptDom.MergeSpecification fragment) {
             return (MergeSpecification)TSqlFragment.FromMutable(fragment);

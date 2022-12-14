@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<XmlNamespacesElement> XmlNamespacesElements => xmlNamespacesElements;
     
         public XmlNamespaces(IReadOnlyList<XmlNamespacesElement> xmlNamespacesElements = null) {
-            this.xmlNamespacesElements = xmlNamespacesElements is null ? ImmList<XmlNamespacesElement>.Empty : ImmList<XmlNamespacesElement>.FromList(xmlNamespacesElements);
+            this.xmlNamespacesElements = ImmList<XmlNamespacesElement>.FromList(xmlNamespacesElements);
         }
     
         public ScriptDom.XmlNamespaces ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(XmlNamespaces left, XmlNamespaces right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (XmlNamespaces)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlNamespacesElements, othr.xmlNamespacesElements);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static XmlNamespaces FromMutable(ScriptDom.XmlNamespaces fragment) {
             return (XmlNamespaces)TSqlFragment.FromMutable(fragment);

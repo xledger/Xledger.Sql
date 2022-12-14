@@ -92,6 +92,30 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ProcedureParameter)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isVarying, othr.isVarying);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.modifier, othr.modifier);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.variableName, othr.variableName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.dataType, othr.dataType);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.nullable, othr.nullable);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static ProcedureParameter FromMutable(ScriptDom.ProcedureParameter fragment) {
             return (ProcedureParameter)TSqlFragment.FromMutable(fragment);
         }

@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateWorkloadClassifierStatement : WorkloadClassifierStatement, IEquatable<CreateWorkloadClassifierStatement> {
         public CreateWorkloadClassifierStatement(Identifier classifierName = null, IReadOnlyList<WorkloadClassifierOption> options = null) {
             this.classifierName = classifierName;
-            this.options = options is null ? ImmList<WorkloadClassifierOption>.Empty : ImmList<WorkloadClassifierOption>.FromList(options);
+            this.options = ImmList<WorkloadClassifierOption>.FromList(options);
         }
     
         public ScriptDom.CreateWorkloadClassifierStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateWorkloadClassifierStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.classifierName, othr.classifierName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateWorkloadClassifierStatement FromMutable(ScriptDom.CreateWorkloadClassifierStatement fragment) {
             return (CreateWorkloadClassifierStatement)TSqlFragment.FromMutable(fragment);

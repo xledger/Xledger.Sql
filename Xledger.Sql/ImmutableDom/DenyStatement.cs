@@ -14,9 +14,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public DenyStatement(bool cascadeOption = false, IReadOnlyList<Permission> permissions = null, SecurityTargetObject securityTargetObject = null, IReadOnlyList<SecurityPrincipal> principals = null, Identifier asClause = null) {
             this.cascadeOption = cascadeOption;
-            this.permissions = permissions is null ? ImmList<Permission>.Empty : ImmList<Permission>.FromList(permissions);
+            this.permissions = ImmList<Permission>.FromList(permissions);
             this.securityTargetObject = securityTargetObject;
-            this.principals = principals is null ? ImmList<SecurityPrincipal>.Empty : ImmList<SecurityPrincipal>.FromList(principals);
+            this.principals = ImmList<SecurityPrincipal>.FromList(principals);
             this.asClause = asClause;
         }
     
@@ -79,6 +79,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DenyStatement left, DenyStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DenyStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.cascadeOption, othr.cascadeOption);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.permissions, othr.permissions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.securityTargetObject, othr.securityTargetObject);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.principals, othr.principals);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.asClause, othr.asClause);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DenyStatement FromMutable(ScriptDom.DenyStatement fragment) {
             return (DenyStatement)TSqlFragment.FromMutable(fragment);

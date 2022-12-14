@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterUserStatement : UserStatement, IEquatable<AlterUserStatement> {
         public AlterUserStatement(Identifier name = null, IReadOnlyList<PrincipalOption> userOptions = null) {
             this.name = name;
-            this.userOptions = userOptions is null ? ImmList<PrincipalOption>.Empty : ImmList<PrincipalOption>.FromList(userOptions);
+            this.userOptions = ImmList<PrincipalOption>.FromList(userOptions);
         }
     
         public ScriptDom.AlterUserStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterUserStatement left, AlterUserStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterUserStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.userOptions, othr.userOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterUserStatement FromMutable(ScriptDom.AlterUserStatement fragment) {
             return (AlterUserStatement)TSqlFragment.FromMutable(fragment);

@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public OverClause(Identifier windowName = null, IReadOnlyList<ScalarExpression> partitions = null, OrderByClause orderByClause = null, WindowFrameClause windowFrameClause = null) {
             this.windowName = windowName;
-            this.partitions = partitions is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(partitions);
+            this.partitions = ImmList<ScalarExpression>.FromList(partitions);
             this.orderByClause = orderByClause;
             this.windowFrameClause = windowFrameClause;
         }
@@ -81,6 +81,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(OverClause left, OverClause right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (OverClause)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.windowName, othr.windowName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.partitions, othr.partitions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.orderByClause, othr.orderByClause);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.windowFrameClause, othr.windowFrameClause);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static OverClause FromMutable(ScriptDom.OverClause fragment) {
             return (OverClause)TSqlFragment.FromMutable(fragment);

@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterRemoteServiceBindingStatement : RemoteServiceBindingStatementBase, IEquatable<AlterRemoteServiceBindingStatement> {
         public AlterRemoteServiceBindingStatement(Identifier name = null, IReadOnlyList<RemoteServiceBindingOption> options = null) {
             this.name = name;
-            this.options = options is null ? ImmList<RemoteServiceBindingOption>.Empty : ImmList<RemoteServiceBindingOption>.FromList(options);
+            this.options = ImmList<RemoteServiceBindingOption>.FromList(options);
         }
     
         public ScriptDom.AlterRemoteServiceBindingStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterRemoteServiceBindingStatement left, AlterRemoteServiceBindingStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterRemoteServiceBindingStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterRemoteServiceBindingStatement FromMutable(ScriptDom.AlterRemoteServiceBindingStatement fragment) {
             return (AlterRemoteServiceBindingStatement)TSqlFragment.FromMutable(fragment);

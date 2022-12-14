@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationHadrClusterOption> Options => options;
     
         public AlterServerConfigurationSetHadrClusterStatement(IReadOnlyList<AlterServerConfigurationHadrClusterOption> options = null) {
-            this.options = options is null ? ImmList<AlterServerConfigurationHadrClusterOption>.Empty : ImmList<AlterServerConfigurationHadrClusterOption>.FromList(options);
+            this.options = ImmList<AlterServerConfigurationHadrClusterOption>.FromList(options);
         }
     
         public ScriptDom.AlterServerConfigurationSetHadrClusterStatement ToMutableConcrete() {
@@ -51,6 +51,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterServerConfigurationSetHadrClusterStatement left, AlterServerConfigurationSetHadrClusterStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterServerConfigurationSetHadrClusterStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterServerConfigurationSetHadrClusterStatement FromMutable(ScriptDom.AlterServerConfigurationSetHadrClusterStatement fragment) {
             return (AlterServerConfigurationSetHadrClusterStatement)TSqlFragment.FromMutable(fragment);

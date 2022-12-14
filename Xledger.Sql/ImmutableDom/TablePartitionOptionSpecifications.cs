@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TablePartitionOptionSpecifications(ScriptDom.PartitionTableOptionRange range = ScriptDom.PartitionTableOptionRange.NotSpecified, IReadOnlyList<ScalarExpression> boundaryValues = null) {
             this.range = range;
-            this.boundaryValues = boundaryValues is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(boundaryValues);
+            this.boundaryValues = ImmList<ScalarExpression>.FromList(boundaryValues);
         }
     
         public ScriptDom.TablePartitionOptionSpecifications ToMutableConcrete() {
@@ -59,6 +59,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(TablePartitionOptionSpecifications left, TablePartitionOptionSpecifications right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (TablePartitionOptionSpecifications)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.range, othr.range);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.boundaryValues, othr.boundaryValues);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static TablePartitionOptionSpecifications FromMutable(ScriptDom.TablePartitionOptionSpecifications fragment) {
             return (TablePartitionOptionSpecifications)TSqlFragment.FromMutable(fragment);

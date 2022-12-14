@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.existingRowsCheckEnforcement = existingRowsCheckEnforcement;
             this.constraintEnforcement = constraintEnforcement;
             this.all = all;
-            this.constraintNames = constraintNames is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(constraintNames);
+            this.constraintNames = ImmList<Identifier>.FromList(constraintNames);
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -83,6 +83,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterTableConstraintModificationStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.existingRowsCheckEnforcement, othr.existingRowsCheckEnforcement);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintEnforcement, othr.constraintEnforcement);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintNames, othr.constraintNames);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterTableConstraintModificationStatement FromMutable(ScriptDom.AlterTableConstraintModificationStatement fragment) {
             return (AlterTableConstraintModificationStatement)TSqlFragment.FromMutable(fragment);

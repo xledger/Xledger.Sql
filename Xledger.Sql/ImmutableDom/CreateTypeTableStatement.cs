@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateTypeTableStatement(TableDefinition definition = null, IReadOnlyList<TableOption> options = null, SchemaObjectName name = null) {
             this.definition = definition;
-            this.options = options is null ? ImmList<TableOption>.Empty : ImmList<TableOption>.FromList(options);
+            this.options = ImmList<TableOption>.FromList(options);
             this.name = name;
         }
     
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(CreateTypeTableStatement left, CreateTypeTableStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CreateTypeTableStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.definition, othr.definition);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static CreateTypeTableStatement FromMutable(ScriptDom.CreateTypeTableStatement fragment) {
             return (CreateTypeTableStatement)TSqlFragment.FromMutable(fragment);

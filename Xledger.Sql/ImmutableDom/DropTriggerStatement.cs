@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public DropTriggerStatement(ScriptDom.TriggerScope triggerScope = ScriptDom.TriggerScope.Normal, IReadOnlyList<SchemaObjectName> objects = null, bool isIfExists = false) {
             this.triggerScope = triggerScope;
-            this.objects = objects is null ? ImmList<SchemaObjectName>.Empty : ImmList<SchemaObjectName>.FromList(objects);
+            this.objects = ImmList<SchemaObjectName>.FromList(objects);
             this.isIfExists = isIfExists;
         }
     
@@ -63,6 +63,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(DropTriggerStatement left, DropTriggerStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (DropTriggerStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.triggerScope, othr.triggerScope);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.objects, othr.objects);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.isIfExists, othr.isIfExists);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static DropTriggerStatement FromMutable(ScriptDom.DropTriggerStatement fragment) {
             return (DropTriggerStatement)TSqlFragment.FromMutable(fragment);

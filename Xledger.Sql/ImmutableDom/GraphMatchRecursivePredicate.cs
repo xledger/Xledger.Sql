@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public GraphMatchRecursivePredicate(ScriptDom.GraphMatchRecursivePredicateKind function = ScriptDom.GraphMatchRecursivePredicateKind.ShortestPath, GraphMatchNodeExpression outerNodeExpression = null, IReadOnlyList<BooleanExpression> expression = null, GraphRecursiveMatchQuantifier recursiveQuantifier = null, bool anchorOnLeft = false) {
             this.function = function;
             this.outerNodeExpression = outerNodeExpression;
-            this.expression = expression is null ? ImmList<BooleanExpression>.Empty : ImmList<BooleanExpression>.FromList(expression);
+            this.expression = ImmList<BooleanExpression>.FromList(expression);
             this.recursiveQuantifier = recursiveQuantifier;
             this.anchorOnLeft = anchorOnLeft;
         }
@@ -87,6 +87,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (GraphMatchRecursivePredicate)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.function, othr.function);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.outerNodeExpression, othr.outerNodeExpression);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.expression, othr.expression);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.recursiveQuantifier, othr.recursiveQuantifier);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.anchorOnLeft, othr.anchorOnLeft);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static GraphMatchRecursivePredicate FromMutable(ScriptDom.GraphMatchRecursivePredicate fragment) {
             return (GraphMatchRecursivePredicate)TSqlFragment.FromMutable(fragment);

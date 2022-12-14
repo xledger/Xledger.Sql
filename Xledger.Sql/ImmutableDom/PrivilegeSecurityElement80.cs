@@ -17,9 +17,9 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<Identifier> Columns => columns;
     
         public PrivilegeSecurityElement80(IReadOnlyList<Privilege80> privileges = null, SchemaObjectName schemaObjectName = null, IReadOnlyList<Identifier> columns = null) {
-            this.privileges = privileges is null ? ImmList<Privilege80>.Empty : ImmList<Privilege80>.FromList(privileges);
+            this.privileges = ImmList<Privilege80>.FromList(privileges);
             this.schemaObjectName = schemaObjectName;
-            this.columns = columns is null ? ImmList<Identifier>.Empty : ImmList<Identifier>.FromList(columns);
+            this.columns = ImmList<Identifier>.FromList(columns);
         }
     
         public ScriptDom.PrivilegeSecurityElement80 ToMutableConcrete() {
@@ -69,6 +69,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(PrivilegeSecurityElement80 left, PrivilegeSecurityElement80 right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (PrivilegeSecurityElement80)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.privileges, othr.privileges);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static PrivilegeSecurityElement80 FromMutable(ScriptDom.PrivilegeSecurityElement80 fragment) {
             return (PrivilegeSecurityElement80)TSqlFragment.FromMutable(fragment);

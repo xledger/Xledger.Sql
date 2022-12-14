@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ResultSetsExecuteOption(ScriptDom.ResultSetsOptionKind resultSetsOptionKind = ScriptDom.ResultSetsOptionKind.Undefined, IReadOnlyList<ResultSetDefinition> definitions = null, ScriptDom.ExecuteOptionKind optionKind = ScriptDom.ExecuteOptionKind.Recompile) {
             this.resultSetsOptionKind = resultSetsOptionKind;
-            this.definitions = definitions is null ? ImmList<ResultSetDefinition>.Empty : ImmList<ResultSetDefinition>.FromList(definitions);
+            this.definitions = ImmList<ResultSetDefinition>.FromList(definitions);
             this.optionKind = optionKind;
         }
     
@@ -65,6 +65,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(ResultSetsExecuteOption left, ResultSetsExecuteOption right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (ResultSetsExecuteOption)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.resultSetsOptionKind, othr.resultSetsOptionKind);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.definitions, othr.definitions);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static ResultSetsExecuteOption FromMutable(ScriptDom.ResultSetsExecuteOption fragment) {
             return (ResultSetsExecuteOption)TSqlFragment.FromMutable(fragment);

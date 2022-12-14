@@ -70,6 +70,24 @@ namespace Xledger.Sql.ImmutableDom {
             return !(left == right);
         }
     
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (CheckConstraintDefinition)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.checkCondition, othr.checkCondition);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.notForReplication, othr.notForReplication);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintIdentifier, othr.constraintIdentifier);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
+    
         public static CheckConstraintDefinition FromMutable(ScriptDom.CheckConstraintDefinition fragment) {
             return (CheckConstraintDefinition)TSqlFragment.FromMutable(fragment);
         }

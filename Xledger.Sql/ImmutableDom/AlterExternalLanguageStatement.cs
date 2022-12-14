@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.operation = operation;
             this.owner = owner;
             this.name = name;
-            this.externalLanguageFiles = externalLanguageFiles is null ? ImmList<ExternalLanguageFileOption>.Empty : ImmList<ExternalLanguageFileOption>.FromList(externalLanguageFiles);
+            this.externalLanguageFiles = ImmList<ExternalLanguageFileOption>.FromList(externalLanguageFiles);
         }
     
         public ScriptDom.AlterExternalLanguageStatement ToMutableConcrete() {
@@ -87,6 +87,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterExternalLanguageStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.platform, othr.platform);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.operation, othr.operation);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.externalLanguageFiles, othr.externalLanguageFiles);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterExternalLanguageStatement FromMutable(ScriptDom.AlterExternalLanguageStatement fragment) {
             return (AlterExternalLanguageStatement)TSqlFragment.FromMutable(fragment);

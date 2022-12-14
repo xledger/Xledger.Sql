@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public InternalOpenRowset(Identifier identifier = null, IReadOnlyList<ScalarExpression> varArgs = null, Identifier alias = null, bool forPath = false) {
             this.identifier = identifier;
-            this.varArgs = varArgs is null ? ImmList<ScalarExpression>.Empty : ImmList<ScalarExpression>.FromList(varArgs);
+            this.varArgs = ImmList<ScalarExpression>.FromList(varArgs);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -75,6 +75,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(InternalOpenRowset left, InternalOpenRowset right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (InternalOpenRowset)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.identifier, othr.identifier);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.varArgs, othr.varArgs);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static InternalOpenRowset FromMutable(ScriptDom.InternalOpenRowset fragment) {
             return (InternalOpenRowset)TSqlFragment.FromMutable(fragment);

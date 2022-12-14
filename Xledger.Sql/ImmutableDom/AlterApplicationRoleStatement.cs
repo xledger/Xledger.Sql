@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterApplicationRoleStatement : ApplicationRoleStatement, IEquatable<AlterApplicationRoleStatement> {
         public AlterApplicationRoleStatement(Identifier name = null, IReadOnlyList<ApplicationRoleOption> applicationRoleOptions = null) {
             this.name = name;
-            this.applicationRoleOptions = applicationRoleOptions is null ? ImmList<ApplicationRoleOption>.Empty : ImmList<ApplicationRoleOption>.FromList(applicationRoleOptions);
+            this.applicationRoleOptions = ImmList<ApplicationRoleOption>.FromList(applicationRoleOptions);
         }
     
         public ScriptDom.AlterApplicationRoleStatement ToMutableConcrete() {
@@ -55,6 +55,22 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator !=(AlterApplicationRoleStatement left, AlterApplicationRoleStatement right) {
             return !(left == right);
         }
+    
+        public override int CompareTo(object that) {
+            return CompareTo((TSqlFragment)that);
+        } 
+        
+        public override int CompareTo(TSqlFragment that) {
+            var compare = 1;
+            if (that == null) { return compare; }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            var othr = (AlterApplicationRoleStatement)that;
+            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            if (compare != 0) { return compare; }
+            compare = StructuralComparisons.StructuralComparer.Compare(this.applicationRoleOptions, othr.applicationRoleOptions);
+            if (compare != 0) { return compare; }
+            return compare;
+        } 
     
         public static AlterApplicationRoleStatement FromMutable(ScriptDom.AlterApplicationRoleStatement fragment) {
             return (AlterApplicationRoleStatement)TSqlFragment.FromMutable(fragment);
