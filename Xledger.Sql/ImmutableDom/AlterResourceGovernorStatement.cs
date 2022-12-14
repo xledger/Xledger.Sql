@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterResourceGovernorStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.command, othr.command);
+            compare = Comparer.DefaultInvariant.Compare(this.command, othr.command);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.classifierFunction, othr.classifierFunction);
+            compare = Comparer.DefaultInvariant.Compare(this.classifierFunction, othr.classifierFunction);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterResourceGovernorStatement left, AlterResourceGovernorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterResourceGovernorStatement left, AlterResourceGovernorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterResourceGovernorStatement left, AlterResourceGovernorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterResourceGovernorStatement left, AlterResourceGovernorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterResourceGovernorStatement FromMutable(ScriptDom.AlterResourceGovernorStatement fragment) {
             return (AlterResourceGovernorStatement)TSqlFragment.FromMutable(fragment);

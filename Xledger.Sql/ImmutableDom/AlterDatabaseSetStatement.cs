@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterDatabaseSetStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.termination, othr.termination);
+            compare = Comparer.DefaultInvariant.Compare(this.termination, othr.termination);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.useCurrent, othr.useCurrent);
+            compare = Comparer.DefaultInvariant.Compare(this.useCurrent, othr.useCurrent);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterDatabaseSetStatement left, AlterDatabaseSetStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterDatabaseSetStatement left, AlterDatabaseSetStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterDatabaseSetStatement left, AlterDatabaseSetStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterDatabaseSetStatement left, AlterDatabaseSetStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterDatabaseSetStatement FromMutable(ScriptDom.AlterDatabaseSetStatement fragment) {
             return (AlterDatabaseSetStatement)TSqlFragment.FromMutable(fragment);

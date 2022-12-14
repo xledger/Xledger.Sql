@@ -113,22 +113,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PivotedTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.tableReference, othr.tableReference);
+            compare = Comparer.DefaultInvariant.Compare(this.tableReference, othr.tableReference);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.inColumns, othr.inColumns);
+            compare = Comparer.DefaultInvariant.Compare(this.inColumns, othr.inColumns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.pivotColumn, othr.pivotColumn);
+            compare = Comparer.DefaultInvariant.Compare(this.pivotColumn, othr.pivotColumn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.valueColumns, othr.valueColumns);
+            compare = Comparer.DefaultInvariant.Compare(this.valueColumns, othr.valueColumns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.aggregateFunctionIdentifier, othr.aggregateFunctionIdentifier);
+            compare = Comparer.DefaultInvariant.Compare(this.aggregateFunctionIdentifier, othr.aggregateFunctionIdentifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (PivotedTableReference left, PivotedTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(PivotedTableReference left, PivotedTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (PivotedTableReference left, PivotedTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(PivotedTableReference left, PivotedTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static PivotedTableReference FromMutable(ScriptDom.PivotedTableReference fragment) {
             return (PivotedTableReference)TSqlFragment.FromMutable(fragment);

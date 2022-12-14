@@ -83,18 +83,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateSecurityPolicyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.notForReplication, othr.notForReplication);
+            compare = Comparer.DefaultInvariant.Compare(this.notForReplication, othr.notForReplication);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityPolicyOptions, othr.securityPolicyOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.securityPolicyOptions, othr.securityPolicyOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityPredicateActions, othr.securityPredicateActions);
+            compare = Comparer.DefaultInvariant.Compare(this.securityPredicateActions, othr.securityPredicateActions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.actionType, othr.actionType);
+            compare = Comparer.DefaultInvariant.Compare(this.actionType, othr.actionType);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateSecurityPolicyStatement left, CreateSecurityPolicyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateSecurityPolicyStatement left, CreateSecurityPolicyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateSecurityPolicyStatement left, CreateSecurityPolicyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateSecurityPolicyStatement left, CreateSecurityPolicyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateSecurityPolicyStatement FromMutable(ScriptDom.CreateSecurityPolicyStatement fragment) {
             return (CreateSecurityPolicyStatement)TSqlFragment.FromMutable(fragment);

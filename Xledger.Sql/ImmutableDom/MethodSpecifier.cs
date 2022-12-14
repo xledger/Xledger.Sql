@@ -83,14 +83,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MethodSpecifier)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.assemblyName, othr.assemblyName);
+            compare = Comparer.DefaultInvariant.Compare(this.assemblyName, othr.assemblyName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.className, othr.className);
+            compare = Comparer.DefaultInvariant.Compare(this.className, othr.className);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.methodName, othr.methodName);
+            compare = Comparer.DefaultInvariant.Compare(this.methodName, othr.methodName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (MethodSpecifier left, MethodSpecifier right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(MethodSpecifier left, MethodSpecifier right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (MethodSpecifier left, MethodSpecifier right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(MethodSpecifier left, MethodSpecifier right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static MethodSpecifier FromMutable(ScriptDom.MethodSpecifier fragment) {
             return (MethodSpecifier)TSqlFragment.FromMutable(fragment);

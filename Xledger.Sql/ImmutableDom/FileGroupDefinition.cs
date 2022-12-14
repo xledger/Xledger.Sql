@@ -95,18 +95,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FileGroupDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileDeclarations, othr.fileDeclarations);
+            compare = Comparer.DefaultInvariant.Compare(this.fileDeclarations, othr.fileDeclarations);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isDefault, othr.isDefault);
+            compare = Comparer.DefaultInvariant.Compare(this.isDefault, othr.isDefault);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.containsFileStream, othr.containsFileStream);
+            compare = Comparer.DefaultInvariant.Compare(this.containsFileStream, othr.containsFileStream);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.containsMemoryOptimizedData, othr.containsMemoryOptimizedData);
+            compare = Comparer.DefaultInvariant.Compare(this.containsMemoryOptimizedData, othr.containsMemoryOptimizedData);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (FileGroupDefinition left, FileGroupDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(FileGroupDefinition left, FileGroupDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (FileGroupDefinition left, FileGroupDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(FileGroupDefinition left, FileGroupDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static FileGroupDefinition FromMutable(ScriptDom.FileGroupDefinition fragment) {
             return (FileGroupDefinition)TSqlFragment.FromMutable(fragment);

@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ClassifierEndTimeOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.time, othr.time);
+            compare = Comparer.DefaultInvariant.Compare(this.time, othr.time);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionType, othr.optionType);
+            compare = Comparer.DefaultInvariant.Compare(this.optionType, othr.optionType);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ClassifierEndTimeOption left, ClassifierEndTimeOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ClassifierEndTimeOption left, ClassifierEndTimeOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ClassifierEndTimeOption left, ClassifierEndTimeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ClassifierEndTimeOption left, ClassifierEndTimeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ClassifierEndTimeOption FromMutable(ScriptDom.ClassifierEndTimeOption fragment) {
             return (ClassifierEndTimeOption)TSqlFragment.FromMutable(fragment);

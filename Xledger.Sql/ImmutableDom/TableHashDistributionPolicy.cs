@@ -63,10 +63,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TableHashDistributionPolicy)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.distributionColumn, othr.distributionColumn);
+            compare = Comparer.DefaultInvariant.Compare(this.distributionColumn, othr.distributionColumn);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (TableHashDistributionPolicy left, TableHashDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(TableHashDistributionPolicy left, TableHashDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (TableHashDistributionPolicy left, TableHashDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(TableHashDistributionPolicy left, TableHashDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static TableHashDistributionPolicy FromMutable(ScriptDom.TableHashDistributionPolicy fragment) {
             return (TableHashDistributionPolicy)TSqlFragment.FromMutable(fragment);

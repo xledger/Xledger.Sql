@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GenericConfigurationOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.genericOptionState, othr.genericOptionState);
+            compare = Comparer.DefaultInvariant.Compare(this.genericOptionState, othr.genericOptionState);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.genericOptionKind, othr.genericOptionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.genericOptionKind, othr.genericOptionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GenericConfigurationOption left, GenericConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GenericConfigurationOption left, GenericConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GenericConfigurationOption left, GenericConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GenericConfigurationOption left, GenericConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GenericConfigurationOption FromMutable(ScriptDom.GenericConfigurationOption fragment) {
             return (GenericConfigurationOption)TSqlFragment.FromMutable(fragment);

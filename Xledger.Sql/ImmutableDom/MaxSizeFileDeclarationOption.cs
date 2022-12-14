@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MaxSizeFileDeclarationOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.maxSize, othr.maxSize);
+            compare = Comparer.DefaultInvariant.Compare(this.maxSize, othr.maxSize);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.units, othr.units);
+            compare = Comparer.DefaultInvariant.Compare(this.units, othr.units);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.unlimited, othr.unlimited);
+            compare = Comparer.DefaultInvariant.Compare(this.unlimited, othr.unlimited);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static MaxSizeFileDeclarationOption FromMutable(ScriptDom.MaxSizeFileDeclarationOption fragment) {
             return (MaxSizeFileDeclarationOption)TSqlFragment.FromMutable(fragment);

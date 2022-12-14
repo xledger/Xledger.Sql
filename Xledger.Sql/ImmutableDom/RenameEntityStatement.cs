@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RenameEntityStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.renameEntityType, othr.renameEntityType);
+            compare = Comparer.DefaultInvariant.Compare(this.renameEntityType, othr.renameEntityType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.separatorType, othr.separatorType);
+            compare = Comparer.DefaultInvariant.Compare(this.separatorType, othr.separatorType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.oldName, othr.oldName);
+            compare = Comparer.DefaultInvariant.Compare(this.oldName, othr.oldName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.newName, othr.newName);
+            compare = Comparer.DefaultInvariant.Compare(this.newName, othr.newName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (RenameEntityStatement left, RenameEntityStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(RenameEntityStatement left, RenameEntityStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (RenameEntityStatement left, RenameEntityStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(RenameEntityStatement left, RenameEntityStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static RenameEntityStatement FromMutable(ScriptDom.RenameEntityStatement fragment) {
             return (RenameEntityStatement)TSqlFragment.FromMutable(fragment);

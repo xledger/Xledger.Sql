@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (StopRestoreOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.mark, othr.mark);
+            compare = Comparer.DefaultInvariant.Compare(this.mark, othr.mark);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.after, othr.after);
+            compare = Comparer.DefaultInvariant.Compare(this.after, othr.after);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isStopAt, othr.isStopAt);
+            compare = Comparer.DefaultInvariant.Compare(this.isStopAt, othr.isStopAt);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (StopRestoreOption left, StopRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(StopRestoreOption left, StopRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (StopRestoreOption left, StopRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(StopRestoreOption left, StopRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static StopRestoreOption FromMutable(ScriptDom.StopRestoreOption fragment) {
             return (StopRestoreOption)TSqlFragment.FromMutable(fragment);

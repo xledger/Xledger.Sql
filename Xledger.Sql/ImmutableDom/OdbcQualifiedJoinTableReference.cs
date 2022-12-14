@@ -63,10 +63,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OdbcQualifiedJoinTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.tableReference, othr.tableReference);
+            compare = Comparer.DefaultInvariant.Compare(this.tableReference, othr.tableReference);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static OdbcQualifiedJoinTableReference FromMutable(ScriptDom.OdbcQualifiedJoinTableReference fragment) {
             return (OdbcQualifiedJoinTableReference)TSqlFragment.FromMutable(fragment);

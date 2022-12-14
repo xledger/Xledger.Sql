@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InternalOpenRowset)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.identifier, othr.identifier);
+            compare = Comparer.DefaultInvariant.Compare(this.identifier, othr.identifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.varArgs, othr.varArgs);
+            compare = Comparer.DefaultInvariant.Compare(this.varArgs, othr.varArgs);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (InternalOpenRowset left, InternalOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(InternalOpenRowset left, InternalOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (InternalOpenRowset left, InternalOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(InternalOpenRowset left, InternalOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static InternalOpenRowset FromMutable(ScriptDom.InternalOpenRowset fragment) {
             return (InternalOpenRowset)TSqlFragment.FromMutable(fragment);

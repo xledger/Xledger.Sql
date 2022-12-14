@@ -91,16 +91,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateAggregateStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.assemblyName, othr.assemblyName);
+            compare = Comparer.DefaultInvariant.Compare(this.assemblyName, othr.assemblyName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            compare = Comparer.DefaultInvariant.Compare(this.parameters, othr.parameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.returnType, othr.returnType);
+            compare = Comparer.DefaultInvariant.Compare(this.returnType, othr.returnType);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateAggregateStatement left, CreateAggregateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateAggregateStatement left, CreateAggregateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateAggregateStatement left, CreateAggregateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateAggregateStatement left, CreateAggregateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateAggregateStatement FromMutable(ScriptDom.CreateAggregateStatement fragment) {
             return (CreateAggregateStatement)TSqlFragment.FromMutable(fragment);

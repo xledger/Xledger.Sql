@@ -89,18 +89,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GrantStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withGrantOption, othr.withGrantOption);
+            compare = Comparer.DefaultInvariant.Compare(this.withGrantOption, othr.withGrantOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.permissions, othr.permissions);
+            compare = Comparer.DefaultInvariant.Compare(this.permissions, othr.permissions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityTargetObject, othr.securityTargetObject);
+            compare = Comparer.DefaultInvariant.Compare(this.securityTargetObject, othr.securityTargetObject);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.principals, othr.principals);
+            compare = Comparer.DefaultInvariant.Compare(this.principals, othr.principals);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.asClause, othr.asClause);
+            compare = Comparer.DefaultInvariant.Compare(this.asClause, othr.asClause);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GrantStatement left, GrantStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GrantStatement left, GrantStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GrantStatement left, GrantStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GrantStatement left, GrantStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GrantStatement FromMutable(ScriptDom.GrantStatement fragment) {
             return (GrantStatement)TSqlFragment.FromMutable(fragment);

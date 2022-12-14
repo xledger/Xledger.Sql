@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PartitionFunctionCall)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.functionName, othr.functionName);
+            compare = Comparer.DefaultInvariant.Compare(this.functionName, othr.functionName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            compare = Comparer.DefaultInvariant.Compare(this.parameters, othr.parameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            compare = Comparer.DefaultInvariant.Compare(this.collation, othr.collation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static PartitionFunctionCall FromMutable(ScriptDom.PartitionFunctionCall fragment) {
             return (PartitionFunctionCall)TSqlFragment.FromMutable(fragment);

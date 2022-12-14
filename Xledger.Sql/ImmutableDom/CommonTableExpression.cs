@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CommonTableExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.expressionName, othr.expressionName);
+            compare = Comparer.DefaultInvariant.Compare(this.expressionName, othr.expressionName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.queryExpression, othr.queryExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.queryExpression, othr.queryExpression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CommonTableExpression left, CommonTableExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CommonTableExpression left, CommonTableExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CommonTableExpression left, CommonTableExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CommonTableExpression left, CommonTableExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CommonTableExpression FromMutable(ScriptDom.CommonTableExpression fragment) {
             return (CommonTableExpression)TSqlFragment.FromMutable(fragment);

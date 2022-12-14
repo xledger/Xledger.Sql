@@ -101,20 +101,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerAuditStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.newName, othr.newName);
+            compare = Comparer.DefaultInvariant.Compare(this.newName, othr.newName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.removeWhere, othr.removeWhere);
+            compare = Comparer.DefaultInvariant.Compare(this.removeWhere, othr.removeWhere);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.auditName, othr.auditName);
+            compare = Comparer.DefaultInvariant.Compare(this.auditName, othr.auditName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.auditTarget, othr.auditTarget);
+            compare = Comparer.DefaultInvariant.Compare(this.auditTarget, othr.auditTarget);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.predicateExpression, othr.predicateExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.predicateExpression, othr.predicateExpression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterServerAuditStatement left, AlterServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterServerAuditStatement left, AlterServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterServerAuditStatement left, AlterServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterServerAuditStatement left, AlterServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterServerAuditStatement FromMutable(ScriptDom.AlterServerAuditStatement fragment) {
             return (AlterServerAuditStatement)TSqlFragment.FromMutable(fragment);

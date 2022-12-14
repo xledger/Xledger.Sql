@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DenyStatement80)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.cascadeOption, othr.cascadeOption);
+            compare = Comparer.DefaultInvariant.Compare(this.cascadeOption, othr.cascadeOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityElement80, othr.securityElement80);
+            compare = Comparer.DefaultInvariant.Compare(this.securityElement80, othr.securityElement80);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityUserClause80, othr.securityUserClause80);
+            compare = Comparer.DefaultInvariant.Compare(this.securityUserClause80, othr.securityUserClause80);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DenyStatement80 left, DenyStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DenyStatement80 left, DenyStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DenyStatement80 left, DenyStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DenyStatement80 left, DenyStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DenyStatement80 FromMutable(ScriptDom.DenyStatement80 fragment) {
             return (DenyStatement80)TSqlFragment.FromMutable(fragment);

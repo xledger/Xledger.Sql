@@ -95,18 +95,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RestoreStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.devices, othr.devices);
+            compare = Comparer.DefaultInvariant.Compare(this.devices, othr.devices);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.files, othr.files);
+            compare = Comparer.DefaultInvariant.Compare(this.files, othr.files);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            compare = Comparer.DefaultInvariant.Compare(this.kind, othr.kind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (RestoreStatement left, RestoreStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(RestoreStatement left, RestoreStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (RestoreStatement left, RestoreStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(RestoreStatement left, RestoreStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static RestoreStatement FromMutable(ScriptDom.RestoreStatement fragment) {
             return (RestoreStatement)TSqlFragment.FromMutable(fragment);

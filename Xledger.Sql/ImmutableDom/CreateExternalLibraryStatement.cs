@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateExternalLibraryStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.language, othr.language);
+            compare = Comparer.DefaultInvariant.Compare(this.language, othr.language);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalLibraryFiles, othr.externalLibraryFiles);
+            compare = Comparer.DefaultInvariant.Compare(this.externalLibraryFiles, othr.externalLibraryFiles);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateExternalLibraryStatement left, CreateExternalLibraryStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateExternalLibraryStatement left, CreateExternalLibraryStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateExternalLibraryStatement left, CreateExternalLibraryStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateExternalLibraryStatement left, CreateExternalLibraryStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateExternalLibraryStatement FromMutable(ScriptDom.CreateExternalLibraryStatement fragment) {
             return (CreateExternalLibraryStatement)TSqlFragment.FromMutable(fragment);

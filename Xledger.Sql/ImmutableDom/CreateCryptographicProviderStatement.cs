@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateCryptographicProviderStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.file, othr.file);
+            compare = Comparer.DefaultInvariant.Compare(this.file, othr.file);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateCryptographicProviderStatement left, CreateCryptographicProviderStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateCryptographicProviderStatement left, CreateCryptographicProviderStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateCryptographicProviderStatement left, CreateCryptographicProviderStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateCryptographicProviderStatement left, CreateCryptographicProviderStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateCryptographicProviderStatement FromMutable(ScriptDom.CreateCryptographicProviderStatement fragment) {
             return (CreateCryptographicProviderStatement)TSqlFragment.FromMutable(fragment);

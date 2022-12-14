@@ -83,18 +83,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateEventSessionStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sessionScope, othr.sessionScope);
+            compare = Comparer.DefaultInvariant.Compare(this.sessionScope, othr.sessionScope);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.eventDeclarations, othr.eventDeclarations);
+            compare = Comparer.DefaultInvariant.Compare(this.eventDeclarations, othr.eventDeclarations);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.targetDeclarations, othr.targetDeclarations);
+            compare = Comparer.DefaultInvariant.Compare(this.targetDeclarations, othr.targetDeclarations);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sessionOptions, othr.sessionOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.sessionOptions, othr.sessionOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateEventSessionStatement left, CreateEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateEventSessionStatement left, CreateEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateEventSessionStatement left, CreateEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateEventSessionStatement left, CreateEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateEventSessionStatement FromMutable(ScriptDom.CreateEventSessionStatement fragment) {
             return (CreateEventSessionStatement)TSqlFragment.FromMutable(fragment);

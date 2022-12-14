@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UpdateStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.updateSpecification, othr.updateSpecification);
+            compare = Comparer.DefaultInvariant.Compare(this.updateSpecification, othr.updateSpecification);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withCtesAndXmlNamespaces, othr.withCtesAndXmlNamespaces);
+            compare = Comparer.DefaultInvariant.Compare(this.withCtesAndXmlNamespaces, othr.withCtesAndXmlNamespaces);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optimizerHints, othr.optimizerHints);
+            compare = Comparer.DefaultInvariant.Compare(this.optimizerHints, othr.optimizerHints);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (UpdateStatement left, UpdateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(UpdateStatement left, UpdateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (UpdateStatement left, UpdateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(UpdateStatement left, UpdateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static UpdateStatement FromMutable(ScriptDom.UpdateStatement fragment) {
             return (UpdateStatement)TSqlFragment.FromMutable(fragment);

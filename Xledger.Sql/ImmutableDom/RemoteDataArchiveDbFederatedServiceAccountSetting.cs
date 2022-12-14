@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RemoteDataArchiveDbFederatedServiceAccountSetting)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isOn, othr.isOn);
+            compare = Comparer.DefaultInvariant.Compare(this.isOn, othr.isOn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.settingKind, othr.settingKind);
+            compare = Comparer.DefaultInvariant.Compare(this.settingKind, othr.settingKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (RemoteDataArchiveDbFederatedServiceAccountSetting left, RemoteDataArchiveDbFederatedServiceAccountSetting right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(RemoteDataArchiveDbFederatedServiceAccountSetting left, RemoteDataArchiveDbFederatedServiceAccountSetting right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (RemoteDataArchiveDbFederatedServiceAccountSetting left, RemoteDataArchiveDbFederatedServiceAccountSetting right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(RemoteDataArchiveDbFederatedServiceAccountSetting left, RemoteDataArchiveDbFederatedServiceAccountSetting right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static RemoteDataArchiveDbFederatedServiceAccountSetting FromMutable(ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting fragment) {
             return (RemoteDataArchiveDbFederatedServiceAccountSetting)TSqlFragment.FromMutable(fragment);

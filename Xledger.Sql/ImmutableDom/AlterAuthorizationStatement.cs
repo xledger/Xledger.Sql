@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterAuthorizationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityTargetObject, othr.securityTargetObject);
+            compare = Comparer.DefaultInvariant.Compare(this.securityTargetObject, othr.securityTargetObject);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.toSchemaOwner, othr.toSchemaOwner);
+            compare = Comparer.DefaultInvariant.Compare(this.toSchemaOwner, othr.toSchemaOwner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.principalName, othr.principalName);
+            compare = Comparer.DefaultInvariant.Compare(this.principalName, othr.principalName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterAuthorizationStatement left, AlterAuthorizationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterAuthorizationStatement left, AlterAuthorizationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterAuthorizationStatement left, AlterAuthorizationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterAuthorizationStatement left, AlterAuthorizationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterAuthorizationStatement FromMutable(ScriptDom.AlterAuthorizationStatement fragment) {
             return (AlterAuthorizationStatement)TSqlFragment.FromMutable(fragment);

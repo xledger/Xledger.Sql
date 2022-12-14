@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExternalTableColumnDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnDefinition, othr.columnDefinition);
+            compare = Comparer.DefaultInvariant.Compare(this.columnDefinition, othr.columnDefinition);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.nullableConstraint, othr.nullableConstraint);
+            compare = Comparer.DefaultInvariant.Compare(this.nullableConstraint, othr.nullableConstraint);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExternalTableColumnDefinition FromMutable(ScriptDom.ExternalTableColumnDefinition fragment) {
             return (ExternalTableColumnDefinition)TSqlFragment.FromMutable(fragment);

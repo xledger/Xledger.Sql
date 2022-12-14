@@ -85,18 +85,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateExternalDataSourceStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataSourceType, othr.dataSourceType);
+            compare = Comparer.DefaultInvariant.Compare(this.dataSourceType, othr.dataSourceType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.location, othr.location);
+            compare = Comparer.DefaultInvariant.Compare(this.location, othr.location);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.pushdownOption, othr.pushdownOption);
+            compare = Comparer.DefaultInvariant.Compare(this.pushdownOption, othr.pushdownOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalDataSourceOptions, othr.externalDataSourceOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.externalDataSourceOptions, othr.externalDataSourceOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateExternalDataSourceStatement left, CreateExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateExternalDataSourceStatement left, CreateExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateExternalDataSourceStatement left, CreateExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateExternalDataSourceStatement left, CreateExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateExternalDataSourceStatement FromMutable(ScriptDom.CreateExternalDataSourceStatement fragment) {
             return (CreateExternalDataSourceStatement)TSqlFragment.FromMutable(fragment);

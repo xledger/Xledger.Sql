@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateRouteStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.routeOptions, othr.routeOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.routeOptions, othr.routeOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateRouteStatement left, CreateRouteStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateRouteStatement left, CreateRouteStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateRouteStatement left, CreateRouteStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateRouteStatement left, CreateRouteStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateRouteStatement FromMutable(ScriptDom.CreateRouteStatement fragment) {
             return (CreateRouteStatement)TSqlFragment.FromMutable(fragment);

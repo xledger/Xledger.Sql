@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PartnerDatabaseOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partnerServer, othr.partnerServer);
+            compare = Comparer.DefaultInvariant.Compare(this.partnerServer, othr.partnerServer);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partnerOption, othr.partnerOption);
+            compare = Comparer.DefaultInvariant.Compare(this.partnerOption, othr.partnerOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.timeout, othr.timeout);
+            compare = Comparer.DefaultInvariant.Compare(this.timeout, othr.timeout);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (PartnerDatabaseOption left, PartnerDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(PartnerDatabaseOption left, PartnerDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (PartnerDatabaseOption left, PartnerDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(PartnerDatabaseOption left, PartnerDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static PartnerDatabaseOption FromMutable(ScriptDom.PartnerDatabaseOption fragment) {
             return (PartnerDatabaseOption)TSqlFragment.FromMutable(fragment);

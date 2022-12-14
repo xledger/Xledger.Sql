@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WsdlPayloadOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isNone, othr.isNone);
+            compare = Comparer.DefaultInvariant.Compare(this.isNone, othr.isNone);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            compare = Comparer.DefaultInvariant.Compare(this.kind, othr.kind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (WsdlPayloadOption left, WsdlPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(WsdlPayloadOption left, WsdlPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (WsdlPayloadOption left, WsdlPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(WsdlPayloadOption left, WsdlPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static WsdlPayloadOption FromMutable(ScriptDom.WsdlPayloadOption fragment) {
             return (WsdlPayloadOption)TSqlFragment.FromMutable(fragment);

@@ -91,16 +91,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IIfCall)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.predicate, othr.predicate);
+            compare = Comparer.DefaultInvariant.Compare(this.predicate, othr.predicate);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.thenExpression, othr.thenExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.thenExpression, othr.thenExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.elseExpression, othr.elseExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.elseExpression, othr.elseExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            compare = Comparer.DefaultInvariant.Compare(this.collation, othr.collation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (IIfCall left, IIfCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(IIfCall left, IIfCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (IIfCall left, IIfCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(IIfCall left, IIfCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static IIfCall FromMutable(ScriptDom.IIfCall fragment) {
             return (IIfCall)TSqlFragment.FromMutable(fragment);

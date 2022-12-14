@@ -111,22 +111,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InsertSpecification)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.insertOption, othr.insertOption);
+            compare = Comparer.DefaultInvariant.Compare(this.insertOption, othr.insertOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.insertSource, othr.insertSource);
+            compare = Comparer.DefaultInvariant.Compare(this.insertSource, othr.insertSource);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.target, othr.target);
+            compare = Comparer.DefaultInvariant.Compare(this.target, othr.target);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.topRowFilter, othr.topRowFilter);
+            compare = Comparer.DefaultInvariant.Compare(this.topRowFilter, othr.topRowFilter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.outputIntoClause, othr.outputIntoClause);
+            compare = Comparer.DefaultInvariant.Compare(this.outputIntoClause, othr.outputIntoClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.outputClause, othr.outputClause);
+            compare = Comparer.DefaultInvariant.Compare(this.outputClause, othr.outputClause);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static InsertSpecification FromMutable(ScriptDom.InsertSpecification fragment) {
             return (InsertSpecification)TSqlFragment.FromMutable(fragment);

@@ -103,22 +103,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterFunctionStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.returnType, othr.returnType);
+            compare = Comparer.DefaultInvariant.Compare(this.returnType, othr.returnType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.orderHint, othr.orderHint);
+            compare = Comparer.DefaultInvariant.Compare(this.orderHint, othr.orderHint);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            compare = Comparer.DefaultInvariant.Compare(this.parameters, othr.parameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.statementList, othr.statementList);
+            compare = Comparer.DefaultInvariant.Compare(this.statementList, othr.statementList);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.methodSpecifier, othr.methodSpecifier);
+            compare = Comparer.DefaultInvariant.Compare(this.methodSpecifier, othr.methodSpecifier);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterFunctionStatement left, AlterFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterFunctionStatement left, AlterFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterFunctionStatement left, AlterFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterFunctionStatement left, AlterFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterFunctionStatement FromMutable(ScriptDom.AlterFunctionStatement fragment) {
             return (AlterFunctionStatement)TSqlFragment.FromMutable(fragment);

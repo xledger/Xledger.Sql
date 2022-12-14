@@ -109,22 +109,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UpdateSpecification)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.setClauses, othr.setClauses);
+            compare = Comparer.DefaultInvariant.Compare(this.setClauses, othr.setClauses);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fromClause, othr.fromClause);
+            compare = Comparer.DefaultInvariant.Compare(this.fromClause, othr.fromClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.whereClause, othr.whereClause);
+            compare = Comparer.DefaultInvariant.Compare(this.whereClause, othr.whereClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.target, othr.target);
+            compare = Comparer.DefaultInvariant.Compare(this.target, othr.target);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.topRowFilter, othr.topRowFilter);
+            compare = Comparer.DefaultInvariant.Compare(this.topRowFilter, othr.topRowFilter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.outputIntoClause, othr.outputIntoClause);
+            compare = Comparer.DefaultInvariant.Compare(this.outputIntoClause, othr.outputIntoClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.outputClause, othr.outputClause);
+            compare = Comparer.DefaultInvariant.Compare(this.outputClause, othr.outputClause);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (UpdateSpecification left, UpdateSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(UpdateSpecification left, UpdateSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (UpdateSpecification left, UpdateSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(UpdateSpecification left, UpdateSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static UpdateSpecification FromMutable(ScriptDom.UpdateSpecification fragment) {
             return (UpdateSpecification)TSqlFragment.FromMutable(fragment);

@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CommitTransactionStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.delayedDurabilityOption, othr.delayedDurabilityOption);
+            compare = Comparer.DefaultInvariant.Compare(this.delayedDurabilityOption, othr.delayedDurabilityOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CommitTransactionStatement left, CommitTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CommitTransactionStatement left, CommitTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CommitTransactionStatement left, CommitTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CommitTransactionStatement left, CommitTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CommitTransactionStatement FromMutable(ScriptDom.CommitTransactionStatement fragment) {
             return (CommitTransactionStatement)TSqlFragment.FromMutable(fragment);

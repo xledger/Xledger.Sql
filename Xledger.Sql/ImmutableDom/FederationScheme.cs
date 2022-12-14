@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FederationScheme)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.distributionName, othr.distributionName);
+            compare = Comparer.DefaultInvariant.Compare(this.distributionName, othr.distributionName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnName, othr.columnName);
+            compare = Comparer.DefaultInvariant.Compare(this.columnName, othr.columnName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (FederationScheme left, FederationScheme right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(FederationScheme left, FederationScheme right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (FederationScheme left, FederationScheme right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(FederationScheme left, FederationScheme right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static FederationScheme FromMutable(ScriptDom.FederationScheme fragment) {
             return (FederationScheme)TSqlFragment.FromMutable(fragment);

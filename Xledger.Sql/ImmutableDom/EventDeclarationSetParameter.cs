@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (EventDeclarationSetParameter)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.eventField, othr.eventField);
+            compare = Comparer.DefaultInvariant.Compare(this.eventField, othr.eventField);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.eventValue, othr.eventValue);
+            compare = Comparer.DefaultInvariant.Compare(this.eventValue, othr.eventValue);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (EventDeclarationSetParameter left, EventDeclarationSetParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(EventDeclarationSetParameter left, EventDeclarationSetParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (EventDeclarationSetParameter left, EventDeclarationSetParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(EventDeclarationSetParameter left, EventDeclarationSetParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static EventDeclarationSetParameter FromMutable(ScriptDom.EventDeclarationSetParameter fragment) {
             return (EventDeclarationSetParameter)TSqlFragment.FromMutable(fragment);

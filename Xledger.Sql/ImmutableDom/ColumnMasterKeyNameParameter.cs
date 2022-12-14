@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ColumnMasterKeyNameParameter)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterKind, othr.parameterKind);
+            compare = Comparer.DefaultInvariant.Compare(this.parameterKind, othr.parameterKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ColumnMasterKeyNameParameter left, ColumnMasterKeyNameParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ColumnMasterKeyNameParameter left, ColumnMasterKeyNameParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ColumnMasterKeyNameParameter left, ColumnMasterKeyNameParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ColumnMasterKeyNameParameter left, ColumnMasterKeyNameParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ColumnMasterKeyNameParameter FromMutable(ScriptDom.ColumnMasterKeyNameParameter fragment) {
             return (ColumnMasterKeyNameParameter)TSqlFragment.FromMutable(fragment);

@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (Privilege80)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.privilegeType80, othr.privilegeType80);
+            compare = Comparer.DefaultInvariant.Compare(this.privilegeType80, othr.privilegeType80);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (Privilege80 left, Privilege80 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(Privilege80 left, Privilege80 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (Privilege80 left, Privilege80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(Privilege80 left, Privilege80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static Privilege80 FromMutable(ScriptDom.Privilege80 fragment) {
             return (Privilege80)TSqlFragment.FromMutable(fragment);

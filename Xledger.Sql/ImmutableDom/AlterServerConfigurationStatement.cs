@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerConfigurationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.processAffinity, othr.processAffinity);
+            compare = Comparer.DefaultInvariant.Compare(this.processAffinity, othr.processAffinity);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.processAffinityRanges, othr.processAffinityRanges);
+            compare = Comparer.DefaultInvariant.Compare(this.processAffinityRanges, othr.processAffinityRanges);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterServerConfigurationStatement FromMutable(ScriptDom.AlterServerConfigurationStatement fragment) {
             return (AlterServerConfigurationStatement)TSqlFragment.FromMutable(fragment);

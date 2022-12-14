@@ -99,18 +99,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateFullTextIndexStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            compare = Comparer.DefaultInvariant.Compare(this.onName, othr.onName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fullTextIndexColumns, othr.fullTextIndexColumns);
+            compare = Comparer.DefaultInvariant.Compare(this.fullTextIndexColumns, othr.fullTextIndexColumns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.keyIndexName, othr.keyIndexName);
+            compare = Comparer.DefaultInvariant.Compare(this.keyIndexName, othr.keyIndexName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.catalogAndFileGroup, othr.catalogAndFileGroup);
+            compare = Comparer.DefaultInvariant.Compare(this.catalogAndFileGroup, othr.catalogAndFileGroup);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateFullTextIndexStatement FromMutable(ScriptDom.CreateFullTextIndexStatement fragment) {
             return (CreateFullTextIndexStatement)TSqlFragment.FromMutable(fragment);

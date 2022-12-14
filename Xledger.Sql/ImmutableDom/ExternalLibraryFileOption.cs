@@ -83,14 +83,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExternalLibraryFileOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.content, othr.content);
+            compare = Comparer.DefaultInvariant.Compare(this.content, othr.content);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.path, othr.path);
+            compare = Comparer.DefaultInvariant.Compare(this.path, othr.path);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.platform, othr.platform);
+            compare = Comparer.DefaultInvariant.Compare(this.platform, othr.platform);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExternalLibraryFileOption left, ExternalLibraryFileOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExternalLibraryFileOption left, ExternalLibraryFileOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExternalLibraryFileOption left, ExternalLibraryFileOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExternalLibraryFileOption left, ExternalLibraryFileOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExternalLibraryFileOption FromMutable(ScriptDom.ExternalLibraryFileOption fragment) {
             return (ExternalLibraryFileOption)TSqlFragment.FromMutable(fragment);

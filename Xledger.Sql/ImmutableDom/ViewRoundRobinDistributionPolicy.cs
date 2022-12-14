@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             var othr = (ViewRoundRobinDistributionPolicy)that;
             return compare;
         } 
+        public static bool operator < (ViewRoundRobinDistributionPolicy left, ViewRoundRobinDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ViewRoundRobinDistributionPolicy left, ViewRoundRobinDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ViewRoundRobinDistributionPolicy left, ViewRoundRobinDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ViewRoundRobinDistributionPolicy left, ViewRoundRobinDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ViewRoundRobinDistributionPolicy FromMutable(ScriptDom.ViewRoundRobinDistributionPolicy fragment) {
             return (ViewRoundRobinDistributionPolicy)TSqlFragment.FromMutable(fragment);

@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QueryParenthesisExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.queryExpression, othr.queryExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.queryExpression, othr.queryExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.orderByClause, othr.orderByClause);
+            compare = Comparer.DefaultInvariant.Compare(this.orderByClause, othr.orderByClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.offsetClause, othr.offsetClause);
+            compare = Comparer.DefaultInvariant.Compare(this.offsetClause, othr.offsetClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forClause, othr.forClause);
+            compare = Comparer.DefaultInvariant.Compare(this.forClause, othr.forClause);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static QueryParenthesisExpression FromMutable(ScriptDom.QueryParenthesisExpression fragment) {
             return (QueryParenthesisExpression)TSqlFragment.FromMutable(fragment);

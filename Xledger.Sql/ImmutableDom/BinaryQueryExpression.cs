@@ -113,22 +113,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BinaryQueryExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.binaryQueryExpressionType, othr.binaryQueryExpressionType);
+            compare = Comparer.DefaultInvariant.Compare(this.binaryQueryExpressionType, othr.binaryQueryExpressionType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            compare = Comparer.DefaultInvariant.Compare(this.all, othr.all);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.firstQueryExpression, othr.firstQueryExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.firstQueryExpression, othr.firstQueryExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.secondQueryExpression, othr.secondQueryExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.secondQueryExpression, othr.secondQueryExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.orderByClause, othr.orderByClause);
+            compare = Comparer.DefaultInvariant.Compare(this.orderByClause, othr.orderByClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.offsetClause, othr.offsetClause);
+            compare = Comparer.DefaultInvariant.Compare(this.offsetClause, othr.offsetClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forClause, othr.forClause);
+            compare = Comparer.DefaultInvariant.Compare(this.forClause, othr.forClause);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BinaryQueryExpression FromMutable(ScriptDom.BinaryQueryExpression fragment) {
             return (BinaryQueryExpression)TSqlFragment.FromMutable(fragment);

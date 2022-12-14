@@ -61,10 +61,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ColumnEncryptionKeyValue)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            compare = Comparer.DefaultInvariant.Compare(this.parameters, othr.parameters);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ColumnEncryptionKeyValue left, ColumnEncryptionKeyValue right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ColumnEncryptionKeyValue left, ColumnEncryptionKeyValue right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ColumnEncryptionKeyValue left, ColumnEncryptionKeyValue right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ColumnEncryptionKeyValue left, ColumnEncryptionKeyValue right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ColumnEncryptionKeyValue FromMutable(ScriptDom.ColumnEncryptionKeyValue fragment) {
             return (ColumnEncryptionKeyValue)TSqlFragment.FromMutable(fragment);

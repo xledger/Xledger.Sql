@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerConfigurationExternalAuthenticationOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionValue, othr.optionValue);
+            compare = Comparer.DefaultInvariant.Compare(this.optionValue, othr.optionValue);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterServerConfigurationExternalAuthenticationOption left, AlterServerConfigurationExternalAuthenticationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterServerConfigurationExternalAuthenticationOption left, AlterServerConfigurationExternalAuthenticationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterServerConfigurationExternalAuthenticationOption left, AlterServerConfigurationExternalAuthenticationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterServerConfigurationExternalAuthenticationOption left, AlterServerConfigurationExternalAuthenticationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterServerConfigurationExternalAuthenticationOption FromMutable(ScriptDom.AlterServerConfigurationExternalAuthenticationOption fragment) {
             return (AlterServerConfigurationExternalAuthenticationOption)TSqlFragment.FromMutable(fragment);

@@ -95,18 +95,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RevokeStatement80)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.grantOptionFor, othr.grantOptionFor);
+            compare = Comparer.DefaultInvariant.Compare(this.grantOptionFor, othr.grantOptionFor);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.cascadeOption, othr.cascadeOption);
+            compare = Comparer.DefaultInvariant.Compare(this.cascadeOption, othr.cascadeOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.asClause, othr.asClause);
+            compare = Comparer.DefaultInvariant.Compare(this.asClause, othr.asClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityElement80, othr.securityElement80);
+            compare = Comparer.DefaultInvariant.Compare(this.securityElement80, othr.securityElement80);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityUserClause80, othr.securityUserClause80);
+            compare = Comparer.DefaultInvariant.Compare(this.securityUserClause80, othr.securityUserClause80);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (RevokeStatement80 left, RevokeStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(RevokeStatement80 left, RevokeStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (RevokeStatement80 left, RevokeStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(RevokeStatement80 left, RevokeStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static RevokeStatement80 FromMutable(ScriptDom.RevokeStatement80 fragment) {
             return (RevokeStatement80)TSqlFragment.FromMutable(fragment);

@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SelectScalarExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.expression, othr.expression);
+            compare = Comparer.DefaultInvariant.Compare(this.expression, othr.expression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnName, othr.columnName);
+            compare = Comparer.DefaultInvariant.Compare(this.columnName, othr.columnName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SelectScalarExpression left, SelectScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SelectScalarExpression left, SelectScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SelectScalarExpression left, SelectScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SelectScalarExpression left, SelectScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SelectScalarExpression FromMutable(ScriptDom.SelectScalarExpression fragment) {
             return (SelectScalarExpression)TSqlFragment.FromMutable(fragment);

@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GeneralSetCommand)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.commandType, othr.commandType);
+            compare = Comparer.DefaultInvariant.Compare(this.commandType, othr.commandType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameter, othr.parameter);
+            compare = Comparer.DefaultInvariant.Compare(this.parameter, othr.parameter);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GeneralSetCommand left, GeneralSetCommand right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GeneralSetCommand left, GeneralSetCommand right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GeneralSetCommand left, GeneralSetCommand right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GeneralSetCommand left, GeneralSetCommand right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GeneralSetCommand FromMutable(ScriptDom.GeneralSetCommand fragment) {
             return (GeneralSetCommand)TSqlFragment.FromMutable(fragment);

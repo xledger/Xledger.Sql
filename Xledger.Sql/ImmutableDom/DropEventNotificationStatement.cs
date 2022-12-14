@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropEventNotificationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.notifications, othr.notifications);
+            compare = Comparer.DefaultInvariant.Compare(this.notifications, othr.notifications);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.scope, othr.scope);
+            compare = Comparer.DefaultInvariant.Compare(this.scope, othr.scope);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DropEventNotificationStatement left, DropEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DropEventNotificationStatement left, DropEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DropEventNotificationStatement left, DropEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DropEventNotificationStatement left, DropEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DropEventNotificationStatement FromMutable(ScriptDom.DropEventNotificationStatement fragment) {
             return (DropEventNotificationStatement)TSqlFragment.FromMutable(fragment);

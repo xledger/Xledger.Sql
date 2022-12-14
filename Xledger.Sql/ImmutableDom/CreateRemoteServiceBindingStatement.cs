@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateRemoteServiceBindingStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.service, othr.service);
+            compare = Comparer.DefaultInvariant.Compare(this.service, othr.service);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateRemoteServiceBindingStatement FromMutable(ScriptDom.CreateRemoteServiceBindingStatement fragment) {
             return (CreateRemoteServiceBindingStatement)TSqlFragment.FromMutable(fragment);

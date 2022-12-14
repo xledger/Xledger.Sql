@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PasswordCreateLoginSource)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.password, othr.password);
+            compare = Comparer.DefaultInvariant.Compare(this.password, othr.password);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.hashed, othr.hashed);
+            compare = Comparer.DefaultInvariant.Compare(this.hashed, othr.hashed);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.mustChange, othr.mustChange);
+            compare = Comparer.DefaultInvariant.Compare(this.mustChange, othr.mustChange);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (PasswordCreateLoginSource left, PasswordCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(PasswordCreateLoginSource left, PasswordCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (PasswordCreateLoginSource left, PasswordCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(PasswordCreateLoginSource left, PasswordCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static PasswordCreateLoginSource FromMutable(ScriptDom.PasswordCreateLoginSource fragment) {
             return (PasswordCreateLoginSource)TSqlFragment.FromMutable(fragment);

@@ -75,14 +75,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DataCompressionOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.compressionLevel, othr.compressionLevel);
+            compare = Comparer.DefaultInvariant.Compare(this.compressionLevel, othr.compressionLevel);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionRanges, othr.partitionRanges);
+            compare = Comparer.DefaultInvariant.Compare(this.partitionRanges, othr.partitionRanges);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DataCompressionOption FromMutable(ScriptDom.DataCompressionOption fragment) {
             return (DataCompressionOption)TSqlFragment.FromMutable(fragment);

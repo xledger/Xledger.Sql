@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterColumnAlterFullTextIndexAction)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.column, othr.column);
+            compare = Comparer.DefaultInvariant.Compare(this.column, othr.column);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withNoPopulation, othr.withNoPopulation);
+            compare = Comparer.DefaultInvariant.Compare(this.withNoPopulation, othr.withNoPopulation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterColumnAlterFullTextIndexAction left, AlterColumnAlterFullTextIndexAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterColumnAlterFullTextIndexAction left, AlterColumnAlterFullTextIndexAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterColumnAlterFullTextIndexAction left, AlterColumnAlterFullTextIndexAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterColumnAlterFullTextIndexAction left, AlterColumnAlterFullTextIndexAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterColumnAlterFullTextIndexAction FromMutable(ScriptDom.AlterColumnAlterFullTextIndexAction fragment) {
             return (AlterColumnAlterFullTextIndexAction)TSqlFragment.FromMutable(fragment);

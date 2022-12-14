@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ResultColumnDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnDefinition, othr.columnDefinition);
+            compare = Comparer.DefaultInvariant.Compare(this.columnDefinition, othr.columnDefinition);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.nullable, othr.nullable);
+            compare = Comparer.DefaultInvariant.Compare(this.nullable, othr.nullable);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ResultColumnDefinition left, ResultColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ResultColumnDefinition left, ResultColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ResultColumnDefinition left, ResultColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ResultColumnDefinition left, ResultColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ResultColumnDefinition FromMutable(ScriptDom.ResultColumnDefinition fragment) {
             return (ResultColumnDefinition)TSqlFragment.FromMutable(fragment);

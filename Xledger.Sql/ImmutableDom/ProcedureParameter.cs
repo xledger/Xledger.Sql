@@ -101,20 +101,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ProcedureParameter)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isVarying, othr.isVarying);
+            compare = Comparer.DefaultInvariant.Compare(this.isVarying, othr.isVarying);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.modifier, othr.modifier);
+            compare = Comparer.DefaultInvariant.Compare(this.modifier, othr.modifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.variableName, othr.variableName);
+            compare = Comparer.DefaultInvariant.Compare(this.variableName, othr.variableName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataType, othr.dataType);
+            compare = Comparer.DefaultInvariant.Compare(this.dataType, othr.dataType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.nullable, othr.nullable);
+            compare = Comparer.DefaultInvariant.Compare(this.nullable, othr.nullable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ProcedureParameter left, ProcedureParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ProcedureParameter left, ProcedureParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ProcedureParameter left, ProcedureParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ProcedureParameter left, ProcedureParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ProcedureParameter FromMutable(ScriptDom.ProcedureParameter fragment) {
             return (ProcedureParameter)TSqlFragment.FromMutable(fragment);

@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SetIdentityInsertStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.table, othr.table);
+            compare = Comparer.DefaultInvariant.Compare(this.table, othr.table);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isOn, othr.isOn);
+            compare = Comparer.DefaultInvariant.Compare(this.isOn, othr.isOn);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SetIdentityInsertStatement left, SetIdentityInsertStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SetIdentityInsertStatement left, SetIdentityInsertStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SetIdentityInsertStatement left, SetIdentityInsertStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SetIdentityInsertStatement left, SetIdentityInsertStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SetIdentityInsertStatement FromMutable(ScriptDom.SetIdentityInsertStatement fragment) {
             return (SetIdentityInsertStatement)TSqlFragment.FromMutable(fragment);

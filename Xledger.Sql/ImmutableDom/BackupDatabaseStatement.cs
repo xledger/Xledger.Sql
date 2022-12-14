@@ -87,18 +87,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BackupDatabaseStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.files, othr.files);
+            compare = Comparer.DefaultInvariant.Compare(this.files, othr.files);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.mirrorToClauses, othr.mirrorToClauses);
+            compare = Comparer.DefaultInvariant.Compare(this.mirrorToClauses, othr.mirrorToClauses);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.devices, othr.devices);
+            compare = Comparer.DefaultInvariant.Compare(this.devices, othr.devices);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BackupDatabaseStatement left, BackupDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BackupDatabaseStatement left, BackupDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BackupDatabaseStatement left, BackupDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BackupDatabaseStatement left, BackupDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BackupDatabaseStatement FromMutable(ScriptDom.BackupDatabaseStatement fragment) {
             return (BackupDatabaseStatement)TSqlFragment.FromMutable(fragment);

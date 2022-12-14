@@ -109,20 +109,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LedgerViewOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.viewName, othr.viewName);
+            compare = Comparer.DefaultInvariant.Compare(this.viewName, othr.viewName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.transactionIdColumnName, othr.transactionIdColumnName);
+            compare = Comparer.DefaultInvariant.Compare(this.transactionIdColumnName, othr.transactionIdColumnName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sequenceNumberColumnName, othr.sequenceNumberColumnName);
+            compare = Comparer.DefaultInvariant.Compare(this.sequenceNumberColumnName, othr.sequenceNumberColumnName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.operationTypeColumnName, othr.operationTypeColumnName);
+            compare = Comparer.DefaultInvariant.Compare(this.operationTypeColumnName, othr.operationTypeColumnName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.operationTypeDescColumnName, othr.operationTypeDescColumnName);
+            compare = Comparer.DefaultInvariant.Compare(this.operationTypeDescColumnName, othr.operationTypeDescColumnName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (LedgerViewOption left, LedgerViewOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(LedgerViewOption left, LedgerViewOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (LedgerViewOption left, LedgerViewOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(LedgerViewOption left, LedgerViewOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static LedgerViewOption FromMutable(ScriptDom.LedgerViewOption fragment) {
             return (LedgerViewOption)TSqlFragment.FromMutable(fragment);

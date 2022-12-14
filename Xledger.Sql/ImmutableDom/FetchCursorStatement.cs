@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FetchCursorStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fetchType, othr.fetchType);
+            compare = Comparer.DefaultInvariant.Compare(this.fetchType, othr.fetchType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.intoVariables, othr.intoVariables);
+            compare = Comparer.DefaultInvariant.Compare(this.intoVariables, othr.intoVariables);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.cursor, othr.cursor);
+            compare = Comparer.DefaultInvariant.Compare(this.cursor, othr.cursor);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (FetchCursorStatement left, FetchCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(FetchCursorStatement left, FetchCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (FetchCursorStatement left, FetchCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(FetchCursorStatement left, FetchCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static FetchCursorStatement FromMutable(ScriptDom.FetchCursorStatement fragment) {
             return (FetchCursorStatement)TSqlFragment.FromMutable(fragment);

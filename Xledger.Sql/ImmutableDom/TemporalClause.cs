@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TemporalClause)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.temporalClauseType, othr.temporalClauseType);
+            compare = Comparer.DefaultInvariant.Compare(this.temporalClauseType, othr.temporalClauseType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.startTime, othr.startTime);
+            compare = Comparer.DefaultInvariant.Compare(this.startTime, othr.startTime);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.endTime, othr.endTime);
+            compare = Comparer.DefaultInvariant.Compare(this.endTime, othr.endTime);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (TemporalClause left, TemporalClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(TemporalClause left, TemporalClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (TemporalClause left, TemporalClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(TemporalClause left, TemporalClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static TemporalClause FromMutable(ScriptDom.TemporalClause fragment) {
             return (TemporalClause)TSqlFragment.FromMutable(fragment);

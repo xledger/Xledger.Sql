@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterDatabaseTermination)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.immediateRollback, othr.immediateRollback);
+            compare = Comparer.DefaultInvariant.Compare(this.immediateRollback, othr.immediateRollback);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.rollbackAfter, othr.rollbackAfter);
+            compare = Comparer.DefaultInvariant.Compare(this.rollbackAfter, othr.rollbackAfter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.noWait, othr.noWait);
+            compare = Comparer.DefaultInvariant.Compare(this.noWait, othr.noWait);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterDatabaseTermination left, AlterDatabaseTermination right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterDatabaseTermination left, AlterDatabaseTermination right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterDatabaseTermination left, AlterDatabaseTermination right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterDatabaseTermination left, AlterDatabaseTermination right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterDatabaseTermination FromMutable(ScriptDom.AlterDatabaseTermination fragment) {
             return (AlterDatabaseTermination)TSqlFragment.FromMutable(fragment);

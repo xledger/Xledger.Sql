@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WhileStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.predicate, othr.predicate);
+            compare = Comparer.DefaultInvariant.Compare(this.predicate, othr.predicate);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.statement, othr.statement);
+            compare = Comparer.DefaultInvariant.Compare(this.statement, othr.statement);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (WhileStatement left, WhileStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(WhileStatement left, WhileStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (WhileStatement left, WhileStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(WhileStatement left, WhileStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static WhileStatement FromMutable(ScriptDom.WhileStatement fragment) {
             return (WhileStatement)TSqlFragment.FromMutable(fragment);

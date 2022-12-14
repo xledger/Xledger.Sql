@@ -63,10 +63,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CellsPerObjectSpatialIndexOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CellsPerObjectSpatialIndexOption left, CellsPerObjectSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CellsPerObjectSpatialIndexOption left, CellsPerObjectSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CellsPerObjectSpatialIndexOption left, CellsPerObjectSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CellsPerObjectSpatialIndexOption left, CellsPerObjectSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CellsPerObjectSpatialIndexOption FromMutable(ScriptDom.CellsPerObjectSpatialIndexOption fragment) {
             return (CellsPerObjectSpatialIndexOption)TSqlFragment.FromMutable(fragment);

@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             var othr = (GrandTotalGroupingSpecification)that;
             return compare;
         } 
+        public static bool operator < (GrandTotalGroupingSpecification left, GrandTotalGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GrandTotalGroupingSpecification left, GrandTotalGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GrandTotalGroupingSpecification left, GrandTotalGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GrandTotalGroupingSpecification left, GrandTotalGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GrandTotalGroupingSpecification FromMutable(ScriptDom.GrandTotalGroupingSpecification fragment) {
             return (GrandTotalGroupingSpecification)TSqlFragment.FromMutable(fragment);

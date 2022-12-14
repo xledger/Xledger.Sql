@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (XmlDataTypeReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlDataTypeOption, othr.xmlDataTypeOption);
+            compare = Comparer.DefaultInvariant.Compare(this.xmlDataTypeOption, othr.xmlDataTypeOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlSchemaCollection, othr.xmlSchemaCollection);
+            compare = Comparer.DefaultInvariant.Compare(this.xmlSchemaCollection, othr.xmlSchemaCollection);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (XmlDataTypeReference left, XmlDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(XmlDataTypeReference left, XmlDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (XmlDataTypeReference left, XmlDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(XmlDataTypeReference left, XmlDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static XmlDataTypeReference FromMutable(ScriptDom.XmlDataTypeReference fragment) {
             return (XmlDataTypeReference)TSqlFragment.FromMutable(fragment);

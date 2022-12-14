@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WithCtesAndXmlNamespaces)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.xmlNamespaces, othr.xmlNamespaces);
+            compare = Comparer.DefaultInvariant.Compare(this.xmlNamespaces, othr.xmlNamespaces);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.commonTableExpressions, othr.commonTableExpressions);
+            compare = Comparer.DefaultInvariant.Compare(this.commonTableExpressions, othr.commonTableExpressions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.changeTrackingContext, othr.changeTrackingContext);
+            compare = Comparer.DefaultInvariant.Compare(this.changeTrackingContext, othr.changeTrackingContext);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static WithCtesAndXmlNamespaces FromMutable(ScriptDom.WithCtesAndXmlNamespaces fragment) {
             return (WithCtesAndXmlNamespaces)TSqlFragment.FromMutable(fragment);

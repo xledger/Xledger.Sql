@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             var othr = (ContinueStatement)that;
             return compare;
         } 
+        public static bool operator < (ContinueStatement left, ContinueStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ContinueStatement left, ContinueStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ContinueStatement left, ContinueStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ContinueStatement left, ContinueStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ContinueStatement FromMutable(ScriptDom.ContinueStatement fragment) {
             return (ContinueStatement)TSqlFragment.FromMutable(fragment);

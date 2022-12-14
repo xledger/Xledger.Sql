@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExecutableProcedureReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.procedureReference, othr.procedureReference);
+            compare = Comparer.DefaultInvariant.Compare(this.procedureReference, othr.procedureReference);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.adHocDataSource, othr.adHocDataSource);
+            compare = Comparer.DefaultInvariant.Compare(this.adHocDataSource, othr.adHocDataSource);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            compare = Comparer.DefaultInvariant.Compare(this.parameters, othr.parameters);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExecutableProcedureReference left, ExecutableProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExecutableProcedureReference left, ExecutableProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExecutableProcedureReference left, ExecutableProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExecutableProcedureReference left, ExecutableProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExecutableProcedureReference FromMutable(ScriptDom.ExecutableProcedureReference fragment) {
             return (ExecutableProcedureReference)TSqlFragment.FromMutable(fragment);

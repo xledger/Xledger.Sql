@@ -83,16 +83,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateAssemblyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            compare = Comparer.DefaultInvariant.Compare(this.parameters, othr.parameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateAssemblyStatement left, CreateAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateAssemblyStatement left, CreateAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateAssemblyStatement left, CreateAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateAssemblyStatement left, CreateAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateAssemblyStatement FromMutable(ScriptDom.CreateAssemblyStatement fragment) {
             return (CreateAssemblyStatement)TSqlFragment.FromMutable(fragment);

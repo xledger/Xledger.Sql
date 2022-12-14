@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SimpleCaseExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.inputExpression, othr.inputExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.inputExpression, othr.inputExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.whenClauses, othr.whenClauses);
+            compare = Comparer.DefaultInvariant.Compare(this.whenClauses, othr.whenClauses);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.elseExpression, othr.elseExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.elseExpression, othr.elseExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            compare = Comparer.DefaultInvariant.Compare(this.collation, othr.collation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SimpleCaseExpression FromMutable(ScriptDom.SimpleCaseExpression fragment) {
             return (SimpleCaseExpression)TSqlFragment.FromMutable(fragment);

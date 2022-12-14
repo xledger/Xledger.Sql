@@ -63,10 +63,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExecuteInsertSource)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.execute, othr.execute);
+            compare = Comparer.DefaultInvariant.Compare(this.execute, othr.execute);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExecuteInsertSource left, ExecuteInsertSource right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExecuteInsertSource left, ExecuteInsertSource right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExecuteInsertSource left, ExecuteInsertSource right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExecuteInsertSource left, ExecuteInsertSource right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExecuteInsertSource FromMutable(ScriptDom.ExecuteInsertSource fragment) {
             return (ExecuteInsertSource)TSqlFragment.FromMutable(fragment);

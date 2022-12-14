@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterFullTextIndexStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            compare = Comparer.DefaultInvariant.Compare(this.onName, othr.onName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.action, othr.action);
+            compare = Comparer.DefaultInvariant.Compare(this.action, othr.action);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterFullTextIndexStatement left, AlterFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterFullTextIndexStatement left, AlterFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterFullTextIndexStatement left, AlterFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterFullTextIndexStatement left, AlterFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterFullTextIndexStatement FromMutable(ScriptDom.AlterFullTextIndexStatement fragment) {
             return (AlterFullTextIndexStatement)TSqlFragment.FromMutable(fragment);

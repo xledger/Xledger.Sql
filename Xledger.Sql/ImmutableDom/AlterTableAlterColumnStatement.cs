@@ -161,32 +161,36 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableAlterColumnStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnIdentifier, othr.columnIdentifier);
+            compare = Comparer.DefaultInvariant.Compare(this.columnIdentifier, othr.columnIdentifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataType, othr.dataType);
+            compare = Comparer.DefaultInvariant.Compare(this.dataType, othr.dataType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alterTableAlterColumnOption, othr.alterTableAlterColumnOption);
+            compare = Comparer.DefaultInvariant.Compare(this.alterTableAlterColumnOption, othr.alterTableAlterColumnOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.storageOptions, othr.storageOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.storageOptions, othr.storageOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.generatedAlways, othr.generatedAlways);
+            compare = Comparer.DefaultInvariant.Compare(this.generatedAlways, othr.generatedAlways);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isHidden, othr.isHidden);
+            compare = Comparer.DefaultInvariant.Compare(this.isHidden, othr.isHidden);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryption, othr.encryption);
+            compare = Comparer.DefaultInvariant.Compare(this.encryption, othr.encryption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            compare = Comparer.DefaultInvariant.Compare(this.collation, othr.collation);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isMasked, othr.isMasked);
+            compare = Comparer.DefaultInvariant.Compare(this.isMasked, othr.isMasked);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.maskingFunction, othr.maskingFunction);
+            compare = Comparer.DefaultInvariant.Compare(this.maskingFunction, othr.maskingFunction);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterTableAlterColumnStatement FromMutable(ScriptDom.AlterTableAlterColumnStatement fragment) {
             return (AlterTableAlterColumnStatement)TSqlFragment.FromMutable(fragment);

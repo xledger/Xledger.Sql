@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateQueueStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroup, othr.onFileGroup);
+            compare = Comparer.DefaultInvariant.Compare(this.onFileGroup, othr.onFileGroup);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.queueOptions, othr.queueOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.queueOptions, othr.queueOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateQueueStatement left, CreateQueueStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateQueueStatement left, CreateQueueStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateQueueStatement left, CreateQueueStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateQueueStatement left, CreateQueueStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateQueueStatement FromMutable(ScriptDom.CreateQueueStatement fragment) {
             return (CreateQueueStatement)TSqlFragment.FromMutable(fragment);

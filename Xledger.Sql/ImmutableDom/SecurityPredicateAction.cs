@@ -97,18 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SecurityPredicateAction)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.actionType, othr.actionType);
+            compare = Comparer.DefaultInvariant.Compare(this.actionType, othr.actionType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityPredicateType, othr.securityPredicateType);
+            compare = Comparer.DefaultInvariant.Compare(this.securityPredicateType, othr.securityPredicateType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.functionCall, othr.functionCall);
+            compare = Comparer.DefaultInvariant.Compare(this.functionCall, othr.functionCall);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.targetObjectName, othr.targetObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.targetObjectName, othr.targetObjectName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.securityPredicateOperation, othr.securityPredicateOperation);
+            compare = Comparer.DefaultInvariant.Compare(this.securityPredicateOperation, othr.securityPredicateOperation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SecurityPredicateAction left, SecurityPredicateAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SecurityPredicateAction left, SecurityPredicateAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SecurityPredicateAction left, SecurityPredicateAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SecurityPredicateAction left, SecurityPredicateAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SecurityPredicateAction FromMutable(ScriptDom.SecurityPredicateAction fragment) {
             return (SecurityPredicateAction)TSqlFragment.FromMutable(fragment);

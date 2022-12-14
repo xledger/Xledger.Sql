@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (KillQueryNotificationSubscriptionStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.subscriptionId, othr.subscriptionId);
+            compare = Comparer.DefaultInvariant.Compare(this.subscriptionId, othr.subscriptionId);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            compare = Comparer.DefaultInvariant.Compare(this.all, othr.all);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (KillQueryNotificationSubscriptionStatement left, KillQueryNotificationSubscriptionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(KillQueryNotificationSubscriptionStatement left, KillQueryNotificationSubscriptionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (KillQueryNotificationSubscriptionStatement left, KillQueryNotificationSubscriptionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(KillQueryNotificationSubscriptionStatement left, KillQueryNotificationSubscriptionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static KillQueryNotificationSubscriptionStatement FromMutable(ScriptDom.KillQueryNotificationSubscriptionStatement fragment) {
             return (KillQueryNotificationSubscriptionStatement)TSqlFragment.FromMutable(fragment);

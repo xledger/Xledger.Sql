@@ -83,16 +83,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DataModificationTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataModificationSpecification, othr.dataModificationSpecification);
+            compare = Comparer.DefaultInvariant.Compare(this.dataModificationSpecification, othr.dataModificationSpecification);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DataModificationTableReference FromMutable(ScriptDom.DataModificationTableReference fragment) {
             return (DataModificationTableReference)TSqlFragment.FromMutable(fragment);

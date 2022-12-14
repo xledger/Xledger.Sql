@@ -71,14 +71,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateExternalFileFormatStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.formatType, othr.formatType);
+            compare = Comparer.DefaultInvariant.Compare(this.formatType, othr.formatType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalFileFormatOptions, othr.externalFileFormatOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.externalFileFormatOptions, othr.externalFileFormatOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateExternalFileFormatStatement left, CreateExternalFileFormatStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateExternalFileFormatStatement left, CreateExternalFileFormatStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateExternalFileFormatStatement left, CreateExternalFileFormatStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateExternalFileFormatStatement left, CreateExternalFileFormatStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateExternalFileFormatStatement FromMutable(ScriptDom.CreateExternalFileFormatStatement fragment) {
             return (CreateExternalFileFormatStatement)TSqlFragment.FromMutable(fragment);

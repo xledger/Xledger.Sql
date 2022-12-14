@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphMatchLastNodePredicate)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.leftExpression, othr.leftExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.leftExpression, othr.leftExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.rightExpression, othr.rightExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.rightExpression, othr.rightExpression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GraphMatchLastNodePredicate FromMutable(ScriptDom.GraphMatchLastNodePredicate fragment) {
             return (GraphMatchLastNodePredicate)TSqlFragment.FromMutable(fragment);

@@ -83,14 +83,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IfStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.predicate, othr.predicate);
+            compare = Comparer.DefaultInvariant.Compare(this.predicate, othr.predicate);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.thenStatement, othr.thenStatement);
+            compare = Comparer.DefaultInvariant.Compare(this.thenStatement, othr.thenStatement);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.elseStatement, othr.elseStatement);
+            compare = Comparer.DefaultInvariant.Compare(this.elseStatement, othr.elseStatement);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (IfStatement left, IfStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(IfStatement left, IfStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (IfStatement left, IfStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(IfStatement left, IfStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static IfStatement FromMutable(ScriptDom.IfStatement fragment) {
             return (IfStatement)TSqlFragment.FromMutable(fragment);

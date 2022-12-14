@@ -109,20 +109,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateEventNotificationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.scope, othr.scope);
+            compare = Comparer.DefaultInvariant.Compare(this.scope, othr.scope);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withFanIn, othr.withFanIn);
+            compare = Comparer.DefaultInvariant.Compare(this.withFanIn, othr.withFanIn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.eventTypeGroups, othr.eventTypeGroups);
+            compare = Comparer.DefaultInvariant.Compare(this.eventTypeGroups, othr.eventTypeGroups);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.brokerService, othr.brokerService);
+            compare = Comparer.DefaultInvariant.Compare(this.brokerService, othr.brokerService);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.brokerInstanceSpecifier, othr.brokerInstanceSpecifier);
+            compare = Comparer.DefaultInvariant.Compare(this.brokerInstanceSpecifier, othr.brokerInstanceSpecifier);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateEventNotificationStatement left, CreateEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateEventNotificationStatement left, CreateEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateEventNotificationStatement left, CreateEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateEventNotificationStatement left, CreateEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateEventNotificationStatement FromMutable(ScriptDom.CreateEventNotificationStatement fragment) {
             return (CreateEventNotificationStatement)TSqlFragment.FromMutable(fragment);

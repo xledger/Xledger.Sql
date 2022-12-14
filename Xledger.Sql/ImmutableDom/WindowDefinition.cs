@@ -101,18 +101,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WindowDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.windowName, othr.windowName);
+            compare = Comparer.DefaultInvariant.Compare(this.windowName, othr.windowName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.refWindowName, othr.refWindowName);
+            compare = Comparer.DefaultInvariant.Compare(this.refWindowName, othr.refWindowName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partitions, othr.partitions);
+            compare = Comparer.DefaultInvariant.Compare(this.partitions, othr.partitions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.orderByClause, othr.orderByClause);
+            compare = Comparer.DefaultInvariant.Compare(this.orderByClause, othr.orderByClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.windowFrameClause, othr.windowFrameClause);
+            compare = Comparer.DefaultInvariant.Compare(this.windowFrameClause, othr.windowFrameClause);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (WindowDefinition left, WindowDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(WindowDefinition left, WindowDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (WindowDefinition left, WindowDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(WindowDefinition left, WindowDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static WindowDefinition FromMutable(ScriptDom.WindowDefinition fragment) {
             return (WindowDefinition)TSqlFragment.FromMutable(fragment);

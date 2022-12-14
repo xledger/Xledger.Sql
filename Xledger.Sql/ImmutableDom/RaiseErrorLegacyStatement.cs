@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RaiseErrorLegacyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.firstParameter, othr.firstParameter);
+            compare = Comparer.DefaultInvariant.Compare(this.firstParameter, othr.firstParameter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.secondParameter, othr.secondParameter);
+            compare = Comparer.DefaultInvariant.Compare(this.secondParameter, othr.secondParameter);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (RaiseErrorLegacyStatement left, RaiseErrorLegacyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(RaiseErrorLegacyStatement left, RaiseErrorLegacyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (RaiseErrorLegacyStatement left, RaiseErrorLegacyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(RaiseErrorLegacyStatement left, RaiseErrorLegacyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static RaiseErrorLegacyStatement FromMutable(ScriptDom.RaiseErrorLegacyStatement fragment) {
             return (RaiseErrorLegacyStatement)TSqlFragment.FromMutable(fragment);

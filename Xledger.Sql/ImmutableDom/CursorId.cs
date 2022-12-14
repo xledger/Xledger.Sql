@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CursorId)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isGlobal, othr.isGlobal);
+            compare = Comparer.DefaultInvariant.Compare(this.isGlobal, othr.isGlobal);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CursorId left, CursorId right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CursorId left, CursorId right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CursorId left, CursorId right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CursorId left, CursorId right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CursorId FromMutable(ScriptDom.CursorId fragment) {
             return (CursorId)TSqlFragment.FromMutable(fragment);

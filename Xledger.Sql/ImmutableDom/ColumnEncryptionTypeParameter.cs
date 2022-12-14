@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ColumnEncryptionTypeParameter)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptionType, othr.encryptionType);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptionType, othr.encryptionType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterKind, othr.parameterKind);
+            compare = Comparer.DefaultInvariant.Compare(this.parameterKind, othr.parameterKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ColumnEncryptionTypeParameter left, ColumnEncryptionTypeParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ColumnEncryptionTypeParameter left, ColumnEncryptionTypeParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ColumnEncryptionTypeParameter left, ColumnEncryptionTypeParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ColumnEncryptionTypeParameter left, ColumnEncryptionTypeParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ColumnEncryptionTypeParameter FromMutable(ScriptDom.ColumnEncryptionTypeParameter fragment) {
             return (ColumnEncryptionTypeParameter)TSqlFragment.FromMutable(fragment);

@@ -81,16 +81,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateWorkloadGroupStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.workloadGroupParameters, othr.workloadGroupParameters);
+            compare = Comparer.DefaultInvariant.Compare(this.workloadGroupParameters, othr.workloadGroupParameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.poolName, othr.poolName);
+            compare = Comparer.DefaultInvariant.Compare(this.poolName, othr.poolName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalPoolName, othr.externalPoolName);
+            compare = Comparer.DefaultInvariant.Compare(this.externalPoolName, othr.externalPoolName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateWorkloadGroupStatement left, CreateWorkloadGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateWorkloadGroupStatement left, CreateWorkloadGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateWorkloadGroupStatement left, CreateWorkloadGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateWorkloadGroupStatement left, CreateWorkloadGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateWorkloadGroupStatement FromMutable(ScriptDom.CreateWorkloadGroupStatement fragment) {
             return (CreateWorkloadGroupStatement)TSqlFragment.FromMutable(fragment);

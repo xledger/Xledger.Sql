@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (VariableTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (VariableTableReference left, VariableTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(VariableTableReference left, VariableTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (VariableTableReference left, VariableTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(VariableTableReference left, VariableTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static VariableTableReference FromMutable(ScriptDom.VariableTableReference fragment) {
             return (VariableTableReference)TSqlFragment.FromMutable(fragment);

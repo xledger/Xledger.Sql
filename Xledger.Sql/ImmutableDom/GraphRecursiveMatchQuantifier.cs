@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphRecursiveMatchQuantifier)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isPlusSign, othr.isPlusSign);
+            compare = Comparer.DefaultInvariant.Compare(this.isPlusSign, othr.isPlusSign);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.lowerLimit, othr.lowerLimit);
+            compare = Comparer.DefaultInvariant.Compare(this.lowerLimit, othr.lowerLimit);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.upperLimit, othr.upperLimit);
+            compare = Comparer.DefaultInvariant.Compare(this.upperLimit, othr.upperLimit);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GraphRecursiveMatchQuantifier left, GraphRecursiveMatchQuantifier right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GraphRecursiveMatchQuantifier left, GraphRecursiveMatchQuantifier right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GraphRecursiveMatchQuantifier left, GraphRecursiveMatchQuantifier right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GraphRecursiveMatchQuantifier left, GraphRecursiveMatchQuantifier right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GraphRecursiveMatchQuantifier FromMutable(ScriptDom.GraphRecursiveMatchQuantifier fragment) {
             return (GraphRecursiveMatchQuantifier)TSqlFragment.FromMutable(fragment);

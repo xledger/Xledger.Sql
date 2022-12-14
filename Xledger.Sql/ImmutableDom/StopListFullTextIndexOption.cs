@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (StopListFullTextIndexOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isOff, othr.isOff);
+            compare = Comparer.DefaultInvariant.Compare(this.isOff, othr.isOff);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.stopListName, othr.stopListName);
+            compare = Comparer.DefaultInvariant.Compare(this.stopListName, othr.stopListName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (StopListFullTextIndexOption left, StopListFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(StopListFullTextIndexOption left, StopListFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (StopListFullTextIndexOption left, StopListFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(StopListFullTextIndexOption left, StopListFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static StopListFullTextIndexOption FromMutable(ScriptDom.StopListFullTextIndexOption fragment) {
             return (StopListFullTextIndexOption)TSqlFragment.FromMutable(fragment);

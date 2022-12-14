@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InsertBulkColumnDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.column, othr.column);
+            compare = Comparer.DefaultInvariant.Compare(this.column, othr.column);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.nullNotNull, othr.nullNotNull);
+            compare = Comparer.DefaultInvariant.Compare(this.nullNotNull, othr.nullNotNull);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (InsertBulkColumnDefinition left, InsertBulkColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(InsertBulkColumnDefinition left, InsertBulkColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (InsertBulkColumnDefinition left, InsertBulkColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(InsertBulkColumnDefinition left, InsertBulkColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static InsertBulkColumnDefinition FromMutable(ScriptDom.InsertBulkColumnDefinition fragment) {
             return (InsertBulkColumnDefinition)TSqlFragment.FromMutable(fragment);

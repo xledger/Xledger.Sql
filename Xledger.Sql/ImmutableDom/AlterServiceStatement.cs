@@ -73,14 +73,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServiceStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.queueName, othr.queueName);
+            compare = Comparer.DefaultInvariant.Compare(this.queueName, othr.queueName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.serviceContracts, othr.serviceContracts);
+            compare = Comparer.DefaultInvariant.Compare(this.serviceContracts, othr.serviceContracts);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterServiceStatement left, AlterServiceStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterServiceStatement left, AlterServiceStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterServiceStatement left, AlterServiceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterServiceStatement left, AlterServiceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterServiceStatement FromMutable(ScriptDom.AlterServiceStatement fragment) {
             return (AlterServiceStatement)TSqlFragment.FromMutable(fragment);

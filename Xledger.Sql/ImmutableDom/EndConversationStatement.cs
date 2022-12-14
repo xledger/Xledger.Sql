@@ -91,16 +91,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (EndConversationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.conversation, othr.conversation);
+            compare = Comparer.DefaultInvariant.Compare(this.conversation, othr.conversation);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withCleanup, othr.withCleanup);
+            compare = Comparer.DefaultInvariant.Compare(this.withCleanup, othr.withCleanup);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.errorCode, othr.errorCode);
+            compare = Comparer.DefaultInvariant.Compare(this.errorCode, othr.errorCode);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.errorDescription, othr.errorDescription);
+            compare = Comparer.DefaultInvariant.Compare(this.errorDescription, othr.errorDescription);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (EndConversationStatement left, EndConversationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(EndConversationStatement left, EndConversationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (EndConversationStatement left, EndConversationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(EndConversationStatement left, EndConversationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static EndConversationStatement FromMutable(ScriptDom.EndConversationStatement fragment) {
             return (EndConversationStatement)TSqlFragment.FromMutable(fragment);

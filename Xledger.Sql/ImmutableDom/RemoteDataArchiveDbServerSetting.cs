@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RemoteDataArchiveDbServerSetting)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.server, othr.server);
+            compare = Comparer.DefaultInvariant.Compare(this.server, othr.server);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.settingKind, othr.settingKind);
+            compare = Comparer.DefaultInvariant.Compare(this.settingKind, othr.settingKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (RemoteDataArchiveDbServerSetting left, RemoteDataArchiveDbServerSetting right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(RemoteDataArchiveDbServerSetting left, RemoteDataArchiveDbServerSetting right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (RemoteDataArchiveDbServerSetting left, RemoteDataArchiveDbServerSetting right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(RemoteDataArchiveDbServerSetting left, RemoteDataArchiveDbServerSetting right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static RemoteDataArchiveDbServerSetting FromMutable(ScriptDom.RemoteDataArchiveDbServerSetting fragment) {
             return (RemoteDataArchiveDbServerSetting)TSqlFragment.FromMutable(fragment);

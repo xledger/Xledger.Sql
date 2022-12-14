@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DefaultConstraintDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.expression, othr.expression);
+            compare = Comparer.DefaultInvariant.Compare(this.expression, othr.expression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withValues, othr.withValues);
+            compare = Comparer.DefaultInvariant.Compare(this.withValues, othr.withValues);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.column, othr.column);
+            compare = Comparer.DefaultInvariant.Compare(this.column, othr.column);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintIdentifier, othr.constraintIdentifier);
+            compare = Comparer.DefaultInvariant.Compare(this.constraintIdentifier, othr.constraintIdentifier);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DefaultConstraintDefinition left, DefaultConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DefaultConstraintDefinition left, DefaultConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DefaultConstraintDefinition left, DefaultConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DefaultConstraintDefinition left, DefaultConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DefaultConstraintDefinition FromMutable(ScriptDom.DefaultConstraintDefinition fragment) {
             return (DefaultConstraintDefinition)TSqlFragment.FromMutable(fragment);

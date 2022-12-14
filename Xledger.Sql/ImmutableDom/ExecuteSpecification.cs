@@ -93,16 +93,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExecuteSpecification)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.linkedServer, othr.linkedServer);
+            compare = Comparer.DefaultInvariant.Compare(this.linkedServer, othr.linkedServer);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.executeContext, othr.executeContext);
+            compare = Comparer.DefaultInvariant.Compare(this.executeContext, othr.executeContext);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.executableEntity, othr.executableEntity);
+            compare = Comparer.DefaultInvariant.Compare(this.executableEntity, othr.executableEntity);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExecuteSpecification left, ExecuteSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExecuteSpecification left, ExecuteSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExecuteSpecification left, ExecuteSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExecuteSpecification left, ExecuteSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExecuteSpecification FromMutable(ScriptDom.ExecuteSpecification fragment) {
             return (ExecuteSpecification)TSqlFragment.FromMutable(fragment);

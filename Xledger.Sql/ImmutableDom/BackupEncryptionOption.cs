@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BackupEncryptionOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.algorithm, othr.algorithm);
+            compare = Comparer.DefaultInvariant.Compare(this.algorithm, othr.algorithm);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptor, othr.encryptor);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptor, othr.encryptor);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BackupEncryptionOption left, BackupEncryptionOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BackupEncryptionOption left, BackupEncryptionOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BackupEncryptionOption left, BackupEncryptionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BackupEncryptionOption left, BackupEncryptionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BackupEncryptionOption FromMutable(ScriptDom.BackupEncryptionOption fragment) {
             return (BackupEncryptionOption)TSqlFragment.FromMutable(fragment);

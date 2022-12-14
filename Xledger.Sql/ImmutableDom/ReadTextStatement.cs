@@ -101,18 +101,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ReadTextStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.column, othr.column);
+            compare = Comparer.DefaultInvariant.Compare(this.column, othr.column);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.textPointer, othr.textPointer);
+            compare = Comparer.DefaultInvariant.Compare(this.textPointer, othr.textPointer);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.offset, othr.offset);
+            compare = Comparer.DefaultInvariant.Compare(this.offset, othr.offset);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.size, othr.size);
+            compare = Comparer.DefaultInvariant.Compare(this.size, othr.size);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.holdLock, othr.holdLock);
+            compare = Comparer.DefaultInvariant.Compare(this.holdLock, othr.holdLock);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ReadTextStatement FromMutable(ScriptDom.ReadTextStatement fragment) {
             return (ReadTextStatement)TSqlFragment.FromMutable(fragment);

@@ -109,22 +109,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterCertificateStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            compare = Comparer.DefaultInvariant.Compare(this.kind, othr.kind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.attestedBy, othr.attestedBy);
+            compare = Comparer.DefaultInvariant.Compare(this.attestedBy, othr.attestedBy);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.activeForBeginDialog, othr.activeForBeginDialog);
+            compare = Comparer.DefaultInvariant.Compare(this.activeForBeginDialog, othr.activeForBeginDialog);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.privateKeyPath, othr.privateKeyPath);
+            compare = Comparer.DefaultInvariant.Compare(this.privateKeyPath, othr.privateKeyPath);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptionPassword, othr.encryptionPassword);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptionPassword, othr.encryptionPassword);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.decryptionPassword, othr.decryptionPassword);
+            compare = Comparer.DefaultInvariant.Compare(this.decryptionPassword, othr.decryptionPassword);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterCertificateStatement left, AlterCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterCertificateStatement left, AlterCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterCertificateStatement left, AlterCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterCertificateStatement left, AlterCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterCertificateStatement FromMutable(ScriptDom.AlterCertificateStatement fragment) {
             return (AlterCertificateStatement)TSqlFragment.FromMutable(fragment);

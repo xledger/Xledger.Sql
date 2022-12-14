@@ -105,20 +105,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SelectStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.queryExpression, othr.queryExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.queryExpression, othr.queryExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.into, othr.into);
+            compare = Comparer.DefaultInvariant.Compare(this.into, othr.into);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.on, othr.on);
+            compare = Comparer.DefaultInvariant.Compare(this.on, othr.on);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.computeClauses, othr.computeClauses);
+            compare = Comparer.DefaultInvariant.Compare(this.computeClauses, othr.computeClauses);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withCtesAndXmlNamespaces, othr.withCtesAndXmlNamespaces);
+            compare = Comparer.DefaultInvariant.Compare(this.withCtesAndXmlNamespaces, othr.withCtesAndXmlNamespaces);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optimizerHints, othr.optimizerHints);
+            compare = Comparer.DefaultInvariant.Compare(this.optimizerHints, othr.optimizerHints);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SelectStatement left, SelectStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SelectStatement left, SelectStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SelectStatement left, SelectStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SelectStatement left, SelectStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SelectStatement FromMutable(ScriptDom.SelectStatement fragment) {
             return (SelectStatement)TSqlFragment.FromMutable(fragment);

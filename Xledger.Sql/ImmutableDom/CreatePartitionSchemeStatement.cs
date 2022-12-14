@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreatePartitionSchemeStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionFunction, othr.partitionFunction);
+            compare = Comparer.DefaultInvariant.Compare(this.partitionFunction, othr.partitionFunction);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isAll, othr.isAll);
+            compare = Comparer.DefaultInvariant.Compare(this.isAll, othr.isAll);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroups, othr.fileGroups);
+            compare = Comparer.DefaultInvariant.Compare(this.fileGroups, othr.fileGroups);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreatePartitionSchemeStatement left, CreatePartitionSchemeStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreatePartitionSchemeStatement left, CreatePartitionSchemeStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreatePartitionSchemeStatement left, CreatePartitionSchemeStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreatePartitionSchemeStatement left, CreatePartitionSchemeStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreatePartitionSchemeStatement FromMutable(ScriptDom.CreatePartitionSchemeStatement fragment) {
             return (CreatePartitionSchemeStatement)TSqlFragment.FromMutable(fragment);

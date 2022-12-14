@@ -105,20 +105,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateFullTextCatalogStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroup, othr.fileGroup);
+            compare = Comparer.DefaultInvariant.Compare(this.fileGroup, othr.fileGroup);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.path, othr.path);
+            compare = Comparer.DefaultInvariant.Compare(this.path, othr.path);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isDefault, othr.isDefault);
+            compare = Comparer.DefaultInvariant.Compare(this.isDefault, othr.isDefault);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateFullTextCatalogStatement left, CreateFullTextCatalogStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateFullTextCatalogStatement left, CreateFullTextCatalogStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateFullTextCatalogStatement left, CreateFullTextCatalogStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateFullTextCatalogStatement left, CreateFullTextCatalogStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateFullTextCatalogStatement FromMutable(ScriptDom.CreateFullTextCatalogStatement fragment) {
             return (CreateFullTextCatalogStatement)TSqlFragment.FromMutable(fragment);

@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UserRemoteServiceBindingOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.user, othr.user);
+            compare = Comparer.DefaultInvariant.Compare(this.user, othr.user);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (UserRemoteServiceBindingOption left, UserRemoteServiceBindingOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(UserRemoteServiceBindingOption left, UserRemoteServiceBindingOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (UserRemoteServiceBindingOption left, UserRemoteServiceBindingOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(UserRemoteServiceBindingOption left, UserRemoteServiceBindingOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static UserRemoteServiceBindingOption FromMutable(ScriptDom.UserRemoteServiceBindingOption fragment) {
             return (UserRemoteServiceBindingOption)TSqlFragment.FromMutable(fragment);

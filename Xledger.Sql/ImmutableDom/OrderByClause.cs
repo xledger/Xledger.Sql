@@ -61,10 +61,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OrderByClause)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.orderByElements, othr.orderByElements);
+            compare = Comparer.DefaultInvariant.Compare(this.orderByElements, othr.orderByElements);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (OrderByClause left, OrderByClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(OrderByClause left, OrderByClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (OrderByClause left, OrderByClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(OrderByClause left, OrderByClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static OrderByClause FromMutable(ScriptDom.OrderByClause fragment) {
             return (OrderByClause)TSqlFragment.FromMutable(fragment);

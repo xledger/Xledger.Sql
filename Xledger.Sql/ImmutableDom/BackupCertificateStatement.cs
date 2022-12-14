@@ -101,20 +101,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BackupCertificateStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.file, othr.file);
+            compare = Comparer.DefaultInvariant.Compare(this.file, othr.file);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.activeForBeginDialog, othr.activeForBeginDialog);
+            compare = Comparer.DefaultInvariant.Compare(this.activeForBeginDialog, othr.activeForBeginDialog);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.privateKeyPath, othr.privateKeyPath);
+            compare = Comparer.DefaultInvariant.Compare(this.privateKeyPath, othr.privateKeyPath);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptionPassword, othr.encryptionPassword);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptionPassword, othr.encryptionPassword);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.decryptionPassword, othr.decryptionPassword);
+            compare = Comparer.DefaultInvariant.Compare(this.decryptionPassword, othr.decryptionPassword);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BackupCertificateStatement left, BackupCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BackupCertificateStatement left, BackupCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BackupCertificateStatement left, BackupCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BackupCertificateStatement left, BackupCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BackupCertificateStatement FromMutable(ScriptDom.BackupCertificateStatement fragment) {
             return (BackupCertificateStatement)TSqlFragment.FromMutable(fragment);

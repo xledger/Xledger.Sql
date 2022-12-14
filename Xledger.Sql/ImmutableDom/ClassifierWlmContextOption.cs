@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ClassifierWlmContextOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.wlmContext, othr.wlmContext);
+            compare = Comparer.DefaultInvariant.Compare(this.wlmContext, othr.wlmContext);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionType, othr.optionType);
+            compare = Comparer.DefaultInvariant.Compare(this.optionType, othr.optionType);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ClassifierWlmContextOption left, ClassifierWlmContextOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ClassifierWlmContextOption left, ClassifierWlmContextOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ClassifierWlmContextOption left, ClassifierWlmContextOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ClassifierWlmContextOption left, ClassifierWlmContextOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ClassifierWlmContextOption FromMutable(ScriptDom.ClassifierWlmContextOption fragment) {
             return (ClassifierWlmContextOption)TSqlFragment.FromMutable(fragment);

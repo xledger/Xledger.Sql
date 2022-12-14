@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SizeFileDeclarationOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.size, othr.size);
+            compare = Comparer.DefaultInvariant.Compare(this.size, othr.size);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.units, othr.units);
+            compare = Comparer.DefaultInvariant.Compare(this.units, othr.units);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SizeFileDeclarationOption left, SizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SizeFileDeclarationOption left, SizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SizeFileDeclarationOption left, SizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SizeFileDeclarationOption left, SizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SizeFileDeclarationOption FromMutable(ScriptDom.SizeFileDeclarationOption fragment) {
             return (SizeFileDeclarationOption)TSqlFragment.FromMutable(fragment);

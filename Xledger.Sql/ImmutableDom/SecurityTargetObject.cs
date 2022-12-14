@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SecurityTargetObject)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.objectKind, othr.objectKind);
+            compare = Comparer.DefaultInvariant.Compare(this.objectKind, othr.objectKind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.objectName, othr.objectName);
+            compare = Comparer.DefaultInvariant.Compare(this.objectName, othr.objectName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SecurityTargetObject left, SecurityTargetObject right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SecurityTargetObject left, SecurityTargetObject right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SecurityTargetObject left, SecurityTargetObject right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SecurityTargetObject left, SecurityTargetObject right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SecurityTargetObject FromMutable(ScriptDom.SecurityTargetObject fragment) {
             return (SecurityTargetObject)TSqlFragment.FromMutable(fragment);

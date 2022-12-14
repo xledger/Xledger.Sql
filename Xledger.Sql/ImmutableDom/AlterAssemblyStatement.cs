@@ -97,20 +97,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterAssemblyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dropFiles, othr.dropFiles);
+            compare = Comparer.DefaultInvariant.Compare(this.dropFiles, othr.dropFiles);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isDropAll, othr.isDropAll);
+            compare = Comparer.DefaultInvariant.Compare(this.isDropAll, othr.isDropAll);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.addFiles, othr.addFiles);
+            compare = Comparer.DefaultInvariant.Compare(this.addFiles, othr.addFiles);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            compare = Comparer.DefaultInvariant.Compare(this.parameters, othr.parameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterAssemblyStatement left, AlterAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterAssemblyStatement left, AlterAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterAssemblyStatement left, AlterAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterAssemblyStatement left, AlterAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterAssemblyStatement FromMutable(ScriptDom.AlterAssemblyStatement fragment) {
             return (AlterAssemblyStatement)TSqlFragment.FromMutable(fragment);

@@ -97,20 +97,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterAvailabilityGroupStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alterAvailabilityGroupStatementType, othr.alterAvailabilityGroupStatementType);
+            compare = Comparer.DefaultInvariant.Compare(this.alterAvailabilityGroupStatementType, othr.alterAvailabilityGroupStatementType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.action, othr.action);
+            compare = Comparer.DefaultInvariant.Compare(this.action, othr.action);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.databases, othr.databases);
+            compare = Comparer.DefaultInvariant.Compare(this.databases, othr.databases);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.replicas, othr.replicas);
+            compare = Comparer.DefaultInvariant.Compare(this.replicas, othr.replicas);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterAvailabilityGroupStatement left, AlterAvailabilityGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterAvailabilityGroupStatement left, AlterAvailabilityGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterAvailabilityGroupStatement left, AlterAvailabilityGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterAvailabilityGroupStatement left, AlterAvailabilityGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterAvailabilityGroupStatement FromMutable(ScriptDom.AlterAvailabilityGroupStatement fragment) {
             return (AlterAvailabilityGroupStatement)TSqlFragment.FromMutable(fragment);

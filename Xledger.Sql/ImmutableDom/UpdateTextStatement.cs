@@ -129,26 +129,30 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UpdateTextStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.insertOffset, othr.insertOffset);
+            compare = Comparer.DefaultInvariant.Compare(this.insertOffset, othr.insertOffset);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.deleteLength, othr.deleteLength);
+            compare = Comparer.DefaultInvariant.Compare(this.deleteLength, othr.deleteLength);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sourceColumn, othr.sourceColumn);
+            compare = Comparer.DefaultInvariant.Compare(this.sourceColumn, othr.sourceColumn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sourceParameter, othr.sourceParameter);
+            compare = Comparer.DefaultInvariant.Compare(this.sourceParameter, othr.sourceParameter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.bulk, othr.bulk);
+            compare = Comparer.DefaultInvariant.Compare(this.bulk, othr.bulk);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.column, othr.column);
+            compare = Comparer.DefaultInvariant.Compare(this.column, othr.column);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.textId, othr.textId);
+            compare = Comparer.DefaultInvariant.Compare(this.textId, othr.textId);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.timestamp, othr.timestamp);
+            compare = Comparer.DefaultInvariant.Compare(this.timestamp, othr.timestamp);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withLog, othr.withLog);
+            compare = Comparer.DefaultInvariant.Compare(this.withLog, othr.withLog);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (UpdateTextStatement left, UpdateTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(UpdateTextStatement left, UpdateTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (UpdateTextStatement left, UpdateTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(UpdateTextStatement left, UpdateTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static UpdateTextStatement FromMutable(ScriptDom.UpdateTextStatement fragment) {
             return (UpdateTextStatement)TSqlFragment.FromMutable(fragment);

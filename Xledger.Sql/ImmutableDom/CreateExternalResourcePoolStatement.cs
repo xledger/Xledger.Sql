@@ -65,12 +65,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateExternalResourcePoolStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalResourcePoolParameters, othr.externalResourcePoolParameters);
+            compare = Comparer.DefaultInvariant.Compare(this.externalResourcePoolParameters, othr.externalResourcePoolParameters);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateExternalResourcePoolStatement left, CreateExternalResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateExternalResourcePoolStatement left, CreateExternalResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateExternalResourcePoolStatement left, CreateExternalResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateExternalResourcePoolStatement left, CreateExternalResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateExternalResourcePoolStatement FromMutable(ScriptDom.CreateExternalResourcePoolStatement fragment) {
             return (CreateExternalResourcePoolStatement)TSqlFragment.FromMutable(fragment);

@@ -93,18 +93,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterDatabaseAddFileGroupStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroup, othr.fileGroup);
+            compare = Comparer.DefaultInvariant.Compare(this.fileGroup, othr.fileGroup);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.containsFileStream, othr.containsFileStream);
+            compare = Comparer.DefaultInvariant.Compare(this.containsFileStream, othr.containsFileStream);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.containsMemoryOptimizedData, othr.containsMemoryOptimizedData);
+            compare = Comparer.DefaultInvariant.Compare(this.containsMemoryOptimizedData, othr.containsMemoryOptimizedData);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.useCurrent, othr.useCurrent);
+            compare = Comparer.DefaultInvariant.Compare(this.useCurrent, othr.useCurrent);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterDatabaseAddFileGroupStatement left, AlterDatabaseAddFileGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterDatabaseAddFileGroupStatement left, AlterDatabaseAddFileGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterDatabaseAddFileGroupStatement left, AlterDatabaseAddFileGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterDatabaseAddFileGroupStatement left, AlterDatabaseAddFileGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterDatabaseAddFileGroupStatement FromMutable(ScriptDom.AlterDatabaseAddFileGroupStatement fragment) {
             return (AlterDatabaseAddFileGroupStatement)TSqlFragment.FromMutable(fragment);

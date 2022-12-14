@@ -91,18 +91,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QueryStoreDatabaseOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.clear, othr.clear);
+            compare = Comparer.DefaultInvariant.Compare(this.clear, othr.clear);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.clearAll, othr.clearAll);
+            compare = Comparer.DefaultInvariant.Compare(this.clearAll, othr.clearAll);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionState, othr.optionState);
+            compare = Comparer.DefaultInvariant.Compare(this.optionState, othr.optionState);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static QueryStoreDatabaseOption FromMutable(ScriptDom.QueryStoreDatabaseOption fragment) {
             return (QueryStoreDatabaseOption)TSqlFragment.FromMutable(fragment);

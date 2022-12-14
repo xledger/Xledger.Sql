@@ -75,14 +75,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InsertBulkStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnDefinitions, othr.columnDefinitions);
+            compare = Comparer.DefaultInvariant.Compare(this.columnDefinitions, othr.columnDefinitions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.to, othr.to);
+            compare = Comparer.DefaultInvariant.Compare(this.to, othr.to);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (InsertBulkStatement left, InsertBulkStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(InsertBulkStatement left, InsertBulkStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (InsertBulkStatement left, InsertBulkStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(InsertBulkStatement left, InsertBulkStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static InsertBulkStatement FromMutable(ScriptDom.InsertBulkStatement fragment) {
             return (InsertBulkStatement)TSqlFragment.FromMutable(fragment);

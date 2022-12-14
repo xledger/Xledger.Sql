@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TableDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnDefinitions, othr.columnDefinitions);
+            compare = Comparer.DefaultInvariant.Compare(this.columnDefinitions, othr.columnDefinitions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.tableConstraints, othr.tableConstraints);
+            compare = Comparer.DefaultInvariant.Compare(this.tableConstraints, othr.tableConstraints);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.indexes, othr.indexes);
+            compare = Comparer.DefaultInvariant.Compare(this.indexes, othr.indexes);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.systemTimePeriod, othr.systemTimePeriod);
+            compare = Comparer.DefaultInvariant.Compare(this.systemTimePeriod, othr.systemTimePeriod);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (TableDefinition left, TableDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(TableDefinition left, TableDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (TableDefinition left, TableDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(TableDefinition left, TableDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static TableDefinition FromMutable(ScriptDom.TableDefinition fragment) {
             return (TableDefinition)TSqlFragment.FromMutable(fragment);

@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphConnectionBetweenNodes)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fromNode, othr.fromNode);
+            compare = Comparer.DefaultInvariant.Compare(this.fromNode, othr.fromNode);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.toNode, othr.toNode);
+            compare = Comparer.DefaultInvariant.Compare(this.toNode, othr.toNode);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GraphConnectionBetweenNodes left, GraphConnectionBetweenNodes right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GraphConnectionBetweenNodes left, GraphConnectionBetweenNodes right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GraphConnectionBetweenNodes left, GraphConnectionBetweenNodes right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GraphConnectionBetweenNodes left, GraphConnectionBetweenNodes right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GraphConnectionBetweenNodes FromMutable(ScriptDom.GraphConnectionBetweenNodes fragment) {
             return (GraphConnectionBetweenNodes)TSqlFragment.FromMutable(fragment);

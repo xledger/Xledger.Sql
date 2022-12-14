@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BackupServiceMasterKeyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.file, othr.file);
+            compare = Comparer.DefaultInvariant.Compare(this.file, othr.file);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.password, othr.password);
+            compare = Comparer.DefaultInvariant.Compare(this.password, othr.password);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BackupServiceMasterKeyStatement left, BackupServiceMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BackupServiceMasterKeyStatement left, BackupServiceMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BackupServiceMasterKeyStatement left, BackupServiceMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BackupServiceMasterKeyStatement left, BackupServiceMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BackupServiceMasterKeyStatement FromMutable(ScriptDom.BackupServiceMasterKeyStatement fragment) {
             return (BackupServiceMasterKeyStatement)TSqlFragment.FromMutable(fragment);

@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SystemTimePeriodDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.startTimeColumn, othr.startTimeColumn);
+            compare = Comparer.DefaultInvariant.Compare(this.startTimeColumn, othr.startTimeColumn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.endTimeColumn, othr.endTimeColumn);
+            compare = Comparer.DefaultInvariant.Compare(this.endTimeColumn, othr.endTimeColumn);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SystemTimePeriodDefinition left, SystemTimePeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SystemTimePeriodDefinition left, SystemTimePeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SystemTimePeriodDefinition left, SystemTimePeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SystemTimePeriodDefinition left, SystemTimePeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SystemTimePeriodDefinition FromMutable(ScriptDom.SystemTimePeriodDefinition fragment) {
             return (SystemTimePeriodDefinition)TSqlFragment.FromMutable(fragment);

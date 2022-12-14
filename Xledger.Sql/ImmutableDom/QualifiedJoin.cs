@@ -95,18 +95,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QualifiedJoin)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.searchCondition, othr.searchCondition);
+            compare = Comparer.DefaultInvariant.Compare(this.searchCondition, othr.searchCondition);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.qualifiedJoinType, othr.qualifiedJoinType);
+            compare = Comparer.DefaultInvariant.Compare(this.qualifiedJoinType, othr.qualifiedJoinType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.joinHint, othr.joinHint);
+            compare = Comparer.DefaultInvariant.Compare(this.joinHint, othr.joinHint);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.firstTableReference, othr.firstTableReference);
+            compare = Comparer.DefaultInvariant.Compare(this.firstTableReference, othr.firstTableReference);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.secondTableReference, othr.secondTableReference);
+            compare = Comparer.DefaultInvariant.Compare(this.secondTableReference, othr.secondTableReference);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static QualifiedJoin FromMutable(ScriptDom.QualifiedJoin fragment) {
             return (QualifiedJoin)TSqlFragment.FromMutable(fragment);

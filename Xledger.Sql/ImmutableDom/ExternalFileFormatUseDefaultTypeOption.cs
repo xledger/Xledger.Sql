@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExternalFileFormatUseDefaultTypeOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalFileFormatUseDefaultType, othr.externalFileFormatUseDefaultType);
+            compare = Comparer.DefaultInvariant.Compare(this.externalFileFormatUseDefaultType, othr.externalFileFormatUseDefaultType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExternalFileFormatUseDefaultTypeOption left, ExternalFileFormatUseDefaultTypeOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExternalFileFormatUseDefaultTypeOption left, ExternalFileFormatUseDefaultTypeOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExternalFileFormatUseDefaultTypeOption left, ExternalFileFormatUseDefaultTypeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExternalFileFormatUseDefaultTypeOption left, ExternalFileFormatUseDefaultTypeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExternalFileFormatUseDefaultTypeOption FromMutable(ScriptDom.ExternalFileFormatUseDefaultTypeOption fragment) {
             return (ExternalFileFormatUseDefaultTypeOption)TSqlFragment.FromMutable(fragment);

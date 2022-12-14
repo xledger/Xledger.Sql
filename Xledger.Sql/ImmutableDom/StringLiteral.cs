@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (StringLiteral)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isNational, othr.isNational);
+            compare = Comparer.DefaultInvariant.Compare(this.isNational, othr.isNational);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isLargeObject, othr.isLargeObject);
+            compare = Comparer.DefaultInvariant.Compare(this.isLargeObject, othr.isLargeObject);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            compare = Comparer.DefaultInvariant.Compare(this.collation, othr.collation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (StringLiteral left, StringLiteral right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(StringLiteral left, StringLiteral right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (StringLiteral left, StringLiteral right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(StringLiteral left, StringLiteral right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static StringLiteral FromMutable(ScriptDom.StringLiteral fragment) {
             return (StringLiteral)TSqlFragment.FromMutable(fragment);

@@ -75,14 +75,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (XmlCompressionOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isCompressed, othr.isCompressed);
+            compare = Comparer.DefaultInvariant.Compare(this.isCompressed, othr.isCompressed);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionRanges, othr.partitionRanges);
+            compare = Comparer.DefaultInvariant.Compare(this.partitionRanges, othr.partitionRanges);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (XmlCompressionOption left, XmlCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(XmlCompressionOption left, XmlCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (XmlCompressionOption left, XmlCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(XmlCompressionOption left, XmlCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static XmlCompressionOption FromMutable(ScriptDom.XmlCompressionOption fragment) {
             return (XmlCompressionOption)TSqlFragment.FromMutable(fragment);

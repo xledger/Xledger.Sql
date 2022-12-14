@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExecuteAsTriggerOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.executeAsClause, othr.executeAsClause);
+            compare = Comparer.DefaultInvariant.Compare(this.executeAsClause, othr.executeAsClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExecuteAsTriggerOption left, ExecuteAsTriggerOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExecuteAsTriggerOption left, ExecuteAsTriggerOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExecuteAsTriggerOption left, ExecuteAsTriggerOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExecuteAsTriggerOption left, ExecuteAsTriggerOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExecuteAsTriggerOption FromMutable(ScriptDom.ExecuteAsTriggerOption fragment) {
             return (ExecuteAsTriggerOption)TSqlFragment.FromMutable(fragment);

@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterDatabaseScopedConfigurationClearStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.option, othr.option);
+            compare = Comparer.DefaultInvariant.Compare(this.option, othr.option);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.secondary, othr.secondary);
+            compare = Comparer.DefaultInvariant.Compare(this.secondary, othr.secondary);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterDatabaseScopedConfigurationClearStatement left, AlterDatabaseScopedConfigurationClearStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterDatabaseScopedConfigurationClearStatement left, AlterDatabaseScopedConfigurationClearStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterDatabaseScopedConfigurationClearStatement left, AlterDatabaseScopedConfigurationClearStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterDatabaseScopedConfigurationClearStatement left, AlterDatabaseScopedConfigurationClearStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterDatabaseScopedConfigurationClearStatement FromMutable(ScriptDom.AlterDatabaseScopedConfigurationClearStatement fragment) {
             return (AlterDatabaseScopedConfigurationClearStatement)TSqlFragment.FromMutable(fragment);

@@ -61,10 +61,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BoundingBoxSpatialIndexOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.boundingBoxParameters, othr.boundingBoxParameters);
+            compare = Comparer.DefaultInvariant.Compare(this.boundingBoxParameters, othr.boundingBoxParameters);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BoundingBoxSpatialIndexOption left, BoundingBoxSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BoundingBoxSpatialIndexOption left, BoundingBoxSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BoundingBoxSpatialIndexOption left, BoundingBoxSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BoundingBoxSpatialIndexOption left, BoundingBoxSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BoundingBoxSpatialIndexOption FromMutable(ScriptDom.BoundingBoxSpatialIndexOption fragment) {
             return (BoundingBoxSpatialIndexOption)TSqlFragment.FromMutable(fragment);

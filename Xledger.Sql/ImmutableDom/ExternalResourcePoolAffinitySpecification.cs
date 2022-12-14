@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExternalResourcePoolAffinitySpecification)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.affinityType, othr.affinityType);
+            compare = Comparer.DefaultInvariant.Compare(this.affinityType, othr.affinityType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterValue, othr.parameterValue);
+            compare = Comparer.DefaultInvariant.Compare(this.parameterValue, othr.parameterValue);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isAuto, othr.isAuto);
+            compare = Comparer.DefaultInvariant.Compare(this.isAuto, othr.isAuto);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.poolAffinityRanges, othr.poolAffinityRanges);
+            compare = Comparer.DefaultInvariant.Compare(this.poolAffinityRanges, othr.poolAffinityRanges);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExternalResourcePoolAffinitySpecification left, ExternalResourcePoolAffinitySpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExternalResourcePoolAffinitySpecification left, ExternalResourcePoolAffinitySpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExternalResourcePoolAffinitySpecification left, ExternalResourcePoolAffinitySpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExternalResourcePoolAffinitySpecification left, ExternalResourcePoolAffinitySpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExternalResourcePoolAffinitySpecification FromMutable(ScriptDom.ExternalResourcePoolAffinitySpecification fragment) {
             return (ExternalResourcePoolAffinitySpecification)TSqlFragment.FromMutable(fragment);

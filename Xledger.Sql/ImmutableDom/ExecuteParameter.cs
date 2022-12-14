@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExecuteParameter)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterValue, othr.parameterValue);
+            compare = Comparer.DefaultInvariant.Compare(this.parameterValue, othr.parameterValue);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isOutput, othr.isOutput);
+            compare = Comparer.DefaultInvariant.Compare(this.isOutput, othr.isOutput);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExecuteParameter left, ExecuteParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExecuteParameter left, ExecuteParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExecuteParameter left, ExecuteParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExecuteParameter left, ExecuteParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExecuteParameter FromMutable(ScriptDom.ExecuteParameter fragment) {
             return (ExecuteParameter)TSqlFragment.FromMutable(fragment);

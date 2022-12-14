@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterPartitionSchemeStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroup, othr.fileGroup);
+            compare = Comparer.DefaultInvariant.Compare(this.fileGroup, othr.fileGroup);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterPartitionSchemeStatement left, AlterPartitionSchemeStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterPartitionSchemeStatement left, AlterPartitionSchemeStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterPartitionSchemeStatement left, AlterPartitionSchemeStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterPartitionSchemeStatement left, AlterPartitionSchemeStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterPartitionSchemeStatement FromMutable(ScriptDom.AlterPartitionSchemeStatement fragment) {
             return (AlterPartitionSchemeStatement)TSqlFragment.FromMutable(fragment);

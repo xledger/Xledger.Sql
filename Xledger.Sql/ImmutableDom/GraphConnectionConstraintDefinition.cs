@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphConnectionConstraintDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fromNodeToNodeList, othr.fromNodeToNodeList);
+            compare = Comparer.DefaultInvariant.Compare(this.fromNodeToNodeList, othr.fromNodeToNodeList);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.deleteAction, othr.deleteAction);
+            compare = Comparer.DefaultInvariant.Compare(this.deleteAction, othr.deleteAction);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintIdentifier, othr.constraintIdentifier);
+            compare = Comparer.DefaultInvariant.Compare(this.constraintIdentifier, othr.constraintIdentifier);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GraphConnectionConstraintDefinition left, GraphConnectionConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GraphConnectionConstraintDefinition left, GraphConnectionConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GraphConnectionConstraintDefinition left, GraphConnectionConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GraphConnectionConstraintDefinition left, GraphConnectionConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GraphConnectionConstraintDefinition FromMutable(ScriptDom.GraphConnectionConstraintDefinition fragment) {
             return (GraphConnectionConstraintDefinition)TSqlFragment.FromMutable(fragment);

@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DatabaseConfigurationSetOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.genericOptionKind, othr.genericOptionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.genericOptionKind, othr.genericOptionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DatabaseConfigurationSetOption left, DatabaseConfigurationSetOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DatabaseConfigurationSetOption left, DatabaseConfigurationSetOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DatabaseConfigurationSetOption left, DatabaseConfigurationSetOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DatabaseConfigurationSetOption left, DatabaseConfigurationSetOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DatabaseConfigurationSetOption FromMutable(ScriptDom.DatabaseConfigurationSetOption fragment) {
             return (DatabaseConfigurationSetOption)TSqlFragment.FromMutable(fragment);

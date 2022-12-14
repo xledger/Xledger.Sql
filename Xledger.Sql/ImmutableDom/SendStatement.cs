@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SendStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.conversationHandles, othr.conversationHandles);
+            compare = Comparer.DefaultInvariant.Compare(this.conversationHandles, othr.conversationHandles);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.messageTypeName, othr.messageTypeName);
+            compare = Comparer.DefaultInvariant.Compare(this.messageTypeName, othr.messageTypeName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.messageBody, othr.messageBody);
+            compare = Comparer.DefaultInvariant.Compare(this.messageBody, othr.messageBody);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SendStatement left, SendStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SendStatement left, SendStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SendStatement left, SendStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SendStatement left, SendStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SendStatement FromMutable(ScriptDom.SendStatement fragment) {
             return (SendStatement)TSqlFragment.FromMutable(fragment);

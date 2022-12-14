@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DeclareTableVariableBody)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.variableName, othr.variableName);
+            compare = Comparer.DefaultInvariant.Compare(this.variableName, othr.variableName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.asDefined, othr.asDefined);
+            compare = Comparer.DefaultInvariant.Compare(this.asDefined, othr.asDefined);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.definition, othr.definition);
+            compare = Comparer.DefaultInvariant.Compare(this.definition, othr.definition);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DeclareTableVariableBody left, DeclareTableVariableBody right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DeclareTableVariableBody left, DeclareTableVariableBody right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DeclareTableVariableBody left, DeclareTableVariableBody right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DeclareTableVariableBody left, DeclareTableVariableBody right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DeclareTableVariableBody FromMutable(ScriptDom.DeclareTableVariableBody fragment) {
             return (DeclareTableVariableBody)TSqlFragment.FromMutable(fragment);

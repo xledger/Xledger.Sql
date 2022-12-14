@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableChangeTrackingModificationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isEnable, othr.isEnable);
+            compare = Comparer.DefaultInvariant.Compare(this.isEnable, othr.isEnable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.trackColumnsUpdated, othr.trackColumnsUpdated);
+            compare = Comparer.DefaultInvariant.Compare(this.trackColumnsUpdated, othr.trackColumnsUpdated);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterTableChangeTrackingModificationStatement left, AlterTableChangeTrackingModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterTableChangeTrackingModificationStatement left, AlterTableChangeTrackingModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterTableChangeTrackingModificationStatement left, AlterTableChangeTrackingModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterTableChangeTrackingModificationStatement left, AlterTableChangeTrackingModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterTableChangeTrackingModificationStatement FromMutable(ScriptDom.AlterTableChangeTrackingModificationStatement fragment) {
             return (AlterTableChangeTrackingModificationStatement)TSqlFragment.FromMutable(fragment);

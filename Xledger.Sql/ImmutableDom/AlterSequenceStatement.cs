@@ -65,12 +65,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterSequenceStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sequenceOptions, othr.sequenceOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.sequenceOptions, othr.sequenceOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterSequenceStatement left, AlterSequenceStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterSequenceStatement left, AlterSequenceStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterSequenceStatement left, AlterSequenceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterSequenceStatement left, AlterSequenceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterSequenceStatement FromMutable(ScriptDom.AlterSequenceStatement fragment) {
             return (AlterSequenceStatement)TSqlFragment.FromMutable(fragment);

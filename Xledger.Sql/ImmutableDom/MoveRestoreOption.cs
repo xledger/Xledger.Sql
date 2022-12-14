@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MoveRestoreOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.logicalFileName, othr.logicalFileName);
+            compare = Comparer.DefaultInvariant.Compare(this.logicalFileName, othr.logicalFileName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.oSFileName, othr.oSFileName);
+            compare = Comparer.DefaultInvariant.Compare(this.oSFileName, othr.oSFileName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (MoveRestoreOption left, MoveRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(MoveRestoreOption left, MoveRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (MoveRestoreOption left, MoveRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(MoveRestoreOption left, MoveRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static MoveRestoreOption FromMutable(ScriptDom.MoveRestoreOption fragment) {
             return (MoveRestoreOption)TSqlFragment.FromMutable(fragment);

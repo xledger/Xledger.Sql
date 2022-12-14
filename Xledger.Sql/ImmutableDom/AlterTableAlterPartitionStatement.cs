@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableAlterPartitionStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.boundaryValue, othr.boundaryValue);
+            compare = Comparer.DefaultInvariant.Compare(this.boundaryValue, othr.boundaryValue);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isSplit, othr.isSplit);
+            compare = Comparer.DefaultInvariant.Compare(this.isSplit, othr.isSplit);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterTableAlterPartitionStatement left, AlterTableAlterPartitionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterTableAlterPartitionStatement left, AlterTableAlterPartitionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterTableAlterPartitionStatement left, AlterTableAlterPartitionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterTableAlterPartitionStatement left, AlterTableAlterPartitionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterTableAlterPartitionStatement FromMutable(ScriptDom.AlterTableAlterPartitionStatement fragment) {
             return (AlterTableAlterPartitionStatement)TSqlFragment.FromMutable(fragment);

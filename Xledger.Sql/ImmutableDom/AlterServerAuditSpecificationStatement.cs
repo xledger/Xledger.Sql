@@ -79,16 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerAuditSpecificationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.auditState, othr.auditState);
+            compare = Comparer.DefaultInvariant.Compare(this.auditState, othr.auditState);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parts, othr.parts);
+            compare = Comparer.DefaultInvariant.Compare(this.parts, othr.parts);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.specificationName, othr.specificationName);
+            compare = Comparer.DefaultInvariant.Compare(this.specificationName, othr.specificationName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.auditName, othr.auditName);
+            compare = Comparer.DefaultInvariant.Compare(this.auditName, othr.auditName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterServerAuditSpecificationStatement left, AlterServerAuditSpecificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterServerAuditSpecificationStatement left, AlterServerAuditSpecificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterServerAuditSpecificationStatement left, AlterServerAuditSpecificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterServerAuditSpecificationStatement left, AlterServerAuditSpecificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterServerAuditSpecificationStatement FromMutable(ScriptDom.AlterServerAuditSpecificationStatement fragment) {
             return (AlterServerAuditSpecificationStatement)TSqlFragment.FromMutable(fragment);

@@ -153,30 +153,34 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QuerySpecification)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.uniqueRowFilter, othr.uniqueRowFilter);
+            compare = Comparer.DefaultInvariant.Compare(this.uniqueRowFilter, othr.uniqueRowFilter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.topRowFilter, othr.topRowFilter);
+            compare = Comparer.DefaultInvariant.Compare(this.topRowFilter, othr.topRowFilter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.selectElements, othr.selectElements);
+            compare = Comparer.DefaultInvariant.Compare(this.selectElements, othr.selectElements);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fromClause, othr.fromClause);
+            compare = Comparer.DefaultInvariant.Compare(this.fromClause, othr.fromClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.whereClause, othr.whereClause);
+            compare = Comparer.DefaultInvariant.Compare(this.whereClause, othr.whereClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.groupByClause, othr.groupByClause);
+            compare = Comparer.DefaultInvariant.Compare(this.groupByClause, othr.groupByClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.havingClause, othr.havingClause);
+            compare = Comparer.DefaultInvariant.Compare(this.havingClause, othr.havingClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.windowClause, othr.windowClause);
+            compare = Comparer.DefaultInvariant.Compare(this.windowClause, othr.windowClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.orderByClause, othr.orderByClause);
+            compare = Comparer.DefaultInvariant.Compare(this.orderByClause, othr.orderByClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.offsetClause, othr.offsetClause);
+            compare = Comparer.DefaultInvariant.Compare(this.offsetClause, othr.offsetClause);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forClause, othr.forClause);
+            compare = Comparer.DefaultInvariant.Compare(this.forClause, othr.forClause);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (QuerySpecification left, QuerySpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(QuerySpecification left, QuerySpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (QuerySpecification left, QuerySpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(QuerySpecification left, QuerySpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static QuerySpecification FromMutable(ScriptDom.QuerySpecification fragment) {
             return (QuerySpecification)TSqlFragment.FromMutable(fragment);

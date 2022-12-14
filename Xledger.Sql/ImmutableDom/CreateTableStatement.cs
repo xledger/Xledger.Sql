@@ -163,32 +163,36 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateTableStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.asEdge, othr.asEdge);
+            compare = Comparer.DefaultInvariant.Compare(this.asEdge, othr.asEdge);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.asFileTable, othr.asFileTable);
+            compare = Comparer.DefaultInvariant.Compare(this.asFileTable, othr.asFileTable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.asNode, othr.asNode);
+            compare = Comparer.DefaultInvariant.Compare(this.asNode, othr.asNode);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.definition, othr.definition);
+            compare = Comparer.DefaultInvariant.Compare(this.definition, othr.definition);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
+            compare = Comparer.DefaultInvariant.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.federationScheme, othr.federationScheme);
+            compare = Comparer.DefaultInvariant.Compare(this.federationScheme, othr.federationScheme);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.textImageOn, othr.textImageOn);
+            compare = Comparer.DefaultInvariant.Compare(this.textImageOn, othr.textImageOn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.selectStatement, othr.selectStatement);
+            compare = Comparer.DefaultInvariant.Compare(this.selectStatement, othr.selectStatement);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.ctasColumns, othr.ctasColumns);
+            compare = Comparer.DefaultInvariant.Compare(this.ctasColumns, othr.ctasColumns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileStreamOn, othr.fileStreamOn);
+            compare = Comparer.DefaultInvariant.Compare(this.fileStreamOn, othr.fileStreamOn);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateTableStatement left, CreateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateTableStatement left, CreateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateTableStatement left, CreateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateTableStatement left, CreateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateTableStatement FromMutable(ScriptDom.CreateTableStatement fragment) {
             return (CreateTableStatement)TSqlFragment.FromMutable(fragment);

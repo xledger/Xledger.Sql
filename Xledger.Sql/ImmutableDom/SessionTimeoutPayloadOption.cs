@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SessionTimeoutPayloadOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isNever, othr.isNever);
+            compare = Comparer.DefaultInvariant.Compare(this.isNever, othr.isNever);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.timeout, othr.timeout);
+            compare = Comparer.DefaultInvariant.Compare(this.timeout, othr.timeout);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            compare = Comparer.DefaultInvariant.Compare(this.kind, othr.kind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SessionTimeoutPayloadOption FromMutable(ScriptDom.SessionTimeoutPayloadOption fragment) {
             return (SessionTimeoutPayloadOption)TSqlFragment.FromMutable(fragment);

@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TableSampleClause)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.system, othr.system);
+            compare = Comparer.DefaultInvariant.Compare(this.system, othr.system);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sampleNumber, othr.sampleNumber);
+            compare = Comparer.DefaultInvariant.Compare(this.sampleNumber, othr.sampleNumber);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.tableSampleClauseOption, othr.tableSampleClauseOption);
+            compare = Comparer.DefaultInvariant.Compare(this.tableSampleClauseOption, othr.tableSampleClauseOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.repeatSeed, othr.repeatSeed);
+            compare = Comparer.DefaultInvariant.Compare(this.repeatSeed, othr.repeatSeed);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (TableSampleClause left, TableSampleClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(TableSampleClause left, TableSampleClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (TableSampleClause left, TableSampleClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(TableSampleClause left, TableSampleClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static TableSampleClause FromMutable(ScriptDom.TableSampleClause fragment) {
             return (TableSampleClause)TSqlFragment.FromMutable(fragment);

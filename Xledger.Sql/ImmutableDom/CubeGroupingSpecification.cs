@@ -61,10 +61,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CubeGroupingSpecification)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.arguments, othr.arguments);
+            compare = Comparer.DefaultInvariant.Compare(this.arguments, othr.arguments);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CubeGroupingSpecification left, CubeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CubeGroupingSpecification left, CubeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CubeGroupingSpecification left, CubeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CubeGroupingSpecification left, CubeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CubeGroupingSpecification FromMutable(ScriptDom.CubeGroupingSpecification fragment) {
             return (CubeGroupingSpecification)TSqlFragment.FromMutable(fragment);

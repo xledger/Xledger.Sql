@@ -73,14 +73,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IgnoreDupKeyIndexOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.suppressMessagesOption, othr.suppressMessagesOption);
+            compare = Comparer.DefaultInvariant.Compare(this.suppressMessagesOption, othr.suppressMessagesOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionState, othr.optionState);
+            compare = Comparer.DefaultInvariant.Compare(this.optionState, othr.optionState);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static IgnoreDupKeyIndexOption FromMutable(ScriptDom.IgnoreDupKeyIndexOption fragment) {
             return (IgnoreDupKeyIndexOption)TSqlFragment.FromMutable(fragment);

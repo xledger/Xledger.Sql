@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FileGrowthFileDeclarationOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.growthIncrement, othr.growthIncrement);
+            compare = Comparer.DefaultInvariant.Compare(this.growthIncrement, othr.growthIncrement);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.units, othr.units);
+            compare = Comparer.DefaultInvariant.Compare(this.units, othr.units);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (FileGrowthFileDeclarationOption left, FileGrowthFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(FileGrowthFileDeclarationOption left, FileGrowthFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (FileGrowthFileDeclarationOption left, FileGrowthFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(FileGrowthFileDeclarationOption left, FileGrowthFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static FileGrowthFileDeclarationOption FromMutable(ScriptDom.FileGrowthFileDeclarationOption fragment) {
             return (FileGrowthFileDeclarationOption)TSqlFragment.FromMutable(fragment);

@@ -123,24 +123,28 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SemanticTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.semanticFunctionType, othr.semanticFunctionType);
+            compare = Comparer.DefaultInvariant.Compare(this.semanticFunctionType, othr.semanticFunctionType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.tableName, othr.tableName);
+            compare = Comparer.DefaultInvariant.Compare(this.tableName, othr.tableName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sourceKey, othr.sourceKey);
+            compare = Comparer.DefaultInvariant.Compare(this.sourceKey, othr.sourceKey);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.matchedColumn, othr.matchedColumn);
+            compare = Comparer.DefaultInvariant.Compare(this.matchedColumn, othr.matchedColumn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.matchedKey, othr.matchedKey);
+            compare = Comparer.DefaultInvariant.Compare(this.matchedKey, othr.matchedKey);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SemanticTableReference left, SemanticTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SemanticTableReference left, SemanticTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SemanticTableReference left, SemanticTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SemanticTableReference left, SemanticTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SemanticTableReference FromMutable(ScriptDom.SemanticTableReference fragment) {
             return (SemanticTableReference)TSqlFragment.FromMutable(fragment);

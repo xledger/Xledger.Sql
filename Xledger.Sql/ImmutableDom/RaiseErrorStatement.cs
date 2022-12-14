@@ -99,18 +99,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RaiseErrorStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.firstParameter, othr.firstParameter);
+            compare = Comparer.DefaultInvariant.Compare(this.firstParameter, othr.firstParameter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.secondParameter, othr.secondParameter);
+            compare = Comparer.DefaultInvariant.Compare(this.secondParameter, othr.secondParameter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.thirdParameter, othr.thirdParameter);
+            compare = Comparer.DefaultInvariant.Compare(this.thirdParameter, othr.thirdParameter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionalParameters, othr.optionalParameters);
+            compare = Comparer.DefaultInvariant.Compare(this.optionalParameters, othr.optionalParameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.raiseErrorOptions, othr.raiseErrorOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.raiseErrorOptions, othr.raiseErrorOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (RaiseErrorStatement left, RaiseErrorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(RaiseErrorStatement left, RaiseErrorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (RaiseErrorStatement left, RaiseErrorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(RaiseErrorStatement left, RaiseErrorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static RaiseErrorStatement FromMutable(ScriptDom.RaiseErrorStatement fragment) {
             return (RaiseErrorStatement)TSqlFragment.FromMutable(fragment);

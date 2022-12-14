@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SetStopListAlterFullTextIndexAction)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.stopListOption, othr.stopListOption);
+            compare = Comparer.DefaultInvariant.Compare(this.stopListOption, othr.stopListOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withNoPopulation, othr.withNoPopulation);
+            compare = Comparer.DefaultInvariant.Compare(this.withNoPopulation, othr.withNoPopulation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SetStopListAlterFullTextIndexAction left, SetStopListAlterFullTextIndexAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SetStopListAlterFullTextIndexAction left, SetStopListAlterFullTextIndexAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SetStopListAlterFullTextIndexAction left, SetStopListAlterFullTextIndexAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SetStopListAlterFullTextIndexAction left, SetStopListAlterFullTextIndexAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SetStopListAlterFullTextIndexAction FromMutable(ScriptDom.SetStopListAlterFullTextIndexAction fragment) {
             return (SetStopListAlterFullTextIndexAction)TSqlFragment.FromMutable(fragment);

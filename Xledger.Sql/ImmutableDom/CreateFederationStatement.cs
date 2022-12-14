@@ -83,14 +83,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateFederationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.distributionName, othr.distributionName);
+            compare = Comparer.DefaultInvariant.Compare(this.distributionName, othr.distributionName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataType, othr.dataType);
+            compare = Comparer.DefaultInvariant.Compare(this.dataType, othr.dataType);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateFederationStatement left, CreateFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateFederationStatement left, CreateFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateFederationStatement left, CreateFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateFederationStatement left, CreateFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateFederationStatement FromMutable(ScriptDom.CreateFederationStatement fragment) {
             return (CreateFederationStatement)TSqlFragment.FromMutable(fragment);

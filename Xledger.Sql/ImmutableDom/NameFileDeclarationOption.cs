@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (NameFileDeclarationOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.logicalFileName, othr.logicalFileName);
+            compare = Comparer.DefaultInvariant.Compare(this.logicalFileName, othr.logicalFileName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isNewName, othr.isNewName);
+            compare = Comparer.DefaultInvariant.Compare(this.isNewName, othr.isNewName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (NameFileDeclarationOption left, NameFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(NameFileDeclarationOption left, NameFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (NameFileDeclarationOption left, NameFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(NameFileDeclarationOption left, NameFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static NameFileDeclarationOption FromMutable(ScriptDom.NameFileDeclarationOption fragment) {
             return (NameFileDeclarationOption)TSqlFragment.FromMutable(fragment);

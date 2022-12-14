@@ -63,10 +63,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SingleValueTypeCopyOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.singleValue, othr.singleValue);
+            compare = Comparer.DefaultInvariant.Compare(this.singleValue, othr.singleValue);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SingleValueTypeCopyOption FromMutable(ScriptDom.SingleValueTypeCopyOption fragment) {
             return (SingleValueTypeCopyOption)TSqlFragment.FromMutable(fragment);

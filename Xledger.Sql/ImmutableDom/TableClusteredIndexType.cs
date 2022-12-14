@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TableClusteredIndexType)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnStore, othr.columnStore);
+            compare = Comparer.DefaultInvariant.Compare(this.columnStore, othr.columnStore);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.orderedColumns, othr.orderedColumns);
+            compare = Comparer.DefaultInvariant.Compare(this.orderedColumns, othr.orderedColumns);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static TableClusteredIndexType FromMutable(ScriptDom.TableClusteredIndexType fragment) {
             return (TableClusteredIndexType)TSqlFragment.FromMutable(fragment);

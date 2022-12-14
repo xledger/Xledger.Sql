@@ -65,12 +65,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateWorkloadClassifierStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.classifierName, othr.classifierName);
+            compare = Comparer.DefaultInvariant.Compare(this.classifierName, othr.classifierName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateWorkloadClassifierStatement FromMutable(ScriptDom.CreateWorkloadClassifierStatement fragment) {
             return (CreateWorkloadClassifierStatement)TSqlFragment.FromMutable(fragment);

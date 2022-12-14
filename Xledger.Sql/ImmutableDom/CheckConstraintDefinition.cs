@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CheckConstraintDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.checkCondition, othr.checkCondition);
+            compare = Comparer.DefaultInvariant.Compare(this.checkCondition, othr.checkCondition);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.notForReplication, othr.notForReplication);
+            compare = Comparer.DefaultInvariant.Compare(this.notForReplication, othr.notForReplication);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintIdentifier, othr.constraintIdentifier);
+            compare = Comparer.DefaultInvariant.Compare(this.constraintIdentifier, othr.constraintIdentifier);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CheckConstraintDefinition left, CheckConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CheckConstraintDefinition left, CheckConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CheckConstraintDefinition left, CheckConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CheckConstraintDefinition left, CheckConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CheckConstraintDefinition FromMutable(ScriptDom.CheckConstraintDefinition fragment) {
             return (CheckConstraintDefinition)TSqlFragment.FromMutable(fragment);

@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CatalogCollationOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.catalogCollation, othr.catalogCollation);
+            compare = Comparer.DefaultInvariant.Compare(this.catalogCollation, othr.catalogCollation);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CatalogCollationOption FromMutable(ScriptDom.CatalogCollationOption fragment) {
             return (CatalogCollationOption)TSqlFragment.FromMutable(fragment);

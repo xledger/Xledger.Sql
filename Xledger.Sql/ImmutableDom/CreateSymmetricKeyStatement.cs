@@ -95,18 +95,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateSymmetricKeyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.keyOptions, othr.keyOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.keyOptions, othr.keyOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.provider, othr.provider);
+            compare = Comparer.DefaultInvariant.Compare(this.provider, othr.provider);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptingMechanisms, othr.encryptingMechanisms);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptingMechanisms, othr.encryptingMechanisms);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateSymmetricKeyStatement FromMutable(ScriptDom.CreateSymmetricKeyStatement fragment) {
             return (CreateSymmetricKeyStatement)TSqlFragment.FromMutable(fragment);

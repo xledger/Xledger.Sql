@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InPredicate)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.expression, othr.expression);
+            compare = Comparer.DefaultInvariant.Compare(this.expression, othr.expression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.subquery, othr.subquery);
+            compare = Comparer.DefaultInvariant.Compare(this.subquery, othr.subquery);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.notDefined, othr.notDefined);
+            compare = Comparer.DefaultInvariant.Compare(this.notDefined, othr.notDefined);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.values, othr.values);
+            compare = Comparer.DefaultInvariant.Compare(this.values, othr.values);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (InPredicate left, InPredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(InPredicate left, InPredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (InPredicate left, InPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(InPredicate left, InPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static InPredicate FromMutable(ScriptDom.InPredicate fragment) {
             return (InPredicate)TSqlFragment.FromMutable(fragment);

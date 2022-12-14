@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MergeActionClause)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.condition, othr.condition);
+            compare = Comparer.DefaultInvariant.Compare(this.condition, othr.condition);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.searchCondition, othr.searchCondition);
+            compare = Comparer.DefaultInvariant.Compare(this.searchCondition, othr.searchCondition);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.action, othr.action);
+            compare = Comparer.DefaultInvariant.Compare(this.action, othr.action);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (MergeActionClause left, MergeActionClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(MergeActionClause left, MergeActionClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (MergeActionClause left, MergeActionClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(MergeActionClause left, MergeActionClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static MergeActionClause FromMutable(ScriptDom.MergeActionClause fragment) {
             return (MergeActionClause)TSqlFragment.FromMutable(fragment);

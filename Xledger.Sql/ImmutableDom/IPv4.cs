@@ -93,16 +93,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IPv4)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.octetOne, othr.octetOne);
+            compare = Comparer.DefaultInvariant.Compare(this.octetOne, othr.octetOne);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.octetTwo, othr.octetTwo);
+            compare = Comparer.DefaultInvariant.Compare(this.octetTwo, othr.octetTwo);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.octetThree, othr.octetThree);
+            compare = Comparer.DefaultInvariant.Compare(this.octetThree, othr.octetThree);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.octetFour, othr.octetFour);
+            compare = Comparer.DefaultInvariant.Compare(this.octetFour, othr.octetFour);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (IPv4 left, IPv4 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(IPv4 left, IPv4 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (IPv4 left, IPv4 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(IPv4 left, IPv4 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static IPv4 FromMutable(ScriptDom.IPv4 fragment) {
             return (IPv4)TSqlFragment.FromMutable(fragment);

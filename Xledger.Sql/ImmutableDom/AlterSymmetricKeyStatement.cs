@@ -75,14 +75,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterSymmetricKeyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isAdd, othr.isAdd);
+            compare = Comparer.DefaultInvariant.Compare(this.isAdd, othr.isAdd);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptingMechanisms, othr.encryptingMechanisms);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptingMechanisms, othr.encryptingMechanisms);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterSymmetricKeyStatement left, AlterSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterSymmetricKeyStatement left, AlterSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterSymmetricKeyStatement left, AlterSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterSymmetricKeyStatement left, AlterSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterSymmetricKeyStatement FromMutable(ScriptDom.AlterSymmetricKeyStatement fragment) {
             return (AlterSymmetricKeyStatement)TSqlFragment.FromMutable(fragment);

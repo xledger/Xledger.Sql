@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (HadrDatabaseOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.hadrOption, othr.hadrOption);
+            compare = Comparer.DefaultInvariant.Compare(this.hadrOption, othr.hadrOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (HadrDatabaseOption left, HadrDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(HadrDatabaseOption left, HadrDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (HadrDatabaseOption left, HadrDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(HadrDatabaseOption left, HadrDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static HadrDatabaseOption FromMutable(ScriptDom.HadrDatabaseOption fragment) {
             return (HadrDatabaseOption)TSqlFragment.FromMutable(fragment);

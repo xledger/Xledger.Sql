@@ -103,20 +103,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PasswordAlterPrincipalOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.password, othr.password);
+            compare = Comparer.DefaultInvariant.Compare(this.password, othr.password);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.oldPassword, othr.oldPassword);
+            compare = Comparer.DefaultInvariant.Compare(this.oldPassword, othr.oldPassword);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.mustChange, othr.mustChange);
+            compare = Comparer.DefaultInvariant.Compare(this.mustChange, othr.mustChange);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.unlock, othr.unlock);
+            compare = Comparer.DefaultInvariant.Compare(this.unlock, othr.unlock);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.hashed, othr.hashed);
+            compare = Comparer.DefaultInvariant.Compare(this.hashed, othr.hashed);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static PasswordAlterPrincipalOption FromMutable(ScriptDom.PasswordAlterPrincipalOption fragment) {
             return (PasswordAlterPrincipalOption)TSqlFragment.FromMutable(fragment);

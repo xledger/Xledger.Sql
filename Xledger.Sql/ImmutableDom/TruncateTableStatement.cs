@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TruncateTableStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.tableName, othr.tableName);
+            compare = Comparer.DefaultInvariant.Compare(this.tableName, othr.tableName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionRanges, othr.partitionRanges);
+            compare = Comparer.DefaultInvariant.Compare(this.partitionRanges, othr.partitionRanges);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (TruncateTableStatement left, TruncateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(TruncateTableStatement left, TruncateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (TruncateTableStatement left, TruncateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(TruncateTableStatement left, TruncateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static TruncateTableStatement FromMutable(ScriptDom.TruncateTableStatement fragment) {
             return (TruncateTableStatement)TSqlFragment.FromMutable(fragment);

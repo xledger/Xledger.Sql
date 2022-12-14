@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DeviceInfo)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.logicalDevice, othr.logicalDevice);
+            compare = Comparer.DefaultInvariant.Compare(this.logicalDevice, othr.logicalDevice);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.physicalDevice, othr.physicalDevice);
+            compare = Comparer.DefaultInvariant.Compare(this.physicalDevice, othr.physicalDevice);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.deviceType, othr.deviceType);
+            compare = Comparer.DefaultInvariant.Compare(this.deviceType, othr.deviceType);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DeviceInfo left, DeviceInfo right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DeviceInfo left, DeviceInfo right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DeviceInfo left, DeviceInfo right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DeviceInfo left, DeviceInfo right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DeviceInfo FromMutable(ScriptDom.DeviceInfo fragment) {
             return (DeviceInfo)TSqlFragment.FromMutable(fragment);

@@ -99,18 +99,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableSwitchStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sourcePartitionNumber, othr.sourcePartitionNumber);
+            compare = Comparer.DefaultInvariant.Compare(this.sourcePartitionNumber, othr.sourcePartitionNumber);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.targetPartitionNumber, othr.targetPartitionNumber);
+            compare = Comparer.DefaultInvariant.Compare(this.targetPartitionNumber, othr.targetPartitionNumber);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.targetTable, othr.targetTable);
+            compare = Comparer.DefaultInvariant.Compare(this.targetTable, othr.targetTable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterTableSwitchStatement left, AlterTableSwitchStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterTableSwitchStatement left, AlterTableSwitchStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterTableSwitchStatement left, AlterTableSwitchStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterTableSwitchStatement left, AlterTableSwitchStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterTableSwitchStatement FromMutable(ScriptDom.AlterTableSwitchStatement fragment) {
             return (AlterTableSwitchStatement)TSqlFragment.FromMutable(fragment);

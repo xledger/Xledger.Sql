@@ -115,22 +115,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PredictTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.modelVariable, othr.modelVariable);
+            compare = Comparer.DefaultInvariant.Compare(this.modelVariable, othr.modelVariable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.modelSubquery, othr.modelSubquery);
+            compare = Comparer.DefaultInvariant.Compare(this.modelSubquery, othr.modelSubquery);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataSource, othr.dataSource);
+            compare = Comparer.DefaultInvariant.Compare(this.dataSource, othr.dataSource);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.runTime, othr.runTime);
+            compare = Comparer.DefaultInvariant.Compare(this.runTime, othr.runTime);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaDeclarationItems, othr.schemaDeclarationItems);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaDeclarationItems, othr.schemaDeclarationItems);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (PredictTableReference left, PredictTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(PredictTableReference left, PredictTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (PredictTableReference left, PredictTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(PredictTableReference left, PredictTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static PredictTableReference FromMutable(ScriptDom.PredictTableReference fragment) {
             return (PredictTableReference)TSqlFragment.FromMutable(fragment);

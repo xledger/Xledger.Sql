@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SchemaObjectNameOrValueExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.valueExpression, othr.valueExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.valueExpression, othr.valueExpression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SchemaObjectNameOrValueExpression left, SchemaObjectNameOrValueExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SchemaObjectNameOrValueExpression left, SchemaObjectNameOrValueExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SchemaObjectNameOrValueExpression left, SchemaObjectNameOrValueExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SchemaObjectNameOrValueExpression left, SchemaObjectNameOrValueExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SchemaObjectNameOrValueExpression FromMutable(ScriptDom.SchemaObjectNameOrValueExpression fragment) {
             return (SchemaObjectNameOrValueExpression)TSqlFragment.FromMutable(fragment);

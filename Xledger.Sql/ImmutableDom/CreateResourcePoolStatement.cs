@@ -65,12 +65,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateResourcePoolStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.resourcePoolParameters, othr.resourcePoolParameters);
+            compare = Comparer.DefaultInvariant.Compare(this.resourcePoolParameters, othr.resourcePoolParameters);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateResourcePoolStatement left, CreateResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateResourcePoolStatement left, CreateResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateResourcePoolStatement left, CreateResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateResourcePoolStatement left, CreateResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateResourcePoolStatement FromMutable(ScriptDom.CreateResourcePoolStatement fragment) {
             return (CreateResourcePoolStatement)TSqlFragment.FromMutable(fragment);

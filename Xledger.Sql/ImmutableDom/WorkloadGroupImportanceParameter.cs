@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WorkloadGroupImportanceParameter)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterValue, othr.parameterValue);
+            compare = Comparer.DefaultInvariant.Compare(this.parameterValue, othr.parameterValue);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterType, othr.parameterType);
+            compare = Comparer.DefaultInvariant.Compare(this.parameterType, othr.parameterType);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (WorkloadGroupImportanceParameter left, WorkloadGroupImportanceParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(WorkloadGroupImportanceParameter left, WorkloadGroupImportanceParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (WorkloadGroupImportanceParameter left, WorkloadGroupImportanceParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(WorkloadGroupImportanceParameter left, WorkloadGroupImportanceParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static WorkloadGroupImportanceParameter FromMutable(ScriptDom.WorkloadGroupImportanceParameter fragment) {
             return (WorkloadGroupImportanceParameter)TSqlFragment.FromMutable(fragment);

@@ -83,14 +83,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IdentityFunctionCall)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataType, othr.dataType);
+            compare = Comparer.DefaultInvariant.Compare(this.dataType, othr.dataType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.seed, othr.seed);
+            compare = Comparer.DefaultInvariant.Compare(this.seed, othr.seed);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.increment, othr.increment);
+            compare = Comparer.DefaultInvariant.Compare(this.increment, othr.increment);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (IdentityFunctionCall left, IdentityFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(IdentityFunctionCall left, IdentityFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (IdentityFunctionCall left, IdentityFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(IdentityFunctionCall left, IdentityFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static IdentityFunctionCall FromMutable(ScriptDom.IdentityFunctionCall fragment) {
             return (IdentityFunctionCall)TSqlFragment.FromMutable(fragment);

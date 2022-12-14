@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TablePartitionOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionColumn, othr.partitionColumn);
+            compare = Comparer.DefaultInvariant.Compare(this.partitionColumn, othr.partitionColumn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.partitionOptionSpecs, othr.partitionOptionSpecs);
+            compare = Comparer.DefaultInvariant.Compare(this.partitionOptionSpecs, othr.partitionOptionSpecs);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (TablePartitionOption left, TablePartitionOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(TablePartitionOption left, TablePartitionOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (TablePartitionOption left, TablePartitionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(TablePartitionOption left, TablePartitionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static TablePartitionOption FromMutable(ScriptDom.TablePartitionOption fragment) {
             return (TablePartitionOption)TSqlFragment.FromMutable(fragment);

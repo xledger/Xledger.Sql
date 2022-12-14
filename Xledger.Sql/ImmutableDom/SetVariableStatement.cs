@@ -125,24 +125,28 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SetVariableStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.separatorType, othr.separatorType);
+            compare = Comparer.DefaultInvariant.Compare(this.separatorType, othr.separatorType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.identifier, othr.identifier);
+            compare = Comparer.DefaultInvariant.Compare(this.identifier, othr.identifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.functionCallExists, othr.functionCallExists);
+            compare = Comparer.DefaultInvariant.Compare(this.functionCallExists, othr.functionCallExists);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameters, othr.parameters);
+            compare = Comparer.DefaultInvariant.Compare(this.parameters, othr.parameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.expression, othr.expression);
+            compare = Comparer.DefaultInvariant.Compare(this.expression, othr.expression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.cursorDefinition, othr.cursorDefinition);
+            compare = Comparer.DefaultInvariant.Compare(this.cursorDefinition, othr.cursorDefinition);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.assignmentKind, othr.assignmentKind);
+            compare = Comparer.DefaultInvariant.Compare(this.assignmentKind, othr.assignmentKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SetVariableStatement left, SetVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SetVariableStatement left, SetVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SetVariableStatement left, SetVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SetVariableStatement left, SetVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SetVariableStatement FromMutable(ScriptDom.SetVariableStatement fragment) {
             return (SetVariableStatement)TSqlFragment.FromMutable(fragment);

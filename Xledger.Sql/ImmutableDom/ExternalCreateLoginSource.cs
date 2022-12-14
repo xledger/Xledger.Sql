@@ -61,10 +61,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExternalCreateLoginSource)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ExternalCreateLoginSource left, ExternalCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ExternalCreateLoginSource left, ExternalCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ExternalCreateLoginSource left, ExternalCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ExternalCreateLoginSource left, ExternalCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ExternalCreateLoginSource FromMutable(ScriptDom.ExternalCreateLoginSource fragment) {
             return (ExternalCreateLoginSource)TSqlFragment.FromMutable(fragment);

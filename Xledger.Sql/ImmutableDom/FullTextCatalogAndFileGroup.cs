@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FullTextCatalogAndFileGroup)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.catalogName, othr.catalogName);
+            compare = Comparer.DefaultInvariant.Compare(this.catalogName, othr.catalogName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroupName, othr.fileGroupName);
+            compare = Comparer.DefaultInvariant.Compare(this.fileGroupName, othr.fileGroupName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileGroupIsFirst, othr.fileGroupIsFirst);
+            compare = Comparer.DefaultInvariant.Compare(this.fileGroupIsFirst, othr.fileGroupIsFirst);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (FullTextCatalogAndFileGroup left, FullTextCatalogAndFileGroup right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(FullTextCatalogAndFileGroup left, FullTextCatalogAndFileGroup right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (FullTextCatalogAndFileGroup left, FullTextCatalogAndFileGroup right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(FullTextCatalogAndFileGroup left, FullTextCatalogAndFileGroup right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static FullTextCatalogAndFileGroup FromMutable(ScriptDom.FullTextCatalogAndFileGroup fragment) {
             return (FullTextCatalogAndFileGroup)TSqlFragment.FromMutable(fragment);

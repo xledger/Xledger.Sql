@@ -99,18 +99,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateStatisticsStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            compare = Comparer.DefaultInvariant.Compare(this.onName, othr.onName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.statisticsOptions, othr.statisticsOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.statisticsOptions, othr.statisticsOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.filterPredicate, othr.filterPredicate);
+            compare = Comparer.DefaultInvariant.Compare(this.filterPredicate, othr.filterPredicate);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateStatisticsStatement left, CreateStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateStatisticsStatement left, CreateStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateStatisticsStatement left, CreateStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateStatisticsStatement left, CreateStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateStatisticsStatement FromMutable(ScriptDom.CreateStatisticsStatement fragment) {
             return (CreateStatisticsStatement)TSqlFragment.FromMutable(fragment);

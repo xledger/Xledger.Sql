@@ -81,16 +81,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateServerAuditStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.auditName, othr.auditName);
+            compare = Comparer.DefaultInvariant.Compare(this.auditName, othr.auditName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.auditTarget, othr.auditTarget);
+            compare = Comparer.DefaultInvariant.Compare(this.auditTarget, othr.auditTarget);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.predicateExpression, othr.predicateExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.predicateExpression, othr.predicateExpression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateServerAuditStatement left, CreateServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateServerAuditStatement left, CreateServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateServerAuditStatement left, CreateServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateServerAuditStatement left, CreateServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateServerAuditStatement FromMutable(ScriptDom.CreateServerAuditStatement fragment) {
             return (CreateServerAuditStatement)TSqlFragment.FromMutable(fragment);

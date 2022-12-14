@@ -109,20 +109,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ReceiveStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.top, othr.top);
+            compare = Comparer.DefaultInvariant.Compare(this.top, othr.top);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.selectElements, othr.selectElements);
+            compare = Comparer.DefaultInvariant.Compare(this.selectElements, othr.selectElements);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.queue, othr.queue);
+            compare = Comparer.DefaultInvariant.Compare(this.queue, othr.queue);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.into, othr.into);
+            compare = Comparer.DefaultInvariant.Compare(this.into, othr.into);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.where, othr.where);
+            compare = Comparer.DefaultInvariant.Compare(this.where, othr.where);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isConversationGroupIdWhere, othr.isConversationGroupIdWhere);
+            compare = Comparer.DefaultInvariant.Compare(this.isConversationGroupIdWhere, othr.isConversationGroupIdWhere);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ReceiveStatement left, ReceiveStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ReceiveStatement left, ReceiveStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ReceiveStatement left, ReceiveStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ReceiveStatement left, ReceiveStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ReceiveStatement FromMutable(ScriptDom.ReceiveStatement fragment) {
             return (ReceiveStatement)TSqlFragment.FromMutable(fragment);

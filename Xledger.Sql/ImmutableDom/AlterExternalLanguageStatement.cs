@@ -97,18 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterExternalLanguageStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.platform, othr.platform);
+            compare = Comparer.DefaultInvariant.Compare(this.platform, othr.platform);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.operation, othr.operation);
+            compare = Comparer.DefaultInvariant.Compare(this.operation, othr.operation);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalLanguageFiles, othr.externalLanguageFiles);
+            compare = Comparer.DefaultInvariant.Compare(this.externalLanguageFiles, othr.externalLanguageFiles);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterExternalLanguageStatement FromMutable(ScriptDom.AlterExternalLanguageStatement fragment) {
             return (AlterExternalLanguageStatement)TSqlFragment.FromMutable(fragment);

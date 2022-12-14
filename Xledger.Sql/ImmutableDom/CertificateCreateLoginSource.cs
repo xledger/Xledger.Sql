@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CertificateCreateLoginSource)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.certificate, othr.certificate);
+            compare = Comparer.DefaultInvariant.Compare(this.certificate, othr.certificate);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.credential, othr.credential);
+            compare = Comparer.DefaultInvariant.Compare(this.credential, othr.credential);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CertificateCreateLoginSource left, CertificateCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CertificateCreateLoginSource left, CertificateCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CertificateCreateLoginSource left, CertificateCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CertificateCreateLoginSource left, CertificateCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CertificateCreateLoginSource FromMutable(ScriptDom.CertificateCreateLoginSource fragment) {
             return (CertificateCreateLoginSource)TSqlFragment.FromMutable(fragment);

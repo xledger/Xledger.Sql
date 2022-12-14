@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ProcedureReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.number, othr.number);
+            compare = Comparer.DefaultInvariant.Compare(this.number, othr.number);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ProcedureReference left, ProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ProcedureReference left, ProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ProcedureReference left, ProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ProcedureReference left, ProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ProcedureReference FromMutable(ScriptDom.ProcedureReference fragment) {
             return (ProcedureReference)TSqlFragment.FromMutable(fragment);

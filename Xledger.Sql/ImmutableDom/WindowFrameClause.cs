@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WindowFrameClause)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.top, othr.top);
+            compare = Comparer.DefaultInvariant.Compare(this.top, othr.top);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.bottom, othr.bottom);
+            compare = Comparer.DefaultInvariant.Compare(this.bottom, othr.bottom);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.windowFrameType, othr.windowFrameType);
+            compare = Comparer.DefaultInvariant.Compare(this.windowFrameType, othr.windowFrameType);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (WindowFrameClause left, WindowFrameClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(WindowFrameClause left, WindowFrameClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (WindowFrameClause left, WindowFrameClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(WindowFrameClause left, WindowFrameClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static WindowFrameClause FromMutable(ScriptDom.WindowFrameClause fragment) {
             return (WindowFrameClause)TSqlFragment.FromMutable(fragment);

@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CryptoMechanism)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.cryptoMechanismType, othr.cryptoMechanismType);
+            compare = Comparer.DefaultInvariant.Compare(this.cryptoMechanismType, othr.cryptoMechanismType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.identifier, othr.identifier);
+            compare = Comparer.DefaultInvariant.Compare(this.identifier, othr.identifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.passwordOrSignature, othr.passwordOrSignature);
+            compare = Comparer.DefaultInvariant.Compare(this.passwordOrSignature, othr.passwordOrSignature);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CryptoMechanism left, CryptoMechanism right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CryptoMechanism left, CryptoMechanism right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CryptoMechanism left, CryptoMechanism right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CryptoMechanism left, CryptoMechanism right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CryptoMechanism FromMutable(ScriptDom.CryptoMechanism fragment) {
             return (CryptoMechanism)TSqlFragment.FromMutable(fragment);

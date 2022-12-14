@@ -63,10 +63,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (JoinParenthesisTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.join, othr.join);
+            compare = Comparer.DefaultInvariant.Compare(this.join, othr.join);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (JoinParenthesisTableReference left, JoinParenthesisTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(JoinParenthesisTableReference left, JoinParenthesisTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (JoinParenthesisTableReference left, JoinParenthesisTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(JoinParenthesisTableReference left, JoinParenthesisTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static JoinParenthesisTableReference FromMutable(ScriptDom.JoinParenthesisTableReference fragment) {
             return (JoinParenthesisTableReference)TSqlFragment.FromMutable(fragment);

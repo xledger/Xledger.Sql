@@ -73,12 +73,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AsymmetricKeyCreateLoginSource)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.key, othr.key);
+            compare = Comparer.DefaultInvariant.Compare(this.key, othr.key);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.credential, othr.credential);
+            compare = Comparer.DefaultInvariant.Compare(this.credential, othr.credential);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AsymmetricKeyCreateLoginSource left, AsymmetricKeyCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AsymmetricKeyCreateLoginSource left, AsymmetricKeyCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AsymmetricKeyCreateLoginSource left, AsymmetricKeyCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AsymmetricKeyCreateLoginSource left, AsymmetricKeyCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AsymmetricKeyCreateLoginSource FromMutable(ScriptDom.AsymmetricKeyCreateLoginSource fragment) {
             return (AsymmetricKeyCreateLoginSource)TSqlFragment.FromMutable(fragment);

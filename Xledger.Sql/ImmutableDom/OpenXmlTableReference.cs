@@ -115,22 +115,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OpenXmlTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.rowPattern, othr.rowPattern);
+            compare = Comparer.DefaultInvariant.Compare(this.rowPattern, othr.rowPattern);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.flags, othr.flags);
+            compare = Comparer.DefaultInvariant.Compare(this.flags, othr.flags);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaDeclarationItems, othr.schemaDeclarationItems);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaDeclarationItems, othr.schemaDeclarationItems);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.tableName, othr.tableName);
+            compare = Comparer.DefaultInvariant.Compare(this.tableName, othr.tableName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static OpenXmlTableReference FromMutable(ScriptDom.OpenXmlTableReference fragment) {
             return (OpenXmlTableReference)TSqlFragment.FromMutable(fragment);

@@ -83,16 +83,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (EncryptionPayloadOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptionSupport, othr.encryptionSupport);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptionSupport, othr.encryptionSupport);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.algorithmPartOne, othr.algorithmPartOne);
+            compare = Comparer.DefaultInvariant.Compare(this.algorithmPartOne, othr.algorithmPartOne);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.algorithmPartTwo, othr.algorithmPartTwo);
+            compare = Comparer.DefaultInvariant.Compare(this.algorithmPartTwo, othr.algorithmPartTwo);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            compare = Comparer.DefaultInvariant.Compare(this.kind, othr.kind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (EncryptionPayloadOption left, EncryptionPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(EncryptionPayloadOption left, EncryptionPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (EncryptionPayloadOption left, EncryptionPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(EncryptionPayloadOption left, EncryptionPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static EncryptionPayloadOption FromMutable(ScriptDom.EncryptionPayloadOption fragment) {
             return (EncryptionPayloadOption)TSqlFragment.FromMutable(fragment);

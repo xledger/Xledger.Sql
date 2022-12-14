@@ -89,18 +89,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OpenRowsetCosmos)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withColumns, othr.withColumns);
+            compare = Comparer.DefaultInvariant.Compare(this.withColumns, othr.withColumns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (OpenRowsetCosmos left, OpenRowsetCosmos right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(OpenRowsetCosmos left, OpenRowsetCosmos right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (OpenRowsetCosmos left, OpenRowsetCosmos right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(OpenRowsetCosmos left, OpenRowsetCosmos right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static OpenRowsetCosmos FromMutable(ScriptDom.OpenRowsetCosmos fragment) {
             return (OpenRowsetCosmos)TSqlFragment.FromMutable(fragment);

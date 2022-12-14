@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             var othr = (TableNonClusteredIndexType)that;
             return compare;
         } 
+        public static bool operator < (TableNonClusteredIndexType left, TableNonClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(TableNonClusteredIndexType left, TableNonClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (TableNonClusteredIndexType left, TableNonClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(TableNonClusteredIndexType left, TableNonClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static TableNonClusteredIndexType FromMutable(ScriptDom.TableNonClusteredIndexType fragment) {
             return (TableNonClusteredIndexType)TSqlFragment.FromMutable(fragment);

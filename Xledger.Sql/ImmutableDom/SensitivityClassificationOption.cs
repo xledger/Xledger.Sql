@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SensitivityClassificationOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.type, othr.type);
+            compare = Comparer.DefaultInvariant.Compare(this.type, othr.type);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SensitivityClassificationOption left, SensitivityClassificationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SensitivityClassificationOption left, SensitivityClassificationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SensitivityClassificationOption left, SensitivityClassificationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SensitivityClassificationOption left, SensitivityClassificationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SensitivityClassificationOption FromMutable(ScriptDom.SensitivityClassificationOption fragment) {
             return (SensitivityClassificationOption)TSqlFragment.FromMutable(fragment);

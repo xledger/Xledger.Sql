@@ -91,16 +91,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AssignmentSetClause)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.variable, othr.variable);
+            compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.column, othr.column);
+            compare = Comparer.DefaultInvariant.Compare(this.column, othr.column);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.newValue, othr.newValue);
+            compare = Comparer.DefaultInvariant.Compare(this.newValue, othr.newValue);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.assignmentKind, othr.assignmentKind);
+            compare = Comparer.DefaultInvariant.Compare(this.assignmentKind, othr.assignmentKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AssignmentSetClause left, AssignmentSetClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AssignmentSetClause left, AssignmentSetClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AssignmentSetClause left, AssignmentSetClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AssignmentSetClause left, AssignmentSetClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AssignmentSetClause FromMutable(ScriptDom.AssignmentSetClause fragment) {
             return (AssignmentSetClause)TSqlFragment.FromMutable(fragment);

@@ -69,12 +69,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RemoteDataArchiveDbCredentialSetting)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.credential, othr.credential);
+            compare = Comparer.DefaultInvariant.Compare(this.credential, othr.credential);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.settingKind, othr.settingKind);
+            compare = Comparer.DefaultInvariant.Compare(this.settingKind, othr.settingKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (RemoteDataArchiveDbCredentialSetting left, RemoteDataArchiveDbCredentialSetting right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(RemoteDataArchiveDbCredentialSetting left, RemoteDataArchiveDbCredentialSetting right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (RemoteDataArchiveDbCredentialSetting left, RemoteDataArchiveDbCredentialSetting right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(RemoteDataArchiveDbCredentialSetting left, RemoteDataArchiveDbCredentialSetting right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static RemoteDataArchiveDbCredentialSetting FromMutable(ScriptDom.RemoteDataArchiveDbCredentialSetting fragment) {
             return (RemoteDataArchiveDbCredentialSetting)TSqlFragment.FromMutable(fragment);

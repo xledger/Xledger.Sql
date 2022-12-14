@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropSchemaStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schema, othr.schema);
+            compare = Comparer.DefaultInvariant.Compare(this.schema, othr.schema);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dropBehavior, othr.dropBehavior);
+            compare = Comparer.DefaultInvariant.Compare(this.dropBehavior, othr.dropBehavior);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isIfExists, othr.isIfExists);
+            compare = Comparer.DefaultInvariant.Compare(this.isIfExists, othr.isIfExists);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DropSchemaStatement left, DropSchemaStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DropSchemaStatement left, DropSchemaStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DropSchemaStatement left, DropSchemaStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DropSchemaStatement left, DropSchemaStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DropSchemaStatement FromMutable(ScriptDom.DropSchemaStatement fragment) {
             return (DropSchemaStatement)TSqlFragment.FromMutable(fragment);

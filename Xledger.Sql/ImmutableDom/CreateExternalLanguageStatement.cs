@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateExternalLanguageStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalLanguageFiles, othr.externalLanguageFiles);
+            compare = Comparer.DefaultInvariant.Compare(this.externalLanguageFiles, othr.externalLanguageFiles);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateExternalLanguageStatement left, CreateExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateExternalLanguageStatement left, CreateExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateExternalLanguageStatement left, CreateExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateExternalLanguageStatement left, CreateExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateExternalLanguageStatement FromMutable(ScriptDom.CreateExternalLanguageStatement fragment) {
             return (CreateExternalLanguageStatement)TSqlFragment.FromMutable(fragment);

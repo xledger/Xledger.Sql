@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IdentityOptions)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.identitySeed, othr.identitySeed);
+            compare = Comparer.DefaultInvariant.Compare(this.identitySeed, othr.identitySeed);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.identityIncrement, othr.identityIncrement);
+            compare = Comparer.DefaultInvariant.Compare(this.identityIncrement, othr.identityIncrement);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isIdentityNotForReplication, othr.isIdentityNotForReplication);
+            compare = Comparer.DefaultInvariant.Compare(this.isIdentityNotForReplication, othr.isIdentityNotForReplication);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (IdentityOptions left, IdentityOptions right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(IdentityOptions left, IdentityOptions right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (IdentityOptions left, IdentityOptions right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(IdentityOptions left, IdentityOptions right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static IdentityOptions FromMutable(ScriptDom.IdentityOptions fragment) {
             return (IdentityOptions)TSqlFragment.FromMutable(fragment);

@@ -81,14 +81,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BooleanComparisonExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.comparisonType, othr.comparisonType);
+            compare = Comparer.DefaultInvariant.Compare(this.comparisonType, othr.comparisonType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.firstExpression, othr.firstExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.firstExpression, othr.firstExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.secondExpression, othr.secondExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.secondExpression, othr.secondExpression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BooleanComparisonExpression left, BooleanComparisonExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BooleanComparisonExpression left, BooleanComparisonExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BooleanComparisonExpression left, BooleanComparisonExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BooleanComparisonExpression left, BooleanComparisonExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BooleanComparisonExpression FromMutable(ScriptDom.BooleanComparisonExpression fragment) {
             return (BooleanComparisonExpression)TSqlFragment.FromMutable(fragment);

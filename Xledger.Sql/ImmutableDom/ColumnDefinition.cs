@@ -195,40 +195,44 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ColumnDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.computedColumnExpression, othr.computedColumnExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.computedColumnExpression, othr.computedColumnExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isPersisted, othr.isPersisted);
+            compare = Comparer.DefaultInvariant.Compare(this.isPersisted, othr.isPersisted);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.defaultConstraint, othr.defaultConstraint);
+            compare = Comparer.DefaultInvariant.Compare(this.defaultConstraint, othr.defaultConstraint);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.identityOptions, othr.identityOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.identityOptions, othr.identityOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isRowGuidCol, othr.isRowGuidCol);
+            compare = Comparer.DefaultInvariant.Compare(this.isRowGuidCol, othr.isRowGuidCol);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.constraints, othr.constraints);
+            compare = Comparer.DefaultInvariant.Compare(this.constraints, othr.constraints);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.storageOptions, othr.storageOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.storageOptions, othr.storageOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.index, othr.index);
+            compare = Comparer.DefaultInvariant.Compare(this.index, othr.index);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.generatedAlways, othr.generatedAlways);
+            compare = Comparer.DefaultInvariant.Compare(this.generatedAlways, othr.generatedAlways);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isHidden, othr.isHidden);
+            compare = Comparer.DefaultInvariant.Compare(this.isHidden, othr.isHidden);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryption, othr.encryption);
+            compare = Comparer.DefaultInvariant.Compare(this.encryption, othr.encryption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isMasked, othr.isMasked);
+            compare = Comparer.DefaultInvariant.Compare(this.isMasked, othr.isMasked);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.maskingFunction, othr.maskingFunction);
+            compare = Comparer.DefaultInvariant.Compare(this.maskingFunction, othr.maskingFunction);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnIdentifier, othr.columnIdentifier);
+            compare = Comparer.DefaultInvariant.Compare(this.columnIdentifier, othr.columnIdentifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataType, othr.dataType);
+            compare = Comparer.DefaultInvariant.Compare(this.dataType, othr.dataType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            compare = Comparer.DefaultInvariant.Compare(this.collation, othr.collation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ColumnDefinition left, ColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ColumnDefinition left, ColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ColumnDefinition left, ColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ColumnDefinition left, ColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ColumnDefinition FromMutable(ScriptDom.ColumnDefinition fragment) {
             return (ColumnDefinition)TSqlFragment.FromMutable(fragment);

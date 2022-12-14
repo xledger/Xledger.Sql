@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FullTextStopListAction)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isAdd, othr.isAdd);
+            compare = Comparer.DefaultInvariant.Compare(this.isAdd, othr.isAdd);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isAll, othr.isAll);
+            compare = Comparer.DefaultInvariant.Compare(this.isAll, othr.isAll);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.stopWord, othr.stopWord);
+            compare = Comparer.DefaultInvariant.Compare(this.stopWord, othr.stopWord);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.languageTerm, othr.languageTerm);
+            compare = Comparer.DefaultInvariant.Compare(this.languageTerm, othr.languageTerm);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (FullTextStopListAction left, FullTextStopListAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(FullTextStopListAction left, FullTextStopListAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (FullTextStopListAction left, FullTextStopListAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(FullTextStopListAction left, FullTextStopListAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static FullTextStopListAction FromMutable(ScriptDom.FullTextStopListAction fragment) {
             return (FullTextStopListAction)TSqlFragment.FromMutable(fragment);

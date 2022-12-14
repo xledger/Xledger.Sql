@@ -75,14 +75,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OptimizeForOptimizerHint)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.pairs, othr.pairs);
+            compare = Comparer.DefaultInvariant.Compare(this.pairs, othr.pairs);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isForUnknown, othr.isForUnknown);
+            compare = Comparer.DefaultInvariant.Compare(this.isForUnknown, othr.isForUnknown);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.hintKind, othr.hintKind);
+            compare = Comparer.DefaultInvariant.Compare(this.hintKind, othr.hintKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static OptimizeForOptimizerHint FromMutable(ScriptDom.OptimizeForOptimizerHint fragment) {
             return (OptimizeForOptimizerHint)TSqlFragment.FromMutable(fragment);

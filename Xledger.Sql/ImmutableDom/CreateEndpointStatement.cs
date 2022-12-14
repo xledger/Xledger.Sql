@@ -109,24 +109,28 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateEndpointStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.state, othr.state);
+            compare = Comparer.DefaultInvariant.Compare(this.state, othr.state);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.affinity, othr.affinity);
+            compare = Comparer.DefaultInvariant.Compare(this.affinity, othr.affinity);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.protocol, othr.protocol);
+            compare = Comparer.DefaultInvariant.Compare(this.protocol, othr.protocol);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.protocolOptions, othr.protocolOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.protocolOptions, othr.protocolOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.endpointType, othr.endpointType);
+            compare = Comparer.DefaultInvariant.Compare(this.endpointType, othr.endpointType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.payloadOptions, othr.payloadOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.payloadOptions, othr.payloadOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateEndpointStatement left, CreateEndpointStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateEndpointStatement left, CreateEndpointStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateEndpointStatement left, CreateEndpointStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateEndpointStatement left, CreateEndpointStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateEndpointStatement FromMutable(ScriptDom.CreateEndpointStatement fragment) {
             return (CreateEndpointStatement)TSqlFragment.FromMutable(fragment);

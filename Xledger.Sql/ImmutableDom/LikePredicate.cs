@@ -99,18 +99,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LikePredicate)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.firstExpression, othr.firstExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.firstExpression, othr.firstExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.secondExpression, othr.secondExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.secondExpression, othr.secondExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.notDefined, othr.notDefined);
+            compare = Comparer.DefaultInvariant.Compare(this.notDefined, othr.notDefined);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.odbcEscape, othr.odbcEscape);
+            compare = Comparer.DefaultInvariant.Compare(this.odbcEscape, othr.odbcEscape);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.escapeExpression, othr.escapeExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.escapeExpression, othr.escapeExpression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static LikePredicate FromMutable(ScriptDom.LikePredicate fragment) {
             return (LikePredicate)TSqlFragment.FromMutable(fragment);

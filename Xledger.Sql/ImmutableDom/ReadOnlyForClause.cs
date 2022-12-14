@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             var othr = (ReadOnlyForClause)that;
             return compare;
         } 
+        public static bool operator < (ReadOnlyForClause left, ReadOnlyForClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ReadOnlyForClause left, ReadOnlyForClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ReadOnlyForClause left, ReadOnlyForClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ReadOnlyForClause left, ReadOnlyForClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ReadOnlyForClause FromMutable(ScriptDom.ReadOnlyForClause fragment) {
             return (ReadOnlyForClause)TSqlFragment.FromMutable(fragment);

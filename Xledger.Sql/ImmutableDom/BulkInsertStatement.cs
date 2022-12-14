@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BulkInsertStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.from, othr.from);
+            compare = Comparer.DefaultInvariant.Compare(this.from, othr.from);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.to, othr.to);
+            compare = Comparer.DefaultInvariant.Compare(this.to, othr.to);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BulkInsertStatement left, BulkInsertStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BulkInsertStatement left, BulkInsertStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BulkInsertStatement left, BulkInsertStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BulkInsertStatement left, BulkInsertStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BulkInsertStatement FromMutable(ScriptDom.BulkInsertStatement fragment) {
             return (BulkInsertStatement)TSqlFragment.FromMutable(fragment);

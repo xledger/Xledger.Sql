@@ -111,20 +111,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SelectiveXmlIndexPromotedPath)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.path, othr.path);
+            compare = Comparer.DefaultInvariant.Compare(this.path, othr.path);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sQLDataType, othr.sQLDataType);
+            compare = Comparer.DefaultInvariant.Compare(this.sQLDataType, othr.sQLDataType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.xQueryDataType, othr.xQueryDataType);
+            compare = Comparer.DefaultInvariant.Compare(this.xQueryDataType, othr.xQueryDataType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.maxLength, othr.maxLength);
+            compare = Comparer.DefaultInvariant.Compare(this.maxLength, othr.maxLength);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isSingleton, othr.isSingleton);
+            compare = Comparer.DefaultInvariant.Compare(this.isSingleton, othr.isSingleton);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SelectiveXmlIndexPromotedPath FromMutable(ScriptDom.SelectiveXmlIndexPromotedPath fragment) {
             return (SelectiveXmlIndexPromotedPath)TSqlFragment.FromMutable(fragment);

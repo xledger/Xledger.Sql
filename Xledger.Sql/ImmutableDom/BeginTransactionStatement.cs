@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BeginTransactionStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.distributed, othr.distributed);
+            compare = Comparer.DefaultInvariant.Compare(this.distributed, othr.distributed);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.markDefined, othr.markDefined);
+            compare = Comparer.DefaultInvariant.Compare(this.markDefined, othr.markDefined);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.markDescription, othr.markDescription);
+            compare = Comparer.DefaultInvariant.Compare(this.markDescription, othr.markDescription);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BeginTransactionStatement left, BeginTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BeginTransactionStatement left, BeginTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BeginTransactionStatement left, BeginTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BeginTransactionStatement left, BeginTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BeginTransactionStatement FromMutable(ScriptDom.BeginTransactionStatement fragment) {
             return (BeginTransactionStatement)TSqlFragment.FromMutable(fragment);

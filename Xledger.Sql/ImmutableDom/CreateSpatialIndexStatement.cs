@@ -109,20 +109,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateSpatialIndexStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@object, othr.@object);
+            compare = Comparer.DefaultInvariant.Compare(this.@object, othr.@object);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.spatialColumnName, othr.spatialColumnName);
+            compare = Comparer.DefaultInvariant.Compare(this.spatialColumnName, othr.spatialColumnName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.spatialIndexingScheme, othr.spatialIndexingScheme);
+            compare = Comparer.DefaultInvariant.Compare(this.spatialIndexingScheme, othr.spatialIndexingScheme);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.spatialIndexOptions, othr.spatialIndexOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.spatialIndexOptions, othr.spatialIndexOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroup, othr.onFileGroup);
+            compare = Comparer.DefaultInvariant.Compare(this.onFileGroup, othr.onFileGroup);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateSpatialIndexStatement left, CreateSpatialIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateSpatialIndexStatement left, CreateSpatialIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateSpatialIndexStatement left, CreateSpatialIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateSpatialIndexStatement left, CreateSpatialIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateSpatialIndexStatement FromMutable(ScriptDom.CreateSpatialIndexStatement fragment) {
             return (CreateSpatialIndexStatement)TSqlFragment.FromMutable(fragment);

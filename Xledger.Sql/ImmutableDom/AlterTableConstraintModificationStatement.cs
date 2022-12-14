@@ -93,18 +93,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableConstraintModificationStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.existingRowsCheckEnforcement, othr.existingRowsCheckEnforcement);
+            compare = Comparer.DefaultInvariant.Compare(this.existingRowsCheckEnforcement, othr.existingRowsCheckEnforcement);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintEnforcement, othr.constraintEnforcement);
+            compare = Comparer.DefaultInvariant.Compare(this.constraintEnforcement, othr.constraintEnforcement);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            compare = Comparer.DefaultInvariant.Compare(this.all, othr.all);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintNames, othr.constraintNames);
+            compare = Comparer.DefaultInvariant.Compare(this.constraintNames, othr.constraintNames);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterTableConstraintModificationStatement FromMutable(ScriptDom.AlterTableConstraintModificationStatement fragment) {
             return (AlterTableConstraintModificationStatement)TSqlFragment.FromMutable(fragment);

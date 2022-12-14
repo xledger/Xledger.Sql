@@ -61,10 +61,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CompositeGroupingSpecification)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.items, othr.items);
+            compare = Comparer.DefaultInvariant.Compare(this.items, othr.items);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CompositeGroupingSpecification left, CompositeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CompositeGroupingSpecification left, CompositeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CompositeGroupingSpecification left, CompositeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CompositeGroupingSpecification left, CompositeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CompositeGroupingSpecification FromMutable(ScriptDom.CompositeGroupingSpecification fragment) {
             return (CompositeGroupingSpecification)TSqlFragment.FromMutable(fragment);

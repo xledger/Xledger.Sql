@@ -63,10 +63,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FunctionCallSetClause)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.mutatorFunction, othr.mutatorFunction);
+            compare = Comparer.DefaultInvariant.Compare(this.mutatorFunction, othr.mutatorFunction);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (FunctionCallSetClause left, FunctionCallSetClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(FunctionCallSetClause left, FunctionCallSetClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (FunctionCallSetClause left, FunctionCallSetClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(FunctionCallSetClause left, FunctionCallSetClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static FunctionCallSetClause FromMutable(ScriptDom.FunctionCallSetClause fragment) {
             return (FunctionCallSetClause)TSqlFragment.FromMutable(fragment);

@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DatabaseConfigurationClearOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.planHandle, othr.planHandle);
+            compare = Comparer.DefaultInvariant.Compare(this.planHandle, othr.planHandle);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DatabaseConfigurationClearOption FromMutable(ScriptDom.DatabaseConfigurationClearOption fragment) {
             return (DatabaseConfigurationClearOption)TSqlFragment.FromMutable(fragment);

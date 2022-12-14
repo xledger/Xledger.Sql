@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AuthenticationEndpointProtocolOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.authenticationTypes, othr.authenticationTypes);
+            compare = Comparer.DefaultInvariant.Compare(this.authenticationTypes, othr.authenticationTypes);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            compare = Comparer.DefaultInvariant.Compare(this.kind, othr.kind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AuthenticationEndpointProtocolOption left, AuthenticationEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AuthenticationEndpointProtocolOption left, AuthenticationEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AuthenticationEndpointProtocolOption left, AuthenticationEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AuthenticationEndpointProtocolOption left, AuthenticationEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AuthenticationEndpointProtocolOption FromMutable(ScriptDom.AuthenticationEndpointProtocolOption fragment) {
             return (AuthenticationEndpointProtocolOption)TSqlFragment.FromMutable(fragment);

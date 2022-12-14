@@ -67,12 +67,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerRoleStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.action, othr.action);
+            compare = Comparer.DefaultInvariant.Compare(this.action, othr.action);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterServerRoleStatement left, AlterServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterServerRoleStatement left, AlterServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterServerRoleStatement left, AlterServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterServerRoleStatement left, AlterServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterServerRoleStatement FromMutable(ScriptDom.AlterServerRoleStatement fragment) {
             return (AlterServerRoleStatement)TSqlFragment.FromMutable(fragment);

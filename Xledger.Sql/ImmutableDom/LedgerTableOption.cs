@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LedgerTableOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionState, othr.optionState);
+            compare = Comparer.DefaultInvariant.Compare(this.optionState, othr.optionState);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.appendOnly, othr.appendOnly);
+            compare = Comparer.DefaultInvariant.Compare(this.appendOnly, othr.appendOnly);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.ledgerViewOption, othr.ledgerViewOption);
+            compare = Comparer.DefaultInvariant.Compare(this.ledgerViewOption, othr.ledgerViewOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (LedgerTableOption left, LedgerTableOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(LedgerTableOption left, LedgerTableOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (LedgerTableOption left, LedgerTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(LedgerTableOption left, LedgerTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static LedgerTableOption FromMutable(ScriptDom.LedgerTableOption fragment) {
             return (LedgerTableOption)TSqlFragment.FromMutable(fragment);

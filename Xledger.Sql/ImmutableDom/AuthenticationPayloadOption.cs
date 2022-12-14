@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AuthenticationPayloadOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.protocol, othr.protocol);
+            compare = Comparer.DefaultInvariant.Compare(this.protocol, othr.protocol);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.certificate, othr.certificate);
+            compare = Comparer.DefaultInvariant.Compare(this.certificate, othr.certificate);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.tryCertificateFirst, othr.tryCertificateFirst);
+            compare = Comparer.DefaultInvariant.Compare(this.tryCertificateFirst, othr.tryCertificateFirst);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.kind, othr.kind);
+            compare = Comparer.DefaultInvariant.Compare(this.kind, othr.kind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AuthenticationPayloadOption left, AuthenticationPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AuthenticationPayloadOption left, AuthenticationPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AuthenticationPayloadOption left, AuthenticationPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AuthenticationPayloadOption left, AuthenticationPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AuthenticationPayloadOption FromMutable(ScriptDom.AuthenticationPayloadOption fragment) {
             return (AuthenticationPayloadOption)TSqlFragment.FromMutable(fragment);

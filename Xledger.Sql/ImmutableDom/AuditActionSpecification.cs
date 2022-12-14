@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AuditActionSpecification)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.actions, othr.actions);
+            compare = Comparer.DefaultInvariant.Compare(this.actions, othr.actions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.principals, othr.principals);
+            compare = Comparer.DefaultInvariant.Compare(this.principals, othr.principals);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.targetObject, othr.targetObject);
+            compare = Comparer.DefaultInvariant.Compare(this.targetObject, othr.targetObject);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AuditActionSpecification left, AuditActionSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AuditActionSpecification left, AuditActionSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AuditActionSpecification left, AuditActionSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AuditActionSpecification left, AuditActionSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AuditActionSpecification FromMutable(ScriptDom.AuditActionSpecification fragment) {
             return (AuditActionSpecification)TSqlFragment.FromMutable(fragment);

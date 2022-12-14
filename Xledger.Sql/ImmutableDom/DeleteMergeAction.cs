@@ -54,6 +54,10 @@ namespace Xledger.Sql.ImmutableDom {
             var othr = (DeleteMergeAction)that;
             return compare;
         } 
+        public static bool operator < (DeleteMergeAction left, DeleteMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DeleteMergeAction left, DeleteMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DeleteMergeAction left, DeleteMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DeleteMergeAction left, DeleteMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DeleteMergeAction FromMutable(ScriptDom.DeleteMergeAction fragment) {
             return (DeleteMergeAction)TSqlFragment.FromMutable(fragment);

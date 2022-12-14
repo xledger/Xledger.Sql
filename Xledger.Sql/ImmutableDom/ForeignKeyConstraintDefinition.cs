@@ -111,22 +111,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ForeignKeyConstraintDefinition)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.referenceTableName, othr.referenceTableName);
+            compare = Comparer.DefaultInvariant.Compare(this.referenceTableName, othr.referenceTableName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.referencedTableColumns, othr.referencedTableColumns);
+            compare = Comparer.DefaultInvariant.Compare(this.referencedTableColumns, othr.referencedTableColumns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.deleteAction, othr.deleteAction);
+            compare = Comparer.DefaultInvariant.Compare(this.deleteAction, othr.deleteAction);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.updateAction, othr.updateAction);
+            compare = Comparer.DefaultInvariant.Compare(this.updateAction, othr.updateAction);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.notForReplication, othr.notForReplication);
+            compare = Comparer.DefaultInvariant.Compare(this.notForReplication, othr.notForReplication);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.constraintIdentifier, othr.constraintIdentifier);
+            compare = Comparer.DefaultInvariant.Compare(this.constraintIdentifier, othr.constraintIdentifier);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ForeignKeyConstraintDefinition FromMutable(ScriptDom.ForeignKeyConstraintDefinition fragment) {
             return (ForeignKeyConstraintDefinition)TSqlFragment.FromMutable(fragment);

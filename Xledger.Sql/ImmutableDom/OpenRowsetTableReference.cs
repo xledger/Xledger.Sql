@@ -137,26 +137,30 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OpenRowsetTableReference)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.providerName, othr.providerName);
+            compare = Comparer.DefaultInvariant.Compare(this.providerName, othr.providerName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataSource, othr.dataSource);
+            compare = Comparer.DefaultInvariant.Compare(this.dataSource, othr.dataSource);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.userId, othr.userId);
+            compare = Comparer.DefaultInvariant.Compare(this.userId, othr.userId);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.password, othr.password);
+            compare = Comparer.DefaultInvariant.Compare(this.password, othr.password);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.providerString, othr.providerString);
+            compare = Comparer.DefaultInvariant.Compare(this.providerString, othr.providerString);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.query, othr.query);
+            compare = Comparer.DefaultInvariant.Compare(this.query, othr.query);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@object, othr.@object);
+            compare = Comparer.DefaultInvariant.Compare(this.@object, othr.@object);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alias, othr.alias);
+            compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.forPath, othr.forPath);
+            compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (OpenRowsetTableReference left, OpenRowsetTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(OpenRowsetTableReference left, OpenRowsetTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (OpenRowsetTableReference left, OpenRowsetTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(OpenRowsetTableReference left, OpenRowsetTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static OpenRowsetTableReference FromMutable(ScriptDom.OpenRowsetTableReference fragment) {
             return (OpenRowsetTableReference)TSqlFragment.FromMutable(fragment);

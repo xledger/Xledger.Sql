@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (EventDeclaration)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.objectName, othr.objectName);
+            compare = Comparer.DefaultInvariant.Compare(this.objectName, othr.objectName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.eventDeclarationSetParameters, othr.eventDeclarationSetParameters);
+            compare = Comparer.DefaultInvariant.Compare(this.eventDeclarationSetParameters, othr.eventDeclarationSetParameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.eventDeclarationActionParameters, othr.eventDeclarationActionParameters);
+            compare = Comparer.DefaultInvariant.Compare(this.eventDeclarationActionParameters, othr.eventDeclarationActionParameters);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.eventDeclarationPredicateParameter, othr.eventDeclarationPredicateParameter);
+            compare = Comparer.DefaultInvariant.Compare(this.eventDeclarationPredicateParameter, othr.eventDeclarationPredicateParameter);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (EventDeclaration left, EventDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(EventDeclaration left, EventDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (EventDeclaration left, EventDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(EventDeclaration left, EventDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static EventDeclaration FromMutable(ScriptDom.EventDeclaration fragment) {
             return (EventDeclaration)TSqlFragment.FromMutable(fragment);

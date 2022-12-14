@@ -119,24 +119,28 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateCertificateStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.certificateSource, othr.certificateSource);
+            compare = Comparer.DefaultInvariant.Compare(this.certificateSource, othr.certificateSource);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.certificateOptions, othr.certificateOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.certificateOptions, othr.certificateOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.activeForBeginDialog, othr.activeForBeginDialog);
+            compare = Comparer.DefaultInvariant.Compare(this.activeForBeginDialog, othr.activeForBeginDialog);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.privateKeyPath, othr.privateKeyPath);
+            compare = Comparer.DefaultInvariant.Compare(this.privateKeyPath, othr.privateKeyPath);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptionPassword, othr.encryptionPassword);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptionPassword, othr.encryptionPassword);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.decryptionPassword, othr.decryptionPassword);
+            compare = Comparer.DefaultInvariant.Compare(this.decryptionPassword, othr.decryptionPassword);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateCertificateStatement left, CreateCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateCertificateStatement left, CreateCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateCertificateStatement left, CreateCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateCertificateStatement left, CreateCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateCertificateStatement FromMutable(ScriptDom.CreateCertificateStatement fragment) {
             return (CreateCertificateStatement)TSqlFragment.FromMutable(fragment);

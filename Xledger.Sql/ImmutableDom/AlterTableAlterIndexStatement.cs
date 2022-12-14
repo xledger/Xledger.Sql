@@ -87,16 +87,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableAlterIndexStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.indexIdentifier, othr.indexIdentifier);
+            compare = Comparer.DefaultInvariant.Compare(this.indexIdentifier, othr.indexIdentifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.alterIndexType, othr.alterIndexType);
+            compare = Comparer.DefaultInvariant.Compare(this.alterIndexType, othr.alterIndexType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.indexOptions, othr.indexOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterTableAlterIndexStatement left, AlterTableAlterIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterTableAlterIndexStatement left, AlterTableAlterIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterTableAlterIndexStatement left, AlterTableAlterIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterTableAlterIndexStatement left, AlterTableAlterIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterTableAlterIndexStatement FromMutable(ScriptDom.AlterTableAlterIndexStatement fragment) {
             return (AlterTableAlterIndexStatement)TSqlFragment.FromMutable(fragment);

@@ -145,30 +145,34 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateIndexStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.translated80SyntaxTo90, othr.translated80SyntaxTo90);
+            compare = Comparer.DefaultInvariant.Compare(this.translated80SyntaxTo90, othr.translated80SyntaxTo90);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.unique, othr.unique);
+            compare = Comparer.DefaultInvariant.Compare(this.unique, othr.unique);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.clustered, othr.clustered);
+            compare = Comparer.DefaultInvariant.Compare(this.clustered, othr.clustered);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columns, othr.columns);
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.includeColumns, othr.includeColumns);
+            compare = Comparer.DefaultInvariant.Compare(this.includeColumns, othr.includeColumns);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
+            compare = Comparer.DefaultInvariant.Compare(this.onFileGroupOrPartitionScheme, othr.onFileGroupOrPartitionScheme);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.filterPredicate, othr.filterPredicate);
+            compare = Comparer.DefaultInvariant.Compare(this.filterPredicate, othr.filterPredicate);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.fileStreamOn, othr.fileStreamOn);
+            compare = Comparer.DefaultInvariant.Compare(this.fileStreamOn, othr.fileStreamOn);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.onName, othr.onName);
+            compare = Comparer.DefaultInvariant.Compare(this.onName, othr.onName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.indexOptions, othr.indexOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.indexOptions, othr.indexOptions);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateIndexStatement left, CreateIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateIndexStatement left, CreateIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateIndexStatement left, CreateIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateIndexStatement left, CreateIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateIndexStatement FromMutable(ScriptDom.CreateIndexStatement fragment) {
             return (CreateIndexStatement)TSqlFragment.FromMutable(fragment);

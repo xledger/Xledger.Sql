@@ -65,12 +65,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropSearchPropertyListStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isIfExists, othr.isIfExists);
+            compare = Comparer.DefaultInvariant.Compare(this.isIfExists, othr.isIfExists);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DropSearchPropertyListStatement left, DropSearchPropertyListStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DropSearchPropertyListStatement left, DropSearchPropertyListStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DropSearchPropertyListStatement left, DropSearchPropertyListStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DropSearchPropertyListStatement left, DropSearchPropertyListStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DropSearchPropertyListStatement FromMutable(ScriptDom.DropSearchPropertyListStatement fragment) {
             return (DropSearchPropertyListStatement)TSqlFragment.FromMutable(fragment);

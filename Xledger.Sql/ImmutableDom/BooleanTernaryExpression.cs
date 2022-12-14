@@ -91,16 +91,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BooleanTernaryExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.ternaryExpressionType, othr.ternaryExpressionType);
+            compare = Comparer.DefaultInvariant.Compare(this.ternaryExpressionType, othr.ternaryExpressionType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.firstExpression, othr.firstExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.firstExpression, othr.firstExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.secondExpression, othr.secondExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.secondExpression, othr.secondExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.thirdExpression, othr.thirdExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.thirdExpression, othr.thirdExpression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BooleanTernaryExpression left, BooleanTernaryExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BooleanTernaryExpression left, BooleanTernaryExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BooleanTernaryExpression left, BooleanTernaryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BooleanTernaryExpression left, BooleanTernaryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BooleanTernaryExpression FromMutable(ScriptDom.BooleanTernaryExpression fragment) {
             return (BooleanTernaryExpression)TSqlFragment.FromMutable(fragment);

@@ -119,22 +119,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BeginDialogStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isConversation, othr.isConversation);
+            compare = Comparer.DefaultInvariant.Compare(this.isConversation, othr.isConversation);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.handle, othr.handle);
+            compare = Comparer.DefaultInvariant.Compare(this.handle, othr.handle);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.initiatorServiceName, othr.initiatorServiceName);
+            compare = Comparer.DefaultInvariant.Compare(this.initiatorServiceName, othr.initiatorServiceName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.targetServiceName, othr.targetServiceName);
+            compare = Comparer.DefaultInvariant.Compare(this.targetServiceName, othr.targetServiceName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.instanceSpec, othr.instanceSpec);
+            compare = Comparer.DefaultInvariant.Compare(this.instanceSpec, othr.instanceSpec);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.contractName, othr.contractName);
+            compare = Comparer.DefaultInvariant.Compare(this.contractName, othr.contractName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (BeginDialogStatement left, BeginDialogStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(BeginDialogStatement left, BeginDialogStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (BeginDialogStatement left, BeginDialogStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(BeginDialogStatement left, BeginDialogStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static BeginDialogStatement FromMutable(ScriptDom.BeginDialogStatement fragment) {
             return (BeginDialogStatement)TSqlFragment.FromMutable(fragment);

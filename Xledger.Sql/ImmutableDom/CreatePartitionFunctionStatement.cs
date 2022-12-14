@@ -89,16 +89,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreatePartitionFunctionStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parameterType, othr.parameterType);
+            compare = Comparer.DefaultInvariant.Compare(this.parameterType, othr.parameterType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.range, othr.range);
+            compare = Comparer.DefaultInvariant.Compare(this.range, othr.range);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.boundaryValues, othr.boundaryValues);
+            compare = Comparer.DefaultInvariant.Compare(this.boundaryValues, othr.boundaryValues);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreatePartitionFunctionStatement left, CreatePartitionFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreatePartitionFunctionStatement left, CreatePartitionFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreatePartitionFunctionStatement left, CreatePartitionFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreatePartitionFunctionStatement left, CreatePartitionFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreatePartitionFunctionStatement FromMutable(ScriptDom.CreatePartitionFunctionStatement fragment) {
             return (CreatePartitionFunctionStatement)TSqlFragment.FromMutable(fragment);

@@ -71,12 +71,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ChangeRetentionChangeTrackingOptionDetail)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.retentionPeriod, othr.retentionPeriod);
+            compare = Comparer.DefaultInvariant.Compare(this.retentionPeriod, othr.retentionPeriod);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.unit, othr.unit);
+            compare = Comparer.DefaultInvariant.Compare(this.unit, othr.unit);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ChangeRetentionChangeTrackingOptionDetail left, ChangeRetentionChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ChangeRetentionChangeTrackingOptionDetail left, ChangeRetentionChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ChangeRetentionChangeTrackingOptionDetail left, ChangeRetentionChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ChangeRetentionChangeTrackingOptionDetail left, ChangeRetentionChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ChangeRetentionChangeTrackingOptionDetail FromMutable(ScriptDom.ChangeRetentionChangeTrackingOptionDetail fragment) {
             return (ChangeRetentionChangeTrackingOptionDetail)TSqlFragment.FromMutable(fragment);

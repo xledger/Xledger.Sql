@@ -97,18 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphMatchRecursivePredicate)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.function, othr.function);
+            compare = Comparer.DefaultInvariant.Compare(this.function, othr.function);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.outerNodeExpression, othr.outerNodeExpression);
+            compare = Comparer.DefaultInvariant.Compare(this.outerNodeExpression, othr.outerNodeExpression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.expression, othr.expression);
+            compare = Comparer.DefaultInvariant.Compare(this.expression, othr.expression);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.recursiveQuantifier, othr.recursiveQuantifier);
+            compare = Comparer.DefaultInvariant.Compare(this.recursiveQuantifier, othr.recursiveQuantifier);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.anchorOnLeft, othr.anchorOnLeft);
+            compare = Comparer.DefaultInvariant.Compare(this.anchorOnLeft, othr.anchorOnLeft);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GraphMatchRecursivePredicate FromMutable(ScriptDom.GraphMatchRecursivePredicate fragment) {
             return (GraphMatchRecursivePredicate)TSqlFragment.FromMutable(fragment);

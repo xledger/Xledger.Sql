@@ -77,16 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropSignatureStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isCounter, othr.isCounter);
+            compare = Comparer.DefaultInvariant.Compare(this.isCounter, othr.isCounter);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.elementKind, othr.elementKind);
+            compare = Comparer.DefaultInvariant.Compare(this.elementKind, othr.elementKind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.element, othr.element);
+            compare = Comparer.DefaultInvariant.Compare(this.element, othr.element);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.cryptos, othr.cryptos);
+            compare = Comparer.DefaultInvariant.Compare(this.cryptos, othr.cryptos);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DropSignatureStatement left, DropSignatureStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DropSignatureStatement left, DropSignatureStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DropSignatureStatement left, DropSignatureStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DropSignatureStatement left, DropSignatureStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DropSignatureStatement FromMutable(ScriptDom.DropSignatureStatement fragment) {
             return (DropSignatureStatement)TSqlFragment.FromMutable(fragment);

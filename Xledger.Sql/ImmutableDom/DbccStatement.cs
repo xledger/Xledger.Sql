@@ -103,20 +103,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DbccStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dllName, othr.dllName);
+            compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.dllName, othr.dllName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.command, othr.command);
+            compare = Comparer.DefaultInvariant.Compare(this.command, othr.command);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.parenthesisRequired, othr.parenthesisRequired);
+            compare = Comparer.DefaultInvariant.Compare(this.parenthesisRequired, othr.parenthesisRequired);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.literals, othr.literals);
+            compare = Comparer.DefaultInvariant.Compare(this.literals, othr.literals);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.options, othr.options);
+            compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionsUseJoin, othr.optionsUseJoin);
+            compare = Comparer.DefaultInvariant.Compare(this.optionsUseJoin, othr.optionsUseJoin);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DbccStatement left, DbccStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DbccStatement left, DbccStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DbccStatement left, DbccStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DbccStatement left, DbccStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DbccStatement FromMutable(ScriptDom.DbccStatement fragment) {
             return (DbccStatement)TSqlFragment.FromMutable(fragment);

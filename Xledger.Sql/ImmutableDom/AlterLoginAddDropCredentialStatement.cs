@@ -79,14 +79,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterLoginAddDropCredentialStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isAdd, othr.isAdd);
+            compare = Comparer.DefaultInvariant.Compare(this.isAdd, othr.isAdd);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.credentialName, othr.credentialName);
+            compare = Comparer.DefaultInvariant.Compare(this.credentialName, othr.credentialName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterLoginAddDropCredentialStatement left, AlterLoginAddDropCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterLoginAddDropCredentialStatement left, AlterLoginAddDropCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterLoginAddDropCredentialStatement left, AlterLoginAddDropCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterLoginAddDropCredentialStatement left, AlterLoginAddDropCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterLoginAddDropCredentialStatement FromMutable(ScriptDom.AlterLoginAddDropCredentialStatement fragment) {
             return (AlterLoginAddDropCredentialStatement)TSqlFragment.FromMutable(fragment);

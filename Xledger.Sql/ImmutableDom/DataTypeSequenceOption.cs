@@ -75,14 +75,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DataTypeSequenceOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataType, othr.dataType);
+            compare = Comparer.DefaultInvariant.Compare(this.dataType, othr.dataType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.noValue, othr.noValue);
+            compare = Comparer.DefaultInvariant.Compare(this.noValue, othr.noValue);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DataTypeSequenceOption left, DataTypeSequenceOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DataTypeSequenceOption left, DataTypeSequenceOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DataTypeSequenceOption left, DataTypeSequenceOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DataTypeSequenceOption left, DataTypeSequenceOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DataTypeSequenceOption FromMutable(ScriptDom.DataTypeSequenceOption fragment) {
             return (DataTypeSequenceOption)TSqlFragment.FromMutable(fragment);

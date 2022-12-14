@@ -75,14 +75,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterDatabaseEncryptionKeyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.regenerate, othr.regenerate);
+            compare = Comparer.DefaultInvariant.Compare(this.regenerate, othr.regenerate);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.encryptor, othr.encryptor);
+            compare = Comparer.DefaultInvariant.Compare(this.encryptor, othr.encryptor);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.algorithm, othr.algorithm);
+            compare = Comparer.DefaultInvariant.Compare(this.algorithm, othr.algorithm);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (AlterDatabaseEncryptionKeyStatement left, AlterDatabaseEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(AlterDatabaseEncryptionKeyStatement left, AlterDatabaseEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (AlterDatabaseEncryptionKeyStatement left, AlterDatabaseEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(AlterDatabaseEncryptionKeyStatement left, AlterDatabaseEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static AlterDatabaseEncryptionKeyStatement FromMutable(ScriptDom.AlterDatabaseEncryptionKeyStatement fragment) {
             return (AlterDatabaseEncryptionKeyStatement)TSqlFragment.FromMutable(fragment);

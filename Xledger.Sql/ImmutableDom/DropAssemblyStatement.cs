@@ -73,14 +73,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropAssemblyStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.withNoDependents, othr.withNoDependents);
+            compare = Comparer.DefaultInvariant.Compare(this.withNoDependents, othr.withNoDependents);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.objects, othr.objects);
+            compare = Comparer.DefaultInvariant.Compare(this.objects, othr.objects);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isIfExists, othr.isIfExists);
+            compare = Comparer.DefaultInvariant.Compare(this.isIfExists, othr.isIfExists);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (DropAssemblyStatement left, DropAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(DropAssemblyStatement left, DropAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (DropAssemblyStatement left, DropAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(DropAssemblyStatement left, DropAssemblyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static DropAssemblyStatement FromMutable(ScriptDom.DropAssemblyStatement fragment) {
             return (DropAssemblyStatement)TSqlFragment.FromMutable(fragment);

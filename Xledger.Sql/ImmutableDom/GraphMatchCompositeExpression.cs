@@ -91,16 +91,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphMatchCompositeExpression)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.leftNode, othr.leftNode);
+            compare = Comparer.DefaultInvariant.Compare(this.leftNode, othr.leftNode);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.edge, othr.edge);
+            compare = Comparer.DefaultInvariant.Compare(this.edge, othr.edge);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.rightNode, othr.rightNode);
+            compare = Comparer.DefaultInvariant.Compare(this.rightNode, othr.rightNode);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.arrowOnRight, othr.arrowOnRight);
+            compare = Comparer.DefaultInvariant.Compare(this.arrowOnRight, othr.arrowOnRight);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GraphMatchCompositeExpression left, GraphMatchCompositeExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GraphMatchCompositeExpression left, GraphMatchCompositeExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GraphMatchCompositeExpression left, GraphMatchCompositeExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GraphMatchCompositeExpression left, GraphMatchCompositeExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GraphMatchCompositeExpression FromMutable(ScriptDom.GraphMatchCompositeExpression fragment) {
             return (GraphMatchCompositeExpression)TSqlFragment.FromMutable(fragment);

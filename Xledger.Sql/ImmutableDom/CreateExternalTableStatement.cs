@@ -87,18 +87,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateExternalTableStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.schemaObjectName, othr.schemaObjectName);
+            compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnDefinitions, othr.columnDefinitions);
+            compare = Comparer.DefaultInvariant.Compare(this.columnDefinitions, othr.columnDefinitions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.dataSource, othr.dataSource);
+            compare = Comparer.DefaultInvariant.Compare(this.dataSource, othr.dataSource);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.externalTableOptions, othr.externalTableOptions);
+            compare = Comparer.DefaultInvariant.Compare(this.externalTableOptions, othr.externalTableOptions);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.selectStatement, othr.selectStatement);
+            compare = Comparer.DefaultInvariant.Compare(this.selectStatement, othr.selectStatement);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateExternalTableStatement FromMutable(ScriptDom.CreateExternalTableStatement fragment) {
             return (CreateExternalTableStatement)TSqlFragment.FromMutable(fragment);

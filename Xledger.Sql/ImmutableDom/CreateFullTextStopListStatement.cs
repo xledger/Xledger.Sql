@@ -101,18 +101,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateFullTextStopListStatement)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.name, othr.name);
+            compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isSystemStopList, othr.isSystemStopList);
+            compare = Comparer.DefaultInvariant.Compare(this.isSystemStopList, othr.isSystemStopList);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.databaseName, othr.databaseName);
+            compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.sourceStopListName, othr.sourceStopListName);
+            compare = Comparer.DefaultInvariant.Compare(this.sourceStopListName, othr.sourceStopListName);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.owner, othr.owner);
+            compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (CreateFullTextStopListStatement left, CreateFullTextStopListStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(CreateFullTextStopListStatement left, CreateFullTextStopListStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (CreateFullTextStopListStatement left, CreateFullTextStopListStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(CreateFullTextStopListStatement left, CreateFullTextStopListStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static CreateFullTextStopListStatement FromMutable(ScriptDom.CreateFullTextStopListStatement fragment) {
             return (CreateFullTextStopListStatement)TSqlFragment.FromMutable(fragment);

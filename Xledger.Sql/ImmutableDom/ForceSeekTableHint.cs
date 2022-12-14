@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ForceSeekTableHint)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.indexValue, othr.indexValue);
+            compare = Comparer.DefaultInvariant.Compare(this.indexValue, othr.indexValue);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.columnValues, othr.columnValues);
+            compare = Comparer.DefaultInvariant.Compare(this.columnValues, othr.columnValues);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.hintKind, othr.hintKind);
+            compare = Comparer.DefaultInvariant.Compare(this.hintKind, othr.hintKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static ForceSeekTableHint FromMutable(ScriptDom.ForceSeekTableHint fragment) {
             return (ForceSeekTableHint)TSqlFragment.FromMutable(fragment);

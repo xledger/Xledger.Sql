@@ -85,16 +85,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OdbcLiteral)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.odbcLiteralType, othr.odbcLiteralType);
+            compare = Comparer.DefaultInvariant.Compare(this.odbcLiteralType, othr.odbcLiteralType);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.isNational, othr.isNational);
+            compare = Comparer.DefaultInvariant.Compare(this.isNational, othr.isNational);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.@value, othr.@value);
+            compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.collation, othr.collation);
+            compare = Comparer.DefaultInvariant.Compare(this.collation, othr.collation);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (OdbcLiteral left, OdbcLiteral right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(OdbcLiteral left, OdbcLiteral right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (OdbcLiteral left, OdbcLiteral right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(OdbcLiteral left, OdbcLiteral right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static OdbcLiteral FromMutable(ScriptDom.OdbcLiteral fragment) {
             return (OdbcLiteral)TSqlFragment.FromMutable(fragment);

@@ -77,14 +77,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GroupByClause)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.groupByOption, othr.groupByOption);
+            compare = Comparer.DefaultInvariant.Compare(this.groupByOption, othr.groupByOption);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.all, othr.all);
+            compare = Comparer.DefaultInvariant.Compare(this.all, othr.all);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.groupingSpecifications, othr.groupingSpecifications);
+            compare = Comparer.DefaultInvariant.Compare(this.groupingSpecifications, othr.groupingSpecifications);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static GroupByClause FromMutable(ScriptDom.GroupByClause fragment) {
             return (GroupByClause)TSqlFragment.FromMutable(fragment);

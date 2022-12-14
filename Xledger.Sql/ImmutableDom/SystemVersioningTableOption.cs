@@ -95,18 +95,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (that == null) { return compare; }
             if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SystemVersioningTableOption)that;
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionState, othr.optionState);
+            compare = Comparer.DefaultInvariant.Compare(this.optionState, othr.optionState);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.consistencyCheckEnabled, othr.consistencyCheckEnabled);
+            compare = Comparer.DefaultInvariant.Compare(this.consistencyCheckEnabled, othr.consistencyCheckEnabled);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.historyTable, othr.historyTable);
+            compare = Comparer.DefaultInvariant.Compare(this.historyTable, othr.historyTable);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.retentionPeriod, othr.retentionPeriod);
+            compare = Comparer.DefaultInvariant.Compare(this.retentionPeriod, othr.retentionPeriod);
             if (compare != 0) { return compare; }
-            compare = StructuralComparisons.StructuralComparer.Compare(this.optionKind, othr.optionKind);
+            compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        public static bool operator < (SystemVersioningTableOption left, SystemVersioningTableOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
+        public static bool operator <=(SystemVersioningTableOption left, SystemVersioningTableOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
+        public static bool operator > (SystemVersioningTableOption left, SystemVersioningTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
+        public static bool operator >=(SystemVersioningTableOption left, SystemVersioningTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
         public static SystemVersioningTableOption FromMutable(ScriptDom.SystemVersioningTableOption fragment) {
             return (SystemVersioningTableOption)TSqlFragment.FromMutable(fragment);
