@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xledger.Sql", "Xledger.Sql\Xledger.Sql.csproj", "{A9AACC98-FE13-4B9C-B331-4F196DBC3508}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xledger.Sql.Test", "Xledger.Sql.Test\Xledger.Sql.Test.csproj", "{312CFF25-A5F7-4ADE-9866-3B3F6319BBEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xledger.Sql.Test", "Xledger.Sql.Test\Xledger.Sql.Test.csproj", "{312CFF25-A5F7-4ADE-9866-3B3F6319BBEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
