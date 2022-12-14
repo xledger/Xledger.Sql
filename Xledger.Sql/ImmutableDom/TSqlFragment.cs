@@ -923,6 +923,7 @@ namespace Xledger.Sql.ImmutableDom {
     
     
         public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {
+            if (fragment is null) { return null; }
             if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {
                 throw new NotImplementedException("Type not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library.");
             }

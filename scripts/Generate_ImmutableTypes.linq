@@ -580,7 +580,8 @@ public class ClassDef {
         var sb = new StringBuilder();
         void wl(string s) { sb.AppendLine(s); }
 
-        wl($"public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {{");
+		wl($"public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {{");
+		wl($"    if (fragment is null) {{ return null; }}");
         wl($"    if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {{");
         wl($"        throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
         wl($"    }}");
