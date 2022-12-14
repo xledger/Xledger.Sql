@@ -9,6 +9,11 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 namespace Xledger.Sql.ImmutableDom {
     public abstract class TSqlFragment : IComparable, IComparable<TSqlFragment> {
         public abstract ScriptDom.TSqlFragment ToMutable();
+        
+        public T ToMutable<T>() where T : ScriptDom.TSqlFragment {
+            return (T)ToMutable();
+        }
+    
         public abstract int CompareTo(object that);
         public abstract int CompareTo(TSqlFragment that);
     

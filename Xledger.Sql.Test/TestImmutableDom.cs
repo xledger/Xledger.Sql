@@ -72,7 +72,7 @@ namespace Xledger.Sql.Test {
                         new Identifier("A"),
                         new Identifier("COLUMN"),
                     }));
-
+            
             Assert.Equal(0, a.CompareTo(a));
             Assert.Equal(0, a.CompareTo(b));
             Assert.Equal(0, b.CompareTo(a));

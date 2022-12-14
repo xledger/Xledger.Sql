@@ -338,14 +338,18 @@ public class ClassDef {
         return $"public {Name}({parameters.StringJoin(", ")}) {{\n{assigns.StringJoin("\n")}\n}}\n";
     }
 
-    public string ToMutableMethod() {
-        if (this.IsAbstract) {
+	public string ToMutableMethod() {
+		var sb = new StringBuilder();
+		if (this.IsAbstract) {
             if (Name == "TSqlFragment") {
-                return "public abstract ScriptDom.TSqlFragment ToMutable();";
-            }
-            return "";
+				sb.AppendLine("public abstract ScriptDom.TSqlFragment ToMutable();");
+				sb.AppendLine();
+				sb.AppendLine("public T ToMutable<T>() where T : ScriptDom.TSqlFragment {");
+				sb.AppendLine("    return (T)ToMutable();");
+				sb.AppendLine("}");
+			}
+            return sb.ToString();
         }
-        var sb = new StringBuilder();
         sb.AppendLine($"public ScriptDom.{Name} ToMutableConcrete() {{");
         sb.AppendLine($"    var ret = new ScriptDom.{Name}();");
         foreach (var prop in this.Props) {
