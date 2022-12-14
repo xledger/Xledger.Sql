@@ -450,11 +450,20 @@ public class ClassDef {
 			wl($"    if (this.GetType() != that.GetType()) {{ return this.GetType().Name.CompareTo(that.GetType().Name); }}");
 			wl($"    var othr = ({Name})that;");
 			foreach (var prop in Props) {
-				wl($"    compare = StructuralComparisons.StructuralComparer.Compare(this.{LowerName(prop.Name)}, othr.{LowerName(prop.Name)});");
+				if (prop.TypeLiteral == "string") {
+					wl($"    compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.{LowerName(prop.Name)}, othr.{LowerName(prop.Name)});");	
+				} else {
+					wl($"    compare = Comparer.DefaultInvariant.Compare(this.{LowerName(prop.Name)}, othr.{LowerName(prop.Name)});");	
+				}
 				wl($"    if (compare != 0) {{ return compare; }}");
 			}
 			wl($"    return compare;");
 			wl($"}} ");
+
+			wl($"public static bool operator < ({Name} left, {Name} right) => Comparer.DefaultInvariant.Compare(left, right) <  0;");
+			wl($"public static bool operator <=({Name} left, {Name} right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;");
+			wl($"public static bool operator > ({Name} left, {Name} right) => Comparer.DefaultInvariant.Compare(left, right) >  0;");
+			wl($"public static bool operator >=({Name} left, {Name} right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;");
 
 			//		wl($"public static bool operator ==({Name} left, {Name} right) {{");
 			//		wl($"    return EqualityComparer<{Name}>.Default.Equals(left, right);");
