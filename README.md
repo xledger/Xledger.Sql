@@ -14,9 +14,15 @@ To generate a new NuGet package to verify that the package is sane.
 
 1. Increment the `<VersionSuffix>` in [Xledger.Sql/Xledger.Sql.csproj]; or `<VersionPrefix>` if releasing a new major, minor, or patch version.
 2. Run.
+For Release:
 ```powershell
-cls; dotnet clean; dotnet pack
-nuget init Xledger.Sql\bin\Debug c:\packages
+cls; dotnet clean; dotnet pack -c Release;
+nuget init Xledger.Sql\bin\Release c:\packages;
+```
+For Debug:
+```powershell
+cls; dotnet clean; dotnet pack;
+nuget init Xledger.Sql\bin\Debug c:\packages;
 ```
 3. Update the project that depends on Xledger.Sql.
 ```powershell
