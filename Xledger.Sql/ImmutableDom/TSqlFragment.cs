@@ -931,6989 +931,6089 @@ namespace Xledger.Sql.ImmutableDom {
         
             switch (tag) {
                 case 1: {
-                    var node = (ScriptDom.AcceleratedDatabaseRecoveryDatabaseOption)fragment;
                     return new AcceleratedDatabaseRecoveryDatabaseOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.AcceleratedDatabaseRecoveryDatabaseOption).OptionState,
+                        optionKind: (fragment as ScriptDom.AcceleratedDatabaseRecoveryDatabaseOption).OptionKind
                     );
                 }
                 case 2: {
-                    var node = (ScriptDom.AddAlterFullTextIndexAction)fragment;
                     return new AddAlterFullTextIndexAction(
-                        columns: node.Columns.SelectList(c => (FullTextIndexColumn)FromMutable(c)),
-                        withNoPopulation: node.WithNoPopulation
+                        columns: (fragment as ScriptDom.AddAlterFullTextIndexAction).Columns.SelectList(c => (FullTextIndexColumn)FromMutable(c)),
+                        withNoPopulation: (fragment as ScriptDom.AddAlterFullTextIndexAction).WithNoPopulation
                     );
                 }
                 case 3: {
-                    var node = (ScriptDom.AddFileSpec)fragment;
                     return new AddFileSpec(
-                        file: (ScalarExpression)FromMutable(node.File),
-                        fileName: (Literal)FromMutable(node.FileName)
+                        file: (ScalarExpression)FromMutable((fragment as ScriptDom.AddFileSpec).File),
+                        fileName: (Literal)FromMutable((fragment as ScriptDom.AddFileSpec).FileName)
                     );
                 }
                 case 4: {
-                    var node = (ScriptDom.AddMemberAlterRoleAction)fragment;
                     return new AddMemberAlterRoleAction(
-                        member: (Identifier)FromMutable(node.Member)
+                        member: (Identifier)FromMutable((fragment as ScriptDom.AddMemberAlterRoleAction).Member)
                     );
                 }
                 case 5: {
-                    var node = (ScriptDom.AddSearchPropertyListAction)fragment;
                     return new AddSearchPropertyListAction(
-                        propertyName: (StringLiteral)FromMutable(node.PropertyName),
-                        guid: (StringLiteral)FromMutable(node.Guid),
-                        id: (IntegerLiteral)FromMutable(node.Id),
-                        description: (StringLiteral)FromMutable(node.Description)
+                        propertyName: (StringLiteral)FromMutable((fragment as ScriptDom.AddSearchPropertyListAction).PropertyName),
+                        guid: (StringLiteral)FromMutable((fragment as ScriptDom.AddSearchPropertyListAction).Guid),
+                        id: (IntegerLiteral)FromMutable((fragment as ScriptDom.AddSearchPropertyListAction).Id),
+                        description: (StringLiteral)FromMutable((fragment as ScriptDom.AddSearchPropertyListAction).Description)
                     );
                 }
                 case 6: {
-                    var node = (ScriptDom.AddSensitivityClassificationStatement)fragment;
                     return new AddSensitivityClassificationStatement(
-                        options: node.Options.SelectList(c => (SensitivityClassificationOption)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                        options: (fragment as ScriptDom.AddSensitivityClassificationStatement).Options.SelectList(c => (SensitivityClassificationOption)FromMutable(c)),
+                        columns: (fragment as ScriptDom.AddSensitivityClassificationStatement).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
                     );
                 }
                 case 7: {
-                    var node = (ScriptDom.AddSignatureStatement)fragment;
                     return new AddSignatureStatement(
-                        isCounter: node.IsCounter,
-                        elementKind: node.ElementKind,
-                        element: (SchemaObjectName)FromMutable(node.Element),
-                        cryptos: node.Cryptos.SelectList(c => (CryptoMechanism)FromMutable(c))
+                        isCounter: (fragment as ScriptDom.AddSignatureStatement).IsCounter,
+                        elementKind: (fragment as ScriptDom.AddSignatureStatement).ElementKind,
+                        element: (SchemaObjectName)FromMutable((fragment as ScriptDom.AddSignatureStatement).Element),
+                        cryptos: (fragment as ScriptDom.AddSignatureStatement).Cryptos.SelectList(c => (CryptoMechanism)FromMutable(c))
                     );
                 }
                 case 8: {
-                    var node = (ScriptDom.AdHocDataSource)fragment;
                     return new AdHocDataSource(
-                        providerName: (StringLiteral)FromMutable(node.ProviderName),
-                        initString: (StringLiteral)FromMutable(node.InitString)
+                        providerName: (StringLiteral)FromMutable((fragment as ScriptDom.AdHocDataSource).ProviderName),
+                        initString: (StringLiteral)FromMutable((fragment as ScriptDom.AdHocDataSource).InitString)
                     );
                 }
                 case 9: {
-                    var node = (ScriptDom.AdHocTableReference)fragment;
                     return new AdHocTableReference(
-                        dataSource: (AdHocDataSource)FromMutable(node.DataSource),
-                        @object: (SchemaObjectNameOrValueExpression)FromMutable(node.Object),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        dataSource: (AdHocDataSource)FromMutable((fragment as ScriptDom.AdHocTableReference).DataSource),
+                        @object: (SchemaObjectNameOrValueExpression)FromMutable((fragment as ScriptDom.AdHocTableReference).Object),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.AdHocTableReference).Alias),
+                        forPath: (fragment as ScriptDom.AdHocTableReference).ForPath
                     );
                 }
                 case 10: {
-                    var node = (ScriptDom.AlgorithmKeyOption)fragment;
                     return new AlgorithmKeyOption(
-                        algorithm: node.Algorithm,
-                        optionKind: node.OptionKind
+                        algorithm: (fragment as ScriptDom.AlgorithmKeyOption).Algorithm,
+                        optionKind: (fragment as ScriptDom.AlgorithmKeyOption).OptionKind
                     );
                 }
                 case 11: {
-                    var node = (ScriptDom.AlterApplicationRoleStatement)fragment;
                     return new AlterApplicationRoleStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        applicationRoleOptions: node.ApplicationRoleOptions.SelectList(c => (ApplicationRoleOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterApplicationRoleStatement).Name),
+                        applicationRoleOptions: (fragment as ScriptDom.AlterApplicationRoleStatement).ApplicationRoleOptions.SelectList(c => (ApplicationRoleOption)FromMutable(c))
                     );
                 }
                 case 12: {
-                    var node = (ScriptDom.AlterAssemblyStatement)fragment;
                     return new AlterAssemblyStatement(
-                        dropFiles: node.DropFiles.SelectList(c => (Literal)FromMutable(c)),
-                        isDropAll: node.IsDropAll,
-                        addFiles: node.AddFiles.SelectList(c => (AddFileSpec)FromMutable(c)),
-                        name: (Identifier)FromMutable(node.Name),
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        options: node.Options.SelectList(c => (AssemblyOption)FromMutable(c))
+                        dropFiles: (fragment as ScriptDom.AlterAssemblyStatement).DropFiles.SelectList(c => (Literal)FromMutable(c)),
+                        isDropAll: (fragment as ScriptDom.AlterAssemblyStatement).IsDropAll,
+                        addFiles: (fragment as ScriptDom.AlterAssemblyStatement).AddFiles.SelectList(c => (AddFileSpec)FromMutable(c)),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterAssemblyStatement).Name),
+                        parameters: (fragment as ScriptDom.AlterAssemblyStatement).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        options: (fragment as ScriptDom.AlterAssemblyStatement).Options.SelectList(c => (AssemblyOption)FromMutable(c))
                     );
                 }
                 case 13: {
-                    var node = (ScriptDom.AlterAsymmetricKeyStatement)fragment;
                     return new AlterAsymmetricKeyStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        attestedBy: (Literal)FromMutable(node.AttestedBy),
-                        kind: node.Kind,
-                        encryptionPassword: (Literal)FromMutable(node.EncryptionPassword),
-                        decryptionPassword: (Literal)FromMutable(node.DecryptionPassword)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterAsymmetricKeyStatement).Name),
+                        attestedBy: (Literal)FromMutable((fragment as ScriptDom.AlterAsymmetricKeyStatement).AttestedBy),
+                        kind: (fragment as ScriptDom.AlterAsymmetricKeyStatement).Kind,
+                        encryptionPassword: (Literal)FromMutable((fragment as ScriptDom.AlterAsymmetricKeyStatement).EncryptionPassword),
+                        decryptionPassword: (Literal)FromMutable((fragment as ScriptDom.AlterAsymmetricKeyStatement).DecryptionPassword)
                     );
                 }
                 case 14: {
-                    var node = (ScriptDom.AlterAuthorizationStatement)fragment;
                     return new AlterAuthorizationStatement(
-                        securityTargetObject: (SecurityTargetObject)FromMutable(node.SecurityTargetObject),
-                        toSchemaOwner: node.ToSchemaOwner,
-                        principalName: (Identifier)FromMutable(node.PrincipalName)
+                        securityTargetObject: (SecurityTargetObject)FromMutable((fragment as ScriptDom.AlterAuthorizationStatement).SecurityTargetObject),
+                        toSchemaOwner: (fragment as ScriptDom.AlterAuthorizationStatement).ToSchemaOwner,
+                        principalName: (Identifier)FromMutable((fragment as ScriptDom.AlterAuthorizationStatement).PrincipalName)
                     );
                 }
                 case 15: {
-                    var node = (ScriptDom.AlterAvailabilityGroupAction)fragment;
                     return new AlterAvailabilityGroupAction(
-                        actionType: node.ActionType
+                        actionType: (fragment as ScriptDom.AlterAvailabilityGroupAction).ActionType
                     );
                 }
                 case 16: {
-                    var node = (ScriptDom.AlterAvailabilityGroupFailoverAction)fragment;
                     return new AlterAvailabilityGroupFailoverAction(
-                        options: node.Options.SelectList(c => (AlterAvailabilityGroupFailoverOption)FromMutable(c)),
-                        actionType: node.ActionType
+                        options: (fragment as ScriptDom.AlterAvailabilityGroupFailoverAction).Options.SelectList(c => (AlterAvailabilityGroupFailoverOption)FromMutable(c)),
+                        actionType: (fragment as ScriptDom.AlterAvailabilityGroupFailoverAction).ActionType
                     );
                 }
                 case 17: {
-                    var node = (ScriptDom.AlterAvailabilityGroupFailoverOption)fragment;
                     return new AlterAvailabilityGroupFailoverOption(
-                        optionKind: node.OptionKind,
-                        @value: (Literal)FromMutable(node.Value)
+                        optionKind: (fragment as ScriptDom.AlterAvailabilityGroupFailoverOption).OptionKind,
+                        @value: (Literal)FromMutable((fragment as ScriptDom.AlterAvailabilityGroupFailoverOption).Value)
                     );
                 }
                 case 18: {
-                    var node = (ScriptDom.AlterAvailabilityGroupStatement)fragment;
                     return new AlterAvailabilityGroupStatement(
-                        alterAvailabilityGroupStatementType: node.AlterAvailabilityGroupStatementType,
-                        action: (AlterAvailabilityGroupAction)FromMutable(node.Action),
-                        name: (Identifier)FromMutable(node.Name),
-                        options: node.Options.SelectList(c => (AvailabilityGroupOption)FromMutable(c)),
-                        databases: node.Databases.SelectList(c => (Identifier)FromMutable(c)),
-                        replicas: node.Replicas.SelectList(c => (AvailabilityReplica)FromMutable(c))
+                        alterAvailabilityGroupStatementType: (fragment as ScriptDom.AlterAvailabilityGroupStatement).AlterAvailabilityGroupStatementType,
+                        action: (AlterAvailabilityGroupAction)FromMutable((fragment as ScriptDom.AlterAvailabilityGroupStatement).Action),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterAvailabilityGroupStatement).Name),
+                        options: (fragment as ScriptDom.AlterAvailabilityGroupStatement).Options.SelectList(c => (AvailabilityGroupOption)FromMutable(c)),
+                        databases: (fragment as ScriptDom.AlterAvailabilityGroupStatement).Databases.SelectList(c => (Identifier)FromMutable(c)),
+                        replicas: (fragment as ScriptDom.AlterAvailabilityGroupStatement).Replicas.SelectList(c => (AvailabilityReplica)FromMutable(c))
                     );
                 }
                 case 19: {
-                    var node = (ScriptDom.AlterBrokerPriorityStatement)fragment;
                     return new AlterBrokerPriorityStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        brokerPriorityParameters: node.BrokerPriorityParameters.SelectList(c => (BrokerPriorityParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterBrokerPriorityStatement).Name),
+                        brokerPriorityParameters: (fragment as ScriptDom.AlterBrokerPriorityStatement).BrokerPriorityParameters.SelectList(c => (BrokerPriorityParameter)FromMutable(c))
                     );
                 }
                 case 20: {
-                    var node = (ScriptDom.AlterCertificateStatement)fragment;
                     return new AlterCertificateStatement(
-                        kind: node.Kind,
-                        attestedBy: (Literal)FromMutable(node.AttestedBy),
-                        name: (Identifier)FromMutable(node.Name),
-                        activeForBeginDialog: node.ActiveForBeginDialog,
-                        privateKeyPath: (Literal)FromMutable(node.PrivateKeyPath),
-                        encryptionPassword: (Literal)FromMutable(node.EncryptionPassword),
-                        decryptionPassword: (Literal)FromMutable(node.DecryptionPassword)
+                        kind: (fragment as ScriptDom.AlterCertificateStatement).Kind,
+                        attestedBy: (Literal)FromMutable((fragment as ScriptDom.AlterCertificateStatement).AttestedBy),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterCertificateStatement).Name),
+                        activeForBeginDialog: (fragment as ScriptDom.AlterCertificateStatement).ActiveForBeginDialog,
+                        privateKeyPath: (Literal)FromMutable((fragment as ScriptDom.AlterCertificateStatement).PrivateKeyPath),
+                        encryptionPassword: (Literal)FromMutable((fragment as ScriptDom.AlterCertificateStatement).EncryptionPassword),
+                        decryptionPassword: (Literal)FromMutable((fragment as ScriptDom.AlterCertificateStatement).DecryptionPassword)
                     );
                 }
                 case 21: {
-                    var node = (ScriptDom.AlterColumnAlterFullTextIndexAction)fragment;
                     return new AlterColumnAlterFullTextIndexAction(
-                        column: (FullTextIndexColumn)FromMutable(node.Column),
-                        withNoPopulation: node.WithNoPopulation
+                        column: (FullTextIndexColumn)FromMutable((fragment as ScriptDom.AlterColumnAlterFullTextIndexAction).Column),
+                        withNoPopulation: (fragment as ScriptDom.AlterColumnAlterFullTextIndexAction).WithNoPopulation
                     );
                 }
                 case 22: {
-                    var node = (ScriptDom.AlterColumnEncryptionKeyStatement)fragment;
                     return new AlterColumnEncryptionKeyStatement(
-                        alterType: node.AlterType,
-                        name: (Identifier)FromMutable(node.Name),
-                        columnEncryptionKeyValues: node.ColumnEncryptionKeyValues.SelectList(c => (ColumnEncryptionKeyValue)FromMutable(c))
+                        alterType: (fragment as ScriptDom.AlterColumnEncryptionKeyStatement).AlterType,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterColumnEncryptionKeyStatement).Name),
+                        columnEncryptionKeyValues: (fragment as ScriptDom.AlterColumnEncryptionKeyStatement).ColumnEncryptionKeyValues.SelectList(c => (ColumnEncryptionKeyValue)FromMutable(c))
                     );
                 }
                 case 23: {
-                    var node = (ScriptDom.AlterCredentialStatement)fragment;
                     return new AlterCredentialStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        identity: (Literal)FromMutable(node.Identity),
-                        secret: (Literal)FromMutable(node.Secret),
-                        isDatabaseScoped: node.IsDatabaseScoped
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterCredentialStatement).Name),
+                        identity: (Literal)FromMutable((fragment as ScriptDom.AlterCredentialStatement).Identity),
+                        secret: (Literal)FromMutable((fragment as ScriptDom.AlterCredentialStatement).Secret),
+                        isDatabaseScoped: (fragment as ScriptDom.AlterCredentialStatement).IsDatabaseScoped
                     );
                 }
                 case 24: {
-                    var node = (ScriptDom.AlterCryptographicProviderStatement)fragment;
                     return new AlterCryptographicProviderStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        option: node.Option,
-                        file: (Literal)FromMutable(node.File)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterCryptographicProviderStatement).Name),
+                        option: (fragment as ScriptDom.AlterCryptographicProviderStatement).Option,
+                        file: (Literal)FromMutable((fragment as ScriptDom.AlterCryptographicProviderStatement).File)
                     );
                 }
                 case 25: {
-                    var node = (ScriptDom.AlterDatabaseAddFileGroupStatement)fragment;
                     return new AlterDatabaseAddFileGroupStatement(
-                        fileGroup: (Identifier)FromMutable(node.FileGroup),
-                        containsFileStream: node.ContainsFileStream,
-                        containsMemoryOptimizedData: node.ContainsMemoryOptimizedData,
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        fileGroup: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseAddFileGroupStatement).FileGroup),
+                        containsFileStream: (fragment as ScriptDom.AlterDatabaseAddFileGroupStatement).ContainsFileStream,
+                        containsMemoryOptimizedData: (fragment as ScriptDom.AlterDatabaseAddFileGroupStatement).ContainsMemoryOptimizedData,
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseAddFileGroupStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseAddFileGroupStatement).UseCurrent
                     );
                 }
                 case 26: {
-                    var node = (ScriptDom.AlterDatabaseAddFileStatement)fragment;
                     return new AlterDatabaseAddFileStatement(
-                        fileDeclarations: node.FileDeclarations.SelectList(c => (FileDeclaration)FromMutable(c)),
-                        fileGroup: (Identifier)FromMutable(node.FileGroup),
-                        isLog: node.IsLog,
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        fileDeclarations: (fragment as ScriptDom.AlterDatabaseAddFileStatement).FileDeclarations.SelectList(c => (FileDeclaration)FromMutable(c)),
+                        fileGroup: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseAddFileStatement).FileGroup),
+                        isLog: (fragment as ScriptDom.AlterDatabaseAddFileStatement).IsLog,
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseAddFileStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseAddFileStatement).UseCurrent
                     );
                 }
                 case 27: {
-                    var node = (ScriptDom.AlterDatabaseAuditSpecificationStatement)fragment;
                     return new AlterDatabaseAuditSpecificationStatement(
-                        auditState: node.AuditState,
-                        parts: node.Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
-                        specificationName: (Identifier)FromMutable(node.SpecificationName),
-                        auditName: (Identifier)FromMutable(node.AuditName)
+                        auditState: (fragment as ScriptDom.AlterDatabaseAuditSpecificationStatement).AuditState,
+                        parts: (fragment as ScriptDom.AlterDatabaseAuditSpecificationStatement).Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
+                        specificationName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseAuditSpecificationStatement).SpecificationName),
+                        auditName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseAuditSpecificationStatement).AuditName)
                     );
                 }
                 case 28: {
-                    var node = (ScriptDom.AlterDatabaseCollateStatement)fragment;
                     return new AlterDatabaseCollateStatement(
-                        collation: (Identifier)FromMutable(node.Collation),
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseCollateStatement).Collation),
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseCollateStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseCollateStatement).UseCurrent
                     );
                 }
                 case 29: {
-                    var node = (ScriptDom.AlterDatabaseEncryptionKeyStatement)fragment;
                     return new AlterDatabaseEncryptionKeyStatement(
-                        regenerate: node.Regenerate,
-                        encryptor: (CryptoMechanism)FromMutable(node.Encryptor),
-                        algorithm: node.Algorithm
+                        regenerate: (fragment as ScriptDom.AlterDatabaseEncryptionKeyStatement).Regenerate,
+                        encryptor: (CryptoMechanism)FromMutable((fragment as ScriptDom.AlterDatabaseEncryptionKeyStatement).Encryptor),
+                        algorithm: (fragment as ScriptDom.AlterDatabaseEncryptionKeyStatement).Algorithm
                     );
                 }
                 case 30: {
-                    var node = (ScriptDom.AlterDatabaseModifyFileGroupStatement)fragment;
                     return new AlterDatabaseModifyFileGroupStatement(
-                        fileGroup: (Identifier)FromMutable(node.FileGroup),
-                        newFileGroupName: (Identifier)FromMutable(node.NewFileGroupName),
-                        makeDefault: node.MakeDefault,
-                        updatabilityOption: node.UpdatabilityOption,
-                        termination: (AlterDatabaseTermination)FromMutable(node.Termination),
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        fileGroup: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseModifyFileGroupStatement).FileGroup),
+                        newFileGroupName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseModifyFileGroupStatement).NewFileGroupName),
+                        makeDefault: (fragment as ScriptDom.AlterDatabaseModifyFileGroupStatement).MakeDefault,
+                        updatabilityOption: (fragment as ScriptDom.AlterDatabaseModifyFileGroupStatement).UpdatabilityOption,
+                        termination: (AlterDatabaseTermination)FromMutable((fragment as ScriptDom.AlterDatabaseModifyFileGroupStatement).Termination),
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseModifyFileGroupStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseModifyFileGroupStatement).UseCurrent
                     );
                 }
                 case 31: {
-                    var node = (ScriptDom.AlterDatabaseModifyFileStatement)fragment;
                     return new AlterDatabaseModifyFileStatement(
-                        fileDeclaration: (FileDeclaration)FromMutable(node.FileDeclaration),
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        fileDeclaration: (FileDeclaration)FromMutable((fragment as ScriptDom.AlterDatabaseModifyFileStatement).FileDeclaration),
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseModifyFileStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseModifyFileStatement).UseCurrent
                     );
                 }
                 case 32: {
-                    var node = (ScriptDom.AlterDatabaseModifyNameStatement)fragment;
                     return new AlterDatabaseModifyNameStatement(
-                        newDatabaseName: (Identifier)FromMutable(node.NewDatabaseName),
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        newDatabaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseModifyNameStatement).NewDatabaseName),
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseModifyNameStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseModifyNameStatement).UseCurrent
                     );
                 }
                 case 33: {
-                    var node = (ScriptDom.AlterDatabaseRebuildLogStatement)fragment;
                     return new AlterDatabaseRebuildLogStatement(
-                        fileDeclaration: (FileDeclaration)FromMutable(node.FileDeclaration),
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        fileDeclaration: (FileDeclaration)FromMutable((fragment as ScriptDom.AlterDatabaseRebuildLogStatement).FileDeclaration),
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseRebuildLogStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseRebuildLogStatement).UseCurrent
                     );
                 }
                 case 34: {
-                    var node = (ScriptDom.AlterDatabaseRemoveFileGroupStatement)fragment;
                     return new AlterDatabaseRemoveFileGroupStatement(
-                        fileGroup: (Identifier)FromMutable(node.FileGroup),
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        fileGroup: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseRemoveFileGroupStatement).FileGroup),
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseRemoveFileGroupStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseRemoveFileGroupStatement).UseCurrent
                     );
                 }
                 case 35: {
-                    var node = (ScriptDom.AlterDatabaseRemoveFileStatement)fragment;
                     return new AlterDatabaseRemoveFileStatement(
-                        file: (Identifier)FromMutable(node.File),
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        file: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseRemoveFileStatement).File),
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseRemoveFileStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseRemoveFileStatement).UseCurrent
                     );
                 }
                 case 36: {
-                    var node = (ScriptDom.AlterDatabaseScopedConfigurationClearStatement)fragment;
                     return new AlterDatabaseScopedConfigurationClearStatement(
-                        option: (DatabaseConfigurationClearOption)FromMutable(node.Option),
-                        secondary: node.Secondary
+                        option: (DatabaseConfigurationClearOption)FromMutable((fragment as ScriptDom.AlterDatabaseScopedConfigurationClearStatement).Option),
+                        secondary: (fragment as ScriptDom.AlterDatabaseScopedConfigurationClearStatement).Secondary
                     );
                 }
                 case 37: {
-                    var node = (ScriptDom.AlterDatabaseScopedConfigurationSetStatement)fragment;
                     return new AlterDatabaseScopedConfigurationSetStatement(
-                        option: (DatabaseConfigurationSetOption)FromMutable(node.Option),
-                        secondary: node.Secondary
+                        option: (DatabaseConfigurationSetOption)FromMutable((fragment as ScriptDom.AlterDatabaseScopedConfigurationSetStatement).Option),
+                        secondary: (fragment as ScriptDom.AlterDatabaseScopedConfigurationSetStatement).Secondary
                     );
                 }
                 case 38: {
-                    var node = (ScriptDom.AlterDatabaseSetStatement)fragment;
                     return new AlterDatabaseSetStatement(
-                        termination: (AlterDatabaseTermination)FromMutable(node.Termination),
-                        options: node.Options.SelectList(c => (DatabaseOption)FromMutable(c)),
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        useCurrent: node.UseCurrent
+                        termination: (AlterDatabaseTermination)FromMutable((fragment as ScriptDom.AlterDatabaseSetStatement).Termination),
+                        options: (fragment as ScriptDom.AlterDatabaseSetStatement).Options.SelectList(c => (DatabaseOption)FromMutable(c)),
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.AlterDatabaseSetStatement).DatabaseName),
+                        useCurrent: (fragment as ScriptDom.AlterDatabaseSetStatement).UseCurrent
                     );
                 }
                 case 39: {
-                    var node = (ScriptDom.AlterDatabaseTermination)fragment;
                     return new AlterDatabaseTermination(
-                        immediateRollback: node.ImmediateRollback,
-                        rollbackAfter: (Literal)FromMutable(node.RollbackAfter),
-                        noWait: node.NoWait
+                        immediateRollback: (fragment as ScriptDom.AlterDatabaseTermination).ImmediateRollback,
+                        rollbackAfter: (Literal)FromMutable((fragment as ScriptDom.AlterDatabaseTermination).RollbackAfter),
+                        noWait: (fragment as ScriptDom.AlterDatabaseTermination).NoWait
                     );
                 }
                 case 40: {
-                    var node = (ScriptDom.AlterEndpointStatement)fragment;
                     return new AlterEndpointStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        state: node.State,
-                        affinity: (EndpointAffinity)FromMutable(node.Affinity),
-                        protocol: node.Protocol,
-                        protocolOptions: node.ProtocolOptions.SelectList(c => (EndpointProtocolOption)FromMutable(c)),
-                        endpointType: node.EndpointType,
-                        payloadOptions: node.PayloadOptions.SelectList(c => (PayloadOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterEndpointStatement).Name),
+                        state: (fragment as ScriptDom.AlterEndpointStatement).State,
+                        affinity: (EndpointAffinity)FromMutable((fragment as ScriptDom.AlterEndpointStatement).Affinity),
+                        protocol: (fragment as ScriptDom.AlterEndpointStatement).Protocol,
+                        protocolOptions: (fragment as ScriptDom.AlterEndpointStatement).ProtocolOptions.SelectList(c => (EndpointProtocolOption)FromMutable(c)),
+                        endpointType: (fragment as ScriptDom.AlterEndpointStatement).EndpointType,
+                        payloadOptions: (fragment as ScriptDom.AlterEndpointStatement).PayloadOptions.SelectList(c => (PayloadOption)FromMutable(c))
                     );
                 }
                 case 41: {
-                    var node = (ScriptDom.AlterEventSessionStatement)fragment;
                     return new AlterEventSessionStatement(
-                        statementType: node.StatementType,
-                        dropEventDeclarations: node.DropEventDeclarations.SelectList(c => (EventSessionObjectName)FromMutable(c)),
-                        dropTargetDeclarations: node.DropTargetDeclarations.SelectList(c => (EventSessionObjectName)FromMutable(c)),
-                        name: (Identifier)FromMutable(node.Name),
-                        sessionScope: node.SessionScope,
-                        eventDeclarations: node.EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
-                        targetDeclarations: node.TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
-                        sessionOptions: node.SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
+                        statementType: (fragment as ScriptDom.AlterEventSessionStatement).StatementType,
+                        dropEventDeclarations: (fragment as ScriptDom.AlterEventSessionStatement).DropEventDeclarations.SelectList(c => (EventSessionObjectName)FromMutable(c)),
+                        dropTargetDeclarations: (fragment as ScriptDom.AlterEventSessionStatement).DropTargetDeclarations.SelectList(c => (EventSessionObjectName)FromMutable(c)),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterEventSessionStatement).Name),
+                        sessionScope: (fragment as ScriptDom.AlterEventSessionStatement).SessionScope,
+                        eventDeclarations: (fragment as ScriptDom.AlterEventSessionStatement).EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
+                        targetDeclarations: (fragment as ScriptDom.AlterEventSessionStatement).TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
+                        sessionOptions: (fragment as ScriptDom.AlterEventSessionStatement).SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
                     );
                 }
                 case 42: {
-                    var node = (ScriptDom.AlterExternalDataSourceStatement)fragment;
                     return new AlterExternalDataSourceStatement(
-                        previousPushDownOption: node.PreviousPushDownOption,
-                        name: (Identifier)FromMutable(node.Name),
-                        dataSourceType: node.DataSourceType,
-                        location: (Literal)FromMutable(node.Location),
-                        pushdownOption: node.PushdownOption,
-                        externalDataSourceOptions: node.ExternalDataSourceOptions.SelectList(c => (ExternalDataSourceOption)FromMutable(c))
+                        previousPushDownOption: (fragment as ScriptDom.AlterExternalDataSourceStatement).PreviousPushDownOption,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterExternalDataSourceStatement).Name),
+                        dataSourceType: (fragment as ScriptDom.AlterExternalDataSourceStatement).DataSourceType,
+                        location: (Literal)FromMutable((fragment as ScriptDom.AlterExternalDataSourceStatement).Location),
+                        pushdownOption: (fragment as ScriptDom.AlterExternalDataSourceStatement).PushdownOption,
+                        externalDataSourceOptions: (fragment as ScriptDom.AlterExternalDataSourceStatement).ExternalDataSourceOptions.SelectList(c => (ExternalDataSourceOption)FromMutable(c))
                     );
                 }
                 case 43: {
-                    var node = (ScriptDom.AlterExternalLanguageStatement)fragment;
                     return new AlterExternalLanguageStatement(
-                        platform: (Identifier)FromMutable(node.Platform),
-                        operation: (Identifier)FromMutable(node.Operation),
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        externalLanguageFiles: node.ExternalLanguageFiles.SelectList(c => (ExternalLanguageFileOption)FromMutable(c))
+                        platform: (Identifier)FromMutable((fragment as ScriptDom.AlterExternalLanguageStatement).Platform),
+                        operation: (Identifier)FromMutable((fragment as ScriptDom.AlterExternalLanguageStatement).Operation),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.AlterExternalLanguageStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterExternalLanguageStatement).Name),
+                        externalLanguageFiles: (fragment as ScriptDom.AlterExternalLanguageStatement).ExternalLanguageFiles.SelectList(c => (ExternalLanguageFileOption)FromMutable(c))
                     );
                 }
                 case 44: {
-                    var node = (ScriptDom.AlterExternalLibraryStatement)fragment;
                     return new AlterExternalLibraryStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        language: (StringLiteral)FromMutable(node.Language),
-                        externalLibraryFiles: node.ExternalLibraryFiles.SelectList(c => (ExternalLibraryFileOption)FromMutable(c))
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.AlterExternalLibraryStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterExternalLibraryStatement).Name),
+                        language: (StringLiteral)FromMutable((fragment as ScriptDom.AlterExternalLibraryStatement).Language),
+                        externalLibraryFiles: (fragment as ScriptDom.AlterExternalLibraryStatement).ExternalLibraryFiles.SelectList(c => (ExternalLibraryFileOption)FromMutable(c))
                     );
                 }
                 case 45: {
-                    var node = (ScriptDom.AlterExternalResourcePoolStatement)fragment;
                     return new AlterExternalResourcePoolStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        externalResourcePoolParameters: node.ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterExternalResourcePoolStatement).Name),
+                        externalResourcePoolParameters: (fragment as ScriptDom.AlterExternalResourcePoolStatement).ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
                     );
                 }
                 case 46: {
-                    var node = (ScriptDom.AlterFederationStatement)fragment;
                     return new AlterFederationStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        kind: node.Kind,
-                        distributionName: (Identifier)FromMutable(node.DistributionName),
-                        boundary: (ScalarExpression)FromMutable(node.Boundary)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterFederationStatement).Name),
+                        kind: (fragment as ScriptDom.AlterFederationStatement).Kind,
+                        distributionName: (Identifier)FromMutable((fragment as ScriptDom.AlterFederationStatement).DistributionName),
+                        boundary: (ScalarExpression)FromMutable((fragment as ScriptDom.AlterFederationStatement).Boundary)
                     );
                 }
                 case 47: {
-                    var node = (ScriptDom.AlterFullTextCatalogStatement)fragment;
                     return new AlterFullTextCatalogStatement(
-                        action: node.Action,
-                        name: (Identifier)FromMutable(node.Name),
-                        options: node.Options.SelectList(c => (FullTextCatalogOption)FromMutable(c))
+                        action: (fragment as ScriptDom.AlterFullTextCatalogStatement).Action,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterFullTextCatalogStatement).Name),
+                        options: (fragment as ScriptDom.AlterFullTextCatalogStatement).Options.SelectList(c => (FullTextCatalogOption)FromMutable(c))
                     );
                 }
                 case 48: {
-                    var node = (ScriptDom.AlterFullTextIndexStatement)fragment;
                     return new AlterFullTextIndexStatement(
-                        onName: (SchemaObjectName)FromMutable(node.OnName),
-                        action: (AlterFullTextIndexAction)FromMutable(node.Action)
+                        onName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterFullTextIndexStatement).OnName),
+                        action: (AlterFullTextIndexAction)FromMutable((fragment as ScriptDom.AlterFullTextIndexStatement).Action)
                     );
                 }
                 case 49: {
-                    var node = (ScriptDom.AlterFullTextStopListStatement)fragment;
                     return new AlterFullTextStopListStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        action: (FullTextStopListAction)FromMutable(node.Action)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterFullTextStopListStatement).Name),
+                        action: (FullTextStopListAction)FromMutable((fragment as ScriptDom.AlterFullTextStopListStatement).Action)
                     );
                 }
                 case 50: {
-                    var node = (ScriptDom.AlterFunctionStatement)fragment;
                     return new AlterFunctionStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        returnType: (FunctionReturnType)FromMutable(node.ReturnType),
-                        options: node.Options.SelectList(c => (FunctionOption)FromMutable(c)),
-                        orderHint: (OrderBulkInsertOption)FromMutable(node.OrderHint),
-                        parameters: node.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterFunctionStatement).Name),
+                        returnType: (FunctionReturnType)FromMutable((fragment as ScriptDom.AlterFunctionStatement).ReturnType),
+                        options: (fragment as ScriptDom.AlterFunctionStatement).Options.SelectList(c => (FunctionOption)FromMutable(c)),
+                        orderHint: (OrderBulkInsertOption)FromMutable((fragment as ScriptDom.AlterFunctionStatement).OrderHint),
+                        parameters: (fragment as ScriptDom.AlterFunctionStatement).Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.AlterFunctionStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.AlterFunctionStatement).MethodSpecifier)
                     );
                 }
                 case 51: {
-                    var node = (ScriptDom.AlterIndexStatement)fragment;
                     return new AlterIndexStatement(
-                        all: node.All,
-                        alterIndexType: node.AlterIndexType,
-                        partition: (PartitionSpecifier)FromMutable(node.Partition),
-                        promotedPaths: node.PromotedPaths.SelectList(c => (SelectiveXmlIndexPromotedPath)FromMutable(c)),
-                        xmlNamespaces: (XmlNamespaces)FromMutable(node.XmlNamespaces),
-                        name: (Identifier)FromMutable(node.Name),
-                        onName: (SchemaObjectName)FromMutable(node.OnName),
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
+                        all: (fragment as ScriptDom.AlterIndexStatement).All,
+                        alterIndexType: (fragment as ScriptDom.AlterIndexStatement).AlterIndexType,
+                        partition: (PartitionSpecifier)FromMutable((fragment as ScriptDom.AlterIndexStatement).Partition),
+                        promotedPaths: (fragment as ScriptDom.AlterIndexStatement).PromotedPaths.SelectList(c => (SelectiveXmlIndexPromotedPath)FromMutable(c)),
+                        xmlNamespaces: (XmlNamespaces)FromMutable((fragment as ScriptDom.AlterIndexStatement).XmlNamespaces),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterIndexStatement).Name),
+                        onName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterIndexStatement).OnName),
+                        indexOptions: (fragment as ScriptDom.AlterIndexStatement).IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
                     );
                 }
                 case 52: {
-                    var node = (ScriptDom.AlterLoginAddDropCredentialStatement)fragment;
                     return new AlterLoginAddDropCredentialStatement(
-                        isAdd: node.IsAdd,
-                        credentialName: (Identifier)FromMutable(node.CredentialName),
-                        name: (Identifier)FromMutable(node.Name)
+                        isAdd: (fragment as ScriptDom.AlterLoginAddDropCredentialStatement).IsAdd,
+                        credentialName: (Identifier)FromMutable((fragment as ScriptDom.AlterLoginAddDropCredentialStatement).CredentialName),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterLoginAddDropCredentialStatement).Name)
                     );
                 }
                 case 53: {
-                    var node = (ScriptDom.AlterLoginEnableDisableStatement)fragment;
                     return new AlterLoginEnableDisableStatement(
-                        isEnable: node.IsEnable,
-                        name: (Identifier)FromMutable(node.Name)
+                        isEnable: (fragment as ScriptDom.AlterLoginEnableDisableStatement).IsEnable,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterLoginEnableDisableStatement).Name)
                     );
                 }
                 case 54: {
-                    var node = (ScriptDom.AlterLoginOptionsStatement)fragment;
                     return new AlterLoginOptionsStatement(
-                        options: node.Options.SelectList(c => (PrincipalOption)FromMutable(c)),
-                        name: (Identifier)FromMutable(node.Name)
+                        options: (fragment as ScriptDom.AlterLoginOptionsStatement).Options.SelectList(c => (PrincipalOption)FromMutable(c)),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterLoginOptionsStatement).Name)
                     );
                 }
                 case 55: {
-                    var node = (ScriptDom.AlterMasterKeyStatement)fragment;
                     return new AlterMasterKeyStatement(
-                        option: node.Option,
-                        password: (Literal)FromMutable(node.Password)
+                        option: (fragment as ScriptDom.AlterMasterKeyStatement).Option,
+                        password: (Literal)FromMutable((fragment as ScriptDom.AlterMasterKeyStatement).Password)
                     );
                 }
                 case 56: {
-                    var node = (ScriptDom.AlterMessageTypeStatement)fragment;
                     return new AlterMessageTypeStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        validationMethod: node.ValidationMethod,
-                        xmlSchemaCollectionName: (SchemaObjectName)FromMutable(node.XmlSchemaCollectionName)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterMessageTypeStatement).Name),
+                        validationMethod: (fragment as ScriptDom.AlterMessageTypeStatement).ValidationMethod,
+                        xmlSchemaCollectionName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterMessageTypeStatement).XmlSchemaCollectionName)
                     );
                 }
                 case 57: {
-                    var node = (ScriptDom.AlterPartitionFunctionStatement)fragment;
                     return new AlterPartitionFunctionStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isSplit: node.IsSplit,
-                        boundary: (ScalarExpression)FromMutable(node.Boundary)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterPartitionFunctionStatement).Name),
+                        isSplit: (fragment as ScriptDom.AlterPartitionFunctionStatement).IsSplit,
+                        boundary: (ScalarExpression)FromMutable((fragment as ScriptDom.AlterPartitionFunctionStatement).Boundary)
                     );
                 }
                 case 58: {
-                    var node = (ScriptDom.AlterPartitionSchemeStatement)fragment;
                     return new AlterPartitionSchemeStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        fileGroup: (IdentifierOrValueExpression)FromMutable(node.FileGroup)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterPartitionSchemeStatement).Name),
+                        fileGroup: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.AlterPartitionSchemeStatement).FileGroup)
                     );
                 }
                 case 59: {
-                    var node = (ScriptDom.AlterProcedureStatement)fragment;
                     return new AlterProcedureStatement(
-                        procedureReference: (ProcedureReference)FromMutable(node.ProcedureReference),
-                        isForReplication: node.IsForReplication,
-                        options: node.Options.SelectList(c => (ProcedureOption)FromMutable(c)),
-                        parameters: node.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        procedureReference: (ProcedureReference)FromMutable((fragment as ScriptDom.AlterProcedureStatement).ProcedureReference),
+                        isForReplication: (fragment as ScriptDom.AlterProcedureStatement).IsForReplication,
+                        options: (fragment as ScriptDom.AlterProcedureStatement).Options.SelectList(c => (ProcedureOption)FromMutable(c)),
+                        parameters: (fragment as ScriptDom.AlterProcedureStatement).Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.AlterProcedureStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.AlterProcedureStatement).MethodSpecifier)
                     );
                 }
                 case 60: {
-                    var node = (ScriptDom.AlterQueueStatement)fragment;
                     return new AlterQueueStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        queueOptions: node.QueueOptions.SelectList(c => (QueueOption)FromMutable(c))
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterQueueStatement).Name),
+                        queueOptions: (fragment as ScriptDom.AlterQueueStatement).QueueOptions.SelectList(c => (QueueOption)FromMutable(c))
                     );
                 }
                 case 61: {
-                    var node = (ScriptDom.AlterRemoteServiceBindingStatement)fragment;
                     return new AlterRemoteServiceBindingStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        options: node.Options.SelectList(c => (RemoteServiceBindingOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterRemoteServiceBindingStatement).Name),
+                        options: (fragment as ScriptDom.AlterRemoteServiceBindingStatement).Options.SelectList(c => (RemoteServiceBindingOption)FromMutable(c))
                     );
                 }
                 case 62: {
-                    var node = (ScriptDom.AlterResourceGovernorStatement)fragment;
                     return new AlterResourceGovernorStatement(
-                        command: node.Command,
-                        classifierFunction: (SchemaObjectName)FromMutable(node.ClassifierFunction)
+                        command: (fragment as ScriptDom.AlterResourceGovernorStatement).Command,
+                        classifierFunction: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterResourceGovernorStatement).ClassifierFunction)
                     );
                 }
                 case 63: {
-                    var node = (ScriptDom.AlterResourcePoolStatement)fragment;
                     return new AlterResourcePoolStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        resourcePoolParameters: node.ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterResourcePoolStatement).Name),
+                        resourcePoolParameters: (fragment as ScriptDom.AlterResourcePoolStatement).ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
                     );
                 }
                 case 64: {
-                    var node = (ScriptDom.AlterRoleStatement)fragment;
                     return new AlterRoleStatement(
-                        action: (AlterRoleAction)FromMutable(node.Action),
-                        name: (Identifier)FromMutable(node.Name)
+                        action: (AlterRoleAction)FromMutable((fragment as ScriptDom.AlterRoleStatement).Action),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterRoleStatement).Name)
                     );
                 }
                 case 65: {
-                    var node = (ScriptDom.AlterRouteStatement)fragment;
                     return new AlterRouteStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        routeOptions: node.RouteOptions.SelectList(c => (RouteOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterRouteStatement).Name),
+                        routeOptions: (fragment as ScriptDom.AlterRouteStatement).RouteOptions.SelectList(c => (RouteOption)FromMutable(c))
                     );
                 }
                 case 66: {
-                    var node = (ScriptDom.AlterSchemaStatement)fragment;
                     return new AlterSchemaStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        objectName: (SchemaObjectName)FromMutable(node.ObjectName),
-                        objectKind: node.ObjectKind
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterSchemaStatement).Name),
+                        objectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterSchemaStatement).ObjectName),
+                        objectKind: (fragment as ScriptDom.AlterSchemaStatement).ObjectKind
                     );
                 }
                 case 67: {
-                    var node = (ScriptDom.AlterSearchPropertyListStatement)fragment;
                     return new AlterSearchPropertyListStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        action: (SearchPropertyListAction)FromMutable(node.Action)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterSearchPropertyListStatement).Name),
+                        action: (SearchPropertyListAction)FromMutable((fragment as ScriptDom.AlterSearchPropertyListStatement).Action)
                     );
                 }
                 case 68: {
-                    var node = (ScriptDom.AlterSecurityPolicyStatement)fragment;
                     return new AlterSecurityPolicyStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        notForReplication: node.NotForReplication,
-                        securityPolicyOptions: node.SecurityPolicyOptions.SelectList(c => (SecurityPolicyOption)FromMutable(c)),
-                        securityPredicateActions: node.SecurityPredicateActions.SelectList(c => (SecurityPredicateAction)FromMutable(c)),
-                        actionType: node.ActionType
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterSecurityPolicyStatement).Name),
+                        notForReplication: (fragment as ScriptDom.AlterSecurityPolicyStatement).NotForReplication,
+                        securityPolicyOptions: (fragment as ScriptDom.AlterSecurityPolicyStatement).SecurityPolicyOptions.SelectList(c => (SecurityPolicyOption)FromMutable(c)),
+                        securityPredicateActions: (fragment as ScriptDom.AlterSecurityPolicyStatement).SecurityPredicateActions.SelectList(c => (SecurityPredicateAction)FromMutable(c)),
+                        actionType: (fragment as ScriptDom.AlterSecurityPolicyStatement).ActionType
                     );
                 }
                 case 69: {
-                    var node = (ScriptDom.AlterSequenceStatement)fragment;
                     return new AlterSequenceStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        sequenceOptions: node.SequenceOptions.SelectList(c => (SequenceOption)FromMutable(c))
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterSequenceStatement).Name),
+                        sequenceOptions: (fragment as ScriptDom.AlterSequenceStatement).SequenceOptions.SelectList(c => (SequenceOption)FromMutable(c))
                     );
                 }
                 case 70: {
-                    var node = (ScriptDom.AlterServerAuditSpecificationStatement)fragment;
                     return new AlterServerAuditSpecificationStatement(
-                        auditState: node.AuditState,
-                        parts: node.Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
-                        specificationName: (Identifier)FromMutable(node.SpecificationName),
-                        auditName: (Identifier)FromMutable(node.AuditName)
+                        auditState: (fragment as ScriptDom.AlterServerAuditSpecificationStatement).AuditState,
+                        parts: (fragment as ScriptDom.AlterServerAuditSpecificationStatement).Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
+                        specificationName: (Identifier)FromMutable((fragment as ScriptDom.AlterServerAuditSpecificationStatement).SpecificationName),
+                        auditName: (Identifier)FromMutable((fragment as ScriptDom.AlterServerAuditSpecificationStatement).AuditName)
                     );
                 }
                 case 71: {
-                    var node = (ScriptDom.AlterServerAuditStatement)fragment;
                     return new AlterServerAuditStatement(
-                        newName: (Identifier)FromMutable(node.NewName),
-                        removeWhere: node.RemoveWhere,
-                        auditName: (Identifier)FromMutable(node.AuditName),
-                        auditTarget: (AuditTarget)FromMutable(node.AuditTarget),
-                        options: node.Options.SelectList(c => (AuditOption)FromMutable(c)),
-                        predicateExpression: (BooleanExpression)FromMutable(node.PredicateExpression)
+                        newName: (Identifier)FromMutable((fragment as ScriptDom.AlterServerAuditStatement).NewName),
+                        removeWhere: (fragment as ScriptDom.AlterServerAuditStatement).RemoveWhere,
+                        auditName: (Identifier)FromMutable((fragment as ScriptDom.AlterServerAuditStatement).AuditName),
+                        auditTarget: (AuditTarget)FromMutable((fragment as ScriptDom.AlterServerAuditStatement).AuditTarget),
+                        options: (fragment as ScriptDom.AlterServerAuditStatement).Options.SelectList(c => (AuditOption)FromMutable(c)),
+                        predicateExpression: (BooleanExpression)FromMutable((fragment as ScriptDom.AlterServerAuditStatement).PredicateExpression)
                     );
                 }
                 case 72: {
-                    var node = (ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption)fragment;
                     return new AlterServerConfigurationBufferPoolExtensionContainerOption(
-                        suboptions: node.Suboptions.SelectList(c => (AlterServerConfigurationBufferPoolExtensionOption)FromMutable(c)),
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        suboptions: (fragment as ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption).Suboptions.SelectList(c => (AlterServerConfigurationBufferPoolExtensionOption)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption).OptionValue)
                     );
                 }
                 case 73: {
-                    var node = (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)fragment;
                     return new AlterServerConfigurationBufferPoolExtensionOption(
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationBufferPoolExtensionOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationBufferPoolExtensionOption).OptionValue)
                     );
                 }
                 case 74: {
-                    var node = (ScriptDom.AlterServerConfigurationBufferPoolExtensionSizeOption)fragment;
                     return new AlterServerConfigurationBufferPoolExtensionSizeOption(
-                        sizeUnit: node.SizeUnit,
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        sizeUnit: (fragment as ScriptDom.AlterServerConfigurationBufferPoolExtensionSizeOption).SizeUnit,
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationBufferPoolExtensionSizeOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationBufferPoolExtensionSizeOption).OptionValue)
                     );
                 }
                 case 75: {
-                    var node = (ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption)fragment;
                     return new AlterServerConfigurationDiagnosticsLogMaxSizeOption(
-                        sizeUnit: node.SizeUnit,
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        sizeUnit: (fragment as ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption).SizeUnit,
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption).OptionValue)
                     );
                 }
                 case 76: {
-                    var node = (ScriptDom.AlterServerConfigurationDiagnosticsLogOption)fragment;
                     return new AlterServerConfigurationDiagnosticsLogOption(
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationDiagnosticsLogOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationDiagnosticsLogOption).OptionValue)
                     );
                 }
                 case 77: {
-                    var node = (ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption)fragment;
                     return new AlterServerConfigurationExternalAuthenticationContainerOption(
-                        suboptions: node.Suboptions.SelectList(c => (AlterServerConfigurationExternalAuthenticationOption)FromMutable(c)),
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        suboptions: (fragment as ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption).Suboptions.SelectList(c => (AlterServerConfigurationExternalAuthenticationOption)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption).OptionValue)
                     );
                 }
                 case 78: {
-                    var node = (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)fragment;
                     return new AlterServerConfigurationExternalAuthenticationOption(
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationExternalAuthenticationOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationExternalAuthenticationOption).OptionValue)
                     );
                 }
                 case 79: {
-                    var node = (ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption)fragment;
                     return new AlterServerConfigurationFailoverClusterPropertyOption(
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption).OptionValue)
                     );
                 }
                 case 80: {
-                    var node = (ScriptDom.AlterServerConfigurationHadrClusterOption)fragment;
                     return new AlterServerConfigurationHadrClusterOption(
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue),
-                        isLocal: node.IsLocal
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationHadrClusterOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationHadrClusterOption).OptionValue),
+                        isLocal: (fragment as ScriptDom.AlterServerConfigurationHadrClusterOption).IsLocal
                     );
                 }
                 case 81: {
-                    var node = (ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement)fragment;
                     return new AlterServerConfigurationSetBufferPoolExtensionStatement(
-                        options: node.Options.SelectList(c => (AlterServerConfigurationBufferPoolExtensionOption)FromMutable(c))
+                        options: (fragment as ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement).Options.SelectList(c => (AlterServerConfigurationBufferPoolExtensionOption)FromMutable(c))
                     );
                 }
                 case 82: {
-                    var node = (ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement)fragment;
                     return new AlterServerConfigurationSetDiagnosticsLogStatement(
-                        options: node.Options.SelectList(c => (AlterServerConfigurationDiagnosticsLogOption)FromMutable(c))
+                        options: (fragment as ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement).Options.SelectList(c => (AlterServerConfigurationDiagnosticsLogOption)FromMutable(c))
                     );
                 }
                 case 83: {
-                    var node = (ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement)fragment;
                     return new AlterServerConfigurationSetExternalAuthenticationStatement(
-                        options: node.Options.SelectList(c => (AlterServerConfigurationExternalAuthenticationOption)FromMutable(c))
+                        options: (fragment as ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement).Options.SelectList(c => (AlterServerConfigurationExternalAuthenticationOption)FromMutable(c))
                     );
                 }
                 case 84: {
-                    var node = (ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement)fragment;
                     return new AlterServerConfigurationSetFailoverClusterPropertyStatement(
-                        options: node.Options.SelectList(c => (AlterServerConfigurationFailoverClusterPropertyOption)FromMutable(c))
+                        options: (fragment as ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement).Options.SelectList(c => (AlterServerConfigurationFailoverClusterPropertyOption)FromMutable(c))
                     );
                 }
                 case 85: {
-                    var node = (ScriptDom.AlterServerConfigurationSetHadrClusterStatement)fragment;
                     return new AlterServerConfigurationSetHadrClusterStatement(
-                        options: node.Options.SelectList(c => (AlterServerConfigurationHadrClusterOption)FromMutable(c))
+                        options: (fragment as ScriptDom.AlterServerConfigurationSetHadrClusterStatement).Options.SelectList(c => (AlterServerConfigurationHadrClusterOption)FromMutable(c))
                     );
                 }
                 case 86: {
-                    var node = (ScriptDom.AlterServerConfigurationSetSoftNumaStatement)fragment;
                     return new AlterServerConfigurationSetSoftNumaStatement(
-                        options: node.Options.SelectList(c => (AlterServerConfigurationSoftNumaOption)FromMutable(c))
+                        options: (fragment as ScriptDom.AlterServerConfigurationSetSoftNumaStatement).Options.SelectList(c => (AlterServerConfigurationSoftNumaOption)FromMutable(c))
                     );
                 }
                 case 87: {
-                    var node = (ScriptDom.AlterServerConfigurationSoftNumaOption)fragment;
                     return new AlterServerConfigurationSoftNumaOption(
-                        optionKind: node.OptionKind,
-                        optionValue: (OptionValue)FromMutable(node.OptionValue)
+                        optionKind: (fragment as ScriptDom.AlterServerConfigurationSoftNumaOption).OptionKind,
+                        optionValue: (OptionValue)FromMutable((fragment as ScriptDom.AlterServerConfigurationSoftNumaOption).OptionValue)
                     );
                 }
                 case 88: {
-                    var node = (ScriptDom.AlterServerConfigurationStatement)fragment;
                     return new AlterServerConfigurationStatement(
-                        processAffinity: node.ProcessAffinity,
-                        processAffinityRanges: node.ProcessAffinityRanges.SelectList(c => (ProcessAffinityRange)FromMutable(c))
+                        processAffinity: (fragment as ScriptDom.AlterServerConfigurationStatement).ProcessAffinity,
+                        processAffinityRanges: (fragment as ScriptDom.AlterServerConfigurationStatement).ProcessAffinityRanges.SelectList(c => (ProcessAffinityRange)FromMutable(c))
                     );
                 }
                 case 89: {
-                    var node = (ScriptDom.AlterServerRoleStatement)fragment;
                     return new AlterServerRoleStatement(
-                        action: (AlterRoleAction)FromMutable(node.Action),
-                        name: (Identifier)FromMutable(node.Name)
+                        action: (AlterRoleAction)FromMutable((fragment as ScriptDom.AlterServerRoleStatement).Action),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterServerRoleStatement).Name)
                     );
                 }
                 case 90: {
-                    var node = (ScriptDom.AlterServiceMasterKeyStatement)fragment;
                     return new AlterServiceMasterKeyStatement(
-                        account: (Literal)FromMutable(node.Account),
-                        password: (Literal)FromMutable(node.Password),
-                        kind: node.Kind
+                        account: (Literal)FromMutable((fragment as ScriptDom.AlterServiceMasterKeyStatement).Account),
+                        password: (Literal)FromMutable((fragment as ScriptDom.AlterServiceMasterKeyStatement).Password),
+                        kind: (fragment as ScriptDom.AlterServiceMasterKeyStatement).Kind
                     );
                 }
                 case 91: {
-                    var node = (ScriptDom.AlterServiceStatement)fragment;
                     return new AlterServiceStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        queueName: (SchemaObjectName)FromMutable(node.QueueName),
-                        serviceContracts: node.ServiceContracts.SelectList(c => (ServiceContract)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterServiceStatement).Name),
+                        queueName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterServiceStatement).QueueName),
+                        serviceContracts: (fragment as ScriptDom.AlterServiceStatement).ServiceContracts.SelectList(c => (ServiceContract)FromMutable(c))
                     );
                 }
                 case 92: {
-                    var node = (ScriptDom.AlterSymmetricKeyStatement)fragment;
                     return new AlterSymmetricKeyStatement(
-                        isAdd: node.IsAdd,
-                        name: (Identifier)FromMutable(node.Name),
-                        encryptingMechanisms: node.EncryptingMechanisms.SelectList(c => (CryptoMechanism)FromMutable(c))
+                        isAdd: (fragment as ScriptDom.AlterSymmetricKeyStatement).IsAdd,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterSymmetricKeyStatement).Name),
+                        encryptingMechanisms: (fragment as ScriptDom.AlterSymmetricKeyStatement).EncryptingMechanisms.SelectList(c => (CryptoMechanism)FromMutable(c))
                     );
                 }
                 case 93: {
-                    var node = (ScriptDom.AlterTableAddTableElementStatement)fragment;
                     return new AlterTableAddTableElementStatement(
-                        existingRowsCheckEnforcement: node.ExistingRowsCheckEnforcement,
-                        definition: (TableDefinition)FromMutable(node.Definition),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        existingRowsCheckEnforcement: (fragment as ScriptDom.AlterTableAddTableElementStatement).ExistingRowsCheckEnforcement,
+                        definition: (TableDefinition)FromMutable((fragment as ScriptDom.AlterTableAddTableElementStatement).Definition),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableAddTableElementStatement).SchemaObjectName)
                     );
                 }
                 case 94: {
-                    var node = (ScriptDom.AlterTableAlterColumnStatement)fragment;
                     return new AlterTableAlterColumnStatement(
-                        columnIdentifier: (Identifier)FromMutable(node.ColumnIdentifier),
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        alterTableAlterColumnOption: node.AlterTableAlterColumnOption,
-                        storageOptions: (ColumnStorageOptions)FromMutable(node.StorageOptions),
-                        options: node.Options.SelectList(c => (IndexOption)FromMutable(c)),
-                        generatedAlways: node.GeneratedAlways,
-                        isHidden: node.IsHidden,
-                        encryption: (ColumnEncryptionDefinition)FromMutable(node.Encryption),
-                        collation: (Identifier)FromMutable(node.Collation),
-                        isMasked: node.IsMasked,
-                        maskingFunction: (StringLiteral)FromMutable(node.MaskingFunction),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        columnIdentifier: (Identifier)FromMutable((fragment as ScriptDom.AlterTableAlterColumnStatement).ColumnIdentifier),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.AlterTableAlterColumnStatement).DataType),
+                        alterTableAlterColumnOption: (fragment as ScriptDom.AlterTableAlterColumnStatement).AlterTableAlterColumnOption,
+                        storageOptions: (ColumnStorageOptions)FromMutable((fragment as ScriptDom.AlterTableAlterColumnStatement).StorageOptions),
+                        options: (fragment as ScriptDom.AlterTableAlterColumnStatement).Options.SelectList(c => (IndexOption)FromMutable(c)),
+                        generatedAlways: (fragment as ScriptDom.AlterTableAlterColumnStatement).GeneratedAlways,
+                        isHidden: (fragment as ScriptDom.AlterTableAlterColumnStatement).IsHidden,
+                        encryption: (ColumnEncryptionDefinition)FromMutable((fragment as ScriptDom.AlterTableAlterColumnStatement).Encryption),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.AlterTableAlterColumnStatement).Collation),
+                        isMasked: (fragment as ScriptDom.AlterTableAlterColumnStatement).IsMasked,
+                        maskingFunction: (StringLiteral)FromMutable((fragment as ScriptDom.AlterTableAlterColumnStatement).MaskingFunction),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableAlterColumnStatement).SchemaObjectName)
                     );
                 }
                 case 95: {
-                    var node = (ScriptDom.AlterTableAlterIndexStatement)fragment;
                     return new AlterTableAlterIndexStatement(
-                        indexIdentifier: (Identifier)FromMutable(node.IndexIdentifier),
-                        alterIndexType: node.AlterIndexType,
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        indexIdentifier: (Identifier)FromMutable((fragment as ScriptDom.AlterTableAlterIndexStatement).IndexIdentifier),
+                        alterIndexType: (fragment as ScriptDom.AlterTableAlterIndexStatement).AlterIndexType,
+                        indexOptions: (fragment as ScriptDom.AlterTableAlterIndexStatement).IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableAlterIndexStatement).SchemaObjectName)
                     );
                 }
                 case 96: {
-                    var node = (ScriptDom.AlterTableAlterPartitionStatement)fragment;
                     return new AlterTableAlterPartitionStatement(
-                        boundaryValue: (ScalarExpression)FromMutable(node.BoundaryValue),
-                        isSplit: node.IsSplit,
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        boundaryValue: (ScalarExpression)FromMutable((fragment as ScriptDom.AlterTableAlterPartitionStatement).BoundaryValue),
+                        isSplit: (fragment as ScriptDom.AlterTableAlterPartitionStatement).IsSplit,
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableAlterPartitionStatement).SchemaObjectName)
                     );
                 }
                 case 97: {
-                    var node = (ScriptDom.AlterTableChangeTrackingModificationStatement)fragment;
                     return new AlterTableChangeTrackingModificationStatement(
-                        isEnable: node.IsEnable,
-                        trackColumnsUpdated: node.TrackColumnsUpdated,
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        isEnable: (fragment as ScriptDom.AlterTableChangeTrackingModificationStatement).IsEnable,
+                        trackColumnsUpdated: (fragment as ScriptDom.AlterTableChangeTrackingModificationStatement).TrackColumnsUpdated,
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableChangeTrackingModificationStatement).SchemaObjectName)
                     );
                 }
                 case 98: {
-                    var node = (ScriptDom.AlterTableConstraintModificationStatement)fragment;
                     return new AlterTableConstraintModificationStatement(
-                        existingRowsCheckEnforcement: node.ExistingRowsCheckEnforcement,
-                        constraintEnforcement: node.ConstraintEnforcement,
-                        all: node.All,
-                        constraintNames: node.ConstraintNames.SelectList(c => (Identifier)FromMutable(c)),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        existingRowsCheckEnforcement: (fragment as ScriptDom.AlterTableConstraintModificationStatement).ExistingRowsCheckEnforcement,
+                        constraintEnforcement: (fragment as ScriptDom.AlterTableConstraintModificationStatement).ConstraintEnforcement,
+                        all: (fragment as ScriptDom.AlterTableConstraintModificationStatement).All,
+                        constraintNames: (fragment as ScriptDom.AlterTableConstraintModificationStatement).ConstraintNames.SelectList(c => (Identifier)FromMutable(c)),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableConstraintModificationStatement).SchemaObjectName)
                     );
                 }
                 case 99: {
-                    var node = (ScriptDom.AlterTableDropTableElement)fragment;
                     return new AlterTableDropTableElement(
-                        tableElementType: node.TableElementType,
-                        name: (Identifier)FromMutable(node.Name),
-                        dropClusteredConstraintOptions: node.DropClusteredConstraintOptions.SelectList(c => (DropClusteredConstraintOption)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        tableElementType: (fragment as ScriptDom.AlterTableDropTableElement).TableElementType,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterTableDropTableElement).Name),
+                        dropClusteredConstraintOptions: (fragment as ScriptDom.AlterTableDropTableElement).DropClusteredConstraintOptions.SelectList(c => (DropClusteredConstraintOption)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.AlterTableDropTableElement).IsIfExists
                     );
                 }
                 case 100: {
-                    var node = (ScriptDom.AlterTableDropTableElementStatement)fragment;
                     return new AlterTableDropTableElementStatement(
-                        alterTableDropTableElements: node.AlterTableDropTableElements.SelectList(c => (AlterTableDropTableElement)FromMutable(c)),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        alterTableDropTableElements: (fragment as ScriptDom.AlterTableDropTableElementStatement).AlterTableDropTableElements.SelectList(c => (AlterTableDropTableElement)FromMutable(c)),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableDropTableElementStatement).SchemaObjectName)
                     );
                 }
                 case 101: {
-                    var node = (ScriptDom.AlterTableFileTableNamespaceStatement)fragment;
                     return new AlterTableFileTableNamespaceStatement(
-                        isEnable: node.IsEnable,
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        isEnable: (fragment as ScriptDom.AlterTableFileTableNamespaceStatement).IsEnable,
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableFileTableNamespaceStatement).SchemaObjectName)
                     );
                 }
                 case 102: {
-                    var node = (ScriptDom.AlterTableRebuildStatement)fragment;
                     return new AlterTableRebuildStatement(
-                        partition: (PartitionSpecifier)FromMutable(node.Partition),
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        partition: (PartitionSpecifier)FromMutable((fragment as ScriptDom.AlterTableRebuildStatement).Partition),
+                        indexOptions: (fragment as ScriptDom.AlterTableRebuildStatement).IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableRebuildStatement).SchemaObjectName)
                     );
                 }
                 case 103: {
-                    var node = (ScriptDom.AlterTableSetStatement)fragment;
                     return new AlterTableSetStatement(
-                        options: node.Options.SelectList(c => (TableOption)FromMutable(c)),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        options: (fragment as ScriptDom.AlterTableSetStatement).Options.SelectList(c => (TableOption)FromMutable(c)),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableSetStatement).SchemaObjectName)
                     );
                 }
                 case 104: {
-                    var node = (ScriptDom.AlterTableSwitchStatement)fragment;
                     return new AlterTableSwitchStatement(
-                        sourcePartitionNumber: (ScalarExpression)FromMutable(node.SourcePartitionNumber),
-                        targetPartitionNumber: (ScalarExpression)FromMutable(node.TargetPartitionNumber),
-                        targetTable: (SchemaObjectName)FromMutable(node.TargetTable),
-                        options: node.Options.SelectList(c => (TableSwitchOption)FromMutable(c)),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        sourcePartitionNumber: (ScalarExpression)FromMutable((fragment as ScriptDom.AlterTableSwitchStatement).SourcePartitionNumber),
+                        targetPartitionNumber: (ScalarExpression)FromMutable((fragment as ScriptDom.AlterTableSwitchStatement).TargetPartitionNumber),
+                        targetTable: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableSwitchStatement).TargetTable),
+                        options: (fragment as ScriptDom.AlterTableSwitchStatement).Options.SelectList(c => (TableSwitchOption)FromMutable(c)),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableSwitchStatement).SchemaObjectName)
                     );
                 }
                 case 105: {
-                    var node = (ScriptDom.AlterTableTriggerModificationStatement)fragment;
                     return new AlterTableTriggerModificationStatement(
-                        triggerEnforcement: node.TriggerEnforcement,
-                        all: node.All,
-                        triggerNames: node.TriggerNames.SelectList(c => (Identifier)FromMutable(c)),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        triggerEnforcement: (fragment as ScriptDom.AlterTableTriggerModificationStatement).TriggerEnforcement,
+                        all: (fragment as ScriptDom.AlterTableTriggerModificationStatement).All,
+                        triggerNames: (fragment as ScriptDom.AlterTableTriggerModificationStatement).TriggerNames.SelectList(c => (Identifier)FromMutable(c)),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTableTriggerModificationStatement).SchemaObjectName)
                     );
                 }
                 case 106: {
-                    var node = (ScriptDom.AlterTriggerStatement)fragment;
                     return new AlterTriggerStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        triggerObject: (TriggerObject)FromMutable(node.TriggerObject),
-                        options: node.Options.SelectList(c => (TriggerOption)FromMutable(c)),
-                        triggerType: node.TriggerType,
-                        triggerActions: node.TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
-                        withAppend: node.WithAppend,
-                        isNotForReplication: node.IsNotForReplication,
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterTriggerStatement).Name),
+                        triggerObject: (TriggerObject)FromMutable((fragment as ScriptDom.AlterTriggerStatement).TriggerObject),
+                        options: (fragment as ScriptDom.AlterTriggerStatement).Options.SelectList(c => (TriggerOption)FromMutable(c)),
+                        triggerType: (fragment as ScriptDom.AlterTriggerStatement).TriggerType,
+                        triggerActions: (fragment as ScriptDom.AlterTriggerStatement).TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
+                        withAppend: (fragment as ScriptDom.AlterTriggerStatement).WithAppend,
+                        isNotForReplication: (fragment as ScriptDom.AlterTriggerStatement).IsNotForReplication,
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.AlterTriggerStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.AlterTriggerStatement).MethodSpecifier)
                     );
                 }
                 case 107: {
-                    var node = (ScriptDom.AlterUserStatement)fragment;
                     return new AlterUserStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        userOptions: node.UserOptions.SelectList(c => (PrincipalOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterUserStatement).Name),
+                        userOptions: (fragment as ScriptDom.AlterUserStatement).UserOptions.SelectList(c => (PrincipalOption)FromMutable(c))
                     );
                 }
                 case 108: {
-                    var node = (ScriptDom.AlterViewStatement)fragment;
                     return new AlterViewStatement(
-                        isRebuild: node.IsRebuild,
-                        isDisable: node.IsDisable,
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        viewOptions: node.ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
-                        selectStatement: (SelectStatement)FromMutable(node.SelectStatement),
-                        withCheckOption: node.WithCheckOption,
-                        isMaterialized: node.IsMaterialized
+                        isRebuild: (fragment as ScriptDom.AlterViewStatement).IsRebuild,
+                        isDisable: (fragment as ScriptDom.AlterViewStatement).IsDisable,
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterViewStatement).SchemaObjectName),
+                        columns: (fragment as ScriptDom.AlterViewStatement).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        viewOptions: (fragment as ScriptDom.AlterViewStatement).ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
+                        selectStatement: (SelectStatement)FromMutable((fragment as ScriptDom.AlterViewStatement).SelectStatement),
+                        withCheckOption: (fragment as ScriptDom.AlterViewStatement).WithCheckOption,
+                        isMaterialized: (fragment as ScriptDom.AlterViewStatement).IsMaterialized
                     );
                 }
                 case 109: {
-                    var node = (ScriptDom.AlterWorkloadGroupStatement)fragment;
                     return new AlterWorkloadGroupStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        workloadGroupParameters: node.WorkloadGroupParameters.SelectList(c => (WorkloadGroupParameter)FromMutable(c)),
-                        poolName: (Identifier)FromMutable(node.PoolName),
-                        externalPoolName: (Identifier)FromMutable(node.ExternalPoolName)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AlterWorkloadGroupStatement).Name),
+                        workloadGroupParameters: (fragment as ScriptDom.AlterWorkloadGroupStatement).WorkloadGroupParameters.SelectList(c => (WorkloadGroupParameter)FromMutable(c)),
+                        poolName: (Identifier)FromMutable((fragment as ScriptDom.AlterWorkloadGroupStatement).PoolName),
+                        externalPoolName: (Identifier)FromMutable((fragment as ScriptDom.AlterWorkloadGroupStatement).ExternalPoolName)
                     );
                 }
                 case 110: {
-                    var node = (ScriptDom.AlterXmlSchemaCollectionStatement)fragment;
                     return new AlterXmlSchemaCollectionStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.AlterXmlSchemaCollectionStatement).Name),
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.AlterXmlSchemaCollectionStatement).Expression)
                     );
                 }
                 case 111: {
-                    var node = (ScriptDom.ApplicationRoleOption)fragment;
                     return new ApplicationRoleOption(
-                        optionKind: node.OptionKind,
-                        @value: (IdentifierOrValueExpression)FromMutable(node.Value)
+                        optionKind: (fragment as ScriptDom.ApplicationRoleOption).OptionKind,
+                        @value: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.ApplicationRoleOption).Value)
                     );
                 }
                 case 112: {
-                    var node = (ScriptDom.AssemblyEncryptionSource)fragment;
                     return new AssemblyEncryptionSource(
-                        assembly: (Identifier)FromMutable(node.Assembly)
+                        assembly: (Identifier)FromMutable((fragment as ScriptDom.AssemblyEncryptionSource).Assembly)
                     );
                 }
                 case 113: {
-                    var node = (ScriptDom.AssemblyName)fragment;
                     return new AssemblyName(
-                        name: (Identifier)FromMutable(node.Name),
-                        className: (Identifier)FromMutable(node.ClassName)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.AssemblyName).Name),
+                        className: (Identifier)FromMutable((fragment as ScriptDom.AssemblyName).ClassName)
                     );
                 }
                 case 114: {
-                    var node = (ScriptDom.AssemblyOption)fragment;
                     return new AssemblyOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.AssemblyOption).OptionKind
                     );
                 }
                 case 115: {
-                    var node = (ScriptDom.AssignmentSetClause)fragment;
                     return new AssignmentSetClause(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        column: (ColumnReferenceExpression)FromMutable(node.Column),
-                        newValue: (ScalarExpression)FromMutable(node.NewValue),
-                        assignmentKind: node.AssignmentKind
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.AssignmentSetClause).Variable),
+                        column: (ColumnReferenceExpression)FromMutable((fragment as ScriptDom.AssignmentSetClause).Column),
+                        newValue: (ScalarExpression)FromMutable((fragment as ScriptDom.AssignmentSetClause).NewValue),
+                        assignmentKind: (fragment as ScriptDom.AssignmentSetClause).AssignmentKind
                     );
                 }
                 case 116: {
-                    var node = (ScriptDom.AsymmetricKeyCreateLoginSource)fragment;
                     return new AsymmetricKeyCreateLoginSource(
-                        key: (Identifier)FromMutable(node.Key),
-                        credential: (Identifier)FromMutable(node.Credential)
+                        key: (Identifier)FromMutable((fragment as ScriptDom.AsymmetricKeyCreateLoginSource).Key),
+                        credential: (Identifier)FromMutable((fragment as ScriptDom.AsymmetricKeyCreateLoginSource).Credential)
                     );
                 }
                 case 117: {
-                    var node = (ScriptDom.AtTimeZoneCall)fragment;
                     return new AtTimeZoneCall(
-                        dateValue: (ScalarExpression)FromMutable(node.DateValue),
-                        timeZone: (ScalarExpression)FromMutable(node.TimeZone),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        dateValue: (ScalarExpression)FromMutable((fragment as ScriptDom.AtTimeZoneCall).DateValue),
+                        timeZone: (ScalarExpression)FromMutable((fragment as ScriptDom.AtTimeZoneCall).TimeZone),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.AtTimeZoneCall).Collation)
                     );
                 }
                 case 118: {
-                    var node = (ScriptDom.AuditActionGroupReference)fragment;
                     return new AuditActionGroupReference(
-                        group: node.Group
+                        group: (fragment as ScriptDom.AuditActionGroupReference).Group
                     );
                 }
                 case 119: {
-                    var node = (ScriptDom.AuditActionSpecification)fragment;
                     return new AuditActionSpecification(
-                        actions: node.Actions.SelectList(c => (DatabaseAuditAction)FromMutable(c)),
-                        principals: node.Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
-                        targetObject: (SecurityTargetObject)FromMutable(node.TargetObject)
+                        actions: (fragment as ScriptDom.AuditActionSpecification).Actions.SelectList(c => (DatabaseAuditAction)FromMutable(c)),
+                        principals: (fragment as ScriptDom.AuditActionSpecification).Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
+                        targetObject: (SecurityTargetObject)FromMutable((fragment as ScriptDom.AuditActionSpecification).TargetObject)
                     );
                 }
                 case 120: {
-                    var node = (ScriptDom.AuditGuidAuditOption)fragment;
                     return new AuditGuidAuditOption(
-                        guid: (Literal)FromMutable(node.Guid),
-                        optionKind: node.OptionKind
+                        guid: (Literal)FromMutable((fragment as ScriptDom.AuditGuidAuditOption).Guid),
+                        optionKind: (fragment as ScriptDom.AuditGuidAuditOption).OptionKind
                     );
                 }
                 case 121: {
-                    var node = (ScriptDom.AuditSpecificationPart)fragment;
                     return new AuditSpecificationPart(
-                        isDrop: node.IsDrop,
-                        details: (AuditSpecificationDetail)FromMutable(node.Details)
+                        isDrop: (fragment as ScriptDom.AuditSpecificationPart).IsDrop,
+                        details: (AuditSpecificationDetail)FromMutable((fragment as ScriptDom.AuditSpecificationPart).Details)
                     );
                 }
                 case 122: {
-                    var node = (ScriptDom.AuditTarget)fragment;
                     return new AuditTarget(
-                        targetKind: node.TargetKind,
-                        targetOptions: node.TargetOptions.SelectList(c => (AuditTargetOption)FromMutable(c))
+                        targetKind: (fragment as ScriptDom.AuditTarget).TargetKind,
+                        targetOptions: (fragment as ScriptDom.AuditTarget).TargetOptions.SelectList(c => (AuditTargetOption)FromMutable(c))
                     );
                 }
                 case 123: {
-                    var node = (ScriptDom.AuthenticationEndpointProtocolOption)fragment;
                     return new AuthenticationEndpointProtocolOption(
-                        authenticationTypes: node.AuthenticationTypes,
-                        kind: node.Kind
+                        authenticationTypes: (fragment as ScriptDom.AuthenticationEndpointProtocolOption).AuthenticationTypes,
+                        kind: (fragment as ScriptDom.AuthenticationEndpointProtocolOption).Kind
                     );
                 }
                 case 124: {
-                    var node = (ScriptDom.AuthenticationPayloadOption)fragment;
                     return new AuthenticationPayloadOption(
-                        protocol: node.Protocol,
-                        certificate: (Identifier)FromMutable(node.Certificate),
-                        tryCertificateFirst: node.TryCertificateFirst,
-                        kind: node.Kind
+                        protocol: (fragment as ScriptDom.AuthenticationPayloadOption).Protocol,
+                        certificate: (Identifier)FromMutable((fragment as ScriptDom.AuthenticationPayloadOption).Certificate),
+                        tryCertificateFirst: (fragment as ScriptDom.AuthenticationPayloadOption).TryCertificateFirst,
+                        kind: (fragment as ScriptDom.AuthenticationPayloadOption).Kind
                     );
                 }
                 case 125: {
-                    var node = (ScriptDom.AutoCleanupChangeTrackingOptionDetail)fragment;
                     return new AutoCleanupChangeTrackingOptionDetail(
-                        isOn: node.IsOn
+                        isOn: (fragment as ScriptDom.AutoCleanupChangeTrackingOptionDetail).IsOn
                     );
                 }
                 case 126: {
-                    var node = (ScriptDom.AutoCreateStatisticsDatabaseOption)fragment;
                     return new AutoCreateStatisticsDatabaseOption(
-                        hasIncremental: node.HasIncremental,
-                        incrementalState: node.IncrementalState,
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        hasIncremental: (fragment as ScriptDom.AutoCreateStatisticsDatabaseOption).HasIncremental,
+                        incrementalState: (fragment as ScriptDom.AutoCreateStatisticsDatabaseOption).IncrementalState,
+                        optionState: (fragment as ScriptDom.AutoCreateStatisticsDatabaseOption).OptionState,
+                        optionKind: (fragment as ScriptDom.AutoCreateStatisticsDatabaseOption).OptionKind
                     );
                 }
                 case 127: {
-                    var node = (ScriptDom.AutomaticTuningCreateIndexOption)fragment;
                     return new AutomaticTuningCreateIndexOption(
-                        optionKind: node.OptionKind,
-                        @value: node.Value
+                        optionKind: (fragment as ScriptDom.AutomaticTuningCreateIndexOption).OptionKind,
+                        @value: (fragment as ScriptDom.AutomaticTuningCreateIndexOption).Value
                     );
                 }
                 case 128: {
-                    var node = (ScriptDom.AutomaticTuningDatabaseOption)fragment;
                     return new AutomaticTuningDatabaseOption(
-                        automaticTuningState: node.AutomaticTuningState,
-                        options: node.Options.SelectList(c => (AutomaticTuningOption)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        automaticTuningState: (fragment as ScriptDom.AutomaticTuningDatabaseOption).AutomaticTuningState,
+                        options: (fragment as ScriptDom.AutomaticTuningDatabaseOption).Options.SelectList(c => (AutomaticTuningOption)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.AutomaticTuningDatabaseOption).OptionKind
                     );
                 }
                 case 129: {
-                    var node = (ScriptDom.AutomaticTuningDropIndexOption)fragment;
                     return new AutomaticTuningDropIndexOption(
-                        optionKind: node.OptionKind,
-                        @value: node.Value
+                        optionKind: (fragment as ScriptDom.AutomaticTuningDropIndexOption).OptionKind,
+                        @value: (fragment as ScriptDom.AutomaticTuningDropIndexOption).Value
                     );
                 }
                 case 130: {
-                    var node = (ScriptDom.AutomaticTuningForceLastGoodPlanOption)fragment;
                     return new AutomaticTuningForceLastGoodPlanOption(
-                        optionKind: node.OptionKind,
-                        @value: node.Value
+                        optionKind: (fragment as ScriptDom.AutomaticTuningForceLastGoodPlanOption).OptionKind,
+                        @value: (fragment as ScriptDom.AutomaticTuningForceLastGoodPlanOption).Value
                     );
                 }
                 case 131: {
-                    var node = (ScriptDom.AutomaticTuningMaintainIndexOption)fragment;
                     return new AutomaticTuningMaintainIndexOption(
-                        optionKind: node.OptionKind,
-                        @value: node.Value
+                        optionKind: (fragment as ScriptDom.AutomaticTuningMaintainIndexOption).OptionKind,
+                        @value: (fragment as ScriptDom.AutomaticTuningMaintainIndexOption).Value
                     );
                 }
                 case 132: {
-                    var node = (ScriptDom.AutomaticTuningOption)fragment;
                     return new AutomaticTuningOption(
-                        optionKind: node.OptionKind,
-                        @value: node.Value
+                        optionKind: (fragment as ScriptDom.AutomaticTuningOption).OptionKind,
+                        @value: (fragment as ScriptDom.AutomaticTuningOption).Value
                     );
                 }
                 case 133: {
-                    var node = (ScriptDom.AvailabilityModeReplicaOption)fragment;
                     return new AvailabilityModeReplicaOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.AvailabilityModeReplicaOption).Value,
+                        optionKind: (fragment as ScriptDom.AvailabilityModeReplicaOption).OptionKind
                     );
                 }
                 case 134: {
-                    var node = (ScriptDom.AvailabilityReplica)fragment;
                     return new AvailabilityReplica(
-                        serverName: (StringLiteral)FromMutable(node.ServerName),
-                        options: node.Options.SelectList(c => (AvailabilityReplicaOption)FromMutable(c))
+                        serverName: (StringLiteral)FromMutable((fragment as ScriptDom.AvailabilityReplica).ServerName),
+                        options: (fragment as ScriptDom.AvailabilityReplica).Options.SelectList(c => (AvailabilityReplicaOption)FromMutable(c))
                     );
                 }
                 case 135: {
-                    var node = (ScriptDom.BackupCertificateStatement)fragment;
                     return new BackupCertificateStatement(
-                        file: (Literal)FromMutable(node.File),
-                        name: (Identifier)FromMutable(node.Name),
-                        activeForBeginDialog: node.ActiveForBeginDialog,
-                        privateKeyPath: (Literal)FromMutable(node.PrivateKeyPath),
-                        encryptionPassword: (Literal)FromMutable(node.EncryptionPassword),
-                        decryptionPassword: (Literal)FromMutable(node.DecryptionPassword)
+                        file: (Literal)FromMutable((fragment as ScriptDom.BackupCertificateStatement).File),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.BackupCertificateStatement).Name),
+                        activeForBeginDialog: (fragment as ScriptDom.BackupCertificateStatement).ActiveForBeginDialog,
+                        privateKeyPath: (Literal)FromMutable((fragment as ScriptDom.BackupCertificateStatement).PrivateKeyPath),
+                        encryptionPassword: (Literal)FromMutable((fragment as ScriptDom.BackupCertificateStatement).EncryptionPassword),
+                        decryptionPassword: (Literal)FromMutable((fragment as ScriptDom.BackupCertificateStatement).DecryptionPassword)
                     );
                 }
                 case 136: {
-                    var node = (ScriptDom.BackupDatabaseStatement)fragment;
                     return new BackupDatabaseStatement(
-                        files: node.Files.SelectList(c => (BackupRestoreFileInfo)FromMutable(c)),
-                        databaseName: (IdentifierOrValueExpression)FromMutable(node.DatabaseName),
-                        options: node.Options.SelectList(c => (BackupOption)FromMutable(c)),
-                        mirrorToClauses: node.MirrorToClauses.SelectList(c => (MirrorToClause)FromMutable(c)),
-                        devices: node.Devices.SelectList(c => (DeviceInfo)FromMutable(c))
+                        files: (fragment as ScriptDom.BackupDatabaseStatement).Files.SelectList(c => (BackupRestoreFileInfo)FromMutable(c)),
+                        databaseName: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.BackupDatabaseStatement).DatabaseName),
+                        options: (fragment as ScriptDom.BackupDatabaseStatement).Options.SelectList(c => (BackupOption)FromMutable(c)),
+                        mirrorToClauses: (fragment as ScriptDom.BackupDatabaseStatement).MirrorToClauses.SelectList(c => (MirrorToClause)FromMutable(c)),
+                        devices: (fragment as ScriptDom.BackupDatabaseStatement).Devices.SelectList(c => (DeviceInfo)FromMutable(c))
                     );
                 }
                 case 137: {
-                    var node = (ScriptDom.BackupEncryptionOption)fragment;
                     return new BackupEncryptionOption(
-                        algorithm: node.Algorithm,
-                        encryptor: (CryptoMechanism)FromMutable(node.Encryptor),
-                        optionKind: node.OptionKind,
-                        @value: (ScalarExpression)FromMutable(node.Value)
+                        algorithm: (fragment as ScriptDom.BackupEncryptionOption).Algorithm,
+                        encryptor: (CryptoMechanism)FromMutable((fragment as ScriptDom.BackupEncryptionOption).Encryptor),
+                        optionKind: (fragment as ScriptDom.BackupEncryptionOption).OptionKind,
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.BackupEncryptionOption).Value)
                     );
                 }
                 case 138: {
-                    var node = (ScriptDom.BackupMasterKeyStatement)fragment;
                     return new BackupMasterKeyStatement(
-                        file: (Literal)FromMutable(node.File),
-                        password: (Literal)FromMutable(node.Password)
+                        file: (Literal)FromMutable((fragment as ScriptDom.BackupMasterKeyStatement).File),
+                        password: (Literal)FromMutable((fragment as ScriptDom.BackupMasterKeyStatement).Password)
                     );
                 }
                 case 139: {
-                    var node = (ScriptDom.BackupOption)fragment;
                     return new BackupOption(
-                        optionKind: node.OptionKind,
-                        @value: (ScalarExpression)FromMutable(node.Value)
+                        optionKind: (fragment as ScriptDom.BackupOption).OptionKind,
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.BackupOption).Value)
                     );
                 }
                 case 140: {
-                    var node = (ScriptDom.BackupRestoreFileInfo)fragment;
                     return new BackupRestoreFileInfo(
-                        items: node.Items.SelectList(c => (ValueExpression)FromMutable(c)),
-                        itemKind: node.ItemKind
+                        items: (fragment as ScriptDom.BackupRestoreFileInfo).Items.SelectList(c => (ValueExpression)FromMutable(c)),
+                        itemKind: (fragment as ScriptDom.BackupRestoreFileInfo).ItemKind
                     );
                 }
                 case 141: {
-                    var node = (ScriptDom.BackupServiceMasterKeyStatement)fragment;
                     return new BackupServiceMasterKeyStatement(
-                        file: (Literal)FromMutable(node.File),
-                        password: (Literal)FromMutable(node.Password)
+                        file: (Literal)FromMutable((fragment as ScriptDom.BackupServiceMasterKeyStatement).File),
+                        password: (Literal)FromMutable((fragment as ScriptDom.BackupServiceMasterKeyStatement).Password)
                     );
                 }
                 case 142: {
-                    var node = (ScriptDom.BackupTransactionLogStatement)fragment;
                     return new BackupTransactionLogStatement(
-                        databaseName: (IdentifierOrValueExpression)FromMutable(node.DatabaseName),
-                        options: node.Options.SelectList(c => (BackupOption)FromMutable(c)),
-                        mirrorToClauses: node.MirrorToClauses.SelectList(c => (MirrorToClause)FromMutable(c)),
-                        devices: node.Devices.SelectList(c => (DeviceInfo)FromMutable(c))
+                        databaseName: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.BackupTransactionLogStatement).DatabaseName),
+                        options: (fragment as ScriptDom.BackupTransactionLogStatement).Options.SelectList(c => (BackupOption)FromMutable(c)),
+                        mirrorToClauses: (fragment as ScriptDom.BackupTransactionLogStatement).MirrorToClauses.SelectList(c => (MirrorToClause)FromMutable(c)),
+                        devices: (fragment as ScriptDom.BackupTransactionLogStatement).Devices.SelectList(c => (DeviceInfo)FromMutable(c))
                     );
                 }
                 case 143: {
-                    var node = (ScriptDom.BackwardsCompatibleDropIndexClause)fragment;
                     return new BackwardsCompatibleDropIndexClause(
-                        index: (ChildObjectName)FromMutable(node.Index)
+                        index: (ChildObjectName)FromMutable((fragment as ScriptDom.BackwardsCompatibleDropIndexClause).Index)
                     );
                 }
                 case 144: {
-                    var node = (ScriptDom.BeginConversationTimerStatement)fragment;
                     return new BeginConversationTimerStatement(
-                        handle: (ScalarExpression)FromMutable(node.Handle),
-                        timeout: (ScalarExpression)FromMutable(node.Timeout)
+                        handle: (ScalarExpression)FromMutable((fragment as ScriptDom.BeginConversationTimerStatement).Handle),
+                        timeout: (ScalarExpression)FromMutable((fragment as ScriptDom.BeginConversationTimerStatement).Timeout)
                     );
                 }
                 case 145: {
-                    var node = (ScriptDom.BeginDialogStatement)fragment;
                     return new BeginDialogStatement(
-                        isConversation: node.IsConversation,
-                        handle: (VariableReference)FromMutable(node.Handle),
-                        initiatorServiceName: (IdentifierOrValueExpression)FromMutable(node.InitiatorServiceName),
-                        targetServiceName: (ValueExpression)FromMutable(node.TargetServiceName),
-                        instanceSpec: (ValueExpression)FromMutable(node.InstanceSpec),
-                        contractName: (IdentifierOrValueExpression)FromMutable(node.ContractName),
-                        options: node.Options.SelectList(c => (DialogOption)FromMutable(c))
+                        isConversation: (fragment as ScriptDom.BeginDialogStatement).IsConversation,
+                        handle: (VariableReference)FromMutable((fragment as ScriptDom.BeginDialogStatement).Handle),
+                        initiatorServiceName: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.BeginDialogStatement).InitiatorServiceName),
+                        targetServiceName: (ValueExpression)FromMutable((fragment as ScriptDom.BeginDialogStatement).TargetServiceName),
+                        instanceSpec: (ValueExpression)FromMutable((fragment as ScriptDom.BeginDialogStatement).InstanceSpec),
+                        contractName: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.BeginDialogStatement).ContractName),
+                        options: (fragment as ScriptDom.BeginDialogStatement).Options.SelectList(c => (DialogOption)FromMutable(c))
                     );
                 }
                 case 146: {
-                    var node = (ScriptDom.BeginEndAtomicBlockStatement)fragment;
                     return new BeginEndAtomicBlockStatement(
-                        options: node.Options.SelectList(c => (AtomicBlockOption)FromMutable(c)),
-                        statementList: (StatementList)FromMutable(node.StatementList)
+                        options: (fragment as ScriptDom.BeginEndAtomicBlockStatement).Options.SelectList(c => (AtomicBlockOption)FromMutable(c)),
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.BeginEndAtomicBlockStatement).StatementList)
                     );
                 }
                 case 147: {
-                    var node = (ScriptDom.BeginEndBlockStatement)fragment;
                     return new BeginEndBlockStatement(
-                        statementList: (StatementList)FromMutable(node.StatementList)
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.BeginEndBlockStatement).StatementList)
                     );
                 }
                 case 148: {
-                    var node = (ScriptDom.BeginTransactionStatement)fragment;
                     return new BeginTransactionStatement(
-                        distributed: node.Distributed,
-                        markDefined: node.MarkDefined,
-                        markDescription: (ValueExpression)FromMutable(node.MarkDescription),
-                        name: (IdentifierOrValueExpression)FromMutable(node.Name)
+                        distributed: (fragment as ScriptDom.BeginTransactionStatement).Distributed,
+                        markDefined: (fragment as ScriptDom.BeginTransactionStatement).MarkDefined,
+                        markDescription: (ValueExpression)FromMutable((fragment as ScriptDom.BeginTransactionStatement).MarkDescription),
+                        name: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.BeginTransactionStatement).Name)
                     );
                 }
                 case 149: {
-                    var node = (ScriptDom.BinaryExpression)fragment;
                     return new BinaryExpression(
-                        binaryExpressionType: node.BinaryExpressionType,
-                        firstExpression: (ScalarExpression)FromMutable(node.FirstExpression),
-                        secondExpression: (ScalarExpression)FromMutable(node.SecondExpression)
+                        binaryExpressionType: (fragment as ScriptDom.BinaryExpression).BinaryExpressionType,
+                        firstExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.BinaryExpression).FirstExpression),
+                        secondExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.BinaryExpression).SecondExpression)
                     );
                 }
                 case 150: {
-                    var node = (ScriptDom.BinaryLiteral)fragment;
                     return new BinaryLiteral(
-                        isLargeObject: node.IsLargeObject,
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        isLargeObject: (fragment as ScriptDom.BinaryLiteral).IsLargeObject,
+                        @value: (fragment as ScriptDom.BinaryLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.BinaryLiteral).Collation)
                     );
                 }
                 case 151: {
-                    var node = (ScriptDom.BinaryQueryExpression)fragment;
                     return new BinaryQueryExpression(
-                        binaryQueryExpressionType: node.BinaryQueryExpressionType,
-                        all: node.All,
-                        firstQueryExpression: (QueryExpression)FromMutable(node.FirstQueryExpression),
-                        secondQueryExpression: (QueryExpression)FromMutable(node.SecondQueryExpression),
-                        orderByClause: (OrderByClause)FromMutable(node.OrderByClause),
-                        offsetClause: (OffsetClause)FromMutable(node.OffsetClause),
-                        forClause: (ForClause)FromMutable(node.ForClause)
+                        binaryQueryExpressionType: (fragment as ScriptDom.BinaryQueryExpression).BinaryQueryExpressionType,
+                        all: (fragment as ScriptDom.BinaryQueryExpression).All,
+                        firstQueryExpression: (QueryExpression)FromMutable((fragment as ScriptDom.BinaryQueryExpression).FirstQueryExpression),
+                        secondQueryExpression: (QueryExpression)FromMutable((fragment as ScriptDom.BinaryQueryExpression).SecondQueryExpression),
+                        orderByClause: (OrderByClause)FromMutable((fragment as ScriptDom.BinaryQueryExpression).OrderByClause),
+                        offsetClause: (OffsetClause)FromMutable((fragment as ScriptDom.BinaryQueryExpression).OffsetClause),
+                        forClause: (ForClause)FromMutable((fragment as ScriptDom.BinaryQueryExpression).ForClause)
                     );
                 }
                 case 152: {
-                    var node = (ScriptDom.BooleanBinaryExpression)fragment;
                     return new BooleanBinaryExpression(
-                        binaryExpressionType: node.BinaryExpressionType,
-                        firstExpression: (BooleanExpression)FromMutable(node.FirstExpression),
-                        secondExpression: (BooleanExpression)FromMutable(node.SecondExpression)
+                        binaryExpressionType: (fragment as ScriptDom.BooleanBinaryExpression).BinaryExpressionType,
+                        firstExpression: (BooleanExpression)FromMutable((fragment as ScriptDom.BooleanBinaryExpression).FirstExpression),
+                        secondExpression: (BooleanExpression)FromMutable((fragment as ScriptDom.BooleanBinaryExpression).SecondExpression)
                     );
                 }
                 case 153: {
-                    var node = (ScriptDom.BooleanComparisonExpression)fragment;
                     return new BooleanComparisonExpression(
-                        comparisonType: node.ComparisonType,
-                        firstExpression: (ScalarExpression)FromMutable(node.FirstExpression),
-                        secondExpression: (ScalarExpression)FromMutable(node.SecondExpression)
+                        comparisonType: (fragment as ScriptDom.BooleanComparisonExpression).ComparisonType,
+                        firstExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.BooleanComparisonExpression).FirstExpression),
+                        secondExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.BooleanComparisonExpression).SecondExpression)
                     );
                 }
                 case 154: {
-                    var node = (ScriptDom.BooleanExpressionSnippet)fragment;
                     return new BooleanExpressionSnippet(
-                        script: node.Script
+                        script: (fragment as ScriptDom.BooleanExpressionSnippet).Script
                     );
                 }
                 case 155: {
-                    var node = (ScriptDom.BooleanIsNullExpression)fragment;
                     return new BooleanIsNullExpression(
-                        isNot: node.IsNot,
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        isNot: (fragment as ScriptDom.BooleanIsNullExpression).IsNot,
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.BooleanIsNullExpression).Expression)
                     );
                 }
                 case 156: {
-                    var node = (ScriptDom.BooleanNotExpression)fragment;
                     return new BooleanNotExpression(
-                        expression: (BooleanExpression)FromMutable(node.Expression)
+                        expression: (BooleanExpression)FromMutable((fragment as ScriptDom.BooleanNotExpression).Expression)
                     );
                 }
                 case 157: {
-                    var node = (ScriptDom.BooleanParenthesisExpression)fragment;
                     return new BooleanParenthesisExpression(
-                        expression: (BooleanExpression)FromMutable(node.Expression)
+                        expression: (BooleanExpression)FromMutable((fragment as ScriptDom.BooleanParenthesisExpression).Expression)
                     );
                 }
                 case 158: {
-                    var node = (ScriptDom.BooleanTernaryExpression)fragment;
                     return new BooleanTernaryExpression(
-                        ternaryExpressionType: node.TernaryExpressionType,
-                        firstExpression: (ScalarExpression)FromMutable(node.FirstExpression),
-                        secondExpression: (ScalarExpression)FromMutable(node.SecondExpression),
-                        thirdExpression: (ScalarExpression)FromMutable(node.ThirdExpression)
+                        ternaryExpressionType: (fragment as ScriptDom.BooleanTernaryExpression).TernaryExpressionType,
+                        firstExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.BooleanTernaryExpression).FirstExpression),
+                        secondExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.BooleanTernaryExpression).SecondExpression),
+                        thirdExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.BooleanTernaryExpression).ThirdExpression)
                     );
                 }
                 case 159: {
-                    var node = (ScriptDom.BoundingBoxParameter)fragment;
                     return new BoundingBoxParameter(
-                        parameter: node.Parameter,
-                        @value: (ScalarExpression)FromMutable(node.Value)
+                        parameter: (fragment as ScriptDom.BoundingBoxParameter).Parameter,
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.BoundingBoxParameter).Value)
                     );
                 }
                 case 160: {
-                    var node = (ScriptDom.BoundingBoxSpatialIndexOption)fragment;
                     return new BoundingBoxSpatialIndexOption(
-                        boundingBoxParameters: node.BoundingBoxParameters.SelectList(c => (BoundingBoxParameter)FromMutable(c))
+                        boundingBoxParameters: (fragment as ScriptDom.BoundingBoxSpatialIndexOption).BoundingBoxParameters.SelectList(c => (BoundingBoxParameter)FromMutable(c))
                     );
                 }
                 case 161: {
-                    var node = (ScriptDom.BreakStatement)fragment;
                     return new BreakStatement(
                         
                     );
                 }
                 case 162: {
-                    var node = (ScriptDom.BrokerPriorityParameter)fragment;
                     return new BrokerPriorityParameter(
-                        isDefaultOrAny: node.IsDefaultOrAny,
-                        parameterType: node.ParameterType,
-                        parameterValue: (IdentifierOrValueExpression)FromMutable(node.ParameterValue)
+                        isDefaultOrAny: (fragment as ScriptDom.BrokerPriorityParameter).IsDefaultOrAny,
+                        parameterType: (fragment as ScriptDom.BrokerPriorityParameter).ParameterType,
+                        parameterValue: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.BrokerPriorityParameter).ParameterValue)
                     );
                 }
                 case 163: {
-                    var node = (ScriptDom.BrowseForClause)fragment;
                     return new BrowseForClause(
                         
                     );
                 }
                 case 164: {
-                    var node = (ScriptDom.BuiltInFunctionTableReference)fragment;
                     return new BuiltInFunctionTableReference(
-                        name: (Identifier)FromMutable(node.Name),
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        name: (Identifier)FromMutable((fragment as ScriptDom.BuiltInFunctionTableReference).Name),
+                        parameters: (fragment as ScriptDom.BuiltInFunctionTableReference).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.BuiltInFunctionTableReference).Alias),
+                        forPath: (fragment as ScriptDom.BuiltInFunctionTableReference).ForPath
                     );
                 }
                 case 165: {
-                    var node = (ScriptDom.BulkInsertOption)fragment;
                     return new BulkInsertOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.BulkInsertOption).OptionKind
                     );
                 }
                 case 166: {
-                    var node = (ScriptDom.BulkInsertStatement)fragment;
                     return new BulkInsertStatement(
-                        from: (IdentifierOrValueExpression)FromMutable(node.From),
-                        to: (SchemaObjectName)FromMutable(node.To),
-                        options: node.Options.SelectList(c => (BulkInsertOption)FromMutable(c))
+                        from: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.BulkInsertStatement).From),
+                        to: (SchemaObjectName)FromMutable((fragment as ScriptDom.BulkInsertStatement).To),
+                        options: (fragment as ScriptDom.BulkInsertStatement).Options.SelectList(c => (BulkInsertOption)FromMutable(c))
                     );
                 }
                 case 167: {
-                    var node = (ScriptDom.BulkOpenRowset)fragment;
                     return new BulkOpenRowset(
-                        dataFiles: node.DataFiles.SelectList(c => (StringLiteral)FromMutable(c)),
-                        options: node.Options.SelectList(c => (BulkInsertOption)FromMutable(c)),
-                        withColumns: node.WithColumns.SelectList(c => (OpenRowsetColumnDefinition)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        dataFiles: (fragment as ScriptDom.BulkOpenRowset).DataFiles.SelectList(c => (StringLiteral)FromMutable(c)),
+                        options: (fragment as ScriptDom.BulkOpenRowset).Options.SelectList(c => (BulkInsertOption)FromMutable(c)),
+                        withColumns: (fragment as ScriptDom.BulkOpenRowset).WithColumns.SelectList(c => (OpenRowsetColumnDefinition)FromMutable(c)),
+                        columns: (fragment as ScriptDom.BulkOpenRowset).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.BulkOpenRowset).Alias),
+                        forPath: (fragment as ScriptDom.BulkOpenRowset).ForPath
                     );
                 }
                 case 168: {
-                    var node = (ScriptDom.CastCall)fragment;
                     return new CastCall(
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        parameter: (ScalarExpression)FromMutable(node.Parameter),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.CastCall).DataType),
+                        parameter: (ScalarExpression)FromMutable((fragment as ScriptDom.CastCall).Parameter),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.CastCall).Collation)
                     );
                 }
                 case 169: {
-                    var node = (ScriptDom.CatalogCollationOption)fragment;
                     return new CatalogCollationOption(
-                        catalogCollation: node.CatalogCollation,
-                        optionKind: node.OptionKind
+                        catalogCollation: (fragment as ScriptDom.CatalogCollationOption).CatalogCollation,
+                        optionKind: (fragment as ScriptDom.CatalogCollationOption).OptionKind
                     );
                 }
                 case 170: {
-                    var node = (ScriptDom.CellsPerObjectSpatialIndexOption)fragment;
                     return new CellsPerObjectSpatialIndexOption(
-                        @value: (Literal)FromMutable(node.Value)
+                        @value: (Literal)FromMutable((fragment as ScriptDom.CellsPerObjectSpatialIndexOption).Value)
                     );
                 }
                 case 171: {
-                    var node = (ScriptDom.CertificateCreateLoginSource)fragment;
                     return new CertificateCreateLoginSource(
-                        certificate: (Identifier)FromMutable(node.Certificate),
-                        credential: (Identifier)FromMutable(node.Credential)
+                        certificate: (Identifier)FromMutable((fragment as ScriptDom.CertificateCreateLoginSource).Certificate),
+                        credential: (Identifier)FromMutable((fragment as ScriptDom.CertificateCreateLoginSource).Credential)
                     );
                 }
                 case 172: {
-                    var node = (ScriptDom.CertificateOption)fragment;
                     return new CertificateOption(
-                        kind: node.Kind,
-                        @value: (Literal)FromMutable(node.Value)
+                        kind: (fragment as ScriptDom.CertificateOption).Kind,
+                        @value: (Literal)FromMutable((fragment as ScriptDom.CertificateOption).Value)
                     );
                 }
                 case 173: {
-                    var node = (ScriptDom.ChangeRetentionChangeTrackingOptionDetail)fragment;
                     return new ChangeRetentionChangeTrackingOptionDetail(
-                        retentionPeriod: (Literal)FromMutable(node.RetentionPeriod),
-                        unit: node.Unit
+                        retentionPeriod: (Literal)FromMutable((fragment as ScriptDom.ChangeRetentionChangeTrackingOptionDetail).RetentionPeriod),
+                        unit: (fragment as ScriptDom.ChangeRetentionChangeTrackingOptionDetail).Unit
                     );
                 }
                 case 174: {
-                    var node = (ScriptDom.ChangeTableChangesTableReference)fragment;
                     return new ChangeTableChangesTableReference(
-                        target: (SchemaObjectName)FromMutable(node.Target),
-                        sinceVersion: (ValueExpression)FromMutable(node.SinceVersion),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        target: (SchemaObjectName)FromMutable((fragment as ScriptDom.ChangeTableChangesTableReference).Target),
+                        sinceVersion: (ValueExpression)FromMutable((fragment as ScriptDom.ChangeTableChangesTableReference).SinceVersion),
+                        columns: (fragment as ScriptDom.ChangeTableChangesTableReference).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.ChangeTableChangesTableReference).Alias),
+                        forPath: (fragment as ScriptDom.ChangeTableChangesTableReference).ForPath
                     );
                 }
                 case 175: {
-                    var node = (ScriptDom.ChangeTableVersionTableReference)fragment;
                     return new ChangeTableVersionTableReference(
-                        target: (SchemaObjectName)FromMutable(node.Target),
-                        primaryKeyColumns: node.PrimaryKeyColumns.SelectList(c => (Identifier)FromMutable(c)),
-                        primaryKeyValues: node.PrimaryKeyValues.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        target: (SchemaObjectName)FromMutable((fragment as ScriptDom.ChangeTableVersionTableReference).Target),
+                        primaryKeyColumns: (fragment as ScriptDom.ChangeTableVersionTableReference).PrimaryKeyColumns.SelectList(c => (Identifier)FromMutable(c)),
+                        primaryKeyValues: (fragment as ScriptDom.ChangeTableVersionTableReference).PrimaryKeyValues.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        columns: (fragment as ScriptDom.ChangeTableVersionTableReference).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.ChangeTableVersionTableReference).Alias),
+                        forPath: (fragment as ScriptDom.ChangeTableVersionTableReference).ForPath
                     );
                 }
                 case 176: {
-                    var node = (ScriptDom.ChangeTrackingDatabaseOption)fragment;
                     return new ChangeTrackingDatabaseOption(
-                        optionState: node.OptionState,
-                        details: node.Details.SelectList(c => (ChangeTrackingOptionDetail)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.ChangeTrackingDatabaseOption).OptionState,
+                        details: (fragment as ScriptDom.ChangeTrackingDatabaseOption).Details.SelectList(c => (ChangeTrackingOptionDetail)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.ChangeTrackingDatabaseOption).OptionKind
                     );
                 }
                 case 177: {
-                    var node = (ScriptDom.ChangeTrackingFullTextIndexOption)fragment;
                     return new ChangeTrackingFullTextIndexOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.ChangeTrackingFullTextIndexOption).Value,
+                        optionKind: (fragment as ScriptDom.ChangeTrackingFullTextIndexOption).OptionKind
                     );
                 }
                 case 178: {
-                    var node = (ScriptDom.CharacterSetPayloadOption)fragment;
                     return new CharacterSetPayloadOption(
-                        isSql: node.IsSql,
-                        kind: node.Kind
+                        isSql: (fragment as ScriptDom.CharacterSetPayloadOption).IsSql,
+                        kind: (fragment as ScriptDom.CharacterSetPayloadOption).Kind
                     );
                 }
                 case 179: {
-                    var node = (ScriptDom.CheckConstraintDefinition)fragment;
                     return new CheckConstraintDefinition(
-                        checkCondition: (BooleanExpression)FromMutable(node.CheckCondition),
-                        notForReplication: node.NotForReplication,
-                        constraintIdentifier: (Identifier)FromMutable(node.ConstraintIdentifier)
+                        checkCondition: (BooleanExpression)FromMutable((fragment as ScriptDom.CheckConstraintDefinition).CheckCondition),
+                        notForReplication: (fragment as ScriptDom.CheckConstraintDefinition).NotForReplication,
+                        constraintIdentifier: (Identifier)FromMutable((fragment as ScriptDom.CheckConstraintDefinition).ConstraintIdentifier)
                     );
                 }
                 case 180: {
-                    var node = (ScriptDom.CheckpointStatement)fragment;
                     return new CheckpointStatement(
-                        duration: (Literal)FromMutable(node.Duration)
+                        duration: (Literal)FromMutable((fragment as ScriptDom.CheckpointStatement).Duration)
                     );
                 }
                 case 181: {
-                    var node = (ScriptDom.ChildObjectName)fragment;
                     return new ChildObjectName(
-                        identifiers: node.Identifiers.SelectList(c => (Identifier)FromMutable(c))
+                        identifiers: (fragment as ScriptDom.ChildObjectName).Identifiers.SelectList(c => (Identifier)FromMutable(c))
                     );
                 }
                 case 182: {
-                    var node = (ScriptDom.ClassifierEndTimeOption)fragment;
                     return new ClassifierEndTimeOption(
-                        time: (WlmTimeLiteral)FromMutable(node.Time),
-                        optionType: node.OptionType
+                        time: (WlmTimeLiteral)FromMutable((fragment as ScriptDom.ClassifierEndTimeOption).Time),
+                        optionType: (fragment as ScriptDom.ClassifierEndTimeOption).OptionType
                     );
                 }
                 case 183: {
-                    var node = (ScriptDom.ClassifierImportanceOption)fragment;
                     return new ClassifierImportanceOption(
-                        importance: node.Importance,
-                        optionType: node.OptionType
+                        importance: (fragment as ScriptDom.ClassifierImportanceOption).Importance,
+                        optionType: (fragment as ScriptDom.ClassifierImportanceOption).OptionType
                     );
                 }
                 case 184: {
-                    var node = (ScriptDom.ClassifierMemberNameOption)fragment;
                     return new ClassifierMemberNameOption(
-                        memberName: (StringLiteral)FromMutable(node.MemberName),
-                        optionType: node.OptionType
+                        memberName: (StringLiteral)FromMutable((fragment as ScriptDom.ClassifierMemberNameOption).MemberName),
+                        optionType: (fragment as ScriptDom.ClassifierMemberNameOption).OptionType
                     );
                 }
                 case 185: {
-                    var node = (ScriptDom.ClassifierStartTimeOption)fragment;
                     return new ClassifierStartTimeOption(
-                        time: (WlmTimeLiteral)FromMutable(node.Time),
-                        optionType: node.OptionType
+                        time: (WlmTimeLiteral)FromMutable((fragment as ScriptDom.ClassifierStartTimeOption).Time),
+                        optionType: (fragment as ScriptDom.ClassifierStartTimeOption).OptionType
                     );
                 }
                 case 186: {
-                    var node = (ScriptDom.ClassifierWlmContextOption)fragment;
                     return new ClassifierWlmContextOption(
-                        wlmContext: (StringLiteral)FromMutable(node.WlmContext),
-                        optionType: node.OptionType
+                        wlmContext: (StringLiteral)FromMutable((fragment as ScriptDom.ClassifierWlmContextOption).WlmContext),
+                        optionType: (fragment as ScriptDom.ClassifierWlmContextOption).OptionType
                     );
                 }
                 case 187: {
-                    var node = (ScriptDom.ClassifierWlmLabelOption)fragment;
                     return new ClassifierWlmLabelOption(
-                        wlmLabel: (StringLiteral)FromMutable(node.WlmLabel),
-                        optionType: node.OptionType
+                        wlmLabel: (StringLiteral)FromMutable((fragment as ScriptDom.ClassifierWlmLabelOption).WlmLabel),
+                        optionType: (fragment as ScriptDom.ClassifierWlmLabelOption).OptionType
                     );
                 }
                 case 188: {
-                    var node = (ScriptDom.ClassifierWorkloadGroupOption)fragment;
                     return new ClassifierWorkloadGroupOption(
-                        workloadGroupName: (StringLiteral)FromMutable(node.WorkloadGroupName),
-                        optionType: node.OptionType
+                        workloadGroupName: (StringLiteral)FromMutable((fragment as ScriptDom.ClassifierWorkloadGroupOption).WorkloadGroupName),
+                        optionType: (fragment as ScriptDom.ClassifierWorkloadGroupOption).OptionType
                     );
                 }
                 case 189: {
-                    var node = (ScriptDom.CloseCursorStatement)fragment;
                     return new CloseCursorStatement(
-                        cursor: (CursorId)FromMutable(node.Cursor)
+                        cursor: (CursorId)FromMutable((fragment as ScriptDom.CloseCursorStatement).Cursor)
                     );
                 }
                 case 190: {
-                    var node = (ScriptDom.CloseMasterKeyStatement)fragment;
                     return new CloseMasterKeyStatement(
                         
                     );
                 }
                 case 191: {
-                    var node = (ScriptDom.CloseSymmetricKeyStatement)fragment;
                     return new CloseSymmetricKeyStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        all: node.All
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CloseSymmetricKeyStatement).Name),
+                        all: (fragment as ScriptDom.CloseSymmetricKeyStatement).All
                     );
                 }
                 case 192: {
-                    var node = (ScriptDom.CoalesceExpression)fragment;
                     return new CoalesceExpression(
-                        expressions: node.Expressions.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        expressions: (fragment as ScriptDom.CoalesceExpression).Expressions.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.CoalesceExpression).Collation)
                     );
                 }
                 case 193: {
-                    var node = (ScriptDom.ColumnDefinition)fragment;
                     return new ColumnDefinition(
-                        computedColumnExpression: (ScalarExpression)FromMutable(node.ComputedColumnExpression),
-                        isPersisted: node.IsPersisted,
-                        defaultConstraint: (DefaultConstraintDefinition)FromMutable(node.DefaultConstraint),
-                        identityOptions: (IdentityOptions)FromMutable(node.IdentityOptions),
-                        isRowGuidCol: node.IsRowGuidCol,
-                        constraints: node.Constraints.SelectList(c => (ConstraintDefinition)FromMutable(c)),
-                        storageOptions: (ColumnStorageOptions)FromMutable(node.StorageOptions),
-                        index: (IndexDefinition)FromMutable(node.Index),
-                        generatedAlways: node.GeneratedAlways,
-                        isHidden: node.IsHidden,
-                        encryption: (ColumnEncryptionDefinition)FromMutable(node.Encryption),
-                        isMasked: node.IsMasked,
-                        maskingFunction: (StringLiteral)FromMutable(node.MaskingFunction),
-                        columnIdentifier: (Identifier)FromMutable(node.ColumnIdentifier),
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        computedColumnExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.ColumnDefinition).ComputedColumnExpression),
+                        isPersisted: (fragment as ScriptDom.ColumnDefinition).IsPersisted,
+                        defaultConstraint: (DefaultConstraintDefinition)FromMutable((fragment as ScriptDom.ColumnDefinition).DefaultConstraint),
+                        identityOptions: (IdentityOptions)FromMutable((fragment as ScriptDom.ColumnDefinition).IdentityOptions),
+                        isRowGuidCol: (fragment as ScriptDom.ColumnDefinition).IsRowGuidCol,
+                        constraints: (fragment as ScriptDom.ColumnDefinition).Constraints.SelectList(c => (ConstraintDefinition)FromMutable(c)),
+                        storageOptions: (ColumnStorageOptions)FromMutable((fragment as ScriptDom.ColumnDefinition).StorageOptions),
+                        index: (IndexDefinition)FromMutable((fragment as ScriptDom.ColumnDefinition).Index),
+                        generatedAlways: (fragment as ScriptDom.ColumnDefinition).GeneratedAlways,
+                        isHidden: (fragment as ScriptDom.ColumnDefinition).IsHidden,
+                        encryption: (ColumnEncryptionDefinition)FromMutable((fragment as ScriptDom.ColumnDefinition).Encryption),
+                        isMasked: (fragment as ScriptDom.ColumnDefinition).IsMasked,
+                        maskingFunction: (StringLiteral)FromMutable((fragment as ScriptDom.ColumnDefinition).MaskingFunction),
+                        columnIdentifier: (Identifier)FromMutable((fragment as ScriptDom.ColumnDefinition).ColumnIdentifier),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.ColumnDefinition).DataType),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.ColumnDefinition).Collation)
                     );
                 }
                 case 194: {
-                    var node = (ScriptDom.ColumnDefinitionBase)fragment;
                     return new ColumnDefinitionBase(
-                        columnIdentifier: (Identifier)FromMutable(node.ColumnIdentifier),
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        columnIdentifier: (Identifier)FromMutable((fragment as ScriptDom.ColumnDefinitionBase).ColumnIdentifier),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.ColumnDefinitionBase).DataType),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.ColumnDefinitionBase).Collation)
                     );
                 }
                 case 195: {
-                    var node = (ScriptDom.ColumnEncryptionAlgorithmNameParameter)fragment;
                     return new ColumnEncryptionAlgorithmNameParameter(
-                        algorithm: (StringLiteral)FromMutable(node.Algorithm),
-                        parameterKind: node.ParameterKind
+                        algorithm: (StringLiteral)FromMutable((fragment as ScriptDom.ColumnEncryptionAlgorithmNameParameter).Algorithm),
+                        parameterKind: (fragment as ScriptDom.ColumnEncryptionAlgorithmNameParameter).ParameterKind
                     );
                 }
                 case 196: {
-                    var node = (ScriptDom.ColumnEncryptionAlgorithmParameter)fragment;
                     return new ColumnEncryptionAlgorithmParameter(
-                        encryptionAlgorithm: (StringLiteral)FromMutable(node.EncryptionAlgorithm),
-                        parameterKind: node.ParameterKind
+                        encryptionAlgorithm: (StringLiteral)FromMutable((fragment as ScriptDom.ColumnEncryptionAlgorithmParameter).EncryptionAlgorithm),
+                        parameterKind: (fragment as ScriptDom.ColumnEncryptionAlgorithmParameter).ParameterKind
                     );
                 }
                 case 197: {
-                    var node = (ScriptDom.ColumnEncryptionDefinition)fragment;
                     return new ColumnEncryptionDefinition(
-                        parameters: node.Parameters.SelectList(c => (ColumnEncryptionDefinitionParameter)FromMutable(c))
+                        parameters: (fragment as ScriptDom.ColumnEncryptionDefinition).Parameters.SelectList(c => (ColumnEncryptionDefinitionParameter)FromMutable(c))
                     );
                 }
                 case 198: {
-                    var node = (ScriptDom.ColumnEncryptionKeyNameParameter)fragment;
                     return new ColumnEncryptionKeyNameParameter(
-                        name: (Identifier)FromMutable(node.Name),
-                        parameterKind: node.ParameterKind
+                        name: (Identifier)FromMutable((fragment as ScriptDom.ColumnEncryptionKeyNameParameter).Name),
+                        parameterKind: (fragment as ScriptDom.ColumnEncryptionKeyNameParameter).ParameterKind
                     );
                 }
                 case 199: {
-                    var node = (ScriptDom.ColumnEncryptionKeyValue)fragment;
                     return new ColumnEncryptionKeyValue(
-                        parameters: node.Parameters.SelectList(c => (ColumnEncryptionKeyValueParameter)FromMutable(c))
+                        parameters: (fragment as ScriptDom.ColumnEncryptionKeyValue).Parameters.SelectList(c => (ColumnEncryptionKeyValueParameter)FromMutable(c))
                     );
                 }
                 case 200: {
-                    var node = (ScriptDom.ColumnEncryptionTypeParameter)fragment;
                     return new ColumnEncryptionTypeParameter(
-                        encryptionType: node.EncryptionType,
-                        parameterKind: node.ParameterKind
+                        encryptionType: (fragment as ScriptDom.ColumnEncryptionTypeParameter).EncryptionType,
+                        parameterKind: (fragment as ScriptDom.ColumnEncryptionTypeParameter).ParameterKind
                     );
                 }
                 case 201: {
-                    var node = (ScriptDom.ColumnMasterKeyEnclaveComputationsParameter)fragment;
                     return new ColumnMasterKeyEnclaveComputationsParameter(
-                        signature: (BinaryLiteral)FromMutable(node.Signature),
-                        parameterKind: node.ParameterKind
+                        signature: (BinaryLiteral)FromMutable((fragment as ScriptDom.ColumnMasterKeyEnclaveComputationsParameter).Signature),
+                        parameterKind: (fragment as ScriptDom.ColumnMasterKeyEnclaveComputationsParameter).ParameterKind
                     );
                 }
                 case 202: {
-                    var node = (ScriptDom.ColumnMasterKeyNameParameter)fragment;
                     return new ColumnMasterKeyNameParameter(
-                        name: (Identifier)FromMutable(node.Name),
-                        parameterKind: node.ParameterKind
+                        name: (Identifier)FromMutable((fragment as ScriptDom.ColumnMasterKeyNameParameter).Name),
+                        parameterKind: (fragment as ScriptDom.ColumnMasterKeyNameParameter).ParameterKind
                     );
                 }
                 case 203: {
-                    var node = (ScriptDom.ColumnMasterKeyPathParameter)fragment;
                     return new ColumnMasterKeyPathParameter(
-                        path: (StringLiteral)FromMutable(node.Path),
-                        parameterKind: node.ParameterKind
+                        path: (StringLiteral)FromMutable((fragment as ScriptDom.ColumnMasterKeyPathParameter).Path),
+                        parameterKind: (fragment as ScriptDom.ColumnMasterKeyPathParameter).ParameterKind
                     );
                 }
                 case 204: {
-                    var node = (ScriptDom.ColumnMasterKeyStoreProviderNameParameter)fragment;
                     return new ColumnMasterKeyStoreProviderNameParameter(
-                        name: (StringLiteral)FromMutable(node.Name),
-                        parameterKind: node.ParameterKind
+                        name: (StringLiteral)FromMutable((fragment as ScriptDom.ColumnMasterKeyStoreProviderNameParameter).Name),
+                        parameterKind: (fragment as ScriptDom.ColumnMasterKeyStoreProviderNameParameter).ParameterKind
                     );
                 }
                 case 205: {
-                    var node = (ScriptDom.ColumnReferenceExpression)fragment;
                     return new ColumnReferenceExpression(
-                        columnType: node.ColumnType,
-                        multiPartIdentifier: (MultiPartIdentifier)FromMutable(node.MultiPartIdentifier),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        columnType: (fragment as ScriptDom.ColumnReferenceExpression).ColumnType,
+                        multiPartIdentifier: (MultiPartIdentifier)FromMutable((fragment as ScriptDom.ColumnReferenceExpression).MultiPartIdentifier),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.ColumnReferenceExpression).Collation)
                     );
                 }
                 case 206: {
-                    var node = (ScriptDom.ColumnStorageOptions)fragment;
                     return new ColumnStorageOptions(
-                        isFileStream: node.IsFileStream,
-                        sparseOption: node.SparseOption
+                        isFileStream: (fragment as ScriptDom.ColumnStorageOptions).IsFileStream,
+                        sparseOption: (fragment as ScriptDom.ColumnStorageOptions).SparseOption
                     );
                 }
                 case 207: {
-                    var node = (ScriptDom.ColumnWithSortOrder)fragment;
                     return new ColumnWithSortOrder(
-                        column: (ColumnReferenceExpression)FromMutable(node.Column),
-                        sortOrder: node.SortOrder
+                        column: (ColumnReferenceExpression)FromMutable((fragment as ScriptDom.ColumnWithSortOrder).Column),
+                        sortOrder: (fragment as ScriptDom.ColumnWithSortOrder).SortOrder
                     );
                 }
                 case 208: {
-                    var node = (ScriptDom.CommandSecurityElement80)fragment;
                     return new CommandSecurityElement80(
-                        all: node.All,
-                        commandOptions: node.CommandOptions
+                        all: (fragment as ScriptDom.CommandSecurityElement80).All,
+                        commandOptions: (fragment as ScriptDom.CommandSecurityElement80).CommandOptions
                     );
                 }
                 case 209: {
-                    var node = (ScriptDom.CommitTransactionStatement)fragment;
                     return new CommitTransactionStatement(
-                        delayedDurabilityOption: node.DelayedDurabilityOption,
-                        name: (IdentifierOrValueExpression)FromMutable(node.Name)
+                        delayedDurabilityOption: (fragment as ScriptDom.CommitTransactionStatement).DelayedDurabilityOption,
+                        name: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.CommitTransactionStatement).Name)
                     );
                 }
                 case 210: {
-                    var node = (ScriptDom.CommonTableExpression)fragment;
                     return new CommonTableExpression(
-                        expressionName: (Identifier)FromMutable(node.ExpressionName),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        queryExpression: (QueryExpression)FromMutable(node.QueryExpression)
+                        expressionName: (Identifier)FromMutable((fragment as ScriptDom.CommonTableExpression).ExpressionName),
+                        columns: (fragment as ScriptDom.CommonTableExpression).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        queryExpression: (QueryExpression)FromMutable((fragment as ScriptDom.CommonTableExpression).QueryExpression)
                     );
                 }
                 case 211: {
-                    var node = (ScriptDom.CompositeGroupingSpecification)fragment;
                     return new CompositeGroupingSpecification(
-                        items: node.Items.SelectList(c => (GroupingSpecification)FromMutable(c))
+                        items: (fragment as ScriptDom.CompositeGroupingSpecification).Items.SelectList(c => (GroupingSpecification)FromMutable(c))
                     );
                 }
                 case 212: {
-                    var node = (ScriptDom.CompressionDelayIndexOption)fragment;
                     return new CompressionDelayIndexOption(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        timeUnit: node.TimeUnit,
-                        optionKind: node.OptionKind
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.CompressionDelayIndexOption).Expression),
+                        timeUnit: (fragment as ScriptDom.CompressionDelayIndexOption).TimeUnit,
+                        optionKind: (fragment as ScriptDom.CompressionDelayIndexOption).OptionKind
                     );
                 }
                 case 213: {
-                    var node = (ScriptDom.CompressionEndpointProtocolOption)fragment;
                     return new CompressionEndpointProtocolOption(
-                        isEnabled: node.IsEnabled,
-                        kind: node.Kind
+                        isEnabled: (fragment as ScriptDom.CompressionEndpointProtocolOption).IsEnabled,
+                        kind: (fragment as ScriptDom.CompressionEndpointProtocolOption).Kind
                     );
                 }
                 case 214: {
-                    var node = (ScriptDom.CompressionPartitionRange)fragment;
                     return new CompressionPartitionRange(
-                        from: (ScalarExpression)FromMutable(node.From),
-                        to: (ScalarExpression)FromMutable(node.To)
+                        from: (ScalarExpression)FromMutable((fragment as ScriptDom.CompressionPartitionRange).From),
+                        to: (ScalarExpression)FromMutable((fragment as ScriptDom.CompressionPartitionRange).To)
                     );
                 }
                 case 215: {
-                    var node = (ScriptDom.ComputeClause)fragment;
                     return new ComputeClause(
-                        computeFunctions: node.ComputeFunctions.SelectList(c => (ComputeFunction)FromMutable(c)),
-                        byExpressions: node.ByExpressions.SelectList(c => (ScalarExpression)FromMutable(c))
+                        computeFunctions: (fragment as ScriptDom.ComputeClause).ComputeFunctions.SelectList(c => (ComputeFunction)FromMutable(c)),
+                        byExpressions: (fragment as ScriptDom.ComputeClause).ByExpressions.SelectList(c => (ScalarExpression)FromMutable(c))
                     );
                 }
                 case 216: {
-                    var node = (ScriptDom.ComputeFunction)fragment;
                     return new ComputeFunction(
-                        computeFunctionType: node.ComputeFunctionType,
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        computeFunctionType: (fragment as ScriptDom.ComputeFunction).ComputeFunctionType,
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.ComputeFunction).Expression)
                     );
                 }
                 case 217: {
-                    var node = (ScriptDom.ContainmentDatabaseOption)fragment;
                     return new ContainmentDatabaseOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.ContainmentDatabaseOption).Value,
+                        optionKind: (fragment as ScriptDom.ContainmentDatabaseOption).OptionKind
                     );
                 }
                 case 218: {
-                    var node = (ScriptDom.ContinueStatement)fragment;
                     return new ContinueStatement(
                         
                     );
                 }
                 case 219: {
-                    var node = (ScriptDom.ContractMessage)fragment;
                     return new ContractMessage(
-                        name: (Identifier)FromMutable(node.Name),
-                        sentBy: node.SentBy
+                        name: (Identifier)FromMutable((fragment as ScriptDom.ContractMessage).Name),
+                        sentBy: (fragment as ScriptDom.ContractMessage).SentBy
                     );
                 }
                 case 220: {
-                    var node = (ScriptDom.ConvertCall)fragment;
                     return new ConvertCall(
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        parameter: (ScalarExpression)FromMutable(node.Parameter),
-                        style: (ScalarExpression)FromMutable(node.Style),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.ConvertCall).DataType),
+                        parameter: (ScalarExpression)FromMutable((fragment as ScriptDom.ConvertCall).Parameter),
+                        style: (ScalarExpression)FromMutable((fragment as ScriptDom.ConvertCall).Style),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.ConvertCall).Collation)
                     );
                 }
                 case 221: {
-                    var node = (ScriptDom.CopyColumnOption)fragment;
                     return new CopyColumnOption(
-                        columnName: (Identifier)FromMutable(node.ColumnName),
-                        defaultValue: (ScalarExpression)FromMutable(node.DefaultValue),
-                        fieldNumber: (IntegerLiteral)FromMutable(node.FieldNumber)
+                        columnName: (Identifier)FromMutable((fragment as ScriptDom.CopyColumnOption).ColumnName),
+                        defaultValue: (ScalarExpression)FromMutable((fragment as ScriptDom.CopyColumnOption).DefaultValue),
+                        fieldNumber: (IntegerLiteral)FromMutable((fragment as ScriptDom.CopyColumnOption).FieldNumber)
                     );
                 }
                 case 222: {
-                    var node = (ScriptDom.CopyCredentialOption)fragment;
                     return new CopyCredentialOption(
-                        identity: (StringLiteral)FromMutable(node.Identity),
-                        secret: (StringLiteral)FromMutable(node.Secret)
+                        identity: (StringLiteral)FromMutable((fragment as ScriptDom.CopyCredentialOption).Identity),
+                        secret: (StringLiteral)FromMutable((fragment as ScriptDom.CopyCredentialOption).Secret)
                     );
                 }
                 case 223: {
-                    var node = (ScriptDom.CopyOption)fragment;
                     return new CopyOption(
-                        kind: node.Kind,
-                        @value: (CopyStatementOptionBase)FromMutable(node.Value)
+                        kind: (fragment as ScriptDom.CopyOption).Kind,
+                        @value: (CopyStatementOptionBase)FromMutable((fragment as ScriptDom.CopyOption).Value)
                     );
                 }
                 case 224: {
-                    var node = (ScriptDom.CopyStatement)fragment;
                     return new CopyStatement(
-                        from: node.From.SelectList(c => (StringLiteral)FromMutable(c)),
-                        into: (SchemaObjectName)FromMutable(node.Into),
-                        options: node.Options.SelectList(c => (CopyOption)FromMutable(c)),
-                        optimizerHints: node.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                        from: (fragment as ScriptDom.CopyStatement).From.SelectList(c => (StringLiteral)FromMutable(c)),
+                        into: (SchemaObjectName)FromMutable((fragment as ScriptDom.CopyStatement).Into),
+                        options: (fragment as ScriptDom.CopyStatement).Options.SelectList(c => (CopyOption)FromMutable(c)),
+                        optimizerHints: (fragment as ScriptDom.CopyStatement).OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
                     );
                 }
                 case 225: {
-                    var node = (ScriptDom.CreateAggregateStatement)fragment;
                     return new CreateAggregateStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        assemblyName: (AssemblyName)FromMutable(node.AssemblyName),
-                        parameters: node.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                        returnType: (DataTypeReference)FromMutable(node.ReturnType)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateAggregateStatement).Name),
+                        assemblyName: (AssemblyName)FromMutable((fragment as ScriptDom.CreateAggregateStatement).AssemblyName),
+                        parameters: (fragment as ScriptDom.CreateAggregateStatement).Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
+                        returnType: (DataTypeReference)FromMutable((fragment as ScriptDom.CreateAggregateStatement).ReturnType)
                     );
                 }
                 case 226: {
-                    var node = (ScriptDom.CreateApplicationRoleStatement)fragment;
                     return new CreateApplicationRoleStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        applicationRoleOptions: node.ApplicationRoleOptions.SelectList(c => (ApplicationRoleOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateApplicationRoleStatement).Name),
+                        applicationRoleOptions: (fragment as ScriptDom.CreateApplicationRoleStatement).ApplicationRoleOptions.SelectList(c => (ApplicationRoleOption)FromMutable(c))
                     );
                 }
                 case 227: {
-                    var node = (ScriptDom.CreateAssemblyStatement)fragment;
                     return new CreateAssemblyStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        options: node.Options.SelectList(c => (AssemblyOption)FromMutable(c))
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateAssemblyStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateAssemblyStatement).Name),
+                        parameters: (fragment as ScriptDom.CreateAssemblyStatement).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        options: (fragment as ScriptDom.CreateAssemblyStatement).Options.SelectList(c => (AssemblyOption)FromMutable(c))
                     );
                 }
                 case 228: {
-                    var node = (ScriptDom.CreateAsymmetricKeyStatement)fragment;
                     return new CreateAsymmetricKeyStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        keySource: (EncryptionSource)FromMutable(node.KeySource),
-                        encryptionAlgorithm: node.EncryptionAlgorithm,
-                        password: (Literal)FromMutable(node.Password),
-                        owner: (Identifier)FromMutable(node.Owner)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateAsymmetricKeyStatement).Name),
+                        keySource: (EncryptionSource)FromMutable((fragment as ScriptDom.CreateAsymmetricKeyStatement).KeySource),
+                        encryptionAlgorithm: (fragment as ScriptDom.CreateAsymmetricKeyStatement).EncryptionAlgorithm,
+                        password: (Literal)FromMutable((fragment as ScriptDom.CreateAsymmetricKeyStatement).Password),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateAsymmetricKeyStatement).Owner)
                     );
                 }
                 case 229: {
-                    var node = (ScriptDom.CreateAvailabilityGroupStatement)fragment;
                     return new CreateAvailabilityGroupStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        options: node.Options.SelectList(c => (AvailabilityGroupOption)FromMutable(c)),
-                        databases: node.Databases.SelectList(c => (Identifier)FromMutable(c)),
-                        replicas: node.Replicas.SelectList(c => (AvailabilityReplica)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateAvailabilityGroupStatement).Name),
+                        options: (fragment as ScriptDom.CreateAvailabilityGroupStatement).Options.SelectList(c => (AvailabilityGroupOption)FromMutable(c)),
+                        databases: (fragment as ScriptDom.CreateAvailabilityGroupStatement).Databases.SelectList(c => (Identifier)FromMutable(c)),
+                        replicas: (fragment as ScriptDom.CreateAvailabilityGroupStatement).Replicas.SelectList(c => (AvailabilityReplica)FromMutable(c))
                     );
                 }
                 case 230: {
-                    var node = (ScriptDom.CreateBrokerPriorityStatement)fragment;
                     return new CreateBrokerPriorityStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        brokerPriorityParameters: node.BrokerPriorityParameters.SelectList(c => (BrokerPriorityParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateBrokerPriorityStatement).Name),
+                        brokerPriorityParameters: (fragment as ScriptDom.CreateBrokerPriorityStatement).BrokerPriorityParameters.SelectList(c => (BrokerPriorityParameter)FromMutable(c))
                     );
                 }
                 case 231: {
-                    var node = (ScriptDom.CreateCertificateStatement)fragment;
                     return new CreateCertificateStatement(
-                        certificateSource: (EncryptionSource)FromMutable(node.CertificateSource),
-                        certificateOptions: node.CertificateOptions.SelectList(c => (CertificateOption)FromMutable(c)),
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        activeForBeginDialog: node.ActiveForBeginDialog,
-                        privateKeyPath: (Literal)FromMutable(node.PrivateKeyPath),
-                        encryptionPassword: (Literal)FromMutable(node.EncryptionPassword),
-                        decryptionPassword: (Literal)FromMutable(node.DecryptionPassword)
+                        certificateSource: (EncryptionSource)FromMutable((fragment as ScriptDom.CreateCertificateStatement).CertificateSource),
+                        certificateOptions: (fragment as ScriptDom.CreateCertificateStatement).CertificateOptions.SelectList(c => (CertificateOption)FromMutable(c)),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateCertificateStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateCertificateStatement).Name),
+                        activeForBeginDialog: (fragment as ScriptDom.CreateCertificateStatement).ActiveForBeginDialog,
+                        privateKeyPath: (Literal)FromMutable((fragment as ScriptDom.CreateCertificateStatement).PrivateKeyPath),
+                        encryptionPassword: (Literal)FromMutable((fragment as ScriptDom.CreateCertificateStatement).EncryptionPassword),
+                        decryptionPassword: (Literal)FromMutable((fragment as ScriptDom.CreateCertificateStatement).DecryptionPassword)
                     );
                 }
                 case 232: {
-                    var node = (ScriptDom.CreateColumnEncryptionKeyStatement)fragment;
                     return new CreateColumnEncryptionKeyStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        columnEncryptionKeyValues: node.ColumnEncryptionKeyValues.SelectList(c => (ColumnEncryptionKeyValue)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateColumnEncryptionKeyStatement).Name),
+                        columnEncryptionKeyValues: (fragment as ScriptDom.CreateColumnEncryptionKeyStatement).ColumnEncryptionKeyValues.SelectList(c => (ColumnEncryptionKeyValue)FromMutable(c))
                     );
                 }
                 case 233: {
-                    var node = (ScriptDom.CreateColumnMasterKeyStatement)fragment;
                     return new CreateColumnMasterKeyStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        parameters: node.Parameters.SelectList(c => (ColumnMasterKeyParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateColumnMasterKeyStatement).Name),
+                        parameters: (fragment as ScriptDom.CreateColumnMasterKeyStatement).Parameters.SelectList(c => (ColumnMasterKeyParameter)FromMutable(c))
                     );
                 }
                 case 234: {
-                    var node = (ScriptDom.CreateColumnStoreIndexStatement)fragment;
                     return new CreateColumnStoreIndexStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        clustered: node.Clustered,
-                        onName: (SchemaObjectName)FromMutable(node.OnName),
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        filterPredicate: (BooleanExpression)FromMutable(node.FilterPredicate),
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(node.OnFileGroupOrPartitionScheme),
-                        orderedColumns: node.OrderedColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateColumnStoreIndexStatement).Name),
+                        clustered: (fragment as ScriptDom.CreateColumnStoreIndexStatement).Clustered,
+                        onName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateColumnStoreIndexStatement).OnName),
+                        columns: (fragment as ScriptDom.CreateColumnStoreIndexStatement).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        filterPredicate: (BooleanExpression)FromMutable((fragment as ScriptDom.CreateColumnStoreIndexStatement).FilterPredicate),
+                        indexOptions: (fragment as ScriptDom.CreateColumnStoreIndexStatement).IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
+                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable((fragment as ScriptDom.CreateColumnStoreIndexStatement).OnFileGroupOrPartitionScheme),
+                        orderedColumns: (fragment as ScriptDom.CreateColumnStoreIndexStatement).OrderedColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
                     );
                 }
                 case 235: {
-                    var node = (ScriptDom.CreateContractStatement)fragment;
                     return new CreateContractStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        messages: node.Messages.SelectList(c => (ContractMessage)FromMutable(c)),
-                        owner: (Identifier)FromMutable(node.Owner)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateContractStatement).Name),
+                        messages: (fragment as ScriptDom.CreateContractStatement).Messages.SelectList(c => (ContractMessage)FromMutable(c)),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateContractStatement).Owner)
                     );
                 }
                 case 236: {
-                    var node = (ScriptDom.CreateCredentialStatement)fragment;
                     return new CreateCredentialStatement(
-                        cryptographicProviderName: (Identifier)FromMutable(node.CryptographicProviderName),
-                        name: (Identifier)FromMutable(node.Name),
-                        identity: (Literal)FromMutable(node.Identity),
-                        secret: (Literal)FromMutable(node.Secret),
-                        isDatabaseScoped: node.IsDatabaseScoped
+                        cryptographicProviderName: (Identifier)FromMutable((fragment as ScriptDom.CreateCredentialStatement).CryptographicProviderName),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateCredentialStatement).Name),
+                        identity: (Literal)FromMutable((fragment as ScriptDom.CreateCredentialStatement).Identity),
+                        secret: (Literal)FromMutable((fragment as ScriptDom.CreateCredentialStatement).Secret),
+                        isDatabaseScoped: (fragment as ScriptDom.CreateCredentialStatement).IsDatabaseScoped
                     );
                 }
                 case 237: {
-                    var node = (ScriptDom.CreateCryptographicProviderStatement)fragment;
                     return new CreateCryptographicProviderStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        file: (Literal)FromMutable(node.File)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateCryptographicProviderStatement).Name),
+                        file: (Literal)FromMutable((fragment as ScriptDom.CreateCryptographicProviderStatement).File)
                     );
                 }
                 case 238: {
-                    var node = (ScriptDom.CreateDatabaseAuditSpecificationStatement)fragment;
                     return new CreateDatabaseAuditSpecificationStatement(
-                        auditState: node.AuditState,
-                        parts: node.Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
-                        specificationName: (Identifier)FromMutable(node.SpecificationName),
-                        auditName: (Identifier)FromMutable(node.AuditName)
+                        auditState: (fragment as ScriptDom.CreateDatabaseAuditSpecificationStatement).AuditState,
+                        parts: (fragment as ScriptDom.CreateDatabaseAuditSpecificationStatement).Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
+                        specificationName: (Identifier)FromMutable((fragment as ScriptDom.CreateDatabaseAuditSpecificationStatement).SpecificationName),
+                        auditName: (Identifier)FromMutable((fragment as ScriptDom.CreateDatabaseAuditSpecificationStatement).AuditName)
                     );
                 }
                 case 239: {
-                    var node = (ScriptDom.CreateDatabaseEncryptionKeyStatement)fragment;
                     return new CreateDatabaseEncryptionKeyStatement(
-                        encryptor: (CryptoMechanism)FromMutable(node.Encryptor),
-                        algorithm: node.Algorithm
+                        encryptor: (CryptoMechanism)FromMutable((fragment as ScriptDom.CreateDatabaseEncryptionKeyStatement).Encryptor),
+                        algorithm: (fragment as ScriptDom.CreateDatabaseEncryptionKeyStatement).Algorithm
                     );
                 }
                 case 240: {
-                    var node = (ScriptDom.CreateDatabaseStatement)fragment;
                     return new CreateDatabaseStatement(
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        containment: (ContainmentDatabaseOption)FromMutable(node.Containment),
-                        fileGroups: node.FileGroups.SelectList(c => (FileGroupDefinition)FromMutable(c)),
-                        logOn: node.LogOn.SelectList(c => (FileDeclaration)FromMutable(c)),
-                        options: node.Options.SelectList(c => (DatabaseOption)FromMutable(c)),
-                        attachMode: node.AttachMode,
-                        databaseSnapshot: (Identifier)FromMutable(node.DatabaseSnapshot),
-                        copyOf: (MultiPartIdentifier)FromMutable(node.CopyOf),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.CreateDatabaseStatement).DatabaseName),
+                        containment: (ContainmentDatabaseOption)FromMutable((fragment as ScriptDom.CreateDatabaseStatement).Containment),
+                        fileGroups: (fragment as ScriptDom.CreateDatabaseStatement).FileGroups.SelectList(c => (FileGroupDefinition)FromMutable(c)),
+                        logOn: (fragment as ScriptDom.CreateDatabaseStatement).LogOn.SelectList(c => (FileDeclaration)FromMutable(c)),
+                        options: (fragment as ScriptDom.CreateDatabaseStatement).Options.SelectList(c => (DatabaseOption)FromMutable(c)),
+                        attachMode: (fragment as ScriptDom.CreateDatabaseStatement).AttachMode,
+                        databaseSnapshot: (Identifier)FromMutable((fragment as ScriptDom.CreateDatabaseStatement).DatabaseSnapshot),
+                        copyOf: (MultiPartIdentifier)FromMutable((fragment as ScriptDom.CreateDatabaseStatement).CopyOf),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.CreateDatabaseStatement).Collation)
                     );
                 }
                 case 241: {
-                    var node = (ScriptDom.CreateDefaultStatement)fragment;
                     return new CreateDefaultStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateDefaultStatement).Name),
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.CreateDefaultStatement).Expression)
                     );
                 }
                 case 242: {
-                    var node = (ScriptDom.CreateEndpointStatement)fragment;
                     return new CreateEndpointStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        state: node.State,
-                        affinity: (EndpointAffinity)FromMutable(node.Affinity),
-                        protocol: node.Protocol,
-                        protocolOptions: node.ProtocolOptions.SelectList(c => (EndpointProtocolOption)FromMutable(c)),
-                        endpointType: node.EndpointType,
-                        payloadOptions: node.PayloadOptions.SelectList(c => (PayloadOption)FromMutable(c))
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateEndpointStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateEndpointStatement).Name),
+                        state: (fragment as ScriptDom.CreateEndpointStatement).State,
+                        affinity: (EndpointAffinity)FromMutable((fragment as ScriptDom.CreateEndpointStatement).Affinity),
+                        protocol: (fragment as ScriptDom.CreateEndpointStatement).Protocol,
+                        protocolOptions: (fragment as ScriptDom.CreateEndpointStatement).ProtocolOptions.SelectList(c => (EndpointProtocolOption)FromMutable(c)),
+                        endpointType: (fragment as ScriptDom.CreateEndpointStatement).EndpointType,
+                        payloadOptions: (fragment as ScriptDom.CreateEndpointStatement).PayloadOptions.SelectList(c => (PayloadOption)FromMutable(c))
                     );
                 }
                 case 243: {
-                    var node = (ScriptDom.CreateEventNotificationStatement)fragment;
                     return new CreateEventNotificationStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        scope: (EventNotificationObjectScope)FromMutable(node.Scope),
-                        withFanIn: node.WithFanIn,
-                        eventTypeGroups: node.EventTypeGroups.SelectList(c => (EventTypeGroupContainer)FromMutable(c)),
-                        brokerService: (Literal)FromMutable(node.BrokerService),
-                        brokerInstanceSpecifier: (Literal)FromMutable(node.BrokerInstanceSpecifier)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateEventNotificationStatement).Name),
+                        scope: (EventNotificationObjectScope)FromMutable((fragment as ScriptDom.CreateEventNotificationStatement).Scope),
+                        withFanIn: (fragment as ScriptDom.CreateEventNotificationStatement).WithFanIn,
+                        eventTypeGroups: (fragment as ScriptDom.CreateEventNotificationStatement).EventTypeGroups.SelectList(c => (EventTypeGroupContainer)FromMutable(c)),
+                        brokerService: (Literal)FromMutable((fragment as ScriptDom.CreateEventNotificationStatement).BrokerService),
+                        brokerInstanceSpecifier: (Literal)FromMutable((fragment as ScriptDom.CreateEventNotificationStatement).BrokerInstanceSpecifier)
                     );
                 }
                 case 244: {
-                    var node = (ScriptDom.CreateEventSessionStatement)fragment;
                     return new CreateEventSessionStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        sessionScope: node.SessionScope,
-                        eventDeclarations: node.EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
-                        targetDeclarations: node.TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
-                        sessionOptions: node.SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateEventSessionStatement).Name),
+                        sessionScope: (fragment as ScriptDom.CreateEventSessionStatement).SessionScope,
+                        eventDeclarations: (fragment as ScriptDom.CreateEventSessionStatement).EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
+                        targetDeclarations: (fragment as ScriptDom.CreateEventSessionStatement).TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
+                        sessionOptions: (fragment as ScriptDom.CreateEventSessionStatement).SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
                     );
                 }
                 case 245: {
-                    var node = (ScriptDom.CreateExternalDataSourceStatement)fragment;
                     return new CreateExternalDataSourceStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        dataSourceType: node.DataSourceType,
-                        location: (Literal)FromMutable(node.Location),
-                        pushdownOption: node.PushdownOption,
-                        externalDataSourceOptions: node.ExternalDataSourceOptions.SelectList(c => (ExternalDataSourceOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalDataSourceStatement).Name),
+                        dataSourceType: (fragment as ScriptDom.CreateExternalDataSourceStatement).DataSourceType,
+                        location: (Literal)FromMutable((fragment as ScriptDom.CreateExternalDataSourceStatement).Location),
+                        pushdownOption: (fragment as ScriptDom.CreateExternalDataSourceStatement).PushdownOption,
+                        externalDataSourceOptions: (fragment as ScriptDom.CreateExternalDataSourceStatement).ExternalDataSourceOptions.SelectList(c => (ExternalDataSourceOption)FromMutable(c))
                     );
                 }
                 case 246: {
-                    var node = (ScriptDom.CreateExternalFileFormatStatement)fragment;
                     return new CreateExternalFileFormatStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        formatType: node.FormatType,
-                        externalFileFormatOptions: node.ExternalFileFormatOptions.SelectList(c => (ExternalFileFormatOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalFileFormatStatement).Name),
+                        formatType: (fragment as ScriptDom.CreateExternalFileFormatStatement).FormatType,
+                        externalFileFormatOptions: (fragment as ScriptDom.CreateExternalFileFormatStatement).ExternalFileFormatOptions.SelectList(c => (ExternalFileFormatOption)FromMutable(c))
                     );
                 }
                 case 247: {
-                    var node = (ScriptDom.CreateExternalLanguageStatement)fragment;
                     return new CreateExternalLanguageStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        externalLanguageFiles: node.ExternalLanguageFiles.SelectList(c => (ExternalLanguageFileOption)FromMutable(c))
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalLanguageStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalLanguageStatement).Name),
+                        externalLanguageFiles: (fragment as ScriptDom.CreateExternalLanguageStatement).ExternalLanguageFiles.SelectList(c => (ExternalLanguageFileOption)FromMutable(c))
                     );
                 }
                 case 248: {
-                    var node = (ScriptDom.CreateExternalLibraryStatement)fragment;
                     return new CreateExternalLibraryStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        language: (StringLiteral)FromMutable(node.Language),
-                        externalLibraryFiles: node.ExternalLibraryFiles.SelectList(c => (ExternalLibraryFileOption)FromMutable(c))
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalLibraryStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalLibraryStatement).Name),
+                        language: (StringLiteral)FromMutable((fragment as ScriptDom.CreateExternalLibraryStatement).Language),
+                        externalLibraryFiles: (fragment as ScriptDom.CreateExternalLibraryStatement).ExternalLibraryFiles.SelectList(c => (ExternalLibraryFileOption)FromMutable(c))
                     );
                 }
                 case 249: {
-                    var node = (ScriptDom.CreateExternalResourcePoolStatement)fragment;
                     return new CreateExternalResourcePoolStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        externalResourcePoolParameters: node.ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalResourcePoolStatement).Name),
+                        externalResourcePoolParameters: (fragment as ScriptDom.CreateExternalResourcePoolStatement).ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
                     );
                 }
                 case 250: {
-                    var node = (ScriptDom.CreateExternalStreamingJobStatement)fragment;
                     return new CreateExternalStreamingJobStatement(
-                        name: (StringLiteral)FromMutable(node.Name),
-                        statement: (StringLiteral)FromMutable(node.Statement)
+                        name: (StringLiteral)FromMutable((fragment as ScriptDom.CreateExternalStreamingJobStatement).Name),
+                        statement: (StringLiteral)FromMutable((fragment as ScriptDom.CreateExternalStreamingJobStatement).Statement)
                     );
                 }
                 case 251: {
-                    var node = (ScriptDom.CreateExternalStreamStatement)fragment;
                     return new CreateExternalStreamStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        location: (Literal)FromMutable(node.Location),
-                        inputOptions: (Literal)FromMutable(node.InputOptions),
-                        outputOptions: (Literal)FromMutable(node.OutputOptions),
-                        externalStreamOptions: node.ExternalStreamOptions.SelectList(c => (ExternalStreamOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalStreamStatement).Name),
+                        location: (Literal)FromMutable((fragment as ScriptDom.CreateExternalStreamStatement).Location),
+                        inputOptions: (Literal)FromMutable((fragment as ScriptDom.CreateExternalStreamStatement).InputOptions),
+                        outputOptions: (Literal)FromMutable((fragment as ScriptDom.CreateExternalStreamStatement).OutputOptions),
+                        externalStreamOptions: (fragment as ScriptDom.CreateExternalStreamStatement).ExternalStreamOptions.SelectList(c => (ExternalStreamOption)FromMutable(c))
                     );
                 }
                 case 252: {
-                    var node = (ScriptDom.CreateExternalTableStatement)fragment;
                     return new CreateExternalTableStatement(
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName),
-                        columnDefinitions: node.ColumnDefinitions.SelectList(c => (ExternalTableColumnDefinition)FromMutable(c)),
-                        dataSource: (Identifier)FromMutable(node.DataSource),
-                        externalTableOptions: node.ExternalTableOptions.SelectList(c => (ExternalTableOption)FromMutable(c)),
-                        selectStatement: (SelectStatement)FromMutable(node.SelectStatement)
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateExternalTableStatement).SchemaObjectName),
+                        columnDefinitions: (fragment as ScriptDom.CreateExternalTableStatement).ColumnDefinitions.SelectList(c => (ExternalTableColumnDefinition)FromMutable(c)),
+                        dataSource: (Identifier)FromMutable((fragment as ScriptDom.CreateExternalTableStatement).DataSource),
+                        externalTableOptions: (fragment as ScriptDom.CreateExternalTableStatement).ExternalTableOptions.SelectList(c => (ExternalTableOption)FromMutable(c)),
+                        selectStatement: (SelectStatement)FromMutable((fragment as ScriptDom.CreateExternalTableStatement).SelectStatement)
                     );
                 }
                 case 253: {
-                    var node = (ScriptDom.CreateFederationStatement)fragment;
                     return new CreateFederationStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        distributionName: (Identifier)FromMutable(node.DistributionName),
-                        dataType: (DataTypeReference)FromMutable(node.DataType)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateFederationStatement).Name),
+                        distributionName: (Identifier)FromMutable((fragment as ScriptDom.CreateFederationStatement).DistributionName),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.CreateFederationStatement).DataType)
                     );
                 }
                 case 254: {
-                    var node = (ScriptDom.CreateFullTextCatalogStatement)fragment;
                     return new CreateFullTextCatalogStatement(
-                        fileGroup: (Identifier)FromMutable(node.FileGroup),
-                        path: (Literal)FromMutable(node.Path),
-                        isDefault: node.IsDefault,
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        options: node.Options.SelectList(c => (FullTextCatalogOption)FromMutable(c))
+                        fileGroup: (Identifier)FromMutable((fragment as ScriptDom.CreateFullTextCatalogStatement).FileGroup),
+                        path: (Literal)FromMutable((fragment as ScriptDom.CreateFullTextCatalogStatement).Path),
+                        isDefault: (fragment as ScriptDom.CreateFullTextCatalogStatement).IsDefault,
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateFullTextCatalogStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateFullTextCatalogStatement).Name),
+                        options: (fragment as ScriptDom.CreateFullTextCatalogStatement).Options.SelectList(c => (FullTextCatalogOption)FromMutable(c))
                     );
                 }
                 case 255: {
-                    var node = (ScriptDom.CreateFullTextIndexStatement)fragment;
                     return new CreateFullTextIndexStatement(
-                        onName: (SchemaObjectName)FromMutable(node.OnName),
-                        fullTextIndexColumns: node.FullTextIndexColumns.SelectList(c => (FullTextIndexColumn)FromMutable(c)),
-                        keyIndexName: (Identifier)FromMutable(node.KeyIndexName),
-                        catalogAndFileGroup: (FullTextCatalogAndFileGroup)FromMutable(node.CatalogAndFileGroup),
-                        options: node.Options.SelectList(c => (FullTextIndexOption)FromMutable(c))
+                        onName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateFullTextIndexStatement).OnName),
+                        fullTextIndexColumns: (fragment as ScriptDom.CreateFullTextIndexStatement).FullTextIndexColumns.SelectList(c => (FullTextIndexColumn)FromMutable(c)),
+                        keyIndexName: (Identifier)FromMutable((fragment as ScriptDom.CreateFullTextIndexStatement).KeyIndexName),
+                        catalogAndFileGroup: (FullTextCatalogAndFileGroup)FromMutable((fragment as ScriptDom.CreateFullTextIndexStatement).CatalogAndFileGroup),
+                        options: (fragment as ScriptDom.CreateFullTextIndexStatement).Options.SelectList(c => (FullTextIndexOption)FromMutable(c))
                     );
                 }
                 case 256: {
-                    var node = (ScriptDom.CreateFullTextStopListStatement)fragment;
                     return new CreateFullTextStopListStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isSystemStopList: node.IsSystemStopList,
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        sourceStopListName: (Identifier)FromMutable(node.SourceStopListName),
-                        owner: (Identifier)FromMutable(node.Owner)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateFullTextStopListStatement).Name),
+                        isSystemStopList: (fragment as ScriptDom.CreateFullTextStopListStatement).IsSystemStopList,
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.CreateFullTextStopListStatement).DatabaseName),
+                        sourceStopListName: (Identifier)FromMutable((fragment as ScriptDom.CreateFullTextStopListStatement).SourceStopListName),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateFullTextStopListStatement).Owner)
                     );
                 }
                 case 257: {
-                    var node = (ScriptDom.CreateFunctionStatement)fragment;
                     return new CreateFunctionStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        returnType: (FunctionReturnType)FromMutable(node.ReturnType),
-                        options: node.Options.SelectList(c => (FunctionOption)FromMutable(c)),
-                        orderHint: (OrderBulkInsertOption)FromMutable(node.OrderHint),
-                        parameters: node.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateFunctionStatement).Name),
+                        returnType: (FunctionReturnType)FromMutable((fragment as ScriptDom.CreateFunctionStatement).ReturnType),
+                        options: (fragment as ScriptDom.CreateFunctionStatement).Options.SelectList(c => (FunctionOption)FromMutable(c)),
+                        orderHint: (OrderBulkInsertOption)FromMutable((fragment as ScriptDom.CreateFunctionStatement).OrderHint),
+                        parameters: (fragment as ScriptDom.CreateFunctionStatement).Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.CreateFunctionStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.CreateFunctionStatement).MethodSpecifier)
                     );
                 }
                 case 258: {
-                    var node = (ScriptDom.CreateIndexStatement)fragment;
                     return new CreateIndexStatement(
-                        translated80SyntaxTo90: node.Translated80SyntaxTo90,
-                        unique: node.Unique,
-                        clustered: node.Clustered,
-                        columns: node.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
-                        includeColumns: node.IncludeColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(node.OnFileGroupOrPartitionScheme),
-                        filterPredicate: (BooleanExpression)FromMutable(node.FilterPredicate),
-                        fileStreamOn: (IdentifierOrValueExpression)FromMutable(node.FileStreamOn),
-                        name: (Identifier)FromMutable(node.Name),
-                        onName: (SchemaObjectName)FromMutable(node.OnName),
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
+                        translated80SyntaxTo90: (fragment as ScriptDom.CreateIndexStatement).Translated80SyntaxTo90,
+                        unique: (fragment as ScriptDom.CreateIndexStatement).Unique,
+                        clustered: (fragment as ScriptDom.CreateIndexStatement).Clustered,
+                        columns: (fragment as ScriptDom.CreateIndexStatement).Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
+                        includeColumns: (fragment as ScriptDom.CreateIndexStatement).IncludeColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable((fragment as ScriptDom.CreateIndexStatement).OnFileGroupOrPartitionScheme),
+                        filterPredicate: (BooleanExpression)FromMutable((fragment as ScriptDom.CreateIndexStatement).FilterPredicate),
+                        fileStreamOn: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.CreateIndexStatement).FileStreamOn),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateIndexStatement).Name),
+                        onName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateIndexStatement).OnName),
+                        indexOptions: (fragment as ScriptDom.CreateIndexStatement).IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
                     );
                 }
                 case 259: {
-                    var node = (ScriptDom.CreateLoginStatement)fragment;
                     return new CreateLoginStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        source: (CreateLoginSource)FromMutable(node.Source)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateLoginStatement).Name),
+                        source: (CreateLoginSource)FromMutable((fragment as ScriptDom.CreateLoginStatement).Source)
                     );
                 }
                 case 260: {
-                    var node = (ScriptDom.CreateMasterKeyStatement)fragment;
                     return new CreateMasterKeyStatement(
-                        password: (Literal)FromMutable(node.Password)
+                        password: (Literal)FromMutable((fragment as ScriptDom.CreateMasterKeyStatement).Password)
                     );
                 }
                 case 261: {
-                    var node = (ScriptDom.CreateMessageTypeStatement)fragment;
                     return new CreateMessageTypeStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        validationMethod: node.ValidationMethod,
-                        xmlSchemaCollectionName: (SchemaObjectName)FromMutable(node.XmlSchemaCollectionName)
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateMessageTypeStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateMessageTypeStatement).Name),
+                        validationMethod: (fragment as ScriptDom.CreateMessageTypeStatement).ValidationMethod,
+                        xmlSchemaCollectionName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateMessageTypeStatement).XmlSchemaCollectionName)
                     );
                 }
                 case 262: {
-                    var node = (ScriptDom.CreateOrAlterFunctionStatement)fragment;
                     return new CreateOrAlterFunctionStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        returnType: (FunctionReturnType)FromMutable(node.ReturnType),
-                        options: node.Options.SelectList(c => (FunctionOption)FromMutable(c)),
-                        orderHint: (OrderBulkInsertOption)FromMutable(node.OrderHint),
-                        parameters: node.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateOrAlterFunctionStatement).Name),
+                        returnType: (FunctionReturnType)FromMutable((fragment as ScriptDom.CreateOrAlterFunctionStatement).ReturnType),
+                        options: (fragment as ScriptDom.CreateOrAlterFunctionStatement).Options.SelectList(c => (FunctionOption)FromMutable(c)),
+                        orderHint: (OrderBulkInsertOption)FromMutable((fragment as ScriptDom.CreateOrAlterFunctionStatement).OrderHint),
+                        parameters: (fragment as ScriptDom.CreateOrAlterFunctionStatement).Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.CreateOrAlterFunctionStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.CreateOrAlterFunctionStatement).MethodSpecifier)
                     );
                 }
                 case 263: {
-                    var node = (ScriptDom.CreateOrAlterProcedureStatement)fragment;
                     return new CreateOrAlterProcedureStatement(
-                        procedureReference: (ProcedureReference)FromMutable(node.ProcedureReference),
-                        isForReplication: node.IsForReplication,
-                        options: node.Options.SelectList(c => (ProcedureOption)FromMutable(c)),
-                        parameters: node.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        procedureReference: (ProcedureReference)FromMutable((fragment as ScriptDom.CreateOrAlterProcedureStatement).ProcedureReference),
+                        isForReplication: (fragment as ScriptDom.CreateOrAlterProcedureStatement).IsForReplication,
+                        options: (fragment as ScriptDom.CreateOrAlterProcedureStatement).Options.SelectList(c => (ProcedureOption)FromMutable(c)),
+                        parameters: (fragment as ScriptDom.CreateOrAlterProcedureStatement).Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.CreateOrAlterProcedureStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.CreateOrAlterProcedureStatement).MethodSpecifier)
                     );
                 }
                 case 264: {
-                    var node = (ScriptDom.CreateOrAlterTriggerStatement)fragment;
                     return new CreateOrAlterTriggerStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        triggerObject: (TriggerObject)FromMutable(node.TriggerObject),
-                        options: node.Options.SelectList(c => (TriggerOption)FromMutable(c)),
-                        triggerType: node.TriggerType,
-                        triggerActions: node.TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
-                        withAppend: node.WithAppend,
-                        isNotForReplication: node.IsNotForReplication,
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateOrAlterTriggerStatement).Name),
+                        triggerObject: (TriggerObject)FromMutable((fragment as ScriptDom.CreateOrAlterTriggerStatement).TriggerObject),
+                        options: (fragment as ScriptDom.CreateOrAlterTriggerStatement).Options.SelectList(c => (TriggerOption)FromMutable(c)),
+                        triggerType: (fragment as ScriptDom.CreateOrAlterTriggerStatement).TriggerType,
+                        triggerActions: (fragment as ScriptDom.CreateOrAlterTriggerStatement).TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
+                        withAppend: (fragment as ScriptDom.CreateOrAlterTriggerStatement).WithAppend,
+                        isNotForReplication: (fragment as ScriptDom.CreateOrAlterTriggerStatement).IsNotForReplication,
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.CreateOrAlterTriggerStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.CreateOrAlterTriggerStatement).MethodSpecifier)
                     );
                 }
                 case 265: {
-                    var node = (ScriptDom.CreateOrAlterViewStatement)fragment;
                     return new CreateOrAlterViewStatement(
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        viewOptions: node.ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
-                        selectStatement: (SelectStatement)FromMutable(node.SelectStatement),
-                        withCheckOption: node.WithCheckOption,
-                        isMaterialized: node.IsMaterialized
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateOrAlterViewStatement).SchemaObjectName),
+                        columns: (fragment as ScriptDom.CreateOrAlterViewStatement).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        viewOptions: (fragment as ScriptDom.CreateOrAlterViewStatement).ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
+                        selectStatement: (SelectStatement)FromMutable((fragment as ScriptDom.CreateOrAlterViewStatement).SelectStatement),
+                        withCheckOption: (fragment as ScriptDom.CreateOrAlterViewStatement).WithCheckOption,
+                        isMaterialized: (fragment as ScriptDom.CreateOrAlterViewStatement).IsMaterialized
                     );
                 }
                 case 266: {
-                    var node = (ScriptDom.CreatePartitionFunctionStatement)fragment;
                     return new CreatePartitionFunctionStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        parameterType: (PartitionParameterType)FromMutable(node.ParameterType),
-                        range: node.Range,
-                        boundaryValues: node.BoundaryValues.SelectList(c => (ScalarExpression)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreatePartitionFunctionStatement).Name),
+                        parameterType: (PartitionParameterType)FromMutable((fragment as ScriptDom.CreatePartitionFunctionStatement).ParameterType),
+                        range: (fragment as ScriptDom.CreatePartitionFunctionStatement).Range,
+                        boundaryValues: (fragment as ScriptDom.CreatePartitionFunctionStatement).BoundaryValues.SelectList(c => (ScalarExpression)FromMutable(c))
                     );
                 }
                 case 267: {
-                    var node = (ScriptDom.CreatePartitionSchemeStatement)fragment;
                     return new CreatePartitionSchemeStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        partitionFunction: (Identifier)FromMutable(node.PartitionFunction),
-                        isAll: node.IsAll,
-                        fileGroups: node.FileGroups.SelectList(c => (IdentifierOrValueExpression)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreatePartitionSchemeStatement).Name),
+                        partitionFunction: (Identifier)FromMutable((fragment as ScriptDom.CreatePartitionSchemeStatement).PartitionFunction),
+                        isAll: (fragment as ScriptDom.CreatePartitionSchemeStatement).IsAll,
+                        fileGroups: (fragment as ScriptDom.CreatePartitionSchemeStatement).FileGroups.SelectList(c => (IdentifierOrValueExpression)FromMutable(c))
                     );
                 }
                 case 268: {
-                    var node = (ScriptDom.CreateProcedureStatement)fragment;
                     return new CreateProcedureStatement(
-                        procedureReference: (ProcedureReference)FromMutable(node.ProcedureReference),
-                        isForReplication: node.IsForReplication,
-                        options: node.Options.SelectList(c => (ProcedureOption)FromMutable(c)),
-                        parameters: node.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        procedureReference: (ProcedureReference)FromMutable((fragment as ScriptDom.CreateProcedureStatement).ProcedureReference),
+                        isForReplication: (fragment as ScriptDom.CreateProcedureStatement).IsForReplication,
+                        options: (fragment as ScriptDom.CreateProcedureStatement).Options.SelectList(c => (ProcedureOption)FromMutable(c)),
+                        parameters: (fragment as ScriptDom.CreateProcedureStatement).Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.CreateProcedureStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.CreateProcedureStatement).MethodSpecifier)
                     );
                 }
                 case 269: {
-                    var node = (ScriptDom.CreateQueueStatement)fragment;
                     return new CreateQueueStatement(
-                        onFileGroup: (IdentifierOrValueExpression)FromMutable(node.OnFileGroup),
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        queueOptions: node.QueueOptions.SelectList(c => (QueueOption)FromMutable(c))
+                        onFileGroup: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.CreateQueueStatement).OnFileGroup),
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateQueueStatement).Name),
+                        queueOptions: (fragment as ScriptDom.CreateQueueStatement).QueueOptions.SelectList(c => (QueueOption)FromMutable(c))
                     );
                 }
                 case 270: {
-                    var node = (ScriptDom.CreateRemoteServiceBindingStatement)fragment;
                     return new CreateRemoteServiceBindingStatement(
-                        service: (Literal)FromMutable(node.Service),
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        options: node.Options.SelectList(c => (RemoteServiceBindingOption)FromMutable(c))
+                        service: (Literal)FromMutable((fragment as ScriptDom.CreateRemoteServiceBindingStatement).Service),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateRemoteServiceBindingStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateRemoteServiceBindingStatement).Name),
+                        options: (fragment as ScriptDom.CreateRemoteServiceBindingStatement).Options.SelectList(c => (RemoteServiceBindingOption)FromMutable(c))
                     );
                 }
                 case 271: {
-                    var node = (ScriptDom.CreateResourcePoolStatement)fragment;
                     return new CreateResourcePoolStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        resourcePoolParameters: node.ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateResourcePoolStatement).Name),
+                        resourcePoolParameters: (fragment as ScriptDom.CreateResourcePoolStatement).ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
                     );
                 }
                 case 272: {
-                    var node = (ScriptDom.CreateRoleStatement)fragment;
                     return new CreateRoleStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name)
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateRoleStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateRoleStatement).Name)
                     );
                 }
                 case 273: {
-                    var node = (ScriptDom.CreateRouteStatement)fragment;
                     return new CreateRouteStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        routeOptions: node.RouteOptions.SelectList(c => (RouteOption)FromMutable(c))
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateRouteStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateRouteStatement).Name),
+                        routeOptions: (fragment as ScriptDom.CreateRouteStatement).RouteOptions.SelectList(c => (RouteOption)FromMutable(c))
                     );
                 }
                 case 274: {
-                    var node = (ScriptDom.CreateRuleStatement)fragment;
                     return new CreateRuleStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        expression: (BooleanExpression)FromMutable(node.Expression)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateRuleStatement).Name),
+                        expression: (BooleanExpression)FromMutable((fragment as ScriptDom.CreateRuleStatement).Expression)
                     );
                 }
                 case 275: {
-                    var node = (ScriptDom.CreateSchemaStatement)fragment;
                     return new CreateSchemaStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        owner: (Identifier)FromMutable(node.Owner)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateSchemaStatement).Name),
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.CreateSchemaStatement).StatementList),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateSchemaStatement).Owner)
                     );
                 }
                 case 276: {
-                    var node = (ScriptDom.CreateSearchPropertyListStatement)fragment;
                     return new CreateSearchPropertyListStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        sourceSearchPropertyList: (MultiPartIdentifier)FromMutable(node.SourceSearchPropertyList),
-                        owner: (Identifier)FromMutable(node.Owner)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateSearchPropertyListStatement).Name),
+                        sourceSearchPropertyList: (MultiPartIdentifier)FromMutable((fragment as ScriptDom.CreateSearchPropertyListStatement).SourceSearchPropertyList),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateSearchPropertyListStatement).Owner)
                     );
                 }
                 case 277: {
-                    var node = (ScriptDom.CreateSecurityPolicyStatement)fragment;
                     return new CreateSecurityPolicyStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        notForReplication: node.NotForReplication,
-                        securityPolicyOptions: node.SecurityPolicyOptions.SelectList(c => (SecurityPolicyOption)FromMutable(c)),
-                        securityPredicateActions: node.SecurityPredicateActions.SelectList(c => (SecurityPredicateAction)FromMutable(c)),
-                        actionType: node.ActionType
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateSecurityPolicyStatement).Name),
+                        notForReplication: (fragment as ScriptDom.CreateSecurityPolicyStatement).NotForReplication,
+                        securityPolicyOptions: (fragment as ScriptDom.CreateSecurityPolicyStatement).SecurityPolicyOptions.SelectList(c => (SecurityPolicyOption)FromMutable(c)),
+                        securityPredicateActions: (fragment as ScriptDom.CreateSecurityPolicyStatement).SecurityPredicateActions.SelectList(c => (SecurityPredicateAction)FromMutable(c)),
+                        actionType: (fragment as ScriptDom.CreateSecurityPolicyStatement).ActionType
                     );
                 }
                 case 278: {
-                    var node = (ScriptDom.CreateSelectiveXmlIndexStatement)fragment;
                     return new CreateSelectiveXmlIndexStatement(
-                        isSecondary: node.IsSecondary,
-                        xmlColumn: (Identifier)FromMutable(node.XmlColumn),
-                        promotedPaths: node.PromotedPaths.SelectList(c => (SelectiveXmlIndexPromotedPath)FromMutable(c)),
-                        xmlNamespaces: (XmlNamespaces)FromMutable(node.XmlNamespaces),
-                        usingXmlIndexName: (Identifier)FromMutable(node.UsingXmlIndexName),
-                        pathName: (Identifier)FromMutable(node.PathName),
-                        name: (Identifier)FromMutable(node.Name),
-                        onName: (SchemaObjectName)FromMutable(node.OnName),
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
+                        isSecondary: (fragment as ScriptDom.CreateSelectiveXmlIndexStatement).IsSecondary,
+                        xmlColumn: (Identifier)FromMutable((fragment as ScriptDom.CreateSelectiveXmlIndexStatement).XmlColumn),
+                        promotedPaths: (fragment as ScriptDom.CreateSelectiveXmlIndexStatement).PromotedPaths.SelectList(c => (SelectiveXmlIndexPromotedPath)FromMutable(c)),
+                        xmlNamespaces: (XmlNamespaces)FromMutable((fragment as ScriptDom.CreateSelectiveXmlIndexStatement).XmlNamespaces),
+                        usingXmlIndexName: (Identifier)FromMutable((fragment as ScriptDom.CreateSelectiveXmlIndexStatement).UsingXmlIndexName),
+                        pathName: (Identifier)FromMutable((fragment as ScriptDom.CreateSelectiveXmlIndexStatement).PathName),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateSelectiveXmlIndexStatement).Name),
+                        onName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateSelectiveXmlIndexStatement).OnName),
+                        indexOptions: (fragment as ScriptDom.CreateSelectiveXmlIndexStatement).IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
                     );
                 }
                 case 279: {
-                    var node = (ScriptDom.CreateSequenceStatement)fragment;
                     return new CreateSequenceStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        sequenceOptions: node.SequenceOptions.SelectList(c => (SequenceOption)FromMutable(c))
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateSequenceStatement).Name),
+                        sequenceOptions: (fragment as ScriptDom.CreateSequenceStatement).SequenceOptions.SelectList(c => (SequenceOption)FromMutable(c))
                     );
                 }
                 case 280: {
-                    var node = (ScriptDom.CreateServerAuditSpecificationStatement)fragment;
                     return new CreateServerAuditSpecificationStatement(
-                        auditState: node.AuditState,
-                        parts: node.Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
-                        specificationName: (Identifier)FromMutable(node.SpecificationName),
-                        auditName: (Identifier)FromMutable(node.AuditName)
+                        auditState: (fragment as ScriptDom.CreateServerAuditSpecificationStatement).AuditState,
+                        parts: (fragment as ScriptDom.CreateServerAuditSpecificationStatement).Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
+                        specificationName: (Identifier)FromMutable((fragment as ScriptDom.CreateServerAuditSpecificationStatement).SpecificationName),
+                        auditName: (Identifier)FromMutable((fragment as ScriptDom.CreateServerAuditSpecificationStatement).AuditName)
                     );
                 }
                 case 281: {
-                    var node = (ScriptDom.CreateServerAuditStatement)fragment;
                     return new CreateServerAuditStatement(
-                        auditName: (Identifier)FromMutable(node.AuditName),
-                        auditTarget: (AuditTarget)FromMutable(node.AuditTarget),
-                        options: node.Options.SelectList(c => (AuditOption)FromMutable(c)),
-                        predicateExpression: (BooleanExpression)FromMutable(node.PredicateExpression)
+                        auditName: (Identifier)FromMutable((fragment as ScriptDom.CreateServerAuditStatement).AuditName),
+                        auditTarget: (AuditTarget)FromMutable((fragment as ScriptDom.CreateServerAuditStatement).AuditTarget),
+                        options: (fragment as ScriptDom.CreateServerAuditStatement).Options.SelectList(c => (AuditOption)FromMutable(c)),
+                        predicateExpression: (BooleanExpression)FromMutable((fragment as ScriptDom.CreateServerAuditStatement).PredicateExpression)
                     );
                 }
                 case 282: {
-                    var node = (ScriptDom.CreateServerRoleStatement)fragment;
                     return new CreateServerRoleStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name)
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateServerRoleStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateServerRoleStatement).Name)
                     );
                 }
                 case 283: {
-                    var node = (ScriptDom.CreateServiceStatement)fragment;
                     return new CreateServiceStatement(
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        queueName: (SchemaObjectName)FromMutable(node.QueueName),
-                        serviceContracts: node.ServiceContracts.SelectList(c => (ServiceContract)FromMutable(c))
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateServiceStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateServiceStatement).Name),
+                        queueName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateServiceStatement).QueueName),
+                        serviceContracts: (fragment as ScriptDom.CreateServiceStatement).ServiceContracts.SelectList(c => (ServiceContract)FromMutable(c))
                     );
                 }
                 case 284: {
-                    var node = (ScriptDom.CreateSpatialIndexStatement)fragment;
                     return new CreateSpatialIndexStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        @object: (SchemaObjectName)FromMutable(node.Object),
-                        spatialColumnName: (Identifier)FromMutable(node.SpatialColumnName),
-                        spatialIndexingScheme: node.SpatialIndexingScheme,
-                        spatialIndexOptions: node.SpatialIndexOptions.SelectList(c => (SpatialIndexOption)FromMutable(c)),
-                        onFileGroup: (IdentifierOrValueExpression)FromMutable(node.OnFileGroup)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateSpatialIndexStatement).Name),
+                        @object: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateSpatialIndexStatement).Object),
+                        spatialColumnName: (Identifier)FromMutable((fragment as ScriptDom.CreateSpatialIndexStatement).SpatialColumnName),
+                        spatialIndexingScheme: (fragment as ScriptDom.CreateSpatialIndexStatement).SpatialIndexingScheme,
+                        spatialIndexOptions: (fragment as ScriptDom.CreateSpatialIndexStatement).SpatialIndexOptions.SelectList(c => (SpatialIndexOption)FromMutable(c)),
+                        onFileGroup: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.CreateSpatialIndexStatement).OnFileGroup)
                     );
                 }
                 case 285: {
-                    var node = (ScriptDom.CreateStatisticsStatement)fragment;
                     return new CreateStatisticsStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        onName: (SchemaObjectName)FromMutable(node.OnName),
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        statisticsOptions: node.StatisticsOptions.SelectList(c => (StatisticsOption)FromMutable(c)),
-                        filterPredicate: (BooleanExpression)FromMutable(node.FilterPredicate)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateStatisticsStatement).Name),
+                        onName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateStatisticsStatement).OnName),
+                        columns: (fragment as ScriptDom.CreateStatisticsStatement).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        statisticsOptions: (fragment as ScriptDom.CreateStatisticsStatement).StatisticsOptions.SelectList(c => (StatisticsOption)FromMutable(c)),
+                        filterPredicate: (BooleanExpression)FromMutable((fragment as ScriptDom.CreateStatisticsStatement).FilterPredicate)
                     );
                 }
                 case 286: {
-                    var node = (ScriptDom.CreateSymmetricKeyStatement)fragment;
                     return new CreateSymmetricKeyStatement(
-                        keyOptions: node.KeyOptions.SelectList(c => (KeyOption)FromMutable(c)),
-                        provider: (Identifier)FromMutable(node.Provider),
-                        owner: (Identifier)FromMutable(node.Owner),
-                        name: (Identifier)FromMutable(node.Name),
-                        encryptingMechanisms: node.EncryptingMechanisms.SelectList(c => (CryptoMechanism)FromMutable(c))
+                        keyOptions: (fragment as ScriptDom.CreateSymmetricKeyStatement).KeyOptions.SelectList(c => (KeyOption)FromMutable(c)),
+                        provider: (Identifier)FromMutable((fragment as ScriptDom.CreateSymmetricKeyStatement).Provider),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.CreateSymmetricKeyStatement).Owner),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateSymmetricKeyStatement).Name),
+                        encryptingMechanisms: (fragment as ScriptDom.CreateSymmetricKeyStatement).EncryptingMechanisms.SelectList(c => (CryptoMechanism)FromMutable(c))
                     );
                 }
                 case 287: {
-                    var node = (ScriptDom.CreateSynonymStatement)fragment;
                     return new CreateSynonymStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        forName: (SchemaObjectName)FromMutable(node.ForName)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateSynonymStatement).Name),
+                        forName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateSynonymStatement).ForName)
                     );
                 }
                 case 288: {
-                    var node = (ScriptDom.CreateTableStatement)fragment;
                     return new CreateTableStatement(
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName),
-                        asEdge: node.AsEdge,
-                        asFileTable: node.AsFileTable,
-                        asNode: node.AsNode,
-                        definition: (TableDefinition)FromMutable(node.Definition),
-                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(node.OnFileGroupOrPartitionScheme),
-                        federationScheme: (FederationScheme)FromMutable(node.FederationScheme),
-                        textImageOn: (IdentifierOrValueExpression)FromMutable(node.TextImageOn),
-                        options: node.Options.SelectList(c => (TableOption)FromMutable(c)),
-                        selectStatement: (SelectStatement)FromMutable(node.SelectStatement),
-                        ctasColumns: node.CtasColumns.SelectList(c => (Identifier)FromMutable(c)),
-                        fileStreamOn: (IdentifierOrValueExpression)FromMutable(node.FileStreamOn)
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateTableStatement).SchemaObjectName),
+                        asEdge: (fragment as ScriptDom.CreateTableStatement).AsEdge,
+                        asFileTable: (fragment as ScriptDom.CreateTableStatement).AsFileTable,
+                        asNode: (fragment as ScriptDom.CreateTableStatement).AsNode,
+                        definition: (TableDefinition)FromMutable((fragment as ScriptDom.CreateTableStatement).Definition),
+                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable((fragment as ScriptDom.CreateTableStatement).OnFileGroupOrPartitionScheme),
+                        federationScheme: (FederationScheme)FromMutable((fragment as ScriptDom.CreateTableStatement).FederationScheme),
+                        textImageOn: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.CreateTableStatement).TextImageOn),
+                        options: (fragment as ScriptDom.CreateTableStatement).Options.SelectList(c => (TableOption)FromMutable(c)),
+                        selectStatement: (SelectStatement)FromMutable((fragment as ScriptDom.CreateTableStatement).SelectStatement),
+                        ctasColumns: (fragment as ScriptDom.CreateTableStatement).CtasColumns.SelectList(c => (Identifier)FromMutable(c)),
+                        fileStreamOn: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.CreateTableStatement).FileStreamOn)
                     );
                 }
                 case 289: {
-                    var node = (ScriptDom.CreateTriggerStatement)fragment;
                     return new CreateTriggerStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        triggerObject: (TriggerObject)FromMutable(node.TriggerObject),
-                        options: node.Options.SelectList(c => (TriggerOption)FromMutable(c)),
-                        triggerType: node.TriggerType,
-                        triggerActions: node.TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
-                        withAppend: node.WithAppend,
-                        isNotForReplication: node.IsNotForReplication,
-                        statementList: (StatementList)FromMutable(node.StatementList),
-                        methodSpecifier: (MethodSpecifier)FromMutable(node.MethodSpecifier)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateTriggerStatement).Name),
+                        triggerObject: (TriggerObject)FromMutable((fragment as ScriptDom.CreateTriggerStatement).TriggerObject),
+                        options: (fragment as ScriptDom.CreateTriggerStatement).Options.SelectList(c => (TriggerOption)FromMutable(c)),
+                        triggerType: (fragment as ScriptDom.CreateTriggerStatement).TriggerType,
+                        triggerActions: (fragment as ScriptDom.CreateTriggerStatement).TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
+                        withAppend: (fragment as ScriptDom.CreateTriggerStatement).WithAppend,
+                        isNotForReplication: (fragment as ScriptDom.CreateTriggerStatement).IsNotForReplication,
+                        statementList: (StatementList)FromMutable((fragment as ScriptDom.CreateTriggerStatement).StatementList),
+                        methodSpecifier: (MethodSpecifier)FromMutable((fragment as ScriptDom.CreateTriggerStatement).MethodSpecifier)
                     );
                 }
                 case 290: {
-                    var node = (ScriptDom.CreateTypeTableStatement)fragment;
                     return new CreateTypeTableStatement(
-                        definition: (TableDefinition)FromMutable(node.Definition),
-                        options: node.Options.SelectList(c => (TableOption)FromMutable(c)),
-                        name: (SchemaObjectName)FromMutable(node.Name)
+                        definition: (TableDefinition)FromMutable((fragment as ScriptDom.CreateTypeTableStatement).Definition),
+                        options: (fragment as ScriptDom.CreateTypeTableStatement).Options.SelectList(c => (TableOption)FromMutable(c)),
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateTypeTableStatement).Name)
                     );
                 }
                 case 291: {
-                    var node = (ScriptDom.CreateTypeUddtStatement)fragment;
                     return new CreateTypeUddtStatement(
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        nullableConstraint: (NullableConstraintDefinition)FromMutable(node.NullableConstraint),
-                        name: (SchemaObjectName)FromMutable(node.Name)
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.CreateTypeUddtStatement).DataType),
+                        nullableConstraint: (NullableConstraintDefinition)FromMutable((fragment as ScriptDom.CreateTypeUddtStatement).NullableConstraint),
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateTypeUddtStatement).Name)
                     );
                 }
                 case 292: {
-                    var node = (ScriptDom.CreateTypeUdtStatement)fragment;
                     return new CreateTypeUdtStatement(
-                        assemblyName: (AssemblyName)FromMutable(node.AssemblyName),
-                        name: (SchemaObjectName)FromMutable(node.Name)
+                        assemblyName: (AssemblyName)FromMutable((fragment as ScriptDom.CreateTypeUdtStatement).AssemblyName),
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateTypeUdtStatement).Name)
                     );
                 }
                 case 293: {
-                    var node = (ScriptDom.CreateUserStatement)fragment;
                     return new CreateUserStatement(
-                        userLoginOption: (UserLoginOption)FromMutable(node.UserLoginOption),
-                        name: (Identifier)FromMutable(node.Name),
-                        userOptions: node.UserOptions.SelectList(c => (PrincipalOption)FromMutable(c))
+                        userLoginOption: (UserLoginOption)FromMutable((fragment as ScriptDom.CreateUserStatement).UserLoginOption),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateUserStatement).Name),
+                        userOptions: (fragment as ScriptDom.CreateUserStatement).UserOptions.SelectList(c => (PrincipalOption)FromMutable(c))
                     );
                 }
                 case 294: {
-                    var node = (ScriptDom.CreateViewStatement)fragment;
                     return new CreateViewStatement(
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        viewOptions: node.ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
-                        selectStatement: (SelectStatement)FromMutable(node.SelectStatement),
-                        withCheckOption: node.WithCheckOption,
-                        isMaterialized: node.IsMaterialized
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateViewStatement).SchemaObjectName),
+                        columns: (fragment as ScriptDom.CreateViewStatement).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        viewOptions: (fragment as ScriptDom.CreateViewStatement).ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
+                        selectStatement: (SelectStatement)FromMutable((fragment as ScriptDom.CreateViewStatement).SelectStatement),
+                        withCheckOption: (fragment as ScriptDom.CreateViewStatement).WithCheckOption,
+                        isMaterialized: (fragment as ScriptDom.CreateViewStatement).IsMaterialized
                     );
                 }
                 case 295: {
-                    var node = (ScriptDom.CreateWorkloadClassifierStatement)fragment;
                     return new CreateWorkloadClassifierStatement(
-                        classifierName: (Identifier)FromMutable(node.ClassifierName),
-                        options: node.Options.SelectList(c => (WorkloadClassifierOption)FromMutable(c))
+                        classifierName: (Identifier)FromMutable((fragment as ScriptDom.CreateWorkloadClassifierStatement).ClassifierName),
+                        options: (fragment as ScriptDom.CreateWorkloadClassifierStatement).Options.SelectList(c => (WorkloadClassifierOption)FromMutable(c))
                     );
                 }
                 case 296: {
-                    var node = (ScriptDom.CreateWorkloadGroupStatement)fragment;
                     return new CreateWorkloadGroupStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        workloadGroupParameters: node.WorkloadGroupParameters.SelectList(c => (WorkloadGroupParameter)FromMutable(c)),
-                        poolName: (Identifier)FromMutable(node.PoolName),
-                        externalPoolName: (Identifier)FromMutable(node.ExternalPoolName)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateWorkloadGroupStatement).Name),
+                        workloadGroupParameters: (fragment as ScriptDom.CreateWorkloadGroupStatement).WorkloadGroupParameters.SelectList(c => (WorkloadGroupParameter)FromMutable(c)),
+                        poolName: (Identifier)FromMutable((fragment as ScriptDom.CreateWorkloadGroupStatement).PoolName),
+                        externalPoolName: (Identifier)FromMutable((fragment as ScriptDom.CreateWorkloadGroupStatement).ExternalPoolName)
                     );
                 }
                 case 297: {
-                    var node = (ScriptDom.CreateXmlIndexStatement)fragment;
                     return new CreateXmlIndexStatement(
-                        primary: node.Primary,
-                        xmlColumn: (Identifier)FromMutable(node.XmlColumn),
-                        secondaryXmlIndexName: (Identifier)FromMutable(node.SecondaryXmlIndexName),
-                        secondaryXmlIndexType: node.SecondaryXmlIndexType,
-                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(node.OnFileGroupOrPartitionScheme),
-                        name: (Identifier)FromMutable(node.Name),
-                        onName: (SchemaObjectName)FromMutable(node.OnName),
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
+                        primary: (fragment as ScriptDom.CreateXmlIndexStatement).Primary,
+                        xmlColumn: (Identifier)FromMutable((fragment as ScriptDom.CreateXmlIndexStatement).XmlColumn),
+                        secondaryXmlIndexName: (Identifier)FromMutable((fragment as ScriptDom.CreateXmlIndexStatement).SecondaryXmlIndexName),
+                        secondaryXmlIndexType: (fragment as ScriptDom.CreateXmlIndexStatement).SecondaryXmlIndexType,
+                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable((fragment as ScriptDom.CreateXmlIndexStatement).OnFileGroupOrPartitionScheme),
+                        name: (Identifier)FromMutable((fragment as ScriptDom.CreateXmlIndexStatement).Name),
+                        onName: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateXmlIndexStatement).OnName),
+                        indexOptions: (fragment as ScriptDom.CreateXmlIndexStatement).IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
                     );
                 }
                 case 298: {
-                    var node = (ScriptDom.CreateXmlSchemaCollectionStatement)fragment;
                     return new CreateXmlSchemaCollectionStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.CreateXmlSchemaCollectionStatement).Name),
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.CreateXmlSchemaCollectionStatement).Expression)
                     );
                 }
                 case 299: {
-                    var node = (ScriptDom.CreationDispositionKeyOption)fragment;
                     return new CreationDispositionKeyOption(
-                        isCreateNew: node.IsCreateNew,
-                        optionKind: node.OptionKind
+                        isCreateNew: (fragment as ScriptDom.CreationDispositionKeyOption).IsCreateNew,
+                        optionKind: (fragment as ScriptDom.CreationDispositionKeyOption).OptionKind
                     );
                 }
                 case 300: {
-                    var node = (ScriptDom.CryptoMechanism)fragment;
                     return new CryptoMechanism(
-                        cryptoMechanismType: node.CryptoMechanismType,
-                        identifier: (Identifier)FromMutable(node.Identifier),
-                        passwordOrSignature: (Literal)FromMutable(node.PasswordOrSignature)
+                        cryptoMechanismType: (fragment as ScriptDom.CryptoMechanism).CryptoMechanismType,
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.CryptoMechanism).Identifier),
+                        passwordOrSignature: (Literal)FromMutable((fragment as ScriptDom.CryptoMechanism).PasswordOrSignature)
                     );
                 }
                 case 301: {
-                    var node = (ScriptDom.CubeGroupingSpecification)fragment;
                     return new CubeGroupingSpecification(
-                        arguments: node.Arguments.SelectList(c => (GroupingSpecification)FromMutable(c))
+                        arguments: (fragment as ScriptDom.CubeGroupingSpecification).Arguments.SelectList(c => (GroupingSpecification)FromMutable(c))
                     );
                 }
                 case 302: {
-                    var node = (ScriptDom.CursorDefaultDatabaseOption)fragment;
                     return new CursorDefaultDatabaseOption(
-                        isLocal: node.IsLocal,
-                        optionKind: node.OptionKind
+                        isLocal: (fragment as ScriptDom.CursorDefaultDatabaseOption).IsLocal,
+                        optionKind: (fragment as ScriptDom.CursorDefaultDatabaseOption).OptionKind
                     );
                 }
                 case 303: {
-                    var node = (ScriptDom.CursorDefinition)fragment;
                     return new CursorDefinition(
-                        options: node.Options.SelectList(c => (CursorOption)FromMutable(c)),
-                        select: (SelectStatement)FromMutable(node.Select)
+                        options: (fragment as ScriptDom.CursorDefinition).Options.SelectList(c => (CursorOption)FromMutable(c)),
+                        select: (SelectStatement)FromMutable((fragment as ScriptDom.CursorDefinition).Select)
                     );
                 }
                 case 304: {
-                    var node = (ScriptDom.CursorId)fragment;
                     return new CursorId(
-                        isGlobal: node.IsGlobal,
-                        name: (IdentifierOrValueExpression)FromMutable(node.Name)
+                        isGlobal: (fragment as ScriptDom.CursorId).IsGlobal,
+                        name: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.CursorId).Name)
                     );
                 }
                 case 305: {
-                    var node = (ScriptDom.CursorOption)fragment;
                     return new CursorOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.CursorOption).OptionKind
                     );
                 }
                 case 306: {
-                    var node = (ScriptDom.DatabaseAuditAction)fragment;
                     return new DatabaseAuditAction(
-                        actionKind: node.ActionKind
+                        actionKind: (fragment as ScriptDom.DatabaseAuditAction).ActionKind
                     );
                 }
                 case 307: {
-                    var node = (ScriptDom.DatabaseConfigurationClearOption)fragment;
                     return new DatabaseConfigurationClearOption(
-                        optionKind: node.OptionKind,
-                        planHandle: (BinaryLiteral)FromMutable(node.PlanHandle)
+                        optionKind: (fragment as ScriptDom.DatabaseConfigurationClearOption).OptionKind,
+                        planHandle: (BinaryLiteral)FromMutable((fragment as ScriptDom.DatabaseConfigurationClearOption).PlanHandle)
                     );
                 }
                 case 308: {
-                    var node = (ScriptDom.DatabaseConfigurationSetOption)fragment;
                     return new DatabaseConfigurationSetOption(
-                        optionKind: node.OptionKind,
-                        genericOptionKind: (Identifier)FromMutable(node.GenericOptionKind)
+                        optionKind: (fragment as ScriptDom.DatabaseConfigurationSetOption).OptionKind,
+                        genericOptionKind: (Identifier)FromMutable((fragment as ScriptDom.DatabaseConfigurationSetOption).GenericOptionKind)
                     );
                 }
                 case 309: {
-                    var node = (ScriptDom.DatabaseOption)fragment;
                     return new DatabaseOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.DatabaseOption).OptionKind
                     );
                 }
                 case 310: {
-                    var node = (ScriptDom.DataCompressionOption)fragment;
                     return new DataCompressionOption(
-                        compressionLevel: node.CompressionLevel,
-                        partitionRanges: node.PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        compressionLevel: (fragment as ScriptDom.DataCompressionOption).CompressionLevel,
+                        partitionRanges: (fragment as ScriptDom.DataCompressionOption).PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.DataCompressionOption).OptionKind
                     );
                 }
                 case 311: {
-                    var node = (ScriptDom.DataModificationTableReference)fragment;
                     return new DataModificationTableReference(
-                        dataModificationSpecification: (DataModificationSpecification)FromMutable(node.DataModificationSpecification),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        dataModificationSpecification: (DataModificationSpecification)FromMutable((fragment as ScriptDom.DataModificationTableReference).DataModificationSpecification),
+                        columns: (fragment as ScriptDom.DataModificationTableReference).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.DataModificationTableReference).Alias),
+                        forPath: (fragment as ScriptDom.DataModificationTableReference).ForPath
                     );
                 }
                 case 312: {
-                    var node = (ScriptDom.DataRetentionTableOption)fragment;
                     return new DataRetentionTableOption(
-                        optionState: node.OptionState,
-                        filterColumn: (Identifier)FromMutable(node.FilterColumn),
-                        retentionPeriod: (RetentionPeriodDefinition)FromMutable(node.RetentionPeriod),
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.DataRetentionTableOption).OptionState,
+                        filterColumn: (Identifier)FromMutable((fragment as ScriptDom.DataRetentionTableOption).FilterColumn),
+                        retentionPeriod: (RetentionPeriodDefinition)FromMutable((fragment as ScriptDom.DataRetentionTableOption).RetentionPeriod),
+                        optionKind: (fragment as ScriptDom.DataRetentionTableOption).OptionKind
                     );
                 }
                 case 313: {
-                    var node = (ScriptDom.DataTypeSequenceOption)fragment;
                     return new DataTypeSequenceOption(
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        optionKind: node.OptionKind,
-                        noValue: node.NoValue
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.DataTypeSequenceOption).DataType),
+                        optionKind: (fragment as ScriptDom.DataTypeSequenceOption).OptionKind,
+                        noValue: (fragment as ScriptDom.DataTypeSequenceOption).NoValue
                     );
                 }
                 case 314: {
-                    var node = (ScriptDom.DbccNamedLiteral)fragment;
                     return new DbccNamedLiteral(
-                        name: node.Name,
-                        @value: (ScalarExpression)FromMutable(node.Value)
+                        name: (fragment as ScriptDom.DbccNamedLiteral).Name,
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.DbccNamedLiteral).Value)
                     );
                 }
                 case 315: {
-                    var node = (ScriptDom.DbccOption)fragment;
                     return new DbccOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.DbccOption).OptionKind
                     );
                 }
                 case 316: {
-                    var node = (ScriptDom.DbccStatement)fragment;
                     return new DbccStatement(
-                        dllName: node.DllName,
-                        command: node.Command,
-                        parenthesisRequired: node.ParenthesisRequired,
-                        literals: node.Literals.SelectList(c => (DbccNamedLiteral)FromMutable(c)),
-                        options: node.Options.SelectList(c => (DbccOption)FromMutable(c)),
-                        optionsUseJoin: node.OptionsUseJoin
+                        dllName: (fragment as ScriptDom.DbccStatement).DllName,
+                        command: (fragment as ScriptDom.DbccStatement).Command,
+                        parenthesisRequired: (fragment as ScriptDom.DbccStatement).ParenthesisRequired,
+                        literals: (fragment as ScriptDom.DbccStatement).Literals.SelectList(c => (DbccNamedLiteral)FromMutable(c)),
+                        options: (fragment as ScriptDom.DbccStatement).Options.SelectList(c => (DbccOption)FromMutable(c)),
+                        optionsUseJoin: (fragment as ScriptDom.DbccStatement).OptionsUseJoin
                     );
                 }
                 case 317: {
-                    var node = (ScriptDom.DeallocateCursorStatement)fragment;
                     return new DeallocateCursorStatement(
-                        cursor: (CursorId)FromMutable(node.Cursor)
+                        cursor: (CursorId)FromMutable((fragment as ScriptDom.DeallocateCursorStatement).Cursor)
                     );
                 }
                 case 318: {
-                    var node = (ScriptDom.DeclareCursorStatement)fragment;
                     return new DeclareCursorStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        cursorDefinition: (CursorDefinition)FromMutable(node.CursorDefinition)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DeclareCursorStatement).Name),
+                        cursorDefinition: (CursorDefinition)FromMutable((fragment as ScriptDom.DeclareCursorStatement).CursorDefinition)
                     );
                 }
                 case 319: {
-                    var node = (ScriptDom.DeclareTableVariableBody)fragment;
                     return new DeclareTableVariableBody(
-                        variableName: (Identifier)FromMutable(node.VariableName),
-                        asDefined: node.AsDefined,
-                        definition: (TableDefinition)FromMutable(node.Definition)
+                        variableName: (Identifier)FromMutable((fragment as ScriptDom.DeclareTableVariableBody).VariableName),
+                        asDefined: (fragment as ScriptDom.DeclareTableVariableBody).AsDefined,
+                        definition: (TableDefinition)FromMutable((fragment as ScriptDom.DeclareTableVariableBody).Definition)
                     );
                 }
                 case 320: {
-                    var node = (ScriptDom.DeclareTableVariableStatement)fragment;
                     return new DeclareTableVariableStatement(
-                        body: (DeclareTableVariableBody)FromMutable(node.Body)
+                        body: (DeclareTableVariableBody)FromMutable((fragment as ScriptDom.DeclareTableVariableStatement).Body)
                     );
                 }
                 case 321: {
-                    var node = (ScriptDom.DeclareVariableElement)fragment;
                     return new DeclareVariableElement(
-                        variableName: (Identifier)FromMutable(node.VariableName),
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        nullable: (NullableConstraintDefinition)FromMutable(node.Nullable),
-                        @value: (ScalarExpression)FromMutable(node.Value)
+                        variableName: (Identifier)FromMutable((fragment as ScriptDom.DeclareVariableElement).VariableName),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.DeclareVariableElement).DataType),
+                        nullable: (NullableConstraintDefinition)FromMutable((fragment as ScriptDom.DeclareVariableElement).Nullable),
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.DeclareVariableElement).Value)
                     );
                 }
                 case 322: {
-                    var node = (ScriptDom.DeclareVariableStatement)fragment;
                     return new DeclareVariableStatement(
-                        declarations: node.Declarations.SelectList(c => (DeclareVariableElement)FromMutable(c))
+                        declarations: (fragment as ScriptDom.DeclareVariableStatement).Declarations.SelectList(c => (DeclareVariableElement)FromMutable(c))
                     );
                 }
                 case 323: {
-                    var node = (ScriptDom.DefaultConstraintDefinition)fragment;
                     return new DefaultConstraintDefinition(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        withValues: node.WithValues,
-                        column: (Identifier)FromMutable(node.Column),
-                        constraintIdentifier: (Identifier)FromMutable(node.ConstraintIdentifier)
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.DefaultConstraintDefinition).Expression),
+                        withValues: (fragment as ScriptDom.DefaultConstraintDefinition).WithValues,
+                        column: (Identifier)FromMutable((fragment as ScriptDom.DefaultConstraintDefinition).Column),
+                        constraintIdentifier: (Identifier)FromMutable((fragment as ScriptDom.DefaultConstraintDefinition).ConstraintIdentifier)
                     );
                 }
                 case 324: {
-                    var node = (ScriptDom.DefaultLiteral)fragment;
                     return new DefaultLiteral(
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        @value: (fragment as ScriptDom.DefaultLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.DefaultLiteral).Collation)
                     );
                 }
                 case 325: {
-                    var node = (ScriptDom.DelayedDurabilityDatabaseOption)fragment;
                     return new DelayedDurabilityDatabaseOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.DelayedDurabilityDatabaseOption).Value,
+                        optionKind: (fragment as ScriptDom.DelayedDurabilityDatabaseOption).OptionKind
                     );
                 }
                 case 326: {
-                    var node = (ScriptDom.DeleteMergeAction)fragment;
                     return new DeleteMergeAction(
                         
                     );
                 }
                 case 327: {
-                    var node = (ScriptDom.DeleteSpecification)fragment;
                     return new DeleteSpecification(
-                        fromClause: (FromClause)FromMutable(node.FromClause),
-                        whereClause: (WhereClause)FromMutable(node.WhereClause),
-                        target: (TableReference)FromMutable(node.Target),
-                        topRowFilter: (TopRowFilter)FromMutable(node.TopRowFilter),
-                        outputIntoClause: (OutputIntoClause)FromMutable(node.OutputIntoClause),
-                        outputClause: (OutputClause)FromMutable(node.OutputClause)
+                        fromClause: (FromClause)FromMutable((fragment as ScriptDom.DeleteSpecification).FromClause),
+                        whereClause: (WhereClause)FromMutable((fragment as ScriptDom.DeleteSpecification).WhereClause),
+                        target: (TableReference)FromMutable((fragment as ScriptDom.DeleteSpecification).Target),
+                        topRowFilter: (TopRowFilter)FromMutable((fragment as ScriptDom.DeleteSpecification).TopRowFilter),
+                        outputIntoClause: (OutputIntoClause)FromMutable((fragment as ScriptDom.DeleteSpecification).OutputIntoClause),
+                        outputClause: (OutputClause)FromMutable((fragment as ScriptDom.DeleteSpecification).OutputClause)
                     );
                 }
                 case 328: {
-                    var node = (ScriptDom.DeleteStatement)fragment;
                     return new DeleteStatement(
-                        deleteSpecification: (DeleteSpecification)FromMutable(node.DeleteSpecification),
-                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(node.WithCtesAndXmlNamespaces),
-                        optimizerHints: node.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                        deleteSpecification: (DeleteSpecification)FromMutable((fragment as ScriptDom.DeleteStatement).DeleteSpecification),
+                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable((fragment as ScriptDom.DeleteStatement).WithCtesAndXmlNamespaces),
+                        optimizerHints: (fragment as ScriptDom.DeleteStatement).OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
                     );
                 }
                 case 329: {
-                    var node = (ScriptDom.DenyStatement)fragment;
                     return new DenyStatement(
-                        cascadeOption: node.CascadeOption,
-                        permissions: node.Permissions.SelectList(c => (Permission)FromMutable(c)),
-                        securityTargetObject: (SecurityTargetObject)FromMutable(node.SecurityTargetObject),
-                        principals: node.Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
-                        asClause: (Identifier)FromMutable(node.AsClause)
+                        cascadeOption: (fragment as ScriptDom.DenyStatement).CascadeOption,
+                        permissions: (fragment as ScriptDom.DenyStatement).Permissions.SelectList(c => (Permission)FromMutable(c)),
+                        securityTargetObject: (SecurityTargetObject)FromMutable((fragment as ScriptDom.DenyStatement).SecurityTargetObject),
+                        principals: (fragment as ScriptDom.DenyStatement).Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
+                        asClause: (Identifier)FromMutable((fragment as ScriptDom.DenyStatement).AsClause)
                     );
                 }
                 case 330: {
-                    var node = (ScriptDom.DenyStatement80)fragment;
                     return new DenyStatement80(
-                        cascadeOption: node.CascadeOption,
-                        securityElement80: (SecurityElement80)FromMutable(node.SecurityElement80),
-                        securityUserClause80: (SecurityUserClause80)FromMutable(node.SecurityUserClause80)
+                        cascadeOption: (fragment as ScriptDom.DenyStatement80).CascadeOption,
+                        securityElement80: (SecurityElement80)FromMutable((fragment as ScriptDom.DenyStatement80).SecurityElement80),
+                        securityUserClause80: (SecurityUserClause80)FromMutable((fragment as ScriptDom.DenyStatement80).SecurityUserClause80)
                     );
                 }
                 case 331: {
-                    var node = (ScriptDom.DeviceInfo)fragment;
                     return new DeviceInfo(
-                        logicalDevice: (IdentifierOrValueExpression)FromMutable(node.LogicalDevice),
-                        physicalDevice: (ValueExpression)FromMutable(node.PhysicalDevice),
-                        deviceType: node.DeviceType
+                        logicalDevice: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.DeviceInfo).LogicalDevice),
+                        physicalDevice: (ValueExpression)FromMutable((fragment as ScriptDom.DeviceInfo).PhysicalDevice),
+                        deviceType: (fragment as ScriptDom.DeviceInfo).DeviceType
                     );
                 }
                 case 332: {
-                    var node = (ScriptDom.DiskStatement)fragment;
                     return new DiskStatement(
-                        diskStatementType: node.DiskStatementType,
-                        options: node.Options.SelectList(c => (DiskStatementOption)FromMutable(c))
+                        diskStatementType: (fragment as ScriptDom.DiskStatement).DiskStatementType,
+                        options: (fragment as ScriptDom.DiskStatement).Options.SelectList(c => (DiskStatementOption)FromMutable(c))
                     );
                 }
                 case 333: {
-                    var node = (ScriptDom.DiskStatementOption)fragment;
                     return new DiskStatementOption(
-                        optionKind: node.OptionKind,
-                        @value: (IdentifierOrValueExpression)FromMutable(node.Value)
+                        optionKind: (fragment as ScriptDom.DiskStatementOption).OptionKind,
+                        @value: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.DiskStatementOption).Value)
                     );
                 }
                 case 334: {
-                    var node = (ScriptDom.DistinctPredicate)fragment;
                     return new DistinctPredicate(
-                        firstExpression: (ScalarExpression)FromMutable(node.FirstExpression),
-                        secondExpression: (ScalarExpression)FromMutable(node.SecondExpression),
-                        isNot: node.IsNot
+                        firstExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.DistinctPredicate).FirstExpression),
+                        secondExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.DistinctPredicate).SecondExpression),
+                        isNot: (fragment as ScriptDom.DistinctPredicate).IsNot
                     );
                 }
                 case 335: {
-                    var node = (ScriptDom.DropAggregateStatement)fragment;
                     return new DropAggregateStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropAggregateStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropAggregateStatement).IsIfExists
                     );
                 }
                 case 336: {
-                    var node = (ScriptDom.DropAlterFullTextIndexAction)fragment;
                     return new DropAlterFullTextIndexAction(
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        withNoPopulation: node.WithNoPopulation
+                        columns: (fragment as ScriptDom.DropAlterFullTextIndexAction).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        withNoPopulation: (fragment as ScriptDom.DropAlterFullTextIndexAction).WithNoPopulation
                     );
                 }
                 case 337: {
-                    var node = (ScriptDom.DropApplicationRoleStatement)fragment;
                     return new DropApplicationRoleStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropApplicationRoleStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropApplicationRoleStatement).IsIfExists
                     );
                 }
                 case 338: {
-                    var node = (ScriptDom.DropAssemblyStatement)fragment;
                     return new DropAssemblyStatement(
-                        withNoDependents: node.WithNoDependents,
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        withNoDependents: (fragment as ScriptDom.DropAssemblyStatement).WithNoDependents,
+                        objects: (fragment as ScriptDom.DropAssemblyStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropAssemblyStatement).IsIfExists
                     );
                 }
                 case 339: {
-                    var node = (ScriptDom.DropAsymmetricKeyStatement)fragment;
                     return new DropAsymmetricKeyStatement(
-                        removeProviderKey: node.RemoveProviderKey,
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        removeProviderKey: (fragment as ScriptDom.DropAsymmetricKeyStatement).RemoveProviderKey,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropAsymmetricKeyStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropAsymmetricKeyStatement).IsIfExists
                     );
                 }
                 case 340: {
-                    var node = (ScriptDom.DropAvailabilityGroupStatement)fragment;
                     return new DropAvailabilityGroupStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropAvailabilityGroupStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropAvailabilityGroupStatement).IsIfExists
                     );
                 }
                 case 341: {
-                    var node = (ScriptDom.DropBrokerPriorityStatement)fragment;
                     return new DropBrokerPriorityStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropBrokerPriorityStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropBrokerPriorityStatement).IsIfExists
                     );
                 }
                 case 342: {
-                    var node = (ScriptDom.DropCertificateStatement)fragment;
                     return new DropCertificateStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropCertificateStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropCertificateStatement).IsIfExists
                     );
                 }
                 case 343: {
-                    var node = (ScriptDom.DropClusteredConstraintMoveOption)fragment;
                     return new DropClusteredConstraintMoveOption(
-                        optionValue: (FileGroupOrPartitionScheme)FromMutable(node.OptionValue),
-                        optionKind: node.OptionKind
+                        optionValue: (FileGroupOrPartitionScheme)FromMutable((fragment as ScriptDom.DropClusteredConstraintMoveOption).OptionValue),
+                        optionKind: (fragment as ScriptDom.DropClusteredConstraintMoveOption).OptionKind
                     );
                 }
                 case 344: {
-                    var node = (ScriptDom.DropClusteredConstraintStateOption)fragment;
                     return new DropClusteredConstraintStateOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.DropClusteredConstraintStateOption).OptionState,
+                        optionKind: (fragment as ScriptDom.DropClusteredConstraintStateOption).OptionKind
                     );
                 }
                 case 345: {
-                    var node = (ScriptDom.DropClusteredConstraintValueOption)fragment;
                     return new DropClusteredConstraintValueOption(
-                        optionValue: (Literal)FromMutable(node.OptionValue),
-                        optionKind: node.OptionKind
+                        optionValue: (Literal)FromMutable((fragment as ScriptDom.DropClusteredConstraintValueOption).OptionValue),
+                        optionKind: (fragment as ScriptDom.DropClusteredConstraintValueOption).OptionKind
                     );
                 }
                 case 346: {
-                    var node = (ScriptDom.DropClusteredConstraintWaitAtLowPriorityLockOption)fragment;
                     return new DropClusteredConstraintWaitAtLowPriorityLockOption(
-                        options: node.Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        options: (fragment as ScriptDom.DropClusteredConstraintWaitAtLowPriorityLockOption).Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.DropClusteredConstraintWaitAtLowPriorityLockOption).OptionKind
                     );
                 }
                 case 347: {
-                    var node = (ScriptDom.DropColumnEncryptionKeyStatement)fragment;
                     return new DropColumnEncryptionKeyStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropColumnEncryptionKeyStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropColumnEncryptionKeyStatement).IsIfExists
                     );
                 }
                 case 348: {
-                    var node = (ScriptDom.DropColumnMasterKeyStatement)fragment;
                     return new DropColumnMasterKeyStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropColumnMasterKeyStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropColumnMasterKeyStatement).IsIfExists
                     );
                 }
                 case 349: {
-                    var node = (ScriptDom.DropContractStatement)fragment;
                     return new DropContractStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropContractStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropContractStatement).IsIfExists
                     );
                 }
                 case 350: {
-                    var node = (ScriptDom.DropCredentialStatement)fragment;
                     return new DropCredentialStatement(
-                        isDatabaseScoped: node.IsDatabaseScoped,
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        isDatabaseScoped: (fragment as ScriptDom.DropCredentialStatement).IsDatabaseScoped,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropCredentialStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropCredentialStatement).IsIfExists
                     );
                 }
                 case 351: {
-                    var node = (ScriptDom.DropCryptographicProviderStatement)fragment;
                     return new DropCryptographicProviderStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropCryptographicProviderStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropCryptographicProviderStatement).IsIfExists
                     );
                 }
                 case 352: {
-                    var node = (ScriptDom.DropDatabaseAuditSpecificationStatement)fragment;
                     return new DropDatabaseAuditSpecificationStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropDatabaseAuditSpecificationStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropDatabaseAuditSpecificationStatement).IsIfExists
                     );
                 }
                 case 353: {
-                    var node = (ScriptDom.DropDatabaseEncryptionKeyStatement)fragment;
                     return new DropDatabaseEncryptionKeyStatement(
                         
                     );
                 }
                 case 354: {
-                    var node = (ScriptDom.DropDatabaseStatement)fragment;
                     return new DropDatabaseStatement(
-                        databases: node.Databases.SelectList(c => (Identifier)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        databases: (fragment as ScriptDom.DropDatabaseStatement).Databases.SelectList(c => (Identifier)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropDatabaseStatement).IsIfExists
                     );
                 }
                 case 355: {
-                    var node = (ScriptDom.DropDefaultStatement)fragment;
                     return new DropDefaultStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropDefaultStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropDefaultStatement).IsIfExists
                     );
                 }
                 case 356: {
-                    var node = (ScriptDom.DropEndpointStatement)fragment;
                     return new DropEndpointStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropEndpointStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropEndpointStatement).IsIfExists
                     );
                 }
                 case 357: {
-                    var node = (ScriptDom.DropEventNotificationStatement)fragment;
                     return new DropEventNotificationStatement(
-                        notifications: node.Notifications.SelectList(c => (Identifier)FromMutable(c)),
-                        scope: (EventNotificationObjectScope)FromMutable(node.Scope)
+                        notifications: (fragment as ScriptDom.DropEventNotificationStatement).Notifications.SelectList(c => (Identifier)FromMutable(c)),
+                        scope: (EventNotificationObjectScope)FromMutable((fragment as ScriptDom.DropEventNotificationStatement).Scope)
                     );
                 }
                 case 358: {
-                    var node = (ScriptDom.DropEventSessionStatement)fragment;
                     return new DropEventSessionStatement(
-                        sessionScope: node.SessionScope,
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        sessionScope: (fragment as ScriptDom.DropEventSessionStatement).SessionScope,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropEventSessionStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropEventSessionStatement).IsIfExists
                     );
                 }
                 case 359: {
-                    var node = (ScriptDom.DropExternalDataSourceStatement)fragment;
                     return new DropExternalDataSourceStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropExternalDataSourceStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropExternalDataSourceStatement).IsIfExists
                     );
                 }
                 case 360: {
-                    var node = (ScriptDom.DropExternalFileFormatStatement)fragment;
                     return new DropExternalFileFormatStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropExternalFileFormatStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropExternalFileFormatStatement).IsIfExists
                     );
                 }
                 case 361: {
-                    var node = (ScriptDom.DropExternalLanguageStatement)fragment;
                     return new DropExternalLanguageStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        owner: (Identifier)FromMutable(node.Owner)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropExternalLanguageStatement).Name),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.DropExternalLanguageStatement).Owner)
                     );
                 }
                 case 362: {
-                    var node = (ScriptDom.DropExternalLibraryStatement)fragment;
                     return new DropExternalLibraryStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        owner: (Identifier)FromMutable(node.Owner)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropExternalLibraryStatement).Name),
+                        owner: (Identifier)FromMutable((fragment as ScriptDom.DropExternalLibraryStatement).Owner)
                     );
                 }
                 case 363: {
-                    var node = (ScriptDom.DropExternalResourcePoolStatement)fragment;
                     return new DropExternalResourcePoolStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropExternalResourcePoolStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropExternalResourcePoolStatement).IsIfExists
                     );
                 }
                 case 364: {
-                    var node = (ScriptDom.DropExternalStreamingJobStatement)fragment;
                     return new DropExternalStreamingJobStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropExternalStreamingJobStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropExternalStreamingJobStatement).IsIfExists
                     );
                 }
                 case 365: {
-                    var node = (ScriptDom.DropExternalStreamStatement)fragment;
                     return new DropExternalStreamStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropExternalStreamStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropExternalStreamStatement).IsIfExists
                     );
                 }
                 case 366: {
-                    var node = (ScriptDom.DropExternalTableStatement)fragment;
                     return new DropExternalTableStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropExternalTableStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropExternalTableStatement).IsIfExists
                     );
                 }
                 case 367: {
-                    var node = (ScriptDom.DropFederationStatement)fragment;
                     return new DropFederationStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropFederationStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropFederationStatement).IsIfExists
                     );
                 }
                 case 368: {
-                    var node = (ScriptDom.DropFullTextCatalogStatement)fragment;
                     return new DropFullTextCatalogStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropFullTextCatalogStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropFullTextCatalogStatement).IsIfExists
                     );
                 }
                 case 369: {
-                    var node = (ScriptDom.DropFullTextIndexStatement)fragment;
                     return new DropFullTextIndexStatement(
-                        tableName: (SchemaObjectName)FromMutable(node.TableName)
+                        tableName: (SchemaObjectName)FromMutable((fragment as ScriptDom.DropFullTextIndexStatement).TableName)
                     );
                 }
                 case 370: {
-                    var node = (ScriptDom.DropFullTextStopListStatement)fragment;
                     return new DropFullTextStopListStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropFullTextStopListStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropFullTextStopListStatement).IsIfExists
                     );
                 }
                 case 371: {
-                    var node = (ScriptDom.DropFunctionStatement)fragment;
                     return new DropFunctionStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropFunctionStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropFunctionStatement).IsIfExists
                     );
                 }
                 case 372: {
-                    var node = (ScriptDom.DropIndexClause)fragment;
                     return new DropIndexClause(
-                        index: (Identifier)FromMutable(node.Index),
-                        @object: (SchemaObjectName)FromMutable(node.Object),
-                        options: node.Options.SelectList(c => (IndexOption)FromMutable(c))
+                        index: (Identifier)FromMutable((fragment as ScriptDom.DropIndexClause).Index),
+                        @object: (SchemaObjectName)FromMutable((fragment as ScriptDom.DropIndexClause).Object),
+                        options: (fragment as ScriptDom.DropIndexClause).Options.SelectList(c => (IndexOption)FromMutable(c))
                     );
                 }
                 case 373: {
-                    var node = (ScriptDom.DropIndexStatement)fragment;
                     return new DropIndexStatement(
-                        dropIndexClauses: node.DropIndexClauses.SelectList(c => (DropIndexClauseBase)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        dropIndexClauses: (fragment as ScriptDom.DropIndexStatement).DropIndexClauses.SelectList(c => (DropIndexClauseBase)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropIndexStatement).IsIfExists
                     );
                 }
                 case 374: {
-                    var node = (ScriptDom.DropLoginStatement)fragment;
                     return new DropLoginStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropLoginStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropLoginStatement).IsIfExists
                     );
                 }
                 case 375: {
-                    var node = (ScriptDom.DropMasterKeyStatement)fragment;
                     return new DropMasterKeyStatement(
                         
                     );
                 }
                 case 376: {
-                    var node = (ScriptDom.DropMemberAlterRoleAction)fragment;
                     return new DropMemberAlterRoleAction(
-                        member: (Identifier)FromMutable(node.Member)
+                        member: (Identifier)FromMutable((fragment as ScriptDom.DropMemberAlterRoleAction).Member)
                     );
                 }
                 case 377: {
-                    var node = (ScriptDom.DropMessageTypeStatement)fragment;
                     return new DropMessageTypeStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropMessageTypeStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropMessageTypeStatement).IsIfExists
                     );
                 }
                 case 378: {
-                    var node = (ScriptDom.DropPartitionFunctionStatement)fragment;
                     return new DropPartitionFunctionStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropPartitionFunctionStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropPartitionFunctionStatement).IsIfExists
                     );
                 }
                 case 379: {
-                    var node = (ScriptDom.DropPartitionSchemeStatement)fragment;
                     return new DropPartitionSchemeStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropPartitionSchemeStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropPartitionSchemeStatement).IsIfExists
                     );
                 }
                 case 380: {
-                    var node = (ScriptDom.DropProcedureStatement)fragment;
                     return new DropProcedureStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropProcedureStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropProcedureStatement).IsIfExists
                     );
                 }
                 case 381: {
-                    var node = (ScriptDom.DropQueueStatement)fragment;
                     return new DropQueueStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.DropQueueStatement).Name)
                     );
                 }
                 case 382: {
-                    var node = (ScriptDom.DropRemoteServiceBindingStatement)fragment;
                     return new DropRemoteServiceBindingStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropRemoteServiceBindingStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropRemoteServiceBindingStatement).IsIfExists
                     );
                 }
                 case 383: {
-                    var node = (ScriptDom.DropResourcePoolStatement)fragment;
                     return new DropResourcePoolStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropResourcePoolStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropResourcePoolStatement).IsIfExists
                     );
                 }
                 case 384: {
-                    var node = (ScriptDom.DropRoleStatement)fragment;
                     return new DropRoleStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropRoleStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropRoleStatement).IsIfExists
                     );
                 }
                 case 385: {
-                    var node = (ScriptDom.DropRouteStatement)fragment;
                     return new DropRouteStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropRouteStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropRouteStatement).IsIfExists
                     );
                 }
                 case 386: {
-                    var node = (ScriptDom.DropRuleStatement)fragment;
                     return new DropRuleStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropRuleStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropRuleStatement).IsIfExists
                     );
                 }
                 case 387: {
-                    var node = (ScriptDom.DropSchemaStatement)fragment;
                     return new DropSchemaStatement(
-                        schema: (SchemaObjectName)FromMutable(node.Schema),
-                        dropBehavior: node.DropBehavior,
-                        isIfExists: node.IsIfExists
+                        schema: (SchemaObjectName)FromMutable((fragment as ScriptDom.DropSchemaStatement).Schema),
+                        dropBehavior: (fragment as ScriptDom.DropSchemaStatement).DropBehavior,
+                        isIfExists: (fragment as ScriptDom.DropSchemaStatement).IsIfExists
                     );
                 }
                 case 388: {
-                    var node = (ScriptDom.DropSearchPropertyListAction)fragment;
                     return new DropSearchPropertyListAction(
-                        propertyName: (StringLiteral)FromMutable(node.PropertyName)
+                        propertyName: (StringLiteral)FromMutable((fragment as ScriptDom.DropSearchPropertyListAction).PropertyName)
                     );
                 }
                 case 389: {
-                    var node = (ScriptDom.DropSearchPropertyListStatement)fragment;
                     return new DropSearchPropertyListStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropSearchPropertyListStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropSearchPropertyListStatement).IsIfExists
                     );
                 }
                 case 390: {
-                    var node = (ScriptDom.DropSecurityPolicyStatement)fragment;
                     return new DropSecurityPolicyStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropSecurityPolicyStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropSecurityPolicyStatement).IsIfExists
                     );
                 }
                 case 391: {
-                    var node = (ScriptDom.DropSensitivityClassificationStatement)fragment;
                     return new DropSensitivityClassificationStatement(
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                        columns: (fragment as ScriptDom.DropSensitivityClassificationStatement).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
                     );
                 }
                 case 392: {
-                    var node = (ScriptDom.DropSequenceStatement)fragment;
                     return new DropSequenceStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropSequenceStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropSequenceStatement).IsIfExists
                     );
                 }
                 case 393: {
-                    var node = (ScriptDom.DropServerAuditSpecificationStatement)fragment;
                     return new DropServerAuditSpecificationStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropServerAuditSpecificationStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropServerAuditSpecificationStatement).IsIfExists
                     );
                 }
                 case 394: {
-                    var node = (ScriptDom.DropServerAuditStatement)fragment;
                     return new DropServerAuditStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropServerAuditStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropServerAuditStatement).IsIfExists
                     );
                 }
                 case 395: {
-                    var node = (ScriptDom.DropServerRoleStatement)fragment;
                     return new DropServerRoleStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropServerRoleStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropServerRoleStatement).IsIfExists
                     );
                 }
                 case 396: {
-                    var node = (ScriptDom.DropServiceStatement)fragment;
                     return new DropServiceStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropServiceStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropServiceStatement).IsIfExists
                     );
                 }
                 case 397: {
-                    var node = (ScriptDom.DropSignatureStatement)fragment;
                     return new DropSignatureStatement(
-                        isCounter: node.IsCounter,
-                        elementKind: node.ElementKind,
-                        element: (SchemaObjectName)FromMutable(node.Element),
-                        cryptos: node.Cryptos.SelectList(c => (CryptoMechanism)FromMutable(c))
+                        isCounter: (fragment as ScriptDom.DropSignatureStatement).IsCounter,
+                        elementKind: (fragment as ScriptDom.DropSignatureStatement).ElementKind,
+                        element: (SchemaObjectName)FromMutable((fragment as ScriptDom.DropSignatureStatement).Element),
+                        cryptos: (fragment as ScriptDom.DropSignatureStatement).Cryptos.SelectList(c => (CryptoMechanism)FromMutable(c))
                     );
                 }
                 case 398: {
-                    var node = (ScriptDom.DropStatisticsStatement)fragment;
                     return new DropStatisticsStatement(
-                        objects: node.Objects.SelectList(c => (ChildObjectName)FromMutable(c))
+                        objects: (fragment as ScriptDom.DropStatisticsStatement).Objects.SelectList(c => (ChildObjectName)FromMutable(c))
                     );
                 }
                 case 399: {
-                    var node = (ScriptDom.DropSymmetricKeyStatement)fragment;
                     return new DropSymmetricKeyStatement(
-                        removeProviderKey: node.RemoveProviderKey,
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        removeProviderKey: (fragment as ScriptDom.DropSymmetricKeyStatement).RemoveProviderKey,
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropSymmetricKeyStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropSymmetricKeyStatement).IsIfExists
                     );
                 }
                 case 400: {
-                    var node = (ScriptDom.DropSynonymStatement)fragment;
                     return new DropSynonymStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropSynonymStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropSynonymStatement).IsIfExists
                     );
                 }
                 case 401: {
-                    var node = (ScriptDom.DropTableStatement)fragment;
                     return new DropTableStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropTableStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropTableStatement).IsIfExists
                     );
                 }
                 case 402: {
-                    var node = (ScriptDom.DropTriggerStatement)fragment;
                     return new DropTriggerStatement(
-                        triggerScope: node.TriggerScope,
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        triggerScope: (fragment as ScriptDom.DropTriggerStatement).TriggerScope,
+                        objects: (fragment as ScriptDom.DropTriggerStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropTriggerStatement).IsIfExists
                     );
                 }
                 case 403: {
-                    var node = (ScriptDom.DropTypeStatement)fragment;
                     return new DropTypeStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.DropTypeStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropTypeStatement).IsIfExists
                     );
                 }
                 case 404: {
-                    var node = (ScriptDom.DropUserStatement)fragment;
                     return new DropUserStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropUserStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropUserStatement).IsIfExists
                     );
                 }
                 case 405: {
-                    var node = (ScriptDom.DropViewStatement)fragment;
                     return new DropViewStatement(
-                        objects: node.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        isIfExists: node.IsIfExists
+                        objects: (fragment as ScriptDom.DropViewStatement).Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        isIfExists: (fragment as ScriptDom.DropViewStatement).IsIfExists
                     );
                 }
                 case 406: {
-                    var node = (ScriptDom.DropWorkloadClassifierStatement)fragment;
                     return new DropWorkloadClassifierStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropWorkloadClassifierStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropWorkloadClassifierStatement).IsIfExists
                     );
                 }
                 case 407: {
-                    var node = (ScriptDom.DropWorkloadGroupStatement)fragment;
                     return new DropWorkloadGroupStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        isIfExists: node.IsIfExists
+                        name: (Identifier)FromMutable((fragment as ScriptDom.DropWorkloadGroupStatement).Name),
+                        isIfExists: (fragment as ScriptDom.DropWorkloadGroupStatement).IsIfExists
                     );
                 }
                 case 408: {
-                    var node = (ScriptDom.DropXmlSchemaCollectionStatement)fragment;
                     return new DropXmlSchemaCollectionStatement(
-                        name: (SchemaObjectName)FromMutable(node.Name)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.DropXmlSchemaCollectionStatement).Name)
                     );
                 }
                 case 409: {
-                    var node = (ScriptDom.DurabilityTableOption)fragment;
                     return new DurabilityTableOption(
-                        durabilityTableOptionKind: node.DurabilityTableOptionKind,
-                        optionKind: node.OptionKind
+                        durabilityTableOptionKind: (fragment as ScriptDom.DurabilityTableOption).DurabilityTableOptionKind,
+                        optionKind: (fragment as ScriptDom.DurabilityTableOption).OptionKind
                     );
                 }
                 case 410: {
-                    var node = (ScriptDom.EnabledDisabledPayloadOption)fragment;
                     return new EnabledDisabledPayloadOption(
-                        isEnabled: node.IsEnabled,
-                        kind: node.Kind
+                        isEnabled: (fragment as ScriptDom.EnabledDisabledPayloadOption).IsEnabled,
+                        kind: (fragment as ScriptDom.EnabledDisabledPayloadOption).Kind
                     );
                 }
                 case 411: {
-                    var node = (ScriptDom.EnableDisableTriggerStatement)fragment;
                     return new EnableDisableTriggerStatement(
-                        triggerEnforcement: node.TriggerEnforcement,
-                        all: node.All,
-                        triggerNames: node.TriggerNames.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                        triggerObject: (TriggerObject)FromMutable(node.TriggerObject)
+                        triggerEnforcement: (fragment as ScriptDom.EnableDisableTriggerStatement).TriggerEnforcement,
+                        all: (fragment as ScriptDom.EnableDisableTriggerStatement).All,
+                        triggerNames: (fragment as ScriptDom.EnableDisableTriggerStatement).TriggerNames.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                        triggerObject: (TriggerObject)FromMutable((fragment as ScriptDom.EnableDisableTriggerStatement).TriggerObject)
                     );
                 }
                 case 412: {
-                    var node = (ScriptDom.EncryptedValueParameter)fragment;
                     return new EncryptedValueParameter(
-                        @value: (BinaryLiteral)FromMutable(node.Value),
-                        parameterKind: node.ParameterKind
+                        @value: (BinaryLiteral)FromMutable((fragment as ScriptDom.EncryptedValueParameter).Value),
+                        parameterKind: (fragment as ScriptDom.EncryptedValueParameter).ParameterKind
                     );
                 }
                 case 413: {
-                    var node = (ScriptDom.EncryptionPayloadOption)fragment;
                     return new EncryptionPayloadOption(
-                        encryptionSupport: node.EncryptionSupport,
-                        algorithmPartOne: node.AlgorithmPartOne,
-                        algorithmPartTwo: node.AlgorithmPartTwo,
-                        kind: node.Kind
+                        encryptionSupport: (fragment as ScriptDom.EncryptionPayloadOption).EncryptionSupport,
+                        algorithmPartOne: (fragment as ScriptDom.EncryptionPayloadOption).AlgorithmPartOne,
+                        algorithmPartTwo: (fragment as ScriptDom.EncryptionPayloadOption).AlgorithmPartTwo,
+                        kind: (fragment as ScriptDom.EncryptionPayloadOption).Kind
                     );
                 }
                 case 414: {
-                    var node = (ScriptDom.EndConversationStatement)fragment;
                     return new EndConversationStatement(
-                        conversation: (ScalarExpression)FromMutable(node.Conversation),
-                        withCleanup: node.WithCleanup,
-                        errorCode: (ValueExpression)FromMutable(node.ErrorCode),
-                        errorDescription: (ValueExpression)FromMutable(node.ErrorDescription)
+                        conversation: (ScalarExpression)FromMutable((fragment as ScriptDom.EndConversationStatement).Conversation),
+                        withCleanup: (fragment as ScriptDom.EndConversationStatement).WithCleanup,
+                        errorCode: (ValueExpression)FromMutable((fragment as ScriptDom.EndConversationStatement).ErrorCode),
+                        errorDescription: (ValueExpression)FromMutable((fragment as ScriptDom.EndConversationStatement).ErrorDescription)
                     );
                 }
                 case 415: {
-                    var node = (ScriptDom.EndpointAffinity)fragment;
                     return new EndpointAffinity(
-                        kind: node.Kind,
-                        @value: (Literal)FromMutable(node.Value)
+                        kind: (fragment as ScriptDom.EndpointAffinity).Kind,
+                        @value: (Literal)FromMutable((fragment as ScriptDom.EndpointAffinity).Value)
                     );
                 }
                 case 416: {
-                    var node = (ScriptDom.EventDeclaration)fragment;
                     return new EventDeclaration(
-                        objectName: (EventSessionObjectName)FromMutable(node.ObjectName),
-                        eventDeclarationSetParameters: node.EventDeclarationSetParameters.SelectList(c => (EventDeclarationSetParameter)FromMutable(c)),
-                        eventDeclarationActionParameters: node.EventDeclarationActionParameters.SelectList(c => (EventSessionObjectName)FromMutable(c)),
-                        eventDeclarationPredicateParameter: (BooleanExpression)FromMutable(node.EventDeclarationPredicateParameter)
+                        objectName: (EventSessionObjectName)FromMutable((fragment as ScriptDom.EventDeclaration).ObjectName),
+                        eventDeclarationSetParameters: (fragment as ScriptDom.EventDeclaration).EventDeclarationSetParameters.SelectList(c => (EventDeclarationSetParameter)FromMutable(c)),
+                        eventDeclarationActionParameters: (fragment as ScriptDom.EventDeclaration).EventDeclarationActionParameters.SelectList(c => (EventSessionObjectName)FromMutable(c)),
+                        eventDeclarationPredicateParameter: (BooleanExpression)FromMutable((fragment as ScriptDom.EventDeclaration).EventDeclarationPredicateParameter)
                     );
                 }
                 case 417: {
-                    var node = (ScriptDom.EventDeclarationCompareFunctionParameter)fragment;
                     return new EventDeclarationCompareFunctionParameter(
-                        name: (EventSessionObjectName)FromMutable(node.Name),
-                        sourceDeclaration: (SourceDeclaration)FromMutable(node.SourceDeclaration),
-                        eventValue: (ScalarExpression)FromMutable(node.EventValue)
+                        name: (EventSessionObjectName)FromMutable((fragment as ScriptDom.EventDeclarationCompareFunctionParameter).Name),
+                        sourceDeclaration: (SourceDeclaration)FromMutable((fragment as ScriptDom.EventDeclarationCompareFunctionParameter).SourceDeclaration),
+                        eventValue: (ScalarExpression)FromMutable((fragment as ScriptDom.EventDeclarationCompareFunctionParameter).EventValue)
                     );
                 }
                 case 418: {
-                    var node = (ScriptDom.EventDeclarationSetParameter)fragment;
                     return new EventDeclarationSetParameter(
-                        eventField: (Identifier)FromMutable(node.EventField),
-                        eventValue: (ScalarExpression)FromMutable(node.EventValue)
+                        eventField: (Identifier)FromMutable((fragment as ScriptDom.EventDeclarationSetParameter).EventField),
+                        eventValue: (ScalarExpression)FromMutable((fragment as ScriptDom.EventDeclarationSetParameter).EventValue)
                     );
                 }
                 case 419: {
-                    var node = (ScriptDom.EventGroupContainer)fragment;
                     return new EventGroupContainer(
-                        eventGroup: node.EventGroup
+                        eventGroup: (fragment as ScriptDom.EventGroupContainer).EventGroup
                     );
                 }
                 case 420: {
-                    var node = (ScriptDom.EventNotificationObjectScope)fragment;
                     return new EventNotificationObjectScope(
-                        target: node.Target,
-                        queueName: (SchemaObjectName)FromMutable(node.QueueName)
+                        target: (fragment as ScriptDom.EventNotificationObjectScope).Target,
+                        queueName: (SchemaObjectName)FromMutable((fragment as ScriptDom.EventNotificationObjectScope).QueueName)
                     );
                 }
                 case 421: {
-                    var node = (ScriptDom.EventRetentionSessionOption)fragment;
                     return new EventRetentionSessionOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.EventRetentionSessionOption).Value,
+                        optionKind: (fragment as ScriptDom.EventRetentionSessionOption).OptionKind
                     );
                 }
                 case 422: {
-                    var node = (ScriptDom.EventSessionObjectName)fragment;
                     return new EventSessionObjectName(
-                        multiPartIdentifier: (MultiPartIdentifier)FromMutable(node.MultiPartIdentifier)
+                        multiPartIdentifier: (MultiPartIdentifier)FromMutable((fragment as ScriptDom.EventSessionObjectName).MultiPartIdentifier)
                     );
                 }
                 case 423: {
-                    var node = (ScriptDom.EventSessionStatement)fragment;
                     return new EventSessionStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        sessionScope: node.SessionScope,
-                        eventDeclarations: node.EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
-                        targetDeclarations: node.TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
-                        sessionOptions: node.SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.EventSessionStatement).Name),
+                        sessionScope: (fragment as ScriptDom.EventSessionStatement).SessionScope,
+                        eventDeclarations: (fragment as ScriptDom.EventSessionStatement).EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
+                        targetDeclarations: (fragment as ScriptDom.EventSessionStatement).TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
+                        sessionOptions: (fragment as ScriptDom.EventSessionStatement).SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
                     );
                 }
                 case 424: {
-                    var node = (ScriptDom.EventTypeContainer)fragment;
                     return new EventTypeContainer(
-                        eventType: node.EventType
+                        eventType: (fragment as ScriptDom.EventTypeContainer).EventType
                     );
                 }
                 case 425: {
-                    var node = (ScriptDom.ExecutableProcedureReference)fragment;
                     return new ExecutableProcedureReference(
-                        procedureReference: (ProcedureReferenceName)FromMutable(node.ProcedureReference),
-                        adHocDataSource: (AdHocDataSource)FromMutable(node.AdHocDataSource),
-                        parameters: node.Parameters.SelectList(c => (ExecuteParameter)FromMutable(c))
+                        procedureReference: (ProcedureReferenceName)FromMutable((fragment as ScriptDom.ExecutableProcedureReference).ProcedureReference),
+                        adHocDataSource: (AdHocDataSource)FromMutable((fragment as ScriptDom.ExecutableProcedureReference).AdHocDataSource),
+                        parameters: (fragment as ScriptDom.ExecutableProcedureReference).Parameters.SelectList(c => (ExecuteParameter)FromMutable(c))
                     );
                 }
                 case 426: {
-                    var node = (ScriptDom.ExecutableStringList)fragment;
                     return new ExecutableStringList(
-                        strings: node.Strings.SelectList(c => (ValueExpression)FromMutable(c)),
-                        parameters: node.Parameters.SelectList(c => (ExecuteParameter)FromMutable(c))
+                        strings: (fragment as ScriptDom.ExecutableStringList).Strings.SelectList(c => (ValueExpression)FromMutable(c)),
+                        parameters: (fragment as ScriptDom.ExecutableStringList).Parameters.SelectList(c => (ExecuteParameter)FromMutable(c))
                     );
                 }
                 case 427: {
-                    var node = (ScriptDom.ExecuteAsClause)fragment;
                     return new ExecuteAsClause(
-                        executeAsOption: node.ExecuteAsOption,
-                        literal: (Literal)FromMutable(node.Literal)
+                        executeAsOption: (fragment as ScriptDom.ExecuteAsClause).ExecuteAsOption,
+                        literal: (Literal)FromMutable((fragment as ScriptDom.ExecuteAsClause).Literal)
                     );
                 }
                 case 428: {
-                    var node = (ScriptDom.ExecuteAsFunctionOption)fragment;
                     return new ExecuteAsFunctionOption(
-                        executeAs: (ExecuteAsClause)FromMutable(node.ExecuteAs),
-                        optionKind: node.OptionKind
+                        executeAs: (ExecuteAsClause)FromMutable((fragment as ScriptDom.ExecuteAsFunctionOption).ExecuteAs),
+                        optionKind: (fragment as ScriptDom.ExecuteAsFunctionOption).OptionKind
                     );
                 }
                 case 429: {
-                    var node = (ScriptDom.ExecuteAsProcedureOption)fragment;
                     return new ExecuteAsProcedureOption(
-                        executeAs: (ExecuteAsClause)FromMutable(node.ExecuteAs),
-                        optionKind: node.OptionKind
+                        executeAs: (ExecuteAsClause)FromMutable((fragment as ScriptDom.ExecuteAsProcedureOption).ExecuteAs),
+                        optionKind: (fragment as ScriptDom.ExecuteAsProcedureOption).OptionKind
                     );
                 }
                 case 430: {
-                    var node = (ScriptDom.ExecuteAsStatement)fragment;
                     return new ExecuteAsStatement(
-                        withNoRevert: node.WithNoRevert,
-                        cookie: (VariableReference)FromMutable(node.Cookie),
-                        executeContext: (ExecuteContext)FromMutable(node.ExecuteContext)
+                        withNoRevert: (fragment as ScriptDom.ExecuteAsStatement).WithNoRevert,
+                        cookie: (VariableReference)FromMutable((fragment as ScriptDom.ExecuteAsStatement).Cookie),
+                        executeContext: (ExecuteContext)FromMutable((fragment as ScriptDom.ExecuteAsStatement).ExecuteContext)
                     );
                 }
                 case 431: {
-                    var node = (ScriptDom.ExecuteAsTriggerOption)fragment;
                     return new ExecuteAsTriggerOption(
-                        executeAsClause: (ExecuteAsClause)FromMutable(node.ExecuteAsClause),
-                        optionKind: node.OptionKind
+                        executeAsClause: (ExecuteAsClause)FromMutable((fragment as ScriptDom.ExecuteAsTriggerOption).ExecuteAsClause),
+                        optionKind: (fragment as ScriptDom.ExecuteAsTriggerOption).OptionKind
                     );
                 }
                 case 432: {
-                    var node = (ScriptDom.ExecuteContext)fragment;
                     return new ExecuteContext(
-                        principal: (ScalarExpression)FromMutable(node.Principal),
-                        kind: node.Kind
+                        principal: (ScalarExpression)FromMutable((fragment as ScriptDom.ExecuteContext).Principal),
+                        kind: (fragment as ScriptDom.ExecuteContext).Kind
                     );
                 }
                 case 433: {
-                    var node = (ScriptDom.ExecuteInsertSource)fragment;
                     return new ExecuteInsertSource(
-                        execute: (ExecuteSpecification)FromMutable(node.Execute)
+                        execute: (ExecuteSpecification)FromMutable((fragment as ScriptDom.ExecuteInsertSource).Execute)
                     );
                 }
                 case 434: {
-                    var node = (ScriptDom.ExecuteOption)fragment;
                     return new ExecuteOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.ExecuteOption).OptionKind
                     );
                 }
                 case 435: {
-                    var node = (ScriptDom.ExecuteParameter)fragment;
                     return new ExecuteParameter(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        parameterValue: (ScalarExpression)FromMutable(node.ParameterValue),
-                        isOutput: node.IsOutput
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.ExecuteParameter).Variable),
+                        parameterValue: (ScalarExpression)FromMutable((fragment as ScriptDom.ExecuteParameter).ParameterValue),
+                        isOutput: (fragment as ScriptDom.ExecuteParameter).IsOutput
                     );
                 }
                 case 436: {
-                    var node = (ScriptDom.ExecuteSpecification)fragment;
                     return new ExecuteSpecification(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        linkedServer: (Identifier)FromMutable(node.LinkedServer),
-                        executeContext: (ExecuteContext)FromMutable(node.ExecuteContext),
-                        executableEntity: (ExecutableEntity)FromMutable(node.ExecutableEntity)
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.ExecuteSpecification).Variable),
+                        linkedServer: (Identifier)FromMutable((fragment as ScriptDom.ExecuteSpecification).LinkedServer),
+                        executeContext: (ExecuteContext)FromMutable((fragment as ScriptDom.ExecuteSpecification).ExecuteContext),
+                        executableEntity: (ExecutableEntity)FromMutable((fragment as ScriptDom.ExecuteSpecification).ExecutableEntity)
                     );
                 }
                 case 437: {
-                    var node = (ScriptDom.ExecuteStatement)fragment;
                     return new ExecuteStatement(
-                        executeSpecification: (ExecuteSpecification)FromMutable(node.ExecuteSpecification),
-                        options: node.Options.SelectList(c => (ExecuteOption)FromMutable(c))
+                        executeSpecification: (ExecuteSpecification)FromMutable((fragment as ScriptDom.ExecuteStatement).ExecuteSpecification),
+                        options: (fragment as ScriptDom.ExecuteStatement).Options.SelectList(c => (ExecuteOption)FromMutable(c))
                     );
                 }
                 case 438: {
-                    var node = (ScriptDom.ExistsPredicate)fragment;
                     return new ExistsPredicate(
-                        subquery: (ScalarSubquery)FromMutable(node.Subquery)
+                        subquery: (ScalarSubquery)FromMutable((fragment as ScriptDom.ExistsPredicate).Subquery)
                     );
                 }
                 case 439: {
-                    var node = (ScriptDom.ExpressionCallTarget)fragment;
                     return new ExpressionCallTarget(
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.ExpressionCallTarget).Expression)
                     );
                 }
                 case 440: {
-                    var node = (ScriptDom.ExpressionGroupingSpecification)fragment;
                     return new ExpressionGroupingSpecification(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        distributedAggregation: node.DistributedAggregation
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.ExpressionGroupingSpecification).Expression),
+                        distributedAggregation: (fragment as ScriptDom.ExpressionGroupingSpecification).DistributedAggregation
                     );
                 }
                 case 441: {
-                    var node = (ScriptDom.ExpressionWithSortOrder)fragment;
                     return new ExpressionWithSortOrder(
-                        sortOrder: node.SortOrder,
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        sortOrder: (fragment as ScriptDom.ExpressionWithSortOrder).SortOrder,
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.ExpressionWithSortOrder).Expression)
                     );
                 }
                 case 442: {
-                    var node = (ScriptDom.ExternalCreateLoginSource)fragment;
                     return new ExternalCreateLoginSource(
-                        options: node.Options.SelectList(c => (PrincipalOption)FromMutable(c))
+                        options: (fragment as ScriptDom.ExternalCreateLoginSource).Options.SelectList(c => (PrincipalOption)FromMutable(c))
                     );
                 }
                 case 443: {
-                    var node = (ScriptDom.ExternalDataSourceLiteralOrIdentifierOption)fragment;
                     return new ExternalDataSourceLiteralOrIdentifierOption(
-                        @value: (IdentifierOrValueExpression)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.ExternalDataSourceLiteralOrIdentifierOption).Value),
+                        optionKind: (fragment as ScriptDom.ExternalDataSourceLiteralOrIdentifierOption).OptionKind
                     );
                 }
                 case 444: {
-                    var node = (ScriptDom.ExternalFileFormatContainerOption)fragment;
                     return new ExternalFileFormatContainerOption(
-                        suboptions: node.Suboptions.SelectList(c => (ExternalFileFormatOption)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        suboptions: (fragment as ScriptDom.ExternalFileFormatContainerOption).Suboptions.SelectList(c => (ExternalFileFormatOption)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.ExternalFileFormatContainerOption).OptionKind
                     );
                 }
                 case 445: {
-                    var node = (ScriptDom.ExternalFileFormatLiteralOption)fragment;
                     return new ExternalFileFormatLiteralOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.ExternalFileFormatLiteralOption).Value),
+                        optionKind: (fragment as ScriptDom.ExternalFileFormatLiteralOption).OptionKind
                     );
                 }
                 case 446: {
-                    var node = (ScriptDom.ExternalFileFormatUseDefaultTypeOption)fragment;
                     return new ExternalFileFormatUseDefaultTypeOption(
-                        externalFileFormatUseDefaultType: node.ExternalFileFormatUseDefaultType,
-                        optionKind: node.OptionKind
+                        externalFileFormatUseDefaultType: (fragment as ScriptDom.ExternalFileFormatUseDefaultTypeOption).ExternalFileFormatUseDefaultType,
+                        optionKind: (fragment as ScriptDom.ExternalFileFormatUseDefaultTypeOption).OptionKind
                     );
                 }
                 case 447: {
-                    var node = (ScriptDom.ExternalLanguageFileOption)fragment;
                     return new ExternalLanguageFileOption(
-                        content: (ScalarExpression)FromMutable(node.Content),
-                        fileName: (StringLiteral)FromMutable(node.FileName),
-                        path: (StringLiteral)FromMutable(node.Path),
-                        platform: (Identifier)FromMutable(node.Platform),
-                        parameters: (StringLiteral)FromMutable(node.Parameters),
-                        environmentVariables: (StringLiteral)FromMutable(node.EnvironmentVariables)
+                        content: (ScalarExpression)FromMutable((fragment as ScriptDom.ExternalLanguageFileOption).Content),
+                        fileName: (StringLiteral)FromMutable((fragment as ScriptDom.ExternalLanguageFileOption).FileName),
+                        path: (StringLiteral)FromMutable((fragment as ScriptDom.ExternalLanguageFileOption).Path),
+                        platform: (Identifier)FromMutable((fragment as ScriptDom.ExternalLanguageFileOption).Platform),
+                        parameters: (StringLiteral)FromMutable((fragment as ScriptDom.ExternalLanguageFileOption).Parameters),
+                        environmentVariables: (StringLiteral)FromMutable((fragment as ScriptDom.ExternalLanguageFileOption).EnvironmentVariables)
                     );
                 }
                 case 448: {
-                    var node = (ScriptDom.ExternalLibraryFileOption)fragment;
                     return new ExternalLibraryFileOption(
-                        content: (ScalarExpression)FromMutable(node.Content),
-                        path: (StringLiteral)FromMutable(node.Path),
-                        platform: (Identifier)FromMutable(node.Platform)
+                        content: (ScalarExpression)FromMutable((fragment as ScriptDom.ExternalLibraryFileOption).Content),
+                        path: (StringLiteral)FromMutable((fragment as ScriptDom.ExternalLibraryFileOption).Path),
+                        platform: (Identifier)FromMutable((fragment as ScriptDom.ExternalLibraryFileOption).Platform)
                     );
                 }
                 case 449: {
-                    var node = (ScriptDom.ExternalResourcePoolAffinitySpecification)fragment;
                     return new ExternalResourcePoolAffinitySpecification(
-                        affinityType: node.AffinityType,
-                        parameterValue: (Literal)FromMutable(node.ParameterValue),
-                        isAuto: node.IsAuto,
-                        poolAffinityRanges: node.PoolAffinityRanges.SelectList(c => (LiteralRange)FromMutable(c))
+                        affinityType: (fragment as ScriptDom.ExternalResourcePoolAffinitySpecification).AffinityType,
+                        parameterValue: (Literal)FromMutable((fragment as ScriptDom.ExternalResourcePoolAffinitySpecification).ParameterValue),
+                        isAuto: (fragment as ScriptDom.ExternalResourcePoolAffinitySpecification).IsAuto,
+                        poolAffinityRanges: (fragment as ScriptDom.ExternalResourcePoolAffinitySpecification).PoolAffinityRanges.SelectList(c => (LiteralRange)FromMutable(c))
                     );
                 }
                 case 450: {
-                    var node = (ScriptDom.ExternalResourcePoolParameter)fragment;
                     return new ExternalResourcePoolParameter(
-                        parameterType: node.ParameterType,
-                        parameterValue: (Literal)FromMutable(node.ParameterValue),
-                        affinitySpecification: (ExternalResourcePoolAffinitySpecification)FromMutable(node.AffinitySpecification)
+                        parameterType: (fragment as ScriptDom.ExternalResourcePoolParameter).ParameterType,
+                        parameterValue: (Literal)FromMutable((fragment as ScriptDom.ExternalResourcePoolParameter).ParameterValue),
+                        affinitySpecification: (ExternalResourcePoolAffinitySpecification)FromMutable((fragment as ScriptDom.ExternalResourcePoolParameter).AffinitySpecification)
                     );
                 }
                 case 451: {
-                    var node = (ScriptDom.ExternalResourcePoolStatement)fragment;
                     return new ExternalResourcePoolStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        externalResourcePoolParameters: node.ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.ExternalResourcePoolStatement).Name),
+                        externalResourcePoolParameters: (fragment as ScriptDom.ExternalResourcePoolStatement).ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
                     );
                 }
                 case 452: {
-                    var node = (ScriptDom.ExternalStreamLiteralOrIdentifierOption)fragment;
                     return new ExternalStreamLiteralOrIdentifierOption(
-                        @value: (IdentifierOrValueExpression)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.ExternalStreamLiteralOrIdentifierOption).Value),
+                        optionKind: (fragment as ScriptDom.ExternalStreamLiteralOrIdentifierOption).OptionKind
                     );
                 }
                 case 453: {
-                    var node = (ScriptDom.ExternalTableColumnDefinition)fragment;
                     return new ExternalTableColumnDefinition(
-                        columnDefinition: (ColumnDefinitionBase)FromMutable(node.ColumnDefinition),
-                        nullableConstraint: (NullableConstraintDefinition)FromMutable(node.NullableConstraint)
+                        columnDefinition: (ColumnDefinitionBase)FromMutable((fragment as ScriptDom.ExternalTableColumnDefinition).ColumnDefinition),
+                        nullableConstraint: (NullableConstraintDefinition)FromMutable((fragment as ScriptDom.ExternalTableColumnDefinition).NullableConstraint)
                     );
                 }
                 case 454: {
-                    var node = (ScriptDom.ExternalTableDistributionOption)fragment;
                     return new ExternalTableDistributionOption(
-                        @value: (ExternalTableDistributionPolicy)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (ExternalTableDistributionPolicy)FromMutable((fragment as ScriptDom.ExternalTableDistributionOption).Value),
+                        optionKind: (fragment as ScriptDom.ExternalTableDistributionOption).OptionKind
                     );
                 }
                 case 455: {
-                    var node = (ScriptDom.ExternalTableLiteralOrIdentifierOption)fragment;
                     return new ExternalTableLiteralOrIdentifierOption(
-                        @value: (IdentifierOrValueExpression)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.ExternalTableLiteralOrIdentifierOption).Value),
+                        optionKind: (fragment as ScriptDom.ExternalTableLiteralOrIdentifierOption).OptionKind
                     );
                 }
                 case 456: {
-                    var node = (ScriptDom.ExternalTableRejectTypeOption)fragment;
                     return new ExternalTableRejectTypeOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.ExternalTableRejectTypeOption).Value,
+                        optionKind: (fragment as ScriptDom.ExternalTableRejectTypeOption).OptionKind
                     );
                 }
                 case 457: {
-                    var node = (ScriptDom.ExternalTableReplicatedDistributionPolicy)fragment;
                     return new ExternalTableReplicatedDistributionPolicy(
                         
                     );
                 }
                 case 458: {
-                    var node = (ScriptDom.ExternalTableRoundRobinDistributionPolicy)fragment;
                     return new ExternalTableRoundRobinDistributionPolicy(
                         
                     );
                 }
                 case 459: {
-                    var node = (ScriptDom.ExternalTableShardedDistributionPolicy)fragment;
                     return new ExternalTableShardedDistributionPolicy(
-                        shardingColumn: (Identifier)FromMutable(node.ShardingColumn)
+                        shardingColumn: (Identifier)FromMutable((fragment as ScriptDom.ExternalTableShardedDistributionPolicy).ShardingColumn)
                     );
                 }
                 case 460: {
-                    var node = (ScriptDom.ExtractFromExpression)fragment;
                     return new ExtractFromExpression(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        extractedElement: (Identifier)FromMutable(node.ExtractedElement)
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.ExtractFromExpression).Expression),
+                        extractedElement: (Identifier)FromMutable((fragment as ScriptDom.ExtractFromExpression).ExtractedElement)
                     );
                 }
                 case 461: {
-                    var node = (ScriptDom.FailoverModeReplicaOption)fragment;
                     return new FailoverModeReplicaOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.FailoverModeReplicaOption).Value,
+                        optionKind: (fragment as ScriptDom.FailoverModeReplicaOption).OptionKind
                     );
                 }
                 case 462: {
-                    var node = (ScriptDom.FederationScheme)fragment;
                     return new FederationScheme(
-                        distributionName: (Identifier)FromMutable(node.DistributionName),
-                        columnName: (Identifier)FromMutable(node.ColumnName)
+                        distributionName: (Identifier)FromMutable((fragment as ScriptDom.FederationScheme).DistributionName),
+                        columnName: (Identifier)FromMutable((fragment as ScriptDom.FederationScheme).ColumnName)
                     );
                 }
                 case 463: {
-                    var node = (ScriptDom.FetchCursorStatement)fragment;
                     return new FetchCursorStatement(
-                        fetchType: (FetchType)FromMutable(node.FetchType),
-                        intoVariables: node.IntoVariables.SelectList(c => (VariableReference)FromMutable(c)),
-                        cursor: (CursorId)FromMutable(node.Cursor)
+                        fetchType: (FetchType)FromMutable((fragment as ScriptDom.FetchCursorStatement).FetchType),
+                        intoVariables: (fragment as ScriptDom.FetchCursorStatement).IntoVariables.SelectList(c => (VariableReference)FromMutable(c)),
+                        cursor: (CursorId)FromMutable((fragment as ScriptDom.FetchCursorStatement).Cursor)
                     );
                 }
                 case 464: {
-                    var node = (ScriptDom.FetchType)fragment;
                     return new FetchType(
-                        orientation: node.Orientation,
-                        rowOffset: (ScalarExpression)FromMutable(node.RowOffset)
+                        orientation: (fragment as ScriptDom.FetchType).Orientation,
+                        rowOffset: (ScalarExpression)FromMutable((fragment as ScriptDom.FetchType).RowOffset)
                     );
                 }
                 case 465: {
-                    var node = (ScriptDom.FileDeclaration)fragment;
                     return new FileDeclaration(
-                        options: node.Options.SelectList(c => (FileDeclarationOption)FromMutable(c)),
-                        isPrimary: node.IsPrimary
+                        options: (fragment as ScriptDom.FileDeclaration).Options.SelectList(c => (FileDeclarationOption)FromMutable(c)),
+                        isPrimary: (fragment as ScriptDom.FileDeclaration).IsPrimary
                     );
                 }
                 case 466: {
-                    var node = (ScriptDom.FileDeclarationOption)fragment;
                     return new FileDeclarationOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.FileDeclarationOption).OptionKind
                     );
                 }
                 case 467: {
-                    var node = (ScriptDom.FileEncryptionSource)fragment;
                     return new FileEncryptionSource(
-                        isExecutable: node.IsExecutable,
-                        file: (Literal)FromMutable(node.File)
+                        isExecutable: (fragment as ScriptDom.FileEncryptionSource).IsExecutable,
+                        file: (Literal)FromMutable((fragment as ScriptDom.FileEncryptionSource).File)
                     );
                 }
                 case 468: {
-                    var node = (ScriptDom.FileGroupDefinition)fragment;
                     return new FileGroupDefinition(
-                        name: (Identifier)FromMutable(node.Name),
-                        fileDeclarations: node.FileDeclarations.SelectList(c => (FileDeclaration)FromMutable(c)),
-                        isDefault: node.IsDefault,
-                        containsFileStream: node.ContainsFileStream,
-                        containsMemoryOptimizedData: node.ContainsMemoryOptimizedData
+                        name: (Identifier)FromMutable((fragment as ScriptDom.FileGroupDefinition).Name),
+                        fileDeclarations: (fragment as ScriptDom.FileGroupDefinition).FileDeclarations.SelectList(c => (FileDeclaration)FromMutable(c)),
+                        isDefault: (fragment as ScriptDom.FileGroupDefinition).IsDefault,
+                        containsFileStream: (fragment as ScriptDom.FileGroupDefinition).ContainsFileStream,
+                        containsMemoryOptimizedData: (fragment as ScriptDom.FileGroupDefinition).ContainsMemoryOptimizedData
                     );
                 }
                 case 469: {
-                    var node = (ScriptDom.FileGroupOrPartitionScheme)fragment;
                     return new FileGroupOrPartitionScheme(
-                        name: (IdentifierOrValueExpression)FromMutable(node.Name),
-                        partitionSchemeColumns: node.PartitionSchemeColumns.SelectList(c => (Identifier)FromMutable(c))
+                        name: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.FileGroupOrPartitionScheme).Name),
+                        partitionSchemeColumns: (fragment as ScriptDom.FileGroupOrPartitionScheme).PartitionSchemeColumns.SelectList(c => (Identifier)FromMutable(c))
                     );
                 }
                 case 470: {
-                    var node = (ScriptDom.FileGrowthFileDeclarationOption)fragment;
                     return new FileGrowthFileDeclarationOption(
-                        growthIncrement: (Literal)FromMutable(node.GrowthIncrement),
-                        units: node.Units,
-                        optionKind: node.OptionKind
+                        growthIncrement: (Literal)FromMutable((fragment as ScriptDom.FileGrowthFileDeclarationOption).GrowthIncrement),
+                        units: (fragment as ScriptDom.FileGrowthFileDeclarationOption).Units,
+                        optionKind: (fragment as ScriptDom.FileGrowthFileDeclarationOption).OptionKind
                     );
                 }
                 case 471: {
-                    var node = (ScriptDom.FileNameFileDeclarationOption)fragment;
                     return new FileNameFileDeclarationOption(
-                        oSFileName: (Literal)FromMutable(node.OSFileName),
-                        optionKind: node.OptionKind
+                        oSFileName: (Literal)FromMutable((fragment as ScriptDom.FileNameFileDeclarationOption).OSFileName),
+                        optionKind: (fragment as ScriptDom.FileNameFileDeclarationOption).OptionKind
                     );
                 }
                 case 472: {
-                    var node = (ScriptDom.FileStreamDatabaseOption)fragment;
                     return new FileStreamDatabaseOption(
-                        nonTransactedAccess: node.NonTransactedAccess,
-                        directoryName: (Literal)FromMutable(node.DirectoryName),
-                        optionKind: node.OptionKind
+                        nonTransactedAccess: (fragment as ScriptDom.FileStreamDatabaseOption).NonTransactedAccess,
+                        directoryName: (Literal)FromMutable((fragment as ScriptDom.FileStreamDatabaseOption).DirectoryName),
+                        optionKind: (fragment as ScriptDom.FileStreamDatabaseOption).OptionKind
                     );
                 }
                 case 473: {
-                    var node = (ScriptDom.FileStreamOnDropIndexOption)fragment;
                     return new FileStreamOnDropIndexOption(
-                        fileStreamOn: (IdentifierOrValueExpression)FromMutable(node.FileStreamOn),
-                        optionKind: node.OptionKind
+                        fileStreamOn: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.FileStreamOnDropIndexOption).FileStreamOn),
+                        optionKind: (fragment as ScriptDom.FileStreamOnDropIndexOption).OptionKind
                     );
                 }
                 case 474: {
-                    var node = (ScriptDom.FileStreamOnTableOption)fragment;
                     return new FileStreamOnTableOption(
-                        @value: (IdentifierOrValueExpression)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.FileStreamOnTableOption).Value),
+                        optionKind: (fragment as ScriptDom.FileStreamOnTableOption).OptionKind
                     );
                 }
                 case 475: {
-                    var node = (ScriptDom.FileStreamRestoreOption)fragment;
                     return new FileStreamRestoreOption(
-                        fileStreamOption: (FileStreamDatabaseOption)FromMutable(node.FileStreamOption),
-                        optionKind: node.OptionKind
+                        fileStreamOption: (FileStreamDatabaseOption)FromMutable((fragment as ScriptDom.FileStreamRestoreOption).FileStreamOption),
+                        optionKind: (fragment as ScriptDom.FileStreamRestoreOption).OptionKind
                     );
                 }
                 case 476: {
-                    var node = (ScriptDom.FileTableCollateFileNameTableOption)fragment;
                     return new FileTableCollateFileNameTableOption(
-                        @value: (Identifier)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Identifier)FromMutable((fragment as ScriptDom.FileTableCollateFileNameTableOption).Value),
+                        optionKind: (fragment as ScriptDom.FileTableCollateFileNameTableOption).OptionKind
                     );
                 }
                 case 477: {
-                    var node = (ScriptDom.FileTableConstraintNameTableOption)fragment;
                     return new FileTableConstraintNameTableOption(
-                        @value: (Identifier)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Identifier)FromMutable((fragment as ScriptDom.FileTableConstraintNameTableOption).Value),
+                        optionKind: (fragment as ScriptDom.FileTableConstraintNameTableOption).OptionKind
                     );
                 }
                 case 478: {
-                    var node = (ScriptDom.FileTableDirectoryTableOption)fragment;
                     return new FileTableDirectoryTableOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.FileTableDirectoryTableOption).Value),
+                        optionKind: (fragment as ScriptDom.FileTableDirectoryTableOption).OptionKind
                     );
                 }
                 case 479: {
-                    var node = (ScriptDom.ForceSeekTableHint)fragment;
                     return new ForceSeekTableHint(
-                        indexValue: (IdentifierOrValueExpression)FromMutable(node.IndexValue),
-                        columnValues: node.ColumnValues.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        hintKind: node.HintKind
+                        indexValue: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.ForceSeekTableHint).IndexValue),
+                        columnValues: (fragment as ScriptDom.ForceSeekTableHint).ColumnValues.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        hintKind: (fragment as ScriptDom.ForceSeekTableHint).HintKind
                     );
                 }
                 case 480: {
-                    var node = (ScriptDom.ForeignKeyConstraintDefinition)fragment;
                     return new ForeignKeyConstraintDefinition(
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        referenceTableName: (SchemaObjectName)FromMutable(node.ReferenceTableName),
-                        referencedTableColumns: node.ReferencedTableColumns.SelectList(c => (Identifier)FromMutable(c)),
-                        deleteAction: node.DeleteAction,
-                        updateAction: node.UpdateAction,
-                        notForReplication: node.NotForReplication,
-                        constraintIdentifier: (Identifier)FromMutable(node.ConstraintIdentifier)
+                        columns: (fragment as ScriptDom.ForeignKeyConstraintDefinition).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        referenceTableName: (SchemaObjectName)FromMutable((fragment as ScriptDom.ForeignKeyConstraintDefinition).ReferenceTableName),
+                        referencedTableColumns: (fragment as ScriptDom.ForeignKeyConstraintDefinition).ReferencedTableColumns.SelectList(c => (Identifier)FromMutable(c)),
+                        deleteAction: (fragment as ScriptDom.ForeignKeyConstraintDefinition).DeleteAction,
+                        updateAction: (fragment as ScriptDom.ForeignKeyConstraintDefinition).UpdateAction,
+                        notForReplication: (fragment as ScriptDom.ForeignKeyConstraintDefinition).NotForReplication,
+                        constraintIdentifier: (Identifier)FromMutable((fragment as ScriptDom.ForeignKeyConstraintDefinition).ConstraintIdentifier)
                     );
                 }
                 case 481: {
-                    var node = (ScriptDom.FromClause)fragment;
                     return new FromClause(
-                        tableReferences: node.TableReferences.SelectList(c => (TableReference)FromMutable(c)),
-                        predictTableReference: node.PredictTableReference.SelectList(c => (PredictTableReference)FromMutable(c))
+                        tableReferences: (fragment as ScriptDom.FromClause).TableReferences.SelectList(c => (TableReference)FromMutable(c)),
+                        predictTableReference: (fragment as ScriptDom.FromClause).PredictTableReference.SelectList(c => (PredictTableReference)FromMutable(c))
                     );
                 }
                 case 482: {
-                    var node = (ScriptDom.FullTextCatalogAndFileGroup)fragment;
                     return new FullTextCatalogAndFileGroup(
-                        catalogName: (Identifier)FromMutable(node.CatalogName),
-                        fileGroupName: (Identifier)FromMutable(node.FileGroupName),
-                        fileGroupIsFirst: node.FileGroupIsFirst
+                        catalogName: (Identifier)FromMutable((fragment as ScriptDom.FullTextCatalogAndFileGroup).CatalogName),
+                        fileGroupName: (Identifier)FromMutable((fragment as ScriptDom.FullTextCatalogAndFileGroup).FileGroupName),
+                        fileGroupIsFirst: (fragment as ScriptDom.FullTextCatalogAndFileGroup).FileGroupIsFirst
                     );
                 }
                 case 483: {
-                    var node = (ScriptDom.FullTextIndexColumn)fragment;
                     return new FullTextIndexColumn(
-                        name: (Identifier)FromMutable(node.Name),
-                        typeColumn: (Identifier)FromMutable(node.TypeColumn),
-                        languageTerm: (IdentifierOrValueExpression)FromMutable(node.LanguageTerm),
-                        statisticalSemantics: node.StatisticalSemantics
+                        name: (Identifier)FromMutable((fragment as ScriptDom.FullTextIndexColumn).Name),
+                        typeColumn: (Identifier)FromMutable((fragment as ScriptDom.FullTextIndexColumn).TypeColumn),
+                        languageTerm: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.FullTextIndexColumn).LanguageTerm),
+                        statisticalSemantics: (fragment as ScriptDom.FullTextIndexColumn).StatisticalSemantics
                     );
                 }
                 case 484: {
-                    var node = (ScriptDom.FullTextPredicate)fragment;
                     return new FullTextPredicate(
-                        fullTextFunctionType: node.FullTextFunctionType,
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        @value: (ValueExpression)FromMutable(node.Value),
-                        languageTerm: (ValueExpression)FromMutable(node.LanguageTerm),
-                        propertyName: (StringLiteral)FromMutable(node.PropertyName)
+                        fullTextFunctionType: (fragment as ScriptDom.FullTextPredicate).FullTextFunctionType,
+                        columns: (fragment as ScriptDom.FullTextPredicate).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        @value: (ValueExpression)FromMutable((fragment as ScriptDom.FullTextPredicate).Value),
+                        languageTerm: (ValueExpression)FromMutable((fragment as ScriptDom.FullTextPredicate).LanguageTerm),
+                        propertyName: (StringLiteral)FromMutable((fragment as ScriptDom.FullTextPredicate).PropertyName)
                     );
                 }
                 case 485: {
-                    var node = (ScriptDom.FullTextStopListAction)fragment;
                     return new FullTextStopListAction(
-                        isAdd: node.IsAdd,
-                        isAll: node.IsAll,
-                        stopWord: (Literal)FromMutable(node.StopWord),
-                        languageTerm: (IdentifierOrValueExpression)FromMutable(node.LanguageTerm)
+                        isAdd: (fragment as ScriptDom.FullTextStopListAction).IsAdd,
+                        isAll: (fragment as ScriptDom.FullTextStopListAction).IsAll,
+                        stopWord: (Literal)FromMutable((fragment as ScriptDom.FullTextStopListAction).StopWord),
+                        languageTerm: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.FullTextStopListAction).LanguageTerm)
                     );
                 }
                 case 486: {
-                    var node = (ScriptDom.FullTextTableReference)fragment;
                     return new FullTextTableReference(
-                        fullTextFunctionType: node.FullTextFunctionType,
-                        tableName: (SchemaObjectName)FromMutable(node.TableName),
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        searchCondition: (ValueExpression)FromMutable(node.SearchCondition),
-                        topN: (ValueExpression)FromMutable(node.TopN),
-                        language: (ValueExpression)FromMutable(node.Language),
-                        propertyName: (StringLiteral)FromMutable(node.PropertyName),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        fullTextFunctionType: (fragment as ScriptDom.FullTextTableReference).FullTextFunctionType,
+                        tableName: (SchemaObjectName)FromMutable((fragment as ScriptDom.FullTextTableReference).TableName),
+                        columns: (fragment as ScriptDom.FullTextTableReference).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        searchCondition: (ValueExpression)FromMutable((fragment as ScriptDom.FullTextTableReference).SearchCondition),
+                        topN: (ValueExpression)FromMutable((fragment as ScriptDom.FullTextTableReference).TopN),
+                        language: (ValueExpression)FromMutable((fragment as ScriptDom.FullTextTableReference).Language),
+                        propertyName: (StringLiteral)FromMutable((fragment as ScriptDom.FullTextTableReference).PropertyName),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.FullTextTableReference).Alias),
+                        forPath: (fragment as ScriptDom.FullTextTableReference).ForPath
                     );
                 }
                 case 487: {
-                    var node = (ScriptDom.FunctionCall)fragment;
                     return new FunctionCall(
-                        callTarget: (CallTarget)FromMutable(node.CallTarget),
-                        functionName: (Identifier)FromMutable(node.FunctionName),
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        uniqueRowFilter: node.UniqueRowFilter,
-                        overClause: (OverClause)FromMutable(node.OverClause),
-                        withinGroupClause: (WithinGroupClause)FromMutable(node.WithinGroupClause),
-                        ignoreRespectNulls: node.IgnoreRespectNulls.SelectList(c => (Identifier)FromMutable(c)),
-                        trimOptions: (Identifier)FromMutable(node.TrimOptions),
-                        jsonParameters: node.JsonParameters.SelectList(c => (JsonKeyValue)FromMutable(c)),
-                        absentOrNullOnNull: node.AbsentOrNullOnNull.SelectList(c => (Identifier)FromMutable(c)),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        callTarget: (CallTarget)FromMutable((fragment as ScriptDom.FunctionCall).CallTarget),
+                        functionName: (Identifier)FromMutable((fragment as ScriptDom.FunctionCall).FunctionName),
+                        parameters: (fragment as ScriptDom.FunctionCall).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        uniqueRowFilter: (fragment as ScriptDom.FunctionCall).UniqueRowFilter,
+                        overClause: (OverClause)FromMutable((fragment as ScriptDom.FunctionCall).OverClause),
+                        withinGroupClause: (WithinGroupClause)FromMutable((fragment as ScriptDom.FunctionCall).WithinGroupClause),
+                        ignoreRespectNulls: (fragment as ScriptDom.FunctionCall).IgnoreRespectNulls.SelectList(c => (Identifier)FromMutable(c)),
+                        trimOptions: (Identifier)FromMutable((fragment as ScriptDom.FunctionCall).TrimOptions),
+                        jsonParameters: (fragment as ScriptDom.FunctionCall).JsonParameters.SelectList(c => (JsonKeyValue)FromMutable(c)),
+                        absentOrNullOnNull: (fragment as ScriptDom.FunctionCall).AbsentOrNullOnNull.SelectList(c => (Identifier)FromMutable(c)),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.FunctionCall).Collation)
                     );
                 }
                 case 488: {
-                    var node = (ScriptDom.FunctionCallSetClause)fragment;
                     return new FunctionCallSetClause(
-                        mutatorFunction: (FunctionCall)FromMutable(node.MutatorFunction)
+                        mutatorFunction: (FunctionCall)FromMutable((fragment as ScriptDom.FunctionCallSetClause).MutatorFunction)
                     );
                 }
                 case 489: {
-                    var node = (ScriptDom.FunctionOption)fragment;
                     return new FunctionOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.FunctionOption).OptionKind
                     );
                 }
                 case 490: {
-                    var node = (ScriptDom.GeneralSetCommand)fragment;
                     return new GeneralSetCommand(
-                        commandType: node.CommandType,
-                        parameter: (ScalarExpression)FromMutable(node.Parameter)
+                        commandType: (fragment as ScriptDom.GeneralSetCommand).CommandType,
+                        parameter: (ScalarExpression)FromMutable((fragment as ScriptDom.GeneralSetCommand).Parameter)
                     );
                 }
                 case 491: {
-                    var node = (ScriptDom.GenericConfigurationOption)fragment;
                     return new GenericConfigurationOption(
-                        genericOptionState: (IdentifierOrScalarExpression)FromMutable(node.GenericOptionState),
-                        optionKind: node.OptionKind,
-                        genericOptionKind: (Identifier)FromMutable(node.GenericOptionKind)
+                        genericOptionState: (IdentifierOrScalarExpression)FromMutable((fragment as ScriptDom.GenericConfigurationOption).GenericOptionState),
+                        optionKind: (fragment as ScriptDom.GenericConfigurationOption).OptionKind,
+                        genericOptionKind: (Identifier)FromMutable((fragment as ScriptDom.GenericConfigurationOption).GenericOptionKind)
                     );
                 }
                 case 492: {
-                    var node = (ScriptDom.GetConversationGroupStatement)fragment;
                     return new GetConversationGroupStatement(
-                        groupId: (VariableReference)FromMutable(node.GroupId),
-                        queue: (SchemaObjectName)FromMutable(node.Queue)
+                        groupId: (VariableReference)FromMutable((fragment as ScriptDom.GetConversationGroupStatement).GroupId),
+                        queue: (SchemaObjectName)FromMutable((fragment as ScriptDom.GetConversationGroupStatement).Queue)
                     );
                 }
                 case 493: {
-                    var node = (ScriptDom.GlobalFunctionTableReference)fragment;
                     return new GlobalFunctionTableReference(
-                        name: (Identifier)FromMutable(node.Name),
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        name: (Identifier)FromMutable((fragment as ScriptDom.GlobalFunctionTableReference).Name),
+                        parameters: (fragment as ScriptDom.GlobalFunctionTableReference).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.GlobalFunctionTableReference).Alias),
+                        forPath: (fragment as ScriptDom.GlobalFunctionTableReference).ForPath
                     );
                 }
                 case 494: {
-                    var node = (ScriptDom.GlobalVariableExpression)fragment;
                     return new GlobalVariableExpression(
-                        name: node.Name,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        name: (fragment as ScriptDom.GlobalVariableExpression).Name,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.GlobalVariableExpression).Collation)
                     );
                 }
                 case 495: {
-                    var node = (ScriptDom.GoToStatement)fragment;
                     return new GoToStatement(
-                        labelName: (Identifier)FromMutable(node.LabelName)
+                        labelName: (Identifier)FromMutable((fragment as ScriptDom.GoToStatement).LabelName)
                     );
                 }
                 case 496: {
-                    var node = (ScriptDom.GrandTotalGroupingSpecification)fragment;
                     return new GrandTotalGroupingSpecification(
                         
                     );
                 }
                 case 497: {
-                    var node = (ScriptDom.GrantStatement)fragment;
                     return new GrantStatement(
-                        withGrantOption: node.WithGrantOption,
-                        permissions: node.Permissions.SelectList(c => (Permission)FromMutable(c)),
-                        securityTargetObject: (SecurityTargetObject)FromMutable(node.SecurityTargetObject),
-                        principals: node.Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
-                        asClause: (Identifier)FromMutable(node.AsClause)
+                        withGrantOption: (fragment as ScriptDom.GrantStatement).WithGrantOption,
+                        permissions: (fragment as ScriptDom.GrantStatement).Permissions.SelectList(c => (Permission)FromMutable(c)),
+                        securityTargetObject: (SecurityTargetObject)FromMutable((fragment as ScriptDom.GrantStatement).SecurityTargetObject),
+                        principals: (fragment as ScriptDom.GrantStatement).Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
+                        asClause: (Identifier)FromMutable((fragment as ScriptDom.GrantStatement).AsClause)
                     );
                 }
                 case 498: {
-                    var node = (ScriptDom.GrantStatement80)fragment;
                     return new GrantStatement80(
-                        withGrantOption: node.WithGrantOption,
-                        asClause: (Identifier)FromMutable(node.AsClause),
-                        securityElement80: (SecurityElement80)FromMutable(node.SecurityElement80),
-                        securityUserClause80: (SecurityUserClause80)FromMutable(node.SecurityUserClause80)
+                        withGrantOption: (fragment as ScriptDom.GrantStatement80).WithGrantOption,
+                        asClause: (Identifier)FromMutable((fragment as ScriptDom.GrantStatement80).AsClause),
+                        securityElement80: (SecurityElement80)FromMutable((fragment as ScriptDom.GrantStatement80).SecurityElement80),
+                        securityUserClause80: (SecurityUserClause80)FromMutable((fragment as ScriptDom.GrantStatement80).SecurityUserClause80)
                     );
                 }
                 case 499: {
-                    var node = (ScriptDom.GraphConnectionBetweenNodes)fragment;
                     return new GraphConnectionBetweenNodes(
-                        fromNode: (SchemaObjectName)FromMutable(node.FromNode),
-                        toNode: (SchemaObjectName)FromMutable(node.ToNode)
+                        fromNode: (SchemaObjectName)FromMutable((fragment as ScriptDom.GraphConnectionBetweenNodes).FromNode),
+                        toNode: (SchemaObjectName)FromMutable((fragment as ScriptDom.GraphConnectionBetweenNodes).ToNode)
                     );
                 }
                 case 500: {
-                    var node = (ScriptDom.GraphConnectionConstraintDefinition)fragment;
                     return new GraphConnectionConstraintDefinition(
-                        fromNodeToNodeList: node.FromNodeToNodeList.SelectList(c => (GraphConnectionBetweenNodes)FromMutable(c)),
-                        deleteAction: node.DeleteAction,
-                        constraintIdentifier: (Identifier)FromMutable(node.ConstraintIdentifier)
+                        fromNodeToNodeList: (fragment as ScriptDom.GraphConnectionConstraintDefinition).FromNodeToNodeList.SelectList(c => (GraphConnectionBetweenNodes)FromMutable(c)),
+                        deleteAction: (fragment as ScriptDom.GraphConnectionConstraintDefinition).DeleteAction,
+                        constraintIdentifier: (Identifier)FromMutable((fragment as ScriptDom.GraphConnectionConstraintDefinition).ConstraintIdentifier)
                     );
                 }
                 case 501: {
-                    var node = (ScriptDom.GraphMatchCompositeExpression)fragment;
                     return new GraphMatchCompositeExpression(
-                        leftNode: (GraphMatchNodeExpression)FromMutable(node.LeftNode),
-                        edge: (Identifier)FromMutable(node.Edge),
-                        rightNode: (GraphMatchNodeExpression)FromMutable(node.RightNode),
-                        arrowOnRight: node.ArrowOnRight
+                        leftNode: (GraphMatchNodeExpression)FromMutable((fragment as ScriptDom.GraphMatchCompositeExpression).LeftNode),
+                        edge: (Identifier)FromMutable((fragment as ScriptDom.GraphMatchCompositeExpression).Edge),
+                        rightNode: (GraphMatchNodeExpression)FromMutable((fragment as ScriptDom.GraphMatchCompositeExpression).RightNode),
+                        arrowOnRight: (fragment as ScriptDom.GraphMatchCompositeExpression).ArrowOnRight
                     );
                 }
                 case 502: {
-                    var node = (ScriptDom.GraphMatchExpression)fragment;
                     return new GraphMatchExpression(
-                        leftNode: (Identifier)FromMutable(node.LeftNode),
-                        edge: (Identifier)FromMutable(node.Edge),
-                        rightNode: (Identifier)FromMutable(node.RightNode),
-                        arrowOnRight: node.ArrowOnRight
+                        leftNode: (Identifier)FromMutable((fragment as ScriptDom.GraphMatchExpression).LeftNode),
+                        edge: (Identifier)FromMutable((fragment as ScriptDom.GraphMatchExpression).Edge),
+                        rightNode: (Identifier)FromMutable((fragment as ScriptDom.GraphMatchExpression).RightNode),
+                        arrowOnRight: (fragment as ScriptDom.GraphMatchExpression).ArrowOnRight
                     );
                 }
                 case 503: {
-                    var node = (ScriptDom.GraphMatchLastNodePredicate)fragment;
                     return new GraphMatchLastNodePredicate(
-                        leftExpression: (GraphMatchNodeExpression)FromMutable(node.LeftExpression),
-                        rightExpression: (GraphMatchNodeExpression)FromMutable(node.RightExpression)
+                        leftExpression: (GraphMatchNodeExpression)FromMutable((fragment as ScriptDom.GraphMatchLastNodePredicate).LeftExpression),
+                        rightExpression: (GraphMatchNodeExpression)FromMutable((fragment as ScriptDom.GraphMatchLastNodePredicate).RightExpression)
                     );
                 }
                 case 504: {
-                    var node = (ScriptDom.GraphMatchNodeExpression)fragment;
                     return new GraphMatchNodeExpression(
-                        node: (Identifier)FromMutable(node.Node),
-                        usesLastNode: node.UsesLastNode
+                        node: (Identifier)FromMutable((fragment as ScriptDom.GraphMatchNodeExpression).Node),
+                        usesLastNode: (fragment as ScriptDom.GraphMatchNodeExpression).UsesLastNode
                     );
                 }
                 case 505: {
-                    var node = (ScriptDom.GraphMatchPredicate)fragment;
                     return new GraphMatchPredicate(
-                        expression: (BooleanExpression)FromMutable(node.Expression)
+                        expression: (BooleanExpression)FromMutable((fragment as ScriptDom.GraphMatchPredicate).Expression)
                     );
                 }
                 case 506: {
-                    var node = (ScriptDom.GraphMatchRecursivePredicate)fragment;
                     return new GraphMatchRecursivePredicate(
-                        function: node.Function,
-                        outerNodeExpression: (GraphMatchNodeExpression)FromMutable(node.OuterNodeExpression),
-                        expression: node.Expression.SelectList(c => (BooleanExpression)FromMutable(c)),
-                        recursiveQuantifier: (GraphRecursiveMatchQuantifier)FromMutable(node.RecursiveQuantifier),
-                        anchorOnLeft: node.AnchorOnLeft
+                        function: (fragment as ScriptDom.GraphMatchRecursivePredicate).Function,
+                        outerNodeExpression: (GraphMatchNodeExpression)FromMutable((fragment as ScriptDom.GraphMatchRecursivePredicate).OuterNodeExpression),
+                        expression: (fragment as ScriptDom.GraphMatchRecursivePredicate).Expression.SelectList(c => (BooleanExpression)FromMutable(c)),
+                        recursiveQuantifier: (GraphRecursiveMatchQuantifier)FromMutable((fragment as ScriptDom.GraphMatchRecursivePredicate).RecursiveQuantifier),
+                        anchorOnLeft: (fragment as ScriptDom.GraphMatchRecursivePredicate).AnchorOnLeft
                     );
                 }
                 case 507: {
-                    var node = (ScriptDom.GraphRecursiveMatchQuantifier)fragment;
                     return new GraphRecursiveMatchQuantifier(
-                        isPlusSign: node.IsPlusSign,
-                        lowerLimit: (Literal)FromMutable(node.LowerLimit),
-                        upperLimit: (Literal)FromMutable(node.UpperLimit)
+                        isPlusSign: (fragment as ScriptDom.GraphRecursiveMatchQuantifier).IsPlusSign,
+                        lowerLimit: (Literal)FromMutable((fragment as ScriptDom.GraphRecursiveMatchQuantifier).LowerLimit),
+                        upperLimit: (Literal)FromMutable((fragment as ScriptDom.GraphRecursiveMatchQuantifier).UpperLimit)
                     );
                 }
                 case 508: {
-                    var node = (ScriptDom.GridParameter)fragment;
                     return new GridParameter(
-                        parameter: node.Parameter,
-                        @value: node.Value
+                        parameter: (fragment as ScriptDom.GridParameter).Parameter,
+                        @value: (fragment as ScriptDom.GridParameter).Value
                     );
                 }
                 case 509: {
-                    var node = (ScriptDom.GridsSpatialIndexOption)fragment;
                     return new GridsSpatialIndexOption(
-                        gridParameters: node.GridParameters.SelectList(c => (GridParameter)FromMutable(c))
+                        gridParameters: (fragment as ScriptDom.GridsSpatialIndexOption).GridParameters.SelectList(c => (GridParameter)FromMutable(c))
                     );
                 }
                 case 510: {
-                    var node = (ScriptDom.GroupByClause)fragment;
                     return new GroupByClause(
-                        groupByOption: node.GroupByOption,
-                        all: node.All,
-                        groupingSpecifications: node.GroupingSpecifications.SelectList(c => (GroupingSpecification)FromMutable(c))
+                        groupByOption: (fragment as ScriptDom.GroupByClause).GroupByOption,
+                        all: (fragment as ScriptDom.GroupByClause).All,
+                        groupingSpecifications: (fragment as ScriptDom.GroupByClause).GroupingSpecifications.SelectList(c => (GroupingSpecification)FromMutable(c))
                     );
                 }
                 case 511: {
-                    var node = (ScriptDom.GroupingSetsGroupingSpecification)fragment;
                     return new GroupingSetsGroupingSpecification(
-                        sets: node.Sets.SelectList(c => (GroupingSpecification)FromMutable(c))
+                        sets: (fragment as ScriptDom.GroupingSetsGroupingSpecification).Sets.SelectList(c => (GroupingSpecification)FromMutable(c))
                     );
                 }
                 case 512: {
-                    var node = (ScriptDom.HadrAvailabilityGroupDatabaseOption)fragment;
                     return new HadrAvailabilityGroupDatabaseOption(
-                        groupName: (Identifier)FromMutable(node.GroupName),
-                        hadrOption: node.HadrOption,
-                        optionKind: node.OptionKind
+                        groupName: (Identifier)FromMutable((fragment as ScriptDom.HadrAvailabilityGroupDatabaseOption).GroupName),
+                        hadrOption: (fragment as ScriptDom.HadrAvailabilityGroupDatabaseOption).HadrOption,
+                        optionKind: (fragment as ScriptDom.HadrAvailabilityGroupDatabaseOption).OptionKind
                     );
                 }
                 case 513: {
-                    var node = (ScriptDom.HadrDatabaseOption)fragment;
                     return new HadrDatabaseOption(
-                        hadrOption: node.HadrOption,
-                        optionKind: node.OptionKind
+                        hadrOption: (fragment as ScriptDom.HadrDatabaseOption).HadrOption,
+                        optionKind: (fragment as ScriptDom.HadrDatabaseOption).OptionKind
                     );
                 }
                 case 514: {
-                    var node = (ScriptDom.HavingClause)fragment;
                     return new HavingClause(
-                        searchCondition: (BooleanExpression)FromMutable(node.SearchCondition)
+                        searchCondition: (BooleanExpression)FromMutable((fragment as ScriptDom.HavingClause).SearchCondition)
                     );
                 }
                 case 515: {
-                    var node = (ScriptDom.Identifier)fragment;
                     return new Identifier(
-                        @value: node.Value,
-                        quoteType: node.QuoteType
+                        @value: (fragment as ScriptDom.Identifier).Value,
+                        quoteType: (fragment as ScriptDom.Identifier).QuoteType
                     );
                 }
                 case 516: {
-                    var node = (ScriptDom.IdentifierAtomicBlockOption)fragment;
                     return new IdentifierAtomicBlockOption(
-                        @value: (Identifier)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Identifier)FromMutable((fragment as ScriptDom.IdentifierAtomicBlockOption).Value),
+                        optionKind: (fragment as ScriptDom.IdentifierAtomicBlockOption).OptionKind
                     );
                 }
                 case 517: {
-                    var node = (ScriptDom.IdentifierDatabaseOption)fragment;
                     return new IdentifierDatabaseOption(
-                        @value: (Identifier)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Identifier)FromMutable((fragment as ScriptDom.IdentifierDatabaseOption).Value),
+                        optionKind: (fragment as ScriptDom.IdentifierDatabaseOption).OptionKind
                     );
                 }
                 case 518: {
-                    var node = (ScriptDom.IdentifierLiteral)fragment;
                     return new IdentifierLiteral(
-                        quoteType: node.QuoteType,
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        quoteType: (fragment as ScriptDom.IdentifierLiteral).QuoteType,
+                        @value: (fragment as ScriptDom.IdentifierLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.IdentifierLiteral).Collation)
                     );
                 }
                 case 519: {
-                    var node = (ScriptDom.IdentifierOrScalarExpression)fragment;
                     return new IdentifierOrScalarExpression(
-                        identifier: (Identifier)FromMutable(node.Identifier),
-                        scalarExpression: (ScalarExpression)FromMutable(node.ScalarExpression)
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.IdentifierOrScalarExpression).Identifier),
+                        scalarExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.IdentifierOrScalarExpression).ScalarExpression)
                     );
                 }
                 case 520: {
-                    var node = (ScriptDom.IdentifierOrValueExpression)fragment;
                     return new IdentifierOrValueExpression(
-                        identifier: (Identifier)FromMutable(node.Identifier),
-                        valueExpression: (ValueExpression)FromMutable(node.ValueExpression)
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.IdentifierOrValueExpression).Identifier),
+                        valueExpression: (ValueExpression)FromMutable((fragment as ScriptDom.IdentifierOrValueExpression).ValueExpression)
                     );
                 }
                 case 521: {
-                    var node = (ScriptDom.IdentifierPrincipalOption)fragment;
                     return new IdentifierPrincipalOption(
-                        identifier: (Identifier)FromMutable(node.Identifier),
-                        optionKind: node.OptionKind
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.IdentifierPrincipalOption).Identifier),
+                        optionKind: (fragment as ScriptDom.IdentifierPrincipalOption).OptionKind
                     );
                 }
                 case 522: {
-                    var node = (ScriptDom.IdentifierSnippet)fragment;
                     return new IdentifierSnippet(
-                        script: node.Script,
-                        @value: node.Value,
-                        quoteType: node.QuoteType
+                        script: (fragment as ScriptDom.IdentifierSnippet).Script,
+                        @value: (fragment as ScriptDom.IdentifierSnippet).Value,
+                        quoteType: (fragment as ScriptDom.IdentifierSnippet).QuoteType
                     );
                 }
                 case 523: {
-                    var node = (ScriptDom.IdentityFunctionCall)fragment;
                     return new IdentityFunctionCall(
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        seed: (ScalarExpression)FromMutable(node.Seed),
-                        increment: (ScalarExpression)FromMutable(node.Increment)
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.IdentityFunctionCall).DataType),
+                        seed: (ScalarExpression)FromMutable((fragment as ScriptDom.IdentityFunctionCall).Seed),
+                        increment: (ScalarExpression)FromMutable((fragment as ScriptDom.IdentityFunctionCall).Increment)
                     );
                 }
                 case 524: {
-                    var node = (ScriptDom.IdentityOptions)fragment;
                     return new IdentityOptions(
-                        identitySeed: (ScalarExpression)FromMutable(node.IdentitySeed),
-                        identityIncrement: (ScalarExpression)FromMutable(node.IdentityIncrement),
-                        isIdentityNotForReplication: node.IsIdentityNotForReplication
+                        identitySeed: (ScalarExpression)FromMutable((fragment as ScriptDom.IdentityOptions).IdentitySeed),
+                        identityIncrement: (ScalarExpression)FromMutable((fragment as ScriptDom.IdentityOptions).IdentityIncrement),
+                        isIdentityNotForReplication: (fragment as ScriptDom.IdentityOptions).IsIdentityNotForReplication
                     );
                 }
                 case 525: {
-                    var node = (ScriptDom.IdentityValueKeyOption)fragment;
                     return new IdentityValueKeyOption(
-                        identityPhrase: (Literal)FromMutable(node.IdentityPhrase),
-                        optionKind: node.OptionKind
+                        identityPhrase: (Literal)FromMutable((fragment as ScriptDom.IdentityValueKeyOption).IdentityPhrase),
+                        optionKind: (fragment as ScriptDom.IdentityValueKeyOption).OptionKind
                     );
                 }
                 case 526: {
-                    var node = (ScriptDom.IfStatement)fragment;
                     return new IfStatement(
-                        predicate: (BooleanExpression)FromMutable(node.Predicate),
-                        thenStatement: (TSqlStatement)FromMutable(node.ThenStatement),
-                        elseStatement: (TSqlStatement)FromMutable(node.ElseStatement)
+                        predicate: (BooleanExpression)FromMutable((fragment as ScriptDom.IfStatement).Predicate),
+                        thenStatement: (TSqlStatement)FromMutable((fragment as ScriptDom.IfStatement).ThenStatement),
+                        elseStatement: (TSqlStatement)FromMutable((fragment as ScriptDom.IfStatement).ElseStatement)
                     );
                 }
                 case 527: {
-                    var node = (ScriptDom.IgnoreDupKeyIndexOption)fragment;
                     return new IgnoreDupKeyIndexOption(
-                        suppressMessagesOption: node.SuppressMessagesOption,
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        suppressMessagesOption: (fragment as ScriptDom.IgnoreDupKeyIndexOption).SuppressMessagesOption,
+                        optionState: (fragment as ScriptDom.IgnoreDupKeyIndexOption).OptionState,
+                        optionKind: (fragment as ScriptDom.IgnoreDupKeyIndexOption).OptionKind
                     );
                 }
                 case 528: {
-                    var node = (ScriptDom.IIfCall)fragment;
                     return new IIfCall(
-                        predicate: (BooleanExpression)FromMutable(node.Predicate),
-                        thenExpression: (ScalarExpression)FromMutable(node.ThenExpression),
-                        elseExpression: (ScalarExpression)FromMutable(node.ElseExpression),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        predicate: (BooleanExpression)FromMutable((fragment as ScriptDom.IIfCall).Predicate),
+                        thenExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.IIfCall).ThenExpression),
+                        elseExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.IIfCall).ElseExpression),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.IIfCall).Collation)
                     );
                 }
                 case 529: {
-                    var node = (ScriptDom.IndexDefinition)fragment;
                     return new IndexDefinition(
-                        name: (Identifier)FromMutable(node.Name),
-                        unique: node.Unique,
-                        indexType: (IndexType)FromMutable(node.IndexType),
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
-                        includeColumns: node.IncludeColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(node.OnFileGroupOrPartitionScheme),
-                        filterPredicate: (BooleanExpression)FromMutable(node.FilterPredicate),
-                        fileStreamOn: (IdentifierOrValueExpression)FromMutable(node.FileStreamOn)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.IndexDefinition).Name),
+                        unique: (fragment as ScriptDom.IndexDefinition).Unique,
+                        indexType: (IndexType)FromMutable((fragment as ScriptDom.IndexDefinition).IndexType),
+                        indexOptions: (fragment as ScriptDom.IndexDefinition).IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
+                        columns: (fragment as ScriptDom.IndexDefinition).Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
+                        includeColumns: (fragment as ScriptDom.IndexDefinition).IncludeColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable((fragment as ScriptDom.IndexDefinition).OnFileGroupOrPartitionScheme),
+                        filterPredicate: (BooleanExpression)FromMutable((fragment as ScriptDom.IndexDefinition).FilterPredicate),
+                        fileStreamOn: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.IndexDefinition).FileStreamOn)
                     );
                 }
                 case 530: {
-                    var node = (ScriptDom.IndexExpressionOption)fragment;
                     return new IndexExpressionOption(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        optionKind: node.OptionKind
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.IndexExpressionOption).Expression),
+                        optionKind: (fragment as ScriptDom.IndexExpressionOption).OptionKind
                     );
                 }
                 case 531: {
-                    var node = (ScriptDom.IndexStateOption)fragment;
                     return new IndexStateOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.IndexStateOption).OptionState,
+                        optionKind: (fragment as ScriptDom.IndexStateOption).OptionKind
                     );
                 }
                 case 532: {
-                    var node = (ScriptDom.IndexTableHint)fragment;
                     return new IndexTableHint(
-                        indexValues: node.IndexValues.SelectList(c => (IdentifierOrValueExpression)FromMutable(c)),
-                        hintKind: node.HintKind
+                        indexValues: (fragment as ScriptDom.IndexTableHint).IndexValues.SelectList(c => (IdentifierOrValueExpression)FromMutable(c)),
+                        hintKind: (fragment as ScriptDom.IndexTableHint).HintKind
                     );
                 }
                 case 533: {
-                    var node = (ScriptDom.IndexType)fragment;
                     return new IndexType(
-                        indexTypeKind: node.IndexTypeKind
+                        indexTypeKind: (fragment as ScriptDom.IndexType).IndexTypeKind
                     );
                 }
                 case 534: {
-                    var node = (ScriptDom.InlineDerivedTable)fragment;
                     return new InlineDerivedTable(
-                        rowValues: node.RowValues.SelectList(c => (RowValue)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        rowValues: (fragment as ScriptDom.InlineDerivedTable).RowValues.SelectList(c => (RowValue)FromMutable(c)),
+                        columns: (fragment as ScriptDom.InlineDerivedTable).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.InlineDerivedTable).Alias),
+                        forPath: (fragment as ScriptDom.InlineDerivedTable).ForPath
                     );
                 }
                 case 535: {
-                    var node = (ScriptDom.InlineFunctionOption)fragment;
                     return new InlineFunctionOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.InlineFunctionOption).OptionState,
+                        optionKind: (fragment as ScriptDom.InlineFunctionOption).OptionKind
                     );
                 }
                 case 536: {
-                    var node = (ScriptDom.InlineResultSetDefinition)fragment;
                     return new InlineResultSetDefinition(
-                        resultColumnDefinitions: node.ResultColumnDefinitions.SelectList(c => (ResultColumnDefinition)FromMutable(c)),
-                        resultSetType: node.ResultSetType
+                        resultColumnDefinitions: (fragment as ScriptDom.InlineResultSetDefinition).ResultColumnDefinitions.SelectList(c => (ResultColumnDefinition)FromMutable(c)),
+                        resultSetType: (fragment as ScriptDom.InlineResultSetDefinition).ResultSetType
                     );
                 }
                 case 537: {
-                    var node = (ScriptDom.InPredicate)fragment;
                     return new InPredicate(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        subquery: (ScalarSubquery)FromMutable(node.Subquery),
-                        notDefined: node.NotDefined,
-                        values: node.Values.SelectList(c => (ScalarExpression)FromMutable(c))
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.InPredicate).Expression),
+                        subquery: (ScalarSubquery)FromMutable((fragment as ScriptDom.InPredicate).Subquery),
+                        notDefined: (fragment as ScriptDom.InPredicate).NotDefined,
+                        values: (fragment as ScriptDom.InPredicate).Values.SelectList(c => (ScalarExpression)FromMutable(c))
                     );
                 }
                 case 538: {
-                    var node = (ScriptDom.InsertBulkColumnDefinition)fragment;
                     return new InsertBulkColumnDefinition(
-                        column: (ColumnDefinitionBase)FromMutable(node.Column),
-                        nullNotNull: node.NullNotNull
+                        column: (ColumnDefinitionBase)FromMutable((fragment as ScriptDom.InsertBulkColumnDefinition).Column),
+                        nullNotNull: (fragment as ScriptDom.InsertBulkColumnDefinition).NullNotNull
                     );
                 }
                 case 539: {
-                    var node = (ScriptDom.InsertBulkStatement)fragment;
                     return new InsertBulkStatement(
-                        columnDefinitions: node.ColumnDefinitions.SelectList(c => (InsertBulkColumnDefinition)FromMutable(c)),
-                        to: (SchemaObjectName)FromMutable(node.To),
-                        options: node.Options.SelectList(c => (BulkInsertOption)FromMutable(c))
+                        columnDefinitions: (fragment as ScriptDom.InsertBulkStatement).ColumnDefinitions.SelectList(c => (InsertBulkColumnDefinition)FromMutable(c)),
+                        to: (SchemaObjectName)FromMutable((fragment as ScriptDom.InsertBulkStatement).To),
+                        options: (fragment as ScriptDom.InsertBulkStatement).Options.SelectList(c => (BulkInsertOption)FromMutable(c))
                     );
                 }
                 case 540: {
-                    var node = (ScriptDom.InsertMergeAction)fragment;
                     return new InsertMergeAction(
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        source: (ValuesInsertSource)FromMutable(node.Source)
+                        columns: (fragment as ScriptDom.InsertMergeAction).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        source: (ValuesInsertSource)FromMutable((fragment as ScriptDom.InsertMergeAction).Source)
                     );
                 }
                 case 541: {
-                    var node = (ScriptDom.InsertSpecification)fragment;
                     return new InsertSpecification(
-                        insertOption: node.InsertOption,
-                        insertSource: (InsertSource)FromMutable(node.InsertSource),
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        target: (TableReference)FromMutable(node.Target),
-                        topRowFilter: (TopRowFilter)FromMutable(node.TopRowFilter),
-                        outputIntoClause: (OutputIntoClause)FromMutable(node.OutputIntoClause),
-                        outputClause: (OutputClause)FromMutable(node.OutputClause)
+                        insertOption: (fragment as ScriptDom.InsertSpecification).InsertOption,
+                        insertSource: (InsertSource)FromMutable((fragment as ScriptDom.InsertSpecification).InsertSource),
+                        columns: (fragment as ScriptDom.InsertSpecification).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        target: (TableReference)FromMutable((fragment as ScriptDom.InsertSpecification).Target),
+                        topRowFilter: (TopRowFilter)FromMutable((fragment as ScriptDom.InsertSpecification).TopRowFilter),
+                        outputIntoClause: (OutputIntoClause)FromMutable((fragment as ScriptDom.InsertSpecification).OutputIntoClause),
+                        outputClause: (OutputClause)FromMutable((fragment as ScriptDom.InsertSpecification).OutputClause)
                     );
                 }
                 case 542: {
-                    var node = (ScriptDom.InsertStatement)fragment;
                     return new InsertStatement(
-                        insertSpecification: (InsertSpecification)FromMutable(node.InsertSpecification),
-                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(node.WithCtesAndXmlNamespaces),
-                        optimizerHints: node.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                        insertSpecification: (InsertSpecification)FromMutable((fragment as ScriptDom.InsertStatement).InsertSpecification),
+                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable((fragment as ScriptDom.InsertStatement).WithCtesAndXmlNamespaces),
+                        optimizerHints: (fragment as ScriptDom.InsertStatement).OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
                     );
                 }
                 case 543: {
-                    var node = (ScriptDom.IntegerLiteral)fragment;
                     return new IntegerLiteral(
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        @value: (fragment as ScriptDom.IntegerLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.IntegerLiteral).Collation)
                     );
                 }
                 case 544: {
-                    var node = (ScriptDom.InternalOpenRowset)fragment;
                     return new InternalOpenRowset(
-                        identifier: (Identifier)FromMutable(node.Identifier),
-                        varArgs: node.VarArgs.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.InternalOpenRowset).Identifier),
+                        varArgs: (fragment as ScriptDom.InternalOpenRowset).VarArgs.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.InternalOpenRowset).Alias),
+                        forPath: (fragment as ScriptDom.InternalOpenRowset).ForPath
                     );
                 }
                 case 545: {
-                    var node = (ScriptDom.IPv4)fragment;
                     return new IPv4(
-                        octetOne: (Literal)FromMutable(node.OctetOne),
-                        octetTwo: (Literal)FromMutable(node.OctetTwo),
-                        octetThree: (Literal)FromMutable(node.OctetThree),
-                        octetFour: (Literal)FromMutable(node.OctetFour)
+                        octetOne: (Literal)FromMutable((fragment as ScriptDom.IPv4).OctetOne),
+                        octetTwo: (Literal)FromMutable((fragment as ScriptDom.IPv4).OctetTwo),
+                        octetThree: (Literal)FromMutable((fragment as ScriptDom.IPv4).OctetThree),
+                        octetFour: (Literal)FromMutable((fragment as ScriptDom.IPv4).OctetFour)
                     );
                 }
                 case 546: {
-                    var node = (ScriptDom.JoinParenthesisTableReference)fragment;
                     return new JoinParenthesisTableReference(
-                        join: (TableReference)FromMutable(node.Join)
+                        join: (TableReference)FromMutable((fragment as ScriptDom.JoinParenthesisTableReference).Join)
                     );
                 }
                 case 547: {
-                    var node = (ScriptDom.JsonForClause)fragment;
                     return new JsonForClause(
-                        options: node.Options.SelectList(c => (JsonForClauseOption)FromMutable(c))
+                        options: (fragment as ScriptDom.JsonForClause).Options.SelectList(c => (JsonForClauseOption)FromMutable(c))
                     );
                 }
                 case 548: {
-                    var node = (ScriptDom.JsonForClauseOption)fragment;
                     return new JsonForClauseOption(
-                        optionKind: node.OptionKind,
-                        @value: (Literal)FromMutable(node.Value)
+                        optionKind: (fragment as ScriptDom.JsonForClauseOption).OptionKind,
+                        @value: (Literal)FromMutable((fragment as ScriptDom.JsonForClauseOption).Value)
                     );
                 }
                 case 549: {
-                    var node = (ScriptDom.JsonKeyValue)fragment;
                     return new JsonKeyValue(
-                        jsonKeyName: (ScalarExpression)FromMutable(node.JsonKeyName),
-                        jsonValue: (ScalarExpression)FromMutable(node.JsonValue)
+                        jsonKeyName: (ScalarExpression)FromMutable((fragment as ScriptDom.JsonKeyValue).JsonKeyName),
+                        jsonValue: (ScalarExpression)FromMutable((fragment as ScriptDom.JsonKeyValue).JsonValue)
                     );
                 }
                 case 550: {
-                    var node = (ScriptDom.KeySourceKeyOption)fragment;
                     return new KeySourceKeyOption(
-                        passPhrase: (Literal)FromMutable(node.PassPhrase),
-                        optionKind: node.OptionKind
+                        passPhrase: (Literal)FromMutable((fragment as ScriptDom.KeySourceKeyOption).PassPhrase),
+                        optionKind: (fragment as ScriptDom.KeySourceKeyOption).OptionKind
                     );
                 }
                 case 551: {
-                    var node = (ScriptDom.KillQueryNotificationSubscriptionStatement)fragment;
                     return new KillQueryNotificationSubscriptionStatement(
-                        subscriptionId: (Literal)FromMutable(node.SubscriptionId),
-                        all: node.All
+                        subscriptionId: (Literal)FromMutable((fragment as ScriptDom.KillQueryNotificationSubscriptionStatement).SubscriptionId),
+                        all: (fragment as ScriptDom.KillQueryNotificationSubscriptionStatement).All
                     );
                 }
                 case 552: {
-                    var node = (ScriptDom.KillStatement)fragment;
                     return new KillStatement(
-                        parameter: (ScalarExpression)FromMutable(node.Parameter),
-                        withStatusOnly: node.WithStatusOnly
+                        parameter: (ScalarExpression)FromMutable((fragment as ScriptDom.KillStatement).Parameter),
+                        withStatusOnly: (fragment as ScriptDom.KillStatement).WithStatusOnly
                     );
                 }
                 case 553: {
-                    var node = (ScriptDom.KillStatsJobStatement)fragment;
                     return new KillStatsJobStatement(
-                        jobId: (ScalarExpression)FromMutable(node.JobId)
+                        jobId: (ScalarExpression)FromMutable((fragment as ScriptDom.KillStatsJobStatement).JobId)
                     );
                 }
                 case 554: {
-                    var node = (ScriptDom.LabelStatement)fragment;
                     return new LabelStatement(
-                        @value: node.Value
+                        @value: (fragment as ScriptDom.LabelStatement).Value
                     );
                 }
                 case 555: {
-                    var node = (ScriptDom.LedgerOption)fragment;
                     return new LedgerOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.LedgerOption).OptionState,
+                        optionKind: (fragment as ScriptDom.LedgerOption).OptionKind
                     );
                 }
                 case 556: {
-                    var node = (ScriptDom.LedgerTableOption)fragment;
                     return new LedgerTableOption(
-                        optionState: node.OptionState,
-                        appendOnly: node.AppendOnly,
-                        ledgerViewOption: (LedgerViewOption)FromMutable(node.LedgerViewOption),
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.LedgerTableOption).OptionState,
+                        appendOnly: (fragment as ScriptDom.LedgerTableOption).AppendOnly,
+                        ledgerViewOption: (LedgerViewOption)FromMutable((fragment as ScriptDom.LedgerTableOption).LedgerViewOption),
+                        optionKind: (fragment as ScriptDom.LedgerTableOption).OptionKind
                     );
                 }
                 case 557: {
-                    var node = (ScriptDom.LedgerViewOption)fragment;
                     return new LedgerViewOption(
-                        viewName: (SchemaObjectName)FromMutable(node.ViewName),
-                        transactionIdColumnName: (Identifier)FromMutable(node.TransactionIdColumnName),
-                        sequenceNumberColumnName: (Identifier)FromMutable(node.SequenceNumberColumnName),
-                        operationTypeColumnName: (Identifier)FromMutable(node.OperationTypeColumnName),
-                        operationTypeDescColumnName: (Identifier)FromMutable(node.OperationTypeDescColumnName),
-                        optionKind: node.OptionKind
+                        viewName: (SchemaObjectName)FromMutable((fragment as ScriptDom.LedgerViewOption).ViewName),
+                        transactionIdColumnName: (Identifier)FromMutable((fragment as ScriptDom.LedgerViewOption).TransactionIdColumnName),
+                        sequenceNumberColumnName: (Identifier)FromMutable((fragment as ScriptDom.LedgerViewOption).SequenceNumberColumnName),
+                        operationTypeColumnName: (Identifier)FromMutable((fragment as ScriptDom.LedgerViewOption).OperationTypeColumnName),
+                        operationTypeDescColumnName: (Identifier)FromMutable((fragment as ScriptDom.LedgerViewOption).OperationTypeDescColumnName),
+                        optionKind: (fragment as ScriptDom.LedgerViewOption).OptionKind
                     );
                 }
                 case 558: {
-                    var node = (ScriptDom.LeftFunctionCall)fragment;
                     return new LeftFunctionCall(
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        parameters: (fragment as ScriptDom.LeftFunctionCall).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.LeftFunctionCall).Collation)
                     );
                 }
                 case 559: {
-                    var node = (ScriptDom.LikePredicate)fragment;
                     return new LikePredicate(
-                        firstExpression: (ScalarExpression)FromMutable(node.FirstExpression),
-                        secondExpression: (ScalarExpression)FromMutable(node.SecondExpression),
-                        notDefined: node.NotDefined,
-                        odbcEscape: node.OdbcEscape,
-                        escapeExpression: (ScalarExpression)FromMutable(node.EscapeExpression)
+                        firstExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.LikePredicate).FirstExpression),
+                        secondExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.LikePredicate).SecondExpression),
+                        notDefined: (fragment as ScriptDom.LikePredicate).NotDefined,
+                        odbcEscape: (fragment as ScriptDom.LikePredicate).OdbcEscape,
+                        escapeExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.LikePredicate).EscapeExpression)
                     );
                 }
                 case 560: {
-                    var node = (ScriptDom.LineNoStatement)fragment;
                     return new LineNoStatement(
-                        lineNo: (IntegerLiteral)FromMutable(node.LineNo)
+                        lineNo: (IntegerLiteral)FromMutable((fragment as ScriptDom.LineNoStatement).LineNo)
                     );
                 }
                 case 561: {
-                    var node = (ScriptDom.ListenerIPEndpointProtocolOption)fragment;
                     return new ListenerIPEndpointProtocolOption(
-                        isAll: node.IsAll,
-                        iPv6: (Literal)FromMutable(node.IPv6),
-                        iPv4PartOne: (IPv4)FromMutable(node.IPv4PartOne),
-                        iPv4PartTwo: (IPv4)FromMutable(node.IPv4PartTwo),
-                        kind: node.Kind
+                        isAll: (fragment as ScriptDom.ListenerIPEndpointProtocolOption).IsAll,
+                        iPv6: (Literal)FromMutable((fragment as ScriptDom.ListenerIPEndpointProtocolOption).IPv6),
+                        iPv4PartOne: (IPv4)FromMutable((fragment as ScriptDom.ListenerIPEndpointProtocolOption).IPv4PartOne),
+                        iPv4PartTwo: (IPv4)FromMutable((fragment as ScriptDom.ListenerIPEndpointProtocolOption).IPv4PartTwo),
+                        kind: (fragment as ScriptDom.ListenerIPEndpointProtocolOption).Kind
                     );
                 }
                 case 562: {
-                    var node = (ScriptDom.ListTypeCopyOption)fragment;
                     return new ListTypeCopyOption(
-                        options: node.Options.SelectList(c => (CopyStatementOptionBase)FromMutable(c))
+                        options: (fragment as ScriptDom.ListTypeCopyOption).Options.SelectList(c => (CopyStatementOptionBase)FromMutable(c))
                     );
                 }
                 case 563: {
-                    var node = (ScriptDom.LiteralAtomicBlockOption)fragment;
                     return new LiteralAtomicBlockOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralAtomicBlockOption).Value),
+                        optionKind: (fragment as ScriptDom.LiteralAtomicBlockOption).OptionKind
                     );
                 }
                 case 564: {
-                    var node = (ScriptDom.LiteralAuditTargetOption)fragment;
                     return new LiteralAuditTargetOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralAuditTargetOption).Value),
+                        optionKind: (fragment as ScriptDom.LiteralAuditTargetOption).OptionKind
                     );
                 }
                 case 565: {
-                    var node = (ScriptDom.LiteralAvailabilityGroupOption)fragment;
                     return new LiteralAvailabilityGroupOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralAvailabilityGroupOption).Value),
+                        optionKind: (fragment as ScriptDom.LiteralAvailabilityGroupOption).OptionKind
                     );
                 }
                 case 566: {
-                    var node = (ScriptDom.LiteralBulkInsertOption)fragment;
                     return new LiteralBulkInsertOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralBulkInsertOption).Value),
+                        optionKind: (fragment as ScriptDom.LiteralBulkInsertOption).OptionKind
                     );
                 }
                 case 567: {
-                    var node = (ScriptDom.LiteralDatabaseOption)fragment;
                     return new LiteralDatabaseOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralDatabaseOption).Value),
+                        optionKind: (fragment as ScriptDom.LiteralDatabaseOption).OptionKind
                     );
                 }
                 case 568: {
-                    var node = (ScriptDom.LiteralEndpointProtocolOption)fragment;
                     return new LiteralEndpointProtocolOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        kind: node.Kind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralEndpointProtocolOption).Value),
+                        kind: (fragment as ScriptDom.LiteralEndpointProtocolOption).Kind
                     );
                 }
                 case 569: {
-                    var node = (ScriptDom.LiteralOpenRowsetCosmosOption)fragment;
                     return new LiteralOpenRowsetCosmosOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralOpenRowsetCosmosOption).Value),
+                        optionKind: (fragment as ScriptDom.LiteralOpenRowsetCosmosOption).OptionKind
                     );
                 }
                 case 570: {
-                    var node = (ScriptDom.LiteralOptimizerHint)fragment;
                     return new LiteralOptimizerHint(
-                        @value: (Literal)FromMutable(node.Value),
-                        hintKind: node.HintKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralOptimizerHint).Value),
+                        hintKind: (fragment as ScriptDom.LiteralOptimizerHint).HintKind
                     );
                 }
                 case 571: {
-                    var node = (ScriptDom.LiteralOptionValue)fragment;
                     return new LiteralOptionValue(
-                        @value: (Literal)FromMutable(node.Value)
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralOptionValue).Value)
                     );
                 }
                 case 572: {
-                    var node = (ScriptDom.LiteralPayloadOption)fragment;
                     return new LiteralPayloadOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        kind: node.Kind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralPayloadOption).Value),
+                        kind: (fragment as ScriptDom.LiteralPayloadOption).Kind
                     );
                 }
                 case 573: {
-                    var node = (ScriptDom.LiteralPrincipalOption)fragment;
                     return new LiteralPrincipalOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralPrincipalOption).Value),
+                        optionKind: (fragment as ScriptDom.LiteralPrincipalOption).OptionKind
                     );
                 }
                 case 574: {
-                    var node = (ScriptDom.LiteralRange)fragment;
                     return new LiteralRange(
-                        from: (Literal)FromMutable(node.From),
-                        to: (Literal)FromMutable(node.To)
+                        from: (Literal)FromMutable((fragment as ScriptDom.LiteralRange).From),
+                        to: (Literal)FromMutable((fragment as ScriptDom.LiteralRange).To)
                     );
                 }
                 case 575: {
-                    var node = (ScriptDom.LiteralReplicaOption)fragment;
                     return new LiteralReplicaOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralReplicaOption).Value),
+                        optionKind: (fragment as ScriptDom.LiteralReplicaOption).OptionKind
                     );
                 }
                 case 576: {
-                    var node = (ScriptDom.LiteralSessionOption)fragment;
                     return new LiteralSessionOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        unit: node.Unit,
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralSessionOption).Value),
+                        unit: (fragment as ScriptDom.LiteralSessionOption).Unit,
+                        optionKind: (fragment as ScriptDom.LiteralSessionOption).OptionKind
                     );
                 }
                 case 577: {
-                    var node = (ScriptDom.LiteralStatisticsOption)fragment;
                     return new LiteralStatisticsOption(
-                        literal: (Literal)FromMutable(node.Literal),
-                        optionKind: node.OptionKind
+                        literal: (Literal)FromMutable((fragment as ScriptDom.LiteralStatisticsOption).Literal),
+                        optionKind: (fragment as ScriptDom.LiteralStatisticsOption).OptionKind
                     );
                 }
                 case 578: {
-                    var node = (ScriptDom.LiteralTableHint)fragment;
                     return new LiteralTableHint(
-                        @value: (Literal)FromMutable(node.Value),
-                        hintKind: node.HintKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.LiteralTableHint).Value),
+                        hintKind: (fragment as ScriptDom.LiteralTableHint).HintKind
                     );
                 }
                 case 579: {
-                    var node = (ScriptDom.LocationOption)fragment;
                     return new LocationOption(
-                        locationValue: (Identifier)FromMutable(node.LocationValue),
-                        optionKind: node.OptionKind
+                        locationValue: (Identifier)FromMutable((fragment as ScriptDom.LocationOption).LocationValue),
+                        optionKind: (fragment as ScriptDom.LocationOption).OptionKind
                     );
                 }
                 case 580: {
-                    var node = (ScriptDom.LockEscalationTableOption)fragment;
                     return new LockEscalationTableOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.LockEscalationTableOption).Value,
+                        optionKind: (fragment as ScriptDom.LockEscalationTableOption).OptionKind
                     );
                 }
                 case 581: {
-                    var node = (ScriptDom.LoginTypePayloadOption)fragment;
                     return new LoginTypePayloadOption(
-                        isWindows: node.IsWindows,
-                        kind: node.Kind
+                        isWindows: (fragment as ScriptDom.LoginTypePayloadOption).IsWindows,
+                        kind: (fragment as ScriptDom.LoginTypePayloadOption).Kind
                     );
                 }
                 case 582: {
-                    var node = (ScriptDom.LowPriorityLockWaitAbortAfterWaitOption)fragment;
                     return new LowPriorityLockWaitAbortAfterWaitOption(
-                        abortAfterWait: node.AbortAfterWait,
-                        optionKind: node.OptionKind
+                        abortAfterWait: (fragment as ScriptDom.LowPriorityLockWaitAbortAfterWaitOption).AbortAfterWait,
+                        optionKind: (fragment as ScriptDom.LowPriorityLockWaitAbortAfterWaitOption).OptionKind
                     );
                 }
                 case 583: {
-                    var node = (ScriptDom.LowPriorityLockWaitMaxDurationOption)fragment;
                     return new LowPriorityLockWaitMaxDurationOption(
-                        maxDuration: (Literal)FromMutable(node.MaxDuration),
-                        unit: node.Unit,
-                        optionKind: node.OptionKind
+                        maxDuration: (Literal)FromMutable((fragment as ScriptDom.LowPriorityLockWaitMaxDurationOption).MaxDuration),
+                        unit: (fragment as ScriptDom.LowPriorityLockWaitMaxDurationOption).Unit,
+                        optionKind: (fragment as ScriptDom.LowPriorityLockWaitMaxDurationOption).OptionKind
                     );
                 }
                 case 584: {
-                    var node = (ScriptDom.LowPriorityLockWaitTableSwitchOption)fragment;
                     return new LowPriorityLockWaitTableSwitchOption(
-                        options: node.Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        options: (fragment as ScriptDom.LowPriorityLockWaitTableSwitchOption).Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.LowPriorityLockWaitTableSwitchOption).OptionKind
                     );
                 }
                 case 585: {
-                    var node = (ScriptDom.MaxDispatchLatencySessionOption)fragment;
                     return new MaxDispatchLatencySessionOption(
-                        isInfinite: node.IsInfinite,
-                        @value: (Literal)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        isInfinite: (fragment as ScriptDom.MaxDispatchLatencySessionOption).IsInfinite,
+                        @value: (Literal)FromMutable((fragment as ScriptDom.MaxDispatchLatencySessionOption).Value),
+                        optionKind: (fragment as ScriptDom.MaxDispatchLatencySessionOption).OptionKind
                     );
                 }
                 case 586: {
-                    var node = (ScriptDom.MaxDopConfigurationOption)fragment;
                     return new MaxDopConfigurationOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        primary: node.Primary,
-                        optionKind: node.OptionKind,
-                        genericOptionKind: (Identifier)FromMutable(node.GenericOptionKind)
+                        @value: (Literal)FromMutable((fragment as ScriptDom.MaxDopConfigurationOption).Value),
+                        primary: (fragment as ScriptDom.MaxDopConfigurationOption).Primary,
+                        optionKind: (fragment as ScriptDom.MaxDopConfigurationOption).OptionKind,
+                        genericOptionKind: (Identifier)FromMutable((fragment as ScriptDom.MaxDopConfigurationOption).GenericOptionKind)
                     );
                 }
                 case 587: {
-                    var node = (ScriptDom.MaxDurationOption)fragment;
                     return new MaxDurationOption(
-                        maxDuration: (Literal)FromMutable(node.MaxDuration),
-                        unit: node.Unit,
-                        optionKind: node.OptionKind
+                        maxDuration: (Literal)FromMutable((fragment as ScriptDom.MaxDurationOption).MaxDuration),
+                        unit: (fragment as ScriptDom.MaxDurationOption).Unit,
+                        optionKind: (fragment as ScriptDom.MaxDurationOption).OptionKind
                     );
                 }
                 case 588: {
-                    var node = (ScriptDom.MaxLiteral)fragment;
                     return new MaxLiteral(
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        @value: (fragment as ScriptDom.MaxLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.MaxLiteral).Collation)
                     );
                 }
                 case 589: {
-                    var node = (ScriptDom.MaxRolloverFilesAuditTargetOption)fragment;
                     return new MaxRolloverFilesAuditTargetOption(
-                        @value: (Literal)FromMutable(node.Value),
-                        isUnlimited: node.IsUnlimited,
-                        optionKind: node.OptionKind
+                        @value: (Literal)FromMutable((fragment as ScriptDom.MaxRolloverFilesAuditTargetOption).Value),
+                        isUnlimited: (fragment as ScriptDom.MaxRolloverFilesAuditTargetOption).IsUnlimited,
+                        optionKind: (fragment as ScriptDom.MaxRolloverFilesAuditTargetOption).OptionKind
                     );
                 }
                 case 590: {
-                    var node = (ScriptDom.MaxSizeAuditTargetOption)fragment;
                     return new MaxSizeAuditTargetOption(
-                        isUnlimited: node.IsUnlimited,
-                        size: (Literal)FromMutable(node.Size),
-                        unit: node.Unit,
-                        optionKind: node.OptionKind
+                        isUnlimited: (fragment as ScriptDom.MaxSizeAuditTargetOption).IsUnlimited,
+                        size: (Literal)FromMutable((fragment as ScriptDom.MaxSizeAuditTargetOption).Size),
+                        unit: (fragment as ScriptDom.MaxSizeAuditTargetOption).Unit,
+                        optionKind: (fragment as ScriptDom.MaxSizeAuditTargetOption).OptionKind
                     );
                 }
                 case 591: {
-                    var node = (ScriptDom.MaxSizeDatabaseOption)fragment;
                     return new MaxSizeDatabaseOption(
-                        maxSize: (Literal)FromMutable(node.MaxSize),
-                        units: node.Units,
-                        optionKind: node.OptionKind
+                        maxSize: (Literal)FromMutable((fragment as ScriptDom.MaxSizeDatabaseOption).MaxSize),
+                        units: (fragment as ScriptDom.MaxSizeDatabaseOption).Units,
+                        optionKind: (fragment as ScriptDom.MaxSizeDatabaseOption).OptionKind
                     );
                 }
                 case 592: {
-                    var node = (ScriptDom.MaxSizeFileDeclarationOption)fragment;
                     return new MaxSizeFileDeclarationOption(
-                        maxSize: (Literal)FromMutable(node.MaxSize),
-                        units: node.Units,
-                        unlimited: node.Unlimited,
-                        optionKind: node.OptionKind
+                        maxSize: (Literal)FromMutable((fragment as ScriptDom.MaxSizeFileDeclarationOption).MaxSize),
+                        units: (fragment as ScriptDom.MaxSizeFileDeclarationOption).Units,
+                        unlimited: (fragment as ScriptDom.MaxSizeFileDeclarationOption).Unlimited,
+                        optionKind: (fragment as ScriptDom.MaxSizeFileDeclarationOption).OptionKind
                     );
                 }
                 case 593: {
-                    var node = (ScriptDom.MemoryOptimizedTableOption)fragment;
                     return new MemoryOptimizedTableOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.MemoryOptimizedTableOption).OptionState,
+                        optionKind: (fragment as ScriptDom.MemoryOptimizedTableOption).OptionKind
                     );
                 }
                 case 594: {
-                    var node = (ScriptDom.MemoryPartitionSessionOption)fragment;
                     return new MemoryPartitionSessionOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.MemoryPartitionSessionOption).Value,
+                        optionKind: (fragment as ScriptDom.MemoryPartitionSessionOption).OptionKind
                     );
                 }
                 case 595: {
-                    var node = (ScriptDom.MergeActionClause)fragment;
                     return new MergeActionClause(
-                        condition: node.Condition,
-                        searchCondition: (BooleanExpression)FromMutable(node.SearchCondition),
-                        action: (MergeAction)FromMutable(node.Action)
+                        condition: (fragment as ScriptDom.MergeActionClause).Condition,
+                        searchCondition: (BooleanExpression)FromMutable((fragment as ScriptDom.MergeActionClause).SearchCondition),
+                        action: (MergeAction)FromMutable((fragment as ScriptDom.MergeActionClause).Action)
                     );
                 }
                 case 596: {
-                    var node = (ScriptDom.MergeSpecification)fragment;
                     return new MergeSpecification(
-                        tableAlias: (Identifier)FromMutable(node.TableAlias),
-                        tableReference: (TableReference)FromMutable(node.TableReference),
-                        searchCondition: (BooleanExpression)FromMutable(node.SearchCondition),
-                        actionClauses: node.ActionClauses.SelectList(c => (MergeActionClause)FromMutable(c)),
-                        target: (TableReference)FromMutable(node.Target),
-                        topRowFilter: (TopRowFilter)FromMutable(node.TopRowFilter),
-                        outputIntoClause: (OutputIntoClause)FromMutable(node.OutputIntoClause),
-                        outputClause: (OutputClause)FromMutable(node.OutputClause)
+                        tableAlias: (Identifier)FromMutable((fragment as ScriptDom.MergeSpecification).TableAlias),
+                        tableReference: (TableReference)FromMutable((fragment as ScriptDom.MergeSpecification).TableReference),
+                        searchCondition: (BooleanExpression)FromMutable((fragment as ScriptDom.MergeSpecification).SearchCondition),
+                        actionClauses: (fragment as ScriptDom.MergeSpecification).ActionClauses.SelectList(c => (MergeActionClause)FromMutable(c)),
+                        target: (TableReference)FromMutable((fragment as ScriptDom.MergeSpecification).Target),
+                        topRowFilter: (TopRowFilter)FromMutable((fragment as ScriptDom.MergeSpecification).TopRowFilter),
+                        outputIntoClause: (OutputIntoClause)FromMutable((fragment as ScriptDom.MergeSpecification).OutputIntoClause),
+                        outputClause: (OutputClause)FromMutable((fragment as ScriptDom.MergeSpecification).OutputClause)
                     );
                 }
                 case 597: {
-                    var node = (ScriptDom.MergeStatement)fragment;
                     return new MergeStatement(
-                        mergeSpecification: (MergeSpecification)FromMutable(node.MergeSpecification),
-                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(node.WithCtesAndXmlNamespaces),
-                        optimizerHints: node.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                        mergeSpecification: (MergeSpecification)FromMutable((fragment as ScriptDom.MergeStatement).MergeSpecification),
+                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable((fragment as ScriptDom.MergeStatement).WithCtesAndXmlNamespaces),
+                        optimizerHints: (fragment as ScriptDom.MergeStatement).OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
                     );
                 }
                 case 598: {
-                    var node = (ScriptDom.MethodSpecifier)fragment;
                     return new MethodSpecifier(
-                        assemblyName: (Identifier)FromMutable(node.AssemblyName),
-                        className: (Identifier)FromMutable(node.ClassName),
-                        methodName: (Identifier)FromMutable(node.MethodName)
+                        assemblyName: (Identifier)FromMutable((fragment as ScriptDom.MethodSpecifier).AssemblyName),
+                        className: (Identifier)FromMutable((fragment as ScriptDom.MethodSpecifier).ClassName),
+                        methodName: (Identifier)FromMutable((fragment as ScriptDom.MethodSpecifier).MethodName)
                     );
                 }
                 case 599: {
-                    var node = (ScriptDom.MirrorToClause)fragment;
                     return new MirrorToClause(
-                        devices: node.Devices.SelectList(c => (DeviceInfo)FromMutable(c))
+                        devices: (fragment as ScriptDom.MirrorToClause).Devices.SelectList(c => (DeviceInfo)FromMutable(c))
                     );
                 }
                 case 600: {
-                    var node = (ScriptDom.MoneyLiteral)fragment;
                     return new MoneyLiteral(
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        @value: (fragment as ScriptDom.MoneyLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.MoneyLiteral).Collation)
                     );
                 }
                 case 601: {
-                    var node = (ScriptDom.MoveConversationStatement)fragment;
                     return new MoveConversationStatement(
-                        conversation: (ScalarExpression)FromMutable(node.Conversation),
-                        group: (ScalarExpression)FromMutable(node.Group)
+                        conversation: (ScalarExpression)FromMutable((fragment as ScriptDom.MoveConversationStatement).Conversation),
+                        group: (ScalarExpression)FromMutable((fragment as ScriptDom.MoveConversationStatement).Group)
                     );
                 }
                 case 602: {
-                    var node = (ScriptDom.MoveRestoreOption)fragment;
                     return new MoveRestoreOption(
-                        logicalFileName: (ValueExpression)FromMutable(node.LogicalFileName),
-                        oSFileName: (ValueExpression)FromMutable(node.OSFileName),
-                        optionKind: node.OptionKind
+                        logicalFileName: (ValueExpression)FromMutable((fragment as ScriptDom.MoveRestoreOption).LogicalFileName),
+                        oSFileName: (ValueExpression)FromMutable((fragment as ScriptDom.MoveRestoreOption).OSFileName),
+                        optionKind: (fragment as ScriptDom.MoveRestoreOption).OptionKind
                     );
                 }
                 case 603: {
-                    var node = (ScriptDom.MoveToDropIndexOption)fragment;
                     return new MoveToDropIndexOption(
-                        moveTo: (FileGroupOrPartitionScheme)FromMutable(node.MoveTo),
-                        optionKind: node.OptionKind
+                        moveTo: (FileGroupOrPartitionScheme)FromMutable((fragment as ScriptDom.MoveToDropIndexOption).MoveTo),
+                        optionKind: (fragment as ScriptDom.MoveToDropIndexOption).OptionKind
                     );
                 }
                 case 604: {
-                    var node = (ScriptDom.MultiPartIdentifier)fragment;
                     return new MultiPartIdentifier(
-                        identifiers: node.Identifiers.SelectList(c => (Identifier)FromMutable(c))
+                        identifiers: (fragment as ScriptDom.MultiPartIdentifier).Identifiers.SelectList(c => (Identifier)FromMutable(c))
                     );
                 }
                 case 605: {
-                    var node = (ScriptDom.MultiPartIdentifierCallTarget)fragment;
                     return new MultiPartIdentifierCallTarget(
-                        multiPartIdentifier: (MultiPartIdentifier)FromMutable(node.MultiPartIdentifier)
+                        multiPartIdentifier: (MultiPartIdentifier)FromMutable((fragment as ScriptDom.MultiPartIdentifierCallTarget).MultiPartIdentifier)
                     );
                 }
                 case 606: {
-                    var node = (ScriptDom.NamedTableReference)fragment;
                     return new NamedTableReference(
-                        schemaObject: (SchemaObjectName)FromMutable(node.SchemaObject),
-                        tableHints: node.TableHints.SelectList(c => (TableHint)FromMutable(c)),
-                        tableSampleClause: (TableSampleClause)FromMutable(node.TableSampleClause),
-                        temporalClause: (TemporalClause)FromMutable(node.TemporalClause),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        schemaObject: (SchemaObjectName)FromMutable((fragment as ScriptDom.NamedTableReference).SchemaObject),
+                        tableHints: (fragment as ScriptDom.NamedTableReference).TableHints.SelectList(c => (TableHint)FromMutable(c)),
+                        tableSampleClause: (TableSampleClause)FromMutable((fragment as ScriptDom.NamedTableReference).TableSampleClause),
+                        temporalClause: (TemporalClause)FromMutable((fragment as ScriptDom.NamedTableReference).TemporalClause),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.NamedTableReference).Alias),
+                        forPath: (fragment as ScriptDom.NamedTableReference).ForPath
                     );
                 }
                 case 607: {
-                    var node = (ScriptDom.NameFileDeclarationOption)fragment;
                     return new NameFileDeclarationOption(
-                        logicalFileName: (IdentifierOrValueExpression)FromMutable(node.LogicalFileName),
-                        isNewName: node.IsNewName,
-                        optionKind: node.OptionKind
+                        logicalFileName: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.NameFileDeclarationOption).LogicalFileName),
+                        isNewName: (fragment as ScriptDom.NameFileDeclarationOption).IsNewName,
+                        optionKind: (fragment as ScriptDom.NameFileDeclarationOption).OptionKind
                     );
                 }
                 case 608: {
-                    var node = (ScriptDom.NextValueForExpression)fragment;
                     return new NextValueForExpression(
-                        sequenceName: (SchemaObjectName)FromMutable(node.SequenceName),
-                        overClause: (OverClause)FromMutable(node.OverClause),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        sequenceName: (SchemaObjectName)FromMutable((fragment as ScriptDom.NextValueForExpression).SequenceName),
+                        overClause: (OverClause)FromMutable((fragment as ScriptDom.NextValueForExpression).OverClause),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.NextValueForExpression).Collation)
                     );
                 }
                 case 609: {
-                    var node = (ScriptDom.NullableConstraintDefinition)fragment;
                     return new NullableConstraintDefinition(
-                        nullable: node.Nullable,
-                        constraintIdentifier: (Identifier)FromMutable(node.ConstraintIdentifier)
+                        nullable: (fragment as ScriptDom.NullableConstraintDefinition).Nullable,
+                        constraintIdentifier: (Identifier)FromMutable((fragment as ScriptDom.NullableConstraintDefinition).ConstraintIdentifier)
                     );
                 }
                 case 610: {
-                    var node = (ScriptDom.NullIfExpression)fragment;
                     return new NullIfExpression(
-                        firstExpression: (ScalarExpression)FromMutable(node.FirstExpression),
-                        secondExpression: (ScalarExpression)FromMutable(node.SecondExpression),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        firstExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.NullIfExpression).FirstExpression),
+                        secondExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.NullIfExpression).SecondExpression),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.NullIfExpression).Collation)
                     );
                 }
                 case 611: {
-                    var node = (ScriptDom.NullLiteral)fragment;
                     return new NullLiteral(
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        @value: (fragment as ScriptDom.NullLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.NullLiteral).Collation)
                     );
                 }
                 case 612: {
-                    var node = (ScriptDom.NumericLiteral)fragment;
                     return new NumericLiteral(
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        @value: (fragment as ScriptDom.NumericLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.NumericLiteral).Collation)
                     );
                 }
                 case 613: {
-                    var node = (ScriptDom.OdbcConvertSpecification)fragment;
                     return new OdbcConvertSpecification(
-                        identifier: (Identifier)FromMutable(node.Identifier)
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.OdbcConvertSpecification).Identifier)
                     );
                 }
                 case 614: {
-                    var node = (ScriptDom.OdbcFunctionCall)fragment;
                     return new OdbcFunctionCall(
-                        name: (Identifier)FromMutable(node.Name),
-                        parametersUsed: node.ParametersUsed,
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.OdbcFunctionCall).Name),
+                        parametersUsed: (fragment as ScriptDom.OdbcFunctionCall).ParametersUsed,
+                        parameters: (fragment as ScriptDom.OdbcFunctionCall).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.OdbcFunctionCall).Collation)
                     );
                 }
                 case 615: {
-                    var node = (ScriptDom.OdbcLiteral)fragment;
                     return new OdbcLiteral(
-                        odbcLiteralType: node.OdbcLiteralType,
-                        isNational: node.IsNational,
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        odbcLiteralType: (fragment as ScriptDom.OdbcLiteral).OdbcLiteralType,
+                        isNational: (fragment as ScriptDom.OdbcLiteral).IsNational,
+                        @value: (fragment as ScriptDom.OdbcLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.OdbcLiteral).Collation)
                     );
                 }
                 case 616: {
-                    var node = (ScriptDom.OdbcQualifiedJoinTableReference)fragment;
                     return new OdbcQualifiedJoinTableReference(
-                        tableReference: (TableReference)FromMutable(node.TableReference)
+                        tableReference: (TableReference)FromMutable((fragment as ScriptDom.OdbcQualifiedJoinTableReference).TableReference)
                     );
                 }
                 case 617: {
-                    var node = (ScriptDom.OffsetClause)fragment;
                     return new OffsetClause(
-                        offsetExpression: (ScalarExpression)FromMutable(node.OffsetExpression),
-                        fetchExpression: (ScalarExpression)FromMutable(node.FetchExpression)
+                        offsetExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.OffsetClause).OffsetExpression),
+                        fetchExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.OffsetClause).FetchExpression)
                     );
                 }
                 case 618: {
-                    var node = (ScriptDom.OnFailureAuditOption)fragment;
                     return new OnFailureAuditOption(
-                        onFailureAction: node.OnFailureAction,
-                        optionKind: node.OptionKind
+                        onFailureAction: (fragment as ScriptDom.OnFailureAuditOption).OnFailureAction,
+                        optionKind: (fragment as ScriptDom.OnFailureAuditOption).OptionKind
                     );
                 }
                 case 619: {
-                    var node = (ScriptDom.OnlineIndexLowPriorityLockWaitOption)fragment;
                     return new OnlineIndexLowPriorityLockWaitOption(
-                        options: node.Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c))
+                        options: (fragment as ScriptDom.OnlineIndexLowPriorityLockWaitOption).Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c))
                     );
                 }
                 case 620: {
-                    var node = (ScriptDom.OnlineIndexOption)fragment;
                     return new OnlineIndexOption(
-                        lowPriorityLockWaitOption: (OnlineIndexLowPriorityLockWaitOption)FromMutable(node.LowPriorityLockWaitOption),
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        lowPriorityLockWaitOption: (OnlineIndexLowPriorityLockWaitOption)FromMutable((fragment as ScriptDom.OnlineIndexOption).LowPriorityLockWaitOption),
+                        optionState: (fragment as ScriptDom.OnlineIndexOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnlineIndexOption).OptionKind
                     );
                 }
                 case 621: {
-                    var node = (ScriptDom.OnOffAssemblyOption)fragment;
                     return new OnOffAssemblyOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffAssemblyOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffAssemblyOption).OptionKind
                     );
                 }
                 case 622: {
-                    var node = (ScriptDom.OnOffAtomicBlockOption)fragment;
                     return new OnOffAtomicBlockOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffAtomicBlockOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffAtomicBlockOption).OptionKind
                     );
                 }
                 case 623: {
-                    var node = (ScriptDom.OnOffAuditTargetOption)fragment;
                     return new OnOffAuditTargetOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.OnOffAuditTargetOption).Value,
+                        optionKind: (fragment as ScriptDom.OnOffAuditTargetOption).OptionKind
                     );
                 }
                 case 624: {
-                    var node = (ScriptDom.OnOffDatabaseOption)fragment;
                     return new OnOffDatabaseOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffDatabaseOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffDatabaseOption).OptionKind
                     );
                 }
                 case 625: {
-                    var node = (ScriptDom.OnOffDialogOption)fragment;
                     return new OnOffDialogOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffDialogOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffDialogOption).OptionKind
                     );
                 }
                 case 626: {
-                    var node = (ScriptDom.OnOffFullTextCatalogOption)fragment;
                     return new OnOffFullTextCatalogOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffFullTextCatalogOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffFullTextCatalogOption).OptionKind
                     );
                 }
                 case 627: {
-                    var node = (ScriptDom.OnOffOptionValue)fragment;
                     return new OnOffOptionValue(
-                        optionState: node.OptionState
+                        optionState: (fragment as ScriptDom.OnOffOptionValue).OptionState
                     );
                 }
                 case 628: {
-                    var node = (ScriptDom.OnOffPrimaryConfigurationOption)fragment;
                     return new OnOffPrimaryConfigurationOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind,
-                        genericOptionKind: (Identifier)FromMutable(node.GenericOptionKind)
+                        optionState: (fragment as ScriptDom.OnOffPrimaryConfigurationOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffPrimaryConfigurationOption).OptionKind,
+                        genericOptionKind: (Identifier)FromMutable((fragment as ScriptDom.OnOffPrimaryConfigurationOption).GenericOptionKind)
                     );
                 }
                 case 629: {
-                    var node = (ScriptDom.OnOffPrincipalOption)fragment;
                     return new OnOffPrincipalOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffPrincipalOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffPrincipalOption).OptionKind
                     );
                 }
                 case 630: {
-                    var node = (ScriptDom.OnOffRemoteServiceBindingOption)fragment;
                     return new OnOffRemoteServiceBindingOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffRemoteServiceBindingOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffRemoteServiceBindingOption).OptionKind
                     );
                 }
                 case 631: {
-                    var node = (ScriptDom.OnOffSessionOption)fragment;
                     return new OnOffSessionOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffSessionOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffSessionOption).OptionKind
                     );
                 }
                 case 632: {
-                    var node = (ScriptDom.OnOffStatisticsOption)fragment;
                     return new OnOffStatisticsOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.OnOffStatisticsOption).OptionState,
+                        optionKind: (fragment as ScriptDom.OnOffStatisticsOption).OptionKind
                     );
                 }
                 case 633: {
-                    var node = (ScriptDom.OpenCursorStatement)fragment;
                     return new OpenCursorStatement(
-                        cursor: (CursorId)FromMutable(node.Cursor)
+                        cursor: (CursorId)FromMutable((fragment as ScriptDom.OpenCursorStatement).Cursor)
                     );
                 }
                 case 634: {
-                    var node = (ScriptDom.OpenJsonTableReference)fragment;
                     return new OpenJsonTableReference(
-                        variable: (ScalarExpression)FromMutable(node.Variable),
-                        rowPattern: (ScalarExpression)FromMutable(node.RowPattern),
-                        schemaDeclarationItems: node.SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItemOpenjson)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        variable: (ScalarExpression)FromMutable((fragment as ScriptDom.OpenJsonTableReference).Variable),
+                        rowPattern: (ScalarExpression)FromMutable((fragment as ScriptDom.OpenJsonTableReference).RowPattern),
+                        schemaDeclarationItems: (fragment as ScriptDom.OpenJsonTableReference).SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItemOpenjson)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.OpenJsonTableReference).Alias),
+                        forPath: (fragment as ScriptDom.OpenJsonTableReference).ForPath
                     );
                 }
                 case 635: {
-                    var node = (ScriptDom.OpenMasterKeyStatement)fragment;
                     return new OpenMasterKeyStatement(
-                        password: (Literal)FromMutable(node.Password)
+                        password: (Literal)FromMutable((fragment as ScriptDom.OpenMasterKeyStatement).Password)
                     );
                 }
                 case 636: {
-                    var node = (ScriptDom.OpenQueryTableReference)fragment;
                     return new OpenQueryTableReference(
-                        linkedServer: (Identifier)FromMutable(node.LinkedServer),
-                        query: (StringLiteral)FromMutable(node.Query),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        linkedServer: (Identifier)FromMutable((fragment as ScriptDom.OpenQueryTableReference).LinkedServer),
+                        query: (StringLiteral)FromMutable((fragment as ScriptDom.OpenQueryTableReference).Query),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.OpenQueryTableReference).Alias),
+                        forPath: (fragment as ScriptDom.OpenQueryTableReference).ForPath
                     );
                 }
                 case 637: {
-                    var node = (ScriptDom.OpenRowsetColumnDefinition)fragment;
                     return new OpenRowsetColumnDefinition(
-                        columnOrdinal: (IntegerLiteral)FromMutable(node.ColumnOrdinal),
-                        jsonPath: (StringLiteral)FromMutable(node.JsonPath),
-                        columnIdentifier: (Identifier)FromMutable(node.ColumnIdentifier),
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        columnOrdinal: (IntegerLiteral)FromMutable((fragment as ScriptDom.OpenRowsetColumnDefinition).ColumnOrdinal),
+                        jsonPath: (StringLiteral)FromMutable((fragment as ScriptDom.OpenRowsetColumnDefinition).JsonPath),
+                        columnIdentifier: (Identifier)FromMutable((fragment as ScriptDom.OpenRowsetColumnDefinition).ColumnIdentifier),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.OpenRowsetColumnDefinition).DataType),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.OpenRowsetColumnDefinition).Collation)
                     );
                 }
                 case 638: {
-                    var node = (ScriptDom.OpenRowsetCosmos)fragment;
                     return new OpenRowsetCosmos(
-                        options: node.Options.SelectList(c => (OpenRowsetCosmosOption)FromMutable(c)),
-                        withColumns: node.WithColumns.SelectList(c => (OpenRowsetColumnDefinition)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        options: (fragment as ScriptDom.OpenRowsetCosmos).Options.SelectList(c => (OpenRowsetCosmosOption)FromMutable(c)),
+                        withColumns: (fragment as ScriptDom.OpenRowsetCosmos).WithColumns.SelectList(c => (OpenRowsetColumnDefinition)FromMutable(c)),
+                        columns: (fragment as ScriptDom.OpenRowsetCosmos).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.OpenRowsetCosmos).Alias),
+                        forPath: (fragment as ScriptDom.OpenRowsetCosmos).ForPath
                     );
                 }
                 case 639: {
-                    var node = (ScriptDom.OpenRowsetCosmosOption)fragment;
                     return new OpenRowsetCosmosOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.OpenRowsetCosmosOption).OptionKind
                     );
                 }
                 case 640: {
-                    var node = (ScriptDom.OpenRowsetTableReference)fragment;
                     return new OpenRowsetTableReference(
-                        providerName: (StringLiteral)FromMutable(node.ProviderName),
-                        dataSource: (StringLiteral)FromMutable(node.DataSource),
-                        userId: (StringLiteral)FromMutable(node.UserId),
-                        password: (StringLiteral)FromMutable(node.Password),
-                        providerString: (StringLiteral)FromMutable(node.ProviderString),
-                        query: (StringLiteral)FromMutable(node.Query),
-                        @object: (SchemaObjectName)FromMutable(node.Object),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        providerName: (StringLiteral)FromMutable((fragment as ScriptDom.OpenRowsetTableReference).ProviderName),
+                        dataSource: (StringLiteral)FromMutable((fragment as ScriptDom.OpenRowsetTableReference).DataSource),
+                        userId: (StringLiteral)FromMutable((fragment as ScriptDom.OpenRowsetTableReference).UserId),
+                        password: (StringLiteral)FromMutable((fragment as ScriptDom.OpenRowsetTableReference).Password),
+                        providerString: (StringLiteral)FromMutable((fragment as ScriptDom.OpenRowsetTableReference).ProviderString),
+                        query: (StringLiteral)FromMutable((fragment as ScriptDom.OpenRowsetTableReference).Query),
+                        @object: (SchemaObjectName)FromMutable((fragment as ScriptDom.OpenRowsetTableReference).Object),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.OpenRowsetTableReference).Alias),
+                        forPath: (fragment as ScriptDom.OpenRowsetTableReference).ForPath
                     );
                 }
                 case 641: {
-                    var node = (ScriptDom.OpenSymmetricKeyStatement)fragment;
                     return new OpenSymmetricKeyStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        decryptionMechanism: (CryptoMechanism)FromMutable(node.DecryptionMechanism)
+                        name: (Identifier)FromMutable((fragment as ScriptDom.OpenSymmetricKeyStatement).Name),
+                        decryptionMechanism: (CryptoMechanism)FromMutable((fragment as ScriptDom.OpenSymmetricKeyStatement).DecryptionMechanism)
                     );
                 }
                 case 642: {
-                    var node = (ScriptDom.OpenXmlTableReference)fragment;
                     return new OpenXmlTableReference(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        rowPattern: (ValueExpression)FromMutable(node.RowPattern),
-                        flags: (ValueExpression)FromMutable(node.Flags),
-                        schemaDeclarationItems: node.SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItem)FromMutable(c)),
-                        tableName: (SchemaObjectName)FromMutable(node.TableName),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.OpenXmlTableReference).Variable),
+                        rowPattern: (ValueExpression)FromMutable((fragment as ScriptDom.OpenXmlTableReference).RowPattern),
+                        flags: (ValueExpression)FromMutable((fragment as ScriptDom.OpenXmlTableReference).Flags),
+                        schemaDeclarationItems: (fragment as ScriptDom.OpenXmlTableReference).SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItem)FromMutable(c)),
+                        tableName: (SchemaObjectName)FromMutable((fragment as ScriptDom.OpenXmlTableReference).TableName),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.OpenXmlTableReference).Alias),
+                        forPath: (fragment as ScriptDom.OpenXmlTableReference).ForPath
                     );
                 }
                 case 643: {
-                    var node = (ScriptDom.OperatorAuditOption)fragment;
                     return new OperatorAuditOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.OperatorAuditOption).Value,
+                        optionKind: (fragment as ScriptDom.OperatorAuditOption).OptionKind
                     );
                 }
                 case 644: {
-                    var node = (ScriptDom.OptimizeForOptimizerHint)fragment;
                     return new OptimizeForOptimizerHint(
-                        pairs: node.Pairs.SelectList(c => (VariableValuePair)FromMutable(c)),
-                        isForUnknown: node.IsForUnknown,
-                        hintKind: node.HintKind
+                        pairs: (fragment as ScriptDom.OptimizeForOptimizerHint).Pairs.SelectList(c => (VariableValuePair)FromMutable(c)),
+                        isForUnknown: (fragment as ScriptDom.OptimizeForOptimizerHint).IsForUnknown,
+                        hintKind: (fragment as ScriptDom.OptimizeForOptimizerHint).HintKind
                     );
                 }
                 case 645: {
-                    var node = (ScriptDom.OptimizerHint)fragment;
                     return new OptimizerHint(
-                        hintKind: node.HintKind
+                        hintKind: (fragment as ScriptDom.OptimizerHint).HintKind
                     );
                 }
                 case 646: {
-                    var node = (ScriptDom.OrderBulkInsertOption)fragment;
                     return new OrderBulkInsertOption(
-                        columns: node.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
-                        isUnique: node.IsUnique,
-                        optionKind: node.OptionKind
+                        columns: (fragment as ScriptDom.OrderBulkInsertOption).Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
+                        isUnique: (fragment as ScriptDom.OrderBulkInsertOption).IsUnique,
+                        optionKind: (fragment as ScriptDom.OrderBulkInsertOption).OptionKind
                     );
                 }
                 case 647: {
-                    var node = (ScriptDom.OrderByClause)fragment;
                     return new OrderByClause(
-                        orderByElements: node.OrderByElements.SelectList(c => (ExpressionWithSortOrder)FromMutable(c))
+                        orderByElements: (fragment as ScriptDom.OrderByClause).OrderByElements.SelectList(c => (ExpressionWithSortOrder)FromMutable(c))
                     );
                 }
                 case 648: {
-                    var node = (ScriptDom.OrderIndexOption)fragment;
                     return new OrderIndexOption(
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        columns: (fragment as ScriptDom.OrderIndexOption).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.OrderIndexOption).OptionKind
                     );
                 }
                 case 649: {
-                    var node = (ScriptDom.OutputClause)fragment;
                     return new OutputClause(
-                        selectColumns: node.SelectColumns.SelectList(c => (SelectElement)FromMutable(c))
+                        selectColumns: (fragment as ScriptDom.OutputClause).SelectColumns.SelectList(c => (SelectElement)FromMutable(c))
                     );
                 }
                 case 650: {
-                    var node = (ScriptDom.OutputIntoClause)fragment;
                     return new OutputIntoClause(
-                        selectColumns: node.SelectColumns.SelectList(c => (SelectElement)FromMutable(c)),
-                        intoTable: (TableReference)FromMutable(node.IntoTable),
-                        intoTableColumns: node.IntoTableColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                        selectColumns: (fragment as ScriptDom.OutputIntoClause).SelectColumns.SelectList(c => (SelectElement)FromMutable(c)),
+                        intoTable: (TableReference)FromMutable((fragment as ScriptDom.OutputIntoClause).IntoTable),
+                        intoTableColumns: (fragment as ScriptDom.OutputIntoClause).IntoTableColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
                     );
                 }
                 case 651: {
-                    var node = (ScriptDom.OverClause)fragment;
                     return new OverClause(
-                        windowName: (Identifier)FromMutable(node.WindowName),
-                        partitions: node.Partitions.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        orderByClause: (OrderByClause)FromMutable(node.OrderByClause),
-                        windowFrameClause: (WindowFrameClause)FromMutable(node.WindowFrameClause)
+                        windowName: (Identifier)FromMutable((fragment as ScriptDom.OverClause).WindowName),
+                        partitions: (fragment as ScriptDom.OverClause).Partitions.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        orderByClause: (OrderByClause)FromMutable((fragment as ScriptDom.OverClause).OrderByClause),
+                        windowFrameClause: (WindowFrameClause)FromMutable((fragment as ScriptDom.OverClause).WindowFrameClause)
                     );
                 }
                 case 652: {
-                    var node = (ScriptDom.PageVerifyDatabaseOption)fragment;
                     return new PageVerifyDatabaseOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.PageVerifyDatabaseOption).Value,
+                        optionKind: (fragment as ScriptDom.PageVerifyDatabaseOption).OptionKind
                     );
                 }
                 case 653: {
-                    var node = (ScriptDom.ParameterizationDatabaseOption)fragment;
                     return new ParameterizationDatabaseOption(
-                        isSimple: node.IsSimple,
-                        optionKind: node.OptionKind
+                        isSimple: (fragment as ScriptDom.ParameterizationDatabaseOption).IsSimple,
+                        optionKind: (fragment as ScriptDom.ParameterizationDatabaseOption).OptionKind
                     );
                 }
                 case 654: {
-                    var node = (ScriptDom.ParameterlessCall)fragment;
                     return new ParameterlessCall(
-                        parameterlessCallType: node.ParameterlessCallType,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        parameterlessCallType: (fragment as ScriptDom.ParameterlessCall).ParameterlessCallType,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.ParameterlessCall).Collation)
                     );
                 }
                 case 655: {
-                    var node = (ScriptDom.ParenthesisExpression)fragment;
                     return new ParenthesisExpression(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.ParenthesisExpression).Expression),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.ParenthesisExpression).Collation)
                     );
                 }
                 case 656: {
-                    var node = (ScriptDom.ParseCall)fragment;
                     return new ParseCall(
-                        stringValue: (ScalarExpression)FromMutable(node.StringValue),
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        culture: (ScalarExpression)FromMutable(node.Culture),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        stringValue: (ScalarExpression)FromMutable((fragment as ScriptDom.ParseCall).StringValue),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.ParseCall).DataType),
+                        culture: (ScalarExpression)FromMutable((fragment as ScriptDom.ParseCall).Culture),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.ParseCall).Collation)
                     );
                 }
                 case 657: {
-                    var node = (ScriptDom.PartitionFunctionCall)fragment;
                     return new PartitionFunctionCall(
-                        databaseName: (Identifier)FromMutable(node.DatabaseName),
-                        functionName: (Identifier)FromMutable(node.FunctionName),
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.PartitionFunctionCall).DatabaseName),
+                        functionName: (Identifier)FromMutable((fragment as ScriptDom.PartitionFunctionCall).FunctionName),
+                        parameters: (fragment as ScriptDom.PartitionFunctionCall).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.PartitionFunctionCall).Collation)
                     );
                 }
                 case 658: {
-                    var node = (ScriptDom.PartitionParameterType)fragment;
                     return new PartitionParameterType(
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.PartitionParameterType).DataType),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.PartitionParameterType).Collation)
                     );
                 }
                 case 659: {
-                    var node = (ScriptDom.PartitionSpecifier)fragment;
                     return new PartitionSpecifier(
-                        number: (ScalarExpression)FromMutable(node.Number),
-                        all: node.All
+                        number: (ScalarExpression)FromMutable((fragment as ScriptDom.PartitionSpecifier).Number),
+                        all: (fragment as ScriptDom.PartitionSpecifier).All
                     );
                 }
                 case 660: {
-                    var node = (ScriptDom.PartnerDatabaseOption)fragment;
                     return new PartnerDatabaseOption(
-                        partnerServer: (Literal)FromMutable(node.PartnerServer),
-                        partnerOption: node.PartnerOption,
-                        timeout: (Literal)FromMutable(node.Timeout),
-                        optionKind: node.OptionKind
+                        partnerServer: (Literal)FromMutable((fragment as ScriptDom.PartnerDatabaseOption).PartnerServer),
+                        partnerOption: (fragment as ScriptDom.PartnerDatabaseOption).PartnerOption,
+                        timeout: (Literal)FromMutable((fragment as ScriptDom.PartnerDatabaseOption).Timeout),
+                        optionKind: (fragment as ScriptDom.PartnerDatabaseOption).OptionKind
                     );
                 }
                 case 661: {
-                    var node = (ScriptDom.PasswordAlterPrincipalOption)fragment;
                     return new PasswordAlterPrincipalOption(
-                        password: (Literal)FromMutable(node.Password),
-                        oldPassword: (Literal)FromMutable(node.OldPassword),
-                        mustChange: node.MustChange,
-                        unlock: node.Unlock,
-                        hashed: node.Hashed,
-                        optionKind: node.OptionKind
+                        password: (Literal)FromMutable((fragment as ScriptDom.PasswordAlterPrincipalOption).Password),
+                        oldPassword: (Literal)FromMutable((fragment as ScriptDom.PasswordAlterPrincipalOption).OldPassword),
+                        mustChange: (fragment as ScriptDom.PasswordAlterPrincipalOption).MustChange,
+                        unlock: (fragment as ScriptDom.PasswordAlterPrincipalOption).Unlock,
+                        hashed: (fragment as ScriptDom.PasswordAlterPrincipalOption).Hashed,
+                        optionKind: (fragment as ScriptDom.PasswordAlterPrincipalOption).OptionKind
                     );
                 }
                 case 662: {
-                    var node = (ScriptDom.PasswordCreateLoginSource)fragment;
                     return new PasswordCreateLoginSource(
-                        password: (Literal)FromMutable(node.Password),
-                        hashed: node.Hashed,
-                        mustChange: node.MustChange,
-                        options: node.Options.SelectList(c => (PrincipalOption)FromMutable(c))
+                        password: (Literal)FromMutable((fragment as ScriptDom.PasswordCreateLoginSource).Password),
+                        hashed: (fragment as ScriptDom.PasswordCreateLoginSource).Hashed,
+                        mustChange: (fragment as ScriptDom.PasswordCreateLoginSource).MustChange,
+                        options: (fragment as ScriptDom.PasswordCreateLoginSource).Options.SelectList(c => (PrincipalOption)FromMutable(c))
                     );
                 }
                 case 663: {
-                    var node = (ScriptDom.Permission)fragment;
                     return new Permission(
-                        identifiers: node.Identifiers.SelectList(c => (Identifier)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c))
+                        identifiers: (fragment as ScriptDom.Permission).Identifiers.SelectList(c => (Identifier)FromMutable(c)),
+                        columns: (fragment as ScriptDom.Permission).Columns.SelectList(c => (Identifier)FromMutable(c))
                     );
                 }
                 case 664: {
-                    var node = (ScriptDom.PermissionSetAssemblyOption)fragment;
                     return new PermissionSetAssemblyOption(
-                        permissionSetOption: node.PermissionSetOption,
-                        optionKind: node.OptionKind
+                        permissionSetOption: (fragment as ScriptDom.PermissionSetAssemblyOption).PermissionSetOption,
+                        optionKind: (fragment as ScriptDom.PermissionSetAssemblyOption).OptionKind
                     );
                 }
                 case 665: {
-                    var node = (ScriptDom.PivotedTableReference)fragment;
                     return new PivotedTableReference(
-                        tableReference: (TableReference)FromMutable(node.TableReference),
-                        inColumns: node.InColumns.SelectList(c => (Identifier)FromMutable(c)),
-                        pivotColumn: (ColumnReferenceExpression)FromMutable(node.PivotColumn),
-                        valueColumns: node.ValueColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        aggregateFunctionIdentifier: (MultiPartIdentifier)FromMutable(node.AggregateFunctionIdentifier),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        tableReference: (TableReference)FromMutable((fragment as ScriptDom.PivotedTableReference).TableReference),
+                        inColumns: (fragment as ScriptDom.PivotedTableReference).InColumns.SelectList(c => (Identifier)FromMutable(c)),
+                        pivotColumn: (ColumnReferenceExpression)FromMutable((fragment as ScriptDom.PivotedTableReference).PivotColumn),
+                        valueColumns: (fragment as ScriptDom.PivotedTableReference).ValueColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        aggregateFunctionIdentifier: (MultiPartIdentifier)FromMutable((fragment as ScriptDom.PivotedTableReference).AggregateFunctionIdentifier),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.PivotedTableReference).Alias),
+                        forPath: (fragment as ScriptDom.PivotedTableReference).ForPath
                     );
                 }
                 case 666: {
-                    var node = (ScriptDom.PortsEndpointProtocolOption)fragment;
                     return new PortsEndpointProtocolOption(
-                        portTypes: node.PortTypes,
-                        kind: node.Kind
+                        portTypes: (fragment as ScriptDom.PortsEndpointProtocolOption).PortTypes,
+                        kind: (fragment as ScriptDom.PortsEndpointProtocolOption).Kind
                     );
                 }
                 case 667: {
-                    var node = (ScriptDom.PredicateSetStatement)fragment;
                     return new PredicateSetStatement(
-                        options: node.Options,
-                        isOn: node.IsOn
+                        options: (fragment as ScriptDom.PredicateSetStatement).Options,
+                        isOn: (fragment as ScriptDom.PredicateSetStatement).IsOn
                     );
                 }
                 case 668: {
-                    var node = (ScriptDom.PredictTableReference)fragment;
                     return new PredictTableReference(
-                        modelVariable: (ScalarExpression)FromMutable(node.ModelVariable),
-                        modelSubquery: (ScalarSubquery)FromMutable(node.ModelSubquery),
-                        dataSource: (TableReferenceWithAlias)FromMutable(node.DataSource),
-                        runTime: (Identifier)FromMutable(node.RunTime),
-                        schemaDeclarationItems: node.SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItem)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        modelVariable: (ScalarExpression)FromMutable((fragment as ScriptDom.PredictTableReference).ModelVariable),
+                        modelSubquery: (ScalarSubquery)FromMutable((fragment as ScriptDom.PredictTableReference).ModelSubquery),
+                        dataSource: (TableReferenceWithAlias)FromMutable((fragment as ScriptDom.PredictTableReference).DataSource),
+                        runTime: (Identifier)FromMutable((fragment as ScriptDom.PredictTableReference).RunTime),
+                        schemaDeclarationItems: (fragment as ScriptDom.PredictTableReference).SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItem)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.PredictTableReference).Alias),
+                        forPath: (fragment as ScriptDom.PredictTableReference).ForPath
                     );
                 }
                 case 669: {
-                    var node = (ScriptDom.PrimaryRoleReplicaOption)fragment;
                     return new PrimaryRoleReplicaOption(
-                        allowConnections: node.AllowConnections,
-                        optionKind: node.OptionKind
+                        allowConnections: (fragment as ScriptDom.PrimaryRoleReplicaOption).AllowConnections,
+                        optionKind: (fragment as ScriptDom.PrimaryRoleReplicaOption).OptionKind
                     );
                 }
                 case 670: {
-                    var node = (ScriptDom.PrincipalOption)fragment;
                     return new PrincipalOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.PrincipalOption).OptionKind
                     );
                 }
                 case 671: {
-                    var node = (ScriptDom.PrintStatement)fragment;
                     return new PrintStatement(
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.PrintStatement).Expression)
                     );
                 }
                 case 672: {
-                    var node = (ScriptDom.Privilege80)fragment;
                     return new Privilege80(
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        privilegeType80: node.PrivilegeType80
+                        columns: (fragment as ScriptDom.Privilege80).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        privilegeType80: (fragment as ScriptDom.Privilege80).PrivilegeType80
                     );
                 }
                 case 673: {
-                    var node = (ScriptDom.PrivilegeSecurityElement80)fragment;
                     return new PrivilegeSecurityElement80(
-                        privileges: node.Privileges.SelectList(c => (Privilege80)FromMutable(c)),
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c))
+                        privileges: (fragment as ScriptDom.PrivilegeSecurityElement80).Privileges.SelectList(c => (Privilege80)FromMutable(c)),
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.PrivilegeSecurityElement80).SchemaObjectName),
+                        columns: (fragment as ScriptDom.PrivilegeSecurityElement80).Columns.SelectList(c => (Identifier)FromMutable(c))
                     );
                 }
                 case 674: {
-                    var node = (ScriptDom.ProcedureOption)fragment;
                     return new ProcedureOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.ProcedureOption).OptionKind
                     );
                 }
                 case 675: {
-                    var node = (ScriptDom.ProcedureParameter)fragment;
                     return new ProcedureParameter(
-                        isVarying: node.IsVarying,
-                        modifier: node.Modifier,
-                        variableName: (Identifier)FromMutable(node.VariableName),
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        nullable: (NullableConstraintDefinition)FromMutable(node.Nullable),
-                        @value: (ScalarExpression)FromMutable(node.Value)
+                        isVarying: (fragment as ScriptDom.ProcedureParameter).IsVarying,
+                        modifier: (fragment as ScriptDom.ProcedureParameter).Modifier,
+                        variableName: (Identifier)FromMutable((fragment as ScriptDom.ProcedureParameter).VariableName),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.ProcedureParameter).DataType),
+                        nullable: (NullableConstraintDefinition)FromMutable((fragment as ScriptDom.ProcedureParameter).Nullable),
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.ProcedureParameter).Value)
                     );
                 }
                 case 676: {
-                    var node = (ScriptDom.ProcedureReference)fragment;
                     return new ProcedureReference(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        number: (Literal)FromMutable(node.Number)
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.ProcedureReference).Name),
+                        number: (Literal)FromMutable((fragment as ScriptDom.ProcedureReference).Number)
                     );
                 }
                 case 677: {
-                    var node = (ScriptDom.ProcedureReferenceName)fragment;
                     return new ProcedureReferenceName(
-                        procedureReference: (ProcedureReference)FromMutable(node.ProcedureReference),
-                        procedureVariable: (VariableReference)FromMutable(node.ProcedureVariable)
+                        procedureReference: (ProcedureReference)FromMutable((fragment as ScriptDom.ProcedureReferenceName).ProcedureReference),
+                        procedureVariable: (VariableReference)FromMutable((fragment as ScriptDom.ProcedureReferenceName).ProcedureVariable)
                     );
                 }
                 case 678: {
-                    var node = (ScriptDom.ProcessAffinityRange)fragment;
                     return new ProcessAffinityRange(
-                        from: (Literal)FromMutable(node.From),
-                        to: (Literal)FromMutable(node.To)
+                        from: (Literal)FromMutable((fragment as ScriptDom.ProcessAffinityRange).From),
+                        to: (Literal)FromMutable((fragment as ScriptDom.ProcessAffinityRange).To)
                     );
                 }
                 case 679: {
-                    var node = (ScriptDom.ProviderEncryptionSource)fragment;
                     return new ProviderEncryptionSource(
-                        name: (Identifier)FromMutable(node.Name),
-                        keyOptions: node.KeyOptions.SelectList(c => (KeyOption)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.ProviderEncryptionSource).Name),
+                        keyOptions: (fragment as ScriptDom.ProviderEncryptionSource).KeyOptions.SelectList(c => (KeyOption)FromMutable(c))
                     );
                 }
                 case 680: {
-                    var node = (ScriptDom.ProviderKeyNameKeyOption)fragment;
                     return new ProviderKeyNameKeyOption(
-                        keyName: (Literal)FromMutable(node.KeyName),
-                        optionKind: node.OptionKind
+                        keyName: (Literal)FromMutable((fragment as ScriptDom.ProviderKeyNameKeyOption).KeyName),
+                        optionKind: (fragment as ScriptDom.ProviderKeyNameKeyOption).OptionKind
                     );
                 }
                 case 681: {
-                    var node = (ScriptDom.QualifiedJoin)fragment;
                     return new QualifiedJoin(
-                        searchCondition: (BooleanExpression)FromMutable(node.SearchCondition),
-                        qualifiedJoinType: node.QualifiedJoinType,
-                        joinHint: node.JoinHint,
-                        firstTableReference: (TableReference)FromMutable(node.FirstTableReference),
-                        secondTableReference: (TableReference)FromMutable(node.SecondTableReference)
+                        searchCondition: (BooleanExpression)FromMutable((fragment as ScriptDom.QualifiedJoin).SearchCondition),
+                        qualifiedJoinType: (fragment as ScriptDom.QualifiedJoin).QualifiedJoinType,
+                        joinHint: (fragment as ScriptDom.QualifiedJoin).JoinHint,
+                        firstTableReference: (TableReference)FromMutable((fragment as ScriptDom.QualifiedJoin).FirstTableReference),
+                        secondTableReference: (TableReference)FromMutable((fragment as ScriptDom.QualifiedJoin).SecondTableReference)
                     );
                 }
                 case 682: {
-                    var node = (ScriptDom.QueryDerivedTable)fragment;
                     return new QueryDerivedTable(
-                        queryExpression: (QueryExpression)FromMutable(node.QueryExpression),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        queryExpression: (QueryExpression)FromMutable((fragment as ScriptDom.QueryDerivedTable).QueryExpression),
+                        columns: (fragment as ScriptDom.QueryDerivedTable).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.QueryDerivedTable).Alias),
+                        forPath: (fragment as ScriptDom.QueryDerivedTable).ForPath
                     );
                 }
                 case 683: {
-                    var node = (ScriptDom.QueryParenthesisExpression)fragment;
                     return new QueryParenthesisExpression(
-                        queryExpression: (QueryExpression)FromMutable(node.QueryExpression),
-                        orderByClause: (OrderByClause)FromMutable(node.OrderByClause),
-                        offsetClause: (OffsetClause)FromMutable(node.OffsetClause),
-                        forClause: (ForClause)FromMutable(node.ForClause)
+                        queryExpression: (QueryExpression)FromMutable((fragment as ScriptDom.QueryParenthesisExpression).QueryExpression),
+                        orderByClause: (OrderByClause)FromMutable((fragment as ScriptDom.QueryParenthesisExpression).OrderByClause),
+                        offsetClause: (OffsetClause)FromMutable((fragment as ScriptDom.QueryParenthesisExpression).OffsetClause),
+                        forClause: (ForClause)FromMutable((fragment as ScriptDom.QueryParenthesisExpression).ForClause)
                     );
                 }
                 case 684: {
-                    var node = (ScriptDom.QuerySpecification)fragment;
                     return new QuerySpecification(
-                        uniqueRowFilter: node.UniqueRowFilter,
-                        topRowFilter: (TopRowFilter)FromMutable(node.TopRowFilter),
-                        selectElements: node.SelectElements.SelectList(c => (SelectElement)FromMutable(c)),
-                        fromClause: (FromClause)FromMutable(node.FromClause),
-                        whereClause: (WhereClause)FromMutable(node.WhereClause),
-                        groupByClause: (GroupByClause)FromMutable(node.GroupByClause),
-                        havingClause: (HavingClause)FromMutable(node.HavingClause),
-                        windowClause: (WindowClause)FromMutable(node.WindowClause),
-                        orderByClause: (OrderByClause)FromMutable(node.OrderByClause),
-                        offsetClause: (OffsetClause)FromMutable(node.OffsetClause),
-                        forClause: (ForClause)FromMutable(node.ForClause)
+                        uniqueRowFilter: (fragment as ScriptDom.QuerySpecification).UniqueRowFilter,
+                        topRowFilter: (TopRowFilter)FromMutable((fragment as ScriptDom.QuerySpecification).TopRowFilter),
+                        selectElements: (fragment as ScriptDom.QuerySpecification).SelectElements.SelectList(c => (SelectElement)FromMutable(c)),
+                        fromClause: (FromClause)FromMutable((fragment as ScriptDom.QuerySpecification).FromClause),
+                        whereClause: (WhereClause)FromMutable((fragment as ScriptDom.QuerySpecification).WhereClause),
+                        groupByClause: (GroupByClause)FromMutable((fragment as ScriptDom.QuerySpecification).GroupByClause),
+                        havingClause: (HavingClause)FromMutable((fragment as ScriptDom.QuerySpecification).HavingClause),
+                        windowClause: (WindowClause)FromMutable((fragment as ScriptDom.QuerySpecification).WindowClause),
+                        orderByClause: (OrderByClause)FromMutable((fragment as ScriptDom.QuerySpecification).OrderByClause),
+                        offsetClause: (OffsetClause)FromMutable((fragment as ScriptDom.QuerySpecification).OffsetClause),
+                        forClause: (ForClause)FromMutable((fragment as ScriptDom.QuerySpecification).ForClause)
                     );
                 }
                 case 685: {
-                    var node = (ScriptDom.QueryStoreCapturePolicyOption)fragment;
                     return new QueryStoreCapturePolicyOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.QueryStoreCapturePolicyOption).Value,
+                        optionKind: (fragment as ScriptDom.QueryStoreCapturePolicyOption).OptionKind
                     );
                 }
                 case 686: {
-                    var node = (ScriptDom.QueryStoreDatabaseOption)fragment;
                     return new QueryStoreDatabaseOption(
-                        clear: node.Clear,
-                        clearAll: node.ClearAll,
-                        optionState: node.OptionState,
-                        options: node.Options.SelectList(c => (QueryStoreOption)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        clear: (fragment as ScriptDom.QueryStoreDatabaseOption).Clear,
+                        clearAll: (fragment as ScriptDom.QueryStoreDatabaseOption).ClearAll,
+                        optionState: (fragment as ScriptDom.QueryStoreDatabaseOption).OptionState,
+                        options: (fragment as ScriptDom.QueryStoreDatabaseOption).Options.SelectList(c => (QueryStoreOption)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.QueryStoreDatabaseOption).OptionKind
                     );
                 }
                 case 687: {
-                    var node = (ScriptDom.QueryStoreDataFlushIntervalOption)fragment;
                     return new QueryStoreDataFlushIntervalOption(
-                        flushInterval: (Literal)FromMutable(node.FlushInterval),
-                        optionKind: node.OptionKind
+                        flushInterval: (Literal)FromMutable((fragment as ScriptDom.QueryStoreDataFlushIntervalOption).FlushInterval),
+                        optionKind: (fragment as ScriptDom.QueryStoreDataFlushIntervalOption).OptionKind
                     );
                 }
                 case 688: {
-                    var node = (ScriptDom.QueryStoreDesiredStateOption)fragment;
                     return new QueryStoreDesiredStateOption(
-                        @value: node.Value,
-                        operationModeSpecified: node.OperationModeSpecified,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.QueryStoreDesiredStateOption).Value,
+                        operationModeSpecified: (fragment as ScriptDom.QueryStoreDesiredStateOption).OperationModeSpecified,
+                        optionKind: (fragment as ScriptDom.QueryStoreDesiredStateOption).OptionKind
                     );
                 }
                 case 689: {
-                    var node = (ScriptDom.QueryStoreIntervalLengthOption)fragment;
                     return new QueryStoreIntervalLengthOption(
-                        statsIntervalLength: (Literal)FromMutable(node.StatsIntervalLength),
-                        optionKind: node.OptionKind
+                        statsIntervalLength: (Literal)FromMutable((fragment as ScriptDom.QueryStoreIntervalLengthOption).StatsIntervalLength),
+                        optionKind: (fragment as ScriptDom.QueryStoreIntervalLengthOption).OptionKind
                     );
                 }
                 case 690: {
-                    var node = (ScriptDom.QueryStoreMaxPlansPerQueryOption)fragment;
                     return new QueryStoreMaxPlansPerQueryOption(
-                        maxPlansPerQuery: (Literal)FromMutable(node.MaxPlansPerQuery),
-                        optionKind: node.OptionKind
+                        maxPlansPerQuery: (Literal)FromMutable((fragment as ScriptDom.QueryStoreMaxPlansPerQueryOption).MaxPlansPerQuery),
+                        optionKind: (fragment as ScriptDom.QueryStoreMaxPlansPerQueryOption).OptionKind
                     );
                 }
                 case 691: {
-                    var node = (ScriptDom.QueryStoreMaxStorageSizeOption)fragment;
                     return new QueryStoreMaxStorageSizeOption(
-                        maxQdsSize: (Literal)FromMutable(node.MaxQdsSize),
-                        optionKind: node.OptionKind
+                        maxQdsSize: (Literal)FromMutable((fragment as ScriptDom.QueryStoreMaxStorageSizeOption).MaxQdsSize),
+                        optionKind: (fragment as ScriptDom.QueryStoreMaxStorageSizeOption).OptionKind
                     );
                 }
                 case 692: {
-                    var node = (ScriptDom.QueryStoreSizeCleanupPolicyOption)fragment;
                     return new QueryStoreSizeCleanupPolicyOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.QueryStoreSizeCleanupPolicyOption).Value,
+                        optionKind: (fragment as ScriptDom.QueryStoreSizeCleanupPolicyOption).OptionKind
                     );
                 }
                 case 693: {
-                    var node = (ScriptDom.QueryStoreTimeCleanupPolicyOption)fragment;
                     return new QueryStoreTimeCleanupPolicyOption(
-                        staleQueryThreshold: (Literal)FromMutable(node.StaleQueryThreshold),
-                        optionKind: node.OptionKind
+                        staleQueryThreshold: (Literal)FromMutable((fragment as ScriptDom.QueryStoreTimeCleanupPolicyOption).StaleQueryThreshold),
+                        optionKind: (fragment as ScriptDom.QueryStoreTimeCleanupPolicyOption).OptionKind
                     );
                 }
                 case 694: {
-                    var node = (ScriptDom.QueueDelayAuditOption)fragment;
                     return new QueueDelayAuditOption(
-                        delay: (Literal)FromMutable(node.Delay),
-                        optionKind: node.OptionKind
+                        delay: (Literal)FromMutable((fragment as ScriptDom.QueueDelayAuditOption).Delay),
+                        optionKind: (fragment as ScriptDom.QueueDelayAuditOption).OptionKind
                     );
                 }
                 case 695: {
-                    var node = (ScriptDom.QueueExecuteAsOption)fragment;
                     return new QueueExecuteAsOption(
-                        optionValue: (ExecuteAsClause)FromMutable(node.OptionValue),
-                        optionKind: node.OptionKind
+                        optionValue: (ExecuteAsClause)FromMutable((fragment as ScriptDom.QueueExecuteAsOption).OptionValue),
+                        optionKind: (fragment as ScriptDom.QueueExecuteAsOption).OptionKind
                     );
                 }
                 case 696: {
-                    var node = (ScriptDom.QueueOption)fragment;
                     return new QueueOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.QueueOption).OptionKind
                     );
                 }
                 case 697: {
-                    var node = (ScriptDom.QueueProcedureOption)fragment;
                     return new QueueProcedureOption(
-                        optionValue: (SchemaObjectName)FromMutable(node.OptionValue),
-                        optionKind: node.OptionKind
+                        optionValue: (SchemaObjectName)FromMutable((fragment as ScriptDom.QueueProcedureOption).OptionValue),
+                        optionKind: (fragment as ScriptDom.QueueProcedureOption).OptionKind
                     );
                 }
                 case 698: {
-                    var node = (ScriptDom.QueueStateOption)fragment;
                     return new QueueStateOption(
-                        optionState: node.OptionState,
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.QueueStateOption).OptionState,
+                        optionKind: (fragment as ScriptDom.QueueStateOption).OptionKind
                     );
                 }
                 case 699: {
-                    var node = (ScriptDom.QueueValueOption)fragment;
                     return new QueueValueOption(
-                        optionValue: (ValueExpression)FromMutable(node.OptionValue),
-                        optionKind: node.OptionKind
+                        optionValue: (ValueExpression)FromMutable((fragment as ScriptDom.QueueValueOption).OptionValue),
+                        optionKind: (fragment as ScriptDom.QueueValueOption).OptionKind
                     );
                 }
                 case 700: {
-                    var node = (ScriptDom.RaiseErrorLegacyStatement)fragment;
                     return new RaiseErrorLegacyStatement(
-                        firstParameter: (ScalarExpression)FromMutable(node.FirstParameter),
-                        secondParameter: (ValueExpression)FromMutable(node.SecondParameter)
+                        firstParameter: (ScalarExpression)FromMutable((fragment as ScriptDom.RaiseErrorLegacyStatement).FirstParameter),
+                        secondParameter: (ValueExpression)FromMutable((fragment as ScriptDom.RaiseErrorLegacyStatement).SecondParameter)
                     );
                 }
                 case 701: {
-                    var node = (ScriptDom.RaiseErrorStatement)fragment;
                     return new RaiseErrorStatement(
-                        firstParameter: (ScalarExpression)FromMutable(node.FirstParameter),
-                        secondParameter: (ScalarExpression)FromMutable(node.SecondParameter),
-                        thirdParameter: (ScalarExpression)FromMutable(node.ThirdParameter),
-                        optionalParameters: node.OptionalParameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        raiseErrorOptions: node.RaiseErrorOptions
+                        firstParameter: (ScalarExpression)FromMutable((fragment as ScriptDom.RaiseErrorStatement).FirstParameter),
+                        secondParameter: (ScalarExpression)FromMutable((fragment as ScriptDom.RaiseErrorStatement).SecondParameter),
+                        thirdParameter: (ScalarExpression)FromMutable((fragment as ScriptDom.RaiseErrorStatement).ThirdParameter),
+                        optionalParameters: (fragment as ScriptDom.RaiseErrorStatement).OptionalParameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        raiseErrorOptions: (fragment as ScriptDom.RaiseErrorStatement).RaiseErrorOptions
                     );
                 }
                 case 702: {
-                    var node = (ScriptDom.ReadOnlyForClause)fragment;
                     return new ReadOnlyForClause(
                         
                     );
                 }
                 case 703: {
-                    var node = (ScriptDom.ReadTextStatement)fragment;
                     return new ReadTextStatement(
-                        column: (ColumnReferenceExpression)FromMutable(node.Column),
-                        textPointer: (ValueExpression)FromMutable(node.TextPointer),
-                        offset: (ValueExpression)FromMutable(node.Offset),
-                        size: (ValueExpression)FromMutable(node.Size),
-                        holdLock: node.HoldLock
+                        column: (ColumnReferenceExpression)FromMutable((fragment as ScriptDom.ReadTextStatement).Column),
+                        textPointer: (ValueExpression)FromMutable((fragment as ScriptDom.ReadTextStatement).TextPointer),
+                        offset: (ValueExpression)FromMutable((fragment as ScriptDom.ReadTextStatement).Offset),
+                        size: (ValueExpression)FromMutable((fragment as ScriptDom.ReadTextStatement).Size),
+                        holdLock: (fragment as ScriptDom.ReadTextStatement).HoldLock
                     );
                 }
                 case 704: {
-                    var node = (ScriptDom.RealLiteral)fragment;
                     return new RealLiteral(
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        @value: (fragment as ScriptDom.RealLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.RealLiteral).Collation)
                     );
                 }
                 case 705: {
-                    var node = (ScriptDom.ReceiveStatement)fragment;
                     return new ReceiveStatement(
-                        top: (ScalarExpression)FromMutable(node.Top),
-                        selectElements: node.SelectElements.SelectList(c => (SelectElement)FromMutable(c)),
-                        queue: (SchemaObjectName)FromMutable(node.Queue),
-                        into: (VariableTableReference)FromMutable(node.Into),
-                        where: (ValueExpression)FromMutable(node.Where),
-                        isConversationGroupIdWhere: node.IsConversationGroupIdWhere
+                        top: (ScalarExpression)FromMutable((fragment as ScriptDom.ReceiveStatement).Top),
+                        selectElements: (fragment as ScriptDom.ReceiveStatement).SelectElements.SelectList(c => (SelectElement)FromMutable(c)),
+                        queue: (SchemaObjectName)FromMutable((fragment as ScriptDom.ReceiveStatement).Queue),
+                        into: (VariableTableReference)FromMutable((fragment as ScriptDom.ReceiveStatement).Into),
+                        where: (ValueExpression)FromMutable((fragment as ScriptDom.ReceiveStatement).Where),
+                        isConversationGroupIdWhere: (fragment as ScriptDom.ReceiveStatement).IsConversationGroupIdWhere
                     );
                 }
                 case 706: {
-                    var node = (ScriptDom.ReconfigureStatement)fragment;
                     return new ReconfigureStatement(
-                        withOverride: node.WithOverride
+                        withOverride: (fragment as ScriptDom.ReconfigureStatement).WithOverride
                     );
                 }
                 case 707: {
-                    var node = (ScriptDom.RecoveryDatabaseOption)fragment;
                     return new RecoveryDatabaseOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.RecoveryDatabaseOption).Value,
+                        optionKind: (fragment as ScriptDom.RecoveryDatabaseOption).OptionKind
                     );
                 }
                 case 708: {
-                    var node = (ScriptDom.RemoteDataArchiveAlterTableOption)fragment;
                     return new RemoteDataArchiveAlterTableOption(
-                        rdaTableOption: node.RdaTableOption,
-                        migrationState: node.MigrationState,
-                        isMigrationStateSpecified: node.IsMigrationStateSpecified,
-                        isFilterPredicateSpecified: node.IsFilterPredicateSpecified,
-                        filterPredicate: (FunctionCall)FromMutable(node.FilterPredicate),
-                        optionKind: node.OptionKind
+                        rdaTableOption: (fragment as ScriptDom.RemoteDataArchiveAlterTableOption).RdaTableOption,
+                        migrationState: (fragment as ScriptDom.RemoteDataArchiveAlterTableOption).MigrationState,
+                        isMigrationStateSpecified: (fragment as ScriptDom.RemoteDataArchiveAlterTableOption).IsMigrationStateSpecified,
+                        isFilterPredicateSpecified: (fragment as ScriptDom.RemoteDataArchiveAlterTableOption).IsFilterPredicateSpecified,
+                        filterPredicate: (FunctionCall)FromMutable((fragment as ScriptDom.RemoteDataArchiveAlterTableOption).FilterPredicate),
+                        optionKind: (fragment as ScriptDom.RemoteDataArchiveAlterTableOption).OptionKind
                     );
                 }
                 case 709: {
-                    var node = (ScriptDom.RemoteDataArchiveDatabaseOption)fragment;
                     return new RemoteDataArchiveDatabaseOption(
-                        optionState: node.OptionState,
-                        settings: node.Settings.SelectList(c => (RemoteDataArchiveDatabaseSetting)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.RemoteDataArchiveDatabaseOption).OptionState,
+                        settings: (fragment as ScriptDom.RemoteDataArchiveDatabaseOption).Settings.SelectList(c => (RemoteDataArchiveDatabaseSetting)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.RemoteDataArchiveDatabaseOption).OptionKind
                     );
                 }
                 case 710: {
-                    var node = (ScriptDom.RemoteDataArchiveDbCredentialSetting)fragment;
                     return new RemoteDataArchiveDbCredentialSetting(
-                        credential: (Identifier)FromMutable(node.Credential),
-                        settingKind: node.SettingKind
+                        credential: (Identifier)FromMutable((fragment as ScriptDom.RemoteDataArchiveDbCredentialSetting).Credential),
+                        settingKind: (fragment as ScriptDom.RemoteDataArchiveDbCredentialSetting).SettingKind
                     );
                 }
                 case 711: {
-                    var node = (ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting)fragment;
                     return new RemoteDataArchiveDbFederatedServiceAccountSetting(
-                        isOn: node.IsOn,
-                        settingKind: node.SettingKind
+                        isOn: (fragment as ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting).IsOn,
+                        settingKind: (fragment as ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting).SettingKind
                     );
                 }
                 case 712: {
-                    var node = (ScriptDom.RemoteDataArchiveDbServerSetting)fragment;
                     return new RemoteDataArchiveDbServerSetting(
-                        server: (StringLiteral)FromMutable(node.Server),
-                        settingKind: node.SettingKind
+                        server: (StringLiteral)FromMutable((fragment as ScriptDom.RemoteDataArchiveDbServerSetting).Server),
+                        settingKind: (fragment as ScriptDom.RemoteDataArchiveDbServerSetting).SettingKind
                     );
                 }
                 case 713: {
-                    var node = (ScriptDom.RemoteDataArchiveTableOption)fragment;
                     return new RemoteDataArchiveTableOption(
-                        rdaTableOption: node.RdaTableOption,
-                        migrationState: node.MigrationState,
-                        optionKind: node.OptionKind
+                        rdaTableOption: (fragment as ScriptDom.RemoteDataArchiveTableOption).RdaTableOption,
+                        migrationState: (fragment as ScriptDom.RemoteDataArchiveTableOption).MigrationState,
+                        optionKind: (fragment as ScriptDom.RemoteDataArchiveTableOption).OptionKind
                     );
                 }
                 case 714: {
-                    var node = (ScriptDom.RenameAlterRoleAction)fragment;
                     return new RenameAlterRoleAction(
-                        newName: (Identifier)FromMutable(node.NewName)
+                        newName: (Identifier)FromMutable((fragment as ScriptDom.RenameAlterRoleAction).NewName)
                     );
                 }
                 case 715: {
-                    var node = (ScriptDom.RenameEntityStatement)fragment;
                     return new RenameEntityStatement(
-                        renameEntityType: node.RenameEntityType,
-                        separatorType: node.SeparatorType,
-                        oldName: (SchemaObjectName)FromMutable(node.OldName),
-                        newName: (Identifier)FromMutable(node.NewName)
+                        renameEntityType: (fragment as ScriptDom.RenameEntityStatement).RenameEntityType,
+                        separatorType: (fragment as ScriptDom.RenameEntityStatement).SeparatorType,
+                        oldName: (SchemaObjectName)FromMutable((fragment as ScriptDom.RenameEntityStatement).OldName),
+                        newName: (Identifier)FromMutable((fragment as ScriptDom.RenameEntityStatement).NewName)
                     );
                 }
                 case 716: {
-                    var node = (ScriptDom.ResampleStatisticsOption)fragment;
                     return new ResampleStatisticsOption(
-                        partitions: node.Partitions.SelectList(c => (StatisticsPartitionRange)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        partitions: (fragment as ScriptDom.ResampleStatisticsOption).Partitions.SelectList(c => (StatisticsPartitionRange)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.ResampleStatisticsOption).OptionKind
                     );
                 }
                 case 717: {
-                    var node = (ScriptDom.ResourcePoolAffinitySpecification)fragment;
                     return new ResourcePoolAffinitySpecification(
-                        affinityType: node.AffinityType,
-                        parameterValue: (Literal)FromMutable(node.ParameterValue),
-                        isAuto: node.IsAuto,
-                        poolAffinityRanges: node.PoolAffinityRanges.SelectList(c => (LiteralRange)FromMutable(c))
+                        affinityType: (fragment as ScriptDom.ResourcePoolAffinitySpecification).AffinityType,
+                        parameterValue: (Literal)FromMutable((fragment as ScriptDom.ResourcePoolAffinitySpecification).ParameterValue),
+                        isAuto: (fragment as ScriptDom.ResourcePoolAffinitySpecification).IsAuto,
+                        poolAffinityRanges: (fragment as ScriptDom.ResourcePoolAffinitySpecification).PoolAffinityRanges.SelectList(c => (LiteralRange)FromMutable(c))
                     );
                 }
                 case 718: {
-                    var node = (ScriptDom.ResourcePoolParameter)fragment;
                     return new ResourcePoolParameter(
-                        parameterType: node.ParameterType,
-                        parameterValue: (Literal)FromMutable(node.ParameterValue),
-                        affinitySpecification: (ResourcePoolAffinitySpecification)FromMutable(node.AffinitySpecification)
+                        parameterType: (fragment as ScriptDom.ResourcePoolParameter).ParameterType,
+                        parameterValue: (Literal)FromMutable((fragment as ScriptDom.ResourcePoolParameter).ParameterValue),
+                        affinitySpecification: (ResourcePoolAffinitySpecification)FromMutable((fragment as ScriptDom.ResourcePoolParameter).AffinitySpecification)
                     );
                 }
                 case 719: {
-                    var node = (ScriptDom.ResourcePoolStatement)fragment;
                     return new ResourcePoolStatement(
-                        name: (Identifier)FromMutable(node.Name),
-                        resourcePoolParameters: node.ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
+                        name: (Identifier)FromMutable((fragment as ScriptDom.ResourcePoolStatement).Name),
+                        resourcePoolParameters: (fragment as ScriptDom.ResourcePoolStatement).ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
                     );
                 }
                 case 720: {
-                    var node = (ScriptDom.RestoreMasterKeyStatement)fragment;
                     return new RestoreMasterKeyStatement(
-                        isForce: node.IsForce,
-                        encryptionPassword: (Literal)FromMutable(node.EncryptionPassword),
-                        file: (Literal)FromMutable(node.File),
-                        password: (Literal)FromMutable(node.Password)
+                        isForce: (fragment as ScriptDom.RestoreMasterKeyStatement).IsForce,
+                        encryptionPassword: (Literal)FromMutable((fragment as ScriptDom.RestoreMasterKeyStatement).EncryptionPassword),
+                        file: (Literal)FromMutable((fragment as ScriptDom.RestoreMasterKeyStatement).File),
+                        password: (Literal)FromMutable((fragment as ScriptDom.RestoreMasterKeyStatement).Password)
                     );
                 }
                 case 721: {
-                    var node = (ScriptDom.RestoreOption)fragment;
                     return new RestoreOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.RestoreOption).OptionKind
                     );
                 }
                 case 722: {
-                    var node = (ScriptDom.RestoreServiceMasterKeyStatement)fragment;
                     return new RestoreServiceMasterKeyStatement(
-                        isForce: node.IsForce,
-                        file: (Literal)FromMutable(node.File),
-                        password: (Literal)FromMutable(node.Password)
+                        isForce: (fragment as ScriptDom.RestoreServiceMasterKeyStatement).IsForce,
+                        file: (Literal)FromMutable((fragment as ScriptDom.RestoreServiceMasterKeyStatement).File),
+                        password: (Literal)FromMutable((fragment as ScriptDom.RestoreServiceMasterKeyStatement).Password)
                     );
                 }
                 case 723: {
-                    var node = (ScriptDom.RestoreStatement)fragment;
                     return new RestoreStatement(
-                        databaseName: (IdentifierOrValueExpression)FromMutable(node.DatabaseName),
-                        devices: node.Devices.SelectList(c => (DeviceInfo)FromMutable(c)),
-                        files: node.Files.SelectList(c => (BackupRestoreFileInfo)FromMutable(c)),
-                        options: node.Options.SelectList(c => (RestoreOption)FromMutable(c)),
-                        kind: node.Kind
+                        databaseName: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.RestoreStatement).DatabaseName),
+                        devices: (fragment as ScriptDom.RestoreStatement).Devices.SelectList(c => (DeviceInfo)FromMutable(c)),
+                        files: (fragment as ScriptDom.RestoreStatement).Files.SelectList(c => (BackupRestoreFileInfo)FromMutable(c)),
+                        options: (fragment as ScriptDom.RestoreStatement).Options.SelectList(c => (RestoreOption)FromMutable(c)),
+                        kind: (fragment as ScriptDom.RestoreStatement).Kind
                     );
                 }
                 case 724: {
-                    var node = (ScriptDom.ResultColumnDefinition)fragment;
                     return new ResultColumnDefinition(
-                        columnDefinition: (ColumnDefinitionBase)FromMutable(node.ColumnDefinition),
-                        nullable: (NullableConstraintDefinition)FromMutable(node.Nullable)
+                        columnDefinition: (ColumnDefinitionBase)FromMutable((fragment as ScriptDom.ResultColumnDefinition).ColumnDefinition),
+                        nullable: (NullableConstraintDefinition)FromMutable((fragment as ScriptDom.ResultColumnDefinition).Nullable)
                     );
                 }
                 case 725: {
-                    var node = (ScriptDom.ResultSetDefinition)fragment;
                     return new ResultSetDefinition(
-                        resultSetType: node.ResultSetType
+                        resultSetType: (fragment as ScriptDom.ResultSetDefinition).ResultSetType
                     );
                 }
                 case 726: {
-                    var node = (ScriptDom.ResultSetsExecuteOption)fragment;
                     return new ResultSetsExecuteOption(
-                        resultSetsOptionKind: node.ResultSetsOptionKind,
-                        definitions: node.Definitions.SelectList(c => (ResultSetDefinition)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        resultSetsOptionKind: (fragment as ScriptDom.ResultSetsExecuteOption).ResultSetsOptionKind,
+                        definitions: (fragment as ScriptDom.ResultSetsExecuteOption).Definitions.SelectList(c => (ResultSetDefinition)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.ResultSetsExecuteOption).OptionKind
                     );
                 }
                 case 727: {
-                    var node = (ScriptDom.RetentionDaysAuditTargetOption)fragment;
                     return new RetentionDaysAuditTargetOption(
-                        days: (Literal)FromMutable(node.Days),
-                        optionKind: node.OptionKind
+                        days: (Literal)FromMutable((fragment as ScriptDom.RetentionDaysAuditTargetOption).Days),
+                        optionKind: (fragment as ScriptDom.RetentionDaysAuditTargetOption).OptionKind
                     );
                 }
                 case 728: {
-                    var node = (ScriptDom.RetentionPeriodDefinition)fragment;
                     return new RetentionPeriodDefinition(
-                        duration: (IntegerLiteral)FromMutable(node.Duration),
-                        units: node.Units,
-                        isInfinity: node.IsInfinity
+                        duration: (IntegerLiteral)FromMutable((fragment as ScriptDom.RetentionPeriodDefinition).Duration),
+                        units: (fragment as ScriptDom.RetentionPeriodDefinition).Units,
+                        isInfinity: (fragment as ScriptDom.RetentionPeriodDefinition).IsInfinity
                     );
                 }
                 case 729: {
-                    var node = (ScriptDom.ReturnStatement)fragment;
                     return new ReturnStatement(
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.ReturnStatement).Expression)
                     );
                 }
                 case 730: {
-                    var node = (ScriptDom.RevertStatement)fragment;
                     return new RevertStatement(
-                        cookie: (ScalarExpression)FromMutable(node.Cookie)
+                        cookie: (ScalarExpression)FromMutable((fragment as ScriptDom.RevertStatement).Cookie)
                     );
                 }
                 case 731: {
-                    var node = (ScriptDom.RevokeStatement)fragment;
                     return new RevokeStatement(
-                        grantOptionFor: node.GrantOptionFor,
-                        cascadeOption: node.CascadeOption,
-                        permissions: node.Permissions.SelectList(c => (Permission)FromMutable(c)),
-                        securityTargetObject: (SecurityTargetObject)FromMutable(node.SecurityTargetObject),
-                        principals: node.Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
-                        asClause: (Identifier)FromMutable(node.AsClause)
+                        grantOptionFor: (fragment as ScriptDom.RevokeStatement).GrantOptionFor,
+                        cascadeOption: (fragment as ScriptDom.RevokeStatement).CascadeOption,
+                        permissions: (fragment as ScriptDom.RevokeStatement).Permissions.SelectList(c => (Permission)FromMutable(c)),
+                        securityTargetObject: (SecurityTargetObject)FromMutable((fragment as ScriptDom.RevokeStatement).SecurityTargetObject),
+                        principals: (fragment as ScriptDom.RevokeStatement).Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
+                        asClause: (Identifier)FromMutable((fragment as ScriptDom.RevokeStatement).AsClause)
                     );
                 }
                 case 732: {
-                    var node = (ScriptDom.RevokeStatement80)fragment;
                     return new RevokeStatement80(
-                        grantOptionFor: node.GrantOptionFor,
-                        cascadeOption: node.CascadeOption,
-                        asClause: (Identifier)FromMutable(node.AsClause),
-                        securityElement80: (SecurityElement80)FromMutable(node.SecurityElement80),
-                        securityUserClause80: (SecurityUserClause80)FromMutable(node.SecurityUserClause80)
+                        grantOptionFor: (fragment as ScriptDom.RevokeStatement80).GrantOptionFor,
+                        cascadeOption: (fragment as ScriptDom.RevokeStatement80).CascadeOption,
+                        asClause: (Identifier)FromMutable((fragment as ScriptDom.RevokeStatement80).AsClause),
+                        securityElement80: (SecurityElement80)FromMutable((fragment as ScriptDom.RevokeStatement80).SecurityElement80),
+                        securityUserClause80: (SecurityUserClause80)FromMutable((fragment as ScriptDom.RevokeStatement80).SecurityUserClause80)
                     );
                 }
                 case 733: {
-                    var node = (ScriptDom.RightFunctionCall)fragment;
                     return new RightFunctionCall(
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        parameters: (fragment as ScriptDom.RightFunctionCall).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.RightFunctionCall).Collation)
                     );
                 }
                 case 734: {
-                    var node = (ScriptDom.RolePayloadOption)fragment;
                     return new RolePayloadOption(
-                        role: node.Role,
-                        kind: node.Kind
+                        role: (fragment as ScriptDom.RolePayloadOption).Role,
+                        kind: (fragment as ScriptDom.RolePayloadOption).Kind
                     );
                 }
                 case 735: {
-                    var node = (ScriptDom.RollbackTransactionStatement)fragment;
                     return new RollbackTransactionStatement(
-                        name: (IdentifierOrValueExpression)FromMutable(node.Name)
+                        name: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.RollbackTransactionStatement).Name)
                     );
                 }
                 case 736: {
-                    var node = (ScriptDom.RollupGroupingSpecification)fragment;
                     return new RollupGroupingSpecification(
-                        arguments: node.Arguments.SelectList(c => (GroupingSpecification)FromMutable(c))
+                        arguments: (fragment as ScriptDom.RollupGroupingSpecification).Arguments.SelectList(c => (GroupingSpecification)FromMutable(c))
                     );
                 }
                 case 737: {
-                    var node = (ScriptDom.RouteOption)fragment;
                     return new RouteOption(
-                        optionKind: node.OptionKind,
-                        literal: (Literal)FromMutable(node.Literal)
+                        optionKind: (fragment as ScriptDom.RouteOption).OptionKind,
+                        literal: (Literal)FromMutable((fragment as ScriptDom.RouteOption).Literal)
                     );
                 }
                 case 738: {
-                    var node = (ScriptDom.RowValue)fragment;
                     return new RowValue(
-                        columnValues: node.ColumnValues.SelectList(c => (ScalarExpression)FromMutable(c))
+                        columnValues: (fragment as ScriptDom.RowValue).ColumnValues.SelectList(c => (ScalarExpression)FromMutable(c))
                     );
                 }
                 case 739: {
-                    var node = (ScriptDom.SaveTransactionStatement)fragment;
                     return new SaveTransactionStatement(
-                        name: (IdentifierOrValueExpression)FromMutable(node.Name)
+                        name: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.SaveTransactionStatement).Name)
                     );
                 }
                 case 740: {
-                    var node = (ScriptDom.ScalarExpressionDialogOption)fragment;
                     return new ScalarExpressionDialogOption(
-                        @value: (ScalarExpression)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.ScalarExpressionDialogOption).Value),
+                        optionKind: (fragment as ScriptDom.ScalarExpressionDialogOption).OptionKind
                     );
                 }
                 case 741: {
-                    var node = (ScriptDom.ScalarExpressionRestoreOption)fragment;
                     return new ScalarExpressionRestoreOption(
-                        @value: (ScalarExpression)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.ScalarExpressionRestoreOption).Value),
+                        optionKind: (fragment as ScriptDom.ScalarExpressionRestoreOption).OptionKind
                     );
                 }
                 case 742: {
-                    var node = (ScriptDom.ScalarExpressionSequenceOption)fragment;
                     return new ScalarExpressionSequenceOption(
-                        optionValue: (ScalarExpression)FromMutable(node.OptionValue),
-                        optionKind: node.OptionKind,
-                        noValue: node.NoValue
+                        optionValue: (ScalarExpression)FromMutable((fragment as ScriptDom.ScalarExpressionSequenceOption).OptionValue),
+                        optionKind: (fragment as ScriptDom.ScalarExpressionSequenceOption).OptionKind,
+                        noValue: (fragment as ScriptDom.ScalarExpressionSequenceOption).NoValue
                     );
                 }
                 case 743: {
-                    var node = (ScriptDom.ScalarExpressionSnippet)fragment;
                     return new ScalarExpressionSnippet(
-                        script: node.Script
+                        script: (fragment as ScriptDom.ScalarExpressionSnippet).Script
                     );
                 }
                 case 744: {
-                    var node = (ScriptDom.ScalarFunctionReturnType)fragment;
                     return new ScalarFunctionReturnType(
-                        dataType: (DataTypeReference)FromMutable(node.DataType)
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.ScalarFunctionReturnType).DataType)
                     );
                 }
                 case 745: {
-                    var node = (ScriptDom.ScalarSubquery)fragment;
                     return new ScalarSubquery(
-                        queryExpression: (QueryExpression)FromMutable(node.QueryExpression),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        queryExpression: (QueryExpression)FromMutable((fragment as ScriptDom.ScalarSubquery).QueryExpression),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.ScalarSubquery).Collation)
                     );
                 }
                 case 746: {
-                    var node = (ScriptDom.SchemaDeclarationItem)fragment;
                     return new SchemaDeclarationItem(
-                        columnDefinition: (ColumnDefinitionBase)FromMutable(node.ColumnDefinition),
-                        mapping: (ValueExpression)FromMutable(node.Mapping)
+                        columnDefinition: (ColumnDefinitionBase)FromMutable((fragment as ScriptDom.SchemaDeclarationItem).ColumnDefinition),
+                        mapping: (ValueExpression)FromMutable((fragment as ScriptDom.SchemaDeclarationItem).Mapping)
                     );
                 }
                 case 747: {
-                    var node = (ScriptDom.SchemaDeclarationItemOpenjson)fragment;
                     return new SchemaDeclarationItemOpenjson(
-                        asJson: node.AsJson,
-                        columnDefinition: (ColumnDefinitionBase)FromMutable(node.ColumnDefinition),
-                        mapping: (ValueExpression)FromMutable(node.Mapping)
+                        asJson: (fragment as ScriptDom.SchemaDeclarationItemOpenjson).AsJson,
+                        columnDefinition: (ColumnDefinitionBase)FromMutable((fragment as ScriptDom.SchemaDeclarationItemOpenjson).ColumnDefinition),
+                        mapping: (ValueExpression)FromMutable((fragment as ScriptDom.SchemaDeclarationItemOpenjson).Mapping)
                     );
                 }
                 case 748: {
-                    var node = (ScriptDom.SchemaObjectFunctionTableReference)fragment;
                     return new SchemaObjectFunctionTableReference(
-                        schemaObject: (SchemaObjectName)FromMutable(node.SchemaObject),
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        schemaObject: (SchemaObjectName)FromMutable((fragment as ScriptDom.SchemaObjectFunctionTableReference).SchemaObject),
+                        parameters: (fragment as ScriptDom.SchemaObjectFunctionTableReference).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        columns: (fragment as ScriptDom.SchemaObjectFunctionTableReference).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.SchemaObjectFunctionTableReference).Alias),
+                        forPath: (fragment as ScriptDom.SchemaObjectFunctionTableReference).ForPath
                     );
                 }
                 case 749: {
-                    var node = (ScriptDom.SchemaObjectName)fragment;
                     return new SchemaObjectName(
-                        identifiers: node.Identifiers.SelectList(c => (Identifier)FromMutable(c))
+                        identifiers: (fragment as ScriptDom.SchemaObjectName).Identifiers.SelectList(c => (Identifier)FromMutable(c))
                     );
                 }
                 case 750: {
-                    var node = (ScriptDom.SchemaObjectNameOrValueExpression)fragment;
                     return new SchemaObjectNameOrValueExpression(
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName),
-                        valueExpression: (ValueExpression)FromMutable(node.ValueExpression)
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.SchemaObjectNameOrValueExpression).SchemaObjectName),
+                        valueExpression: (ValueExpression)FromMutable((fragment as ScriptDom.SchemaObjectNameOrValueExpression).ValueExpression)
                     );
                 }
                 case 751: {
-                    var node = (ScriptDom.SchemaObjectNameSnippet)fragment;
                     return new SchemaObjectNameSnippet(
-                        script: node.Script,
-                        identifiers: node.Identifiers.SelectList(c => (Identifier)FromMutable(c))
+                        script: (fragment as ScriptDom.SchemaObjectNameSnippet).Script,
+                        identifiers: (fragment as ScriptDom.SchemaObjectNameSnippet).Identifiers.SelectList(c => (Identifier)FromMutable(c))
                     );
                 }
                 case 752: {
-                    var node = (ScriptDom.SchemaObjectResultSetDefinition)fragment;
                     return new SchemaObjectResultSetDefinition(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        resultSetType: node.ResultSetType
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.SchemaObjectResultSetDefinition).Name),
+                        resultSetType: (fragment as ScriptDom.SchemaObjectResultSetDefinition).ResultSetType
                     );
                 }
                 case 753: {
-                    var node = (ScriptDom.SchemaPayloadOption)fragment;
                     return new SchemaPayloadOption(
-                        isStandard: node.IsStandard,
-                        kind: node.Kind
+                        isStandard: (fragment as ScriptDom.SchemaPayloadOption).IsStandard,
+                        kind: (fragment as ScriptDom.SchemaPayloadOption).Kind
                     );
                 }
                 case 754: {
-                    var node = (ScriptDom.SearchedCaseExpression)fragment;
                     return new SearchedCaseExpression(
-                        whenClauses: node.WhenClauses.SelectList(c => (SearchedWhenClause)FromMutable(c)),
-                        elseExpression: (ScalarExpression)FromMutable(node.ElseExpression),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        whenClauses: (fragment as ScriptDom.SearchedCaseExpression).WhenClauses.SelectList(c => (SearchedWhenClause)FromMutable(c)),
+                        elseExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.SearchedCaseExpression).ElseExpression),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.SearchedCaseExpression).Collation)
                     );
                 }
                 case 755: {
-                    var node = (ScriptDom.SearchedWhenClause)fragment;
                     return new SearchedWhenClause(
-                        whenExpression: (BooleanExpression)FromMutable(node.WhenExpression),
-                        thenExpression: (ScalarExpression)FromMutable(node.ThenExpression)
+                        whenExpression: (BooleanExpression)FromMutable((fragment as ScriptDom.SearchedWhenClause).WhenExpression),
+                        thenExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.SearchedWhenClause).ThenExpression)
                     );
                 }
                 case 756: {
-                    var node = (ScriptDom.SearchPropertyListFullTextIndexOption)fragment;
                     return new SearchPropertyListFullTextIndexOption(
-                        isOff: node.IsOff,
-                        propertyListName: (Identifier)FromMutable(node.PropertyListName),
-                        optionKind: node.OptionKind
+                        isOff: (fragment as ScriptDom.SearchPropertyListFullTextIndexOption).IsOff,
+                        propertyListName: (Identifier)FromMutable((fragment as ScriptDom.SearchPropertyListFullTextIndexOption).PropertyListName),
+                        optionKind: (fragment as ScriptDom.SearchPropertyListFullTextIndexOption).OptionKind
                     );
                 }
                 case 757: {
-                    var node = (ScriptDom.SecondaryRoleReplicaOption)fragment;
                     return new SecondaryRoleReplicaOption(
-                        allowConnections: node.AllowConnections,
-                        optionKind: node.OptionKind
+                        allowConnections: (fragment as ScriptDom.SecondaryRoleReplicaOption).AllowConnections,
+                        optionKind: (fragment as ScriptDom.SecondaryRoleReplicaOption).OptionKind
                     );
                 }
                 case 758: {
-                    var node = (ScriptDom.SecurityPolicyOption)fragment;
                     return new SecurityPolicyOption(
-                        optionKind: node.OptionKind,
-                        optionState: node.OptionState
+                        optionKind: (fragment as ScriptDom.SecurityPolicyOption).OptionKind,
+                        optionState: (fragment as ScriptDom.SecurityPolicyOption).OptionState
                     );
                 }
                 case 759: {
-                    var node = (ScriptDom.SecurityPredicateAction)fragment;
                     return new SecurityPredicateAction(
-                        actionType: node.ActionType,
-                        securityPredicateType: node.SecurityPredicateType,
-                        functionCall: (FunctionCall)FromMutable(node.FunctionCall),
-                        targetObjectName: (SchemaObjectName)FromMutable(node.TargetObjectName),
-                        securityPredicateOperation: node.SecurityPredicateOperation
+                        actionType: (fragment as ScriptDom.SecurityPredicateAction).ActionType,
+                        securityPredicateType: (fragment as ScriptDom.SecurityPredicateAction).SecurityPredicateType,
+                        functionCall: (FunctionCall)FromMutable((fragment as ScriptDom.SecurityPredicateAction).FunctionCall),
+                        targetObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.SecurityPredicateAction).TargetObjectName),
+                        securityPredicateOperation: (fragment as ScriptDom.SecurityPredicateAction).SecurityPredicateOperation
                     );
                 }
                 case 760: {
-                    var node = (ScriptDom.SecurityPrincipal)fragment;
                     return new SecurityPrincipal(
-                        principalType: node.PrincipalType,
-                        identifier: (Identifier)FromMutable(node.Identifier)
+                        principalType: (fragment as ScriptDom.SecurityPrincipal).PrincipalType,
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.SecurityPrincipal).Identifier)
                     );
                 }
                 case 761: {
-                    var node = (ScriptDom.SecurityTargetObject)fragment;
                     return new SecurityTargetObject(
-                        objectKind: node.ObjectKind,
-                        objectName: (SecurityTargetObjectName)FromMutable(node.ObjectName),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c))
+                        objectKind: (fragment as ScriptDom.SecurityTargetObject).ObjectKind,
+                        objectName: (SecurityTargetObjectName)FromMutable((fragment as ScriptDom.SecurityTargetObject).ObjectName),
+                        columns: (fragment as ScriptDom.SecurityTargetObject).Columns.SelectList(c => (Identifier)FromMutable(c))
                     );
                 }
                 case 762: {
-                    var node = (ScriptDom.SecurityTargetObjectName)fragment;
                     return new SecurityTargetObjectName(
-                        multiPartIdentifier: (MultiPartIdentifier)FromMutable(node.MultiPartIdentifier)
+                        multiPartIdentifier: (MultiPartIdentifier)FromMutable((fragment as ScriptDom.SecurityTargetObjectName).MultiPartIdentifier)
                     );
                 }
                 case 763: {
-                    var node = (ScriptDom.SecurityUserClause80)fragment;
                     return new SecurityUserClause80(
-                        users: node.Users.SelectList(c => (Identifier)FromMutable(c)),
-                        userType80: node.UserType80
+                        users: (fragment as ScriptDom.SecurityUserClause80).Users.SelectList(c => (Identifier)FromMutable(c)),
+                        userType80: (fragment as ScriptDom.SecurityUserClause80).UserType80
                     );
                 }
                 case 764: {
-                    var node = (ScriptDom.SelectFunctionReturnType)fragment;
                     return new SelectFunctionReturnType(
-                        selectStatement: (SelectStatement)FromMutable(node.SelectStatement)
+                        selectStatement: (SelectStatement)FromMutable((fragment as ScriptDom.SelectFunctionReturnType).SelectStatement)
                     );
                 }
                 case 765: {
-                    var node = (ScriptDom.SelectInsertSource)fragment;
                     return new SelectInsertSource(
-                        select: (QueryExpression)FromMutable(node.Select)
+                        select: (QueryExpression)FromMutable((fragment as ScriptDom.SelectInsertSource).Select)
                     );
                 }
                 case 766: {
-                    var node = (ScriptDom.SelectiveXmlIndexPromotedPath)fragment;
                     return new SelectiveXmlIndexPromotedPath(
-                        name: (Identifier)FromMutable(node.Name),
-                        path: (Literal)FromMutable(node.Path),
-                        sQLDataType: (DataTypeReference)FromMutable(node.SQLDataType),
-                        xQueryDataType: (Literal)FromMutable(node.XQueryDataType),
-                        maxLength: (IntegerLiteral)FromMutable(node.MaxLength),
-                        isSingleton: node.IsSingleton
+                        name: (Identifier)FromMutable((fragment as ScriptDom.SelectiveXmlIndexPromotedPath).Name),
+                        path: (Literal)FromMutable((fragment as ScriptDom.SelectiveXmlIndexPromotedPath).Path),
+                        sQLDataType: (DataTypeReference)FromMutable((fragment as ScriptDom.SelectiveXmlIndexPromotedPath).SQLDataType),
+                        xQueryDataType: (Literal)FromMutable((fragment as ScriptDom.SelectiveXmlIndexPromotedPath).XQueryDataType),
+                        maxLength: (IntegerLiteral)FromMutable((fragment as ScriptDom.SelectiveXmlIndexPromotedPath).MaxLength),
+                        isSingleton: (fragment as ScriptDom.SelectiveXmlIndexPromotedPath).IsSingleton
                     );
                 }
                 case 767: {
-                    var node = (ScriptDom.SelectScalarExpression)fragment;
                     return new SelectScalarExpression(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        columnName: (IdentifierOrValueExpression)FromMutable(node.ColumnName)
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.SelectScalarExpression).Expression),
+                        columnName: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.SelectScalarExpression).ColumnName)
                     );
                 }
                 case 768: {
-                    var node = (ScriptDom.SelectSetVariable)fragment;
                     return new SelectSetVariable(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        assignmentKind: node.AssignmentKind
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.SelectSetVariable).Variable),
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.SelectSetVariable).Expression),
+                        assignmentKind: (fragment as ScriptDom.SelectSetVariable).AssignmentKind
                     );
                 }
                 case 769: {
-                    var node = (ScriptDom.SelectStarExpression)fragment;
                     return new SelectStarExpression(
-                        qualifier: (MultiPartIdentifier)FromMutable(node.Qualifier)
+                        qualifier: (MultiPartIdentifier)FromMutable((fragment as ScriptDom.SelectStarExpression).Qualifier)
                     );
                 }
                 case 770: {
-                    var node = (ScriptDom.SelectStatement)fragment;
                     return new SelectStatement(
-                        queryExpression: (QueryExpression)FromMutable(node.QueryExpression),
-                        into: (SchemaObjectName)FromMutable(node.Into),
-                        on: (Identifier)FromMutable(node.On),
-                        computeClauses: node.ComputeClauses.SelectList(c => (ComputeClause)FromMutable(c)),
-                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(node.WithCtesAndXmlNamespaces),
-                        optimizerHints: node.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                        queryExpression: (QueryExpression)FromMutable((fragment as ScriptDom.SelectStatement).QueryExpression),
+                        into: (SchemaObjectName)FromMutable((fragment as ScriptDom.SelectStatement).Into),
+                        on: (Identifier)FromMutable((fragment as ScriptDom.SelectStatement).On),
+                        computeClauses: (fragment as ScriptDom.SelectStatement).ComputeClauses.SelectList(c => (ComputeClause)FromMutable(c)),
+                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable((fragment as ScriptDom.SelectStatement).WithCtesAndXmlNamespaces),
+                        optimizerHints: (fragment as ScriptDom.SelectStatement).OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
                     );
                 }
                 case 771: {
-                    var node = (ScriptDom.SelectStatementSnippet)fragment;
                     return new SelectStatementSnippet(
-                        script: node.Script,
-                        queryExpression: (QueryExpression)FromMutable(node.QueryExpression),
-                        into: (SchemaObjectName)FromMutable(node.Into),
-                        on: (Identifier)FromMutable(node.On),
-                        computeClauses: node.ComputeClauses.SelectList(c => (ComputeClause)FromMutable(c)),
-                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(node.WithCtesAndXmlNamespaces),
-                        optimizerHints: node.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                        script: (fragment as ScriptDom.SelectStatementSnippet).Script,
+                        queryExpression: (QueryExpression)FromMutable((fragment as ScriptDom.SelectStatementSnippet).QueryExpression),
+                        into: (SchemaObjectName)FromMutable((fragment as ScriptDom.SelectStatementSnippet).Into),
+                        on: (Identifier)FromMutable((fragment as ScriptDom.SelectStatementSnippet).On),
+                        computeClauses: (fragment as ScriptDom.SelectStatementSnippet).ComputeClauses.SelectList(c => (ComputeClause)FromMutable(c)),
+                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable((fragment as ScriptDom.SelectStatementSnippet).WithCtesAndXmlNamespaces),
+                        optimizerHints: (fragment as ScriptDom.SelectStatementSnippet).OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
                     );
                 }
                 case 772: {
-                    var node = (ScriptDom.SemanticTableReference)fragment;
                     return new SemanticTableReference(
-                        semanticFunctionType: node.SemanticFunctionType,
-                        tableName: (SchemaObjectName)FromMutable(node.TableName),
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        sourceKey: (ScalarExpression)FromMutable(node.SourceKey),
-                        matchedColumn: (ColumnReferenceExpression)FromMutable(node.MatchedColumn),
-                        matchedKey: (ScalarExpression)FromMutable(node.MatchedKey),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        semanticFunctionType: (fragment as ScriptDom.SemanticTableReference).SemanticFunctionType,
+                        tableName: (SchemaObjectName)FromMutable((fragment as ScriptDom.SemanticTableReference).TableName),
+                        columns: (fragment as ScriptDom.SemanticTableReference).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        sourceKey: (ScalarExpression)FromMutable((fragment as ScriptDom.SemanticTableReference).SourceKey),
+                        matchedColumn: (ColumnReferenceExpression)FromMutable((fragment as ScriptDom.SemanticTableReference).MatchedColumn),
+                        matchedKey: (ScalarExpression)FromMutable((fragment as ScriptDom.SemanticTableReference).MatchedKey),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.SemanticTableReference).Alias),
+                        forPath: (fragment as ScriptDom.SemanticTableReference).ForPath
                     );
                 }
                 case 773: {
-                    var node = (ScriptDom.SendStatement)fragment;
                     return new SendStatement(
-                        conversationHandles: node.ConversationHandles.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        messageTypeName: (IdentifierOrValueExpression)FromMutable(node.MessageTypeName),
-                        messageBody: (ScalarExpression)FromMutable(node.MessageBody)
+                        conversationHandles: (fragment as ScriptDom.SendStatement).ConversationHandles.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        messageTypeName: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.SendStatement).MessageTypeName),
+                        messageBody: (ScalarExpression)FromMutable((fragment as ScriptDom.SendStatement).MessageBody)
                     );
                 }
                 case 774: {
-                    var node = (ScriptDom.SensitivityClassificationOption)fragment;
                     return new SensitivityClassificationOption(
-                        type: node.Type,
-                        @value: (Literal)FromMutable(node.Value)
+                        type: (fragment as ScriptDom.SensitivityClassificationOption).Type,
+                        @value: (Literal)FromMutable((fragment as ScriptDom.SensitivityClassificationOption).Value)
                     );
                 }
                 case 775: {
-                    var node = (ScriptDom.SequenceOption)fragment;
                     return new SequenceOption(
-                        optionKind: node.OptionKind,
-                        noValue: node.NoValue
+                        optionKind: (fragment as ScriptDom.SequenceOption).OptionKind,
+                        noValue: (fragment as ScriptDom.SequenceOption).NoValue
                     );
                 }
                 case 776: {
-                    var node = (ScriptDom.ServiceContract)fragment;
                     return new ServiceContract(
-                        name: (Identifier)FromMutable(node.Name),
-                        action: node.Action
+                        name: (Identifier)FromMutable((fragment as ScriptDom.ServiceContract).Name),
+                        action: (fragment as ScriptDom.ServiceContract).Action
                     );
                 }
                 case 777: {
-                    var node = (ScriptDom.SessionTimeoutPayloadOption)fragment;
                     return new SessionTimeoutPayloadOption(
-                        isNever: node.IsNever,
-                        timeout: (Literal)FromMutable(node.Timeout),
-                        kind: node.Kind
+                        isNever: (fragment as ScriptDom.SessionTimeoutPayloadOption).IsNever,
+                        timeout: (Literal)FromMutable((fragment as ScriptDom.SessionTimeoutPayloadOption).Timeout),
+                        kind: (fragment as ScriptDom.SessionTimeoutPayloadOption).Kind
                     );
                 }
                 case 778: {
-                    var node = (ScriptDom.SetCommandStatement)fragment;
                     return new SetCommandStatement(
-                        commands: node.Commands.SelectList(c => (SetCommand)FromMutable(c))
+                        commands: (fragment as ScriptDom.SetCommandStatement).Commands.SelectList(c => (SetCommand)FromMutable(c))
                     );
                 }
                 case 779: {
-                    var node = (ScriptDom.SetErrorLevelStatement)fragment;
                     return new SetErrorLevelStatement(
-                        level: (ScalarExpression)FromMutable(node.Level)
+                        level: (ScalarExpression)FromMutable((fragment as ScriptDom.SetErrorLevelStatement).Level)
                     );
                 }
                 case 780: {
-                    var node = (ScriptDom.SetFipsFlaggerCommand)fragment;
                     return new SetFipsFlaggerCommand(
-                        complianceLevel: node.ComplianceLevel
+                        complianceLevel: (fragment as ScriptDom.SetFipsFlaggerCommand).ComplianceLevel
                     );
                 }
                 case 781: {
-                    var node = (ScriptDom.SetIdentityInsertStatement)fragment;
                     return new SetIdentityInsertStatement(
-                        table: (SchemaObjectName)FromMutable(node.Table),
-                        isOn: node.IsOn
+                        table: (SchemaObjectName)FromMutable((fragment as ScriptDom.SetIdentityInsertStatement).Table),
+                        isOn: (fragment as ScriptDom.SetIdentityInsertStatement).IsOn
                     );
                 }
                 case 782: {
-                    var node = (ScriptDom.SetOffsetsStatement)fragment;
                     return new SetOffsetsStatement(
-                        options: node.Options,
-                        isOn: node.IsOn
+                        options: (fragment as ScriptDom.SetOffsetsStatement).Options,
+                        isOn: (fragment as ScriptDom.SetOffsetsStatement).IsOn
                     );
                 }
                 case 783: {
-                    var node = (ScriptDom.SetRowCountStatement)fragment;
                     return new SetRowCountStatement(
-                        numberRows: (ValueExpression)FromMutable(node.NumberRows)
+                        numberRows: (ValueExpression)FromMutable((fragment as ScriptDom.SetRowCountStatement).NumberRows)
                     );
                 }
                 case 784: {
-                    var node = (ScriptDom.SetSearchPropertyListAlterFullTextIndexAction)fragment;
                     return new SetSearchPropertyListAlterFullTextIndexAction(
-                        searchPropertyListOption: (SearchPropertyListFullTextIndexOption)FromMutable(node.SearchPropertyListOption),
-                        withNoPopulation: node.WithNoPopulation
+                        searchPropertyListOption: (SearchPropertyListFullTextIndexOption)FromMutable((fragment as ScriptDom.SetSearchPropertyListAlterFullTextIndexAction).SearchPropertyListOption),
+                        withNoPopulation: (fragment as ScriptDom.SetSearchPropertyListAlterFullTextIndexAction).WithNoPopulation
                     );
                 }
                 case 785: {
-                    var node = (ScriptDom.SetStatisticsStatement)fragment;
                     return new SetStatisticsStatement(
-                        options: node.Options,
-                        isOn: node.IsOn
+                        options: (fragment as ScriptDom.SetStatisticsStatement).Options,
+                        isOn: (fragment as ScriptDom.SetStatisticsStatement).IsOn
                     );
                 }
                 case 786: {
-                    var node = (ScriptDom.SetStopListAlterFullTextIndexAction)fragment;
                     return new SetStopListAlterFullTextIndexAction(
-                        stopListOption: (StopListFullTextIndexOption)FromMutable(node.StopListOption),
-                        withNoPopulation: node.WithNoPopulation
+                        stopListOption: (StopListFullTextIndexOption)FromMutable((fragment as ScriptDom.SetStopListAlterFullTextIndexAction).StopListOption),
+                        withNoPopulation: (fragment as ScriptDom.SetStopListAlterFullTextIndexAction).WithNoPopulation
                     );
                 }
                 case 787: {
-                    var node = (ScriptDom.SetTextSizeStatement)fragment;
                     return new SetTextSizeStatement(
-                        textSize: (ScalarExpression)FromMutable(node.TextSize)
+                        textSize: (ScalarExpression)FromMutable((fragment as ScriptDom.SetTextSizeStatement).TextSize)
                     );
                 }
                 case 788: {
-                    var node = (ScriptDom.SetTransactionIsolationLevelStatement)fragment;
                     return new SetTransactionIsolationLevelStatement(
-                        level: node.Level
+                        level: (fragment as ScriptDom.SetTransactionIsolationLevelStatement).Level
                     );
                 }
                 case 789: {
-                    var node = (ScriptDom.SetUserStatement)fragment;
                     return new SetUserStatement(
-                        userName: (ValueExpression)FromMutable(node.UserName),
-                        withNoReset: node.WithNoReset
+                        userName: (ValueExpression)FromMutable((fragment as ScriptDom.SetUserStatement).UserName),
+                        withNoReset: (fragment as ScriptDom.SetUserStatement).WithNoReset
                     );
                 }
                 case 790: {
-                    var node = (ScriptDom.SetVariableStatement)fragment;
                     return new SetVariableStatement(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        separatorType: node.SeparatorType,
-                        identifier: (Identifier)FromMutable(node.Identifier),
-                        functionCallExists: node.FunctionCallExists,
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        cursorDefinition: (CursorDefinition)FromMutable(node.CursorDefinition),
-                        assignmentKind: node.AssignmentKind
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.SetVariableStatement).Variable),
+                        separatorType: (fragment as ScriptDom.SetVariableStatement).SeparatorType,
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.SetVariableStatement).Identifier),
+                        functionCallExists: (fragment as ScriptDom.SetVariableStatement).FunctionCallExists,
+                        parameters: (fragment as ScriptDom.SetVariableStatement).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.SetVariableStatement).Expression),
+                        cursorDefinition: (CursorDefinition)FromMutable((fragment as ScriptDom.SetVariableStatement).CursorDefinition),
+                        assignmentKind: (fragment as ScriptDom.SetVariableStatement).AssignmentKind
                     );
                 }
                 case 791: {
-                    var node = (ScriptDom.ShutdownStatement)fragment;
                     return new ShutdownStatement(
-                        withNoWait: node.WithNoWait
+                        withNoWait: (fragment as ScriptDom.ShutdownStatement).WithNoWait
                     );
                 }
                 case 792: {
-                    var node = (ScriptDom.SimpleAlterFullTextIndexAction)fragment;
                     return new SimpleAlterFullTextIndexAction(
-                        actionKind: node.ActionKind
+                        actionKind: (fragment as ScriptDom.SimpleAlterFullTextIndexAction).ActionKind
                     );
                 }
                 case 793: {
-                    var node = (ScriptDom.SimpleCaseExpression)fragment;
                     return new SimpleCaseExpression(
-                        inputExpression: (ScalarExpression)FromMutable(node.InputExpression),
-                        whenClauses: node.WhenClauses.SelectList(c => (SimpleWhenClause)FromMutable(c)),
-                        elseExpression: (ScalarExpression)FromMutable(node.ElseExpression),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        inputExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.SimpleCaseExpression).InputExpression),
+                        whenClauses: (fragment as ScriptDom.SimpleCaseExpression).WhenClauses.SelectList(c => (SimpleWhenClause)FromMutable(c)),
+                        elseExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.SimpleCaseExpression).ElseExpression),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.SimpleCaseExpression).Collation)
                     );
                 }
                 case 794: {
-                    var node = (ScriptDom.SimpleWhenClause)fragment;
                     return new SimpleWhenClause(
-                        whenExpression: (ScalarExpression)FromMutable(node.WhenExpression),
-                        thenExpression: (ScalarExpression)FromMutable(node.ThenExpression)
+                        whenExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.SimpleWhenClause).WhenExpression),
+                        thenExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.SimpleWhenClause).ThenExpression)
                     );
                 }
                 case 795: {
-                    var node = (ScriptDom.SingleValueTypeCopyOption)fragment;
                     return new SingleValueTypeCopyOption(
-                        singleValue: (IdentifierOrValueExpression)FromMutable(node.SingleValue)
+                        singleValue: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.SingleValueTypeCopyOption).SingleValue)
                     );
                 }
                 case 796: {
-                    var node = (ScriptDom.SizeFileDeclarationOption)fragment;
                     return new SizeFileDeclarationOption(
-                        size: (Literal)FromMutable(node.Size),
-                        units: node.Units,
-                        optionKind: node.OptionKind
+                        size: (Literal)FromMutable((fragment as ScriptDom.SizeFileDeclarationOption).Size),
+                        units: (fragment as ScriptDom.SizeFileDeclarationOption).Units,
+                        optionKind: (fragment as ScriptDom.SizeFileDeclarationOption).OptionKind
                     );
                 }
                 case 797: {
-                    var node = (ScriptDom.SoapMethod)fragment;
                     return new SoapMethod(
-                        alias: (Literal)FromMutable(node.Alias),
-                        @namespace: (Literal)FromMutable(node.Namespace),
-                        action: node.Action,
-                        name: (Literal)FromMutable(node.Name),
-                        format: node.Format,
-                        schema: node.Schema,
-                        kind: node.Kind
+                        alias: (Literal)FromMutable((fragment as ScriptDom.SoapMethod).Alias),
+                        @namespace: (Literal)FromMutable((fragment as ScriptDom.SoapMethod).Namespace),
+                        action: (fragment as ScriptDom.SoapMethod).Action,
+                        name: (Literal)FromMutable((fragment as ScriptDom.SoapMethod).Name),
+                        format: (fragment as ScriptDom.SoapMethod).Format,
+                        schema: (fragment as ScriptDom.SoapMethod).Schema,
+                        kind: (fragment as ScriptDom.SoapMethod).Kind
                     );
                 }
                 case 798: {
-                    var node = (ScriptDom.SourceDeclaration)fragment;
                     return new SourceDeclaration(
-                        @value: (EventSessionObjectName)FromMutable(node.Value)
+                        @value: (EventSessionObjectName)FromMutable((fragment as ScriptDom.SourceDeclaration).Value)
                     );
                 }
                 case 799: {
-                    var node = (ScriptDom.SpatialIndexRegularOption)fragment;
                     return new SpatialIndexRegularOption(
-                        option: (IndexOption)FromMutable(node.Option)
+                        option: (IndexOption)FromMutable((fragment as ScriptDom.SpatialIndexRegularOption).Option)
                     );
                 }
                 case 800: {
-                    var node = (ScriptDom.SqlCommandIdentifier)fragment;
                     return new SqlCommandIdentifier(
-                        @value: node.Value,
-                        quoteType: node.QuoteType
+                        @value: (fragment as ScriptDom.SqlCommandIdentifier).Value,
+                        quoteType: (fragment as ScriptDom.SqlCommandIdentifier).QuoteType
                     );
                 }
                 case 801: {
-                    var node = (ScriptDom.SqlDataTypeReference)fragment;
                     return new SqlDataTypeReference(
-                        sqlDataTypeOption: node.SqlDataTypeOption,
-                        parameters: node.Parameters.SelectList(c => (Literal)FromMutable(c)),
-                        name: (SchemaObjectName)FromMutable(node.Name)
+                        sqlDataTypeOption: (fragment as ScriptDom.SqlDataTypeReference).SqlDataTypeOption,
+                        parameters: (fragment as ScriptDom.SqlDataTypeReference).Parameters.SelectList(c => (Literal)FromMutable(c)),
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.SqlDataTypeReference).Name)
                     );
                 }
                 case 802: {
-                    var node = (ScriptDom.StateAuditOption)fragment;
                     return new StateAuditOption(
-                        @value: node.Value,
-                        optionKind: node.OptionKind
+                        @value: (fragment as ScriptDom.StateAuditOption).Value,
+                        optionKind: (fragment as ScriptDom.StateAuditOption).OptionKind
                     );
                 }
                 case 803: {
-                    var node = (ScriptDom.StatementList)fragment;
                     return new StatementList(
-                        statements: node.Statements.SelectList(c => (TSqlStatement)FromMutable(c))
+                        statements: (fragment as ScriptDom.StatementList).Statements.SelectList(c => (TSqlStatement)FromMutable(c))
                     );
                 }
                 case 804: {
-                    var node = (ScriptDom.StatementListSnippet)fragment;
                     return new StatementListSnippet(
-                        script: node.Script,
-                        statements: node.Statements.SelectList(c => (TSqlStatement)FromMutable(c))
+                        script: (fragment as ScriptDom.StatementListSnippet).Script,
+                        statements: (fragment as ScriptDom.StatementListSnippet).Statements.SelectList(c => (TSqlStatement)FromMutable(c))
                     );
                 }
                 case 805: {
-                    var node = (ScriptDom.StatisticsOption)fragment;
                     return new StatisticsOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.StatisticsOption).OptionKind
                     );
                 }
                 case 806: {
-                    var node = (ScriptDom.StatisticsPartitionRange)fragment;
                     return new StatisticsPartitionRange(
-                        from: (IntegerLiteral)FromMutable(node.From),
-                        to: (IntegerLiteral)FromMutable(node.To)
+                        from: (IntegerLiteral)FromMutable((fragment as ScriptDom.StatisticsPartitionRange).From),
+                        to: (IntegerLiteral)FromMutable((fragment as ScriptDom.StatisticsPartitionRange).To)
                     );
                 }
                 case 807: {
-                    var node = (ScriptDom.StopListFullTextIndexOption)fragment;
                     return new StopListFullTextIndexOption(
-                        isOff: node.IsOff,
-                        stopListName: (Identifier)FromMutable(node.StopListName),
-                        optionKind: node.OptionKind
+                        isOff: (fragment as ScriptDom.StopListFullTextIndexOption).IsOff,
+                        stopListName: (Identifier)FromMutable((fragment as ScriptDom.StopListFullTextIndexOption).StopListName),
+                        optionKind: (fragment as ScriptDom.StopListFullTextIndexOption).OptionKind
                     );
                 }
                 case 808: {
-                    var node = (ScriptDom.StopRestoreOption)fragment;
                     return new StopRestoreOption(
-                        mark: (ValueExpression)FromMutable(node.Mark),
-                        after: (ValueExpression)FromMutable(node.After),
-                        isStopAt: node.IsStopAt,
-                        optionKind: node.OptionKind
+                        mark: (ValueExpression)FromMutable((fragment as ScriptDom.StopRestoreOption).Mark),
+                        after: (ValueExpression)FromMutable((fragment as ScriptDom.StopRestoreOption).After),
+                        isStopAt: (fragment as ScriptDom.StopRestoreOption).IsStopAt,
+                        optionKind: (fragment as ScriptDom.StopRestoreOption).OptionKind
                     );
                 }
                 case 809: {
-                    var node = (ScriptDom.StringLiteral)fragment;
                     return new StringLiteral(
-                        isNational: node.IsNational,
-                        isLargeObject: node.IsLargeObject,
-                        @value: node.Value,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        isNational: (fragment as ScriptDom.StringLiteral).IsNational,
+                        isLargeObject: (fragment as ScriptDom.StringLiteral).IsLargeObject,
+                        @value: (fragment as ScriptDom.StringLiteral).Value,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.StringLiteral).Collation)
                     );
                 }
                 case 810: {
-                    var node = (ScriptDom.SubqueryComparisonPredicate)fragment;
                     return new SubqueryComparisonPredicate(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        comparisonType: node.ComparisonType,
-                        subquery: (ScalarSubquery)FromMutable(node.Subquery),
-                        subqueryComparisonPredicateType: node.SubqueryComparisonPredicateType
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.SubqueryComparisonPredicate).Expression),
+                        comparisonType: (fragment as ScriptDom.SubqueryComparisonPredicate).ComparisonType,
+                        subquery: (ScalarSubquery)FromMutable((fragment as ScriptDom.SubqueryComparisonPredicate).Subquery),
+                        subqueryComparisonPredicateType: (fragment as ScriptDom.SubqueryComparisonPredicate).SubqueryComparisonPredicateType
                     );
                 }
                 case 811: {
-                    var node = (ScriptDom.SystemTimePeriodDefinition)fragment;
                     return new SystemTimePeriodDefinition(
-                        startTimeColumn: (Identifier)FromMutable(node.StartTimeColumn),
-                        endTimeColumn: (Identifier)FromMutable(node.EndTimeColumn)
+                        startTimeColumn: (Identifier)FromMutable((fragment as ScriptDom.SystemTimePeriodDefinition).StartTimeColumn),
+                        endTimeColumn: (Identifier)FromMutable((fragment as ScriptDom.SystemTimePeriodDefinition).EndTimeColumn)
                     );
                 }
                 case 812: {
-                    var node = (ScriptDom.SystemVersioningTableOption)fragment;
                     return new SystemVersioningTableOption(
-                        optionState: node.OptionState,
-                        consistencyCheckEnabled: node.ConsistencyCheckEnabled,
-                        historyTable: (SchemaObjectName)FromMutable(node.HistoryTable),
-                        retentionPeriod: (RetentionPeriodDefinition)FromMutable(node.RetentionPeriod),
-                        optionKind: node.OptionKind
+                        optionState: (fragment as ScriptDom.SystemVersioningTableOption).OptionState,
+                        consistencyCheckEnabled: (fragment as ScriptDom.SystemVersioningTableOption).ConsistencyCheckEnabled,
+                        historyTable: (SchemaObjectName)FromMutable((fragment as ScriptDom.SystemVersioningTableOption).HistoryTable),
+                        retentionPeriod: (RetentionPeriodDefinition)FromMutable((fragment as ScriptDom.SystemVersioningTableOption).RetentionPeriod),
+                        optionKind: (fragment as ScriptDom.SystemVersioningTableOption).OptionKind
                     );
                 }
                 case 813: {
-                    var node = (ScriptDom.TableClusteredIndexType)fragment;
                     return new TableClusteredIndexType(
-                        columns: node.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
-                        columnStore: node.ColumnStore,
-                        orderedColumns: node.OrderedColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                        columns: (fragment as ScriptDom.TableClusteredIndexType).Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
+                        columnStore: (fragment as ScriptDom.TableClusteredIndexType).ColumnStore,
+                        orderedColumns: (fragment as ScriptDom.TableClusteredIndexType).OrderedColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
                     );
                 }
                 case 814: {
-                    var node = (ScriptDom.TableDataCompressionOption)fragment;
                     return new TableDataCompressionOption(
-                        dataCompressionOption: (DataCompressionOption)FromMutable(node.DataCompressionOption),
-                        optionKind: node.OptionKind
+                        dataCompressionOption: (DataCompressionOption)FromMutable((fragment as ScriptDom.TableDataCompressionOption).DataCompressionOption),
+                        optionKind: (fragment as ScriptDom.TableDataCompressionOption).OptionKind
                     );
                 }
                 case 815: {
-                    var node = (ScriptDom.TableDefinition)fragment;
                     return new TableDefinition(
-                        columnDefinitions: node.ColumnDefinitions.SelectList(c => (ColumnDefinition)FromMutable(c)),
-                        tableConstraints: node.TableConstraints.SelectList(c => (ConstraintDefinition)FromMutable(c)),
-                        indexes: node.Indexes.SelectList(c => (IndexDefinition)FromMutable(c)),
-                        systemTimePeriod: (SystemTimePeriodDefinition)FromMutable(node.SystemTimePeriod)
+                        columnDefinitions: (fragment as ScriptDom.TableDefinition).ColumnDefinitions.SelectList(c => (ColumnDefinition)FromMutable(c)),
+                        tableConstraints: (fragment as ScriptDom.TableDefinition).TableConstraints.SelectList(c => (ConstraintDefinition)FromMutable(c)),
+                        indexes: (fragment as ScriptDom.TableDefinition).Indexes.SelectList(c => (IndexDefinition)FromMutable(c)),
+                        systemTimePeriod: (SystemTimePeriodDefinition)FromMutable((fragment as ScriptDom.TableDefinition).SystemTimePeriod)
                     );
                 }
                 case 816: {
-                    var node = (ScriptDom.TableDistributionOption)fragment;
                     return new TableDistributionOption(
-                        @value: (TableDistributionPolicy)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (TableDistributionPolicy)FromMutable((fragment as ScriptDom.TableDistributionOption).Value),
+                        optionKind: (fragment as ScriptDom.TableDistributionOption).OptionKind
                     );
                 }
                 case 817: {
-                    var node = (ScriptDom.TableHashDistributionPolicy)fragment;
                     return new TableHashDistributionPolicy(
-                        distributionColumn: (Identifier)FromMutable(node.DistributionColumn)
+                        distributionColumn: (Identifier)FromMutable((fragment as ScriptDom.TableHashDistributionPolicy).DistributionColumn)
                     );
                 }
                 case 818: {
-                    var node = (ScriptDom.TableHint)fragment;
                     return new TableHint(
-                        hintKind: node.HintKind
+                        hintKind: (fragment as ScriptDom.TableHint).HintKind
                     );
                 }
                 case 819: {
-                    var node = (ScriptDom.TableHintsOptimizerHint)fragment;
                     return new TableHintsOptimizerHint(
-                        objectName: (SchemaObjectName)FromMutable(node.ObjectName),
-                        tableHints: node.TableHints.SelectList(c => (TableHint)FromMutable(c)),
-                        hintKind: node.HintKind
+                        objectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.TableHintsOptimizerHint).ObjectName),
+                        tableHints: (fragment as ScriptDom.TableHintsOptimizerHint).TableHints.SelectList(c => (TableHint)FromMutable(c)),
+                        hintKind: (fragment as ScriptDom.TableHintsOptimizerHint).HintKind
                     );
                 }
                 case 820: {
-                    var node = (ScriptDom.TableIndexOption)fragment;
                     return new TableIndexOption(
-                        @value: (TableIndexType)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (TableIndexType)FromMutable((fragment as ScriptDom.TableIndexOption).Value),
+                        optionKind: (fragment as ScriptDom.TableIndexOption).OptionKind
                     );
                 }
                 case 821: {
-                    var node = (ScriptDom.TableNonClusteredIndexType)fragment;
                     return new TableNonClusteredIndexType(
                         
                     );
                 }
                 case 822: {
-                    var node = (ScriptDom.TablePartitionOption)fragment;
                     return new TablePartitionOption(
-                        partitionColumn: (Identifier)FromMutable(node.PartitionColumn),
-                        partitionOptionSpecs: (TablePartitionOptionSpecifications)FromMutable(node.PartitionOptionSpecs),
-                        optionKind: node.OptionKind
+                        partitionColumn: (Identifier)FromMutable((fragment as ScriptDom.TablePartitionOption).PartitionColumn),
+                        partitionOptionSpecs: (TablePartitionOptionSpecifications)FromMutable((fragment as ScriptDom.TablePartitionOption).PartitionOptionSpecs),
+                        optionKind: (fragment as ScriptDom.TablePartitionOption).OptionKind
                     );
                 }
                 case 823: {
-                    var node = (ScriptDom.TablePartitionOptionSpecifications)fragment;
                     return new TablePartitionOptionSpecifications(
-                        range: node.Range,
-                        boundaryValues: node.BoundaryValues.SelectList(c => (ScalarExpression)FromMutable(c))
+                        range: (fragment as ScriptDom.TablePartitionOptionSpecifications).Range,
+                        boundaryValues: (fragment as ScriptDom.TablePartitionOptionSpecifications).BoundaryValues.SelectList(c => (ScalarExpression)FromMutable(c))
                     );
                 }
                 case 824: {
-                    var node = (ScriptDom.TableReplicateDistributionPolicy)fragment;
                     return new TableReplicateDistributionPolicy(
                         
                     );
                 }
                 case 825: {
-                    var node = (ScriptDom.TableRoundRobinDistributionPolicy)fragment;
                     return new TableRoundRobinDistributionPolicy(
                         
                     );
                 }
                 case 826: {
-                    var node = (ScriptDom.TableSampleClause)fragment;
                     return new TableSampleClause(
-                        system: node.System,
-                        sampleNumber: (ScalarExpression)FromMutable(node.SampleNumber),
-                        tableSampleClauseOption: node.TableSampleClauseOption,
-                        repeatSeed: (ScalarExpression)FromMutable(node.RepeatSeed)
+                        system: (fragment as ScriptDom.TableSampleClause).System,
+                        sampleNumber: (ScalarExpression)FromMutable((fragment as ScriptDom.TableSampleClause).SampleNumber),
+                        tableSampleClauseOption: (fragment as ScriptDom.TableSampleClause).TableSampleClauseOption,
+                        repeatSeed: (ScalarExpression)FromMutable((fragment as ScriptDom.TableSampleClause).RepeatSeed)
                     );
                 }
                 case 827: {
-                    var node = (ScriptDom.TableValuedFunctionReturnType)fragment;
                     return new TableValuedFunctionReturnType(
-                        declareTableVariableBody: (DeclareTableVariableBody)FromMutable(node.DeclareTableVariableBody)
+                        declareTableVariableBody: (DeclareTableVariableBody)FromMutable((fragment as ScriptDom.TableValuedFunctionReturnType).DeclareTableVariableBody)
                     );
                 }
                 case 828: {
-                    var node = (ScriptDom.TableXmlCompressionOption)fragment;
                     return new TableXmlCompressionOption(
-                        xmlCompressionOption: (XmlCompressionOption)FromMutable(node.XmlCompressionOption),
-                        optionKind: node.OptionKind
+                        xmlCompressionOption: (XmlCompressionOption)FromMutable((fragment as ScriptDom.TableXmlCompressionOption).XmlCompressionOption),
+                        optionKind: (fragment as ScriptDom.TableXmlCompressionOption).OptionKind
                     );
                 }
                 case 829: {
-                    var node = (ScriptDom.TargetDeclaration)fragment;
                     return new TargetDeclaration(
-                        objectName: (EventSessionObjectName)FromMutable(node.ObjectName),
-                        targetDeclarationParameters: node.TargetDeclarationParameters.SelectList(c => (EventDeclarationSetParameter)FromMutable(c))
+                        objectName: (EventSessionObjectName)FromMutable((fragment as ScriptDom.TargetDeclaration).ObjectName),
+                        targetDeclarationParameters: (fragment as ScriptDom.TargetDeclaration).TargetDeclarationParameters.SelectList(c => (EventDeclarationSetParameter)FromMutable(c))
                     );
                 }
                 case 830: {
-                    var node = (ScriptDom.TargetRecoveryTimeDatabaseOption)fragment;
                     return new TargetRecoveryTimeDatabaseOption(
-                        recoveryTime: (Literal)FromMutable(node.RecoveryTime),
-                        unit: node.Unit,
-                        optionKind: node.OptionKind
+                        recoveryTime: (Literal)FromMutable((fragment as ScriptDom.TargetRecoveryTimeDatabaseOption).RecoveryTime),
+                        unit: (fragment as ScriptDom.TargetRecoveryTimeDatabaseOption).Unit,
+                        optionKind: (fragment as ScriptDom.TargetRecoveryTimeDatabaseOption).OptionKind
                     );
                 }
                 case 831: {
-                    var node = (ScriptDom.TemporalClause)fragment;
                     return new TemporalClause(
-                        temporalClauseType: node.TemporalClauseType,
-                        startTime: (ScalarExpression)FromMutable(node.StartTime),
-                        endTime: (ScalarExpression)FromMutable(node.EndTime)
+                        temporalClauseType: (fragment as ScriptDom.TemporalClause).TemporalClauseType,
+                        startTime: (ScalarExpression)FromMutable((fragment as ScriptDom.TemporalClause).StartTime),
+                        endTime: (ScalarExpression)FromMutable((fragment as ScriptDom.TemporalClause).EndTime)
                     );
                 }
                 case 832: {
-                    var node = (ScriptDom.ThrowStatement)fragment;
                     return new ThrowStatement(
-                        errorNumber: (ValueExpression)FromMutable(node.ErrorNumber),
-                        message: (ValueExpression)FromMutable(node.Message),
-                        state: (ValueExpression)FromMutable(node.State)
+                        errorNumber: (ValueExpression)FromMutable((fragment as ScriptDom.ThrowStatement).ErrorNumber),
+                        message: (ValueExpression)FromMutable((fragment as ScriptDom.ThrowStatement).Message),
+                        state: (ValueExpression)FromMutable((fragment as ScriptDom.ThrowStatement).State)
                     );
                 }
                 case 833: {
-                    var node = (ScriptDom.TopRowFilter)fragment;
                     return new TopRowFilter(
-                        expression: (ScalarExpression)FromMutable(node.Expression),
-                        percent: node.Percent,
-                        withTies: node.WithTies
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.TopRowFilter).Expression),
+                        percent: (fragment as ScriptDom.TopRowFilter).Percent,
+                        withTies: (fragment as ScriptDom.TopRowFilter).WithTies
                     );
                 }
                 case 834: {
-                    var node = (ScriptDom.TriggerAction)fragment;
                     return new TriggerAction(
-                        triggerActionType: node.TriggerActionType,
-                        eventTypeGroup: (EventTypeGroupContainer)FromMutable(node.EventTypeGroup)
+                        triggerActionType: (fragment as ScriptDom.TriggerAction).TriggerActionType,
+                        eventTypeGroup: (EventTypeGroupContainer)FromMutable((fragment as ScriptDom.TriggerAction).EventTypeGroup)
                     );
                 }
                 case 835: {
-                    var node = (ScriptDom.TriggerObject)fragment;
                     return new TriggerObject(
-                        name: (SchemaObjectName)FromMutable(node.Name),
-                        triggerScope: node.TriggerScope
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.TriggerObject).Name),
+                        triggerScope: (fragment as ScriptDom.TriggerObject).TriggerScope
                     );
                 }
                 case 836: {
-                    var node = (ScriptDom.TriggerOption)fragment;
                     return new TriggerOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.TriggerOption).OptionKind
                     );
                 }
                 case 837: {
-                    var node = (ScriptDom.TruncateTableStatement)fragment;
                     return new TruncateTableStatement(
-                        tableName: (SchemaObjectName)FromMutable(node.TableName),
-                        partitionRanges: node.PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c))
+                        tableName: (SchemaObjectName)FromMutable((fragment as ScriptDom.TruncateTableStatement).TableName),
+                        partitionRanges: (fragment as ScriptDom.TruncateTableStatement).PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c))
                     );
                 }
                 case 838: {
-                    var node = (ScriptDom.TruncateTargetTableSwitchOption)fragment;
                     return new TruncateTargetTableSwitchOption(
-                        truncateTarget: node.TruncateTarget,
-                        optionKind: node.OptionKind
+                        truncateTarget: (fragment as ScriptDom.TruncateTargetTableSwitchOption).TruncateTarget,
+                        optionKind: (fragment as ScriptDom.TruncateTargetTableSwitchOption).OptionKind
                     );
                 }
                 case 839: {
-                    var node = (ScriptDom.TryCastCall)fragment;
                     return new TryCastCall(
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        parameter: (ScalarExpression)FromMutable(node.Parameter),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.TryCastCall).DataType),
+                        parameter: (ScalarExpression)FromMutable((fragment as ScriptDom.TryCastCall).Parameter),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.TryCastCall).Collation)
                     );
                 }
                 case 840: {
-                    var node = (ScriptDom.TryCatchStatement)fragment;
                     return new TryCatchStatement(
-                        tryStatements: (StatementList)FromMutable(node.TryStatements),
-                        catchStatements: (StatementList)FromMutable(node.CatchStatements)
+                        tryStatements: (StatementList)FromMutable((fragment as ScriptDom.TryCatchStatement).TryStatements),
+                        catchStatements: (StatementList)FromMutable((fragment as ScriptDom.TryCatchStatement).CatchStatements)
                     );
                 }
                 case 841: {
-                    var node = (ScriptDom.TryConvertCall)fragment;
                     return new TryConvertCall(
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        parameter: (ScalarExpression)FromMutable(node.Parameter),
-                        style: (ScalarExpression)FromMutable(node.Style),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.TryConvertCall).DataType),
+                        parameter: (ScalarExpression)FromMutable((fragment as ScriptDom.TryConvertCall).Parameter),
+                        style: (ScalarExpression)FromMutable((fragment as ScriptDom.TryConvertCall).Style),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.TryConvertCall).Collation)
                     );
                 }
                 case 842: {
-                    var node = (ScriptDom.TryParseCall)fragment;
                     return new TryParseCall(
-                        stringValue: (ScalarExpression)FromMutable(node.StringValue),
-                        dataType: (DataTypeReference)FromMutable(node.DataType),
-                        culture: (ScalarExpression)FromMutable(node.Culture),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        stringValue: (ScalarExpression)FromMutable((fragment as ScriptDom.TryParseCall).StringValue),
+                        dataType: (DataTypeReference)FromMutable((fragment as ScriptDom.TryParseCall).DataType),
+                        culture: (ScalarExpression)FromMutable((fragment as ScriptDom.TryParseCall).Culture),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.TryParseCall).Collation)
                     );
                 }
                 case 843: {
-                    var node = (ScriptDom.TSEqualCall)fragment;
                     return new TSEqualCall(
-                        firstExpression: (ScalarExpression)FromMutable(node.FirstExpression),
-                        secondExpression: (ScalarExpression)FromMutable(node.SecondExpression)
+                        firstExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.TSEqualCall).FirstExpression),
+                        secondExpression: (ScalarExpression)FromMutable((fragment as ScriptDom.TSEqualCall).SecondExpression)
                     );
                 }
                 case 844: {
-                    var node = (ScriptDom.TSqlBatch)fragment;
                     return new TSqlBatch(
-                        statements: node.Statements.SelectList(c => (TSqlStatement)FromMutable(c))
+                        statements: (fragment as ScriptDom.TSqlBatch).Statements.SelectList(c => (TSqlStatement)FromMutable(c))
                     );
                 }
                 case 845: {
-                    var node = (ScriptDom.TSqlFragmentSnippet)fragment;
                     return new TSqlFragmentSnippet(
-                        script: node.Script
+                        script: (fragment as ScriptDom.TSqlFragmentSnippet).Script
                     );
                 }
                 case 846: {
-                    var node = (ScriptDom.TSqlScript)fragment;
                     return new TSqlScript(
-                        batches: node.Batches.SelectList(c => (TSqlBatch)FromMutable(c))
+                        batches: (fragment as ScriptDom.TSqlScript).Batches.SelectList(c => (TSqlBatch)FromMutable(c))
                     );
                 }
                 case 847: {
-                    var node = (ScriptDom.TSqlStatementSnippet)fragment;
                     return new TSqlStatementSnippet(
-                        script: node.Script
+                        script: (fragment as ScriptDom.TSqlStatementSnippet).Script
                     );
                 }
                 case 848: {
-                    var node = (ScriptDom.UnaryExpression)fragment;
                     return new UnaryExpression(
-                        unaryExpressionType: node.UnaryExpressionType,
-                        expression: (ScalarExpression)FromMutable(node.Expression)
+                        unaryExpressionType: (fragment as ScriptDom.UnaryExpression).UnaryExpressionType,
+                        expression: (ScalarExpression)FromMutable((fragment as ScriptDom.UnaryExpression).Expression)
                     );
                 }
                 case 849: {
-                    var node = (ScriptDom.UniqueConstraintDefinition)fragment;
                     return new UniqueConstraintDefinition(
-                        clustered: node.Clustered,
-                        isPrimaryKey: node.IsPrimaryKey,
-                        isEnforced: node.IsEnforced,
-                        columns: node.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
-                        indexOptions: node.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(node.OnFileGroupOrPartitionScheme),
-                        indexType: (IndexType)FromMutable(node.IndexType),
-                        fileStreamOn: (IdentifierOrValueExpression)FromMutable(node.FileStreamOn),
-                        constraintIdentifier: (Identifier)FromMutable(node.ConstraintIdentifier)
+                        clustered: (fragment as ScriptDom.UniqueConstraintDefinition).Clustered,
+                        isPrimaryKey: (fragment as ScriptDom.UniqueConstraintDefinition).IsPrimaryKey,
+                        isEnforced: (fragment as ScriptDom.UniqueConstraintDefinition).IsEnforced,
+                        columns: (fragment as ScriptDom.UniqueConstraintDefinition).Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
+                        indexOptions: (fragment as ScriptDom.UniqueConstraintDefinition).IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
+                        onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable((fragment as ScriptDom.UniqueConstraintDefinition).OnFileGroupOrPartitionScheme),
+                        indexType: (IndexType)FromMutable((fragment as ScriptDom.UniqueConstraintDefinition).IndexType),
+                        fileStreamOn: (IdentifierOrValueExpression)FromMutable((fragment as ScriptDom.UniqueConstraintDefinition).FileStreamOn),
+                        constraintIdentifier: (Identifier)FromMutable((fragment as ScriptDom.UniqueConstraintDefinition).ConstraintIdentifier)
                     );
                 }
                 case 850: {
-                    var node = (ScriptDom.UnpivotedTableReference)fragment;
                     return new UnpivotedTableReference(
-                        tableReference: (TableReference)FromMutable(node.TableReference),
-                        inColumns: node.InColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                        pivotColumn: (Identifier)FromMutable(node.PivotColumn),
-                        valueColumn: (Identifier)FromMutable(node.ValueColumn),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        tableReference: (TableReference)FromMutable((fragment as ScriptDom.UnpivotedTableReference).TableReference),
+                        inColumns: (fragment as ScriptDom.UnpivotedTableReference).InColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                        pivotColumn: (Identifier)FromMutable((fragment as ScriptDom.UnpivotedTableReference).PivotColumn),
+                        valueColumn: (Identifier)FromMutable((fragment as ScriptDom.UnpivotedTableReference).ValueColumn),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.UnpivotedTableReference).Alias),
+                        forPath: (fragment as ScriptDom.UnpivotedTableReference).ForPath
                     );
                 }
                 case 851: {
-                    var node = (ScriptDom.UnqualifiedJoin)fragment;
                     return new UnqualifiedJoin(
-                        unqualifiedJoinType: node.UnqualifiedJoinType,
-                        firstTableReference: (TableReference)FromMutable(node.FirstTableReference),
-                        secondTableReference: (TableReference)FromMutable(node.SecondTableReference)
+                        unqualifiedJoinType: (fragment as ScriptDom.UnqualifiedJoin).UnqualifiedJoinType,
+                        firstTableReference: (TableReference)FromMutable((fragment as ScriptDom.UnqualifiedJoin).FirstTableReference),
+                        secondTableReference: (TableReference)FromMutable((fragment as ScriptDom.UnqualifiedJoin).SecondTableReference)
                     );
                 }
                 case 852: {
-                    var node = (ScriptDom.UpdateCall)fragment;
                     return new UpdateCall(
-                        identifier: (Identifier)FromMutable(node.Identifier)
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.UpdateCall).Identifier)
                     );
                 }
                 case 853: {
-                    var node = (ScriptDom.UpdateForClause)fragment;
                     return new UpdateForClause(
-                        columns: node.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                        columns: (fragment as ScriptDom.UpdateForClause).Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
                     );
                 }
                 case 854: {
-                    var node = (ScriptDom.UpdateMergeAction)fragment;
                     return new UpdateMergeAction(
-                        setClauses: node.SetClauses.SelectList(c => (SetClause)FromMutable(c))
+                        setClauses: (fragment as ScriptDom.UpdateMergeAction).SetClauses.SelectList(c => (SetClause)FromMutable(c))
                     );
                 }
                 case 855: {
-                    var node = (ScriptDom.UpdateSpecification)fragment;
                     return new UpdateSpecification(
-                        setClauses: node.SetClauses.SelectList(c => (SetClause)FromMutable(c)),
-                        fromClause: (FromClause)FromMutable(node.FromClause),
-                        whereClause: (WhereClause)FromMutable(node.WhereClause),
-                        target: (TableReference)FromMutable(node.Target),
-                        topRowFilter: (TopRowFilter)FromMutable(node.TopRowFilter),
-                        outputIntoClause: (OutputIntoClause)FromMutable(node.OutputIntoClause),
-                        outputClause: (OutputClause)FromMutable(node.OutputClause)
+                        setClauses: (fragment as ScriptDom.UpdateSpecification).SetClauses.SelectList(c => (SetClause)FromMutable(c)),
+                        fromClause: (FromClause)FromMutable((fragment as ScriptDom.UpdateSpecification).FromClause),
+                        whereClause: (WhereClause)FromMutable((fragment as ScriptDom.UpdateSpecification).WhereClause),
+                        target: (TableReference)FromMutable((fragment as ScriptDom.UpdateSpecification).Target),
+                        topRowFilter: (TopRowFilter)FromMutable((fragment as ScriptDom.UpdateSpecification).TopRowFilter),
+                        outputIntoClause: (OutputIntoClause)FromMutable((fragment as ScriptDom.UpdateSpecification).OutputIntoClause),
+                        outputClause: (OutputClause)FromMutable((fragment as ScriptDom.UpdateSpecification).OutputClause)
                     );
                 }
                 case 856: {
-                    var node = (ScriptDom.UpdateStatement)fragment;
                     return new UpdateStatement(
-                        updateSpecification: (UpdateSpecification)FromMutable(node.UpdateSpecification),
-                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(node.WithCtesAndXmlNamespaces),
-                        optimizerHints: node.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                        updateSpecification: (UpdateSpecification)FromMutable((fragment as ScriptDom.UpdateStatement).UpdateSpecification),
+                        withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable((fragment as ScriptDom.UpdateStatement).WithCtesAndXmlNamespaces),
+                        optimizerHints: (fragment as ScriptDom.UpdateStatement).OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
                     );
                 }
                 case 857: {
-                    var node = (ScriptDom.UpdateStatisticsStatement)fragment;
                     return new UpdateStatisticsStatement(
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName),
-                        subElements: node.SubElements.SelectList(c => (Identifier)FromMutable(c)),
-                        statisticsOptions: node.StatisticsOptions.SelectList(c => (StatisticsOption)FromMutable(c))
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.UpdateStatisticsStatement).SchemaObjectName),
+                        subElements: (fragment as ScriptDom.UpdateStatisticsStatement).SubElements.SelectList(c => (Identifier)FromMutable(c)),
+                        statisticsOptions: (fragment as ScriptDom.UpdateStatisticsStatement).StatisticsOptions.SelectList(c => (StatisticsOption)FromMutable(c))
                     );
                 }
                 case 858: {
-                    var node = (ScriptDom.UpdateTextStatement)fragment;
                     return new UpdateTextStatement(
-                        insertOffset: (ScalarExpression)FromMutable(node.InsertOffset),
-                        deleteLength: (ScalarExpression)FromMutable(node.DeleteLength),
-                        sourceColumn: (ColumnReferenceExpression)FromMutable(node.SourceColumn),
-                        sourceParameter: (ValueExpression)FromMutable(node.SourceParameter),
-                        bulk: node.Bulk,
-                        column: (ColumnReferenceExpression)FromMutable(node.Column),
-                        textId: (ValueExpression)FromMutable(node.TextId),
-                        timestamp: (Literal)FromMutable(node.Timestamp),
-                        withLog: node.WithLog
+                        insertOffset: (ScalarExpression)FromMutable((fragment as ScriptDom.UpdateTextStatement).InsertOffset),
+                        deleteLength: (ScalarExpression)FromMutable((fragment as ScriptDom.UpdateTextStatement).DeleteLength),
+                        sourceColumn: (ColumnReferenceExpression)FromMutable((fragment as ScriptDom.UpdateTextStatement).SourceColumn),
+                        sourceParameter: (ValueExpression)FromMutable((fragment as ScriptDom.UpdateTextStatement).SourceParameter),
+                        bulk: (fragment as ScriptDom.UpdateTextStatement).Bulk,
+                        column: (ColumnReferenceExpression)FromMutable((fragment as ScriptDom.UpdateTextStatement).Column),
+                        textId: (ValueExpression)FromMutable((fragment as ScriptDom.UpdateTextStatement).TextId),
+                        timestamp: (Literal)FromMutable((fragment as ScriptDom.UpdateTextStatement).Timestamp),
+                        withLog: (fragment as ScriptDom.UpdateTextStatement).WithLog
                     );
                 }
                 case 859: {
-                    var node = (ScriptDom.UseFederationStatement)fragment;
                     return new UseFederationStatement(
-                        federationName: (Identifier)FromMutable(node.FederationName),
-                        distributionName: (Identifier)FromMutable(node.DistributionName),
-                        @value: (ScalarExpression)FromMutable(node.Value),
-                        filtering: node.Filtering
+                        federationName: (Identifier)FromMutable((fragment as ScriptDom.UseFederationStatement).FederationName),
+                        distributionName: (Identifier)FromMutable((fragment as ScriptDom.UseFederationStatement).DistributionName),
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.UseFederationStatement).Value),
+                        filtering: (fragment as ScriptDom.UseFederationStatement).Filtering
                     );
                 }
                 case 860: {
-                    var node = (ScriptDom.UseHintList)fragment;
                     return new UseHintList(
-                        hints: node.Hints.SelectList(c => (StringLiteral)FromMutable(c)),
-                        hintKind: node.HintKind
+                        hints: (fragment as ScriptDom.UseHintList).Hints.SelectList(c => (StringLiteral)FromMutable(c)),
+                        hintKind: (fragment as ScriptDom.UseHintList).HintKind
                     );
                 }
                 case 861: {
-                    var node = (ScriptDom.UserDataTypeReference)fragment;
                     return new UserDataTypeReference(
-                        parameters: node.Parameters.SelectList(c => (Literal)FromMutable(c)),
-                        name: (SchemaObjectName)FromMutable(node.Name)
+                        parameters: (fragment as ScriptDom.UserDataTypeReference).Parameters.SelectList(c => (Literal)FromMutable(c)),
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.UserDataTypeReference).Name)
                     );
                 }
                 case 862: {
-                    var node = (ScriptDom.UserDefinedTypeCallTarget)fragment;
                     return new UserDefinedTypeCallTarget(
-                        schemaObjectName: (SchemaObjectName)FromMutable(node.SchemaObjectName)
+                        schemaObjectName: (SchemaObjectName)FromMutable((fragment as ScriptDom.UserDefinedTypeCallTarget).SchemaObjectName)
                     );
                 }
                 case 863: {
-                    var node = (ScriptDom.UserDefinedTypePropertyAccess)fragment;
                     return new UserDefinedTypePropertyAccess(
-                        callTarget: (CallTarget)FromMutable(node.CallTarget),
-                        propertyName: (Identifier)FromMutable(node.PropertyName),
-                        collation: (Identifier)FromMutable(node.Collation)
+                        callTarget: (CallTarget)FromMutable((fragment as ScriptDom.UserDefinedTypePropertyAccess).CallTarget),
+                        propertyName: (Identifier)FromMutable((fragment as ScriptDom.UserDefinedTypePropertyAccess).PropertyName),
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.UserDefinedTypePropertyAccess).Collation)
                     );
                 }
                 case 864: {
-                    var node = (ScriptDom.UserLoginOption)fragment;
                     return new UserLoginOption(
-                        userLoginOptionType: node.UserLoginOptionType,
-                        identifier: (Identifier)FromMutable(node.Identifier)
+                        userLoginOptionType: (fragment as ScriptDom.UserLoginOption).UserLoginOptionType,
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.UserLoginOption).Identifier)
                     );
                 }
                 case 865: {
-                    var node = (ScriptDom.UserRemoteServiceBindingOption)fragment;
                     return new UserRemoteServiceBindingOption(
-                        user: (Identifier)FromMutable(node.User),
-                        optionKind: node.OptionKind
+                        user: (Identifier)FromMutable((fragment as ScriptDom.UserRemoteServiceBindingOption).User),
+                        optionKind: (fragment as ScriptDom.UserRemoteServiceBindingOption).OptionKind
                     );
                 }
                 case 866: {
-                    var node = (ScriptDom.UseStatement)fragment;
                     return new UseStatement(
-                        databaseName: (Identifier)FromMutable(node.DatabaseName)
+                        databaseName: (Identifier)FromMutable((fragment as ScriptDom.UseStatement).DatabaseName)
                     );
                 }
                 case 867: {
-                    var node = (ScriptDom.ValuesInsertSource)fragment;
                     return new ValuesInsertSource(
-                        isDefaultValues: node.IsDefaultValues,
-                        rowValues: node.RowValues.SelectList(c => (RowValue)FromMutable(c))
+                        isDefaultValues: (fragment as ScriptDom.ValuesInsertSource).IsDefaultValues,
+                        rowValues: (fragment as ScriptDom.ValuesInsertSource).RowValues.SelectList(c => (RowValue)FromMutable(c))
                     );
                 }
                 case 868: {
-                    var node = (ScriptDom.VariableMethodCallTableReference)fragment;
                     return new VariableMethodCallTableReference(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        methodName: (Identifier)FromMutable(node.MethodName),
-                        parameters: node.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        columns: node.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.VariableMethodCallTableReference).Variable),
+                        methodName: (Identifier)FromMutable((fragment as ScriptDom.VariableMethodCallTableReference).MethodName),
+                        parameters: (fragment as ScriptDom.VariableMethodCallTableReference).Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        columns: (fragment as ScriptDom.VariableMethodCallTableReference).Columns.SelectList(c => (Identifier)FromMutable(c)),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.VariableMethodCallTableReference).Alias),
+                        forPath: (fragment as ScriptDom.VariableMethodCallTableReference).ForPath
                     );
                 }
                 case 869: {
-                    var node = (ScriptDom.VariableReference)fragment;
                     return new VariableReference(
-                        name: node.Name,
-                        collation: (Identifier)FromMutable(node.Collation)
+                        name: (fragment as ScriptDom.VariableReference).Name,
+                        collation: (Identifier)FromMutable((fragment as ScriptDom.VariableReference).Collation)
                     );
                 }
                 case 870: {
-                    var node = (ScriptDom.VariableTableReference)fragment;
                     return new VariableTableReference(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        alias: (Identifier)FromMutable(node.Alias),
-                        forPath: node.ForPath
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.VariableTableReference).Variable),
+                        alias: (Identifier)FromMutable((fragment as ScriptDom.VariableTableReference).Alias),
+                        forPath: (fragment as ScriptDom.VariableTableReference).ForPath
                     );
                 }
                 case 871: {
-                    var node = (ScriptDom.VariableValuePair)fragment;
                     return new VariableValuePair(
-                        variable: (VariableReference)FromMutable(node.Variable),
-                        @value: (ScalarExpression)FromMutable(node.Value),
-                        isForUnknown: node.IsForUnknown
+                        variable: (VariableReference)FromMutable((fragment as ScriptDom.VariableValuePair).Variable),
+                        @value: (ScalarExpression)FromMutable((fragment as ScriptDom.VariableValuePair).Value),
+                        isForUnknown: (fragment as ScriptDom.VariableValuePair).IsForUnknown
                     );
                 }
                 case 872: {
-                    var node = (ScriptDom.ViewDistributionOption)fragment;
                     return new ViewDistributionOption(
-                        @value: (ViewDistributionPolicy)FromMutable(node.Value),
-                        optionKind: node.OptionKind
+                        @value: (ViewDistributionPolicy)FromMutable((fragment as ScriptDom.ViewDistributionOption).Value),
+                        optionKind: (fragment as ScriptDom.ViewDistributionOption).OptionKind
                     );
                 }
                 case 873: {
-                    var node = (ScriptDom.ViewForAppendOption)fragment;
                     return new ViewForAppendOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.ViewForAppendOption).OptionKind
                     );
                 }
                 case 874: {
-                    var node = (ScriptDom.ViewHashDistributionPolicy)fragment;
                     return new ViewHashDistributionPolicy(
-                        distributionColumn: (Identifier)FromMutable(node.DistributionColumn)
+                        distributionColumn: (Identifier)FromMutable((fragment as ScriptDom.ViewHashDistributionPolicy).DistributionColumn)
                     );
                 }
                 case 875: {
-                    var node = (ScriptDom.ViewOption)fragment;
                     return new ViewOption(
-                        optionKind: node.OptionKind
+                        optionKind: (fragment as ScriptDom.ViewOption).OptionKind
                     );
                 }
                 case 876: {
-                    var node = (ScriptDom.ViewRoundRobinDistributionPolicy)fragment;
                     return new ViewRoundRobinDistributionPolicy(
                         
                     );
                 }
                 case 877: {
-                    var node = (ScriptDom.WaitAtLowPriorityOption)fragment;
                     return new WaitAtLowPriorityOption(
-                        options: node.Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        options: (fragment as ScriptDom.WaitAtLowPriorityOption).Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.WaitAtLowPriorityOption).OptionKind
                     );
                 }
                 case 878: {
-                    var node = (ScriptDom.WaitForStatement)fragment;
                     return new WaitForStatement(
-                        waitForOption: node.WaitForOption,
-                        parameter: (ValueExpression)FromMutable(node.Parameter),
-                        timeout: (ScalarExpression)FromMutable(node.Timeout),
-                        statement: (WaitForSupportedStatement)FromMutable(node.Statement)
+                        waitForOption: (fragment as ScriptDom.WaitForStatement).WaitForOption,
+                        parameter: (ValueExpression)FromMutable((fragment as ScriptDom.WaitForStatement).Parameter),
+                        timeout: (ScalarExpression)FromMutable((fragment as ScriptDom.WaitForStatement).Timeout),
+                        statement: (WaitForSupportedStatement)FromMutable((fragment as ScriptDom.WaitForStatement).Statement)
                     );
                 }
                 case 879: {
-                    var node = (ScriptDom.WhereClause)fragment;
                     return new WhereClause(
-                        searchCondition: (BooleanExpression)FromMutable(node.SearchCondition),
-                        cursor: (CursorId)FromMutable(node.Cursor)
+                        searchCondition: (BooleanExpression)FromMutable((fragment as ScriptDom.WhereClause).SearchCondition),
+                        cursor: (CursorId)FromMutable((fragment as ScriptDom.WhereClause).Cursor)
                     );
                 }
                 case 880: {
-                    var node = (ScriptDom.WhileStatement)fragment;
                     return new WhileStatement(
-                        predicate: (BooleanExpression)FromMutable(node.Predicate),
-                        statement: (TSqlStatement)FromMutable(node.Statement)
+                        predicate: (BooleanExpression)FromMutable((fragment as ScriptDom.WhileStatement).Predicate),
+                        statement: (TSqlStatement)FromMutable((fragment as ScriptDom.WhileStatement).Statement)
                     );
                 }
                 case 881: {
-                    var node = (ScriptDom.WindowClause)fragment;
                     return new WindowClause(
-                        windowDefinition: node.WindowDefinition.SelectList(c => (WindowDefinition)FromMutable(c))
+                        windowDefinition: (fragment as ScriptDom.WindowClause).WindowDefinition.SelectList(c => (WindowDefinition)FromMutable(c))
                     );
                 }
                 case 882: {
-                    var node = (ScriptDom.WindowDefinition)fragment;
                     return new WindowDefinition(
-                        windowName: (Identifier)FromMutable(node.WindowName),
-                        refWindowName: (Identifier)FromMutable(node.RefWindowName),
-                        partitions: node.Partitions.SelectList(c => (ScalarExpression)FromMutable(c)),
-                        orderByClause: (OrderByClause)FromMutable(node.OrderByClause),
-                        windowFrameClause: (WindowFrameClause)FromMutable(node.WindowFrameClause)
+                        windowName: (Identifier)FromMutable((fragment as ScriptDom.WindowDefinition).WindowName),
+                        refWindowName: (Identifier)FromMutable((fragment as ScriptDom.WindowDefinition).RefWindowName),
+                        partitions: (fragment as ScriptDom.WindowDefinition).Partitions.SelectList(c => (ScalarExpression)FromMutable(c)),
+                        orderByClause: (OrderByClause)FromMutable((fragment as ScriptDom.WindowDefinition).OrderByClause),
+                        windowFrameClause: (WindowFrameClause)FromMutable((fragment as ScriptDom.WindowDefinition).WindowFrameClause)
                     );
                 }
                 case 883: {
-                    var node = (ScriptDom.WindowDelimiter)fragment;
                     return new WindowDelimiter(
-                        windowDelimiterType: node.WindowDelimiterType,
-                        offsetValue: (ScalarExpression)FromMutable(node.OffsetValue)
+                        windowDelimiterType: (fragment as ScriptDom.WindowDelimiter).WindowDelimiterType,
+                        offsetValue: (ScalarExpression)FromMutable((fragment as ScriptDom.WindowDelimiter).OffsetValue)
                     );
                 }
                 case 884: {
-                    var node = (ScriptDom.WindowFrameClause)fragment;
                     return new WindowFrameClause(
-                        top: (WindowDelimiter)FromMutable(node.Top),
-                        bottom: (WindowDelimiter)FromMutable(node.Bottom),
-                        windowFrameType: node.WindowFrameType
+                        top: (WindowDelimiter)FromMutable((fragment as ScriptDom.WindowFrameClause).Top),
+                        bottom: (WindowDelimiter)FromMutable((fragment as ScriptDom.WindowFrameClause).Bottom),
+                        windowFrameType: (fragment as ScriptDom.WindowFrameClause).WindowFrameType
                     );
                 }
                 case 885: {
-                    var node = (ScriptDom.WindowsCreateLoginSource)fragment;
                     return new WindowsCreateLoginSource(
-                        options: node.Options.SelectList(c => (PrincipalOption)FromMutable(c))
+                        options: (fragment as ScriptDom.WindowsCreateLoginSource).Options.SelectList(c => (PrincipalOption)FromMutable(c))
                     );
                 }
                 case 886: {
-                    var node = (ScriptDom.WithCtesAndXmlNamespaces)fragment;
                     return new WithCtesAndXmlNamespaces(
-                        xmlNamespaces: (XmlNamespaces)FromMutable(node.XmlNamespaces),
-                        commonTableExpressions: node.CommonTableExpressions.SelectList(c => (CommonTableExpression)FromMutable(c)),
-                        changeTrackingContext: (ValueExpression)FromMutable(node.ChangeTrackingContext)
+                        xmlNamespaces: (XmlNamespaces)FromMutable((fragment as ScriptDom.WithCtesAndXmlNamespaces).XmlNamespaces),
+                        commonTableExpressions: (fragment as ScriptDom.WithCtesAndXmlNamespaces).CommonTableExpressions.SelectList(c => (CommonTableExpression)FromMutable(c)),
+                        changeTrackingContext: (ValueExpression)FromMutable((fragment as ScriptDom.WithCtesAndXmlNamespaces).ChangeTrackingContext)
                     );
                 }
                 case 887: {
-                    var node = (ScriptDom.WithinGroupClause)fragment;
                     return new WithinGroupClause(
-                        orderByClause: (OrderByClause)FromMutable(node.OrderByClause),
-                        hasGraphPath: node.HasGraphPath
+                        orderByClause: (OrderByClause)FromMutable((fragment as ScriptDom.WithinGroupClause).OrderByClause),
+                        hasGraphPath: (fragment as ScriptDom.WithinGroupClause).HasGraphPath
                     );
                 }
                 case 888: {
-                    var node = (ScriptDom.WitnessDatabaseOption)fragment;
                     return new WitnessDatabaseOption(
-                        witnessServer: (Literal)FromMutable(node.WitnessServer),
-                        isOff: node.IsOff,
-                        optionKind: node.OptionKind
+                        witnessServer: (Literal)FromMutable((fragment as ScriptDom.WitnessDatabaseOption).WitnessServer),
+                        isOff: (fragment as ScriptDom.WitnessDatabaseOption).IsOff,
+                        optionKind: (fragment as ScriptDom.WitnessDatabaseOption).OptionKind
                     );
                 }
                 case 889: {
-                    var node = (ScriptDom.WlmTimeLiteral)fragment;
                     return new WlmTimeLiteral(
-                        timeString: (StringLiteral)FromMutable(node.TimeString)
+                        timeString: (StringLiteral)FromMutable((fragment as ScriptDom.WlmTimeLiteral).TimeString)
                     );
                 }
                 case 890: {
-                    var node = (ScriptDom.WorkloadGroupImportanceParameter)fragment;
                     return new WorkloadGroupImportanceParameter(
-                        parameterValue: node.ParameterValue,
-                        parameterType: node.ParameterType
+                        parameterValue: (fragment as ScriptDom.WorkloadGroupImportanceParameter).ParameterValue,
+                        parameterType: (fragment as ScriptDom.WorkloadGroupImportanceParameter).ParameterType
                     );
                 }
                 case 891: {
-                    var node = (ScriptDom.WorkloadGroupResourceParameter)fragment;
                     return new WorkloadGroupResourceParameter(
-                        parameterValue: (Literal)FromMutable(node.ParameterValue),
-                        parameterType: node.ParameterType
+                        parameterValue: (Literal)FromMutable((fragment as ScriptDom.WorkloadGroupResourceParameter).ParameterValue),
+                        parameterType: (fragment as ScriptDom.WorkloadGroupResourceParameter).ParameterType
                     );
                 }
                 case 892: {
-                    var node = (ScriptDom.WriteTextStatement)fragment;
                     return new WriteTextStatement(
-                        sourceParameter: (ValueExpression)FromMutable(node.SourceParameter),
-                        bulk: node.Bulk,
-                        column: (ColumnReferenceExpression)FromMutable(node.Column),
-                        textId: (ValueExpression)FromMutable(node.TextId),
-                        timestamp: (Literal)FromMutable(node.Timestamp),
-                        withLog: node.WithLog
+                        sourceParameter: (ValueExpression)FromMutable((fragment as ScriptDom.WriteTextStatement).SourceParameter),
+                        bulk: (fragment as ScriptDom.WriteTextStatement).Bulk,
+                        column: (ColumnReferenceExpression)FromMutable((fragment as ScriptDom.WriteTextStatement).Column),
+                        textId: (ValueExpression)FromMutable((fragment as ScriptDom.WriteTextStatement).TextId),
+                        timestamp: (Literal)FromMutable((fragment as ScriptDom.WriteTextStatement).Timestamp),
+                        withLog: (fragment as ScriptDom.WriteTextStatement).WithLog
                     );
                 }
                 case 893: {
-                    var node = (ScriptDom.WsdlPayloadOption)fragment;
                     return new WsdlPayloadOption(
-                        isNone: node.IsNone,
-                        @value: (Literal)FromMutable(node.Value),
-                        kind: node.Kind
+                        isNone: (fragment as ScriptDom.WsdlPayloadOption).IsNone,
+                        @value: (Literal)FromMutable((fragment as ScriptDom.WsdlPayloadOption).Value),
+                        kind: (fragment as ScriptDom.WsdlPayloadOption).Kind
                     );
                 }
                 case 894: {
-                    var node = (ScriptDom.XmlCompressionOption)fragment;
                     return new XmlCompressionOption(
-                        isCompressed: node.IsCompressed,
-                        partitionRanges: node.PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c)),
-                        optionKind: node.OptionKind
+                        isCompressed: (fragment as ScriptDom.XmlCompressionOption).IsCompressed,
+                        partitionRanges: (fragment as ScriptDom.XmlCompressionOption).PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c)),
+                        optionKind: (fragment as ScriptDom.XmlCompressionOption).OptionKind
                     );
                 }
                 case 895: {
-                    var node = (ScriptDom.XmlDataTypeReference)fragment;
                     return new XmlDataTypeReference(
-                        xmlDataTypeOption: node.XmlDataTypeOption,
-                        xmlSchemaCollection: (SchemaObjectName)FromMutable(node.XmlSchemaCollection),
-                        name: (SchemaObjectName)FromMutable(node.Name)
+                        xmlDataTypeOption: (fragment as ScriptDom.XmlDataTypeReference).XmlDataTypeOption,
+                        xmlSchemaCollection: (SchemaObjectName)FromMutable((fragment as ScriptDom.XmlDataTypeReference).XmlSchemaCollection),
+                        name: (SchemaObjectName)FromMutable((fragment as ScriptDom.XmlDataTypeReference).Name)
                     );
                 }
                 case 896: {
-                    var node = (ScriptDom.XmlForClause)fragment;
                     return new XmlForClause(
-                        options: node.Options.SelectList(c => (XmlForClauseOption)FromMutable(c))
+                        options: (fragment as ScriptDom.XmlForClause).Options.SelectList(c => (XmlForClauseOption)FromMutable(c))
                     );
                 }
                 case 897: {
-                    var node = (ScriptDom.XmlForClauseOption)fragment;
                     return new XmlForClauseOption(
-                        optionKind: node.OptionKind,
-                        @value: (Literal)FromMutable(node.Value)
+                        optionKind: (fragment as ScriptDom.XmlForClauseOption).OptionKind,
+                        @value: (Literal)FromMutable((fragment as ScriptDom.XmlForClauseOption).Value)
                     );
                 }
                 case 898: {
-                    var node = (ScriptDom.XmlNamespaces)fragment;
                     return new XmlNamespaces(
-                        xmlNamespacesElements: node.XmlNamespacesElements.SelectList(c => (XmlNamespacesElement)FromMutable(c))
+                        xmlNamespacesElements: (fragment as ScriptDom.XmlNamespaces).XmlNamespacesElements.SelectList(c => (XmlNamespacesElement)FromMutable(c))
                     );
                 }
                 case 899: {
-                    var node = (ScriptDom.XmlNamespacesAliasElement)fragment;
                     return new XmlNamespacesAliasElement(
-                        identifier: (Identifier)FromMutable(node.Identifier),
-                        @string: (StringLiteral)FromMutable(node.String)
+                        identifier: (Identifier)FromMutable((fragment as ScriptDom.XmlNamespacesAliasElement).Identifier),
+                        @string: (StringLiteral)FromMutable((fragment as ScriptDom.XmlNamespacesAliasElement).String)
                     );
                 }
                 case 900: {
-                    var node = (ScriptDom.XmlNamespacesDefaultElement)fragment;
                     return new XmlNamespacesDefaultElement(
-                        @string: (StringLiteral)FromMutable(node.String)
+                        @string: (StringLiteral)FromMutable((fragment as ScriptDom.XmlNamespacesDefaultElement).String)
                     );
                 }
                 default: throw new NotImplementedException("Type not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library.");
