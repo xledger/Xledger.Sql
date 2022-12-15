@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AtTimeZoneCall left, AtTimeZoneCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AtTimeZoneCall left, AtTimeZoneCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AtTimeZoneCall FromMutable(ScriptDom.AtTimeZoneCall fragment) {
-            return (AtTimeZoneCall)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -102,10 +102,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (EnableDisableTriggerStatement left, EnableDisableTriggerStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EnableDisableTriggerStatement left, EnableDisableTriggerStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static EnableDisableTriggerStatement FromMutable(ScriptDom.EnableDisableTriggerStatement fragment) {
-            return (EnableDisableTriggerStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

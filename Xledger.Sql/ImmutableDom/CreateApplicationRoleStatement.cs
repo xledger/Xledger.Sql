@@ -76,10 +76,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CreateApplicationRoleStatement left, CreateApplicationRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateApplicationRoleStatement left, CreateApplicationRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CreateApplicationRoleStatement FromMutable(ScriptDom.CreateApplicationRoleStatement fragment) {
-            return (CreateApplicationRoleStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

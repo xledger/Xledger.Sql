@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterServerConfigurationFailoverClusterPropertyOption left, AlterServerConfigurationFailoverClusterPropertyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationFailoverClusterPropertyOption left, AlterServerConfigurationFailoverClusterPropertyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterServerConfigurationFailoverClusterPropertyOption FromMutable(ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption fragment) {
-            return (AlterServerConfigurationFailoverClusterPropertyOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

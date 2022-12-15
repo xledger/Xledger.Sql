@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ExternalTableRejectTypeOption left, ExternalTableRejectTypeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExternalTableRejectTypeOption left, ExternalTableRejectTypeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ExternalTableRejectTypeOption FromMutable(ScriptDom.ExternalTableRejectTypeOption fragment) {
-            return (ExternalTableRejectTypeOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

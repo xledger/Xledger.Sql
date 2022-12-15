@@ -100,10 +100,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MaxSizeAuditTargetOption left, MaxSizeAuditTargetOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxSizeAuditTargetOption left, MaxSizeAuditTargetOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MaxSizeAuditTargetOption FromMutable(ScriptDom.MaxSizeAuditTargetOption fragment) {
-            return (MaxSizeAuditTargetOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

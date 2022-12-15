@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (PortsEndpointProtocolOption left, PortsEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PortsEndpointProtocolOption left, PortsEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static PortsEndpointProtocolOption FromMutable(ScriptDom.PortsEndpointProtocolOption fragment) {
-            return (PortsEndpointProtocolOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

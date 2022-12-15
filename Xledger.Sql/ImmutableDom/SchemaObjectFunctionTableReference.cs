@@ -108,10 +108,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SchemaObjectFunctionTableReference left, SchemaObjectFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SchemaObjectFunctionTableReference left, SchemaObjectFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SchemaObjectFunctionTableReference FromMutable(ScriptDom.SchemaObjectFunctionTableReference fragment) {
-            return (SchemaObjectFunctionTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

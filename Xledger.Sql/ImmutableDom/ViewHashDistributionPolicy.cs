@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ViewHashDistributionPolicy left, ViewHashDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ViewHashDistributionPolicy left, ViewHashDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ViewHashDistributionPolicy FromMutable(ScriptDom.ViewHashDistributionPolicy fragment) {
-            return (ViewHashDistributionPolicy)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

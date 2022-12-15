@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MemoryOptimizedTableOption left, MemoryOptimizedTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MemoryOptimizedTableOption left, MemoryOptimizedTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MemoryOptimizedTableOption FromMutable(ScriptDom.MemoryOptimizedTableOption fragment) {
-            return (MemoryOptimizedTableOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

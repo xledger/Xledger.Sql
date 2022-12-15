@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (QueryStoreDataFlushIntervalOption left, QueryStoreDataFlushIntervalOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryStoreDataFlushIntervalOption left, QueryStoreDataFlushIntervalOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static QueryStoreDataFlushIntervalOption FromMutable(ScriptDom.QueryStoreDataFlushIntervalOption fragment) {
-            return (QueryStoreDataFlushIntervalOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

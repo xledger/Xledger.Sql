@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ColumnWithSortOrder left, ColumnWithSortOrder right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ColumnWithSortOrder left, ColumnWithSortOrder right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ColumnWithSortOrder FromMutable(ScriptDom.ColumnWithSortOrder fragment) {
-            return (ColumnWithSortOrder)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

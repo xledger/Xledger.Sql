@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ParameterlessCall left, ParameterlessCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ParameterlessCall left, ParameterlessCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ParameterlessCall FromMutable(ScriptDom.ParameterlessCall fragment) {
-            return (ParameterlessCall)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

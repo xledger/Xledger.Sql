@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (JoinParenthesisTableReference left, JoinParenthesisTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(JoinParenthesisTableReference left, JoinParenthesisTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static JoinParenthesisTableReference FromMutable(ScriptDom.JoinParenthesisTableReference fragment) {
-            return (JoinParenthesisTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

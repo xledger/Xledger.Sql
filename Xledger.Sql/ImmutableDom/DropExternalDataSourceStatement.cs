@@ -76,10 +76,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DropExternalDataSourceStatement left, DropExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropExternalDataSourceStatement left, DropExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DropExternalDataSourceStatement FromMutable(ScriptDom.DropExternalDataSourceStatement fragment) {
-            return (DropExternalDataSourceStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

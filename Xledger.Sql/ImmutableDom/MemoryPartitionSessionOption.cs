@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MemoryPartitionSessionOption left, MemoryPartitionSessionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MemoryPartitionSessionOption left, MemoryPartitionSessionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MemoryPartitionSessionOption FromMutable(ScriptDom.MemoryPartitionSessionOption fragment) {
-            return (MemoryPartitionSessionOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

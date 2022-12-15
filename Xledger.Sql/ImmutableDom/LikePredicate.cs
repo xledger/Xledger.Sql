@@ -116,10 +116,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static LikePredicate FromMutable(ScriptDom.LikePredicate fragment) {
-            return (LikePredicate)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

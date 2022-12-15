@@ -86,10 +86,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static IgnoreDupKeyIndexOption FromMutable(ScriptDom.IgnoreDupKeyIndexOption fragment) {
-            return (IgnoreDupKeyIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ExternalResourcePoolParameter left, ExternalResourcePoolParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExternalResourcePoolParameter left, ExternalResourcePoolParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ExternalResourcePoolParameter FromMutable(ScriptDom.ExternalResourcePoolParameter fragment) {
-            return (ExternalResourcePoolParameter)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

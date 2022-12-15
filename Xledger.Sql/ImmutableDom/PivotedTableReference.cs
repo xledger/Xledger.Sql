@@ -134,10 +134,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (PivotedTableReference left, PivotedTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PivotedTableReference left, PivotedTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static PivotedTableReference FromMutable(ScriptDom.PivotedTableReference fragment) {
-            return (PivotedTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

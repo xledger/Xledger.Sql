@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GridsSpatialIndexOption left, GridsSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GridsSpatialIndexOption left, GridsSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GridsSpatialIndexOption FromMutable(ScriptDom.GridsSpatialIndexOption fragment) {
-            return (GridsSpatialIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -132,10 +132,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static InsertSpecification FromMutable(ScriptDom.InsertSpecification fragment) {
-            return (InsertSpecification)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

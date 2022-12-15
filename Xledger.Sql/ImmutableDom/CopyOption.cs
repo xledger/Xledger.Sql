@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CopyOption left, CopyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CopyOption left, CopyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CopyOption FromMutable(ScriptDom.CopyOption fragment) {
-            return (CopyOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

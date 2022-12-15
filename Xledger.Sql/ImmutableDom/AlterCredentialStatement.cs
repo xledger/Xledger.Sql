@@ -96,10 +96,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterCredentialStatement left, AlterCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterCredentialStatement left, AlterCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterCredentialStatement FromMutable(ScriptDom.AlterCredentialStatement fragment) {
-            return (AlterCredentialStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -120,10 +120,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (BackupCertificateStatement left, BackupCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BackupCertificateStatement left, BackupCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static BackupCertificateStatement FromMutable(ScriptDom.BackupCertificateStatement fragment) {
-            return (BackupCertificateStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

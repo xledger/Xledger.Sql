@@ -100,10 +100,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (InternalOpenRowset left, InternalOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(InternalOpenRowset left, InternalOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static InternalOpenRowset FromMutable(ScriptDom.InternalOpenRowset fragment) {
-            return (InternalOpenRowset)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ExternalDataSourceLiteralOrIdentifierOption left, ExternalDataSourceLiteralOrIdentifierOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExternalDataSourceLiteralOrIdentifierOption left, ExternalDataSourceLiteralOrIdentifierOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ExternalDataSourceLiteralOrIdentifierOption FromMutable(ScriptDom.ExternalDataSourceLiteralOrIdentifierOption fragment) {
-            return (ExternalDataSourceLiteralOrIdentifierOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterTableChangeTrackingModificationStatement left, AlterTableChangeTrackingModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableChangeTrackingModificationStatement left, AlterTableChangeTrackingModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterTableChangeTrackingModificationStatement FromMutable(ScriptDom.AlterTableChangeTrackingModificationStatement fragment) {
-            return (AlterTableChangeTrackingModificationStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

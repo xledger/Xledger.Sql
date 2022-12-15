@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterServerConfigurationSetHadrClusterStatement left, AlterServerConfigurationSetHadrClusterStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationSetHadrClusterStatement left, AlterServerConfigurationSetHadrClusterStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterServerConfigurationSetHadrClusterStatement FromMutable(ScriptDom.AlterServerConfigurationSetHadrClusterStatement fragment) {
-            return (AlterServerConfigurationSetHadrClusterStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

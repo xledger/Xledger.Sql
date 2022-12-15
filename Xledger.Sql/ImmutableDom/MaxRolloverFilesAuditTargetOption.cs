@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MaxRolloverFilesAuditTargetOption left, MaxRolloverFilesAuditTargetOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxRolloverFilesAuditTargetOption left, MaxRolloverFilesAuditTargetOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MaxRolloverFilesAuditTargetOption FromMutable(ScriptDom.MaxRolloverFilesAuditTargetOption fragment) {
-            return (MaxRolloverFilesAuditTargetOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

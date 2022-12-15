@@ -74,10 +74,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AutomaticTuningForceLastGoodPlanOption left, AutomaticTuningForceLastGoodPlanOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutomaticTuningForceLastGoodPlanOption left, AutomaticTuningForceLastGoodPlanOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AutomaticTuningForceLastGoodPlanOption FromMutable(ScriptDom.AutomaticTuningForceLastGoodPlanOption fragment) {
-            return (AutomaticTuningForceLastGoodPlanOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

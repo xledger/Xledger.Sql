@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CubeGroupingSpecification left, CubeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CubeGroupingSpecification left, CubeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CubeGroupingSpecification FromMutable(ScriptDom.CubeGroupingSpecification fragment) {
-            return (CubeGroupingSpecification)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

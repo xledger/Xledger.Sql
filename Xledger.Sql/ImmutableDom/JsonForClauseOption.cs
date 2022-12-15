@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (JsonForClauseOption left, JsonForClauseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(JsonForClauseOption left, JsonForClauseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static JsonForClauseOption FromMutable(ScriptDom.JsonForClauseOption fragment) {
-            return (JsonForClauseOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

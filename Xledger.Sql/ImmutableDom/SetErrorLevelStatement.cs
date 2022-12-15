@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SetErrorLevelStatement left, SetErrorLevelStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SetErrorLevelStatement left, SetErrorLevelStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SetErrorLevelStatement FromMutable(ScriptDom.SetErrorLevelStatement fragment) {
-            return (SetErrorLevelStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

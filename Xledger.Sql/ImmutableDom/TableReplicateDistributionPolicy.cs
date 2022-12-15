@@ -59,10 +59,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (TableReplicateDistributionPolicy left, TableReplicateDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TableReplicateDistributionPolicy left, TableReplicateDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static TableReplicateDistributionPolicy FromMutable(ScriptDom.TableReplicateDistributionPolicy fragment) {
-            return (TableReplicateDistributionPolicy)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

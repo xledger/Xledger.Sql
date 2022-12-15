@@ -102,10 +102,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (PasswordCreateLoginSource left, PasswordCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PasswordCreateLoginSource left, PasswordCreateLoginSource right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static PasswordCreateLoginSource FromMutable(ScriptDom.PasswordCreateLoginSource fragment) {
-            return (PasswordCreateLoginSource)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

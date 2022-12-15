@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterAvailabilityGroupFailoverAction left, AlterAvailabilityGroupFailoverAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterAvailabilityGroupFailoverAction left, AlterAvailabilityGroupFailoverAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterAvailabilityGroupFailoverAction FromMutable(ScriptDom.AlterAvailabilityGroupFailoverAction fragment) {
-            return (AlterAvailabilityGroupFailoverAction)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

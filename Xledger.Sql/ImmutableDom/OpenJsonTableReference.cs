@@ -112,10 +112,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (OpenJsonTableReference left, OpenJsonTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OpenJsonTableReference left, OpenJsonTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static OpenJsonTableReference FromMutable(ScriptDom.OpenJsonTableReference fragment) {
-            return (OpenJsonTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

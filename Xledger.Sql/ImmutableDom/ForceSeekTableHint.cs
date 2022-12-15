@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ForceSeekTableHint FromMutable(ScriptDom.ForceSeekTableHint fragment) {
-            return (ForceSeekTableHint)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -14,10 +14,6 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<PrincipalOption> UserOptions => userOptions;
     
-        public static UserStatement FromMutable(ScriptDom.UserStatement fragment) {
-            return (UserStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

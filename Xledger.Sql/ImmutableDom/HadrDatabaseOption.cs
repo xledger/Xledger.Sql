@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (HadrDatabaseOption left, HadrDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(HadrDatabaseOption left, HadrDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static HadrDatabaseOption FromMutable(ScriptDom.HadrDatabaseOption fragment) {
-            return (HadrDatabaseOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

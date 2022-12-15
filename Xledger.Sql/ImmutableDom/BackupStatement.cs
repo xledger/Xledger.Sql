@@ -18,10 +18,6 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<MirrorToClause> MirrorToClauses => mirrorToClauses;
         public IReadOnlyList<DeviceInfo> Devices => devices;
     
-        public static BackupStatement FromMutable(ScriptDom.BackupStatement fragment) {
-            return (BackupStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

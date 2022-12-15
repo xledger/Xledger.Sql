@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (EventTypeContainer left, EventTypeContainer right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EventTypeContainer left, EventTypeContainer right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static EventTypeContainer FromMutable(ScriptDom.EventTypeContainer fragment) {
-            return (EventTypeContainer)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

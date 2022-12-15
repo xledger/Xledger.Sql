@@ -88,10 +88,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (OnlineIndexOption left, OnlineIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OnlineIndexOption left, OnlineIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static OnlineIndexOption FromMutable(ScriptDom.OnlineIndexOption fragment) {
-            return (OnlineIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

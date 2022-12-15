@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (OrderByClause left, OrderByClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OrderByClause left, OrderByClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static OrderByClause FromMutable(ScriptDom.OrderByClause fragment) {
-            return (OrderByClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

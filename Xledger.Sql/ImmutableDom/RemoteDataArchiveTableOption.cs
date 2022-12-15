@@ -88,10 +88,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (RemoteDataArchiveTableOption left, RemoteDataArchiveTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RemoteDataArchiveTableOption left, RemoteDataArchiveTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static RemoteDataArchiveTableOption FromMutable(ScriptDom.RemoteDataArchiveTableOption fragment) {
-            return (RemoteDataArchiveTableOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

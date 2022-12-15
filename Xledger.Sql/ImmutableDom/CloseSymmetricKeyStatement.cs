@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CloseSymmetricKeyStatement left, CloseSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CloseSymmetricKeyStatement left, CloseSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CloseSymmetricKeyStatement FromMutable(ScriptDom.CloseSymmetricKeyStatement fragment) {
-            return (CloseSymmetricKeyStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

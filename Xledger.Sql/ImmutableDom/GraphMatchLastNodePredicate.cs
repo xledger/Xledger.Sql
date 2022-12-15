@@ -84,10 +84,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GraphMatchLastNodePredicate FromMutable(ScriptDom.GraphMatchLastNodePredicate fragment) {
-            return (GraphMatchLastNodePredicate)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

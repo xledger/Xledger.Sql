@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GroupByClause FromMutable(ScriptDom.GroupByClause fragment) {
-            return (GroupByClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

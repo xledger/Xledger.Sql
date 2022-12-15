@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScalarExpression ThenExpression => thenExpression;
     
-        public static WhenClause FromMutable(ScriptDom.WhenClause fragment) {
-            return (WhenClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

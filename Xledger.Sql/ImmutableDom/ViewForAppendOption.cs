@@ -66,10 +66,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ViewForAppendOption left, ViewForAppendOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ViewForAppendOption left, ViewForAppendOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ViewForAppendOption FromMutable(ScriptDom.ViewForAppendOption fragment) {
-            return (ViewForAppendOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (LowPriorityLockWaitMaxDurationOption left, LowPriorityLockWaitMaxDurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LowPriorityLockWaitMaxDurationOption left, LowPriorityLockWaitMaxDurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static LowPriorityLockWaitMaxDurationOption FromMutable(ScriptDom.LowPriorityLockWaitMaxDurationOption fragment) {
-            return (LowPriorityLockWaitMaxDurationOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

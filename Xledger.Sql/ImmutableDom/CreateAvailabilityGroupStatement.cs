@@ -92,10 +92,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CreateAvailabilityGroupStatement left, CreateAvailabilityGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateAvailabilityGroupStatement left, CreateAvailabilityGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CreateAvailabilityGroupStatement FromMutable(ScriptDom.CreateAvailabilityGroupStatement fragment) {
-            return (CreateAvailabilityGroupStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

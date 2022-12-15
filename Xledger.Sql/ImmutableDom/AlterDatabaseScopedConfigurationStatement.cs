@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public bool Secondary => secondary;
     
-        public static AlterDatabaseScopedConfigurationStatement FromMutable(ScriptDom.AlterDatabaseScopedConfigurationStatement fragment) {
-            return (AlterDatabaseScopedConfigurationStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

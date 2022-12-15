@@ -74,10 +74,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AutomaticTuningCreateIndexOption left, AutomaticTuningCreateIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutomaticTuningCreateIndexOption left, AutomaticTuningCreateIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AutomaticTuningCreateIndexOption FromMutable(ScriptDom.AutomaticTuningCreateIndexOption fragment) {
-            return (AutomaticTuningCreateIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

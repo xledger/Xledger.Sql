@@ -14,10 +14,6 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<BrokerPriorityParameter> BrokerPriorityParameters => brokerPriorityParameters;
     
-        public static BrokerPriorityStatement FromMutable(ScriptDom.BrokerPriorityStatement fragment) {
-            return (BrokerPriorityStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

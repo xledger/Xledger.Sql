@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (UnqualifiedJoin left, UnqualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UnqualifiedJoin left, UnqualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static UnqualifiedJoin FromMutable(ScriptDom.UnqualifiedJoin fragment) {
-            return (UnqualifiedJoin)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

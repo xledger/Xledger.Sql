@@ -76,10 +76,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterResourcePoolStatement left, AlterResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterResourcePoolStatement left, AlterResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterResourcePoolStatement FromMutable(ScriptDom.AlterResourcePoolStatement fragment) {
-            return (AlterResourcePoolStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

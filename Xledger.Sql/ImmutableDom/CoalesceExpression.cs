@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CoalesceExpression left, CoalesceExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CoalesceExpression left, CoalesceExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CoalesceExpression FromMutable(ScriptDom.CoalesceExpression fragment) {
-            return (CoalesceExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

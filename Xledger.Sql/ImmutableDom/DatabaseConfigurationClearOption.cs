@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DatabaseConfigurationClearOption FromMutable(ScriptDom.DatabaseConfigurationClearOption fragment) {
-            return (DatabaseConfigurationClearOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

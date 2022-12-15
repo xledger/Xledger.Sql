@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GlobalVariableExpression left, GlobalVariableExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GlobalVariableExpression left, GlobalVariableExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GlobalVariableExpression FromMutable(ScriptDom.GlobalVariableExpression fragment) {
-            return (GlobalVariableExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

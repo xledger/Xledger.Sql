@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AuthenticationEndpointProtocolOption left, AuthenticationEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AuthenticationEndpointProtocolOption left, AuthenticationEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AuthenticationEndpointProtocolOption FromMutable(ScriptDom.AuthenticationEndpointProtocolOption fragment) {
-            return (AuthenticationEndpointProtocolOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

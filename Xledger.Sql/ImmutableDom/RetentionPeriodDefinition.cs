@@ -92,10 +92,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (RetentionPeriodDefinition left, RetentionPeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RetentionPeriodDefinition left, RetentionPeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static RetentionPeriodDefinition FromMutable(ScriptDom.RetentionPeriodDefinition fragment) {
-            return (RetentionPeriodDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

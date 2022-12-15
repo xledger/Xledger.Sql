@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DelayedDurabilityDatabaseOption left, DelayedDurabilityDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DelayedDurabilityDatabaseOption left, DelayedDurabilityDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DelayedDurabilityDatabaseOption FromMutable(ScriptDom.DelayedDurabilityDatabaseOption fragment) {
-            return (DelayedDurabilityDatabaseOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

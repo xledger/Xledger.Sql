@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CommitTransactionStatement left, CommitTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CommitTransactionStatement left, CommitTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CommitTransactionStatement FromMutable(ScriptDom.CommitTransactionStatement fragment) {
-            return (CommitTransactionStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

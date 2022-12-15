@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MergeActionClause left, MergeActionClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MergeActionClause left, MergeActionClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MergeActionClause FromMutable(ScriptDom.MergeActionClause fragment) {
-            return (MergeActionClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

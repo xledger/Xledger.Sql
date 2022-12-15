@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MaxDurationOption left, MaxDurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxDurationOption left, MaxDurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MaxDurationOption FromMutable(ScriptDom.MaxDurationOption fragment) {
-            return (MaxDurationOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

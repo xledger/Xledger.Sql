@@ -100,10 +100,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MaxSizeFileDeclarationOption FromMutable(ScriptDom.MaxSizeFileDeclarationOption fragment) {
-            return (MaxSizeFileDeclarationOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

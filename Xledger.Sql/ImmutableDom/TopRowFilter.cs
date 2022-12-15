@@ -92,10 +92,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (TopRowFilter left, TopRowFilter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TopRowFilter left, TopRowFilter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static TopRowFilter FromMutable(ScriptDom.TopRowFilter fragment) {
-            return (TopRowFilter)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

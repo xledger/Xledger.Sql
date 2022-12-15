@@ -14,10 +14,6 @@ namespace Xledger.Sql.ImmutableDom {
         public StringLiteral Name => name;
         public StringLiteral Statement => statement;
     
-        public static ExternalStreamingJobStatement FromMutable(ScriptDom.ExternalStreamingJobStatement fragment) {
-            return (ExternalStreamingJobStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

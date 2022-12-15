@@ -8,10 +8,6 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class SpatialIndexOption : TSqlFragment {
-        public static SpatialIndexOption FromMutable(ScriptDom.SpatialIndexOption fragment) {
-            return (SpatialIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -122,10 +122,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static PasswordAlterPrincipalOption FromMutable(ScriptDom.PasswordAlterPrincipalOption fragment) {
-            return (PasswordAlterPrincipalOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

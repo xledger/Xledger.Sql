@@ -102,10 +102,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static QueryParenthesisExpression FromMutable(ScriptDom.QueryParenthesisExpression fragment) {
-            return (QueryParenthesisExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -20,10 +20,6 @@ namespace Xledger.Sql.ImmutableDom {
         public Literal EncryptionPassword => encryptionPassword;
         public Literal DecryptionPassword => decryptionPassword;
     
-        public static CertificateStatementBase FromMutable(ScriptDom.CertificateStatementBase fragment) {
-            return (CertificateStatementBase)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -132,10 +132,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ForeignKeyConstraintDefinition FromMutable(ScriptDom.ForeignKeyConstraintDefinition fragment) {
-            return (ForeignKeyConstraintDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

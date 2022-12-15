@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RemoteDataArchiveDatabaseSettingKind SettingKind => settingKind;
     
-        public static RemoteDataArchiveDatabaseSetting FromMutable(ScriptDom.RemoteDataArchiveDatabaseSetting fragment) {
-            return (RemoteDataArchiveDatabaseSetting)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -14,10 +14,6 @@ namespace Xledger.Sql.ImmutableDom {
         public FromClause FromClause => fromClause;
         public WhereClause WhereClause => whereClause;
     
-        public static UpdateDeleteSpecificationBase FromMutable(ScriptDom.UpdateDeleteSpecificationBase fragment) {
-            return (UpdateDeleteSpecificationBase)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

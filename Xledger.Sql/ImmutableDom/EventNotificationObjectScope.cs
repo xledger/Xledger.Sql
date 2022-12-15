@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (EventNotificationObjectScope left, EventNotificationObjectScope right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EventNotificationObjectScope left, EventNotificationObjectScope right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static EventNotificationObjectScope FromMutable(ScriptDom.EventNotificationObjectScope fragment) {
-            return (EventNotificationObjectScope)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

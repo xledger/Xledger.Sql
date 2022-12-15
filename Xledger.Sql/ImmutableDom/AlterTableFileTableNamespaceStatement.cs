@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterTableFileTableNamespaceStatement left, AlterTableFileTableNamespaceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableFileTableNamespaceStatement left, AlterTableFileTableNamespaceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterTableFileTableNamespaceStatement FromMutable(ScriptDom.AlterTableFileTableNamespaceStatement fragment) {
-            return (AlterTableFileTableNamespaceStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

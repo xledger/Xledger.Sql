@@ -8,10 +8,6 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class WaitForSupportedStatement : TSqlStatement {
-        public static WaitForSupportedStatement FromMutable(ScriptDom.WaitForSupportedStatement fragment) {
-            return (WaitForSupportedStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -132,10 +132,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterEventSessionStatement left, AlterEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterEventSessionStatement left, AlterEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterEventSessionStatement FromMutable(ScriptDom.AlterEventSessionStatement fragment) {
-            return (AlterEventSessionStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

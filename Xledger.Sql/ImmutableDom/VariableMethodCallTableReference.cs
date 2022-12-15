@@ -120,10 +120,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (VariableMethodCallTableReference left, VariableMethodCallTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(VariableMethodCallTableReference left, VariableMethodCallTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static VariableMethodCallTableReference FromMutable(ScriptDom.VariableMethodCallTableReference fragment) {
-            return (VariableMethodCallTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

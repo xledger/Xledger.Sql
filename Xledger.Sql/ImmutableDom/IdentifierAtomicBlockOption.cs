@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (IdentifierAtomicBlockOption left, IdentifierAtomicBlockOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(IdentifierAtomicBlockOption left, IdentifierAtomicBlockOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static IdentifierAtomicBlockOption FromMutable(ScriptDom.IdentifierAtomicBlockOption fragment) {
-            return (IdentifierAtomicBlockOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SimpleWhenClause left, SimpleWhenClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SimpleWhenClause left, SimpleWhenClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SimpleWhenClause FromMutable(ScriptDom.SimpleWhenClause fragment) {
-            return (SimpleWhenClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

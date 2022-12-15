@@ -84,10 +84,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SystemTimePeriodDefinition left, SystemTimePeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SystemTimePeriodDefinition left, SystemTimePeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SystemTimePeriodDefinition FromMutable(ScriptDom.SystemTimePeriodDefinition fragment) {
-            return (SystemTimePeriodDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

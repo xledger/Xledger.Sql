@@ -100,10 +100,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (BuiltInFunctionTableReference left, BuiltInFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BuiltInFunctionTableReference left, BuiltInFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static BuiltInFunctionTableReference FromMutable(ScriptDom.BuiltInFunctionTableReference fragment) {
-            return (BuiltInFunctionTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (WsdlPayloadOption left, WsdlPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WsdlPayloadOption left, WsdlPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static WsdlPayloadOption FromMutable(ScriptDom.WsdlPayloadOption fragment) {
-            return (WsdlPayloadOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

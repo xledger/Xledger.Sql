@@ -146,10 +146,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SemanticTableReference left, SemanticTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SemanticTableReference left, SemanticTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SemanticTableReference FromMutable(ScriptDom.SemanticTableReference fragment) {
-            return (SemanticTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (BoundingBoxSpatialIndexOption left, BoundingBoxSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BoundingBoxSpatialIndexOption left, BoundingBoxSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static BoundingBoxSpatialIndexOption FromMutable(ScriptDom.BoundingBoxSpatialIndexOption fragment) {
-            return (BoundingBoxSpatialIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

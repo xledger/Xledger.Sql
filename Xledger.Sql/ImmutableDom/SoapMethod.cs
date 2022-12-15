@@ -134,10 +134,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SoapMethod left, SoapMethod right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SoapMethod left, SoapMethod right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SoapMethod FromMutable(ScriptDom.SoapMethod fragment) {
-            return (SoapMethod)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -104,10 +104,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (RenameEntityStatement left, RenameEntityStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RenameEntityStatement left, RenameEntityStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static RenameEntityStatement FromMutable(ScriptDom.RenameEntityStatement fragment) {
-            return (RenameEntityStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

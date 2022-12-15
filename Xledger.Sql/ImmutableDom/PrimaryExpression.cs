@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public Identifier Collation => collation;
     
-        public static PrimaryExpression FromMutable(ScriptDom.PrimaryExpression fragment) {
-            return (PrimaryExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

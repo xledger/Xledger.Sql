@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ExternalFileFormatUseDefaultTypeOption left, ExternalFileFormatUseDefaultTypeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExternalFileFormatUseDefaultTypeOption left, ExternalFileFormatUseDefaultTypeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ExternalFileFormatUseDefaultTypeOption FromMutable(ScriptDom.ExternalFileFormatUseDefaultTypeOption fragment) {
-            return (ExternalFileFormatUseDefaultTypeOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

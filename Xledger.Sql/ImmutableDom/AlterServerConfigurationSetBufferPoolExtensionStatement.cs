@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterServerConfigurationSetBufferPoolExtensionStatement left, AlterServerConfigurationSetBufferPoolExtensionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationSetBufferPoolExtensionStatement left, AlterServerConfigurationSetBufferPoolExtensionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterServerConfigurationSetBufferPoolExtensionStatement FromMutable(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement fragment) {
-            return (AlterServerConfigurationSetBufferPoolExtensionStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

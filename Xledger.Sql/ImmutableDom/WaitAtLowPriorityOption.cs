@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (WaitAtLowPriorityOption left, WaitAtLowPriorityOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WaitAtLowPriorityOption left, WaitAtLowPriorityOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static WaitAtLowPriorityOption FromMutable(ScriptDom.WaitAtLowPriorityOption fragment) {
-            return (WaitAtLowPriorityOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

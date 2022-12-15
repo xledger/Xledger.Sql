@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (KillQueryNotificationSubscriptionStatement left, KillQueryNotificationSubscriptionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(KillQueryNotificationSubscriptionStatement left, KillQueryNotificationSubscriptionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static KillQueryNotificationSubscriptionStatement FromMutable(ScriptDom.KillQueryNotificationSubscriptionStatement fragment) {
-            return (KillQueryNotificationSubscriptionStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

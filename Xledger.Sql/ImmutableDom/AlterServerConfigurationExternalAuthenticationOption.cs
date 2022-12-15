@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterServerConfigurationExternalAuthenticationOption left, AlterServerConfigurationExternalAuthenticationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationExternalAuthenticationOption left, AlterServerConfigurationExternalAuthenticationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterServerConfigurationExternalAuthenticationOption FromMutable(ScriptDom.AlterServerConfigurationExternalAuthenticationOption fragment) {
-            return (AlterServerConfigurationExternalAuthenticationOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

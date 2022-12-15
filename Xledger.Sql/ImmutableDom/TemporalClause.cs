@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (TemporalClause left, TemporalClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TemporalClause left, TemporalClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static TemporalClause FromMutable(ScriptDom.TemporalClause fragment) {
-            return (TemporalClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

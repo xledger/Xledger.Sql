@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public Identifier ConstraintIdentifier => constraintIdentifier;
     
-        public static ConstraintDefinition FromMutable(ScriptDom.ConstraintDefinition fragment) {
-            return (ConstraintDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

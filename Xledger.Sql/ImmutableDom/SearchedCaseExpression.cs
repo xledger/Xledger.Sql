@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SearchedCaseExpression left, SearchedCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SearchedCaseExpression left, SearchedCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SearchedCaseExpression FromMutable(ScriptDom.SearchedCaseExpression fragment) {
-            return (SearchedCaseExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

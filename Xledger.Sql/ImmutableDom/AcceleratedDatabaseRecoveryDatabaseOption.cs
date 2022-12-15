@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AcceleratedDatabaseRecoveryDatabaseOption left, AcceleratedDatabaseRecoveryDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AcceleratedDatabaseRecoveryDatabaseOption left, AcceleratedDatabaseRecoveryDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AcceleratedDatabaseRecoveryDatabaseOption FromMutable(ScriptDom.AcceleratedDatabaseRecoveryDatabaseOption fragment) {
-            return (AcceleratedDatabaseRecoveryDatabaseOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

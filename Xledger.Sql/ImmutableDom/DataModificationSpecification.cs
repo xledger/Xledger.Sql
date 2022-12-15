@@ -18,10 +18,6 @@ namespace Xledger.Sql.ImmutableDom {
         public OutputIntoClause OutputIntoClause => outputIntoClause;
         public OutputClause OutputClause => outputClause;
     
-        public static DataModificationSpecification FromMutable(ScriptDom.DataModificationSpecification fragment) {
-            return (DataModificationSpecification)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

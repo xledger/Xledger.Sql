@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ClassifierEndTimeOption left, ClassifierEndTimeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ClassifierEndTimeOption left, ClassifierEndTimeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ClassifierEndTimeOption FromMutable(ScriptDom.ClassifierEndTimeOption fragment) {
-            return (ClassifierEndTimeOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

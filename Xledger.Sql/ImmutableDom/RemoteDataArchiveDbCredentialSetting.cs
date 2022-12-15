@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (RemoteDataArchiveDbCredentialSetting left, RemoteDataArchiveDbCredentialSetting right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RemoteDataArchiveDbCredentialSetting left, RemoteDataArchiveDbCredentialSetting right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static RemoteDataArchiveDbCredentialSetting FromMutable(ScriptDom.RemoteDataArchiveDbCredentialSetting fragment) {
-            return (RemoteDataArchiveDbCredentialSetting)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

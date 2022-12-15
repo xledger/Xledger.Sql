@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DropClusteredConstraintStateOption left, DropClusteredConstraintStateOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropClusteredConstraintStateOption left, DropClusteredConstraintStateOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DropClusteredConstraintStateOption FromMutable(ScriptDom.DropClusteredConstraintStateOption fragment) {
-            return (DropClusteredConstraintStateOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

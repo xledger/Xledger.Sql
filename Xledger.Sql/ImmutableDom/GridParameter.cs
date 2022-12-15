@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GridParameter left, GridParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GridParameter left, GridParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GridParameter FromMutable(ScriptDom.GridParameter fragment) {
-            return (GridParameter)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

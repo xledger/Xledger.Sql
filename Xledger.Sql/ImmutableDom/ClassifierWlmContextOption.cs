@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ClassifierWlmContextOption left, ClassifierWlmContextOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ClassifierWlmContextOption left, ClassifierWlmContextOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ClassifierWlmContextOption FromMutable(ScriptDom.ClassifierWlmContextOption fragment) {
-            return (ClassifierWlmContextOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

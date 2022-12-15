@@ -118,10 +118,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ReadTextStatement FromMutable(ScriptDom.ReadTextStatement fragment) {
-            return (ReadTextStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

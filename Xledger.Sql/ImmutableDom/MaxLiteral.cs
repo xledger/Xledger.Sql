@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MaxLiteral left, MaxLiteral right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxLiteral left, MaxLiteral right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MaxLiteral FromMutable(ScriptDom.MaxLiteral fragment) {
-            return (MaxLiteral)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

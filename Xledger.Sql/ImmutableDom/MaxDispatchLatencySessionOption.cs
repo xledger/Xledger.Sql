@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MaxDispatchLatencySessionOption left, MaxDispatchLatencySessionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxDispatchLatencySessionOption left, MaxDispatchLatencySessionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MaxDispatchLatencySessionOption FromMutable(ScriptDom.MaxDispatchLatencySessionOption fragment) {
-            return (MaxDispatchLatencySessionOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (Privilege80 left, Privilege80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(Privilege80 left, Privilege80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static Privilege80 FromMutable(ScriptDom.Privilege80 fragment) {
-            return (Privilege80)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

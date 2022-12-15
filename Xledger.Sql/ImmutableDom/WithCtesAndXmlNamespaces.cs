@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static WithCtesAndXmlNamespaces FromMutable(ScriptDom.WithCtesAndXmlNamespaces fragment) {
-            return (WithCtesAndXmlNamespaces)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

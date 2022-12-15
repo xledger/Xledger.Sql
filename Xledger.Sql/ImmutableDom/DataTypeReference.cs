@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public SchemaObjectName Name => name;
     
-        public static DataTypeReference FromMutable(ScriptDom.DataTypeReference fragment) {
-            return (DataTypeReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

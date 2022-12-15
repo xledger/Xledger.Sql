@@ -84,10 +84,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SelectScalarExpression left, SelectScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SelectScalarExpression left, SelectScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SelectScalarExpression FromMutable(ScriptDom.SelectScalarExpression fragment) {
-            return (SelectScalarExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ChangeTrackingFullTextIndexOption left, ChangeTrackingFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ChangeTrackingFullTextIndexOption left, ChangeTrackingFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ChangeTrackingFullTextIndexOption FromMutable(ScriptDom.ChangeTrackingFullTextIndexOption fragment) {
-            return (ChangeTrackingFullTextIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

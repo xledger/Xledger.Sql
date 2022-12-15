@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FullTextIndexOptionKind OptionKind => optionKind;
     
-        public static FullTextIndexOption FromMutable(ScriptDom.FullTextIndexOption fragment) {
-            return (FullTextIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (RollupGroupingSpecification left, RollupGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RollupGroupingSpecification left, RollupGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static RollupGroupingSpecification FromMutable(ScriptDom.RollupGroupingSpecification fragment) {
-            return (RollupGroupingSpecification)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

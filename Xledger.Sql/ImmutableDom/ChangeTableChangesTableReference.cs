@@ -110,10 +110,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ChangeTableChangesTableReference left, ChangeTableChangesTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ChangeTableChangesTableReference left, ChangeTableChangesTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ChangeTableChangesTableReference FromMutable(ScriptDom.ChangeTableChangesTableReference fragment) {
-            return (ChangeTableChangesTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CellsPerObjectSpatialIndexOption left, CellsPerObjectSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CellsPerObjectSpatialIndexOption left, CellsPerObjectSpatialIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CellsPerObjectSpatialIndexOption FromMutable(ScriptDom.CellsPerObjectSpatialIndexOption fragment) {
-            return (CellsPerObjectSpatialIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

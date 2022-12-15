@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (EncryptedValueParameter left, EncryptedValueParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EncryptedValueParameter left, EncryptedValueParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static EncryptedValueParameter FromMutable(ScriptDom.EncryptedValueParameter fragment) {
-            return (EncryptedValueParameter)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

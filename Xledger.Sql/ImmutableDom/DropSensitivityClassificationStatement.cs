@@ -66,10 +66,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DropSensitivityClassificationStatement left, DropSensitivityClassificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropSensitivityClassificationStatement left, DropSensitivityClassificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DropSensitivityClassificationStatement FromMutable(ScriptDom.DropSensitivityClassificationStatement fragment) {
-            return (DropSensitivityClassificationStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -88,10 +88,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterServerConfigurationDiagnosticsLogMaxSizeOption left, AlterServerConfigurationDiagnosticsLogMaxSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationDiagnosticsLogMaxSizeOption left, AlterServerConfigurationDiagnosticsLogMaxSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterServerConfigurationDiagnosticsLogMaxSizeOption FromMutable(ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption fragment) {
-            return (AlterServerConfigurationDiagnosticsLogMaxSizeOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

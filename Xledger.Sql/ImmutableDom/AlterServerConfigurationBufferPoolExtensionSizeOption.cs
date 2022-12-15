@@ -88,10 +88,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterServerConfigurationBufferPoolExtensionSizeOption left, AlterServerConfigurationBufferPoolExtensionSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationBufferPoolExtensionSizeOption left, AlterServerConfigurationBufferPoolExtensionSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterServerConfigurationBufferPoolExtensionSizeOption FromMutable(ScriptDom.AlterServerConfigurationBufferPoolExtensionSizeOption fragment) {
-            return (AlterServerConfigurationBufferPoolExtensionSizeOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

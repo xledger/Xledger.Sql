@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ExpressionGroupingSpecification left, ExpressionGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExpressionGroupingSpecification left, ExpressionGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ExpressionGroupingSpecification FromMutable(ScriptDom.ExpressionGroupingSpecification fragment) {
-            return (ExpressionGroupingSpecification)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

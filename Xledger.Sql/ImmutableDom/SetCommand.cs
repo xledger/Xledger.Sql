@@ -8,10 +8,6 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class SetCommand : TSqlFragment {
-        public static SetCommand FromMutable(ScriptDom.SetCommand fragment) {
-            return (SetCommand)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

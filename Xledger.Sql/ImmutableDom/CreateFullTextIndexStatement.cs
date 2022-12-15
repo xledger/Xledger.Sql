@@ -116,10 +116,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CreateFullTextIndexStatement FromMutable(ScriptDom.CreateFullTextIndexStatement fragment) {
-            return (CreateFullTextIndexStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

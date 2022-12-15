@@ -136,10 +136,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static OpenXmlTableReference FromMutable(ScriptDom.OpenXmlTableReference fragment) {
-            return (OpenXmlTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

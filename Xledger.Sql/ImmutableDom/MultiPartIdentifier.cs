@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MultiPartIdentifier left, MultiPartIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MultiPartIdentifier left, MultiPartIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MultiPartIdentifier FromMutable(ScriptDom.MultiPartIdentifier fragment) {
-            return (MultiPartIdentifier)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

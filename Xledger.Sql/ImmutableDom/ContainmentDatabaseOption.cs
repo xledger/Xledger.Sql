@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ContainmentDatabaseOption left, ContainmentDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ContainmentDatabaseOption left, ContainmentDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ContainmentDatabaseOption FromMutable(ScriptDom.ContainmentDatabaseOption fragment) {
-            return (ContainmentDatabaseOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

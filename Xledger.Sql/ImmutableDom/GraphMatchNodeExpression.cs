@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GraphMatchNodeExpression left, GraphMatchNodeExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GraphMatchNodeExpression left, GraphMatchNodeExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GraphMatchNodeExpression FromMutable(ScriptDom.GraphMatchNodeExpression fragment) {
-            return (GraphMatchNodeExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

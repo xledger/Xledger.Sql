@@ -98,10 +98,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (EncryptionPayloadOption left, EncryptionPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EncryptionPayloadOption left, EncryptionPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static EncryptionPayloadOption FromMutable(ScriptDom.EncryptionPayloadOption fragment) {
-            return (EncryptionPayloadOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

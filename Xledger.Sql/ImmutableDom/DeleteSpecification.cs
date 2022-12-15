@@ -118,10 +118,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DeleteSpecification left, DeleteSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DeleteSpecification left, DeleteSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DeleteSpecification FromMutable(ScriptDom.DeleteSpecification fragment) {
-            return (DeleteSpecification)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

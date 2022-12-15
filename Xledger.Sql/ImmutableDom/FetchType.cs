@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (FetchType left, FetchType right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FetchType left, FetchType right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static FetchType FromMutable(ScriptDom.FetchType fragment) {
-            return (FetchType)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

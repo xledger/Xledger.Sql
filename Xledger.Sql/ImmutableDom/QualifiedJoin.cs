@@ -112,10 +112,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static QualifiedJoin FromMutable(ScriptDom.QualifiedJoin fragment) {
-            return (QualifiedJoin)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

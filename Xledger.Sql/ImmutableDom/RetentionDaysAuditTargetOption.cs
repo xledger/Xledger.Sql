@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (RetentionDaysAuditTargetOption left, RetentionDaysAuditTargetOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RetentionDaysAuditTargetOption left, RetentionDaysAuditTargetOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static RetentionDaysAuditTargetOption FromMutable(ScriptDom.RetentionDaysAuditTargetOption fragment) {
-            return (RetentionDaysAuditTargetOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

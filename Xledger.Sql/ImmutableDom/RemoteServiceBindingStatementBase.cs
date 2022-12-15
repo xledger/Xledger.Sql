@@ -14,10 +14,6 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<RemoteServiceBindingOption> Options => options;
     
-        public static RemoteServiceBindingStatementBase FromMutable(ScriptDom.RemoteServiceBindingStatementBase fragment) {
-            return (RemoteServiceBindingStatementBase)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

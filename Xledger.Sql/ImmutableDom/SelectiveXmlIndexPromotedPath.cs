@@ -130,10 +130,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SelectiveXmlIndexPromotedPath FromMutable(ScriptDom.SelectiveXmlIndexPromotedPath fragment) {
-            return (SelectiveXmlIndexPromotedPath)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

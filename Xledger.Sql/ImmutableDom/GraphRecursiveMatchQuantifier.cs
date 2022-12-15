@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GraphRecursiveMatchQuantifier left, GraphRecursiveMatchQuantifier right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GraphRecursiveMatchQuantifier left, GraphRecursiveMatchQuantifier right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GraphRecursiveMatchQuantifier FromMutable(ScriptDom.GraphRecursiveMatchQuantifier fragment) {
-            return (GraphRecursiveMatchQuantifier)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

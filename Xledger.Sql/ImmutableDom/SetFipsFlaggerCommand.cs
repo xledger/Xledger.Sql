@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SetFipsFlaggerCommand left, SetFipsFlaggerCommand right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SetFipsFlaggerCommand left, SetFipsFlaggerCommand right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SetFipsFlaggerCommand FromMutable(ScriptDom.SetFipsFlaggerCommand fragment) {
-            return (SetFipsFlaggerCommand)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

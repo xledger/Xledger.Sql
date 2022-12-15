@@ -88,10 +88,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterDatabaseEncryptionKeyStatement left, AlterDatabaseEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterDatabaseEncryptionKeyStatement left, AlterDatabaseEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterDatabaseEncryptionKeyStatement FromMutable(ScriptDom.AlterDatabaseEncryptionKeyStatement fragment) {
-            return (AlterDatabaseEncryptionKeyStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

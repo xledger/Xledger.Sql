@@ -76,10 +76,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (UserDataTypeReference left, UserDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UserDataTypeReference left, UserDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static UserDataTypeReference FromMutable(ScriptDom.UserDataTypeReference fragment) {
-            return (UserDataTypeReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

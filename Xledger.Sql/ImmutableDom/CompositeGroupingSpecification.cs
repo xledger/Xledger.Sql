@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CompositeGroupingSpecification left, CompositeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CompositeGroupingSpecification left, CompositeGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CompositeGroupingSpecification FromMutable(ScriptDom.CompositeGroupingSpecification fragment) {
-            return (CompositeGroupingSpecification)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

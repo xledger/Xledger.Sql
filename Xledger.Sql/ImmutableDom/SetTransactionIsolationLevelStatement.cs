@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SetTransactionIsolationLevelStatement left, SetTransactionIsolationLevelStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SetTransactionIsolationLevelStatement left, SetTransactionIsolationLevelStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SetTransactionIsolationLevelStatement FromMutable(ScriptDom.SetTransactionIsolationLevelStatement fragment) {
-            return (SetTransactionIsolationLevelStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

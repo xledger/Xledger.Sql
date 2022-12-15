@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SelectFunctionReturnType left, SelectFunctionReturnType right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SelectFunctionReturnType left, SelectFunctionReturnType right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SelectFunctionReturnType FromMutable(ScriptDom.SelectFunctionReturnType fragment) {
-            return (SelectFunctionReturnType)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -14,10 +14,6 @@ namespace Xledger.Sql.ImmutableDom {
         public SchemaObjectName To => to;
         public IReadOnlyList<BulkInsertOption> Options => options;
     
-        public static BulkInsertBase FromMutable(ScriptDom.BulkInsertBase fragment) {
-            return (BulkInsertBase)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

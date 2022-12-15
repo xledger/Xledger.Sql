@@ -84,10 +84,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GetConversationGroupStatement left, GetConversationGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GetConversationGroupStatement left, GetConversationGroupStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GetConversationGroupStatement FromMutable(ScriptDom.GetConversationGroupStatement fragment) {
-            return (GetConversationGroupStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

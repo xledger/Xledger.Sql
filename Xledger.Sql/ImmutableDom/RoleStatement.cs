@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public Identifier Name => name;
     
-        public static RoleStatement FromMutable(ScriptDom.RoleStatement fragment) {
-            return (RoleStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (OnlineIndexLowPriorityLockWaitOption left, OnlineIndexLowPriorityLockWaitOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OnlineIndexLowPriorityLockWaitOption left, OnlineIndexLowPriorityLockWaitOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static OnlineIndexLowPriorityLockWaitOption FromMutable(ScriptDom.OnlineIndexLowPriorityLockWaitOption fragment) {
-            return (OnlineIndexLowPriorityLockWaitOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

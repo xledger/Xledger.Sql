@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ClassifierImportanceOption left, ClassifierImportanceOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ClassifierImportanceOption left, ClassifierImportanceOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ClassifierImportanceOption FromMutable(ScriptDom.ClassifierImportanceOption fragment) {
-            return (ClassifierImportanceOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

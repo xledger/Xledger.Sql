@@ -20,10 +20,6 @@ namespace Xledger.Sql.ImmutableDom {
         public Literal Timestamp => timestamp;
         public bool WithLog => withLog;
     
-        public static TextModificationStatement FromMutable(ScriptDom.TextModificationStatement fragment) {
-            return (TextModificationStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -8,10 +8,6 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class EventTypeGroupContainer : TSqlFragment {
-        public static EventTypeGroupContainer FromMutable(ScriptDom.EventTypeGroupContainer fragment) {
-            return (EventTypeGroupContainer)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ColumnEncryptionAlgorithmNameParameter left, ColumnEncryptionAlgorithmNameParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ColumnEncryptionAlgorithmNameParameter left, ColumnEncryptionAlgorithmNameParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ColumnEncryptionAlgorithmNameParameter FromMutable(ScriptDom.ColumnEncryptionAlgorithmNameParameter fragment) {
-            return (ColumnEncryptionAlgorithmNameParameter)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -76,10 +76,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DropServerRoleStatement left, DropServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropServerRoleStatement left, DropServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DropServerRoleStatement FromMutable(ScriptDom.DropServerRoleStatement fragment) {
-            return (DropServerRoleStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

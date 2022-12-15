@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterServerConfigurationSetExternalAuthenticationStatement left, AlterServerConfigurationSetExternalAuthenticationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationSetExternalAuthenticationStatement left, AlterServerConfigurationSetExternalAuthenticationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterServerConfigurationSetExternalAuthenticationStatement FromMutable(ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement fragment) {
-            return (AlterServerConfigurationSetExternalAuthenticationStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

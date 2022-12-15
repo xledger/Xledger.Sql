@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterMasterKeyStatement left, AlterMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterMasterKeyStatement left, AlterMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterMasterKeyStatement FromMutable(ScriptDom.AlterMasterKeyStatement fragment) {
-            return (AlterMasterKeyStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

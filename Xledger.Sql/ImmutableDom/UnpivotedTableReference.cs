@@ -124,10 +124,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (UnpivotedTableReference left, UnpivotedTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UnpivotedTableReference left, UnpivotedTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static UnpivotedTableReference FromMutable(ScriptDom.UnpivotedTableReference fragment) {
-            return (UnpivotedTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

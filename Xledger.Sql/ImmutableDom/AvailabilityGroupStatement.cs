@@ -18,10 +18,6 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<Identifier> Databases => databases;
         public IReadOnlyList<AvailabilityReplica> Replicas => replicas;
     
-        public static AvailabilityGroupStatement FromMutable(ScriptDom.AvailabilityGroupStatement fragment) {
-            return (AvailabilityGroupStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

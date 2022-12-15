@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MirrorToClause left, MirrorToClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MirrorToClause left, MirrorToClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MirrorToClause FromMutable(ScriptDom.MirrorToClause fragment) {
-            return (MirrorToClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (QueryStoreSizeCleanupPolicyOption left, QueryStoreSizeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryStoreSizeCleanupPolicyOption left, QueryStoreSizeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static QueryStoreSizeCleanupPolicyOption FromMutable(ScriptDom.QueryStoreSizeCleanupPolicyOption fragment) {
-            return (QueryStoreSizeCleanupPolicyOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

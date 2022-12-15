@@ -118,10 +118,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterAsymmetricKeyStatement left, AlterAsymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterAsymmetricKeyStatement left, AlterAsymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterAsymmetricKeyStatement FromMutable(ScriptDom.AlterAsymmetricKeyStatement fragment) {
-            return (AlterAsymmetricKeyStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (EndpointAffinity left, EndpointAffinity right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EndpointAffinity left, EndpointAffinity right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static EndpointAffinity FromMutable(ScriptDom.EndpointAffinity fragment) {
-            return (EndpointAffinity)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

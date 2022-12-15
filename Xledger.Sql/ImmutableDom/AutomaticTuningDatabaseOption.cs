@@ -88,10 +88,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AutomaticTuningDatabaseOption left, AutomaticTuningDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutomaticTuningDatabaseOption left, AutomaticTuningDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AutomaticTuningDatabaseOption FromMutable(ScriptDom.AutomaticTuningDatabaseOption fragment) {
-            return (AutomaticTuningDatabaseOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

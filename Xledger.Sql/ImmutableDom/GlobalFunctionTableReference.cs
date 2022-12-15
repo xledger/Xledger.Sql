@@ -100,10 +100,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GlobalFunctionTableReference left, GlobalFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GlobalFunctionTableReference left, GlobalFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GlobalFunctionTableReference FromMutable(ScriptDom.GlobalFunctionTableReference fragment) {
-            return (GlobalFunctionTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

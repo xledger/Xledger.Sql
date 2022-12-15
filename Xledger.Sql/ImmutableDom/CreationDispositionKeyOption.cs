@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CreationDispositionKeyOption left, CreationDispositionKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreationDispositionKeyOption left, CreationDispositionKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CreationDispositionKeyOption FromMutable(ScriptDom.CreationDispositionKeyOption fragment) {
-            return (CreationDispositionKeyOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

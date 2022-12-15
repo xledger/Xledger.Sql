@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (QueryStoreIntervalLengthOption left, QueryStoreIntervalLengthOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryStoreIntervalLengthOption left, QueryStoreIntervalLengthOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static QueryStoreIntervalLengthOption FromMutable(ScriptDom.QueryStoreIntervalLengthOption fragment) {
-            return (QueryStoreIntervalLengthOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

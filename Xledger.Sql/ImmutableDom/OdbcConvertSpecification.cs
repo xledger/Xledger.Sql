@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (OdbcConvertSpecification left, OdbcConvertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OdbcConvertSpecification left, OdbcConvertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static OdbcConvertSpecification FromMutable(ScriptDom.OdbcConvertSpecification fragment) {
-            return (OdbcConvertSpecification)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

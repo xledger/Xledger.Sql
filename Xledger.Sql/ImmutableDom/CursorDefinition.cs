@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CursorDefinition left, CursorDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CursorDefinition left, CursorDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CursorDefinition FromMutable(ScriptDom.CursorDefinition fragment) {
-            return (CursorDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

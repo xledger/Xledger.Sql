@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SchemaDeclarationItemOpenjson left, SchemaDeclarationItemOpenjson right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SchemaDeclarationItemOpenjson left, SchemaDeclarationItemOpenjson right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SchemaDeclarationItemOpenjson FromMutable(ScriptDom.SchemaDeclarationItemOpenjson fragment) {
-            return (SchemaDeclarationItemOpenjson)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

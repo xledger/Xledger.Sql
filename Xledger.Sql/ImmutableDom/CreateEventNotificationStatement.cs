@@ -128,10 +128,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CreateEventNotificationStatement left, CreateEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateEventNotificationStatement left, CreateEventNotificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CreateEventNotificationStatement FromMutable(ScriptDom.CreateEventNotificationStatement fragment) {
-            return (CreateEventNotificationStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

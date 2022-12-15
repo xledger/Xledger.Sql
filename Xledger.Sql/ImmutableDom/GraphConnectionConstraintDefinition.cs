@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (GraphConnectionConstraintDefinition left, GraphConnectionConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GraphConnectionConstraintDefinition left, GraphConnectionConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static GraphConnectionConstraintDefinition FromMutable(ScriptDom.GraphConnectionConstraintDefinition fragment) {
-            return (GraphConnectionConstraintDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

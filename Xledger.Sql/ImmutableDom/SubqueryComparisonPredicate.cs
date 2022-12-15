@@ -104,10 +104,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SubqueryComparisonPredicate left, SubqueryComparisonPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SubqueryComparisonPredicate left, SubqueryComparisonPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SubqueryComparisonPredicate FromMutable(ScriptDom.SubqueryComparisonPredicate fragment) {
-            return (SubqueryComparisonPredicate)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

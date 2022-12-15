@@ -112,10 +112,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SystemVersioningTableOption left, SystemVersioningTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SystemVersioningTableOption left, SystemVersioningTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SystemVersioningTableOption FromMutable(ScriptDom.SystemVersioningTableOption fragment) {
-            return (SystemVersioningTableOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

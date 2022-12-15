@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DurabilityTableOption left, DurabilityTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DurabilityTableOption left, DurabilityTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DurabilityTableOption FromMutable(ScriptDom.DurabilityTableOption fragment) {
-            return (DurabilityTableOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

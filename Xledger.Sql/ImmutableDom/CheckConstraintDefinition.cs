@@ -92,10 +92,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CheckConstraintDefinition left, CheckConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CheckConstraintDefinition left, CheckConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CheckConstraintDefinition FromMutable(ScriptDom.CheckConstraintDefinition fragment) {
-            return (CheckConstraintDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -88,10 +88,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (QueryStoreDesiredStateOption left, QueryStoreDesiredStateOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryStoreDesiredStateOption left, QueryStoreDesiredStateOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static QueryStoreDesiredStateOption FromMutable(ScriptDom.QueryStoreDesiredStateOption fragment) {
-            return (QueryStoreDesiredStateOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

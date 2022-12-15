@@ -8,10 +8,6 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class AuditSpecificationDetail : TSqlFragment {
-        public static AuditSpecificationDetail FromMutable(ScriptDom.AuditSpecificationDetail fragment) {
-            return (AuditSpecificationDetail)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

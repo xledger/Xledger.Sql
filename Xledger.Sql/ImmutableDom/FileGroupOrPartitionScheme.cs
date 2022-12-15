@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (FileGroupOrPartitionScheme left, FileGroupOrPartitionScheme right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FileGroupOrPartitionScheme left, FileGroupOrPartitionScheme right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static FileGroupOrPartitionScheme FromMutable(ScriptDom.FileGroupOrPartitionScheme fragment) {
-            return (FileGroupOrPartitionScheme)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static TableClusteredIndexType FromMutable(ScriptDom.TableClusteredIndexType fragment) {
-            return (TableClusteredIndexType)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

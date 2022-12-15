@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AvailabilityReplicaOptionKind OptionKind => optionKind;
     
-        public static AvailabilityReplicaOption FromMutable(ScriptDom.AvailabilityReplicaOption fragment) {
-            return (AvailabilityReplicaOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

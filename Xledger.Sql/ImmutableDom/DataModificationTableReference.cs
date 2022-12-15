@@ -98,10 +98,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DataModificationTableReference FromMutable(ScriptDom.DataModificationTableReference fragment) {
-            return (DataModificationTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (UserDefinedTypePropertyAccess left, UserDefinedTypePropertyAccess right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UserDefinedTypePropertyAccess left, UserDefinedTypePropertyAccess right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static UserDefinedTypePropertyAccess FromMutable(ScriptDom.UserDefinedTypePropertyAccess fragment) {
-            return (UserDefinedTypePropertyAccess)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

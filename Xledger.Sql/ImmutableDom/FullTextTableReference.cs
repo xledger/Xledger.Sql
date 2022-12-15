@@ -158,10 +158,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (FullTextTableReference left, FullTextTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FullTextTableReference left, FullTextTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static FullTextTableReference FromMutable(ScriptDom.FullTextTableReference fragment) {
-            return (FullTextTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

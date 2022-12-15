@@ -78,10 +78,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CatalogCollationOption FromMutable(ScriptDom.CatalogCollationOption fragment) {
-            return (CatalogCollationOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

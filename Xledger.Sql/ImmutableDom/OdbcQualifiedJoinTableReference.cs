@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static OdbcQualifiedJoinTableReference FromMutable(ScriptDom.OdbcQualifiedJoinTableReference fragment) {
-            return (OdbcQualifiedJoinTableReference)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

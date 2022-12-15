@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (NullIfExpression left, NullIfExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(NullIfExpression left, NullIfExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static NullIfExpression FromMutable(ScriptDom.NullIfExpression fragment) {
-            return (NullIfExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

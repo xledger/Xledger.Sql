@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (BulkInsertOption left, BulkInsertOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BulkInsertOption left, BulkInsertOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static BulkInsertOption FromMutable(ScriptDom.BulkInsertOption fragment) {
-            return (BulkInsertOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

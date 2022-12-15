@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TableOptionKind OptionKind => optionKind;
     
-        public static TableOption FromMutable(ScriptDom.TableOption fragment) {
-            return (TableOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

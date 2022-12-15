@@ -138,10 +138,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterTriggerStatement left, AlterTriggerStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTriggerStatement left, AlterTriggerStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterTriggerStatement FromMutable(ScriptDom.AlterTriggerStatement fragment) {
-            return (AlterTriggerStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

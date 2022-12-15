@@ -102,10 +102,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SimpleCaseExpression FromMutable(ScriptDom.SimpleCaseExpression fragment) {
-            return (SimpleCaseExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -96,10 +96,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ThrowStatement left, ThrowStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ThrowStatement left, ThrowStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ThrowStatement FromMutable(ScriptDom.ThrowStatement fragment) {
-            return (ThrowStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

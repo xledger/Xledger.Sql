@@ -106,10 +106,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (OpenRowsetCosmos left, OpenRowsetCosmos right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OpenRowsetCosmos left, OpenRowsetCosmos right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static OpenRowsetCosmos FromMutable(ScriptDom.OpenRowsetCosmos fragment) {
-            return (OpenRowsetCosmos)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

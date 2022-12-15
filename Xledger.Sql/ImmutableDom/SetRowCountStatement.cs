@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SetRowCountStatement left, SetRowCountStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SetRowCountStatement left, SetRowCountStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SetRowCountStatement FromMutable(ScriptDom.SetRowCountStatement fragment) {
-            return (SetRowCountStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

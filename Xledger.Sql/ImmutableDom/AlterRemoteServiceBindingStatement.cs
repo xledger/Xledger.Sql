@@ -76,10 +76,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterRemoteServiceBindingStatement left, AlterRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterRemoteServiceBindingStatement left, AlterRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterRemoteServiceBindingStatement FromMutable(ScriptDom.AlterRemoteServiceBindingStatement fragment) {
-            return (AlterRemoteServiceBindingStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

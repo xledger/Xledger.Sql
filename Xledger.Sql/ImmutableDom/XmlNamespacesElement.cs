@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public StringLiteral String => @string;
     
-        public static XmlNamespacesElement FromMutable(ScriptDom.XmlNamespacesElement fragment) {
-            return (XmlNamespacesElement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LowPriorityLockWaitOptionKind OptionKind => optionKind;
     
-        public static LowPriorityLockWaitOption FromMutable(ScriptDom.LowPriorityLockWaitOption fragment) {
-            return (LowPriorityLockWaitOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

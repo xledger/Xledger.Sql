@@ -14,10 +14,6 @@ namespace Xledger.Sql.ImmutableDom {
         public WithCtesAndXmlNamespaces WithCtesAndXmlNamespaces => withCtesAndXmlNamespaces;
         public IReadOnlyList<OptimizerHint> OptimizerHints => optimizerHints;
     
-        public static StatementWithCtesAndXmlNamespaces FromMutable(ScriptDom.StatementWithCtesAndXmlNamespaces fragment) {
-            return (StatementWithCtesAndXmlNamespaces)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

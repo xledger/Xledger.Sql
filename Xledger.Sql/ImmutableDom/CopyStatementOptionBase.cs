@@ -8,10 +8,6 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class CopyStatementOptionBase : TSqlFragment {
-        public static CopyStatementOptionBase FromMutable(ScriptDom.CopyStatementOptionBase fragment) {
-            return (CopyStatementOptionBase)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

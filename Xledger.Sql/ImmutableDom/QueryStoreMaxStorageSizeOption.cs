@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (QueryStoreMaxStorageSizeOption left, QueryStoreMaxStorageSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryStoreMaxStorageSizeOption left, QueryStoreMaxStorageSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static QueryStoreMaxStorageSizeOption FromMutable(ScriptDom.QueryStoreMaxStorageSizeOption fragment) {
-            return (QueryStoreMaxStorageSizeOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

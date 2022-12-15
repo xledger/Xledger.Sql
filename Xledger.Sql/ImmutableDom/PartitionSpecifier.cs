@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (PartitionSpecifier left, PartitionSpecifier right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PartitionSpecifier left, PartitionSpecifier right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static PartitionSpecifier FromMutable(ScriptDom.PartitionSpecifier fragment) {
-            return (PartitionSpecifier)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

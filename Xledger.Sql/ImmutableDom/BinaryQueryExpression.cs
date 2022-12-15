@@ -134,10 +134,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static BinaryQueryExpression FromMutable(ScriptDom.BinaryQueryExpression fragment) {
-            return (BinaryQueryExpression)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

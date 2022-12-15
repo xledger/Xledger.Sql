@@ -18,10 +18,6 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<FunctionOption> Options => options;
         public OrderBulkInsertOption OrderHint => orderHint;
     
-        public static FunctionStatementBody FromMutable(ScriptDom.FunctionStatementBody fragment) {
-            return (FunctionStatementBody)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -68,10 +68,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (RollbackTransactionStatement left, RollbackTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RollbackTransactionStatement left, RollbackTransactionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static RollbackTransactionStatement FromMutable(ScriptDom.RollbackTransactionStatement fragment) {
-            return (RollbackTransactionStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CreateExternalLanguageStatement left, CreateExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateExternalLanguageStatement left, CreateExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CreateExternalLanguageStatement FromMutable(ScriptDom.CreateExternalLanguageStatement fragment) {
-            return (CreateExternalLanguageStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

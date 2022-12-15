@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (FileTableCollateFileNameTableOption left, FileTableCollateFileNameTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FileTableCollateFileNameTableOption left, FileTableCollateFileNameTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static FileTableCollateFileNameTableOption FromMutable(ScriptDom.FileTableCollateFileNameTableOption fragment) {
-            return (FileTableCollateFileNameTableOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

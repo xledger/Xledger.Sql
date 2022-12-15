@@ -84,10 +84,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ExternalTableColumnDefinition FromMutable(ScriptDom.ExternalTableColumnDefinition fragment) {
-            return (ExternalTableColumnDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (ExpressionWithSortOrder left, ExpressionWithSortOrder right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExpressionWithSortOrder left, ExpressionWithSortOrder right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static ExpressionWithSortOrder FromMutable(ScriptDom.ExpressionWithSortOrder fragment) {
-            return (ExpressionWithSortOrder)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

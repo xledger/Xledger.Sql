@@ -112,10 +112,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (FileGroupDefinition left, FileGroupDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FileGroupDefinition left, FileGroupDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static FileGroupDefinition FromMutable(ScriptDom.FileGroupDefinition fragment) {
-            return (FileGroupDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

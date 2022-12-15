@@ -20,10 +20,6 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ExternalDataSourcePushdownOption? PushdownOption => pushdownOption;
         public IReadOnlyList<ExternalDataSourceOption> ExternalDataSourceOptions => externalDataSourceOptions;
     
-        public static ExternalDataSourceStatement FromMutable(ScriptDom.ExternalDataSourceStatement fragment) {
-            return (ExternalDataSourceStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (BackwardsCompatibleDropIndexClause left, BackwardsCompatibleDropIndexClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BackwardsCompatibleDropIndexClause left, BackwardsCompatibleDropIndexClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static BackwardsCompatibleDropIndexClause FromMutable(ScriptDom.BackwardsCompatibleDropIndexClause fragment) {
-            return (BackwardsCompatibleDropIndexClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

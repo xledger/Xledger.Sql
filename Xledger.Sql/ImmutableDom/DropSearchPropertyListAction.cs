@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DropSearchPropertyListAction left, DropSearchPropertyListAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropSearchPropertyListAction left, DropSearchPropertyListAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DropSearchPropertyListAction FromMutable(ScriptDom.DropSearchPropertyListAction fragment) {
-            return (DropSearchPropertyListAction)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

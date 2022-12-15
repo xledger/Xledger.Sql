@@ -106,10 +106,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (UseFederationStatement left, UseFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UseFederationStatement left, UseFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static UseFederationStatement FromMutable(ScriptDom.UseFederationStatement fragment) {
-            return (UseFederationStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -104,10 +104,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CreateExternalTableStatement FromMutable(ScriptDom.CreateExternalTableStatement fragment) {
-            return (CreateExternalTableStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

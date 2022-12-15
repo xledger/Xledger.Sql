@@ -72,10 +72,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SingleValueTypeCopyOption FromMutable(ScriptDom.SingleValueTypeCopyOption fragment) {
-            return (SingleValueTypeCopyOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

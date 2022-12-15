@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AutoCleanupChangeTrackingOptionDetail left, AutoCleanupChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutoCleanupChangeTrackingOptionDetail left, AutoCleanupChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AutoCleanupChangeTrackingOptionDetail FromMutable(ScriptDom.AutoCleanupChangeTrackingOptionDetail fragment) {
-            return (AutoCleanupChangeTrackingOptionDetail)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

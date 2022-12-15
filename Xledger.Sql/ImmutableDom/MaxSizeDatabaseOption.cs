@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (MaxSizeDatabaseOption left, MaxSizeDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxSizeDatabaseOption left, MaxSizeDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static MaxSizeDatabaseOption FromMutable(ScriptDom.MaxSizeDatabaseOption fragment) {
-            return (MaxSizeDatabaseOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ColumnEncryptionKeyValueParameterKind ParameterKind => parameterKind;
     
-        public static ColumnEncryptionKeyValueParameter FromMutable(ScriptDom.ColumnEncryptionKeyValueParameter fragment) {
-            return (ColumnEncryptionKeyValueParameter)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

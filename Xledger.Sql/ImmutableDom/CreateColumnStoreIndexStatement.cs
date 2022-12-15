@@ -148,10 +148,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CreateColumnStoreIndexStatement left, CreateColumnStoreIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateColumnStoreIndexStatement left, CreateColumnStoreIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CreateColumnStoreIndexStatement FromMutable(ScriptDom.CreateColumnStoreIndexStatement fragment) {
-            return (CreateColumnStoreIndexStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

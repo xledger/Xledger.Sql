@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (LiteralOptimizerHint left, LiteralOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LiteralOptimizerHint left, LiteralOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static LiteralOptimizerHint FromMutable(ScriptDom.LiteralOptimizerHint fragment) {
-            return (LiteralOptimizerHint)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

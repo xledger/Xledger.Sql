@@ -104,10 +104,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static PartitionFunctionCall FromMutable(ScriptDom.PartitionFunctionCall fragment) {
-            return (PartitionFunctionCall)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -8,10 +8,6 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class DataModificationStatement : StatementWithCtesAndXmlNamespaces {
-        public static DataModificationStatement FromMutable(ScriptDom.DataModificationStatement fragment) {
-            return (DataModificationStatement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

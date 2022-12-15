@@ -102,10 +102,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (AlterTableDropTableElement left, AlterTableDropTableElement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableDropTableElement left, AlterTableDropTableElement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static AlterTableDropTableElement FromMutable(ScriptDom.AlterTableDropTableElement fragment) {
-            return (AlterTableDropTableElement)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

@@ -94,10 +94,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DistinctPredicate left, DistinctPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DistinctPredicate left, DistinctPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DistinctPredicate FromMutable(ScriptDom.DistinctPredicate fragment) {
-            return (DistinctPredicate)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

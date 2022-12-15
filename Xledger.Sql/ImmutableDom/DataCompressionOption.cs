@@ -88,10 +88,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DataCompressionOption FromMutable(ScriptDom.DataCompressionOption fragment) {
-            return (DataCompressionOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

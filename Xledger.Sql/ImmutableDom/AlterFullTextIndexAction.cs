@@ -8,10 +8,6 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class AlterFullTextIndexAction : TSqlFragment {
-        public static AlterFullTextIndexAction FromMutable(ScriptDom.AlterFullTextIndexAction fragment) {
-            return (AlterFullTextIndexAction)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

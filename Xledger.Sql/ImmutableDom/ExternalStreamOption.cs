@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalStreamOptionKind OptionKind => optionKind;
     
-        public static ExternalStreamOption FromMutable(ScriptDom.ExternalStreamOption fragment) {
-            return (ExternalStreamOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

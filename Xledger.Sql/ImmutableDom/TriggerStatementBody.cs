@@ -28,10 +28,6 @@ namespace Xledger.Sql.ImmutableDom {
         public StatementList StatementList => statementList;
         public MethodSpecifier MethodSpecifier => methodSpecifier;
     
-        public static TriggerStatementBody FromMutable(ScriptDom.TriggerStatementBody fragment) {
-            return (TriggerStatementBody)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

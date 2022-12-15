@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SessionTimeoutPayloadOption FromMutable(ScriptDom.SessionTimeoutPayloadOption fragment) {
-            return (SessionTimeoutPayloadOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

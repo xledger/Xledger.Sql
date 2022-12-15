@@ -90,10 +90,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (CompressionDelayIndexOption left, CompressionDelayIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CompressionDelayIndexOption left, CompressionDelayIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static CompressionDelayIndexOption FromMutable(ScriptDom.CompressionDelayIndexOption fragment) {
-            return (CompressionDelayIndexOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

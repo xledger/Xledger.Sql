@@ -12,10 +12,6 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SessionOptionKind OptionKind => optionKind;
     
-        public static SessionOption FromMutable(ScriptDom.SessionOption fragment) {
-            return (SessionOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

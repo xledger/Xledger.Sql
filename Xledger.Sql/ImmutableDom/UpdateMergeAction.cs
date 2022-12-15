@@ -70,10 +70,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (UpdateMergeAction left, UpdateMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UpdateMergeAction left, UpdateMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static UpdateMergeAction FromMutable(ScriptDom.UpdateMergeAction fragment) {
-            return (UpdateMergeAction)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

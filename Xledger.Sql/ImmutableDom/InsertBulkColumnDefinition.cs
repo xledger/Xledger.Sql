@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (InsertBulkColumnDefinition left, InsertBulkColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(InsertBulkColumnDefinition left, InsertBulkColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static InsertBulkColumnDefinition FromMutable(ScriptDom.InsertBulkColumnDefinition fragment) {
-            return (InsertBulkColumnDefinition)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

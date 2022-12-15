@@ -82,10 +82,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (SearchedWhenClause left, SearchedWhenClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SearchedWhenClause left, SearchedWhenClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static SearchedWhenClause FromMutable(ScriptDom.SearchedWhenClause fragment) {
-            return (SearchedWhenClause)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

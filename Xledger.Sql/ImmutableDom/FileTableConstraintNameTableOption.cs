@@ -80,10 +80,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (FileTableConstraintNameTableOption left, FileTableConstraintNameTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FileTableConstraintNameTableOption left, FileTableConstraintNameTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static FileTableConstraintNameTableOption FromMutable(ScriptDom.FileTableConstraintNameTableOption fragment) {
-            return (FileTableConstraintNameTableOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }

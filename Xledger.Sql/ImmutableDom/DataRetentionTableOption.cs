@@ -102,10 +102,6 @@ namespace Xledger.Sql.ImmutableDom {
         public static bool operator > (DataRetentionTableOption left, DataRetentionTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DataRetentionTableOption left, DataRetentionTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
     
-        public static DataRetentionTableOption FromMutable(ScriptDom.DataRetentionTableOption fragment) {
-            return (DataRetentionTableOption)TSqlFragment.FromMutable(fragment);
-        }
-    
     }
 
 }
