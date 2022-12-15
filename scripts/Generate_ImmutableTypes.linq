@@ -591,18 +591,18 @@ public class ClassDef {
         foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
             var def = UserQuery.GetImmClassdef(typ);
             wl($"        case {idx}: {{");
-            wl($"            var node = (ScriptDom.{typ.Name})fragment;");
+			var node = $"(fragment as ScriptDom.{typ.Name})";
             wl($"            return new {typ.Name}(");
             var ctorPms = new List<string>();
             foreach (var prop in def.Props) {
-                if (prop.IsScriptDomType && prop.IsList) {
-                    ctorPms.Add($"{LowerName(prop.Name)}: node.{prop.Name}.SelectList(c => ({prop.InnerTypeLiteral})FromMutable(c))");
+				if (prop.IsScriptDomType && prop.IsList) {
+					ctorPms.Add($"{LowerName(prop.Name)}: {node}.{prop.Name}.SelectList(c => ({prop.InnerTypeLiteral})FromMutable(c))");
                 } else if (prop.IsList) {
-                    ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList(node.{prop.Name})");
+                    ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList({node}.{prop.Name})");
                 } else if (prop.IsScriptDomType) {
-                    ctorPms.Add($"{LowerName(prop.Name)}: ({prop.TypeLiteral})FromMutable(node.{prop.Name})");
+                    ctorPms.Add($"{LowerName(prop.Name)}: ({prop.TypeLiteral})FromMutable({node}.{prop.Name})");
                 } else {
-                    ctorPms.Add($"{LowerName(prop.Name)}: node.{prop.Name}");
+                    ctorPms.Add($"{LowerName(prop.Name)}: {node}.{prop.Name}");
                 }
             }
             wl(ctorPms.StringJoin(",\n").IndentLines(16));
