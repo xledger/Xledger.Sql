@@ -543,7 +543,7 @@ public class ClassDef {
             wl("");
             wl(FromCsFunction().IndentLines(4));
 		} else {
-			wl(FromMutableFunction().IndentLines(4));
+			//wl(FromMutableFunction().IndentLines(4));
 		}
 
         wl($"}}");
