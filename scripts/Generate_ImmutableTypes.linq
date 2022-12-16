@@ -581,6 +581,7 @@ public class ClassDef {
         void wl(string s) { sb.AppendLine(s); }
 
 		wl($"public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {{");
+		wl($"    var st = new System.Diagnostics.StackTrace();");
 		wl($"    if (fragment is null) {{ return null; }}");
         wl($"    if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {{");
         wl($"        throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
@@ -589,31 +590,39 @@ public class ClassDef {
 
         wl($"    switch (tag) {{");
         foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
-            var def = UserQuery.GetImmClassdef(typ);
-            wl($"        case {idx}: {{");
-			var node = $"(fragment as ScriptDom.{typ.Name})";
-            wl($"            return new {typ.Name}(");
-            var ctorPms = new List<string>();
-            foreach (var prop in def.Props) {
-				if (prop.IsScriptDomType && prop.IsList) {
-					ctorPms.Add($"{LowerName(prop.Name)}: {node}.{prop.Name}.SelectList(c => ({prop.InnerTypeLiteral})FromMutable(c))");
-                } else if (prop.IsList) {
-                    ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList({node}.{prop.Name})");
-                } else if (prop.IsScriptDomType) {
-                    ctorPms.Add($"{LowerName(prop.Name)}: ({prop.TypeLiteral})FromMutable({node}.{prop.Name})");
-                } else {
-                    ctorPms.Add($"{LowerName(prop.Name)}: {node}.{prop.Name}");
-                }
-            }
-            wl(ctorPms.StringJoin(",\n").IndentLines(16));
-
-            wl($"            );");
-            wl($"        }}");
+			//            var def = UserQuery.GetImmClassdef(typ);
+			var node = $"fragment as ScriptDom.{typ.Name}";
+			wl($"        case {idx}: return FromMutable({node});");
+//            wl($"            return new {typ.Name}(");
+//            var ctorPms = new List<string>();
         }
         wl($"        default: throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
         wl($"    }}");
+		wl($"}}");
 
-        wl($"}}");
+		foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
+			var def = UserQuery.GetImmClassdef(typ);
+			wl("");
+			wl($"public static {typ.Name} FromMutable(ScriptDom.{typ.Name} fragment) {{");
+			wl($"    if (fragment is null) {{ return null; }}");
+			wl($"    return new {typ.Name}(");
+			var ctorPms = new List<string>();
+			foreach (var prop in def.Props) {
+				if (prop.IsScriptDomType && prop.IsList) {
+					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}.SelectList(c => ({prop.InnerTypeLiteral})FromMutable(c))");
+                } else if (prop.IsList) {
+                    ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList(fragment.{prop.Name})");
+                } else if (prop.IsScriptDomType) {
+                    ctorPms.Add($"{LowerName(prop.Name)}: ({prop.TypeLiteral})FromMutable(fragment.{prop.Name})");
+                } else {
+                    ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}");
+                }
+            }
+            wl(ctorPms.StringJoin(",\n").IndentLines(8));
+            wl($"    );");
+			wl($"}}");
+		}
+
         return sb.ToString();
     }
 
