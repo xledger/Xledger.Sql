@@ -63,7 +63,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateWorkloadClassifierStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.classifierName, othr.classifierName);
             if (compare != 0) { return compare; }

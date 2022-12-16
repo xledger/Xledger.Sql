@@ -923,7 +923,6 @@ namespace Xledger.Sql.ImmutableDom {
     
     
         public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {
-            var st = new System.Diagnostics.StackTrace();
             if (fragment is null) { return null; }
             if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {
                 throw new NotImplementedException("Type not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library.");
@@ -1973,6 +1972,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AcceleratedDatabaseRecoveryDatabaseOption FromMutable(ScriptDom.AcceleratedDatabaseRecoveryDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AcceleratedDatabaseRecoveryDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of AcceleratedDatabaseRecoveryDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AcceleratedDatabaseRecoveryDatabaseOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -1981,6 +1981,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AddAlterFullTextIndexAction FromMutable(ScriptDom.AddAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AddAlterFullTextIndexAction))) { throw new NotImplementedException("Unexpected subtype of AddAlterFullTextIndexAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AddAlterFullTextIndexAction(
                 columns: fragment.Columns.SelectList(FromMutable),
                 withNoPopulation: fragment.WithNoPopulation
@@ -1989,6 +1990,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AddFileSpec FromMutable(ScriptDom.AddFileSpec fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AddFileSpec))) { throw new NotImplementedException("Unexpected subtype of AddFileSpec not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AddFileSpec(
                 file: FromMutable(fragment.File),
                 fileName: FromMutable(fragment.FileName)
@@ -1997,6 +1999,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AddMemberAlterRoleAction FromMutable(ScriptDom.AddMemberAlterRoleAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AddMemberAlterRoleAction))) { throw new NotImplementedException("Unexpected subtype of AddMemberAlterRoleAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AddMemberAlterRoleAction(
                 member: FromMutable(fragment.Member)
             );
@@ -2004,6 +2007,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AddSearchPropertyListAction FromMutable(ScriptDom.AddSearchPropertyListAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AddSearchPropertyListAction))) { throw new NotImplementedException("Unexpected subtype of AddSearchPropertyListAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AddSearchPropertyListAction(
                 propertyName: FromMutable(fragment.PropertyName),
                 guid: FromMutable(fragment.Guid),
@@ -2014,6 +2018,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AddSensitivityClassificationStatement FromMutable(ScriptDom.AddSensitivityClassificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AddSensitivityClassificationStatement))) { throw new NotImplementedException("Unexpected subtype of AddSensitivityClassificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AddSensitivityClassificationStatement(
                 options: fragment.Options.SelectList(FromMutable),
                 columns: fragment.Columns.SelectList(FromMutable)
@@ -2022,6 +2027,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AddSignatureStatement FromMutable(ScriptDom.AddSignatureStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AddSignatureStatement))) { throw new NotImplementedException("Unexpected subtype of AddSignatureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AddSignatureStatement(
                 isCounter: fragment.IsCounter,
                 elementKind: fragment.ElementKind,
@@ -2032,6 +2038,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AdHocDataSource FromMutable(ScriptDom.AdHocDataSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AdHocDataSource))) { throw new NotImplementedException("Unexpected subtype of AdHocDataSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AdHocDataSource(
                 providerName: FromMutable(fragment.ProviderName),
                 initString: FromMutable(fragment.InitString)
@@ -2040,6 +2047,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AdHocTableReference FromMutable(ScriptDom.AdHocTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AdHocTableReference))) { throw new NotImplementedException("Unexpected subtype of AdHocTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AdHocTableReference(
                 dataSource: FromMutable(fragment.DataSource),
                 @object: FromMutable(fragment.Object),
@@ -2050,6 +2058,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlgorithmKeyOption FromMutable(ScriptDom.AlgorithmKeyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlgorithmKeyOption))) { throw new NotImplementedException("Unexpected subtype of AlgorithmKeyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlgorithmKeyOption(
                 algorithm: fragment.Algorithm,
                 optionKind: fragment.OptionKind
@@ -2058,6 +2067,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterApplicationRoleStatement FromMutable(ScriptDom.AlterApplicationRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterApplicationRoleStatement))) { throw new NotImplementedException("Unexpected subtype of AlterApplicationRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterApplicationRoleStatement(
                 name: FromMutable(fragment.Name),
                 applicationRoleOptions: fragment.ApplicationRoleOptions.SelectList(FromMutable)
@@ -2066,6 +2076,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterAssemblyStatement FromMutable(ScriptDom.AlterAssemblyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterAssemblyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterAssemblyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterAssemblyStatement(
                 dropFiles: fragment.DropFiles.SelectList(FromMutable),
                 isDropAll: fragment.IsDropAll,
@@ -2078,6 +2089,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterAsymmetricKeyStatement FromMutable(ScriptDom.AlterAsymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterAsymmetricKeyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterAsymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterAsymmetricKeyStatement(
                 name: FromMutable(fragment.Name),
                 attestedBy: FromMutable(fragment.AttestedBy),
@@ -2089,6 +2101,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterAuthorizationStatement FromMutable(ScriptDom.AlterAuthorizationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterAuthorizationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterAuthorizationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterAuthorizationStatement(
                 securityTargetObject: FromMutable(fragment.SecurityTargetObject),
                 toSchemaOwner: fragment.ToSchemaOwner,
@@ -2098,7 +2111,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterAvailabilityGroupAction FromMutable(ScriptDom.AlterAvailabilityGroupAction fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.AlterAvailabilityGroupAction)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterAvailabilityGroupAction; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterAvailabilityGroupAction))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterAvailabilityGroupAction; }
             return new AlterAvailabilityGroupAction(
                 actionType: fragment.ActionType
             );
@@ -2106,6 +2119,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterAvailabilityGroupFailoverAction FromMutable(ScriptDom.AlterAvailabilityGroupFailoverAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterAvailabilityGroupFailoverAction))) { throw new NotImplementedException("Unexpected subtype of AlterAvailabilityGroupFailoverAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterAvailabilityGroupFailoverAction(
                 options: fragment.Options.SelectList(FromMutable),
                 actionType: fragment.ActionType
@@ -2114,6 +2128,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterAvailabilityGroupFailoverOption FromMutable(ScriptDom.AlterAvailabilityGroupFailoverOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterAvailabilityGroupFailoverOption))) { throw new NotImplementedException("Unexpected subtype of AlterAvailabilityGroupFailoverOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterAvailabilityGroupFailoverOption(
                 optionKind: fragment.OptionKind,
                 @value: FromMutable(fragment.Value)
@@ -2122,6 +2137,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterAvailabilityGroupStatement FromMutable(ScriptDom.AlterAvailabilityGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterAvailabilityGroupStatement))) { throw new NotImplementedException("Unexpected subtype of AlterAvailabilityGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterAvailabilityGroupStatement(
                 alterAvailabilityGroupStatementType: fragment.AlterAvailabilityGroupStatementType,
                 action: FromMutable(fragment.Action),
@@ -2134,6 +2150,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterBrokerPriorityStatement FromMutable(ScriptDom.AlterBrokerPriorityStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterBrokerPriorityStatement))) { throw new NotImplementedException("Unexpected subtype of AlterBrokerPriorityStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterBrokerPriorityStatement(
                 name: FromMutable(fragment.Name),
                 brokerPriorityParameters: fragment.BrokerPriorityParameters.SelectList(FromMutable)
@@ -2142,6 +2159,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterCertificateStatement FromMutable(ScriptDom.AlterCertificateStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterCertificateStatement))) { throw new NotImplementedException("Unexpected subtype of AlterCertificateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterCertificateStatement(
                 kind: fragment.Kind,
                 attestedBy: FromMutable(fragment.AttestedBy),
@@ -2155,6 +2173,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterColumnAlterFullTextIndexAction FromMutable(ScriptDom.AlterColumnAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterColumnAlterFullTextIndexAction))) { throw new NotImplementedException("Unexpected subtype of AlterColumnAlterFullTextIndexAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterColumnAlterFullTextIndexAction(
                 column: FromMutable(fragment.Column),
                 withNoPopulation: fragment.WithNoPopulation
@@ -2163,6 +2182,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterColumnEncryptionKeyStatement FromMutable(ScriptDom.AlterColumnEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterColumnEncryptionKeyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterColumnEncryptionKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterColumnEncryptionKeyStatement(
                 alterType: fragment.AlterType,
                 name: FromMutable(fragment.Name),
@@ -2172,6 +2192,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterCredentialStatement FromMutable(ScriptDom.AlterCredentialStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterCredentialStatement))) { throw new NotImplementedException("Unexpected subtype of AlterCredentialStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterCredentialStatement(
                 name: FromMutable(fragment.Name),
                 identity: FromMutable(fragment.Identity),
@@ -2182,6 +2203,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterCryptographicProviderStatement FromMutable(ScriptDom.AlterCryptographicProviderStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterCryptographicProviderStatement))) { throw new NotImplementedException("Unexpected subtype of AlterCryptographicProviderStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterCryptographicProviderStatement(
                 name: FromMutable(fragment.Name),
                 option: fragment.Option,
@@ -2191,6 +2213,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseAddFileGroupStatement FromMutable(ScriptDom.AlterDatabaseAddFileGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseAddFileGroupStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseAddFileGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseAddFileGroupStatement(
                 fileGroup: FromMutable(fragment.FileGroup),
                 containsFileStream: fragment.ContainsFileStream,
@@ -2202,6 +2225,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseAddFileStatement FromMutable(ScriptDom.AlterDatabaseAddFileStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseAddFileStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseAddFileStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseAddFileStatement(
                 fileDeclarations: fragment.FileDeclarations.SelectList(FromMutable),
                 fileGroup: FromMutable(fragment.FileGroup),
@@ -2213,6 +2237,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseAuditSpecificationStatement FromMutable(ScriptDom.AlterDatabaseAuditSpecificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseAuditSpecificationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseAuditSpecificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseAuditSpecificationStatement(
                 auditState: fragment.AuditState,
                 parts: fragment.Parts.SelectList(FromMutable),
@@ -2223,6 +2248,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseCollateStatement FromMutable(ScriptDom.AlterDatabaseCollateStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseCollateStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseCollateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseCollateStatement(
                 collation: FromMutable(fragment.Collation),
                 databaseName: FromMutable(fragment.DatabaseName),
@@ -2232,6 +2258,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseEncryptionKeyStatement FromMutable(ScriptDom.AlterDatabaseEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseEncryptionKeyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseEncryptionKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseEncryptionKeyStatement(
                 regenerate: fragment.Regenerate,
                 encryptor: FromMutable(fragment.Encryptor),
@@ -2241,6 +2268,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseModifyFileGroupStatement FromMutable(ScriptDom.AlterDatabaseModifyFileGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseModifyFileGroupStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseModifyFileGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseModifyFileGroupStatement(
                 fileGroup: FromMutable(fragment.FileGroup),
                 newFileGroupName: FromMutable(fragment.NewFileGroupName),
@@ -2254,6 +2282,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseModifyFileStatement FromMutable(ScriptDom.AlterDatabaseModifyFileStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseModifyFileStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseModifyFileStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseModifyFileStatement(
                 fileDeclaration: FromMutable(fragment.FileDeclaration),
                 databaseName: FromMutable(fragment.DatabaseName),
@@ -2263,6 +2292,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseModifyNameStatement FromMutable(ScriptDom.AlterDatabaseModifyNameStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseModifyNameStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseModifyNameStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseModifyNameStatement(
                 newDatabaseName: FromMutable(fragment.NewDatabaseName),
                 databaseName: FromMutable(fragment.DatabaseName),
@@ -2272,6 +2302,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseRebuildLogStatement FromMutable(ScriptDom.AlterDatabaseRebuildLogStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseRebuildLogStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseRebuildLogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseRebuildLogStatement(
                 fileDeclaration: FromMutable(fragment.FileDeclaration),
                 databaseName: FromMutable(fragment.DatabaseName),
@@ -2281,6 +2312,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseRemoveFileGroupStatement FromMutable(ScriptDom.AlterDatabaseRemoveFileGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseRemoveFileGroupStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseRemoveFileGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseRemoveFileGroupStatement(
                 fileGroup: FromMutable(fragment.FileGroup),
                 databaseName: FromMutable(fragment.DatabaseName),
@@ -2290,6 +2322,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseRemoveFileStatement FromMutable(ScriptDom.AlterDatabaseRemoveFileStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseRemoveFileStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseRemoveFileStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseRemoveFileStatement(
                 file: FromMutable(fragment.File),
                 databaseName: FromMutable(fragment.DatabaseName),
@@ -2299,6 +2332,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseScopedConfigurationClearStatement FromMutable(ScriptDom.AlterDatabaseScopedConfigurationClearStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseScopedConfigurationClearStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseScopedConfigurationClearStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseScopedConfigurationClearStatement(
                 option: FromMutable(fragment.Option),
                 secondary: fragment.Secondary
@@ -2307,6 +2341,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseScopedConfigurationSetStatement FromMutable(ScriptDom.AlterDatabaseScopedConfigurationSetStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseScopedConfigurationSetStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseScopedConfigurationSetStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseScopedConfigurationSetStatement(
                 option: FromMutable(fragment.Option),
                 secondary: fragment.Secondary
@@ -2315,6 +2350,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseSetStatement FromMutable(ScriptDom.AlterDatabaseSetStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseSetStatement))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseSetStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseSetStatement(
                 termination: FromMutable(fragment.Termination),
                 options: fragment.Options.SelectList(FromMutable),
@@ -2325,6 +2361,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterDatabaseTermination FromMutable(ScriptDom.AlterDatabaseTermination fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterDatabaseTermination))) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseTermination not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseTermination(
                 immediateRollback: fragment.ImmediateRollback,
                 rollbackAfter: FromMutable(fragment.RollbackAfter),
@@ -2334,6 +2371,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterEndpointStatement FromMutable(ScriptDom.AlterEndpointStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterEndpointStatement))) { throw new NotImplementedException("Unexpected subtype of AlterEndpointStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterEndpointStatement(
                 name: FromMutable(fragment.Name),
                 state: fragment.State,
@@ -2347,6 +2385,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterEventSessionStatement FromMutable(ScriptDom.AlterEventSessionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterEventSessionStatement))) { throw new NotImplementedException("Unexpected subtype of AlterEventSessionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterEventSessionStatement(
                 statementType: fragment.StatementType,
                 dropEventDeclarations: fragment.DropEventDeclarations.SelectList(FromMutable),
@@ -2361,6 +2400,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterExternalDataSourceStatement FromMutable(ScriptDom.AlterExternalDataSourceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterExternalDataSourceStatement))) { throw new NotImplementedException("Unexpected subtype of AlterExternalDataSourceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterExternalDataSourceStatement(
                 previousPushDownOption: fragment.PreviousPushDownOption,
                 name: FromMutable(fragment.Name),
@@ -2373,6 +2413,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterExternalLanguageStatement FromMutable(ScriptDom.AlterExternalLanguageStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterExternalLanguageStatement))) { throw new NotImplementedException("Unexpected subtype of AlterExternalLanguageStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterExternalLanguageStatement(
                 platform: FromMutable(fragment.Platform),
                 operation: FromMutable(fragment.Operation),
@@ -2384,6 +2425,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterExternalLibraryStatement FromMutable(ScriptDom.AlterExternalLibraryStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterExternalLibraryStatement))) { throw new NotImplementedException("Unexpected subtype of AlterExternalLibraryStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterExternalLibraryStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name),
@@ -2394,6 +2436,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterExternalResourcePoolStatement FromMutable(ScriptDom.AlterExternalResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterExternalResourcePoolStatement))) { throw new NotImplementedException("Unexpected subtype of AlterExternalResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterExternalResourcePoolStatement(
                 name: FromMutable(fragment.Name),
                 externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(FromMutable)
@@ -2402,6 +2445,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterFederationStatement FromMutable(ScriptDom.AlterFederationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterFederationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterFederationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterFederationStatement(
                 name: FromMutable(fragment.Name),
                 kind: fragment.Kind,
@@ -2412,6 +2456,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterFullTextCatalogStatement FromMutable(ScriptDom.AlterFullTextCatalogStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterFullTextCatalogStatement))) { throw new NotImplementedException("Unexpected subtype of AlterFullTextCatalogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterFullTextCatalogStatement(
                 action: fragment.Action,
                 name: FromMutable(fragment.Name),
@@ -2421,6 +2466,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterFullTextIndexStatement FromMutable(ScriptDom.AlterFullTextIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterFullTextIndexStatement))) { throw new NotImplementedException("Unexpected subtype of AlterFullTextIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterFullTextIndexStatement(
                 onName: FromMutable(fragment.OnName),
                 action: FromMutable(fragment.Action)
@@ -2429,6 +2475,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterFullTextStopListStatement FromMutable(ScriptDom.AlterFullTextStopListStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterFullTextStopListStatement))) { throw new NotImplementedException("Unexpected subtype of AlterFullTextStopListStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterFullTextStopListStatement(
                 name: FromMutable(fragment.Name),
                 action: FromMutable(fragment.Action)
@@ -2437,6 +2484,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterFunctionStatement FromMutable(ScriptDom.AlterFunctionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterFunctionStatement))) { throw new NotImplementedException("Unexpected subtype of AlterFunctionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterFunctionStatement(
                 name: FromMutable(fragment.Name),
                 returnType: FromMutable(fragment.ReturnType),
@@ -2450,6 +2498,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterIndexStatement FromMutable(ScriptDom.AlterIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterIndexStatement))) { throw new NotImplementedException("Unexpected subtype of AlterIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterIndexStatement(
                 all: fragment.All,
                 alterIndexType: fragment.AlterIndexType,
@@ -2464,6 +2513,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterLoginAddDropCredentialStatement FromMutable(ScriptDom.AlterLoginAddDropCredentialStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterLoginAddDropCredentialStatement))) { throw new NotImplementedException("Unexpected subtype of AlterLoginAddDropCredentialStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterLoginAddDropCredentialStatement(
                 isAdd: fragment.IsAdd,
                 credentialName: FromMutable(fragment.CredentialName),
@@ -2473,6 +2523,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterLoginEnableDisableStatement FromMutable(ScriptDom.AlterLoginEnableDisableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterLoginEnableDisableStatement))) { throw new NotImplementedException("Unexpected subtype of AlterLoginEnableDisableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterLoginEnableDisableStatement(
                 isEnable: fragment.IsEnable,
                 name: FromMutable(fragment.Name)
@@ -2481,6 +2532,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterLoginOptionsStatement FromMutable(ScriptDom.AlterLoginOptionsStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterLoginOptionsStatement))) { throw new NotImplementedException("Unexpected subtype of AlterLoginOptionsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterLoginOptionsStatement(
                 options: fragment.Options.SelectList(FromMutable),
                 name: FromMutable(fragment.Name)
@@ -2489,6 +2541,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterMasterKeyStatement FromMutable(ScriptDom.AlterMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterMasterKeyStatement(
                 option: fragment.Option,
                 password: FromMutable(fragment.Password)
@@ -2497,6 +2550,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterMessageTypeStatement FromMutable(ScriptDom.AlterMessageTypeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterMessageTypeStatement))) { throw new NotImplementedException("Unexpected subtype of AlterMessageTypeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterMessageTypeStatement(
                 name: FromMutable(fragment.Name),
                 validationMethod: fragment.ValidationMethod,
@@ -2506,6 +2560,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterPartitionFunctionStatement FromMutable(ScriptDom.AlterPartitionFunctionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterPartitionFunctionStatement))) { throw new NotImplementedException("Unexpected subtype of AlterPartitionFunctionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterPartitionFunctionStatement(
                 name: FromMutable(fragment.Name),
                 isSplit: fragment.IsSplit,
@@ -2515,6 +2570,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterPartitionSchemeStatement FromMutable(ScriptDom.AlterPartitionSchemeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterPartitionSchemeStatement))) { throw new NotImplementedException("Unexpected subtype of AlterPartitionSchemeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterPartitionSchemeStatement(
                 name: FromMutable(fragment.Name),
                 fileGroup: FromMutable(fragment.FileGroup)
@@ -2523,6 +2579,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterProcedureStatement FromMutable(ScriptDom.AlterProcedureStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterProcedureStatement))) { throw new NotImplementedException("Unexpected subtype of AlterProcedureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterProcedureStatement(
                 procedureReference: FromMutable(fragment.ProcedureReference),
                 isForReplication: fragment.IsForReplication,
@@ -2535,6 +2592,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterQueueStatement FromMutable(ScriptDom.AlterQueueStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterQueueStatement))) { throw new NotImplementedException("Unexpected subtype of AlterQueueStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterQueueStatement(
                 name: FromMutable(fragment.Name),
                 queueOptions: fragment.QueueOptions.SelectList(FromMutable)
@@ -2543,6 +2601,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterRemoteServiceBindingStatement FromMutable(ScriptDom.AlterRemoteServiceBindingStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterRemoteServiceBindingStatement))) { throw new NotImplementedException("Unexpected subtype of AlterRemoteServiceBindingStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterRemoteServiceBindingStatement(
                 name: FromMutable(fragment.Name),
                 options: fragment.Options.SelectList(FromMutable)
@@ -2551,6 +2610,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterResourceGovernorStatement FromMutable(ScriptDom.AlterResourceGovernorStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterResourceGovernorStatement))) { throw new NotImplementedException("Unexpected subtype of AlterResourceGovernorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterResourceGovernorStatement(
                 command: fragment.Command,
                 classifierFunction: FromMutable(fragment.ClassifierFunction)
@@ -2559,6 +2619,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterResourcePoolStatement FromMutable(ScriptDom.AlterResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterResourcePoolStatement))) { throw new NotImplementedException("Unexpected subtype of AlterResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterResourcePoolStatement(
                 name: FromMutable(fragment.Name),
                 resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(FromMutable)
@@ -2567,7 +2628,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterRoleStatement FromMutable(ScriptDom.AlterRoleStatement fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.AlterRoleStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterRoleStatement; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterRoleStatement))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterRoleStatement; }
             return new AlterRoleStatement(
                 action: FromMutable(fragment.Action),
                 name: FromMutable(fragment.Name)
@@ -2576,6 +2637,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterRouteStatement FromMutable(ScriptDom.AlterRouteStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterRouteStatement))) { throw new NotImplementedException("Unexpected subtype of AlterRouteStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterRouteStatement(
                 name: FromMutable(fragment.Name),
                 routeOptions: fragment.RouteOptions.SelectList(FromMutable)
@@ -2584,6 +2646,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterSchemaStatement FromMutable(ScriptDom.AlterSchemaStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterSchemaStatement))) { throw new NotImplementedException("Unexpected subtype of AlterSchemaStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterSchemaStatement(
                 name: FromMutable(fragment.Name),
                 objectName: FromMutable(fragment.ObjectName),
@@ -2593,6 +2656,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterSearchPropertyListStatement FromMutable(ScriptDom.AlterSearchPropertyListStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterSearchPropertyListStatement))) { throw new NotImplementedException("Unexpected subtype of AlterSearchPropertyListStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterSearchPropertyListStatement(
                 name: FromMutable(fragment.Name),
                 action: FromMutable(fragment.Action)
@@ -2601,6 +2665,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterSecurityPolicyStatement FromMutable(ScriptDom.AlterSecurityPolicyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterSecurityPolicyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterSecurityPolicyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterSecurityPolicyStatement(
                 name: FromMutable(fragment.Name),
                 notForReplication: fragment.NotForReplication,
@@ -2612,6 +2677,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterSequenceStatement FromMutable(ScriptDom.AlterSequenceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterSequenceStatement))) { throw new NotImplementedException("Unexpected subtype of AlterSequenceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterSequenceStatement(
                 name: FromMutable(fragment.Name),
                 sequenceOptions: fragment.SequenceOptions.SelectList(FromMutable)
@@ -2620,6 +2686,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerAuditSpecificationStatement FromMutable(ScriptDom.AlterServerAuditSpecificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerAuditSpecificationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerAuditSpecificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerAuditSpecificationStatement(
                 auditState: fragment.AuditState,
                 parts: fragment.Parts.SelectList(FromMutable),
@@ -2630,6 +2697,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerAuditStatement FromMutable(ScriptDom.AlterServerAuditStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerAuditStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerAuditStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerAuditStatement(
                 newName: FromMutable(fragment.NewName),
                 removeWhere: fragment.RemoveWhere,
@@ -2642,6 +2710,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationBufferPoolExtensionContainerOption FromMutable(ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationBufferPoolExtensionContainerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationBufferPoolExtensionContainerOption(
                 suboptions: fragment.Suboptions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind,
@@ -2651,7 +2720,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationBufferPoolExtensionOption FromMutable(ScriptDom.AlterServerConfigurationBufferPoolExtensionOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationBufferPoolExtensionOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationBufferPoolExtensionOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationBufferPoolExtensionOption; }
             return new AlterServerConfigurationBufferPoolExtensionOption(
                 optionKind: fragment.OptionKind,
                 optionValue: FromMutable(fragment.OptionValue)
@@ -2660,6 +2729,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationBufferPoolExtensionSizeOption FromMutable(ScriptDom.AlterServerConfigurationBufferPoolExtensionSizeOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationBufferPoolExtensionSizeOption))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationBufferPoolExtensionSizeOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationBufferPoolExtensionSizeOption(
                 sizeUnit: fragment.SizeUnit,
                 optionKind: fragment.OptionKind,
@@ -2669,6 +2739,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationDiagnosticsLogMaxSizeOption FromMutable(ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationDiagnosticsLogMaxSizeOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationDiagnosticsLogMaxSizeOption(
                 sizeUnit: fragment.SizeUnit,
                 optionKind: fragment.OptionKind,
@@ -2678,7 +2749,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationDiagnosticsLogOption FromMutable(ScriptDom.AlterServerConfigurationDiagnosticsLogOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationDiagnosticsLogOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationDiagnosticsLogOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationDiagnosticsLogOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationDiagnosticsLogOption; }
             return new AlterServerConfigurationDiagnosticsLogOption(
                 optionKind: fragment.OptionKind,
                 optionValue: FromMutable(fragment.OptionValue)
@@ -2687,6 +2758,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationExternalAuthenticationContainerOption FromMutable(ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationExternalAuthenticationContainerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationExternalAuthenticationContainerOption(
                 suboptions: fragment.Suboptions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind,
@@ -2696,7 +2768,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationExternalAuthenticationOption FromMutable(ScriptDom.AlterServerConfigurationExternalAuthenticationOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationExternalAuthenticationOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationExternalAuthenticationOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationExternalAuthenticationOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationExternalAuthenticationOption; }
             return new AlterServerConfigurationExternalAuthenticationOption(
                 optionKind: fragment.OptionKind,
                 optionValue: FromMutable(fragment.OptionValue)
@@ -2705,6 +2777,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationFailoverClusterPropertyOption FromMutable(ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationFailoverClusterPropertyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationFailoverClusterPropertyOption(
                 optionKind: fragment.OptionKind,
                 optionValue: FromMutable(fragment.OptionValue)
@@ -2713,6 +2786,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationHadrClusterOption FromMutable(ScriptDom.AlterServerConfigurationHadrClusterOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationHadrClusterOption))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationHadrClusterOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationHadrClusterOption(
                 optionKind: fragment.OptionKind,
                 optionValue: FromMutable(fragment.OptionValue),
@@ -2722,6 +2796,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationSetBufferPoolExtensionStatement FromMutable(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetBufferPoolExtensionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetBufferPoolExtensionStatement(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -2729,6 +2804,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationSetDiagnosticsLogStatement FromMutable(ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetDiagnosticsLogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetDiagnosticsLogStatement(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -2736,6 +2812,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationSetExternalAuthenticationStatement FromMutable(ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetExternalAuthenticationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetExternalAuthenticationStatement(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -2743,6 +2820,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationSetFailoverClusterPropertyStatement FromMutable(ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetFailoverClusterPropertyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetFailoverClusterPropertyStatement(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -2750,6 +2828,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationSetHadrClusterStatement FromMutable(ScriptDom.AlterServerConfigurationSetHadrClusterStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationSetHadrClusterStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetHadrClusterStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetHadrClusterStatement(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -2757,6 +2836,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationSetSoftNumaStatement FromMutable(ScriptDom.AlterServerConfigurationSetSoftNumaStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationSetSoftNumaStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetSoftNumaStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetSoftNumaStatement(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -2764,6 +2844,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationSoftNumaOption FromMutable(ScriptDom.AlterServerConfigurationSoftNumaOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationSoftNumaOption))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSoftNumaOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSoftNumaOption(
                 optionKind: fragment.OptionKind,
                 optionValue: FromMutable(fragment.OptionValue)
@@ -2772,6 +2853,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerConfigurationStatement FromMutable(ScriptDom.AlterServerConfigurationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerConfigurationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationStatement(
                 processAffinity: fragment.ProcessAffinity,
                 processAffinityRanges: fragment.ProcessAffinityRanges.SelectList(FromMutable)
@@ -2780,6 +2862,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServerRoleStatement FromMutable(ScriptDom.AlterServerRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServerRoleStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServerRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerRoleStatement(
                 action: FromMutable(fragment.Action),
                 name: FromMutable(fragment.Name)
@@ -2788,6 +2871,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServiceMasterKeyStatement FromMutable(ScriptDom.AlterServiceMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServiceMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServiceMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServiceMasterKeyStatement(
                 account: FromMutable(fragment.Account),
                 password: FromMutable(fragment.Password),
@@ -2797,6 +2881,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterServiceStatement FromMutable(ScriptDom.AlterServiceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterServiceStatement))) { throw new NotImplementedException("Unexpected subtype of AlterServiceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServiceStatement(
                 name: FromMutable(fragment.Name),
                 queueName: FromMutable(fragment.QueueName),
@@ -2806,6 +2891,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterSymmetricKeyStatement FromMutable(ScriptDom.AlterSymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterSymmetricKeyStatement))) { throw new NotImplementedException("Unexpected subtype of AlterSymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterSymmetricKeyStatement(
                 isAdd: fragment.IsAdd,
                 name: FromMutable(fragment.Name),
@@ -2815,6 +2901,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableAddTableElementStatement FromMutable(ScriptDom.AlterTableAddTableElementStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableAddTableElementStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableAddTableElementStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableAddTableElementStatement(
                 existingRowsCheckEnforcement: fragment.ExistingRowsCheckEnforcement,
                 definition: FromMutable(fragment.Definition),
@@ -2824,6 +2911,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableAlterColumnStatement FromMutable(ScriptDom.AlterTableAlterColumnStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableAlterColumnStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableAlterColumnStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableAlterColumnStatement(
                 columnIdentifier: FromMutable(fragment.ColumnIdentifier),
                 dataType: FromMutable(fragment.DataType),
@@ -2842,6 +2930,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableAlterIndexStatement FromMutable(ScriptDom.AlterTableAlterIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableAlterIndexStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableAlterIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableAlterIndexStatement(
                 indexIdentifier: FromMutable(fragment.IndexIdentifier),
                 alterIndexType: fragment.AlterIndexType,
@@ -2852,6 +2941,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableAlterPartitionStatement FromMutable(ScriptDom.AlterTableAlterPartitionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableAlterPartitionStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableAlterPartitionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableAlterPartitionStatement(
                 boundaryValue: FromMutable(fragment.BoundaryValue),
                 isSplit: fragment.IsSplit,
@@ -2861,6 +2951,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableChangeTrackingModificationStatement FromMutable(ScriptDom.AlterTableChangeTrackingModificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableChangeTrackingModificationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableChangeTrackingModificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableChangeTrackingModificationStatement(
                 isEnable: fragment.IsEnable,
                 trackColumnsUpdated: fragment.TrackColumnsUpdated,
@@ -2870,6 +2961,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableConstraintModificationStatement FromMutable(ScriptDom.AlterTableConstraintModificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableConstraintModificationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableConstraintModificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableConstraintModificationStatement(
                 existingRowsCheckEnforcement: fragment.ExistingRowsCheckEnforcement,
                 constraintEnforcement: fragment.ConstraintEnforcement,
@@ -2881,6 +2973,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableDropTableElement FromMutable(ScriptDom.AlterTableDropTableElement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableDropTableElement))) { throw new NotImplementedException("Unexpected subtype of AlterTableDropTableElement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableDropTableElement(
                 tableElementType: fragment.TableElementType,
                 name: FromMutable(fragment.Name),
@@ -2891,6 +2984,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableDropTableElementStatement FromMutable(ScriptDom.AlterTableDropTableElementStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableDropTableElementStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableDropTableElementStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableDropTableElementStatement(
                 alterTableDropTableElements: fragment.AlterTableDropTableElements.SelectList(FromMutable),
                 schemaObjectName: FromMutable(fragment.SchemaObjectName)
@@ -2899,6 +2993,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableFileTableNamespaceStatement FromMutable(ScriptDom.AlterTableFileTableNamespaceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableFileTableNamespaceStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableFileTableNamespaceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableFileTableNamespaceStatement(
                 isEnable: fragment.IsEnable,
                 schemaObjectName: FromMutable(fragment.SchemaObjectName)
@@ -2907,6 +3002,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableRebuildStatement FromMutable(ScriptDom.AlterTableRebuildStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableRebuildStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableRebuildStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableRebuildStatement(
                 partition: FromMutable(fragment.Partition),
                 indexOptions: fragment.IndexOptions.SelectList(FromMutable),
@@ -2916,6 +3012,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableSetStatement FromMutable(ScriptDom.AlterTableSetStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableSetStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableSetStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableSetStatement(
                 options: fragment.Options.SelectList(FromMutable),
                 schemaObjectName: FromMutable(fragment.SchemaObjectName)
@@ -2924,6 +3021,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableSwitchStatement FromMutable(ScriptDom.AlterTableSwitchStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableSwitchStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableSwitchStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableSwitchStatement(
                 sourcePartitionNumber: FromMutable(fragment.SourcePartitionNumber),
                 targetPartitionNumber: FromMutable(fragment.TargetPartitionNumber),
@@ -2935,6 +3033,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTableTriggerModificationStatement FromMutable(ScriptDom.AlterTableTriggerModificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTableTriggerModificationStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTableTriggerModificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableTriggerModificationStatement(
                 triggerEnforcement: fragment.TriggerEnforcement,
                 all: fragment.All,
@@ -2945,6 +3044,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterTriggerStatement FromMutable(ScriptDom.AlterTriggerStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterTriggerStatement))) { throw new NotImplementedException("Unexpected subtype of AlterTriggerStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTriggerStatement(
                 name: FromMutable(fragment.Name),
                 triggerObject: FromMutable(fragment.TriggerObject),
@@ -2960,6 +3060,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterUserStatement FromMutable(ScriptDom.AlterUserStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterUserStatement))) { throw new NotImplementedException("Unexpected subtype of AlterUserStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterUserStatement(
                 name: FromMutable(fragment.Name),
                 userOptions: fragment.UserOptions.SelectList(FromMutable)
@@ -2968,6 +3069,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterViewStatement FromMutable(ScriptDom.AlterViewStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterViewStatement))) { throw new NotImplementedException("Unexpected subtype of AlterViewStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterViewStatement(
                 isRebuild: fragment.IsRebuild,
                 isDisable: fragment.IsDisable,
@@ -2982,6 +3084,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterWorkloadGroupStatement FromMutable(ScriptDom.AlterWorkloadGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterWorkloadGroupStatement))) { throw new NotImplementedException("Unexpected subtype of AlterWorkloadGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterWorkloadGroupStatement(
                 name: FromMutable(fragment.Name),
                 workloadGroupParameters: fragment.WorkloadGroupParameters.SelectList(FromMutable),
@@ -2992,6 +3095,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AlterXmlSchemaCollectionStatement FromMutable(ScriptDom.AlterXmlSchemaCollectionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AlterXmlSchemaCollectionStatement))) { throw new NotImplementedException("Unexpected subtype of AlterXmlSchemaCollectionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterXmlSchemaCollectionStatement(
                 name: FromMutable(fragment.Name),
                 expression: FromMutable(fragment.Expression)
@@ -3000,6 +3104,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ApplicationRoleOption FromMutable(ScriptDom.ApplicationRoleOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ApplicationRoleOption))) { throw new NotImplementedException("Unexpected subtype of ApplicationRoleOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ApplicationRoleOption(
                 optionKind: fragment.OptionKind,
                 @value: FromMutable(fragment.Value)
@@ -3008,6 +3113,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AssemblyEncryptionSource FromMutable(ScriptDom.AssemblyEncryptionSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AssemblyEncryptionSource))) { throw new NotImplementedException("Unexpected subtype of AssemblyEncryptionSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AssemblyEncryptionSource(
                 assembly: FromMutable(fragment.Assembly)
             );
@@ -3015,6 +3121,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AssemblyName FromMutable(ScriptDom.AssemblyName fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AssemblyName))) { throw new NotImplementedException("Unexpected subtype of AssemblyName not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AssemblyName(
                 name: FromMutable(fragment.Name),
                 className: FromMutable(fragment.ClassName)
@@ -3023,7 +3130,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AssemblyOption FromMutable(ScriptDom.AssemblyOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.AssemblyOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AssemblyOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AssemblyOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AssemblyOption; }
             return new AssemblyOption(
                 optionKind: fragment.OptionKind
             );
@@ -3031,6 +3138,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AssignmentSetClause FromMutable(ScriptDom.AssignmentSetClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AssignmentSetClause))) { throw new NotImplementedException("Unexpected subtype of AssignmentSetClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AssignmentSetClause(
                 variable: FromMutable(fragment.Variable),
                 column: FromMutable(fragment.Column),
@@ -3041,6 +3149,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AsymmetricKeyCreateLoginSource FromMutable(ScriptDom.AsymmetricKeyCreateLoginSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AsymmetricKeyCreateLoginSource))) { throw new NotImplementedException("Unexpected subtype of AsymmetricKeyCreateLoginSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AsymmetricKeyCreateLoginSource(
                 key: FromMutable(fragment.Key),
                 credential: FromMutable(fragment.Credential)
@@ -3049,6 +3158,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AtTimeZoneCall FromMutable(ScriptDom.AtTimeZoneCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AtTimeZoneCall))) { throw new NotImplementedException("Unexpected subtype of AtTimeZoneCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AtTimeZoneCall(
                 dateValue: FromMutable(fragment.DateValue),
                 timeZone: FromMutable(fragment.TimeZone),
@@ -3058,6 +3168,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AuditActionGroupReference FromMutable(ScriptDom.AuditActionGroupReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AuditActionGroupReference))) { throw new NotImplementedException("Unexpected subtype of AuditActionGroupReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuditActionGroupReference(
                 group: fragment.Group
             );
@@ -3065,6 +3176,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AuditActionSpecification FromMutable(ScriptDom.AuditActionSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AuditActionSpecification))) { throw new NotImplementedException("Unexpected subtype of AuditActionSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuditActionSpecification(
                 actions: fragment.Actions.SelectList(FromMutable),
                 principals: fragment.Principals.SelectList(FromMutable),
@@ -3074,6 +3186,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AuditGuidAuditOption FromMutable(ScriptDom.AuditGuidAuditOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AuditGuidAuditOption))) { throw new NotImplementedException("Unexpected subtype of AuditGuidAuditOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuditGuidAuditOption(
                 guid: FromMutable(fragment.Guid),
                 optionKind: fragment.OptionKind
@@ -3082,6 +3195,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AuditSpecificationPart FromMutable(ScriptDom.AuditSpecificationPart fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AuditSpecificationPart))) { throw new NotImplementedException("Unexpected subtype of AuditSpecificationPart not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuditSpecificationPart(
                 isDrop: fragment.IsDrop,
                 details: FromMutable(fragment.Details)
@@ -3090,6 +3204,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AuditTarget FromMutable(ScriptDom.AuditTarget fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AuditTarget))) { throw new NotImplementedException("Unexpected subtype of AuditTarget not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuditTarget(
                 targetKind: fragment.TargetKind,
                 targetOptions: fragment.TargetOptions.SelectList(FromMutable)
@@ -3098,6 +3213,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AuthenticationEndpointProtocolOption FromMutable(ScriptDom.AuthenticationEndpointProtocolOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AuthenticationEndpointProtocolOption))) { throw new NotImplementedException("Unexpected subtype of AuthenticationEndpointProtocolOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuthenticationEndpointProtocolOption(
                 authenticationTypes: fragment.AuthenticationTypes,
                 kind: fragment.Kind
@@ -3106,6 +3222,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AuthenticationPayloadOption FromMutable(ScriptDom.AuthenticationPayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AuthenticationPayloadOption))) { throw new NotImplementedException("Unexpected subtype of AuthenticationPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuthenticationPayloadOption(
                 protocol: fragment.Protocol,
                 certificate: FromMutable(fragment.Certificate),
@@ -3116,6 +3233,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutoCleanupChangeTrackingOptionDetail FromMutable(ScriptDom.AutoCleanupChangeTrackingOptionDetail fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AutoCleanupChangeTrackingOptionDetail))) { throw new NotImplementedException("Unexpected subtype of AutoCleanupChangeTrackingOptionDetail not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AutoCleanupChangeTrackingOptionDetail(
                 isOn: fragment.IsOn
             );
@@ -3123,6 +3241,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutoCreateStatisticsDatabaseOption FromMutable(ScriptDom.AutoCreateStatisticsDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AutoCreateStatisticsDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of AutoCreateStatisticsDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AutoCreateStatisticsDatabaseOption(
                 hasIncremental: fragment.HasIncremental,
                 incrementalState: fragment.IncrementalState,
@@ -3133,6 +3252,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutomaticTuningCreateIndexOption FromMutable(ScriptDom.AutomaticTuningCreateIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AutomaticTuningCreateIndexOption))) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningCreateIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AutomaticTuningCreateIndexOption(
                 optionKind: fragment.OptionKind,
                 @value: fragment.Value
@@ -3141,6 +3261,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutomaticTuningDatabaseOption FromMutable(ScriptDom.AutomaticTuningDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AutomaticTuningDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AutomaticTuningDatabaseOption(
                 automaticTuningState: fragment.AutomaticTuningState,
                 options: fragment.Options.SelectList(FromMutable),
@@ -3150,6 +3271,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutomaticTuningDropIndexOption FromMutable(ScriptDom.AutomaticTuningDropIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AutomaticTuningDropIndexOption))) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningDropIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AutomaticTuningDropIndexOption(
                 optionKind: fragment.OptionKind,
                 @value: fragment.Value
@@ -3158,6 +3280,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutomaticTuningForceLastGoodPlanOption FromMutable(ScriptDom.AutomaticTuningForceLastGoodPlanOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AutomaticTuningForceLastGoodPlanOption))) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningForceLastGoodPlanOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AutomaticTuningForceLastGoodPlanOption(
                 optionKind: fragment.OptionKind,
                 @value: fragment.Value
@@ -3166,6 +3289,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutomaticTuningMaintainIndexOption FromMutable(ScriptDom.AutomaticTuningMaintainIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AutomaticTuningMaintainIndexOption))) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningMaintainIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AutomaticTuningMaintainIndexOption(
                 optionKind: fragment.OptionKind,
                 @value: fragment.Value
@@ -3174,7 +3298,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutomaticTuningOption FromMutable(ScriptDom.AutomaticTuningOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.AutomaticTuningOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AutomaticTuningOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AutomaticTuningOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AutomaticTuningOption; }
             return new AutomaticTuningOption(
                 optionKind: fragment.OptionKind,
                 @value: fragment.Value
@@ -3183,6 +3307,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AvailabilityModeReplicaOption FromMutable(ScriptDom.AvailabilityModeReplicaOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AvailabilityModeReplicaOption))) { throw new NotImplementedException("Unexpected subtype of AvailabilityModeReplicaOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AvailabilityModeReplicaOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -3191,6 +3316,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AvailabilityReplica FromMutable(ScriptDom.AvailabilityReplica fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.AvailabilityReplica))) { throw new NotImplementedException("Unexpected subtype of AvailabilityReplica not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AvailabilityReplica(
                 serverName: FromMutable(fragment.ServerName),
                 options: fragment.Options.SelectList(FromMutable)
@@ -3199,6 +3325,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackupCertificateStatement FromMutable(ScriptDom.BackupCertificateStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackupCertificateStatement))) { throw new NotImplementedException("Unexpected subtype of BackupCertificateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupCertificateStatement(
                 file: FromMutable(fragment.File),
                 name: FromMutable(fragment.Name),
@@ -3211,6 +3338,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackupDatabaseStatement FromMutable(ScriptDom.BackupDatabaseStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackupDatabaseStatement))) { throw new NotImplementedException("Unexpected subtype of BackupDatabaseStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupDatabaseStatement(
                 files: fragment.Files.SelectList(FromMutable),
                 databaseName: FromMutable(fragment.DatabaseName),
@@ -3222,6 +3350,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackupEncryptionOption FromMutable(ScriptDom.BackupEncryptionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackupEncryptionOption))) { throw new NotImplementedException("Unexpected subtype of BackupEncryptionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupEncryptionOption(
                 algorithm: fragment.Algorithm,
                 encryptor: FromMutable(fragment.Encryptor),
@@ -3232,6 +3361,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackupMasterKeyStatement FromMutable(ScriptDom.BackupMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackupMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of BackupMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupMasterKeyStatement(
                 file: FromMutable(fragment.File),
                 password: FromMutable(fragment.Password)
@@ -3240,7 +3370,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackupOption FromMutable(ScriptDom.BackupOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.BackupOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BackupOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackupOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BackupOption; }
             return new BackupOption(
                 optionKind: fragment.OptionKind,
                 @value: FromMutable(fragment.Value)
@@ -3249,6 +3379,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackupRestoreFileInfo FromMutable(ScriptDom.BackupRestoreFileInfo fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackupRestoreFileInfo))) { throw new NotImplementedException("Unexpected subtype of BackupRestoreFileInfo not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupRestoreFileInfo(
                 items: fragment.Items.SelectList(FromMutable),
                 itemKind: fragment.ItemKind
@@ -3257,6 +3388,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackupServiceMasterKeyStatement FromMutable(ScriptDom.BackupServiceMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackupServiceMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of BackupServiceMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupServiceMasterKeyStatement(
                 file: FromMutable(fragment.File),
                 password: FromMutable(fragment.Password)
@@ -3265,6 +3397,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackupTransactionLogStatement FromMutable(ScriptDom.BackupTransactionLogStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackupTransactionLogStatement))) { throw new NotImplementedException("Unexpected subtype of BackupTransactionLogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupTransactionLogStatement(
                 databaseName: FromMutable(fragment.DatabaseName),
                 options: fragment.Options.SelectList(FromMutable),
@@ -3275,6 +3408,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BackwardsCompatibleDropIndexClause FromMutable(ScriptDom.BackwardsCompatibleDropIndexClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BackwardsCompatibleDropIndexClause))) { throw new NotImplementedException("Unexpected subtype of BackwardsCompatibleDropIndexClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackwardsCompatibleDropIndexClause(
                 index: FromMutable(fragment.Index)
             );
@@ -3282,6 +3416,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BeginConversationTimerStatement FromMutable(ScriptDom.BeginConversationTimerStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BeginConversationTimerStatement))) { throw new NotImplementedException("Unexpected subtype of BeginConversationTimerStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BeginConversationTimerStatement(
                 handle: FromMutable(fragment.Handle),
                 timeout: FromMutable(fragment.Timeout)
@@ -3290,6 +3425,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BeginDialogStatement FromMutable(ScriptDom.BeginDialogStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BeginDialogStatement))) { throw new NotImplementedException("Unexpected subtype of BeginDialogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BeginDialogStatement(
                 isConversation: fragment.IsConversation,
                 handle: FromMutable(fragment.Handle),
@@ -3303,6 +3439,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BeginEndAtomicBlockStatement FromMutable(ScriptDom.BeginEndAtomicBlockStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BeginEndAtomicBlockStatement))) { throw new NotImplementedException("Unexpected subtype of BeginEndAtomicBlockStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BeginEndAtomicBlockStatement(
                 options: fragment.Options.SelectList(FromMutable),
                 statementList: FromMutable(fragment.StatementList)
@@ -3311,7 +3448,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BeginEndBlockStatement FromMutable(ScriptDom.BeginEndBlockStatement fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.BeginEndBlockStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BeginEndBlockStatement; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BeginEndBlockStatement))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BeginEndBlockStatement; }
             return new BeginEndBlockStatement(
                 statementList: FromMutable(fragment.StatementList)
             );
@@ -3319,6 +3456,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BeginTransactionStatement FromMutable(ScriptDom.BeginTransactionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BeginTransactionStatement))) { throw new NotImplementedException("Unexpected subtype of BeginTransactionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BeginTransactionStatement(
                 distributed: fragment.Distributed,
                 markDefined: fragment.MarkDefined,
@@ -3329,6 +3467,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BinaryExpression FromMutable(ScriptDom.BinaryExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BinaryExpression))) { throw new NotImplementedException("Unexpected subtype of BinaryExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BinaryExpression(
                 binaryExpressionType: fragment.BinaryExpressionType,
                 firstExpression: FromMutable(fragment.FirstExpression),
@@ -3338,6 +3477,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BinaryLiteral FromMutable(ScriptDom.BinaryLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BinaryLiteral))) { throw new NotImplementedException("Unexpected subtype of BinaryLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BinaryLiteral(
                 isLargeObject: fragment.IsLargeObject,
                 @value: fragment.Value,
@@ -3347,6 +3487,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BinaryQueryExpression FromMutable(ScriptDom.BinaryQueryExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BinaryQueryExpression))) { throw new NotImplementedException("Unexpected subtype of BinaryQueryExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BinaryQueryExpression(
                 binaryQueryExpressionType: fragment.BinaryQueryExpressionType,
                 all: fragment.All,
@@ -3360,6 +3501,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BooleanBinaryExpression FromMutable(ScriptDom.BooleanBinaryExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BooleanBinaryExpression))) { throw new NotImplementedException("Unexpected subtype of BooleanBinaryExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BooleanBinaryExpression(
                 binaryExpressionType: fragment.BinaryExpressionType,
                 firstExpression: FromMutable(fragment.FirstExpression),
@@ -3369,6 +3511,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BooleanComparisonExpression FromMutable(ScriptDom.BooleanComparisonExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BooleanComparisonExpression))) { throw new NotImplementedException("Unexpected subtype of BooleanComparisonExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BooleanComparisonExpression(
                 comparisonType: fragment.ComparisonType,
                 firstExpression: FromMutable(fragment.FirstExpression),
@@ -3378,6 +3521,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BooleanExpressionSnippet FromMutable(ScriptDom.BooleanExpressionSnippet fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BooleanExpressionSnippet))) { throw new NotImplementedException("Unexpected subtype of BooleanExpressionSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BooleanExpressionSnippet(
                 script: fragment.Script
             );
@@ -3385,6 +3529,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BooleanIsNullExpression FromMutable(ScriptDom.BooleanIsNullExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BooleanIsNullExpression))) { throw new NotImplementedException("Unexpected subtype of BooleanIsNullExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BooleanIsNullExpression(
                 isNot: fragment.IsNot,
                 expression: FromMutable(fragment.Expression)
@@ -3393,6 +3538,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BooleanNotExpression FromMutable(ScriptDom.BooleanNotExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BooleanNotExpression))) { throw new NotImplementedException("Unexpected subtype of BooleanNotExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BooleanNotExpression(
                 expression: FromMutable(fragment.Expression)
             );
@@ -3400,6 +3546,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BooleanParenthesisExpression FromMutable(ScriptDom.BooleanParenthesisExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BooleanParenthesisExpression))) { throw new NotImplementedException("Unexpected subtype of BooleanParenthesisExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BooleanParenthesisExpression(
                 expression: FromMutable(fragment.Expression)
             );
@@ -3407,6 +3554,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BooleanTernaryExpression FromMutable(ScriptDom.BooleanTernaryExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BooleanTernaryExpression))) { throw new NotImplementedException("Unexpected subtype of BooleanTernaryExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BooleanTernaryExpression(
                 ternaryExpressionType: fragment.TernaryExpressionType,
                 firstExpression: FromMutable(fragment.FirstExpression),
@@ -3417,6 +3565,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BoundingBoxParameter FromMutable(ScriptDom.BoundingBoxParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BoundingBoxParameter))) { throw new NotImplementedException("Unexpected subtype of BoundingBoxParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BoundingBoxParameter(
                 parameter: fragment.Parameter,
                 @value: FromMutable(fragment.Value)
@@ -3425,6 +3574,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BoundingBoxSpatialIndexOption FromMutable(ScriptDom.BoundingBoxSpatialIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BoundingBoxSpatialIndexOption))) { throw new NotImplementedException("Unexpected subtype of BoundingBoxSpatialIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BoundingBoxSpatialIndexOption(
                 boundingBoxParameters: fragment.BoundingBoxParameters.SelectList(FromMutable)
             );
@@ -3432,6 +3582,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BreakStatement FromMutable(ScriptDom.BreakStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BreakStatement))) { throw new NotImplementedException("Unexpected subtype of BreakStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BreakStatement(
                 
             );
@@ -3439,6 +3590,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BrokerPriorityParameter FromMutable(ScriptDom.BrokerPriorityParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BrokerPriorityParameter))) { throw new NotImplementedException("Unexpected subtype of BrokerPriorityParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BrokerPriorityParameter(
                 isDefaultOrAny: fragment.IsDefaultOrAny,
                 parameterType: fragment.ParameterType,
@@ -3448,6 +3600,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BrowseForClause FromMutable(ScriptDom.BrowseForClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BrowseForClause))) { throw new NotImplementedException("Unexpected subtype of BrowseForClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BrowseForClause(
                 
             );
@@ -3455,6 +3608,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BuiltInFunctionTableReference FromMutable(ScriptDom.BuiltInFunctionTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BuiltInFunctionTableReference))) { throw new NotImplementedException("Unexpected subtype of BuiltInFunctionTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BuiltInFunctionTableReference(
                 name: FromMutable(fragment.Name),
                 parameters: fragment.Parameters.SelectList(FromMutable),
@@ -3465,7 +3619,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BulkInsertOption FromMutable(ScriptDom.BulkInsertOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.BulkInsertOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BulkInsertOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BulkInsertOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BulkInsertOption; }
             return new BulkInsertOption(
                 optionKind: fragment.OptionKind
             );
@@ -3473,6 +3627,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BulkInsertStatement FromMutable(ScriptDom.BulkInsertStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BulkInsertStatement))) { throw new NotImplementedException("Unexpected subtype of BulkInsertStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BulkInsertStatement(
                 from: FromMutable(fragment.From),
                 to: FromMutable(fragment.To),
@@ -3482,6 +3637,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static BulkOpenRowset FromMutable(ScriptDom.BulkOpenRowset fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.BulkOpenRowset))) { throw new NotImplementedException("Unexpected subtype of BulkOpenRowset not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BulkOpenRowset(
                 dataFiles: fragment.DataFiles.SelectList(FromMutable),
                 options: fragment.Options.SelectList(FromMutable),
@@ -3494,6 +3650,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CastCall FromMutable(ScriptDom.CastCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CastCall))) { throw new NotImplementedException("Unexpected subtype of CastCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CastCall(
                 dataType: FromMutable(fragment.DataType),
                 parameter: FromMutable(fragment.Parameter),
@@ -3503,6 +3660,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CatalogCollationOption FromMutable(ScriptDom.CatalogCollationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CatalogCollationOption))) { throw new NotImplementedException("Unexpected subtype of CatalogCollationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CatalogCollationOption(
                 catalogCollation: fragment.CatalogCollation,
                 optionKind: fragment.OptionKind
@@ -3511,6 +3669,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CellsPerObjectSpatialIndexOption FromMutable(ScriptDom.CellsPerObjectSpatialIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CellsPerObjectSpatialIndexOption))) { throw new NotImplementedException("Unexpected subtype of CellsPerObjectSpatialIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CellsPerObjectSpatialIndexOption(
                 @value: FromMutable(fragment.Value)
             );
@@ -3518,6 +3677,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CertificateCreateLoginSource FromMutable(ScriptDom.CertificateCreateLoginSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CertificateCreateLoginSource))) { throw new NotImplementedException("Unexpected subtype of CertificateCreateLoginSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CertificateCreateLoginSource(
                 certificate: FromMutable(fragment.Certificate),
                 credential: FromMutable(fragment.Credential)
@@ -3526,6 +3686,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CertificateOption FromMutable(ScriptDom.CertificateOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CertificateOption))) { throw new NotImplementedException("Unexpected subtype of CertificateOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CertificateOption(
                 kind: fragment.Kind,
                 @value: FromMutable(fragment.Value)
@@ -3534,6 +3695,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ChangeRetentionChangeTrackingOptionDetail FromMutable(ScriptDom.ChangeRetentionChangeTrackingOptionDetail fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ChangeRetentionChangeTrackingOptionDetail))) { throw new NotImplementedException("Unexpected subtype of ChangeRetentionChangeTrackingOptionDetail not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ChangeRetentionChangeTrackingOptionDetail(
                 retentionPeriod: FromMutable(fragment.RetentionPeriod),
                 unit: fragment.Unit
@@ -3542,6 +3704,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ChangeTableChangesTableReference FromMutable(ScriptDom.ChangeTableChangesTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ChangeTableChangesTableReference))) { throw new NotImplementedException("Unexpected subtype of ChangeTableChangesTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ChangeTableChangesTableReference(
                 target: FromMutable(fragment.Target),
                 sinceVersion: FromMutable(fragment.SinceVersion),
@@ -3553,6 +3716,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ChangeTableVersionTableReference FromMutable(ScriptDom.ChangeTableVersionTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ChangeTableVersionTableReference))) { throw new NotImplementedException("Unexpected subtype of ChangeTableVersionTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ChangeTableVersionTableReference(
                 target: FromMutable(fragment.Target),
                 primaryKeyColumns: fragment.PrimaryKeyColumns.SelectList(FromMutable),
@@ -3565,6 +3729,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ChangeTrackingDatabaseOption FromMutable(ScriptDom.ChangeTrackingDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ChangeTrackingDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of ChangeTrackingDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ChangeTrackingDatabaseOption(
                 optionState: fragment.OptionState,
                 details: fragment.Details.SelectList(FromMutable),
@@ -3574,6 +3739,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ChangeTrackingFullTextIndexOption FromMutable(ScriptDom.ChangeTrackingFullTextIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ChangeTrackingFullTextIndexOption))) { throw new NotImplementedException("Unexpected subtype of ChangeTrackingFullTextIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ChangeTrackingFullTextIndexOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -3582,6 +3748,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CharacterSetPayloadOption FromMutable(ScriptDom.CharacterSetPayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CharacterSetPayloadOption))) { throw new NotImplementedException("Unexpected subtype of CharacterSetPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CharacterSetPayloadOption(
                 isSql: fragment.IsSql,
                 kind: fragment.Kind
@@ -3590,6 +3757,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CheckConstraintDefinition FromMutable(ScriptDom.CheckConstraintDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CheckConstraintDefinition))) { throw new NotImplementedException("Unexpected subtype of CheckConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CheckConstraintDefinition(
                 checkCondition: FromMutable(fragment.CheckCondition),
                 notForReplication: fragment.NotForReplication,
@@ -3599,6 +3767,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CheckpointStatement FromMutable(ScriptDom.CheckpointStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CheckpointStatement))) { throw new NotImplementedException("Unexpected subtype of CheckpointStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CheckpointStatement(
                 duration: FromMutable(fragment.Duration)
             );
@@ -3606,6 +3775,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ChildObjectName FromMutable(ScriptDom.ChildObjectName fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ChildObjectName))) { throw new NotImplementedException("Unexpected subtype of ChildObjectName not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ChildObjectName(
                 identifiers: fragment.Identifiers.SelectList(FromMutable)
             );
@@ -3613,6 +3783,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ClassifierEndTimeOption FromMutable(ScriptDom.ClassifierEndTimeOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ClassifierEndTimeOption))) { throw new NotImplementedException("Unexpected subtype of ClassifierEndTimeOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ClassifierEndTimeOption(
                 time: FromMutable(fragment.Time),
                 optionType: fragment.OptionType
@@ -3621,6 +3792,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ClassifierImportanceOption FromMutable(ScriptDom.ClassifierImportanceOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ClassifierImportanceOption))) { throw new NotImplementedException("Unexpected subtype of ClassifierImportanceOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ClassifierImportanceOption(
                 importance: fragment.Importance,
                 optionType: fragment.OptionType
@@ -3629,6 +3801,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ClassifierMemberNameOption FromMutable(ScriptDom.ClassifierMemberNameOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ClassifierMemberNameOption))) { throw new NotImplementedException("Unexpected subtype of ClassifierMemberNameOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ClassifierMemberNameOption(
                 memberName: FromMutable(fragment.MemberName),
                 optionType: fragment.OptionType
@@ -3637,6 +3810,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ClassifierStartTimeOption FromMutable(ScriptDom.ClassifierStartTimeOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ClassifierStartTimeOption))) { throw new NotImplementedException("Unexpected subtype of ClassifierStartTimeOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ClassifierStartTimeOption(
                 time: FromMutable(fragment.Time),
                 optionType: fragment.OptionType
@@ -3645,6 +3819,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ClassifierWlmContextOption FromMutable(ScriptDom.ClassifierWlmContextOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ClassifierWlmContextOption))) { throw new NotImplementedException("Unexpected subtype of ClassifierWlmContextOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ClassifierWlmContextOption(
                 wlmContext: FromMutable(fragment.WlmContext),
                 optionType: fragment.OptionType
@@ -3653,6 +3828,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ClassifierWlmLabelOption FromMutable(ScriptDom.ClassifierWlmLabelOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ClassifierWlmLabelOption))) { throw new NotImplementedException("Unexpected subtype of ClassifierWlmLabelOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ClassifierWlmLabelOption(
                 wlmLabel: FromMutable(fragment.WlmLabel),
                 optionType: fragment.OptionType
@@ -3661,6 +3837,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ClassifierWorkloadGroupOption FromMutable(ScriptDom.ClassifierWorkloadGroupOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ClassifierWorkloadGroupOption))) { throw new NotImplementedException("Unexpected subtype of ClassifierWorkloadGroupOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ClassifierWorkloadGroupOption(
                 workloadGroupName: FromMutable(fragment.WorkloadGroupName),
                 optionType: fragment.OptionType
@@ -3669,6 +3846,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CloseCursorStatement FromMutable(ScriptDom.CloseCursorStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CloseCursorStatement))) { throw new NotImplementedException("Unexpected subtype of CloseCursorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CloseCursorStatement(
                 cursor: FromMutable(fragment.Cursor)
             );
@@ -3676,6 +3854,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CloseMasterKeyStatement FromMutable(ScriptDom.CloseMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CloseMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of CloseMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CloseMasterKeyStatement(
                 
             );
@@ -3683,6 +3862,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CloseSymmetricKeyStatement FromMutable(ScriptDom.CloseSymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CloseSymmetricKeyStatement))) { throw new NotImplementedException("Unexpected subtype of CloseSymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CloseSymmetricKeyStatement(
                 name: FromMutable(fragment.Name),
                 all: fragment.All
@@ -3691,6 +3871,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CoalesceExpression FromMutable(ScriptDom.CoalesceExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CoalesceExpression))) { throw new NotImplementedException("Unexpected subtype of CoalesceExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CoalesceExpression(
                 expressions: fragment.Expressions.SelectList(FromMutable),
                 collation: FromMutable(fragment.Collation)
@@ -3699,6 +3880,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnDefinition FromMutable(ScriptDom.ColumnDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnDefinition))) { throw new NotImplementedException("Unexpected subtype of ColumnDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnDefinition(
                 computedColumnExpression: FromMutable(fragment.ComputedColumnExpression),
                 isPersisted: fragment.IsPersisted,
@@ -3721,7 +3903,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnDefinitionBase FromMutable(ScriptDom.ColumnDefinitionBase fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.ColumnDefinitionBase)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ColumnDefinitionBase; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnDefinitionBase))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ColumnDefinitionBase; }
             return new ColumnDefinitionBase(
                 columnIdentifier: FromMutable(fragment.ColumnIdentifier),
                 dataType: FromMutable(fragment.DataType),
@@ -3731,6 +3913,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnEncryptionAlgorithmNameParameter FromMutable(ScriptDom.ColumnEncryptionAlgorithmNameParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnEncryptionAlgorithmNameParameter))) { throw new NotImplementedException("Unexpected subtype of ColumnEncryptionAlgorithmNameParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnEncryptionAlgorithmNameParameter(
                 algorithm: FromMutable(fragment.Algorithm),
                 parameterKind: fragment.ParameterKind
@@ -3739,6 +3922,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnEncryptionAlgorithmParameter FromMutable(ScriptDom.ColumnEncryptionAlgorithmParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnEncryptionAlgorithmParameter))) { throw new NotImplementedException("Unexpected subtype of ColumnEncryptionAlgorithmParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnEncryptionAlgorithmParameter(
                 encryptionAlgorithm: FromMutable(fragment.EncryptionAlgorithm),
                 parameterKind: fragment.ParameterKind
@@ -3747,6 +3931,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnEncryptionDefinition FromMutable(ScriptDom.ColumnEncryptionDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnEncryptionDefinition))) { throw new NotImplementedException("Unexpected subtype of ColumnEncryptionDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnEncryptionDefinition(
                 parameters: fragment.Parameters.SelectList(FromMutable)
             );
@@ -3754,6 +3939,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnEncryptionKeyNameParameter FromMutable(ScriptDom.ColumnEncryptionKeyNameParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnEncryptionKeyNameParameter))) { throw new NotImplementedException("Unexpected subtype of ColumnEncryptionKeyNameParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnEncryptionKeyNameParameter(
                 name: FromMutable(fragment.Name),
                 parameterKind: fragment.ParameterKind
@@ -3762,6 +3948,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnEncryptionKeyValue FromMutable(ScriptDom.ColumnEncryptionKeyValue fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnEncryptionKeyValue))) { throw new NotImplementedException("Unexpected subtype of ColumnEncryptionKeyValue not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnEncryptionKeyValue(
                 parameters: fragment.Parameters.SelectList(FromMutable)
             );
@@ -3769,6 +3956,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnEncryptionTypeParameter FromMutable(ScriptDom.ColumnEncryptionTypeParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnEncryptionTypeParameter))) { throw new NotImplementedException("Unexpected subtype of ColumnEncryptionTypeParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnEncryptionTypeParameter(
                 encryptionType: fragment.EncryptionType,
                 parameterKind: fragment.ParameterKind
@@ -3777,6 +3965,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnMasterKeyEnclaveComputationsParameter FromMutable(ScriptDom.ColumnMasterKeyEnclaveComputationsParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnMasterKeyEnclaveComputationsParameter))) { throw new NotImplementedException("Unexpected subtype of ColumnMasterKeyEnclaveComputationsParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnMasterKeyEnclaveComputationsParameter(
                 signature: FromMutable(fragment.Signature),
                 parameterKind: fragment.ParameterKind
@@ -3785,6 +3974,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnMasterKeyNameParameter FromMutable(ScriptDom.ColumnMasterKeyNameParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnMasterKeyNameParameter))) { throw new NotImplementedException("Unexpected subtype of ColumnMasterKeyNameParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnMasterKeyNameParameter(
                 name: FromMutable(fragment.Name),
                 parameterKind: fragment.ParameterKind
@@ -3793,6 +3983,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnMasterKeyPathParameter FromMutable(ScriptDom.ColumnMasterKeyPathParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnMasterKeyPathParameter))) { throw new NotImplementedException("Unexpected subtype of ColumnMasterKeyPathParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnMasterKeyPathParameter(
                 path: FromMutable(fragment.Path),
                 parameterKind: fragment.ParameterKind
@@ -3801,6 +3992,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnMasterKeyStoreProviderNameParameter FromMutable(ScriptDom.ColumnMasterKeyStoreProviderNameParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnMasterKeyStoreProviderNameParameter))) { throw new NotImplementedException("Unexpected subtype of ColumnMasterKeyStoreProviderNameParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnMasterKeyStoreProviderNameParameter(
                 name: FromMutable(fragment.Name),
                 parameterKind: fragment.ParameterKind
@@ -3809,6 +4001,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnReferenceExpression FromMutable(ScriptDom.ColumnReferenceExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnReferenceExpression))) { throw new NotImplementedException("Unexpected subtype of ColumnReferenceExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnReferenceExpression(
                 columnType: fragment.ColumnType,
                 multiPartIdentifier: FromMutable(fragment.MultiPartIdentifier),
@@ -3818,6 +4011,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnStorageOptions FromMutable(ScriptDom.ColumnStorageOptions fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnStorageOptions))) { throw new NotImplementedException("Unexpected subtype of ColumnStorageOptions not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnStorageOptions(
                 isFileStream: fragment.IsFileStream,
                 sparseOption: fragment.SparseOption
@@ -3826,6 +4020,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ColumnWithSortOrder FromMutable(ScriptDom.ColumnWithSortOrder fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ColumnWithSortOrder))) { throw new NotImplementedException("Unexpected subtype of ColumnWithSortOrder not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnWithSortOrder(
                 column: FromMutable(fragment.Column),
                 sortOrder: fragment.SortOrder
@@ -3834,6 +4029,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CommandSecurityElement80 FromMutable(ScriptDom.CommandSecurityElement80 fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CommandSecurityElement80))) { throw new NotImplementedException("Unexpected subtype of CommandSecurityElement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CommandSecurityElement80(
                 all: fragment.All,
                 commandOptions: fragment.CommandOptions
@@ -3842,6 +4038,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CommitTransactionStatement FromMutable(ScriptDom.CommitTransactionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CommitTransactionStatement))) { throw new NotImplementedException("Unexpected subtype of CommitTransactionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CommitTransactionStatement(
                 delayedDurabilityOption: fragment.DelayedDurabilityOption,
                 name: FromMutable(fragment.Name)
@@ -3850,6 +4047,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CommonTableExpression FromMutable(ScriptDom.CommonTableExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CommonTableExpression))) { throw new NotImplementedException("Unexpected subtype of CommonTableExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CommonTableExpression(
                 expressionName: FromMutable(fragment.ExpressionName),
                 columns: fragment.Columns.SelectList(FromMutable),
@@ -3859,6 +4057,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CompositeGroupingSpecification FromMutable(ScriptDom.CompositeGroupingSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CompositeGroupingSpecification))) { throw new NotImplementedException("Unexpected subtype of CompositeGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CompositeGroupingSpecification(
                 items: fragment.Items.SelectList(FromMutable)
             );
@@ -3866,6 +4065,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CompressionDelayIndexOption FromMutable(ScriptDom.CompressionDelayIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CompressionDelayIndexOption))) { throw new NotImplementedException("Unexpected subtype of CompressionDelayIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CompressionDelayIndexOption(
                 expression: FromMutable(fragment.Expression),
                 timeUnit: fragment.TimeUnit,
@@ -3875,6 +4075,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CompressionEndpointProtocolOption FromMutable(ScriptDom.CompressionEndpointProtocolOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CompressionEndpointProtocolOption))) { throw new NotImplementedException("Unexpected subtype of CompressionEndpointProtocolOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CompressionEndpointProtocolOption(
                 isEnabled: fragment.IsEnabled,
                 kind: fragment.Kind
@@ -3883,6 +4084,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CompressionPartitionRange FromMutable(ScriptDom.CompressionPartitionRange fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CompressionPartitionRange))) { throw new NotImplementedException("Unexpected subtype of CompressionPartitionRange not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CompressionPartitionRange(
                 from: FromMutable(fragment.From),
                 to: FromMutable(fragment.To)
@@ -3891,6 +4093,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ComputeClause FromMutable(ScriptDom.ComputeClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ComputeClause))) { throw new NotImplementedException("Unexpected subtype of ComputeClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ComputeClause(
                 computeFunctions: fragment.ComputeFunctions.SelectList(FromMutable),
                 byExpressions: fragment.ByExpressions.SelectList(FromMutable)
@@ -3899,6 +4102,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ComputeFunction FromMutable(ScriptDom.ComputeFunction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ComputeFunction))) { throw new NotImplementedException("Unexpected subtype of ComputeFunction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ComputeFunction(
                 computeFunctionType: fragment.ComputeFunctionType,
                 expression: FromMutable(fragment.Expression)
@@ -3907,6 +4111,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ContainmentDatabaseOption FromMutable(ScriptDom.ContainmentDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ContainmentDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of ContainmentDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ContainmentDatabaseOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -3915,6 +4120,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ContinueStatement FromMutable(ScriptDom.ContinueStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ContinueStatement))) { throw new NotImplementedException("Unexpected subtype of ContinueStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ContinueStatement(
                 
             );
@@ -3922,6 +4128,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ContractMessage FromMutable(ScriptDom.ContractMessage fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ContractMessage))) { throw new NotImplementedException("Unexpected subtype of ContractMessage not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ContractMessage(
                 name: FromMutable(fragment.Name),
                 sentBy: fragment.SentBy
@@ -3930,6 +4137,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ConvertCall FromMutable(ScriptDom.ConvertCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ConvertCall))) { throw new NotImplementedException("Unexpected subtype of ConvertCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ConvertCall(
                 dataType: FromMutable(fragment.DataType),
                 parameter: FromMutable(fragment.Parameter),
@@ -3940,6 +4148,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CopyColumnOption FromMutable(ScriptDom.CopyColumnOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CopyColumnOption))) { throw new NotImplementedException("Unexpected subtype of CopyColumnOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CopyColumnOption(
                 columnName: FromMutable(fragment.ColumnName),
                 defaultValue: FromMutable(fragment.DefaultValue),
@@ -3949,6 +4158,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CopyCredentialOption FromMutable(ScriptDom.CopyCredentialOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CopyCredentialOption))) { throw new NotImplementedException("Unexpected subtype of CopyCredentialOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CopyCredentialOption(
                 identity: FromMutable(fragment.Identity),
                 secret: FromMutable(fragment.Secret)
@@ -3957,6 +4167,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CopyOption FromMutable(ScriptDom.CopyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CopyOption))) { throw new NotImplementedException("Unexpected subtype of CopyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CopyOption(
                 kind: fragment.Kind,
                 @value: FromMutable(fragment.Value)
@@ -3965,6 +4176,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CopyStatement FromMutable(ScriptDom.CopyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CopyStatement))) { throw new NotImplementedException("Unexpected subtype of CopyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CopyStatement(
                 from: fragment.From.SelectList(FromMutable),
                 into: FromMutable(fragment.Into),
@@ -3975,6 +4187,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateAggregateStatement FromMutable(ScriptDom.CreateAggregateStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateAggregateStatement))) { throw new NotImplementedException("Unexpected subtype of CreateAggregateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateAggregateStatement(
                 name: FromMutable(fragment.Name),
                 assemblyName: FromMutable(fragment.AssemblyName),
@@ -3985,6 +4198,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateApplicationRoleStatement FromMutable(ScriptDom.CreateApplicationRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateApplicationRoleStatement))) { throw new NotImplementedException("Unexpected subtype of CreateApplicationRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateApplicationRoleStatement(
                 name: FromMutable(fragment.Name),
                 applicationRoleOptions: fragment.ApplicationRoleOptions.SelectList(FromMutable)
@@ -3993,6 +4207,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateAssemblyStatement FromMutable(ScriptDom.CreateAssemblyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateAssemblyStatement))) { throw new NotImplementedException("Unexpected subtype of CreateAssemblyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateAssemblyStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name),
@@ -4003,6 +4218,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateAsymmetricKeyStatement FromMutable(ScriptDom.CreateAsymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateAsymmetricKeyStatement))) { throw new NotImplementedException("Unexpected subtype of CreateAsymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateAsymmetricKeyStatement(
                 name: FromMutable(fragment.Name),
                 keySource: FromMutable(fragment.KeySource),
@@ -4014,6 +4230,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateAvailabilityGroupStatement FromMutable(ScriptDom.CreateAvailabilityGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateAvailabilityGroupStatement))) { throw new NotImplementedException("Unexpected subtype of CreateAvailabilityGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateAvailabilityGroupStatement(
                 name: FromMutable(fragment.Name),
                 options: fragment.Options.SelectList(FromMutable),
@@ -4024,6 +4241,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateBrokerPriorityStatement FromMutable(ScriptDom.CreateBrokerPriorityStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateBrokerPriorityStatement))) { throw new NotImplementedException("Unexpected subtype of CreateBrokerPriorityStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateBrokerPriorityStatement(
                 name: FromMutable(fragment.Name),
                 brokerPriorityParameters: fragment.BrokerPriorityParameters.SelectList(FromMutable)
@@ -4032,6 +4250,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateCertificateStatement FromMutable(ScriptDom.CreateCertificateStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateCertificateStatement))) { throw new NotImplementedException("Unexpected subtype of CreateCertificateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateCertificateStatement(
                 certificateSource: FromMutable(fragment.CertificateSource),
                 certificateOptions: fragment.CertificateOptions.SelectList(FromMutable),
@@ -4046,6 +4265,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateColumnEncryptionKeyStatement FromMutable(ScriptDom.CreateColumnEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateColumnEncryptionKeyStatement))) { throw new NotImplementedException("Unexpected subtype of CreateColumnEncryptionKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateColumnEncryptionKeyStatement(
                 name: FromMutable(fragment.Name),
                 columnEncryptionKeyValues: fragment.ColumnEncryptionKeyValues.SelectList(FromMutable)
@@ -4054,6 +4274,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateColumnMasterKeyStatement FromMutable(ScriptDom.CreateColumnMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateColumnMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of CreateColumnMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateColumnMasterKeyStatement(
                 name: FromMutable(fragment.Name),
                 parameters: fragment.Parameters.SelectList(FromMutable)
@@ -4062,6 +4283,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateColumnStoreIndexStatement FromMutable(ScriptDom.CreateColumnStoreIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateColumnStoreIndexStatement))) { throw new NotImplementedException("Unexpected subtype of CreateColumnStoreIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateColumnStoreIndexStatement(
                 name: FromMutable(fragment.Name),
                 clustered: fragment.Clustered,
@@ -4076,6 +4298,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateContractStatement FromMutable(ScriptDom.CreateContractStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateContractStatement))) { throw new NotImplementedException("Unexpected subtype of CreateContractStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateContractStatement(
                 name: FromMutable(fragment.Name),
                 messages: fragment.Messages.SelectList(FromMutable),
@@ -4085,6 +4308,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateCredentialStatement FromMutable(ScriptDom.CreateCredentialStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateCredentialStatement))) { throw new NotImplementedException("Unexpected subtype of CreateCredentialStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateCredentialStatement(
                 cryptographicProviderName: FromMutable(fragment.CryptographicProviderName),
                 name: FromMutable(fragment.Name),
@@ -4096,6 +4320,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateCryptographicProviderStatement FromMutable(ScriptDom.CreateCryptographicProviderStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateCryptographicProviderStatement))) { throw new NotImplementedException("Unexpected subtype of CreateCryptographicProviderStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateCryptographicProviderStatement(
                 name: FromMutable(fragment.Name),
                 file: FromMutable(fragment.File)
@@ -4104,6 +4329,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateDatabaseAuditSpecificationStatement FromMutable(ScriptDom.CreateDatabaseAuditSpecificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateDatabaseAuditSpecificationStatement))) { throw new NotImplementedException("Unexpected subtype of CreateDatabaseAuditSpecificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateDatabaseAuditSpecificationStatement(
                 auditState: fragment.AuditState,
                 parts: fragment.Parts.SelectList(FromMutable),
@@ -4114,6 +4340,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateDatabaseEncryptionKeyStatement FromMutable(ScriptDom.CreateDatabaseEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateDatabaseEncryptionKeyStatement))) { throw new NotImplementedException("Unexpected subtype of CreateDatabaseEncryptionKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateDatabaseEncryptionKeyStatement(
                 encryptor: FromMutable(fragment.Encryptor),
                 algorithm: fragment.Algorithm
@@ -4122,6 +4349,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateDatabaseStatement FromMutable(ScriptDom.CreateDatabaseStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateDatabaseStatement))) { throw new NotImplementedException("Unexpected subtype of CreateDatabaseStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateDatabaseStatement(
                 databaseName: FromMutable(fragment.DatabaseName),
                 containment: FromMutable(fragment.Containment),
@@ -4137,6 +4365,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateDefaultStatement FromMutable(ScriptDom.CreateDefaultStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateDefaultStatement))) { throw new NotImplementedException("Unexpected subtype of CreateDefaultStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateDefaultStatement(
                 name: FromMutable(fragment.Name),
                 expression: FromMutable(fragment.Expression)
@@ -4145,6 +4374,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateEndpointStatement FromMutable(ScriptDom.CreateEndpointStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateEndpointStatement))) { throw new NotImplementedException("Unexpected subtype of CreateEndpointStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateEndpointStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name),
@@ -4159,6 +4389,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateEventNotificationStatement FromMutable(ScriptDom.CreateEventNotificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateEventNotificationStatement))) { throw new NotImplementedException("Unexpected subtype of CreateEventNotificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateEventNotificationStatement(
                 name: FromMutable(fragment.Name),
                 scope: FromMutable(fragment.Scope),
@@ -4171,6 +4402,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateEventSessionStatement FromMutable(ScriptDom.CreateEventSessionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateEventSessionStatement))) { throw new NotImplementedException("Unexpected subtype of CreateEventSessionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateEventSessionStatement(
                 name: FromMutable(fragment.Name),
                 sessionScope: fragment.SessionScope,
@@ -4182,6 +4414,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateExternalDataSourceStatement FromMutable(ScriptDom.CreateExternalDataSourceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateExternalDataSourceStatement))) { throw new NotImplementedException("Unexpected subtype of CreateExternalDataSourceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalDataSourceStatement(
                 name: FromMutable(fragment.Name),
                 dataSourceType: fragment.DataSourceType,
@@ -4193,6 +4426,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateExternalFileFormatStatement FromMutable(ScriptDom.CreateExternalFileFormatStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateExternalFileFormatStatement))) { throw new NotImplementedException("Unexpected subtype of CreateExternalFileFormatStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalFileFormatStatement(
                 name: FromMutable(fragment.Name),
                 formatType: fragment.FormatType,
@@ -4202,6 +4436,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateExternalLanguageStatement FromMutable(ScriptDom.CreateExternalLanguageStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateExternalLanguageStatement))) { throw new NotImplementedException("Unexpected subtype of CreateExternalLanguageStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalLanguageStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name),
@@ -4211,6 +4446,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateExternalLibraryStatement FromMutable(ScriptDom.CreateExternalLibraryStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateExternalLibraryStatement))) { throw new NotImplementedException("Unexpected subtype of CreateExternalLibraryStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalLibraryStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name),
@@ -4221,6 +4457,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateExternalResourcePoolStatement FromMutable(ScriptDom.CreateExternalResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateExternalResourcePoolStatement))) { throw new NotImplementedException("Unexpected subtype of CreateExternalResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalResourcePoolStatement(
                 name: FromMutable(fragment.Name),
                 externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(FromMutable)
@@ -4229,6 +4466,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateExternalStreamingJobStatement FromMutable(ScriptDom.CreateExternalStreamingJobStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateExternalStreamingJobStatement))) { throw new NotImplementedException("Unexpected subtype of CreateExternalStreamingJobStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalStreamingJobStatement(
                 name: FromMutable(fragment.Name),
                 statement: FromMutable(fragment.Statement)
@@ -4237,6 +4475,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateExternalStreamStatement FromMutable(ScriptDom.CreateExternalStreamStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateExternalStreamStatement))) { throw new NotImplementedException("Unexpected subtype of CreateExternalStreamStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalStreamStatement(
                 name: FromMutable(fragment.Name),
                 location: FromMutable(fragment.Location),
@@ -4248,6 +4487,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateExternalTableStatement FromMutable(ScriptDom.CreateExternalTableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateExternalTableStatement))) { throw new NotImplementedException("Unexpected subtype of CreateExternalTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalTableStatement(
                 schemaObjectName: FromMutable(fragment.SchemaObjectName),
                 columnDefinitions: fragment.ColumnDefinitions.SelectList(FromMutable),
@@ -4259,6 +4499,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateFederationStatement FromMutable(ScriptDom.CreateFederationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateFederationStatement))) { throw new NotImplementedException("Unexpected subtype of CreateFederationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateFederationStatement(
                 name: FromMutable(fragment.Name),
                 distributionName: FromMutable(fragment.DistributionName),
@@ -4268,6 +4509,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateFullTextCatalogStatement FromMutable(ScriptDom.CreateFullTextCatalogStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateFullTextCatalogStatement))) { throw new NotImplementedException("Unexpected subtype of CreateFullTextCatalogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateFullTextCatalogStatement(
                 fileGroup: FromMutable(fragment.FileGroup),
                 path: FromMutable(fragment.Path),
@@ -4280,6 +4522,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateFullTextIndexStatement FromMutable(ScriptDom.CreateFullTextIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateFullTextIndexStatement))) { throw new NotImplementedException("Unexpected subtype of CreateFullTextIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateFullTextIndexStatement(
                 onName: FromMutable(fragment.OnName),
                 fullTextIndexColumns: fragment.FullTextIndexColumns.SelectList(FromMutable),
@@ -4291,6 +4534,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateFullTextStopListStatement FromMutable(ScriptDom.CreateFullTextStopListStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateFullTextStopListStatement))) { throw new NotImplementedException("Unexpected subtype of CreateFullTextStopListStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateFullTextStopListStatement(
                 name: FromMutable(fragment.Name),
                 isSystemStopList: fragment.IsSystemStopList,
@@ -4302,6 +4546,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateFunctionStatement FromMutable(ScriptDom.CreateFunctionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateFunctionStatement))) { throw new NotImplementedException("Unexpected subtype of CreateFunctionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateFunctionStatement(
                 name: FromMutable(fragment.Name),
                 returnType: FromMutable(fragment.ReturnType),
@@ -4315,6 +4560,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateIndexStatement FromMutable(ScriptDom.CreateIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateIndexStatement))) { throw new NotImplementedException("Unexpected subtype of CreateIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateIndexStatement(
                 translated80SyntaxTo90: fragment.Translated80SyntaxTo90,
                 unique: fragment.Unique,
@@ -4332,6 +4578,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateLoginStatement FromMutable(ScriptDom.CreateLoginStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateLoginStatement))) { throw new NotImplementedException("Unexpected subtype of CreateLoginStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateLoginStatement(
                 name: FromMutable(fragment.Name),
                 source: FromMutable(fragment.Source)
@@ -4340,6 +4587,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateMasterKeyStatement FromMutable(ScriptDom.CreateMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of CreateMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateMasterKeyStatement(
                 password: FromMutable(fragment.Password)
             );
@@ -4347,6 +4595,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateMessageTypeStatement FromMutable(ScriptDom.CreateMessageTypeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateMessageTypeStatement))) { throw new NotImplementedException("Unexpected subtype of CreateMessageTypeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateMessageTypeStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name),
@@ -4357,6 +4606,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateOrAlterFunctionStatement FromMutable(ScriptDom.CreateOrAlterFunctionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateOrAlterFunctionStatement))) { throw new NotImplementedException("Unexpected subtype of CreateOrAlterFunctionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateOrAlterFunctionStatement(
                 name: FromMutable(fragment.Name),
                 returnType: FromMutable(fragment.ReturnType),
@@ -4370,6 +4620,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateOrAlterProcedureStatement FromMutable(ScriptDom.CreateOrAlterProcedureStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateOrAlterProcedureStatement))) { throw new NotImplementedException("Unexpected subtype of CreateOrAlterProcedureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateOrAlterProcedureStatement(
                 procedureReference: FromMutable(fragment.ProcedureReference),
                 isForReplication: fragment.IsForReplication,
@@ -4382,6 +4633,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateOrAlterTriggerStatement FromMutable(ScriptDom.CreateOrAlterTriggerStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateOrAlterTriggerStatement))) { throw new NotImplementedException("Unexpected subtype of CreateOrAlterTriggerStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateOrAlterTriggerStatement(
                 name: FromMutable(fragment.Name),
                 triggerObject: FromMutable(fragment.TriggerObject),
@@ -4397,6 +4649,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateOrAlterViewStatement FromMutable(ScriptDom.CreateOrAlterViewStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateOrAlterViewStatement))) { throw new NotImplementedException("Unexpected subtype of CreateOrAlterViewStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateOrAlterViewStatement(
                 schemaObjectName: FromMutable(fragment.SchemaObjectName),
                 columns: fragment.Columns.SelectList(FromMutable),
@@ -4409,6 +4662,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreatePartitionFunctionStatement FromMutable(ScriptDom.CreatePartitionFunctionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreatePartitionFunctionStatement))) { throw new NotImplementedException("Unexpected subtype of CreatePartitionFunctionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreatePartitionFunctionStatement(
                 name: FromMutable(fragment.Name),
                 parameterType: FromMutable(fragment.ParameterType),
@@ -4419,6 +4673,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreatePartitionSchemeStatement FromMutable(ScriptDom.CreatePartitionSchemeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreatePartitionSchemeStatement))) { throw new NotImplementedException("Unexpected subtype of CreatePartitionSchemeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreatePartitionSchemeStatement(
                 name: FromMutable(fragment.Name),
                 partitionFunction: FromMutable(fragment.PartitionFunction),
@@ -4429,6 +4684,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateProcedureStatement FromMutable(ScriptDom.CreateProcedureStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateProcedureStatement))) { throw new NotImplementedException("Unexpected subtype of CreateProcedureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateProcedureStatement(
                 procedureReference: FromMutable(fragment.ProcedureReference),
                 isForReplication: fragment.IsForReplication,
@@ -4441,6 +4697,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateQueueStatement FromMutable(ScriptDom.CreateQueueStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateQueueStatement))) { throw new NotImplementedException("Unexpected subtype of CreateQueueStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateQueueStatement(
                 onFileGroup: FromMutable(fragment.OnFileGroup),
                 name: FromMutable(fragment.Name),
@@ -4450,6 +4707,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateRemoteServiceBindingStatement FromMutable(ScriptDom.CreateRemoteServiceBindingStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateRemoteServiceBindingStatement))) { throw new NotImplementedException("Unexpected subtype of CreateRemoteServiceBindingStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateRemoteServiceBindingStatement(
                 service: FromMutable(fragment.Service),
                 owner: FromMutable(fragment.Owner),
@@ -4460,6 +4718,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateResourcePoolStatement FromMutable(ScriptDom.CreateResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateResourcePoolStatement))) { throw new NotImplementedException("Unexpected subtype of CreateResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateResourcePoolStatement(
                 name: FromMutable(fragment.Name),
                 resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(FromMutable)
@@ -4468,7 +4727,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateRoleStatement FromMutable(ScriptDom.CreateRoleStatement fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.CreateRoleStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as CreateRoleStatement; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateRoleStatement))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as CreateRoleStatement; }
             return new CreateRoleStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name)
@@ -4477,6 +4736,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateRouteStatement FromMutable(ScriptDom.CreateRouteStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateRouteStatement))) { throw new NotImplementedException("Unexpected subtype of CreateRouteStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateRouteStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name),
@@ -4486,6 +4746,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateRuleStatement FromMutable(ScriptDom.CreateRuleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateRuleStatement))) { throw new NotImplementedException("Unexpected subtype of CreateRuleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateRuleStatement(
                 name: FromMutable(fragment.Name),
                 expression: FromMutable(fragment.Expression)
@@ -4494,6 +4755,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateSchemaStatement FromMutable(ScriptDom.CreateSchemaStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateSchemaStatement))) { throw new NotImplementedException("Unexpected subtype of CreateSchemaStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSchemaStatement(
                 name: FromMutable(fragment.Name),
                 statementList: FromMutable(fragment.StatementList),
@@ -4503,6 +4765,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateSearchPropertyListStatement FromMutable(ScriptDom.CreateSearchPropertyListStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateSearchPropertyListStatement))) { throw new NotImplementedException("Unexpected subtype of CreateSearchPropertyListStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSearchPropertyListStatement(
                 name: FromMutable(fragment.Name),
                 sourceSearchPropertyList: FromMutable(fragment.SourceSearchPropertyList),
@@ -4512,6 +4775,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateSecurityPolicyStatement FromMutable(ScriptDom.CreateSecurityPolicyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateSecurityPolicyStatement))) { throw new NotImplementedException("Unexpected subtype of CreateSecurityPolicyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSecurityPolicyStatement(
                 name: FromMutable(fragment.Name),
                 notForReplication: fragment.NotForReplication,
@@ -4523,6 +4787,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateSelectiveXmlIndexStatement FromMutable(ScriptDom.CreateSelectiveXmlIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateSelectiveXmlIndexStatement))) { throw new NotImplementedException("Unexpected subtype of CreateSelectiveXmlIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSelectiveXmlIndexStatement(
                 isSecondary: fragment.IsSecondary,
                 xmlColumn: FromMutable(fragment.XmlColumn),
@@ -4538,6 +4803,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateSequenceStatement FromMutable(ScriptDom.CreateSequenceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateSequenceStatement))) { throw new NotImplementedException("Unexpected subtype of CreateSequenceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSequenceStatement(
                 name: FromMutable(fragment.Name),
                 sequenceOptions: fragment.SequenceOptions.SelectList(FromMutable)
@@ -4546,6 +4812,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateServerAuditSpecificationStatement FromMutable(ScriptDom.CreateServerAuditSpecificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateServerAuditSpecificationStatement))) { throw new NotImplementedException("Unexpected subtype of CreateServerAuditSpecificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateServerAuditSpecificationStatement(
                 auditState: fragment.AuditState,
                 parts: fragment.Parts.SelectList(FromMutable),
@@ -4556,6 +4823,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateServerAuditStatement FromMutable(ScriptDom.CreateServerAuditStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateServerAuditStatement))) { throw new NotImplementedException("Unexpected subtype of CreateServerAuditStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateServerAuditStatement(
                 auditName: FromMutable(fragment.AuditName),
                 auditTarget: FromMutable(fragment.AuditTarget),
@@ -4566,6 +4834,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateServerRoleStatement FromMutable(ScriptDom.CreateServerRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateServerRoleStatement))) { throw new NotImplementedException("Unexpected subtype of CreateServerRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateServerRoleStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name)
@@ -4574,6 +4843,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateServiceStatement FromMutable(ScriptDom.CreateServiceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateServiceStatement))) { throw new NotImplementedException("Unexpected subtype of CreateServiceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateServiceStatement(
                 owner: FromMutable(fragment.Owner),
                 name: FromMutable(fragment.Name),
@@ -4584,6 +4854,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateSpatialIndexStatement FromMutable(ScriptDom.CreateSpatialIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateSpatialIndexStatement))) { throw new NotImplementedException("Unexpected subtype of CreateSpatialIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSpatialIndexStatement(
                 name: FromMutable(fragment.Name),
                 @object: FromMutable(fragment.Object),
@@ -4596,6 +4867,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateStatisticsStatement FromMutable(ScriptDom.CreateStatisticsStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateStatisticsStatement))) { throw new NotImplementedException("Unexpected subtype of CreateStatisticsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateStatisticsStatement(
                 name: FromMutable(fragment.Name),
                 onName: FromMutable(fragment.OnName),
@@ -4607,6 +4879,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateSymmetricKeyStatement FromMutable(ScriptDom.CreateSymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateSymmetricKeyStatement))) { throw new NotImplementedException("Unexpected subtype of CreateSymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSymmetricKeyStatement(
                 keyOptions: fragment.KeyOptions.SelectList(FromMutable),
                 provider: FromMutable(fragment.Provider),
@@ -4618,6 +4891,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateSynonymStatement FromMutable(ScriptDom.CreateSynonymStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateSynonymStatement))) { throw new NotImplementedException("Unexpected subtype of CreateSynonymStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSynonymStatement(
                 name: FromMutable(fragment.Name),
                 forName: FromMutable(fragment.ForName)
@@ -4626,6 +4900,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateTableStatement FromMutable(ScriptDom.CreateTableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateTableStatement))) { throw new NotImplementedException("Unexpected subtype of CreateTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateTableStatement(
                 schemaObjectName: FromMutable(fragment.SchemaObjectName),
                 asEdge: fragment.AsEdge,
@@ -4644,6 +4919,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateTriggerStatement FromMutable(ScriptDom.CreateTriggerStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateTriggerStatement))) { throw new NotImplementedException("Unexpected subtype of CreateTriggerStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateTriggerStatement(
                 name: FromMutable(fragment.Name),
                 triggerObject: FromMutable(fragment.TriggerObject),
@@ -4659,6 +4935,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateTypeTableStatement FromMutable(ScriptDom.CreateTypeTableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateTypeTableStatement))) { throw new NotImplementedException("Unexpected subtype of CreateTypeTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateTypeTableStatement(
                 definition: FromMutable(fragment.Definition),
                 options: fragment.Options.SelectList(FromMutable),
@@ -4668,6 +4945,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateTypeUddtStatement FromMutable(ScriptDom.CreateTypeUddtStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateTypeUddtStatement))) { throw new NotImplementedException("Unexpected subtype of CreateTypeUddtStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateTypeUddtStatement(
                 dataType: FromMutable(fragment.DataType),
                 nullableConstraint: FromMutable(fragment.NullableConstraint),
@@ -4677,6 +4955,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateTypeUdtStatement FromMutable(ScriptDom.CreateTypeUdtStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateTypeUdtStatement))) { throw new NotImplementedException("Unexpected subtype of CreateTypeUdtStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateTypeUdtStatement(
                 assemblyName: FromMutable(fragment.AssemblyName),
                 name: FromMutable(fragment.Name)
@@ -4685,6 +4964,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateUserStatement FromMutable(ScriptDom.CreateUserStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateUserStatement))) { throw new NotImplementedException("Unexpected subtype of CreateUserStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateUserStatement(
                 userLoginOption: FromMutable(fragment.UserLoginOption),
                 name: FromMutable(fragment.Name),
@@ -4694,6 +4974,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateViewStatement FromMutable(ScriptDom.CreateViewStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateViewStatement))) { throw new NotImplementedException("Unexpected subtype of CreateViewStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateViewStatement(
                 schemaObjectName: FromMutable(fragment.SchemaObjectName),
                 columns: fragment.Columns.SelectList(FromMutable),
@@ -4706,6 +4987,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateWorkloadClassifierStatement FromMutable(ScriptDom.CreateWorkloadClassifierStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateWorkloadClassifierStatement))) { throw new NotImplementedException("Unexpected subtype of CreateWorkloadClassifierStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateWorkloadClassifierStatement(
                 classifierName: FromMutable(fragment.ClassifierName),
                 options: fragment.Options.SelectList(FromMutable)
@@ -4714,6 +4996,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateWorkloadGroupStatement FromMutable(ScriptDom.CreateWorkloadGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateWorkloadGroupStatement))) { throw new NotImplementedException("Unexpected subtype of CreateWorkloadGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateWorkloadGroupStatement(
                 name: FromMutable(fragment.Name),
                 workloadGroupParameters: fragment.WorkloadGroupParameters.SelectList(FromMutable),
@@ -4724,6 +5007,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateXmlIndexStatement FromMutable(ScriptDom.CreateXmlIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateXmlIndexStatement))) { throw new NotImplementedException("Unexpected subtype of CreateXmlIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateXmlIndexStatement(
                 primary: fragment.Primary,
                 xmlColumn: FromMutable(fragment.XmlColumn),
@@ -4738,6 +5022,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreateXmlSchemaCollectionStatement FromMutable(ScriptDom.CreateXmlSchemaCollectionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreateXmlSchemaCollectionStatement))) { throw new NotImplementedException("Unexpected subtype of CreateXmlSchemaCollectionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateXmlSchemaCollectionStatement(
                 name: FromMutable(fragment.Name),
                 expression: FromMutable(fragment.Expression)
@@ -4746,6 +5031,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CreationDispositionKeyOption FromMutable(ScriptDom.CreationDispositionKeyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CreationDispositionKeyOption))) { throw new NotImplementedException("Unexpected subtype of CreationDispositionKeyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreationDispositionKeyOption(
                 isCreateNew: fragment.IsCreateNew,
                 optionKind: fragment.OptionKind
@@ -4754,6 +5040,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CryptoMechanism FromMutable(ScriptDom.CryptoMechanism fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CryptoMechanism))) { throw new NotImplementedException("Unexpected subtype of CryptoMechanism not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CryptoMechanism(
                 cryptoMechanismType: fragment.CryptoMechanismType,
                 identifier: FromMutable(fragment.Identifier),
@@ -4763,6 +5050,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CubeGroupingSpecification FromMutable(ScriptDom.CubeGroupingSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CubeGroupingSpecification))) { throw new NotImplementedException("Unexpected subtype of CubeGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CubeGroupingSpecification(
                 arguments: fragment.Arguments.SelectList(FromMutable)
             );
@@ -4770,6 +5058,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CursorDefaultDatabaseOption FromMutable(ScriptDom.CursorDefaultDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CursorDefaultDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of CursorDefaultDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CursorDefaultDatabaseOption(
                 isLocal: fragment.IsLocal,
                 optionKind: fragment.OptionKind
@@ -4778,6 +5067,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CursorDefinition FromMutable(ScriptDom.CursorDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CursorDefinition))) { throw new NotImplementedException("Unexpected subtype of CursorDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CursorDefinition(
                 options: fragment.Options.SelectList(FromMutable),
                 select: FromMutable(fragment.Select)
@@ -4786,6 +5076,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CursorId FromMutable(ScriptDom.CursorId fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CursorId))) { throw new NotImplementedException("Unexpected subtype of CursorId not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CursorId(
                 isGlobal: fragment.IsGlobal,
                 name: FromMutable(fragment.Name)
@@ -4794,6 +5085,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static CursorOption FromMutable(ScriptDom.CursorOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.CursorOption))) { throw new NotImplementedException("Unexpected subtype of CursorOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CursorOption(
                 optionKind: fragment.OptionKind
             );
@@ -4801,6 +5093,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DatabaseAuditAction FromMutable(ScriptDom.DatabaseAuditAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DatabaseAuditAction))) { throw new NotImplementedException("Unexpected subtype of DatabaseAuditAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DatabaseAuditAction(
                 actionKind: fragment.ActionKind
             );
@@ -4808,6 +5101,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DatabaseConfigurationClearOption FromMutable(ScriptDom.DatabaseConfigurationClearOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DatabaseConfigurationClearOption))) { throw new NotImplementedException("Unexpected subtype of DatabaseConfigurationClearOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DatabaseConfigurationClearOption(
                 optionKind: fragment.OptionKind,
                 planHandle: FromMutable(fragment.PlanHandle)
@@ -4816,7 +5110,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DatabaseConfigurationSetOption FromMutable(ScriptDom.DatabaseConfigurationSetOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.DatabaseConfigurationSetOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DatabaseConfigurationSetOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DatabaseConfigurationSetOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DatabaseConfigurationSetOption; }
             return new DatabaseConfigurationSetOption(
                 optionKind: fragment.OptionKind,
                 genericOptionKind: FromMutable(fragment.GenericOptionKind)
@@ -4825,7 +5119,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DatabaseOption FromMutable(ScriptDom.DatabaseOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.DatabaseOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DatabaseOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DatabaseOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DatabaseOption; }
             return new DatabaseOption(
                 optionKind: fragment.OptionKind
             );
@@ -4833,6 +5127,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DataCompressionOption FromMutable(ScriptDom.DataCompressionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DataCompressionOption))) { throw new NotImplementedException("Unexpected subtype of DataCompressionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DataCompressionOption(
                 compressionLevel: fragment.CompressionLevel,
                 partitionRanges: fragment.PartitionRanges.SelectList(FromMutable),
@@ -4842,6 +5137,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DataModificationTableReference FromMutable(ScriptDom.DataModificationTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DataModificationTableReference))) { throw new NotImplementedException("Unexpected subtype of DataModificationTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DataModificationTableReference(
                 dataModificationSpecification: FromMutable(fragment.DataModificationSpecification),
                 columns: fragment.Columns.SelectList(FromMutable),
@@ -4852,6 +5148,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DataRetentionTableOption FromMutable(ScriptDom.DataRetentionTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DataRetentionTableOption))) { throw new NotImplementedException("Unexpected subtype of DataRetentionTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DataRetentionTableOption(
                 optionState: fragment.OptionState,
                 filterColumn: FromMutable(fragment.FilterColumn),
@@ -4862,6 +5159,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DataTypeSequenceOption FromMutable(ScriptDom.DataTypeSequenceOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DataTypeSequenceOption))) { throw new NotImplementedException("Unexpected subtype of DataTypeSequenceOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DataTypeSequenceOption(
                 dataType: FromMutable(fragment.DataType),
                 optionKind: fragment.OptionKind,
@@ -4871,6 +5169,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DbccNamedLiteral FromMutable(ScriptDom.DbccNamedLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DbccNamedLiteral))) { throw new NotImplementedException("Unexpected subtype of DbccNamedLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DbccNamedLiteral(
                 name: fragment.Name,
                 @value: FromMutable(fragment.Value)
@@ -4879,6 +5178,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DbccOption FromMutable(ScriptDom.DbccOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DbccOption))) { throw new NotImplementedException("Unexpected subtype of DbccOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DbccOption(
                 optionKind: fragment.OptionKind
             );
@@ -4886,6 +5186,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DbccStatement FromMutable(ScriptDom.DbccStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DbccStatement))) { throw new NotImplementedException("Unexpected subtype of DbccStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DbccStatement(
                 dllName: fragment.DllName,
                 command: fragment.Command,
@@ -4898,6 +5199,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeallocateCursorStatement FromMutable(ScriptDom.DeallocateCursorStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeallocateCursorStatement))) { throw new NotImplementedException("Unexpected subtype of DeallocateCursorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeallocateCursorStatement(
                 cursor: FromMutable(fragment.Cursor)
             );
@@ -4905,6 +5207,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeclareCursorStatement FromMutable(ScriptDom.DeclareCursorStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeclareCursorStatement))) { throw new NotImplementedException("Unexpected subtype of DeclareCursorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeclareCursorStatement(
                 name: FromMutable(fragment.Name),
                 cursorDefinition: FromMutable(fragment.CursorDefinition)
@@ -4913,6 +5216,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeclareTableVariableBody FromMutable(ScriptDom.DeclareTableVariableBody fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeclareTableVariableBody))) { throw new NotImplementedException("Unexpected subtype of DeclareTableVariableBody not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeclareTableVariableBody(
                 variableName: FromMutable(fragment.VariableName),
                 asDefined: fragment.AsDefined,
@@ -4922,6 +5226,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeclareTableVariableStatement FromMutable(ScriptDom.DeclareTableVariableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeclareTableVariableStatement))) { throw new NotImplementedException("Unexpected subtype of DeclareTableVariableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeclareTableVariableStatement(
                 body: FromMutable(fragment.Body)
             );
@@ -4929,7 +5234,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeclareVariableElement FromMutable(ScriptDom.DeclareVariableElement fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.DeclareVariableElement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DeclareVariableElement; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeclareVariableElement))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DeclareVariableElement; }
             return new DeclareVariableElement(
                 variableName: FromMutable(fragment.VariableName),
                 dataType: FromMutable(fragment.DataType),
@@ -4940,6 +5245,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeclareVariableStatement FromMutable(ScriptDom.DeclareVariableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeclareVariableStatement))) { throw new NotImplementedException("Unexpected subtype of DeclareVariableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeclareVariableStatement(
                 declarations: fragment.Declarations.SelectList(FromMutable)
             );
@@ -4947,6 +5253,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DefaultConstraintDefinition FromMutable(ScriptDom.DefaultConstraintDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DefaultConstraintDefinition))) { throw new NotImplementedException("Unexpected subtype of DefaultConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DefaultConstraintDefinition(
                 expression: FromMutable(fragment.Expression),
                 withValues: fragment.WithValues,
@@ -4957,6 +5264,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DefaultLiteral FromMutable(ScriptDom.DefaultLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DefaultLiteral))) { throw new NotImplementedException("Unexpected subtype of DefaultLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DefaultLiteral(
                 @value: fragment.Value,
                 collation: FromMutable(fragment.Collation)
@@ -4965,6 +5273,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DelayedDurabilityDatabaseOption FromMutable(ScriptDom.DelayedDurabilityDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DelayedDurabilityDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of DelayedDurabilityDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DelayedDurabilityDatabaseOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -4973,6 +5282,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeleteMergeAction FromMutable(ScriptDom.DeleteMergeAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeleteMergeAction))) { throw new NotImplementedException("Unexpected subtype of DeleteMergeAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeleteMergeAction(
                 
             );
@@ -4980,6 +5290,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeleteSpecification FromMutable(ScriptDom.DeleteSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeleteSpecification))) { throw new NotImplementedException("Unexpected subtype of DeleteSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeleteSpecification(
                 fromClause: FromMutable(fragment.FromClause),
                 whereClause: FromMutable(fragment.WhereClause),
@@ -4992,6 +5303,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeleteStatement FromMutable(ScriptDom.DeleteStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeleteStatement))) { throw new NotImplementedException("Unexpected subtype of DeleteStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeleteStatement(
                 deleteSpecification: FromMutable(fragment.DeleteSpecification),
                 withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
@@ -5001,6 +5313,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DenyStatement FromMutable(ScriptDom.DenyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DenyStatement))) { throw new NotImplementedException("Unexpected subtype of DenyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DenyStatement(
                 cascadeOption: fragment.CascadeOption,
                 permissions: fragment.Permissions.SelectList(FromMutable),
@@ -5012,6 +5325,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DenyStatement80 FromMutable(ScriptDom.DenyStatement80 fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DenyStatement80))) { throw new NotImplementedException("Unexpected subtype of DenyStatement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DenyStatement80(
                 cascadeOption: fragment.CascadeOption,
                 securityElement80: FromMutable(fragment.SecurityElement80),
@@ -5021,6 +5335,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DeviceInfo FromMutable(ScriptDom.DeviceInfo fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DeviceInfo))) { throw new NotImplementedException("Unexpected subtype of DeviceInfo not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeviceInfo(
                 logicalDevice: FromMutable(fragment.LogicalDevice),
                 physicalDevice: FromMutable(fragment.PhysicalDevice),
@@ -5030,6 +5345,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DiskStatement FromMutable(ScriptDom.DiskStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DiskStatement))) { throw new NotImplementedException("Unexpected subtype of DiskStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DiskStatement(
                 diskStatementType: fragment.DiskStatementType,
                 options: fragment.Options.SelectList(FromMutable)
@@ -5038,6 +5354,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DiskStatementOption FromMutable(ScriptDom.DiskStatementOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DiskStatementOption))) { throw new NotImplementedException("Unexpected subtype of DiskStatementOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DiskStatementOption(
                 optionKind: fragment.OptionKind,
                 @value: FromMutable(fragment.Value)
@@ -5046,6 +5363,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DistinctPredicate FromMutable(ScriptDom.DistinctPredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DistinctPredicate))) { throw new NotImplementedException("Unexpected subtype of DistinctPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DistinctPredicate(
                 firstExpression: FromMutable(fragment.FirstExpression),
                 secondExpression: FromMutable(fragment.SecondExpression),
@@ -5055,6 +5373,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropAggregateStatement FromMutable(ScriptDom.DropAggregateStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropAggregateStatement))) { throw new NotImplementedException("Unexpected subtype of DropAggregateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropAggregateStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5063,6 +5382,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropAlterFullTextIndexAction FromMutable(ScriptDom.DropAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropAlterFullTextIndexAction))) { throw new NotImplementedException("Unexpected subtype of DropAlterFullTextIndexAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropAlterFullTextIndexAction(
                 columns: fragment.Columns.SelectList(FromMutable),
                 withNoPopulation: fragment.WithNoPopulation
@@ -5071,6 +5391,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropApplicationRoleStatement FromMutable(ScriptDom.DropApplicationRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropApplicationRoleStatement))) { throw new NotImplementedException("Unexpected subtype of DropApplicationRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropApplicationRoleStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5079,6 +5400,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropAssemblyStatement FromMutable(ScriptDom.DropAssemblyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropAssemblyStatement))) { throw new NotImplementedException("Unexpected subtype of DropAssemblyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropAssemblyStatement(
                 withNoDependents: fragment.WithNoDependents,
                 objects: fragment.Objects.SelectList(FromMutable),
@@ -5088,6 +5410,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropAsymmetricKeyStatement FromMutable(ScriptDom.DropAsymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropAsymmetricKeyStatement))) { throw new NotImplementedException("Unexpected subtype of DropAsymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropAsymmetricKeyStatement(
                 removeProviderKey: fragment.RemoveProviderKey,
                 name: FromMutable(fragment.Name),
@@ -5097,6 +5420,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropAvailabilityGroupStatement FromMutable(ScriptDom.DropAvailabilityGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropAvailabilityGroupStatement))) { throw new NotImplementedException("Unexpected subtype of DropAvailabilityGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropAvailabilityGroupStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5105,6 +5429,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropBrokerPriorityStatement FromMutable(ScriptDom.DropBrokerPriorityStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropBrokerPriorityStatement))) { throw new NotImplementedException("Unexpected subtype of DropBrokerPriorityStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropBrokerPriorityStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5113,6 +5438,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropCertificateStatement FromMutable(ScriptDom.DropCertificateStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropCertificateStatement))) { throw new NotImplementedException("Unexpected subtype of DropCertificateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropCertificateStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5121,6 +5447,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropClusteredConstraintMoveOption FromMutable(ScriptDom.DropClusteredConstraintMoveOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropClusteredConstraintMoveOption))) { throw new NotImplementedException("Unexpected subtype of DropClusteredConstraintMoveOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropClusteredConstraintMoveOption(
                 optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
@@ -5129,6 +5456,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropClusteredConstraintStateOption FromMutable(ScriptDom.DropClusteredConstraintStateOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropClusteredConstraintStateOption))) { throw new NotImplementedException("Unexpected subtype of DropClusteredConstraintStateOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropClusteredConstraintStateOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -5137,6 +5465,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropClusteredConstraintValueOption FromMutable(ScriptDom.DropClusteredConstraintValueOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropClusteredConstraintValueOption))) { throw new NotImplementedException("Unexpected subtype of DropClusteredConstraintValueOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropClusteredConstraintValueOption(
                 optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
@@ -5145,6 +5474,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropClusteredConstraintWaitAtLowPriorityLockOption FromMutable(ScriptDom.DropClusteredConstraintWaitAtLowPriorityLockOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropClusteredConstraintWaitAtLowPriorityLockOption))) { throw new NotImplementedException("Unexpected subtype of DropClusteredConstraintWaitAtLowPriorityLockOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropClusteredConstraintWaitAtLowPriorityLockOption(
                 options: fragment.Options.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
@@ -5153,6 +5483,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropColumnEncryptionKeyStatement FromMutable(ScriptDom.DropColumnEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropColumnEncryptionKeyStatement))) { throw new NotImplementedException("Unexpected subtype of DropColumnEncryptionKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropColumnEncryptionKeyStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5161,6 +5492,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropColumnMasterKeyStatement FromMutable(ScriptDom.DropColumnMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropColumnMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of DropColumnMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropColumnMasterKeyStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5169,6 +5501,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropContractStatement FromMutable(ScriptDom.DropContractStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropContractStatement))) { throw new NotImplementedException("Unexpected subtype of DropContractStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropContractStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5177,6 +5510,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropCredentialStatement FromMutable(ScriptDom.DropCredentialStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropCredentialStatement))) { throw new NotImplementedException("Unexpected subtype of DropCredentialStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropCredentialStatement(
                 isDatabaseScoped: fragment.IsDatabaseScoped,
                 name: FromMutable(fragment.Name),
@@ -5186,6 +5520,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropCryptographicProviderStatement FromMutable(ScriptDom.DropCryptographicProviderStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropCryptographicProviderStatement))) { throw new NotImplementedException("Unexpected subtype of DropCryptographicProviderStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropCryptographicProviderStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5194,6 +5529,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropDatabaseAuditSpecificationStatement FromMutable(ScriptDom.DropDatabaseAuditSpecificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropDatabaseAuditSpecificationStatement))) { throw new NotImplementedException("Unexpected subtype of DropDatabaseAuditSpecificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropDatabaseAuditSpecificationStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5202,6 +5538,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropDatabaseEncryptionKeyStatement FromMutable(ScriptDom.DropDatabaseEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropDatabaseEncryptionKeyStatement))) { throw new NotImplementedException("Unexpected subtype of DropDatabaseEncryptionKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropDatabaseEncryptionKeyStatement(
                 
             );
@@ -5209,6 +5546,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropDatabaseStatement FromMutable(ScriptDom.DropDatabaseStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropDatabaseStatement))) { throw new NotImplementedException("Unexpected subtype of DropDatabaseStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropDatabaseStatement(
                 databases: fragment.Databases.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5217,6 +5555,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropDefaultStatement FromMutable(ScriptDom.DropDefaultStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropDefaultStatement))) { throw new NotImplementedException("Unexpected subtype of DropDefaultStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropDefaultStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5225,6 +5564,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropEndpointStatement FromMutable(ScriptDom.DropEndpointStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropEndpointStatement))) { throw new NotImplementedException("Unexpected subtype of DropEndpointStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropEndpointStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5233,6 +5573,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropEventNotificationStatement FromMutable(ScriptDom.DropEventNotificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropEventNotificationStatement))) { throw new NotImplementedException("Unexpected subtype of DropEventNotificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropEventNotificationStatement(
                 notifications: fragment.Notifications.SelectList(FromMutable),
                 scope: FromMutable(fragment.Scope)
@@ -5241,6 +5582,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropEventSessionStatement FromMutable(ScriptDom.DropEventSessionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropEventSessionStatement))) { throw new NotImplementedException("Unexpected subtype of DropEventSessionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropEventSessionStatement(
                 sessionScope: fragment.SessionScope,
                 name: FromMutable(fragment.Name),
@@ -5250,6 +5592,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropExternalDataSourceStatement FromMutable(ScriptDom.DropExternalDataSourceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropExternalDataSourceStatement))) { throw new NotImplementedException("Unexpected subtype of DropExternalDataSourceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropExternalDataSourceStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5258,6 +5601,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropExternalFileFormatStatement FromMutable(ScriptDom.DropExternalFileFormatStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropExternalFileFormatStatement))) { throw new NotImplementedException("Unexpected subtype of DropExternalFileFormatStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropExternalFileFormatStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5266,6 +5610,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropExternalLanguageStatement FromMutable(ScriptDom.DropExternalLanguageStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropExternalLanguageStatement))) { throw new NotImplementedException("Unexpected subtype of DropExternalLanguageStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropExternalLanguageStatement(
                 name: FromMutable(fragment.Name),
                 owner: FromMutable(fragment.Owner)
@@ -5274,6 +5619,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropExternalLibraryStatement FromMutable(ScriptDom.DropExternalLibraryStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropExternalLibraryStatement))) { throw new NotImplementedException("Unexpected subtype of DropExternalLibraryStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropExternalLibraryStatement(
                 name: FromMutable(fragment.Name),
                 owner: FromMutable(fragment.Owner)
@@ -5282,6 +5628,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropExternalResourcePoolStatement FromMutable(ScriptDom.DropExternalResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropExternalResourcePoolStatement))) { throw new NotImplementedException("Unexpected subtype of DropExternalResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropExternalResourcePoolStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5290,6 +5637,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropExternalStreamingJobStatement FromMutable(ScriptDom.DropExternalStreamingJobStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropExternalStreamingJobStatement))) { throw new NotImplementedException("Unexpected subtype of DropExternalStreamingJobStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropExternalStreamingJobStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5298,6 +5646,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropExternalStreamStatement FromMutable(ScriptDom.DropExternalStreamStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropExternalStreamStatement))) { throw new NotImplementedException("Unexpected subtype of DropExternalStreamStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropExternalStreamStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5306,6 +5655,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropExternalTableStatement FromMutable(ScriptDom.DropExternalTableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropExternalTableStatement))) { throw new NotImplementedException("Unexpected subtype of DropExternalTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropExternalTableStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5314,6 +5664,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropFederationStatement FromMutable(ScriptDom.DropFederationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropFederationStatement))) { throw new NotImplementedException("Unexpected subtype of DropFederationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropFederationStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5322,6 +5673,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropFullTextCatalogStatement FromMutable(ScriptDom.DropFullTextCatalogStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropFullTextCatalogStatement))) { throw new NotImplementedException("Unexpected subtype of DropFullTextCatalogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropFullTextCatalogStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5330,6 +5682,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropFullTextIndexStatement FromMutable(ScriptDom.DropFullTextIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropFullTextIndexStatement))) { throw new NotImplementedException("Unexpected subtype of DropFullTextIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropFullTextIndexStatement(
                 tableName: FromMutable(fragment.TableName)
             );
@@ -5337,6 +5690,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropFullTextStopListStatement FromMutable(ScriptDom.DropFullTextStopListStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropFullTextStopListStatement))) { throw new NotImplementedException("Unexpected subtype of DropFullTextStopListStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropFullTextStopListStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5345,6 +5699,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropFunctionStatement FromMutable(ScriptDom.DropFunctionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropFunctionStatement))) { throw new NotImplementedException("Unexpected subtype of DropFunctionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropFunctionStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5353,6 +5708,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropIndexClause FromMutable(ScriptDom.DropIndexClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropIndexClause))) { throw new NotImplementedException("Unexpected subtype of DropIndexClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropIndexClause(
                 index: FromMutable(fragment.Index),
                 @object: FromMutable(fragment.Object),
@@ -5362,6 +5718,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropIndexStatement FromMutable(ScriptDom.DropIndexStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropIndexStatement))) { throw new NotImplementedException("Unexpected subtype of DropIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropIndexStatement(
                 dropIndexClauses: fragment.DropIndexClauses.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5370,6 +5727,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropLoginStatement FromMutable(ScriptDom.DropLoginStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropLoginStatement))) { throw new NotImplementedException("Unexpected subtype of DropLoginStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropLoginStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5378,6 +5736,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropMasterKeyStatement FromMutable(ScriptDom.DropMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of DropMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropMasterKeyStatement(
                 
             );
@@ -5385,6 +5744,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropMemberAlterRoleAction FromMutable(ScriptDom.DropMemberAlterRoleAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropMemberAlterRoleAction))) { throw new NotImplementedException("Unexpected subtype of DropMemberAlterRoleAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropMemberAlterRoleAction(
                 member: FromMutable(fragment.Member)
             );
@@ -5392,6 +5752,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropMessageTypeStatement FromMutable(ScriptDom.DropMessageTypeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropMessageTypeStatement))) { throw new NotImplementedException("Unexpected subtype of DropMessageTypeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropMessageTypeStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5400,6 +5761,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropPartitionFunctionStatement FromMutable(ScriptDom.DropPartitionFunctionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropPartitionFunctionStatement))) { throw new NotImplementedException("Unexpected subtype of DropPartitionFunctionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropPartitionFunctionStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5408,6 +5770,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropPartitionSchemeStatement FromMutable(ScriptDom.DropPartitionSchemeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropPartitionSchemeStatement))) { throw new NotImplementedException("Unexpected subtype of DropPartitionSchemeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropPartitionSchemeStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5416,6 +5779,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropProcedureStatement FromMutable(ScriptDom.DropProcedureStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropProcedureStatement))) { throw new NotImplementedException("Unexpected subtype of DropProcedureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropProcedureStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5424,6 +5788,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropQueueStatement FromMutable(ScriptDom.DropQueueStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropQueueStatement))) { throw new NotImplementedException("Unexpected subtype of DropQueueStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropQueueStatement(
                 name: FromMutable(fragment.Name)
             );
@@ -5431,6 +5796,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropRemoteServiceBindingStatement FromMutable(ScriptDom.DropRemoteServiceBindingStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropRemoteServiceBindingStatement))) { throw new NotImplementedException("Unexpected subtype of DropRemoteServiceBindingStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropRemoteServiceBindingStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5439,6 +5805,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropResourcePoolStatement FromMutable(ScriptDom.DropResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropResourcePoolStatement))) { throw new NotImplementedException("Unexpected subtype of DropResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropResourcePoolStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5447,6 +5814,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropRoleStatement FromMutable(ScriptDom.DropRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropRoleStatement))) { throw new NotImplementedException("Unexpected subtype of DropRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropRoleStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5455,6 +5823,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropRouteStatement FromMutable(ScriptDom.DropRouteStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropRouteStatement))) { throw new NotImplementedException("Unexpected subtype of DropRouteStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropRouteStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5463,6 +5832,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropRuleStatement FromMutable(ScriptDom.DropRuleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropRuleStatement))) { throw new NotImplementedException("Unexpected subtype of DropRuleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropRuleStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5471,6 +5841,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSchemaStatement FromMutable(ScriptDom.DropSchemaStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSchemaStatement))) { throw new NotImplementedException("Unexpected subtype of DropSchemaStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSchemaStatement(
                 schema: FromMutable(fragment.Schema),
                 dropBehavior: fragment.DropBehavior,
@@ -5480,6 +5851,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSearchPropertyListAction FromMutable(ScriptDom.DropSearchPropertyListAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSearchPropertyListAction))) { throw new NotImplementedException("Unexpected subtype of DropSearchPropertyListAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSearchPropertyListAction(
                 propertyName: FromMutable(fragment.PropertyName)
             );
@@ -5487,6 +5859,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSearchPropertyListStatement FromMutable(ScriptDom.DropSearchPropertyListStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSearchPropertyListStatement))) { throw new NotImplementedException("Unexpected subtype of DropSearchPropertyListStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSearchPropertyListStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5495,6 +5868,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSecurityPolicyStatement FromMutable(ScriptDom.DropSecurityPolicyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSecurityPolicyStatement))) { throw new NotImplementedException("Unexpected subtype of DropSecurityPolicyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSecurityPolicyStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5503,6 +5877,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSensitivityClassificationStatement FromMutable(ScriptDom.DropSensitivityClassificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSensitivityClassificationStatement))) { throw new NotImplementedException("Unexpected subtype of DropSensitivityClassificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSensitivityClassificationStatement(
                 columns: fragment.Columns.SelectList(FromMutable)
             );
@@ -5510,6 +5885,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSequenceStatement FromMutable(ScriptDom.DropSequenceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSequenceStatement))) { throw new NotImplementedException("Unexpected subtype of DropSequenceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSequenceStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5518,6 +5894,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropServerAuditSpecificationStatement FromMutable(ScriptDom.DropServerAuditSpecificationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropServerAuditSpecificationStatement))) { throw new NotImplementedException("Unexpected subtype of DropServerAuditSpecificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropServerAuditSpecificationStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5526,6 +5903,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropServerAuditStatement FromMutable(ScriptDom.DropServerAuditStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropServerAuditStatement))) { throw new NotImplementedException("Unexpected subtype of DropServerAuditStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropServerAuditStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5534,6 +5912,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropServerRoleStatement FromMutable(ScriptDom.DropServerRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropServerRoleStatement))) { throw new NotImplementedException("Unexpected subtype of DropServerRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropServerRoleStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5542,6 +5921,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropServiceStatement FromMutable(ScriptDom.DropServiceStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropServiceStatement))) { throw new NotImplementedException("Unexpected subtype of DropServiceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropServiceStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5550,6 +5930,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSignatureStatement FromMutable(ScriptDom.DropSignatureStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSignatureStatement))) { throw new NotImplementedException("Unexpected subtype of DropSignatureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSignatureStatement(
                 isCounter: fragment.IsCounter,
                 elementKind: fragment.ElementKind,
@@ -5560,6 +5941,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropStatisticsStatement FromMutable(ScriptDom.DropStatisticsStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropStatisticsStatement))) { throw new NotImplementedException("Unexpected subtype of DropStatisticsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropStatisticsStatement(
                 objects: fragment.Objects.SelectList(FromMutable)
             );
@@ -5567,6 +5949,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSymmetricKeyStatement FromMutable(ScriptDom.DropSymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSymmetricKeyStatement))) { throw new NotImplementedException("Unexpected subtype of DropSymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSymmetricKeyStatement(
                 removeProviderKey: fragment.RemoveProviderKey,
                 name: FromMutable(fragment.Name),
@@ -5576,6 +5959,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropSynonymStatement FromMutable(ScriptDom.DropSynonymStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropSynonymStatement))) { throw new NotImplementedException("Unexpected subtype of DropSynonymStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSynonymStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5584,6 +5968,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropTableStatement FromMutable(ScriptDom.DropTableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropTableStatement))) { throw new NotImplementedException("Unexpected subtype of DropTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropTableStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5592,6 +5977,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropTriggerStatement FromMutable(ScriptDom.DropTriggerStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropTriggerStatement))) { throw new NotImplementedException("Unexpected subtype of DropTriggerStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropTriggerStatement(
                 triggerScope: fragment.TriggerScope,
                 objects: fragment.Objects.SelectList(FromMutable),
@@ -5601,6 +5987,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropTypeStatement FromMutable(ScriptDom.DropTypeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropTypeStatement))) { throw new NotImplementedException("Unexpected subtype of DropTypeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropTypeStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5609,6 +5996,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropUserStatement FromMutable(ScriptDom.DropUserStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropUserStatement))) { throw new NotImplementedException("Unexpected subtype of DropUserStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropUserStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5617,6 +6005,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropViewStatement FromMutable(ScriptDom.DropViewStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropViewStatement))) { throw new NotImplementedException("Unexpected subtype of DropViewStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropViewStatement(
                 objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
@@ -5625,6 +6014,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropWorkloadClassifierStatement FromMutable(ScriptDom.DropWorkloadClassifierStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropWorkloadClassifierStatement))) { throw new NotImplementedException("Unexpected subtype of DropWorkloadClassifierStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropWorkloadClassifierStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5633,6 +6023,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropWorkloadGroupStatement FromMutable(ScriptDom.DropWorkloadGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropWorkloadGroupStatement))) { throw new NotImplementedException("Unexpected subtype of DropWorkloadGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropWorkloadGroupStatement(
                 name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
@@ -5641,6 +6032,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DropXmlSchemaCollectionStatement FromMutable(ScriptDom.DropXmlSchemaCollectionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DropXmlSchemaCollectionStatement))) { throw new NotImplementedException("Unexpected subtype of DropXmlSchemaCollectionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropXmlSchemaCollectionStatement(
                 name: FromMutable(fragment.Name)
             );
@@ -5648,6 +6040,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static DurabilityTableOption FromMutable(ScriptDom.DurabilityTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.DurabilityTableOption))) { throw new NotImplementedException("Unexpected subtype of DurabilityTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DurabilityTableOption(
                 durabilityTableOptionKind: fragment.DurabilityTableOptionKind,
                 optionKind: fragment.OptionKind
@@ -5656,6 +6049,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EnabledDisabledPayloadOption FromMutable(ScriptDom.EnabledDisabledPayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EnabledDisabledPayloadOption))) { throw new NotImplementedException("Unexpected subtype of EnabledDisabledPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EnabledDisabledPayloadOption(
                 isEnabled: fragment.IsEnabled,
                 kind: fragment.Kind
@@ -5664,6 +6058,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EnableDisableTriggerStatement FromMutable(ScriptDom.EnableDisableTriggerStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EnableDisableTriggerStatement))) { throw new NotImplementedException("Unexpected subtype of EnableDisableTriggerStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EnableDisableTriggerStatement(
                 triggerEnforcement: fragment.TriggerEnforcement,
                 all: fragment.All,
@@ -5674,6 +6069,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EncryptedValueParameter FromMutable(ScriptDom.EncryptedValueParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EncryptedValueParameter))) { throw new NotImplementedException("Unexpected subtype of EncryptedValueParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EncryptedValueParameter(
                 @value: FromMutable(fragment.Value),
                 parameterKind: fragment.ParameterKind
@@ -5682,6 +6078,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EncryptionPayloadOption FromMutable(ScriptDom.EncryptionPayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EncryptionPayloadOption))) { throw new NotImplementedException("Unexpected subtype of EncryptionPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EncryptionPayloadOption(
                 encryptionSupport: fragment.EncryptionSupport,
                 algorithmPartOne: fragment.AlgorithmPartOne,
@@ -5692,6 +6089,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EndConversationStatement FromMutable(ScriptDom.EndConversationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EndConversationStatement))) { throw new NotImplementedException("Unexpected subtype of EndConversationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EndConversationStatement(
                 conversation: FromMutable(fragment.Conversation),
                 withCleanup: fragment.WithCleanup,
@@ -5702,6 +6100,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EndpointAffinity FromMutable(ScriptDom.EndpointAffinity fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EndpointAffinity))) { throw new NotImplementedException("Unexpected subtype of EndpointAffinity not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EndpointAffinity(
                 kind: fragment.Kind,
                 @value: FromMutable(fragment.Value)
@@ -5710,6 +6109,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventDeclaration FromMutable(ScriptDom.EventDeclaration fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventDeclaration))) { throw new NotImplementedException("Unexpected subtype of EventDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventDeclaration(
                 objectName: FromMutable(fragment.ObjectName),
                 eventDeclarationSetParameters: fragment.EventDeclarationSetParameters.SelectList(FromMutable),
@@ -5720,6 +6120,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventDeclarationCompareFunctionParameter FromMutable(ScriptDom.EventDeclarationCompareFunctionParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventDeclarationCompareFunctionParameter))) { throw new NotImplementedException("Unexpected subtype of EventDeclarationCompareFunctionParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventDeclarationCompareFunctionParameter(
                 name: FromMutable(fragment.Name),
                 sourceDeclaration: FromMutable(fragment.SourceDeclaration),
@@ -5729,6 +6130,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventDeclarationSetParameter FromMutable(ScriptDom.EventDeclarationSetParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventDeclarationSetParameter))) { throw new NotImplementedException("Unexpected subtype of EventDeclarationSetParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventDeclarationSetParameter(
                 eventField: FromMutable(fragment.EventField),
                 eventValue: FromMutable(fragment.EventValue)
@@ -5737,6 +6139,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventGroupContainer FromMutable(ScriptDom.EventGroupContainer fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventGroupContainer))) { throw new NotImplementedException("Unexpected subtype of EventGroupContainer not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventGroupContainer(
                 eventGroup: fragment.EventGroup
             );
@@ -5744,6 +6147,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventNotificationObjectScope FromMutable(ScriptDom.EventNotificationObjectScope fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventNotificationObjectScope))) { throw new NotImplementedException("Unexpected subtype of EventNotificationObjectScope not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventNotificationObjectScope(
                 target: fragment.Target,
                 queueName: FromMutable(fragment.QueueName)
@@ -5752,6 +6156,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventRetentionSessionOption FromMutable(ScriptDom.EventRetentionSessionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventRetentionSessionOption))) { throw new NotImplementedException("Unexpected subtype of EventRetentionSessionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventRetentionSessionOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -5760,6 +6165,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventSessionObjectName FromMutable(ScriptDom.EventSessionObjectName fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventSessionObjectName))) { throw new NotImplementedException("Unexpected subtype of EventSessionObjectName not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventSessionObjectName(
                 multiPartIdentifier: FromMutable(fragment.MultiPartIdentifier)
             );
@@ -5767,7 +6173,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventSessionStatement FromMutable(ScriptDom.EventSessionStatement fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.EventSessionStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as EventSessionStatement; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventSessionStatement))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as EventSessionStatement; }
             return new EventSessionStatement(
                 name: FromMutable(fragment.Name),
                 sessionScope: fragment.SessionScope,
@@ -5779,6 +6185,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static EventTypeContainer FromMutable(ScriptDom.EventTypeContainer fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.EventTypeContainer))) { throw new NotImplementedException("Unexpected subtype of EventTypeContainer not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventTypeContainer(
                 eventType: fragment.EventType
             );
@@ -5786,6 +6193,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecutableProcedureReference FromMutable(ScriptDom.ExecutableProcedureReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecutableProcedureReference))) { throw new NotImplementedException("Unexpected subtype of ExecutableProcedureReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecutableProcedureReference(
                 procedureReference: FromMutable(fragment.ProcedureReference),
                 adHocDataSource: FromMutable(fragment.AdHocDataSource),
@@ -5795,6 +6203,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecutableStringList FromMutable(ScriptDom.ExecutableStringList fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecutableStringList))) { throw new NotImplementedException("Unexpected subtype of ExecutableStringList not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecutableStringList(
                 strings: fragment.Strings.SelectList(FromMutable),
                 parameters: fragment.Parameters.SelectList(FromMutable)
@@ -5803,6 +6212,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteAsClause FromMutable(ScriptDom.ExecuteAsClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteAsClause))) { throw new NotImplementedException("Unexpected subtype of ExecuteAsClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteAsClause(
                 executeAsOption: fragment.ExecuteAsOption,
                 literal: FromMutable(fragment.Literal)
@@ -5811,6 +6221,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteAsFunctionOption FromMutable(ScriptDom.ExecuteAsFunctionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteAsFunctionOption))) { throw new NotImplementedException("Unexpected subtype of ExecuteAsFunctionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteAsFunctionOption(
                 executeAs: FromMutable(fragment.ExecuteAs),
                 optionKind: fragment.OptionKind
@@ -5819,6 +6230,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteAsProcedureOption FromMutable(ScriptDom.ExecuteAsProcedureOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteAsProcedureOption))) { throw new NotImplementedException("Unexpected subtype of ExecuteAsProcedureOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteAsProcedureOption(
                 executeAs: FromMutable(fragment.ExecuteAs),
                 optionKind: fragment.OptionKind
@@ -5827,6 +6239,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteAsStatement FromMutable(ScriptDom.ExecuteAsStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteAsStatement))) { throw new NotImplementedException("Unexpected subtype of ExecuteAsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteAsStatement(
                 withNoRevert: fragment.WithNoRevert,
                 cookie: FromMutable(fragment.Cookie),
@@ -5836,6 +6249,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteAsTriggerOption FromMutable(ScriptDom.ExecuteAsTriggerOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteAsTriggerOption))) { throw new NotImplementedException("Unexpected subtype of ExecuteAsTriggerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteAsTriggerOption(
                 executeAsClause: FromMutable(fragment.ExecuteAsClause),
                 optionKind: fragment.OptionKind
@@ -5844,6 +6258,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteContext FromMutable(ScriptDom.ExecuteContext fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteContext))) { throw new NotImplementedException("Unexpected subtype of ExecuteContext not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteContext(
                 principal: FromMutable(fragment.Principal),
                 kind: fragment.Kind
@@ -5852,6 +6267,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteInsertSource FromMutable(ScriptDom.ExecuteInsertSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteInsertSource))) { throw new NotImplementedException("Unexpected subtype of ExecuteInsertSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteInsertSource(
                 execute: FromMutable(fragment.Execute)
             );
@@ -5859,7 +6275,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteOption FromMutable(ScriptDom.ExecuteOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.ExecuteOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ExecuteOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ExecuteOption; }
             return new ExecuteOption(
                 optionKind: fragment.OptionKind
             );
@@ -5867,6 +6283,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteParameter FromMutable(ScriptDom.ExecuteParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteParameter))) { throw new NotImplementedException("Unexpected subtype of ExecuteParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteParameter(
                 variable: FromMutable(fragment.Variable),
                 parameterValue: FromMutable(fragment.ParameterValue),
@@ -5876,6 +6293,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteSpecification FromMutable(ScriptDom.ExecuteSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteSpecification))) { throw new NotImplementedException("Unexpected subtype of ExecuteSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteSpecification(
                 variable: FromMutable(fragment.Variable),
                 linkedServer: FromMutable(fragment.LinkedServer),
@@ -5886,6 +6304,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExecuteStatement FromMutable(ScriptDom.ExecuteStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExecuteStatement))) { throw new NotImplementedException("Unexpected subtype of ExecuteStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteStatement(
                 executeSpecification: FromMutable(fragment.ExecuteSpecification),
                 options: fragment.Options.SelectList(FromMutable)
@@ -5894,6 +6313,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExistsPredicate FromMutable(ScriptDom.ExistsPredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExistsPredicate))) { throw new NotImplementedException("Unexpected subtype of ExistsPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExistsPredicate(
                 subquery: FromMutable(fragment.Subquery)
             );
@@ -5901,6 +6321,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExpressionCallTarget FromMutable(ScriptDom.ExpressionCallTarget fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExpressionCallTarget))) { throw new NotImplementedException("Unexpected subtype of ExpressionCallTarget not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExpressionCallTarget(
                 expression: FromMutable(fragment.Expression)
             );
@@ -5908,6 +6329,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExpressionGroupingSpecification FromMutable(ScriptDom.ExpressionGroupingSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExpressionGroupingSpecification))) { throw new NotImplementedException("Unexpected subtype of ExpressionGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExpressionGroupingSpecification(
                 expression: FromMutable(fragment.Expression),
                 distributedAggregation: fragment.DistributedAggregation
@@ -5916,6 +6338,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExpressionWithSortOrder FromMutable(ScriptDom.ExpressionWithSortOrder fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExpressionWithSortOrder))) { throw new NotImplementedException("Unexpected subtype of ExpressionWithSortOrder not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExpressionWithSortOrder(
                 sortOrder: fragment.SortOrder,
                 expression: FromMutable(fragment.Expression)
@@ -5924,6 +6347,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalCreateLoginSource FromMutable(ScriptDom.ExternalCreateLoginSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalCreateLoginSource))) { throw new NotImplementedException("Unexpected subtype of ExternalCreateLoginSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalCreateLoginSource(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -5931,6 +6355,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalDataSourceLiteralOrIdentifierOption FromMutable(ScriptDom.ExternalDataSourceLiteralOrIdentifierOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalDataSourceLiteralOrIdentifierOption))) { throw new NotImplementedException("Unexpected subtype of ExternalDataSourceLiteralOrIdentifierOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalDataSourceLiteralOrIdentifierOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -5939,6 +6364,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalFileFormatContainerOption FromMutable(ScriptDom.ExternalFileFormatContainerOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalFileFormatContainerOption))) { throw new NotImplementedException("Unexpected subtype of ExternalFileFormatContainerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalFileFormatContainerOption(
                 suboptions: fragment.Suboptions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
@@ -5947,6 +6373,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalFileFormatLiteralOption FromMutable(ScriptDom.ExternalFileFormatLiteralOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalFileFormatLiteralOption))) { throw new NotImplementedException("Unexpected subtype of ExternalFileFormatLiteralOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalFileFormatLiteralOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -5955,6 +6382,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalFileFormatUseDefaultTypeOption FromMutable(ScriptDom.ExternalFileFormatUseDefaultTypeOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalFileFormatUseDefaultTypeOption))) { throw new NotImplementedException("Unexpected subtype of ExternalFileFormatUseDefaultTypeOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalFileFormatUseDefaultTypeOption(
                 externalFileFormatUseDefaultType: fragment.ExternalFileFormatUseDefaultType,
                 optionKind: fragment.OptionKind
@@ -5963,6 +6391,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalLanguageFileOption FromMutable(ScriptDom.ExternalLanguageFileOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalLanguageFileOption))) { throw new NotImplementedException("Unexpected subtype of ExternalLanguageFileOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalLanguageFileOption(
                 content: FromMutable(fragment.Content),
                 fileName: FromMutable(fragment.FileName),
@@ -5975,6 +6404,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalLibraryFileOption FromMutable(ScriptDom.ExternalLibraryFileOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalLibraryFileOption))) { throw new NotImplementedException("Unexpected subtype of ExternalLibraryFileOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalLibraryFileOption(
                 content: FromMutable(fragment.Content),
                 path: FromMutable(fragment.Path),
@@ -5984,6 +6414,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalResourcePoolAffinitySpecification FromMutable(ScriptDom.ExternalResourcePoolAffinitySpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalResourcePoolAffinitySpecification))) { throw new NotImplementedException("Unexpected subtype of ExternalResourcePoolAffinitySpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalResourcePoolAffinitySpecification(
                 affinityType: fragment.AffinityType,
                 parameterValue: FromMutable(fragment.ParameterValue),
@@ -5994,6 +6425,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalResourcePoolParameter FromMutable(ScriptDom.ExternalResourcePoolParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalResourcePoolParameter))) { throw new NotImplementedException("Unexpected subtype of ExternalResourcePoolParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalResourcePoolParameter(
                 parameterType: fragment.ParameterType,
                 parameterValue: FromMutable(fragment.ParameterValue),
@@ -6003,7 +6435,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalResourcePoolStatement FromMutable(ScriptDom.ExternalResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.ExternalResourcePoolStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ExternalResourcePoolStatement; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalResourcePoolStatement))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ExternalResourcePoolStatement; }
             return new ExternalResourcePoolStatement(
                 name: FromMutable(fragment.Name),
                 externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(FromMutable)
@@ -6012,6 +6444,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalStreamLiteralOrIdentifierOption FromMutable(ScriptDom.ExternalStreamLiteralOrIdentifierOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalStreamLiteralOrIdentifierOption))) { throw new NotImplementedException("Unexpected subtype of ExternalStreamLiteralOrIdentifierOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalStreamLiteralOrIdentifierOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6020,6 +6453,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalTableColumnDefinition FromMutable(ScriptDom.ExternalTableColumnDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalTableColumnDefinition))) { throw new NotImplementedException("Unexpected subtype of ExternalTableColumnDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalTableColumnDefinition(
                 columnDefinition: FromMutable(fragment.ColumnDefinition),
                 nullableConstraint: FromMutable(fragment.NullableConstraint)
@@ -6028,6 +6462,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalTableDistributionOption FromMutable(ScriptDom.ExternalTableDistributionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalTableDistributionOption))) { throw new NotImplementedException("Unexpected subtype of ExternalTableDistributionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalTableDistributionOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6036,6 +6471,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalTableLiteralOrIdentifierOption FromMutable(ScriptDom.ExternalTableLiteralOrIdentifierOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalTableLiteralOrIdentifierOption))) { throw new NotImplementedException("Unexpected subtype of ExternalTableLiteralOrIdentifierOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalTableLiteralOrIdentifierOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6044,6 +6480,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalTableRejectTypeOption FromMutable(ScriptDom.ExternalTableRejectTypeOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalTableRejectTypeOption))) { throw new NotImplementedException("Unexpected subtype of ExternalTableRejectTypeOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalTableRejectTypeOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -6052,6 +6489,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalTableReplicatedDistributionPolicy FromMutable(ScriptDom.ExternalTableReplicatedDistributionPolicy fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalTableReplicatedDistributionPolicy))) { throw new NotImplementedException("Unexpected subtype of ExternalTableReplicatedDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalTableReplicatedDistributionPolicy(
                 
             );
@@ -6059,6 +6497,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalTableRoundRobinDistributionPolicy FromMutable(ScriptDom.ExternalTableRoundRobinDistributionPolicy fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalTableRoundRobinDistributionPolicy))) { throw new NotImplementedException("Unexpected subtype of ExternalTableRoundRobinDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalTableRoundRobinDistributionPolicy(
                 
             );
@@ -6066,6 +6505,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExternalTableShardedDistributionPolicy FromMutable(ScriptDom.ExternalTableShardedDistributionPolicy fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExternalTableShardedDistributionPolicy))) { throw new NotImplementedException("Unexpected subtype of ExternalTableShardedDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalTableShardedDistributionPolicy(
                 shardingColumn: FromMutable(fragment.ShardingColumn)
             );
@@ -6073,6 +6513,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ExtractFromExpression FromMutable(ScriptDom.ExtractFromExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ExtractFromExpression))) { throw new NotImplementedException("Unexpected subtype of ExtractFromExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExtractFromExpression(
                 expression: FromMutable(fragment.Expression),
                 extractedElement: FromMutable(fragment.ExtractedElement)
@@ -6081,6 +6522,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FailoverModeReplicaOption FromMutable(ScriptDom.FailoverModeReplicaOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FailoverModeReplicaOption))) { throw new NotImplementedException("Unexpected subtype of FailoverModeReplicaOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FailoverModeReplicaOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -6089,6 +6531,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FederationScheme FromMutable(ScriptDom.FederationScheme fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FederationScheme))) { throw new NotImplementedException("Unexpected subtype of FederationScheme not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FederationScheme(
                 distributionName: FromMutable(fragment.DistributionName),
                 columnName: FromMutable(fragment.ColumnName)
@@ -6097,6 +6540,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FetchCursorStatement FromMutable(ScriptDom.FetchCursorStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FetchCursorStatement))) { throw new NotImplementedException("Unexpected subtype of FetchCursorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FetchCursorStatement(
                 fetchType: FromMutable(fragment.FetchType),
                 intoVariables: fragment.IntoVariables.SelectList(FromMutable),
@@ -6106,6 +6550,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FetchType FromMutable(ScriptDom.FetchType fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FetchType))) { throw new NotImplementedException("Unexpected subtype of FetchType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FetchType(
                 orientation: fragment.Orientation,
                 rowOffset: FromMutable(fragment.RowOffset)
@@ -6114,6 +6559,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileDeclaration FromMutable(ScriptDom.FileDeclaration fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileDeclaration))) { throw new NotImplementedException("Unexpected subtype of FileDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileDeclaration(
                 options: fragment.Options.SelectList(FromMutable),
                 isPrimary: fragment.IsPrimary
@@ -6122,7 +6568,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileDeclarationOption FromMutable(ScriptDom.FileDeclarationOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.FileDeclarationOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as FileDeclarationOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileDeclarationOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as FileDeclarationOption; }
             return new FileDeclarationOption(
                 optionKind: fragment.OptionKind
             );
@@ -6130,6 +6576,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileEncryptionSource FromMutable(ScriptDom.FileEncryptionSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileEncryptionSource))) { throw new NotImplementedException("Unexpected subtype of FileEncryptionSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileEncryptionSource(
                 isExecutable: fragment.IsExecutable,
                 file: FromMutable(fragment.File)
@@ -6138,6 +6585,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileGroupDefinition FromMutable(ScriptDom.FileGroupDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileGroupDefinition))) { throw new NotImplementedException("Unexpected subtype of FileGroupDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileGroupDefinition(
                 name: FromMutable(fragment.Name),
                 fileDeclarations: fragment.FileDeclarations.SelectList(FromMutable),
@@ -6149,6 +6597,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileGroupOrPartitionScheme FromMutable(ScriptDom.FileGroupOrPartitionScheme fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileGroupOrPartitionScheme))) { throw new NotImplementedException("Unexpected subtype of FileGroupOrPartitionScheme not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileGroupOrPartitionScheme(
                 name: FromMutable(fragment.Name),
                 partitionSchemeColumns: fragment.PartitionSchemeColumns.SelectList(FromMutable)
@@ -6157,6 +6606,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileGrowthFileDeclarationOption FromMutable(ScriptDom.FileGrowthFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileGrowthFileDeclarationOption))) { throw new NotImplementedException("Unexpected subtype of FileGrowthFileDeclarationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileGrowthFileDeclarationOption(
                 growthIncrement: FromMutable(fragment.GrowthIncrement),
                 units: fragment.Units,
@@ -6166,6 +6616,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileNameFileDeclarationOption FromMutable(ScriptDom.FileNameFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileNameFileDeclarationOption))) { throw new NotImplementedException("Unexpected subtype of FileNameFileDeclarationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileNameFileDeclarationOption(
                 oSFileName: FromMutable(fragment.OSFileName),
                 optionKind: fragment.OptionKind
@@ -6174,6 +6625,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileStreamDatabaseOption FromMutable(ScriptDom.FileStreamDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileStreamDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of FileStreamDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileStreamDatabaseOption(
                 nonTransactedAccess: fragment.NonTransactedAccess,
                 directoryName: FromMutable(fragment.DirectoryName),
@@ -6183,6 +6635,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileStreamOnDropIndexOption FromMutable(ScriptDom.FileStreamOnDropIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileStreamOnDropIndexOption))) { throw new NotImplementedException("Unexpected subtype of FileStreamOnDropIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileStreamOnDropIndexOption(
                 fileStreamOn: FromMutable(fragment.FileStreamOn),
                 optionKind: fragment.OptionKind
@@ -6191,6 +6644,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileStreamOnTableOption FromMutable(ScriptDom.FileStreamOnTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileStreamOnTableOption))) { throw new NotImplementedException("Unexpected subtype of FileStreamOnTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileStreamOnTableOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6199,6 +6653,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileStreamRestoreOption FromMutable(ScriptDom.FileStreamRestoreOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileStreamRestoreOption))) { throw new NotImplementedException("Unexpected subtype of FileStreamRestoreOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileStreamRestoreOption(
                 fileStreamOption: FromMutable(fragment.FileStreamOption),
                 optionKind: fragment.OptionKind
@@ -6207,6 +6662,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileTableCollateFileNameTableOption FromMutable(ScriptDom.FileTableCollateFileNameTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileTableCollateFileNameTableOption))) { throw new NotImplementedException("Unexpected subtype of FileTableCollateFileNameTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileTableCollateFileNameTableOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6215,6 +6671,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileTableConstraintNameTableOption FromMutable(ScriptDom.FileTableConstraintNameTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileTableConstraintNameTableOption))) { throw new NotImplementedException("Unexpected subtype of FileTableConstraintNameTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileTableConstraintNameTableOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6223,6 +6680,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FileTableDirectoryTableOption FromMutable(ScriptDom.FileTableDirectoryTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FileTableDirectoryTableOption))) { throw new NotImplementedException("Unexpected subtype of FileTableDirectoryTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileTableDirectoryTableOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6231,6 +6689,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ForceSeekTableHint FromMutable(ScriptDom.ForceSeekTableHint fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ForceSeekTableHint))) { throw new NotImplementedException("Unexpected subtype of ForceSeekTableHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ForceSeekTableHint(
                 indexValue: FromMutable(fragment.IndexValue),
                 columnValues: fragment.ColumnValues.SelectList(FromMutable),
@@ -6240,6 +6699,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ForeignKeyConstraintDefinition FromMutable(ScriptDom.ForeignKeyConstraintDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ForeignKeyConstraintDefinition))) { throw new NotImplementedException("Unexpected subtype of ForeignKeyConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ForeignKeyConstraintDefinition(
                 columns: fragment.Columns.SelectList(FromMutable),
                 referenceTableName: FromMutable(fragment.ReferenceTableName),
@@ -6253,6 +6713,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FromClause FromMutable(ScriptDom.FromClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FromClause))) { throw new NotImplementedException("Unexpected subtype of FromClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FromClause(
                 tableReferences: fragment.TableReferences.SelectList(FromMutable),
                 predictTableReference: fragment.PredictTableReference.SelectList(FromMutable)
@@ -6261,6 +6722,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FullTextCatalogAndFileGroup FromMutable(ScriptDom.FullTextCatalogAndFileGroup fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FullTextCatalogAndFileGroup))) { throw new NotImplementedException("Unexpected subtype of FullTextCatalogAndFileGroup not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FullTextCatalogAndFileGroup(
                 catalogName: FromMutable(fragment.CatalogName),
                 fileGroupName: FromMutable(fragment.FileGroupName),
@@ -6270,6 +6732,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FullTextIndexColumn FromMutable(ScriptDom.FullTextIndexColumn fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FullTextIndexColumn))) { throw new NotImplementedException("Unexpected subtype of FullTextIndexColumn not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FullTextIndexColumn(
                 name: FromMutable(fragment.Name),
                 typeColumn: FromMutable(fragment.TypeColumn),
@@ -6280,6 +6743,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FullTextPredicate FromMutable(ScriptDom.FullTextPredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FullTextPredicate))) { throw new NotImplementedException("Unexpected subtype of FullTextPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FullTextPredicate(
                 fullTextFunctionType: fragment.FullTextFunctionType,
                 columns: fragment.Columns.SelectList(FromMutable),
@@ -6291,6 +6755,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FullTextStopListAction FromMutable(ScriptDom.FullTextStopListAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FullTextStopListAction))) { throw new NotImplementedException("Unexpected subtype of FullTextStopListAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FullTextStopListAction(
                 isAdd: fragment.IsAdd,
                 isAll: fragment.IsAll,
@@ -6301,6 +6766,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FullTextTableReference FromMutable(ScriptDom.FullTextTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FullTextTableReference))) { throw new NotImplementedException("Unexpected subtype of FullTextTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FullTextTableReference(
                 fullTextFunctionType: fragment.FullTextFunctionType,
                 tableName: FromMutable(fragment.TableName),
@@ -6316,6 +6782,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FunctionCall FromMutable(ScriptDom.FunctionCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FunctionCall))) { throw new NotImplementedException("Unexpected subtype of FunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FunctionCall(
                 callTarget: FromMutable(fragment.CallTarget),
                 functionName: FromMutable(fragment.FunctionName),
@@ -6333,6 +6800,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FunctionCallSetClause FromMutable(ScriptDom.FunctionCallSetClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FunctionCallSetClause))) { throw new NotImplementedException("Unexpected subtype of FunctionCallSetClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FunctionCallSetClause(
                 mutatorFunction: FromMutable(fragment.MutatorFunction)
             );
@@ -6340,7 +6808,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static FunctionOption FromMutable(ScriptDom.FunctionOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.FunctionOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as FunctionOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.FunctionOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as FunctionOption; }
             return new FunctionOption(
                 optionKind: fragment.OptionKind
             );
@@ -6348,6 +6816,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GeneralSetCommand FromMutable(ScriptDom.GeneralSetCommand fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GeneralSetCommand))) { throw new NotImplementedException("Unexpected subtype of GeneralSetCommand not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GeneralSetCommand(
                 commandType: fragment.CommandType,
                 parameter: FromMutable(fragment.Parameter)
@@ -6356,6 +6825,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GenericConfigurationOption FromMutable(ScriptDom.GenericConfigurationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GenericConfigurationOption))) { throw new NotImplementedException("Unexpected subtype of GenericConfigurationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GenericConfigurationOption(
                 genericOptionState: FromMutable(fragment.GenericOptionState),
                 optionKind: fragment.OptionKind,
@@ -6365,6 +6835,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GetConversationGroupStatement FromMutable(ScriptDom.GetConversationGroupStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GetConversationGroupStatement))) { throw new NotImplementedException("Unexpected subtype of GetConversationGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GetConversationGroupStatement(
                 groupId: FromMutable(fragment.GroupId),
                 queue: FromMutable(fragment.Queue)
@@ -6373,6 +6844,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GlobalFunctionTableReference FromMutable(ScriptDom.GlobalFunctionTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GlobalFunctionTableReference))) { throw new NotImplementedException("Unexpected subtype of GlobalFunctionTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GlobalFunctionTableReference(
                 name: FromMutable(fragment.Name),
                 parameters: fragment.Parameters.SelectList(FromMutable),
@@ -6383,6 +6855,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GlobalVariableExpression FromMutable(ScriptDom.GlobalVariableExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GlobalVariableExpression))) { throw new NotImplementedException("Unexpected subtype of GlobalVariableExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GlobalVariableExpression(
                 name: fragment.Name,
                 collation: FromMutable(fragment.Collation)
@@ -6391,6 +6864,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GoToStatement FromMutable(ScriptDom.GoToStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GoToStatement))) { throw new NotImplementedException("Unexpected subtype of GoToStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GoToStatement(
                 labelName: FromMutable(fragment.LabelName)
             );
@@ -6398,6 +6872,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GrandTotalGroupingSpecification FromMutable(ScriptDom.GrandTotalGroupingSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GrandTotalGroupingSpecification))) { throw new NotImplementedException("Unexpected subtype of GrandTotalGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GrandTotalGroupingSpecification(
                 
             );
@@ -6405,6 +6880,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GrantStatement FromMutable(ScriptDom.GrantStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GrantStatement))) { throw new NotImplementedException("Unexpected subtype of GrantStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GrantStatement(
                 withGrantOption: fragment.WithGrantOption,
                 permissions: fragment.Permissions.SelectList(FromMutable),
@@ -6416,6 +6892,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GrantStatement80 FromMutable(ScriptDom.GrantStatement80 fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GrantStatement80))) { throw new NotImplementedException("Unexpected subtype of GrantStatement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GrantStatement80(
                 withGrantOption: fragment.WithGrantOption,
                 asClause: FromMutable(fragment.AsClause),
@@ -6426,6 +6903,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphConnectionBetweenNodes FromMutable(ScriptDom.GraphConnectionBetweenNodes fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphConnectionBetweenNodes))) { throw new NotImplementedException("Unexpected subtype of GraphConnectionBetweenNodes not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphConnectionBetweenNodes(
                 fromNode: FromMutable(fragment.FromNode),
                 toNode: FromMutable(fragment.ToNode)
@@ -6434,6 +6912,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphConnectionConstraintDefinition FromMutable(ScriptDom.GraphConnectionConstraintDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphConnectionConstraintDefinition))) { throw new NotImplementedException("Unexpected subtype of GraphConnectionConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphConnectionConstraintDefinition(
                 fromNodeToNodeList: fragment.FromNodeToNodeList.SelectList(FromMutable),
                 deleteAction: fragment.DeleteAction,
@@ -6443,6 +6922,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphMatchCompositeExpression FromMutable(ScriptDom.GraphMatchCompositeExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphMatchCompositeExpression))) { throw new NotImplementedException("Unexpected subtype of GraphMatchCompositeExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphMatchCompositeExpression(
                 leftNode: FromMutable(fragment.LeftNode),
                 edge: FromMutable(fragment.Edge),
@@ -6453,6 +6933,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphMatchExpression FromMutable(ScriptDom.GraphMatchExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphMatchExpression))) { throw new NotImplementedException("Unexpected subtype of GraphMatchExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphMatchExpression(
                 leftNode: FromMutable(fragment.LeftNode),
                 edge: FromMutable(fragment.Edge),
@@ -6463,6 +6944,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphMatchLastNodePredicate FromMutable(ScriptDom.GraphMatchLastNodePredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphMatchLastNodePredicate))) { throw new NotImplementedException("Unexpected subtype of GraphMatchLastNodePredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphMatchLastNodePredicate(
                 leftExpression: FromMutable(fragment.LeftExpression),
                 rightExpression: FromMutable(fragment.RightExpression)
@@ -6471,6 +6953,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphMatchNodeExpression FromMutable(ScriptDom.GraphMatchNodeExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphMatchNodeExpression))) { throw new NotImplementedException("Unexpected subtype of GraphMatchNodeExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphMatchNodeExpression(
                 node: FromMutable(fragment.Node),
                 usesLastNode: fragment.UsesLastNode
@@ -6479,6 +6962,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphMatchPredicate FromMutable(ScriptDom.GraphMatchPredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphMatchPredicate))) { throw new NotImplementedException("Unexpected subtype of GraphMatchPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphMatchPredicate(
                 expression: FromMutable(fragment.Expression)
             );
@@ -6486,6 +6970,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphMatchRecursivePredicate FromMutable(ScriptDom.GraphMatchRecursivePredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphMatchRecursivePredicate))) { throw new NotImplementedException("Unexpected subtype of GraphMatchRecursivePredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphMatchRecursivePredicate(
                 function: fragment.Function,
                 outerNodeExpression: FromMutable(fragment.OuterNodeExpression),
@@ -6497,6 +6982,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GraphRecursiveMatchQuantifier FromMutable(ScriptDom.GraphRecursiveMatchQuantifier fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GraphRecursiveMatchQuantifier))) { throw new NotImplementedException("Unexpected subtype of GraphRecursiveMatchQuantifier not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphRecursiveMatchQuantifier(
                 isPlusSign: fragment.IsPlusSign,
                 lowerLimit: FromMutable(fragment.LowerLimit),
@@ -6506,6 +6992,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GridParameter FromMutable(ScriptDom.GridParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GridParameter))) { throw new NotImplementedException("Unexpected subtype of GridParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GridParameter(
                 parameter: fragment.Parameter,
                 @value: fragment.Value
@@ -6514,6 +7001,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GridsSpatialIndexOption FromMutable(ScriptDom.GridsSpatialIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GridsSpatialIndexOption))) { throw new NotImplementedException("Unexpected subtype of GridsSpatialIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GridsSpatialIndexOption(
                 gridParameters: fragment.GridParameters.SelectList(FromMutable)
             );
@@ -6521,6 +7009,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GroupByClause FromMutable(ScriptDom.GroupByClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GroupByClause))) { throw new NotImplementedException("Unexpected subtype of GroupByClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GroupByClause(
                 groupByOption: fragment.GroupByOption,
                 all: fragment.All,
@@ -6530,6 +7019,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static GroupingSetsGroupingSpecification FromMutable(ScriptDom.GroupingSetsGroupingSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.GroupingSetsGroupingSpecification))) { throw new NotImplementedException("Unexpected subtype of GroupingSetsGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GroupingSetsGroupingSpecification(
                 sets: fragment.Sets.SelectList(FromMutable)
             );
@@ -6537,6 +7027,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static HadrAvailabilityGroupDatabaseOption FromMutable(ScriptDom.HadrAvailabilityGroupDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.HadrAvailabilityGroupDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of HadrAvailabilityGroupDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new HadrAvailabilityGroupDatabaseOption(
                 groupName: FromMutable(fragment.GroupName),
                 hadrOption: fragment.HadrOption,
@@ -6546,7 +7037,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static HadrDatabaseOption FromMutable(ScriptDom.HadrDatabaseOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.HadrDatabaseOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as HadrDatabaseOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.HadrDatabaseOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as HadrDatabaseOption; }
             return new HadrDatabaseOption(
                 hadrOption: fragment.HadrOption,
                 optionKind: fragment.OptionKind
@@ -6555,6 +7046,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static HavingClause FromMutable(ScriptDom.HavingClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.HavingClause))) { throw new NotImplementedException("Unexpected subtype of HavingClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new HavingClause(
                 searchCondition: FromMutable(fragment.SearchCondition)
             );
@@ -6562,7 +7054,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static Identifier FromMutable(ScriptDom.Identifier fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.Identifier)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as Identifier; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.Identifier))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as Identifier; }
             return new Identifier(
                 @value: fragment.Value,
                 quoteType: fragment.QuoteType
@@ -6571,6 +7063,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentifierAtomicBlockOption FromMutable(ScriptDom.IdentifierAtomicBlockOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentifierAtomicBlockOption))) { throw new NotImplementedException("Unexpected subtype of IdentifierAtomicBlockOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentifierAtomicBlockOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6579,6 +7072,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentifierDatabaseOption FromMutable(ScriptDom.IdentifierDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentifierDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of IdentifierDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentifierDatabaseOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6587,6 +7081,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentifierLiteral FromMutable(ScriptDom.IdentifierLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentifierLiteral))) { throw new NotImplementedException("Unexpected subtype of IdentifierLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentifierLiteral(
                 quoteType: fragment.QuoteType,
                 @value: fragment.Value,
@@ -6596,6 +7091,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentifierOrScalarExpression FromMutable(ScriptDom.IdentifierOrScalarExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentifierOrScalarExpression))) { throw new NotImplementedException("Unexpected subtype of IdentifierOrScalarExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentifierOrScalarExpression(
                 identifier: FromMutable(fragment.Identifier),
                 scalarExpression: FromMutable(fragment.ScalarExpression)
@@ -6604,6 +7100,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentifierOrValueExpression FromMutable(ScriptDom.IdentifierOrValueExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentifierOrValueExpression))) { throw new NotImplementedException("Unexpected subtype of IdentifierOrValueExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentifierOrValueExpression(
                 identifier: FromMutable(fragment.Identifier),
                 valueExpression: FromMutable(fragment.ValueExpression)
@@ -6612,6 +7109,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentifierPrincipalOption FromMutable(ScriptDom.IdentifierPrincipalOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentifierPrincipalOption))) { throw new NotImplementedException("Unexpected subtype of IdentifierPrincipalOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentifierPrincipalOption(
                 identifier: FromMutable(fragment.Identifier),
                 optionKind: fragment.OptionKind
@@ -6620,6 +7118,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentifierSnippet FromMutable(ScriptDom.IdentifierSnippet fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentifierSnippet))) { throw new NotImplementedException("Unexpected subtype of IdentifierSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentifierSnippet(
                 script: fragment.Script,
                 @value: fragment.Value,
@@ -6629,6 +7128,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentityFunctionCall FromMutable(ScriptDom.IdentityFunctionCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentityFunctionCall))) { throw new NotImplementedException("Unexpected subtype of IdentityFunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentityFunctionCall(
                 dataType: FromMutable(fragment.DataType),
                 seed: FromMutable(fragment.Seed),
@@ -6638,6 +7138,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentityOptions FromMutable(ScriptDom.IdentityOptions fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentityOptions))) { throw new NotImplementedException("Unexpected subtype of IdentityOptions not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentityOptions(
                 identitySeed: FromMutable(fragment.IdentitySeed),
                 identityIncrement: FromMutable(fragment.IdentityIncrement),
@@ -6647,6 +7148,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IdentityValueKeyOption FromMutable(ScriptDom.IdentityValueKeyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IdentityValueKeyOption))) { throw new NotImplementedException("Unexpected subtype of IdentityValueKeyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IdentityValueKeyOption(
                 identityPhrase: FromMutable(fragment.IdentityPhrase),
                 optionKind: fragment.OptionKind
@@ -6655,6 +7157,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IfStatement FromMutable(ScriptDom.IfStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IfStatement))) { throw new NotImplementedException("Unexpected subtype of IfStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IfStatement(
                 predicate: FromMutable(fragment.Predicate),
                 thenStatement: FromMutable(fragment.ThenStatement),
@@ -6664,6 +7167,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IgnoreDupKeyIndexOption FromMutable(ScriptDom.IgnoreDupKeyIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IgnoreDupKeyIndexOption))) { throw new NotImplementedException("Unexpected subtype of IgnoreDupKeyIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IgnoreDupKeyIndexOption(
                 suppressMessagesOption: fragment.SuppressMessagesOption,
                 optionState: fragment.OptionState,
@@ -6673,6 +7177,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IIfCall FromMutable(ScriptDom.IIfCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IIfCall))) { throw new NotImplementedException("Unexpected subtype of IIfCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IIfCall(
                 predicate: FromMutable(fragment.Predicate),
                 thenExpression: FromMutable(fragment.ThenExpression),
@@ -6683,6 +7188,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IndexDefinition FromMutable(ScriptDom.IndexDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IndexDefinition))) { throw new NotImplementedException("Unexpected subtype of IndexDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IndexDefinition(
                 name: FromMutable(fragment.Name),
                 unique: fragment.Unique,
@@ -6698,6 +7204,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IndexExpressionOption FromMutable(ScriptDom.IndexExpressionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IndexExpressionOption))) { throw new NotImplementedException("Unexpected subtype of IndexExpressionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IndexExpressionOption(
                 expression: FromMutable(fragment.Expression),
                 optionKind: fragment.OptionKind
@@ -6706,7 +7213,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IndexStateOption FromMutable(ScriptDom.IndexStateOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.IndexStateOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as IndexStateOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IndexStateOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as IndexStateOption; }
             return new IndexStateOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -6715,6 +7222,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IndexTableHint FromMutable(ScriptDom.IndexTableHint fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IndexTableHint))) { throw new NotImplementedException("Unexpected subtype of IndexTableHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IndexTableHint(
                 indexValues: fragment.IndexValues.SelectList(FromMutable),
                 hintKind: fragment.HintKind
@@ -6723,6 +7231,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IndexType FromMutable(ScriptDom.IndexType fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IndexType))) { throw new NotImplementedException("Unexpected subtype of IndexType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IndexType(
                 indexTypeKind: fragment.IndexTypeKind
             );
@@ -6730,6 +7239,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InlineDerivedTable FromMutable(ScriptDom.InlineDerivedTable fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InlineDerivedTable))) { throw new NotImplementedException("Unexpected subtype of InlineDerivedTable not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InlineDerivedTable(
                 rowValues: fragment.RowValues.SelectList(FromMutable),
                 columns: fragment.Columns.SelectList(FromMutable),
@@ -6740,6 +7250,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InlineFunctionOption FromMutable(ScriptDom.InlineFunctionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InlineFunctionOption))) { throw new NotImplementedException("Unexpected subtype of InlineFunctionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InlineFunctionOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -6748,6 +7259,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InlineResultSetDefinition FromMutable(ScriptDom.InlineResultSetDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InlineResultSetDefinition))) { throw new NotImplementedException("Unexpected subtype of InlineResultSetDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InlineResultSetDefinition(
                 resultColumnDefinitions: fragment.ResultColumnDefinitions.SelectList(FromMutable),
                 resultSetType: fragment.ResultSetType
@@ -6756,6 +7268,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InPredicate FromMutable(ScriptDom.InPredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InPredicate))) { throw new NotImplementedException("Unexpected subtype of InPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InPredicate(
                 expression: FromMutable(fragment.Expression),
                 subquery: FromMutable(fragment.Subquery),
@@ -6766,6 +7279,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InsertBulkColumnDefinition FromMutable(ScriptDom.InsertBulkColumnDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InsertBulkColumnDefinition))) { throw new NotImplementedException("Unexpected subtype of InsertBulkColumnDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InsertBulkColumnDefinition(
                 column: FromMutable(fragment.Column),
                 nullNotNull: fragment.NullNotNull
@@ -6774,6 +7288,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InsertBulkStatement FromMutable(ScriptDom.InsertBulkStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InsertBulkStatement))) { throw new NotImplementedException("Unexpected subtype of InsertBulkStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InsertBulkStatement(
                 columnDefinitions: fragment.ColumnDefinitions.SelectList(FromMutable),
                 to: FromMutable(fragment.To),
@@ -6783,6 +7298,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InsertMergeAction FromMutable(ScriptDom.InsertMergeAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InsertMergeAction))) { throw new NotImplementedException("Unexpected subtype of InsertMergeAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InsertMergeAction(
                 columns: fragment.Columns.SelectList(FromMutable),
                 source: FromMutable(fragment.Source)
@@ -6791,6 +7307,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InsertSpecification FromMutable(ScriptDom.InsertSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InsertSpecification))) { throw new NotImplementedException("Unexpected subtype of InsertSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InsertSpecification(
                 insertOption: fragment.InsertOption,
                 insertSource: FromMutable(fragment.InsertSource),
@@ -6804,6 +7321,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InsertStatement FromMutable(ScriptDom.InsertStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InsertStatement))) { throw new NotImplementedException("Unexpected subtype of InsertStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InsertStatement(
                 insertSpecification: FromMutable(fragment.InsertSpecification),
                 withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
@@ -6813,6 +7331,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IntegerLiteral FromMutable(ScriptDom.IntegerLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IntegerLiteral))) { throw new NotImplementedException("Unexpected subtype of IntegerLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IntegerLiteral(
                 @value: fragment.Value,
                 collation: FromMutable(fragment.Collation)
@@ -6821,6 +7340,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static InternalOpenRowset FromMutable(ScriptDom.InternalOpenRowset fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.InternalOpenRowset))) { throw new NotImplementedException("Unexpected subtype of InternalOpenRowset not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InternalOpenRowset(
                 identifier: FromMutable(fragment.Identifier),
                 varArgs: fragment.VarArgs.SelectList(FromMutable),
@@ -6831,6 +7351,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static IPv4 FromMutable(ScriptDom.IPv4 fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.IPv4))) { throw new NotImplementedException("Unexpected subtype of IPv4 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IPv4(
                 octetOne: FromMutable(fragment.OctetOne),
                 octetTwo: FromMutable(fragment.OctetTwo),
@@ -6841,6 +7362,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static JoinParenthesisTableReference FromMutable(ScriptDom.JoinParenthesisTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.JoinParenthesisTableReference))) { throw new NotImplementedException("Unexpected subtype of JoinParenthesisTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new JoinParenthesisTableReference(
                 join: FromMutable(fragment.Join)
             );
@@ -6848,6 +7370,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static JsonForClause FromMutable(ScriptDom.JsonForClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.JsonForClause))) { throw new NotImplementedException("Unexpected subtype of JsonForClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new JsonForClause(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -6855,6 +7378,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static JsonForClauseOption FromMutable(ScriptDom.JsonForClauseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.JsonForClauseOption))) { throw new NotImplementedException("Unexpected subtype of JsonForClauseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new JsonForClauseOption(
                 optionKind: fragment.OptionKind,
                 @value: FromMutable(fragment.Value)
@@ -6863,6 +7387,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static JsonKeyValue FromMutable(ScriptDom.JsonKeyValue fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.JsonKeyValue))) { throw new NotImplementedException("Unexpected subtype of JsonKeyValue not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new JsonKeyValue(
                 jsonKeyName: FromMutable(fragment.JsonKeyName),
                 jsonValue: FromMutable(fragment.JsonValue)
@@ -6871,6 +7396,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static KeySourceKeyOption FromMutable(ScriptDom.KeySourceKeyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.KeySourceKeyOption))) { throw new NotImplementedException("Unexpected subtype of KeySourceKeyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new KeySourceKeyOption(
                 passPhrase: FromMutable(fragment.PassPhrase),
                 optionKind: fragment.OptionKind
@@ -6879,6 +7405,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static KillQueryNotificationSubscriptionStatement FromMutable(ScriptDom.KillQueryNotificationSubscriptionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.KillQueryNotificationSubscriptionStatement))) { throw new NotImplementedException("Unexpected subtype of KillQueryNotificationSubscriptionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new KillQueryNotificationSubscriptionStatement(
                 subscriptionId: FromMutable(fragment.SubscriptionId),
                 all: fragment.All
@@ -6887,6 +7414,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static KillStatement FromMutable(ScriptDom.KillStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.KillStatement))) { throw new NotImplementedException("Unexpected subtype of KillStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new KillStatement(
                 parameter: FromMutable(fragment.Parameter),
                 withStatusOnly: fragment.WithStatusOnly
@@ -6895,6 +7423,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static KillStatsJobStatement FromMutable(ScriptDom.KillStatsJobStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.KillStatsJobStatement))) { throw new NotImplementedException("Unexpected subtype of KillStatsJobStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new KillStatsJobStatement(
                 jobId: FromMutable(fragment.JobId)
             );
@@ -6902,6 +7431,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LabelStatement FromMutable(ScriptDom.LabelStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LabelStatement))) { throw new NotImplementedException("Unexpected subtype of LabelStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LabelStatement(
                 @value: fragment.Value
             );
@@ -6909,6 +7439,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LedgerOption FromMutable(ScriptDom.LedgerOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LedgerOption))) { throw new NotImplementedException("Unexpected subtype of LedgerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LedgerOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -6917,6 +7448,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LedgerTableOption FromMutable(ScriptDom.LedgerTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LedgerTableOption))) { throw new NotImplementedException("Unexpected subtype of LedgerTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LedgerTableOption(
                 optionState: fragment.OptionState,
                 appendOnly: fragment.AppendOnly,
@@ -6927,6 +7459,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LedgerViewOption FromMutable(ScriptDom.LedgerViewOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LedgerViewOption))) { throw new NotImplementedException("Unexpected subtype of LedgerViewOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LedgerViewOption(
                 viewName: FromMutable(fragment.ViewName),
                 transactionIdColumnName: FromMutable(fragment.TransactionIdColumnName),
@@ -6939,6 +7472,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LeftFunctionCall FromMutable(ScriptDom.LeftFunctionCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LeftFunctionCall))) { throw new NotImplementedException("Unexpected subtype of LeftFunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LeftFunctionCall(
                 parameters: fragment.Parameters.SelectList(FromMutable),
                 collation: FromMutable(fragment.Collation)
@@ -6947,6 +7481,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LikePredicate FromMutable(ScriptDom.LikePredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LikePredicate))) { throw new NotImplementedException("Unexpected subtype of LikePredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LikePredicate(
                 firstExpression: FromMutable(fragment.FirstExpression),
                 secondExpression: FromMutable(fragment.SecondExpression),
@@ -6958,6 +7493,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LineNoStatement FromMutable(ScriptDom.LineNoStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LineNoStatement))) { throw new NotImplementedException("Unexpected subtype of LineNoStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LineNoStatement(
                 lineNo: FromMutable(fragment.LineNo)
             );
@@ -6965,6 +7501,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ListenerIPEndpointProtocolOption FromMutable(ScriptDom.ListenerIPEndpointProtocolOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ListenerIPEndpointProtocolOption))) { throw new NotImplementedException("Unexpected subtype of ListenerIPEndpointProtocolOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ListenerIPEndpointProtocolOption(
                 isAll: fragment.IsAll,
                 iPv6: FromMutable(fragment.IPv6),
@@ -6976,6 +7513,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ListTypeCopyOption FromMutable(ScriptDom.ListTypeCopyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ListTypeCopyOption))) { throw new NotImplementedException("Unexpected subtype of ListTypeCopyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ListTypeCopyOption(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -6983,6 +7521,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralAtomicBlockOption FromMutable(ScriptDom.LiteralAtomicBlockOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralAtomicBlockOption))) { throw new NotImplementedException("Unexpected subtype of LiteralAtomicBlockOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralAtomicBlockOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6991,6 +7530,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralAuditTargetOption FromMutable(ScriptDom.LiteralAuditTargetOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralAuditTargetOption))) { throw new NotImplementedException("Unexpected subtype of LiteralAuditTargetOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralAuditTargetOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -6999,6 +7539,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralAvailabilityGroupOption FromMutable(ScriptDom.LiteralAvailabilityGroupOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralAvailabilityGroupOption))) { throw new NotImplementedException("Unexpected subtype of LiteralAvailabilityGroupOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralAvailabilityGroupOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -7007,6 +7548,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralBulkInsertOption FromMutable(ScriptDom.LiteralBulkInsertOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralBulkInsertOption))) { throw new NotImplementedException("Unexpected subtype of LiteralBulkInsertOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralBulkInsertOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -7015,6 +7557,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralDatabaseOption FromMutable(ScriptDom.LiteralDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of LiteralDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralDatabaseOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -7023,6 +7566,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralEndpointProtocolOption FromMutable(ScriptDom.LiteralEndpointProtocolOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralEndpointProtocolOption))) { throw new NotImplementedException("Unexpected subtype of LiteralEndpointProtocolOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralEndpointProtocolOption(
                 @value: FromMutable(fragment.Value),
                 kind: fragment.Kind
@@ -7031,6 +7575,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralOpenRowsetCosmosOption FromMutable(ScriptDom.LiteralOpenRowsetCosmosOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralOpenRowsetCosmosOption))) { throw new NotImplementedException("Unexpected subtype of LiteralOpenRowsetCosmosOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralOpenRowsetCosmosOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -7039,6 +7584,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralOptimizerHint FromMutable(ScriptDom.LiteralOptimizerHint fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralOptimizerHint))) { throw new NotImplementedException("Unexpected subtype of LiteralOptimizerHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralOptimizerHint(
                 @value: FromMutable(fragment.Value),
                 hintKind: fragment.HintKind
@@ -7047,6 +7593,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralOptionValue FromMutable(ScriptDom.LiteralOptionValue fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralOptionValue))) { throw new NotImplementedException("Unexpected subtype of LiteralOptionValue not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralOptionValue(
                 @value: FromMutable(fragment.Value)
             );
@@ -7054,6 +7601,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralPayloadOption FromMutable(ScriptDom.LiteralPayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralPayloadOption))) { throw new NotImplementedException("Unexpected subtype of LiteralPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralPayloadOption(
                 @value: FromMutable(fragment.Value),
                 kind: fragment.Kind
@@ -7062,6 +7610,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralPrincipalOption FromMutable(ScriptDom.LiteralPrincipalOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralPrincipalOption))) { throw new NotImplementedException("Unexpected subtype of LiteralPrincipalOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralPrincipalOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -7070,7 +7619,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralRange FromMutable(ScriptDom.LiteralRange fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.LiteralRange)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as LiteralRange; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralRange))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as LiteralRange; }
             return new LiteralRange(
                 from: FromMutable(fragment.From),
                 to: FromMutable(fragment.To)
@@ -7079,6 +7628,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralReplicaOption FromMutable(ScriptDom.LiteralReplicaOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralReplicaOption))) { throw new NotImplementedException("Unexpected subtype of LiteralReplicaOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralReplicaOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -7087,6 +7637,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralSessionOption FromMutable(ScriptDom.LiteralSessionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralSessionOption))) { throw new NotImplementedException("Unexpected subtype of LiteralSessionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralSessionOption(
                 @value: FromMutable(fragment.Value),
                 unit: fragment.Unit,
@@ -7096,6 +7647,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralStatisticsOption FromMutable(ScriptDom.LiteralStatisticsOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralStatisticsOption))) { throw new NotImplementedException("Unexpected subtype of LiteralStatisticsOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralStatisticsOption(
                 literal: FromMutable(fragment.Literal),
                 optionKind: fragment.OptionKind
@@ -7104,6 +7656,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LiteralTableHint FromMutable(ScriptDom.LiteralTableHint fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LiteralTableHint))) { throw new NotImplementedException("Unexpected subtype of LiteralTableHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LiteralTableHint(
                 @value: FromMutable(fragment.Value),
                 hintKind: fragment.HintKind
@@ -7112,6 +7665,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LocationOption FromMutable(ScriptDom.LocationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LocationOption))) { throw new NotImplementedException("Unexpected subtype of LocationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LocationOption(
                 locationValue: FromMutable(fragment.LocationValue),
                 optionKind: fragment.OptionKind
@@ -7120,6 +7674,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LockEscalationTableOption FromMutable(ScriptDom.LockEscalationTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LockEscalationTableOption))) { throw new NotImplementedException("Unexpected subtype of LockEscalationTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LockEscalationTableOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -7128,6 +7683,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LoginTypePayloadOption FromMutable(ScriptDom.LoginTypePayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LoginTypePayloadOption))) { throw new NotImplementedException("Unexpected subtype of LoginTypePayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LoginTypePayloadOption(
                 isWindows: fragment.IsWindows,
                 kind: fragment.Kind
@@ -7136,6 +7692,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LowPriorityLockWaitAbortAfterWaitOption FromMutable(ScriptDom.LowPriorityLockWaitAbortAfterWaitOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LowPriorityLockWaitAbortAfterWaitOption))) { throw new NotImplementedException("Unexpected subtype of LowPriorityLockWaitAbortAfterWaitOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LowPriorityLockWaitAbortAfterWaitOption(
                 abortAfterWait: fragment.AbortAfterWait,
                 optionKind: fragment.OptionKind
@@ -7144,6 +7701,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LowPriorityLockWaitMaxDurationOption FromMutable(ScriptDom.LowPriorityLockWaitMaxDurationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LowPriorityLockWaitMaxDurationOption))) { throw new NotImplementedException("Unexpected subtype of LowPriorityLockWaitMaxDurationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LowPriorityLockWaitMaxDurationOption(
                 maxDuration: FromMutable(fragment.MaxDuration),
                 unit: fragment.Unit,
@@ -7153,6 +7711,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static LowPriorityLockWaitTableSwitchOption FromMutable(ScriptDom.LowPriorityLockWaitTableSwitchOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.LowPriorityLockWaitTableSwitchOption))) { throw new NotImplementedException("Unexpected subtype of LowPriorityLockWaitTableSwitchOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LowPriorityLockWaitTableSwitchOption(
                 options: fragment.Options.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
@@ -7161,6 +7720,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MaxDispatchLatencySessionOption FromMutable(ScriptDom.MaxDispatchLatencySessionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MaxDispatchLatencySessionOption))) { throw new NotImplementedException("Unexpected subtype of MaxDispatchLatencySessionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MaxDispatchLatencySessionOption(
                 isInfinite: fragment.IsInfinite,
                 @value: FromMutable(fragment.Value),
@@ -7170,6 +7730,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MaxDopConfigurationOption FromMutable(ScriptDom.MaxDopConfigurationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MaxDopConfigurationOption))) { throw new NotImplementedException("Unexpected subtype of MaxDopConfigurationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MaxDopConfigurationOption(
                 @value: FromMutable(fragment.Value),
                 primary: fragment.Primary,
@@ -7180,6 +7741,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MaxDurationOption FromMutable(ScriptDom.MaxDurationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MaxDurationOption))) { throw new NotImplementedException("Unexpected subtype of MaxDurationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MaxDurationOption(
                 maxDuration: FromMutable(fragment.MaxDuration),
                 unit: fragment.Unit,
@@ -7189,6 +7751,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MaxLiteral FromMutable(ScriptDom.MaxLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MaxLiteral))) { throw new NotImplementedException("Unexpected subtype of MaxLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MaxLiteral(
                 @value: fragment.Value,
                 collation: FromMutable(fragment.Collation)
@@ -7197,6 +7760,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MaxRolloverFilesAuditTargetOption FromMutable(ScriptDom.MaxRolloverFilesAuditTargetOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MaxRolloverFilesAuditTargetOption))) { throw new NotImplementedException("Unexpected subtype of MaxRolloverFilesAuditTargetOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MaxRolloverFilesAuditTargetOption(
                 @value: FromMutable(fragment.Value),
                 isUnlimited: fragment.IsUnlimited,
@@ -7206,6 +7770,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MaxSizeAuditTargetOption FromMutable(ScriptDom.MaxSizeAuditTargetOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MaxSizeAuditTargetOption))) { throw new NotImplementedException("Unexpected subtype of MaxSizeAuditTargetOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MaxSizeAuditTargetOption(
                 isUnlimited: fragment.IsUnlimited,
                 size: FromMutable(fragment.Size),
@@ -7216,6 +7781,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MaxSizeDatabaseOption FromMutable(ScriptDom.MaxSizeDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MaxSizeDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of MaxSizeDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MaxSizeDatabaseOption(
                 maxSize: FromMutable(fragment.MaxSize),
                 units: fragment.Units,
@@ -7225,6 +7791,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MaxSizeFileDeclarationOption FromMutable(ScriptDom.MaxSizeFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MaxSizeFileDeclarationOption))) { throw new NotImplementedException("Unexpected subtype of MaxSizeFileDeclarationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MaxSizeFileDeclarationOption(
                 maxSize: FromMutable(fragment.MaxSize),
                 units: fragment.Units,
@@ -7235,6 +7802,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MemoryOptimizedTableOption FromMutable(ScriptDom.MemoryOptimizedTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MemoryOptimizedTableOption))) { throw new NotImplementedException("Unexpected subtype of MemoryOptimizedTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MemoryOptimizedTableOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7243,6 +7811,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MemoryPartitionSessionOption FromMutable(ScriptDom.MemoryPartitionSessionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MemoryPartitionSessionOption))) { throw new NotImplementedException("Unexpected subtype of MemoryPartitionSessionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MemoryPartitionSessionOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -7251,6 +7820,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MergeActionClause FromMutable(ScriptDom.MergeActionClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MergeActionClause))) { throw new NotImplementedException("Unexpected subtype of MergeActionClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MergeActionClause(
                 condition: fragment.Condition,
                 searchCondition: FromMutable(fragment.SearchCondition),
@@ -7260,6 +7830,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MergeSpecification FromMutable(ScriptDom.MergeSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MergeSpecification))) { throw new NotImplementedException("Unexpected subtype of MergeSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MergeSpecification(
                 tableAlias: FromMutable(fragment.TableAlias),
                 tableReference: FromMutable(fragment.TableReference),
@@ -7274,6 +7845,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MergeStatement FromMutable(ScriptDom.MergeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MergeStatement))) { throw new NotImplementedException("Unexpected subtype of MergeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MergeStatement(
                 mergeSpecification: FromMutable(fragment.MergeSpecification),
                 withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
@@ -7283,6 +7855,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MethodSpecifier FromMutable(ScriptDom.MethodSpecifier fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MethodSpecifier))) { throw new NotImplementedException("Unexpected subtype of MethodSpecifier not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MethodSpecifier(
                 assemblyName: FromMutable(fragment.AssemblyName),
                 className: FromMutable(fragment.ClassName),
@@ -7292,6 +7865,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MirrorToClause FromMutable(ScriptDom.MirrorToClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MirrorToClause))) { throw new NotImplementedException("Unexpected subtype of MirrorToClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MirrorToClause(
                 devices: fragment.Devices.SelectList(FromMutable)
             );
@@ -7299,6 +7873,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MoneyLiteral FromMutable(ScriptDom.MoneyLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MoneyLiteral))) { throw new NotImplementedException("Unexpected subtype of MoneyLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MoneyLiteral(
                 @value: fragment.Value,
                 collation: FromMutable(fragment.Collation)
@@ -7307,6 +7882,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MoveConversationStatement FromMutable(ScriptDom.MoveConversationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MoveConversationStatement))) { throw new NotImplementedException("Unexpected subtype of MoveConversationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MoveConversationStatement(
                 conversation: FromMutable(fragment.Conversation),
                 group: FromMutable(fragment.Group)
@@ -7315,6 +7891,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MoveRestoreOption FromMutable(ScriptDom.MoveRestoreOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MoveRestoreOption))) { throw new NotImplementedException("Unexpected subtype of MoveRestoreOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MoveRestoreOption(
                 logicalFileName: FromMutable(fragment.LogicalFileName),
                 oSFileName: FromMutable(fragment.OSFileName),
@@ -7324,6 +7901,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MoveToDropIndexOption FromMutable(ScriptDom.MoveToDropIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MoveToDropIndexOption))) { throw new NotImplementedException("Unexpected subtype of MoveToDropIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MoveToDropIndexOption(
                 moveTo: FromMutable(fragment.MoveTo),
                 optionKind: fragment.OptionKind
@@ -7332,7 +7910,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MultiPartIdentifier FromMutable(ScriptDom.MultiPartIdentifier fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.MultiPartIdentifier)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as MultiPartIdentifier; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MultiPartIdentifier))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as MultiPartIdentifier; }
             return new MultiPartIdentifier(
                 identifiers: fragment.Identifiers.SelectList(FromMutable)
             );
@@ -7340,6 +7918,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static MultiPartIdentifierCallTarget FromMutable(ScriptDom.MultiPartIdentifierCallTarget fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.MultiPartIdentifierCallTarget))) { throw new NotImplementedException("Unexpected subtype of MultiPartIdentifierCallTarget not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MultiPartIdentifierCallTarget(
                 multiPartIdentifier: FromMutable(fragment.MultiPartIdentifier)
             );
@@ -7347,6 +7926,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static NamedTableReference FromMutable(ScriptDom.NamedTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.NamedTableReference))) { throw new NotImplementedException("Unexpected subtype of NamedTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new NamedTableReference(
                 schemaObject: FromMutable(fragment.SchemaObject),
                 tableHints: fragment.TableHints.SelectList(FromMutable),
@@ -7359,6 +7939,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static NameFileDeclarationOption FromMutable(ScriptDom.NameFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.NameFileDeclarationOption))) { throw new NotImplementedException("Unexpected subtype of NameFileDeclarationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new NameFileDeclarationOption(
                 logicalFileName: FromMutable(fragment.LogicalFileName),
                 isNewName: fragment.IsNewName,
@@ -7368,6 +7949,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static NextValueForExpression FromMutable(ScriptDom.NextValueForExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.NextValueForExpression))) { throw new NotImplementedException("Unexpected subtype of NextValueForExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new NextValueForExpression(
                 sequenceName: FromMutable(fragment.SequenceName),
                 overClause: FromMutable(fragment.OverClause),
@@ -7377,6 +7959,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static NullableConstraintDefinition FromMutable(ScriptDom.NullableConstraintDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.NullableConstraintDefinition))) { throw new NotImplementedException("Unexpected subtype of NullableConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new NullableConstraintDefinition(
                 nullable: fragment.Nullable,
                 constraintIdentifier: FromMutable(fragment.ConstraintIdentifier)
@@ -7385,6 +7968,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static NullIfExpression FromMutable(ScriptDom.NullIfExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.NullIfExpression))) { throw new NotImplementedException("Unexpected subtype of NullIfExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new NullIfExpression(
                 firstExpression: FromMutable(fragment.FirstExpression),
                 secondExpression: FromMutable(fragment.SecondExpression),
@@ -7394,6 +7978,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static NullLiteral FromMutable(ScriptDom.NullLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.NullLiteral))) { throw new NotImplementedException("Unexpected subtype of NullLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new NullLiteral(
                 @value: fragment.Value,
                 collation: FromMutable(fragment.Collation)
@@ -7402,6 +7987,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static NumericLiteral FromMutable(ScriptDom.NumericLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.NumericLiteral))) { throw new NotImplementedException("Unexpected subtype of NumericLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new NumericLiteral(
                 @value: fragment.Value,
                 collation: FromMutable(fragment.Collation)
@@ -7410,6 +7996,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OdbcConvertSpecification FromMutable(ScriptDom.OdbcConvertSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OdbcConvertSpecification))) { throw new NotImplementedException("Unexpected subtype of OdbcConvertSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OdbcConvertSpecification(
                 identifier: FromMutable(fragment.Identifier)
             );
@@ -7417,6 +8004,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OdbcFunctionCall FromMutable(ScriptDom.OdbcFunctionCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OdbcFunctionCall))) { throw new NotImplementedException("Unexpected subtype of OdbcFunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OdbcFunctionCall(
                 name: FromMutable(fragment.Name),
                 parametersUsed: fragment.ParametersUsed,
@@ -7427,6 +8015,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OdbcLiteral FromMutable(ScriptDom.OdbcLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OdbcLiteral))) { throw new NotImplementedException("Unexpected subtype of OdbcLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OdbcLiteral(
                 odbcLiteralType: fragment.OdbcLiteralType,
                 isNational: fragment.IsNational,
@@ -7437,6 +8026,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OdbcQualifiedJoinTableReference FromMutable(ScriptDom.OdbcQualifiedJoinTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OdbcQualifiedJoinTableReference))) { throw new NotImplementedException("Unexpected subtype of OdbcQualifiedJoinTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OdbcQualifiedJoinTableReference(
                 tableReference: FromMutable(fragment.TableReference)
             );
@@ -7444,6 +8034,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OffsetClause FromMutable(ScriptDom.OffsetClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OffsetClause))) { throw new NotImplementedException("Unexpected subtype of OffsetClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OffsetClause(
                 offsetExpression: FromMutable(fragment.OffsetExpression),
                 fetchExpression: FromMutable(fragment.FetchExpression)
@@ -7452,6 +8043,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnFailureAuditOption FromMutable(ScriptDom.OnFailureAuditOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnFailureAuditOption))) { throw new NotImplementedException("Unexpected subtype of OnFailureAuditOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnFailureAuditOption(
                 onFailureAction: fragment.OnFailureAction,
                 optionKind: fragment.OptionKind
@@ -7460,6 +8052,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnlineIndexLowPriorityLockWaitOption FromMutable(ScriptDom.OnlineIndexLowPriorityLockWaitOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnlineIndexLowPriorityLockWaitOption))) { throw new NotImplementedException("Unexpected subtype of OnlineIndexLowPriorityLockWaitOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnlineIndexLowPriorityLockWaitOption(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -7467,6 +8060,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnlineIndexOption FromMutable(ScriptDom.OnlineIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnlineIndexOption))) { throw new NotImplementedException("Unexpected subtype of OnlineIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnlineIndexOption(
                 lowPriorityLockWaitOption: FromMutable(fragment.LowPriorityLockWaitOption),
                 optionState: fragment.OptionState,
@@ -7476,6 +8070,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffAssemblyOption FromMutable(ScriptDom.OnOffAssemblyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffAssemblyOption))) { throw new NotImplementedException("Unexpected subtype of OnOffAssemblyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffAssemblyOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7484,6 +8079,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffAtomicBlockOption FromMutable(ScriptDom.OnOffAtomicBlockOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffAtomicBlockOption))) { throw new NotImplementedException("Unexpected subtype of OnOffAtomicBlockOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffAtomicBlockOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7492,6 +8088,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffAuditTargetOption FromMutable(ScriptDom.OnOffAuditTargetOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffAuditTargetOption))) { throw new NotImplementedException("Unexpected subtype of OnOffAuditTargetOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffAuditTargetOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -7500,7 +8097,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffDatabaseOption FromMutable(ScriptDom.OnOffDatabaseOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.OnOffDatabaseOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OnOffDatabaseOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffDatabaseOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OnOffDatabaseOption; }
             return new OnOffDatabaseOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7509,6 +8106,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffDialogOption FromMutable(ScriptDom.OnOffDialogOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffDialogOption))) { throw new NotImplementedException("Unexpected subtype of OnOffDialogOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffDialogOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7517,6 +8115,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffFullTextCatalogOption FromMutable(ScriptDom.OnOffFullTextCatalogOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffFullTextCatalogOption))) { throw new NotImplementedException("Unexpected subtype of OnOffFullTextCatalogOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffFullTextCatalogOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7525,6 +8124,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffOptionValue FromMutable(ScriptDom.OnOffOptionValue fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffOptionValue))) { throw new NotImplementedException("Unexpected subtype of OnOffOptionValue not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffOptionValue(
                 optionState: fragment.OptionState
             );
@@ -7532,6 +8132,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffPrimaryConfigurationOption FromMutable(ScriptDom.OnOffPrimaryConfigurationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffPrimaryConfigurationOption))) { throw new NotImplementedException("Unexpected subtype of OnOffPrimaryConfigurationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffPrimaryConfigurationOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind,
@@ -7541,6 +8142,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffPrincipalOption FromMutable(ScriptDom.OnOffPrincipalOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffPrincipalOption))) { throw new NotImplementedException("Unexpected subtype of OnOffPrincipalOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffPrincipalOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7549,6 +8151,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffRemoteServiceBindingOption FromMutable(ScriptDom.OnOffRemoteServiceBindingOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffRemoteServiceBindingOption))) { throw new NotImplementedException("Unexpected subtype of OnOffRemoteServiceBindingOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffRemoteServiceBindingOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7557,6 +8160,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffSessionOption FromMutable(ScriptDom.OnOffSessionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffSessionOption))) { throw new NotImplementedException("Unexpected subtype of OnOffSessionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffSessionOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7565,6 +8169,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffStatisticsOption FromMutable(ScriptDom.OnOffStatisticsOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OnOffStatisticsOption))) { throw new NotImplementedException("Unexpected subtype of OnOffStatisticsOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OnOffStatisticsOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7573,6 +8178,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenCursorStatement FromMutable(ScriptDom.OpenCursorStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenCursorStatement))) { throw new NotImplementedException("Unexpected subtype of OpenCursorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenCursorStatement(
                 cursor: FromMutable(fragment.Cursor)
             );
@@ -7580,6 +8186,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenJsonTableReference FromMutable(ScriptDom.OpenJsonTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenJsonTableReference))) { throw new NotImplementedException("Unexpected subtype of OpenJsonTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenJsonTableReference(
                 variable: FromMutable(fragment.Variable),
                 rowPattern: FromMutable(fragment.RowPattern),
@@ -7591,6 +8198,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenMasterKeyStatement FromMutable(ScriptDom.OpenMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of OpenMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenMasterKeyStatement(
                 password: FromMutable(fragment.Password)
             );
@@ -7598,6 +8206,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenQueryTableReference FromMutable(ScriptDom.OpenQueryTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenQueryTableReference))) { throw new NotImplementedException("Unexpected subtype of OpenQueryTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenQueryTableReference(
                 linkedServer: FromMutable(fragment.LinkedServer),
                 query: FromMutable(fragment.Query),
@@ -7608,6 +8217,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenRowsetColumnDefinition FromMutable(ScriptDom.OpenRowsetColumnDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenRowsetColumnDefinition))) { throw new NotImplementedException("Unexpected subtype of OpenRowsetColumnDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenRowsetColumnDefinition(
                 columnOrdinal: FromMutable(fragment.ColumnOrdinal),
                 jsonPath: FromMutable(fragment.JsonPath),
@@ -7619,6 +8229,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenRowsetCosmos FromMutable(ScriptDom.OpenRowsetCosmos fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenRowsetCosmos))) { throw new NotImplementedException("Unexpected subtype of OpenRowsetCosmos not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenRowsetCosmos(
                 options: fragment.Options.SelectList(FromMutable),
                 withColumns: fragment.WithColumns.SelectList(FromMutable),
@@ -7630,7 +8241,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenRowsetCosmosOption FromMutable(ScriptDom.OpenRowsetCosmosOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.OpenRowsetCosmosOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OpenRowsetCosmosOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenRowsetCosmosOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OpenRowsetCosmosOption; }
             return new OpenRowsetCosmosOption(
                 optionKind: fragment.OptionKind
             );
@@ -7638,6 +8249,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenRowsetTableReference FromMutable(ScriptDom.OpenRowsetTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenRowsetTableReference))) { throw new NotImplementedException("Unexpected subtype of OpenRowsetTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenRowsetTableReference(
                 providerName: FromMutable(fragment.ProviderName),
                 dataSource: FromMutable(fragment.DataSource),
@@ -7653,6 +8265,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenSymmetricKeyStatement FromMutable(ScriptDom.OpenSymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenSymmetricKeyStatement))) { throw new NotImplementedException("Unexpected subtype of OpenSymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenSymmetricKeyStatement(
                 name: FromMutable(fragment.Name),
                 decryptionMechanism: FromMutable(fragment.DecryptionMechanism)
@@ -7661,6 +8274,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OpenXmlTableReference FromMutable(ScriptDom.OpenXmlTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OpenXmlTableReference))) { throw new NotImplementedException("Unexpected subtype of OpenXmlTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OpenXmlTableReference(
                 variable: FromMutable(fragment.Variable),
                 rowPattern: FromMutable(fragment.RowPattern),
@@ -7674,6 +8288,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OperatorAuditOption FromMutable(ScriptDom.OperatorAuditOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OperatorAuditOption))) { throw new NotImplementedException("Unexpected subtype of OperatorAuditOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OperatorAuditOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -7682,6 +8297,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OptimizeForOptimizerHint FromMutable(ScriptDom.OptimizeForOptimizerHint fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OptimizeForOptimizerHint))) { throw new NotImplementedException("Unexpected subtype of OptimizeForOptimizerHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OptimizeForOptimizerHint(
                 pairs: fragment.Pairs.SelectList(FromMutable),
                 isForUnknown: fragment.IsForUnknown,
@@ -7691,7 +8307,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OptimizerHint FromMutable(ScriptDom.OptimizerHint fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.OptimizerHint)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OptimizerHint; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OptimizerHint))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OptimizerHint; }
             return new OptimizerHint(
                 hintKind: fragment.HintKind
             );
@@ -7699,6 +8315,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OrderBulkInsertOption FromMutable(ScriptDom.OrderBulkInsertOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OrderBulkInsertOption))) { throw new NotImplementedException("Unexpected subtype of OrderBulkInsertOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OrderBulkInsertOption(
                 columns: fragment.Columns.SelectList(FromMutable),
                 isUnique: fragment.IsUnique,
@@ -7708,6 +8325,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OrderByClause FromMutable(ScriptDom.OrderByClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OrderByClause))) { throw new NotImplementedException("Unexpected subtype of OrderByClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OrderByClause(
                 orderByElements: fragment.OrderByElements.SelectList(FromMutable)
             );
@@ -7715,6 +8333,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OrderIndexOption FromMutable(ScriptDom.OrderIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OrderIndexOption))) { throw new NotImplementedException("Unexpected subtype of OrderIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OrderIndexOption(
                 columns: fragment.Columns.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
@@ -7723,6 +8342,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OutputClause FromMutable(ScriptDom.OutputClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OutputClause))) { throw new NotImplementedException("Unexpected subtype of OutputClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OutputClause(
                 selectColumns: fragment.SelectColumns.SelectList(FromMutable)
             );
@@ -7730,6 +8350,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OutputIntoClause FromMutable(ScriptDom.OutputIntoClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OutputIntoClause))) { throw new NotImplementedException("Unexpected subtype of OutputIntoClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OutputIntoClause(
                 selectColumns: fragment.SelectColumns.SelectList(FromMutable),
                 intoTable: FromMutable(fragment.IntoTable),
@@ -7739,6 +8360,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OverClause FromMutable(ScriptDom.OverClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.OverClause))) { throw new NotImplementedException("Unexpected subtype of OverClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OverClause(
                 windowName: FromMutable(fragment.WindowName),
                 partitions: fragment.Partitions.SelectList(FromMutable),
@@ -7749,6 +8371,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PageVerifyDatabaseOption FromMutable(ScriptDom.PageVerifyDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PageVerifyDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of PageVerifyDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PageVerifyDatabaseOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -7757,6 +8380,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ParameterizationDatabaseOption FromMutable(ScriptDom.ParameterizationDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ParameterizationDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of ParameterizationDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ParameterizationDatabaseOption(
                 isSimple: fragment.IsSimple,
                 optionKind: fragment.OptionKind
@@ -7765,6 +8389,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ParameterlessCall FromMutable(ScriptDom.ParameterlessCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ParameterlessCall))) { throw new NotImplementedException("Unexpected subtype of ParameterlessCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ParameterlessCall(
                 parameterlessCallType: fragment.ParameterlessCallType,
                 collation: FromMutable(fragment.Collation)
@@ -7773,6 +8398,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ParenthesisExpression FromMutable(ScriptDom.ParenthesisExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ParenthesisExpression))) { throw new NotImplementedException("Unexpected subtype of ParenthesisExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ParenthesisExpression(
                 expression: FromMutable(fragment.Expression),
                 collation: FromMutable(fragment.Collation)
@@ -7781,6 +8407,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ParseCall FromMutable(ScriptDom.ParseCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ParseCall))) { throw new NotImplementedException("Unexpected subtype of ParseCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ParseCall(
                 stringValue: FromMutable(fragment.StringValue),
                 dataType: FromMutable(fragment.DataType),
@@ -7791,6 +8418,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PartitionFunctionCall FromMutable(ScriptDom.PartitionFunctionCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PartitionFunctionCall))) { throw new NotImplementedException("Unexpected subtype of PartitionFunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PartitionFunctionCall(
                 databaseName: FromMutable(fragment.DatabaseName),
                 functionName: FromMutable(fragment.FunctionName),
@@ -7801,6 +8429,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PartitionParameterType FromMutable(ScriptDom.PartitionParameterType fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PartitionParameterType))) { throw new NotImplementedException("Unexpected subtype of PartitionParameterType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PartitionParameterType(
                 dataType: FromMutable(fragment.DataType),
                 collation: FromMutable(fragment.Collation)
@@ -7809,6 +8438,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PartitionSpecifier FromMutable(ScriptDom.PartitionSpecifier fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PartitionSpecifier))) { throw new NotImplementedException("Unexpected subtype of PartitionSpecifier not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PartitionSpecifier(
                 number: FromMutable(fragment.Number),
                 all: fragment.All
@@ -7817,6 +8447,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PartnerDatabaseOption FromMutable(ScriptDom.PartnerDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PartnerDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of PartnerDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PartnerDatabaseOption(
                 partnerServer: FromMutable(fragment.PartnerServer),
                 partnerOption: fragment.PartnerOption,
@@ -7827,6 +8458,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PasswordAlterPrincipalOption FromMutable(ScriptDom.PasswordAlterPrincipalOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PasswordAlterPrincipalOption))) { throw new NotImplementedException("Unexpected subtype of PasswordAlterPrincipalOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PasswordAlterPrincipalOption(
                 password: FromMutable(fragment.Password),
                 oldPassword: FromMutable(fragment.OldPassword),
@@ -7839,6 +8471,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PasswordCreateLoginSource FromMutable(ScriptDom.PasswordCreateLoginSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PasswordCreateLoginSource))) { throw new NotImplementedException("Unexpected subtype of PasswordCreateLoginSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PasswordCreateLoginSource(
                 password: FromMutable(fragment.Password),
                 hashed: fragment.Hashed,
@@ -7849,6 +8482,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static Permission FromMutable(ScriptDom.Permission fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.Permission))) { throw new NotImplementedException("Unexpected subtype of Permission not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new Permission(
                 identifiers: fragment.Identifiers.SelectList(FromMutable),
                 columns: fragment.Columns.SelectList(FromMutable)
@@ -7857,6 +8491,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PermissionSetAssemblyOption FromMutable(ScriptDom.PermissionSetAssemblyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PermissionSetAssemblyOption))) { throw new NotImplementedException("Unexpected subtype of PermissionSetAssemblyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PermissionSetAssemblyOption(
                 permissionSetOption: fragment.PermissionSetOption,
                 optionKind: fragment.OptionKind
@@ -7865,6 +8500,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PivotedTableReference FromMutable(ScriptDom.PivotedTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PivotedTableReference))) { throw new NotImplementedException("Unexpected subtype of PivotedTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PivotedTableReference(
                 tableReference: FromMutable(fragment.TableReference),
                 inColumns: fragment.InColumns.SelectList(FromMutable),
@@ -7878,6 +8514,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PortsEndpointProtocolOption FromMutable(ScriptDom.PortsEndpointProtocolOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PortsEndpointProtocolOption))) { throw new NotImplementedException("Unexpected subtype of PortsEndpointProtocolOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PortsEndpointProtocolOption(
                 portTypes: fragment.PortTypes,
                 kind: fragment.Kind
@@ -7886,6 +8523,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PredicateSetStatement FromMutable(ScriptDom.PredicateSetStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PredicateSetStatement))) { throw new NotImplementedException("Unexpected subtype of PredicateSetStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PredicateSetStatement(
                 options: fragment.Options,
                 isOn: fragment.IsOn
@@ -7894,6 +8532,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PredictTableReference FromMutable(ScriptDom.PredictTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PredictTableReference))) { throw new NotImplementedException("Unexpected subtype of PredictTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PredictTableReference(
                 modelVariable: FromMutable(fragment.ModelVariable),
                 modelSubquery: FromMutable(fragment.ModelSubquery),
@@ -7907,6 +8546,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PrimaryRoleReplicaOption FromMutable(ScriptDom.PrimaryRoleReplicaOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PrimaryRoleReplicaOption))) { throw new NotImplementedException("Unexpected subtype of PrimaryRoleReplicaOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PrimaryRoleReplicaOption(
                 allowConnections: fragment.AllowConnections,
                 optionKind: fragment.OptionKind
@@ -7915,7 +8555,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PrincipalOption FromMutable(ScriptDom.PrincipalOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.PrincipalOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as PrincipalOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PrincipalOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as PrincipalOption; }
             return new PrincipalOption(
                 optionKind: fragment.OptionKind
             );
@@ -7923,6 +8563,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PrintStatement FromMutable(ScriptDom.PrintStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PrintStatement))) { throw new NotImplementedException("Unexpected subtype of PrintStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PrintStatement(
                 expression: FromMutable(fragment.Expression)
             );
@@ -7930,6 +8571,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static Privilege80 FromMutable(ScriptDom.Privilege80 fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.Privilege80))) { throw new NotImplementedException("Unexpected subtype of Privilege80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new Privilege80(
                 columns: fragment.Columns.SelectList(FromMutable),
                 privilegeType80: fragment.PrivilegeType80
@@ -7938,6 +8580,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PrivilegeSecurityElement80 FromMutable(ScriptDom.PrivilegeSecurityElement80 fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.PrivilegeSecurityElement80))) { throw new NotImplementedException("Unexpected subtype of PrivilegeSecurityElement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PrivilegeSecurityElement80(
                 privileges: fragment.Privileges.SelectList(FromMutable),
                 schemaObjectName: FromMutable(fragment.SchemaObjectName),
@@ -7947,7 +8590,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ProcedureOption FromMutable(ScriptDom.ProcedureOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.ProcedureOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ProcedureOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ProcedureOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ProcedureOption; }
             return new ProcedureOption(
                 optionKind: fragment.OptionKind
             );
@@ -7955,6 +8598,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ProcedureParameter FromMutable(ScriptDom.ProcedureParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ProcedureParameter))) { throw new NotImplementedException("Unexpected subtype of ProcedureParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ProcedureParameter(
                 isVarying: fragment.IsVarying,
                 modifier: fragment.Modifier,
@@ -7967,6 +8611,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ProcedureReference FromMutable(ScriptDom.ProcedureReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ProcedureReference))) { throw new NotImplementedException("Unexpected subtype of ProcedureReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ProcedureReference(
                 name: FromMutable(fragment.Name),
                 number: FromMutable(fragment.Number)
@@ -7975,6 +8620,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ProcedureReferenceName FromMutable(ScriptDom.ProcedureReferenceName fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ProcedureReferenceName))) { throw new NotImplementedException("Unexpected subtype of ProcedureReferenceName not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ProcedureReferenceName(
                 procedureReference: FromMutable(fragment.ProcedureReference),
                 procedureVariable: FromMutable(fragment.ProcedureVariable)
@@ -7983,6 +8629,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ProcessAffinityRange FromMutable(ScriptDom.ProcessAffinityRange fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ProcessAffinityRange))) { throw new NotImplementedException("Unexpected subtype of ProcessAffinityRange not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ProcessAffinityRange(
                 from: FromMutable(fragment.From),
                 to: FromMutable(fragment.To)
@@ -7991,6 +8638,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ProviderEncryptionSource FromMutable(ScriptDom.ProviderEncryptionSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ProviderEncryptionSource))) { throw new NotImplementedException("Unexpected subtype of ProviderEncryptionSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ProviderEncryptionSource(
                 name: FromMutable(fragment.Name),
                 keyOptions: fragment.KeyOptions.SelectList(FromMutable)
@@ -7999,6 +8647,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ProviderKeyNameKeyOption FromMutable(ScriptDom.ProviderKeyNameKeyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ProviderKeyNameKeyOption))) { throw new NotImplementedException("Unexpected subtype of ProviderKeyNameKeyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ProviderKeyNameKeyOption(
                 keyName: FromMutable(fragment.KeyName),
                 optionKind: fragment.OptionKind
@@ -8007,6 +8656,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QualifiedJoin FromMutable(ScriptDom.QualifiedJoin fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QualifiedJoin))) { throw new NotImplementedException("Unexpected subtype of QualifiedJoin not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QualifiedJoin(
                 searchCondition: FromMutable(fragment.SearchCondition),
                 qualifiedJoinType: fragment.QualifiedJoinType,
@@ -8018,6 +8668,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryDerivedTable FromMutable(ScriptDom.QueryDerivedTable fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryDerivedTable))) { throw new NotImplementedException("Unexpected subtype of QueryDerivedTable not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryDerivedTable(
                 queryExpression: FromMutable(fragment.QueryExpression),
                 columns: fragment.Columns.SelectList(FromMutable),
@@ -8028,6 +8679,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryParenthesisExpression FromMutable(ScriptDom.QueryParenthesisExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryParenthesisExpression))) { throw new NotImplementedException("Unexpected subtype of QueryParenthesisExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryParenthesisExpression(
                 queryExpression: FromMutable(fragment.QueryExpression),
                 orderByClause: FromMutable(fragment.OrderByClause),
@@ -8038,6 +8690,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QuerySpecification FromMutable(ScriptDom.QuerySpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QuerySpecification))) { throw new NotImplementedException("Unexpected subtype of QuerySpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QuerySpecification(
                 uniqueRowFilter: fragment.UniqueRowFilter,
                 topRowFilter: FromMutable(fragment.TopRowFilter),
@@ -8055,6 +8708,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreCapturePolicyOption FromMutable(ScriptDom.QueryStoreCapturePolicyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreCapturePolicyOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreCapturePolicyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreCapturePolicyOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -8063,6 +8717,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreDatabaseOption FromMutable(ScriptDom.QueryStoreDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreDatabaseOption(
                 clear: fragment.Clear,
                 clearAll: fragment.ClearAll,
@@ -8074,6 +8729,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreDataFlushIntervalOption FromMutable(ScriptDom.QueryStoreDataFlushIntervalOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreDataFlushIntervalOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreDataFlushIntervalOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreDataFlushIntervalOption(
                 flushInterval: FromMutable(fragment.FlushInterval),
                 optionKind: fragment.OptionKind
@@ -8082,6 +8738,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreDesiredStateOption FromMutable(ScriptDom.QueryStoreDesiredStateOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreDesiredStateOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreDesiredStateOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreDesiredStateOption(
                 @value: fragment.Value,
                 operationModeSpecified: fragment.OperationModeSpecified,
@@ -8091,6 +8748,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreIntervalLengthOption FromMutable(ScriptDom.QueryStoreIntervalLengthOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreIntervalLengthOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreIntervalLengthOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreIntervalLengthOption(
                 statsIntervalLength: FromMutable(fragment.StatsIntervalLength),
                 optionKind: fragment.OptionKind
@@ -8099,6 +8757,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreMaxPlansPerQueryOption FromMutable(ScriptDom.QueryStoreMaxPlansPerQueryOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreMaxPlansPerQueryOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreMaxPlansPerQueryOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreMaxPlansPerQueryOption(
                 maxPlansPerQuery: FromMutable(fragment.MaxPlansPerQuery),
                 optionKind: fragment.OptionKind
@@ -8107,6 +8766,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreMaxStorageSizeOption FromMutable(ScriptDom.QueryStoreMaxStorageSizeOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreMaxStorageSizeOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreMaxStorageSizeOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreMaxStorageSizeOption(
                 maxQdsSize: FromMutable(fragment.MaxQdsSize),
                 optionKind: fragment.OptionKind
@@ -8115,6 +8775,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreSizeCleanupPolicyOption FromMutable(ScriptDom.QueryStoreSizeCleanupPolicyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreSizeCleanupPolicyOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreSizeCleanupPolicyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreSizeCleanupPolicyOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -8123,6 +8784,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueryStoreTimeCleanupPolicyOption FromMutable(ScriptDom.QueryStoreTimeCleanupPolicyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueryStoreTimeCleanupPolicyOption))) { throw new NotImplementedException("Unexpected subtype of QueryStoreTimeCleanupPolicyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueryStoreTimeCleanupPolicyOption(
                 staleQueryThreshold: FromMutable(fragment.StaleQueryThreshold),
                 optionKind: fragment.OptionKind
@@ -8131,6 +8793,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueueDelayAuditOption FromMutable(ScriptDom.QueueDelayAuditOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueueDelayAuditOption))) { throw new NotImplementedException("Unexpected subtype of QueueDelayAuditOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueueDelayAuditOption(
                 delay: FromMutable(fragment.Delay),
                 optionKind: fragment.OptionKind
@@ -8139,6 +8802,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueueExecuteAsOption FromMutable(ScriptDom.QueueExecuteAsOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueueExecuteAsOption))) { throw new NotImplementedException("Unexpected subtype of QueueExecuteAsOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueueExecuteAsOption(
                 optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
@@ -8147,7 +8811,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueueOption FromMutable(ScriptDom.QueueOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.QueueOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as QueueOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueueOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as QueueOption; }
             return new QueueOption(
                 optionKind: fragment.OptionKind
             );
@@ -8155,6 +8819,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueueProcedureOption FromMutable(ScriptDom.QueueProcedureOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueueProcedureOption))) { throw new NotImplementedException("Unexpected subtype of QueueProcedureOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueueProcedureOption(
                 optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
@@ -8163,6 +8828,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueueStateOption FromMutable(ScriptDom.QueueStateOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueueStateOption))) { throw new NotImplementedException("Unexpected subtype of QueueStateOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueueStateOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -8171,6 +8837,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static QueueValueOption FromMutable(ScriptDom.QueueValueOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.QueueValueOption))) { throw new NotImplementedException("Unexpected subtype of QueueValueOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new QueueValueOption(
                 optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
@@ -8179,6 +8846,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RaiseErrorLegacyStatement FromMutable(ScriptDom.RaiseErrorLegacyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RaiseErrorLegacyStatement))) { throw new NotImplementedException("Unexpected subtype of RaiseErrorLegacyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RaiseErrorLegacyStatement(
                 firstParameter: FromMutable(fragment.FirstParameter),
                 secondParameter: FromMutable(fragment.SecondParameter)
@@ -8187,6 +8855,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RaiseErrorStatement FromMutable(ScriptDom.RaiseErrorStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RaiseErrorStatement))) { throw new NotImplementedException("Unexpected subtype of RaiseErrorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RaiseErrorStatement(
                 firstParameter: FromMutable(fragment.FirstParameter),
                 secondParameter: FromMutable(fragment.SecondParameter),
@@ -8198,6 +8867,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ReadOnlyForClause FromMutable(ScriptDom.ReadOnlyForClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ReadOnlyForClause))) { throw new NotImplementedException("Unexpected subtype of ReadOnlyForClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ReadOnlyForClause(
                 
             );
@@ -8205,6 +8875,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ReadTextStatement FromMutable(ScriptDom.ReadTextStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ReadTextStatement))) { throw new NotImplementedException("Unexpected subtype of ReadTextStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ReadTextStatement(
                 column: FromMutable(fragment.Column),
                 textPointer: FromMutable(fragment.TextPointer),
@@ -8216,6 +8887,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RealLiteral FromMutable(ScriptDom.RealLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RealLiteral))) { throw new NotImplementedException("Unexpected subtype of RealLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RealLiteral(
                 @value: fragment.Value,
                 collation: FromMutable(fragment.Collation)
@@ -8224,6 +8896,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ReceiveStatement FromMutable(ScriptDom.ReceiveStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ReceiveStatement))) { throw new NotImplementedException("Unexpected subtype of ReceiveStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ReceiveStatement(
                 top: FromMutable(fragment.Top),
                 selectElements: fragment.SelectElements.SelectList(FromMutable),
@@ -8236,6 +8909,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ReconfigureStatement FromMutable(ScriptDom.ReconfigureStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ReconfigureStatement))) { throw new NotImplementedException("Unexpected subtype of ReconfigureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ReconfigureStatement(
                 withOverride: fragment.WithOverride
             );
@@ -8243,6 +8917,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RecoveryDatabaseOption FromMutable(ScriptDom.RecoveryDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RecoveryDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of RecoveryDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RecoveryDatabaseOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -8251,6 +8926,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RemoteDataArchiveAlterTableOption FromMutable(ScriptDom.RemoteDataArchiveAlterTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RemoteDataArchiveAlterTableOption))) { throw new NotImplementedException("Unexpected subtype of RemoteDataArchiveAlterTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RemoteDataArchiveAlterTableOption(
                 rdaTableOption: fragment.RdaTableOption,
                 migrationState: fragment.MigrationState,
@@ -8263,6 +8939,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RemoteDataArchiveDatabaseOption FromMutable(ScriptDom.RemoteDataArchiveDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RemoteDataArchiveDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of RemoteDataArchiveDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RemoteDataArchiveDatabaseOption(
                 optionState: fragment.OptionState,
                 settings: fragment.Settings.SelectList(FromMutable),
@@ -8272,6 +8949,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RemoteDataArchiveDbCredentialSetting FromMutable(ScriptDom.RemoteDataArchiveDbCredentialSetting fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RemoteDataArchiveDbCredentialSetting))) { throw new NotImplementedException("Unexpected subtype of RemoteDataArchiveDbCredentialSetting not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RemoteDataArchiveDbCredentialSetting(
                 credential: FromMutable(fragment.Credential),
                 settingKind: fragment.SettingKind
@@ -8280,6 +8958,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RemoteDataArchiveDbFederatedServiceAccountSetting FromMutable(ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting))) { throw new NotImplementedException("Unexpected subtype of RemoteDataArchiveDbFederatedServiceAccountSetting not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RemoteDataArchiveDbFederatedServiceAccountSetting(
                 isOn: fragment.IsOn,
                 settingKind: fragment.SettingKind
@@ -8288,6 +8967,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RemoteDataArchiveDbServerSetting FromMutable(ScriptDom.RemoteDataArchiveDbServerSetting fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RemoteDataArchiveDbServerSetting))) { throw new NotImplementedException("Unexpected subtype of RemoteDataArchiveDbServerSetting not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RemoteDataArchiveDbServerSetting(
                 server: FromMutable(fragment.Server),
                 settingKind: fragment.SettingKind
@@ -8296,6 +8976,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RemoteDataArchiveTableOption FromMutable(ScriptDom.RemoteDataArchiveTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RemoteDataArchiveTableOption))) { throw new NotImplementedException("Unexpected subtype of RemoteDataArchiveTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RemoteDataArchiveTableOption(
                 rdaTableOption: fragment.RdaTableOption,
                 migrationState: fragment.MigrationState,
@@ -8305,6 +8986,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RenameAlterRoleAction FromMutable(ScriptDom.RenameAlterRoleAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RenameAlterRoleAction))) { throw new NotImplementedException("Unexpected subtype of RenameAlterRoleAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RenameAlterRoleAction(
                 newName: FromMutable(fragment.NewName)
             );
@@ -8312,6 +8994,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RenameEntityStatement FromMutable(ScriptDom.RenameEntityStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RenameEntityStatement))) { throw new NotImplementedException("Unexpected subtype of RenameEntityStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RenameEntityStatement(
                 renameEntityType: fragment.RenameEntityType,
                 separatorType: fragment.SeparatorType,
@@ -8322,6 +9005,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ResampleStatisticsOption FromMutable(ScriptDom.ResampleStatisticsOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ResampleStatisticsOption))) { throw new NotImplementedException("Unexpected subtype of ResampleStatisticsOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ResampleStatisticsOption(
                 partitions: fragment.Partitions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
@@ -8330,6 +9014,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ResourcePoolAffinitySpecification FromMutable(ScriptDom.ResourcePoolAffinitySpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ResourcePoolAffinitySpecification))) { throw new NotImplementedException("Unexpected subtype of ResourcePoolAffinitySpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ResourcePoolAffinitySpecification(
                 affinityType: fragment.AffinityType,
                 parameterValue: FromMutable(fragment.ParameterValue),
@@ -8340,6 +9025,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ResourcePoolParameter FromMutable(ScriptDom.ResourcePoolParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ResourcePoolParameter))) { throw new NotImplementedException("Unexpected subtype of ResourcePoolParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ResourcePoolParameter(
                 parameterType: fragment.ParameterType,
                 parameterValue: FromMutable(fragment.ParameterValue),
@@ -8349,7 +9035,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ResourcePoolStatement FromMutable(ScriptDom.ResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.ResourcePoolStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ResourcePoolStatement; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ResourcePoolStatement))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ResourcePoolStatement; }
             return new ResourcePoolStatement(
                 name: FromMutable(fragment.Name),
                 resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(FromMutable)
@@ -8358,6 +9044,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RestoreMasterKeyStatement FromMutable(ScriptDom.RestoreMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RestoreMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of RestoreMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RestoreMasterKeyStatement(
                 isForce: fragment.IsForce,
                 encryptionPassword: FromMutable(fragment.EncryptionPassword),
@@ -8368,7 +9055,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RestoreOption FromMutable(ScriptDom.RestoreOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.RestoreOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as RestoreOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RestoreOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as RestoreOption; }
             return new RestoreOption(
                 optionKind: fragment.OptionKind
             );
@@ -8376,6 +9063,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RestoreServiceMasterKeyStatement FromMutable(ScriptDom.RestoreServiceMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RestoreServiceMasterKeyStatement))) { throw new NotImplementedException("Unexpected subtype of RestoreServiceMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RestoreServiceMasterKeyStatement(
                 isForce: fragment.IsForce,
                 file: FromMutable(fragment.File),
@@ -8385,6 +9073,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RestoreStatement FromMutable(ScriptDom.RestoreStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RestoreStatement))) { throw new NotImplementedException("Unexpected subtype of RestoreStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RestoreStatement(
                 databaseName: FromMutable(fragment.DatabaseName),
                 devices: fragment.Devices.SelectList(FromMutable),
@@ -8396,6 +9085,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ResultColumnDefinition FromMutable(ScriptDom.ResultColumnDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ResultColumnDefinition))) { throw new NotImplementedException("Unexpected subtype of ResultColumnDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ResultColumnDefinition(
                 columnDefinition: FromMutable(fragment.ColumnDefinition),
                 nullable: FromMutable(fragment.Nullable)
@@ -8404,7 +9094,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ResultSetDefinition FromMutable(ScriptDom.ResultSetDefinition fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.ResultSetDefinition)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ResultSetDefinition; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ResultSetDefinition))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ResultSetDefinition; }
             return new ResultSetDefinition(
                 resultSetType: fragment.ResultSetType
             );
@@ -8412,6 +9102,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ResultSetsExecuteOption FromMutable(ScriptDom.ResultSetsExecuteOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ResultSetsExecuteOption))) { throw new NotImplementedException("Unexpected subtype of ResultSetsExecuteOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ResultSetsExecuteOption(
                 resultSetsOptionKind: fragment.ResultSetsOptionKind,
                 definitions: fragment.Definitions.SelectList(FromMutable),
@@ -8421,6 +9112,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RetentionDaysAuditTargetOption FromMutable(ScriptDom.RetentionDaysAuditTargetOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RetentionDaysAuditTargetOption))) { throw new NotImplementedException("Unexpected subtype of RetentionDaysAuditTargetOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RetentionDaysAuditTargetOption(
                 days: FromMutable(fragment.Days),
                 optionKind: fragment.OptionKind
@@ -8429,6 +9121,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RetentionPeriodDefinition FromMutable(ScriptDom.RetentionPeriodDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RetentionPeriodDefinition))) { throw new NotImplementedException("Unexpected subtype of RetentionPeriodDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RetentionPeriodDefinition(
                 duration: FromMutable(fragment.Duration),
                 units: fragment.Units,
@@ -8438,6 +9131,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ReturnStatement FromMutable(ScriptDom.ReturnStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ReturnStatement))) { throw new NotImplementedException("Unexpected subtype of ReturnStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ReturnStatement(
                 expression: FromMutable(fragment.Expression)
             );
@@ -8445,6 +9139,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RevertStatement FromMutable(ScriptDom.RevertStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RevertStatement))) { throw new NotImplementedException("Unexpected subtype of RevertStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RevertStatement(
                 cookie: FromMutable(fragment.Cookie)
             );
@@ -8452,6 +9147,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RevokeStatement FromMutable(ScriptDom.RevokeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RevokeStatement))) { throw new NotImplementedException("Unexpected subtype of RevokeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RevokeStatement(
                 grantOptionFor: fragment.GrantOptionFor,
                 cascadeOption: fragment.CascadeOption,
@@ -8464,6 +9160,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RevokeStatement80 FromMutable(ScriptDom.RevokeStatement80 fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RevokeStatement80))) { throw new NotImplementedException("Unexpected subtype of RevokeStatement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RevokeStatement80(
                 grantOptionFor: fragment.GrantOptionFor,
                 cascadeOption: fragment.CascadeOption,
@@ -8475,6 +9172,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RightFunctionCall FromMutable(ScriptDom.RightFunctionCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RightFunctionCall))) { throw new NotImplementedException("Unexpected subtype of RightFunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RightFunctionCall(
                 parameters: fragment.Parameters.SelectList(FromMutable),
                 collation: FromMutable(fragment.Collation)
@@ -8483,6 +9181,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RolePayloadOption FromMutable(ScriptDom.RolePayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RolePayloadOption))) { throw new NotImplementedException("Unexpected subtype of RolePayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RolePayloadOption(
                 role: fragment.Role,
                 kind: fragment.Kind
@@ -8491,6 +9190,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RollbackTransactionStatement FromMutable(ScriptDom.RollbackTransactionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RollbackTransactionStatement))) { throw new NotImplementedException("Unexpected subtype of RollbackTransactionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RollbackTransactionStatement(
                 name: FromMutable(fragment.Name)
             );
@@ -8498,6 +9198,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RollupGroupingSpecification FromMutable(ScriptDom.RollupGroupingSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RollupGroupingSpecification))) { throw new NotImplementedException("Unexpected subtype of RollupGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RollupGroupingSpecification(
                 arguments: fragment.Arguments.SelectList(FromMutable)
             );
@@ -8505,6 +9206,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RouteOption FromMutable(ScriptDom.RouteOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RouteOption))) { throw new NotImplementedException("Unexpected subtype of RouteOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RouteOption(
                 optionKind: fragment.OptionKind,
                 literal: FromMutable(fragment.Literal)
@@ -8513,6 +9215,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static RowValue FromMutable(ScriptDom.RowValue fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.RowValue))) { throw new NotImplementedException("Unexpected subtype of RowValue not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RowValue(
                 columnValues: fragment.ColumnValues.SelectList(FromMutable)
             );
@@ -8520,6 +9223,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SaveTransactionStatement FromMutable(ScriptDom.SaveTransactionStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SaveTransactionStatement))) { throw new NotImplementedException("Unexpected subtype of SaveTransactionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SaveTransactionStatement(
                 name: FromMutable(fragment.Name)
             );
@@ -8527,6 +9231,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ScalarExpressionDialogOption FromMutable(ScriptDom.ScalarExpressionDialogOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ScalarExpressionDialogOption))) { throw new NotImplementedException("Unexpected subtype of ScalarExpressionDialogOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ScalarExpressionDialogOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -8535,6 +9240,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ScalarExpressionRestoreOption FromMutable(ScriptDom.ScalarExpressionRestoreOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ScalarExpressionRestoreOption))) { throw new NotImplementedException("Unexpected subtype of ScalarExpressionRestoreOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ScalarExpressionRestoreOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -8543,6 +9249,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ScalarExpressionSequenceOption FromMutable(ScriptDom.ScalarExpressionSequenceOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ScalarExpressionSequenceOption))) { throw new NotImplementedException("Unexpected subtype of ScalarExpressionSequenceOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ScalarExpressionSequenceOption(
                 optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind,
@@ -8552,6 +9259,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ScalarExpressionSnippet FromMutable(ScriptDom.ScalarExpressionSnippet fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ScalarExpressionSnippet))) { throw new NotImplementedException("Unexpected subtype of ScalarExpressionSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ScalarExpressionSnippet(
                 script: fragment.Script
             );
@@ -8559,6 +9267,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ScalarFunctionReturnType FromMutable(ScriptDom.ScalarFunctionReturnType fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ScalarFunctionReturnType))) { throw new NotImplementedException("Unexpected subtype of ScalarFunctionReturnType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ScalarFunctionReturnType(
                 dataType: FromMutable(fragment.DataType)
             );
@@ -8566,6 +9275,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ScalarSubquery FromMutable(ScriptDom.ScalarSubquery fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ScalarSubquery))) { throw new NotImplementedException("Unexpected subtype of ScalarSubquery not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ScalarSubquery(
                 queryExpression: FromMutable(fragment.QueryExpression),
                 collation: FromMutable(fragment.Collation)
@@ -8574,7 +9284,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SchemaDeclarationItem FromMutable(ScriptDom.SchemaDeclarationItem fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.SchemaDeclarationItem)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SchemaDeclarationItem; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SchemaDeclarationItem))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SchemaDeclarationItem; }
             return new SchemaDeclarationItem(
                 columnDefinition: FromMutable(fragment.ColumnDefinition),
                 mapping: FromMutable(fragment.Mapping)
@@ -8583,6 +9293,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SchemaDeclarationItemOpenjson FromMutable(ScriptDom.SchemaDeclarationItemOpenjson fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SchemaDeclarationItemOpenjson))) { throw new NotImplementedException("Unexpected subtype of SchemaDeclarationItemOpenjson not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SchemaDeclarationItemOpenjson(
                 asJson: fragment.AsJson,
                 columnDefinition: FromMutable(fragment.ColumnDefinition),
@@ -8592,6 +9303,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SchemaObjectFunctionTableReference FromMutable(ScriptDom.SchemaObjectFunctionTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SchemaObjectFunctionTableReference))) { throw new NotImplementedException("Unexpected subtype of SchemaObjectFunctionTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SchemaObjectFunctionTableReference(
                 schemaObject: FromMutable(fragment.SchemaObject),
                 parameters: fragment.Parameters.SelectList(FromMutable),
@@ -8603,7 +9315,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SchemaObjectName FromMutable(ScriptDom.SchemaObjectName fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.SchemaObjectName)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SchemaObjectName; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SchemaObjectName))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SchemaObjectName; }
             return new SchemaObjectName(
                 identifiers: fragment.Identifiers.SelectList(FromMutable)
             );
@@ -8611,6 +9323,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SchemaObjectNameOrValueExpression FromMutable(ScriptDom.SchemaObjectNameOrValueExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SchemaObjectNameOrValueExpression))) { throw new NotImplementedException("Unexpected subtype of SchemaObjectNameOrValueExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SchemaObjectNameOrValueExpression(
                 schemaObjectName: FromMutable(fragment.SchemaObjectName),
                 valueExpression: FromMutable(fragment.ValueExpression)
@@ -8619,6 +9332,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SchemaObjectNameSnippet FromMutable(ScriptDom.SchemaObjectNameSnippet fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SchemaObjectNameSnippet))) { throw new NotImplementedException("Unexpected subtype of SchemaObjectNameSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SchemaObjectNameSnippet(
                 script: fragment.Script,
                 identifiers: fragment.Identifiers.SelectList(FromMutable)
@@ -8627,6 +9341,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SchemaObjectResultSetDefinition FromMutable(ScriptDom.SchemaObjectResultSetDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SchemaObjectResultSetDefinition))) { throw new NotImplementedException("Unexpected subtype of SchemaObjectResultSetDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SchemaObjectResultSetDefinition(
                 name: FromMutable(fragment.Name),
                 resultSetType: fragment.ResultSetType
@@ -8635,6 +9350,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SchemaPayloadOption FromMutable(ScriptDom.SchemaPayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SchemaPayloadOption))) { throw new NotImplementedException("Unexpected subtype of SchemaPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SchemaPayloadOption(
                 isStandard: fragment.IsStandard,
                 kind: fragment.Kind
@@ -8643,6 +9359,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SearchedCaseExpression FromMutable(ScriptDom.SearchedCaseExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SearchedCaseExpression))) { throw new NotImplementedException("Unexpected subtype of SearchedCaseExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SearchedCaseExpression(
                 whenClauses: fragment.WhenClauses.SelectList(FromMutable),
                 elseExpression: FromMutable(fragment.ElseExpression),
@@ -8652,6 +9369,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SearchedWhenClause FromMutable(ScriptDom.SearchedWhenClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SearchedWhenClause))) { throw new NotImplementedException("Unexpected subtype of SearchedWhenClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SearchedWhenClause(
                 whenExpression: FromMutable(fragment.WhenExpression),
                 thenExpression: FromMutable(fragment.ThenExpression)
@@ -8660,6 +9378,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SearchPropertyListFullTextIndexOption FromMutable(ScriptDom.SearchPropertyListFullTextIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SearchPropertyListFullTextIndexOption))) { throw new NotImplementedException("Unexpected subtype of SearchPropertyListFullTextIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SearchPropertyListFullTextIndexOption(
                 isOff: fragment.IsOff,
                 propertyListName: FromMutable(fragment.PropertyListName),
@@ -8669,6 +9388,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SecondaryRoleReplicaOption FromMutable(ScriptDom.SecondaryRoleReplicaOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SecondaryRoleReplicaOption))) { throw new NotImplementedException("Unexpected subtype of SecondaryRoleReplicaOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SecondaryRoleReplicaOption(
                 allowConnections: fragment.AllowConnections,
                 optionKind: fragment.OptionKind
@@ -8677,6 +9397,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SecurityPolicyOption FromMutable(ScriptDom.SecurityPolicyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SecurityPolicyOption))) { throw new NotImplementedException("Unexpected subtype of SecurityPolicyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SecurityPolicyOption(
                 optionKind: fragment.OptionKind,
                 optionState: fragment.OptionState
@@ -8685,6 +9406,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SecurityPredicateAction FromMutable(ScriptDom.SecurityPredicateAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SecurityPredicateAction))) { throw new NotImplementedException("Unexpected subtype of SecurityPredicateAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SecurityPredicateAction(
                 actionType: fragment.ActionType,
                 securityPredicateType: fragment.SecurityPredicateType,
@@ -8696,6 +9418,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SecurityPrincipal FromMutable(ScriptDom.SecurityPrincipal fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SecurityPrincipal))) { throw new NotImplementedException("Unexpected subtype of SecurityPrincipal not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SecurityPrincipal(
                 principalType: fragment.PrincipalType,
                 identifier: FromMutable(fragment.Identifier)
@@ -8704,6 +9427,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SecurityTargetObject FromMutable(ScriptDom.SecurityTargetObject fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SecurityTargetObject))) { throw new NotImplementedException("Unexpected subtype of SecurityTargetObject not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SecurityTargetObject(
                 objectKind: fragment.ObjectKind,
                 objectName: FromMutable(fragment.ObjectName),
@@ -8713,6 +9437,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SecurityTargetObjectName FromMutable(ScriptDom.SecurityTargetObjectName fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SecurityTargetObjectName))) { throw new NotImplementedException("Unexpected subtype of SecurityTargetObjectName not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SecurityTargetObjectName(
                 multiPartIdentifier: FromMutable(fragment.MultiPartIdentifier)
             );
@@ -8720,6 +9445,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SecurityUserClause80 FromMutable(ScriptDom.SecurityUserClause80 fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SecurityUserClause80))) { throw new NotImplementedException("Unexpected subtype of SecurityUserClause80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SecurityUserClause80(
                 users: fragment.Users.SelectList(FromMutable),
                 userType80: fragment.UserType80
@@ -8728,6 +9454,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SelectFunctionReturnType FromMutable(ScriptDom.SelectFunctionReturnType fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SelectFunctionReturnType))) { throw new NotImplementedException("Unexpected subtype of SelectFunctionReturnType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SelectFunctionReturnType(
                 selectStatement: FromMutable(fragment.SelectStatement)
             );
@@ -8735,6 +9462,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SelectInsertSource FromMutable(ScriptDom.SelectInsertSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SelectInsertSource))) { throw new NotImplementedException("Unexpected subtype of SelectInsertSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SelectInsertSource(
                 select: FromMutable(fragment.Select)
             );
@@ -8742,6 +9470,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SelectiveXmlIndexPromotedPath FromMutable(ScriptDom.SelectiveXmlIndexPromotedPath fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SelectiveXmlIndexPromotedPath))) { throw new NotImplementedException("Unexpected subtype of SelectiveXmlIndexPromotedPath not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SelectiveXmlIndexPromotedPath(
                 name: FromMutable(fragment.Name),
                 path: FromMutable(fragment.Path),
@@ -8754,6 +9483,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SelectScalarExpression FromMutable(ScriptDom.SelectScalarExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SelectScalarExpression))) { throw new NotImplementedException("Unexpected subtype of SelectScalarExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SelectScalarExpression(
                 expression: FromMutable(fragment.Expression),
                 columnName: FromMutable(fragment.ColumnName)
@@ -8762,6 +9492,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SelectSetVariable FromMutable(ScriptDom.SelectSetVariable fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SelectSetVariable))) { throw new NotImplementedException("Unexpected subtype of SelectSetVariable not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SelectSetVariable(
                 variable: FromMutable(fragment.Variable),
                 expression: FromMutable(fragment.Expression),
@@ -8771,6 +9502,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SelectStarExpression FromMutable(ScriptDom.SelectStarExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SelectStarExpression))) { throw new NotImplementedException("Unexpected subtype of SelectStarExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SelectStarExpression(
                 qualifier: FromMutable(fragment.Qualifier)
             );
@@ -8778,7 +9510,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SelectStatement FromMutable(ScriptDom.SelectStatement fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.SelectStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SelectStatement; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SelectStatement))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SelectStatement; }
             return new SelectStatement(
                 queryExpression: FromMutable(fragment.QueryExpression),
                 into: FromMutable(fragment.Into),
@@ -8791,6 +9523,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SelectStatementSnippet FromMutable(ScriptDom.SelectStatementSnippet fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SelectStatementSnippet))) { throw new NotImplementedException("Unexpected subtype of SelectStatementSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SelectStatementSnippet(
                 script: fragment.Script,
                 queryExpression: FromMutable(fragment.QueryExpression),
@@ -8804,6 +9537,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SemanticTableReference FromMutable(ScriptDom.SemanticTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SemanticTableReference))) { throw new NotImplementedException("Unexpected subtype of SemanticTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SemanticTableReference(
                 semanticFunctionType: fragment.SemanticFunctionType,
                 tableName: FromMutable(fragment.TableName),
@@ -8818,6 +9552,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SendStatement FromMutable(ScriptDom.SendStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SendStatement))) { throw new NotImplementedException("Unexpected subtype of SendStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SendStatement(
                 conversationHandles: fragment.ConversationHandles.SelectList(FromMutable),
                 messageTypeName: FromMutable(fragment.MessageTypeName),
@@ -8827,6 +9562,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SensitivityClassificationOption FromMutable(ScriptDom.SensitivityClassificationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SensitivityClassificationOption))) { throw new NotImplementedException("Unexpected subtype of SensitivityClassificationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SensitivityClassificationOption(
                 type: fragment.Type,
                 @value: FromMutable(fragment.Value)
@@ -8835,7 +9571,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SequenceOption FromMutable(ScriptDom.SequenceOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.SequenceOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SequenceOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SequenceOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SequenceOption; }
             return new SequenceOption(
                 optionKind: fragment.OptionKind,
                 noValue: fragment.NoValue
@@ -8844,6 +9580,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ServiceContract FromMutable(ScriptDom.ServiceContract fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ServiceContract))) { throw new NotImplementedException("Unexpected subtype of ServiceContract not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ServiceContract(
                 name: FromMutable(fragment.Name),
                 action: fragment.Action
@@ -8852,6 +9589,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SessionTimeoutPayloadOption FromMutable(ScriptDom.SessionTimeoutPayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SessionTimeoutPayloadOption))) { throw new NotImplementedException("Unexpected subtype of SessionTimeoutPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SessionTimeoutPayloadOption(
                 isNever: fragment.IsNever,
                 timeout: FromMutable(fragment.Timeout),
@@ -8861,6 +9599,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetCommandStatement FromMutable(ScriptDom.SetCommandStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetCommandStatement))) { throw new NotImplementedException("Unexpected subtype of SetCommandStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetCommandStatement(
                 commands: fragment.Commands.SelectList(FromMutable)
             );
@@ -8868,6 +9607,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetErrorLevelStatement FromMutable(ScriptDom.SetErrorLevelStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetErrorLevelStatement))) { throw new NotImplementedException("Unexpected subtype of SetErrorLevelStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetErrorLevelStatement(
                 level: FromMutable(fragment.Level)
             );
@@ -8875,6 +9615,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetFipsFlaggerCommand FromMutable(ScriptDom.SetFipsFlaggerCommand fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetFipsFlaggerCommand))) { throw new NotImplementedException("Unexpected subtype of SetFipsFlaggerCommand not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetFipsFlaggerCommand(
                 complianceLevel: fragment.ComplianceLevel
             );
@@ -8882,6 +9623,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetIdentityInsertStatement FromMutable(ScriptDom.SetIdentityInsertStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetIdentityInsertStatement))) { throw new NotImplementedException("Unexpected subtype of SetIdentityInsertStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetIdentityInsertStatement(
                 table: FromMutable(fragment.Table),
                 isOn: fragment.IsOn
@@ -8890,6 +9632,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetOffsetsStatement FromMutable(ScriptDom.SetOffsetsStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetOffsetsStatement))) { throw new NotImplementedException("Unexpected subtype of SetOffsetsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetOffsetsStatement(
                 options: fragment.Options,
                 isOn: fragment.IsOn
@@ -8898,6 +9641,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetRowCountStatement FromMutable(ScriptDom.SetRowCountStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetRowCountStatement))) { throw new NotImplementedException("Unexpected subtype of SetRowCountStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetRowCountStatement(
                 numberRows: FromMutable(fragment.NumberRows)
             );
@@ -8905,6 +9649,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetSearchPropertyListAlterFullTextIndexAction FromMutable(ScriptDom.SetSearchPropertyListAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetSearchPropertyListAlterFullTextIndexAction))) { throw new NotImplementedException("Unexpected subtype of SetSearchPropertyListAlterFullTextIndexAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetSearchPropertyListAlterFullTextIndexAction(
                 searchPropertyListOption: FromMutable(fragment.SearchPropertyListOption),
                 withNoPopulation: fragment.WithNoPopulation
@@ -8913,6 +9658,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetStatisticsStatement FromMutable(ScriptDom.SetStatisticsStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetStatisticsStatement))) { throw new NotImplementedException("Unexpected subtype of SetStatisticsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetStatisticsStatement(
                 options: fragment.Options,
                 isOn: fragment.IsOn
@@ -8921,6 +9667,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetStopListAlterFullTextIndexAction FromMutable(ScriptDom.SetStopListAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetStopListAlterFullTextIndexAction))) { throw new NotImplementedException("Unexpected subtype of SetStopListAlterFullTextIndexAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetStopListAlterFullTextIndexAction(
                 stopListOption: FromMutable(fragment.StopListOption),
                 withNoPopulation: fragment.WithNoPopulation
@@ -8929,6 +9676,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetTextSizeStatement FromMutable(ScriptDom.SetTextSizeStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetTextSizeStatement))) { throw new NotImplementedException("Unexpected subtype of SetTextSizeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetTextSizeStatement(
                 textSize: FromMutable(fragment.TextSize)
             );
@@ -8936,6 +9684,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetTransactionIsolationLevelStatement FromMutable(ScriptDom.SetTransactionIsolationLevelStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetTransactionIsolationLevelStatement))) { throw new NotImplementedException("Unexpected subtype of SetTransactionIsolationLevelStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetTransactionIsolationLevelStatement(
                 level: fragment.Level
             );
@@ -8943,6 +9692,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetUserStatement FromMutable(ScriptDom.SetUserStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetUserStatement))) { throw new NotImplementedException("Unexpected subtype of SetUserStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetUserStatement(
                 userName: FromMutable(fragment.UserName),
                 withNoReset: fragment.WithNoReset
@@ -8951,6 +9701,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SetVariableStatement FromMutable(ScriptDom.SetVariableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SetVariableStatement))) { throw new NotImplementedException("Unexpected subtype of SetVariableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetVariableStatement(
                 variable: FromMutable(fragment.Variable),
                 separatorType: fragment.SeparatorType,
@@ -8965,6 +9716,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ShutdownStatement FromMutable(ScriptDom.ShutdownStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ShutdownStatement))) { throw new NotImplementedException("Unexpected subtype of ShutdownStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ShutdownStatement(
                 withNoWait: fragment.WithNoWait
             );
@@ -8972,6 +9724,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SimpleAlterFullTextIndexAction FromMutable(ScriptDom.SimpleAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SimpleAlterFullTextIndexAction))) { throw new NotImplementedException("Unexpected subtype of SimpleAlterFullTextIndexAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SimpleAlterFullTextIndexAction(
                 actionKind: fragment.ActionKind
             );
@@ -8979,6 +9732,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SimpleCaseExpression FromMutable(ScriptDom.SimpleCaseExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SimpleCaseExpression))) { throw new NotImplementedException("Unexpected subtype of SimpleCaseExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SimpleCaseExpression(
                 inputExpression: FromMutable(fragment.InputExpression),
                 whenClauses: fragment.WhenClauses.SelectList(FromMutable),
@@ -8989,6 +9743,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SimpleWhenClause FromMutable(ScriptDom.SimpleWhenClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SimpleWhenClause))) { throw new NotImplementedException("Unexpected subtype of SimpleWhenClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SimpleWhenClause(
                 whenExpression: FromMutable(fragment.WhenExpression),
                 thenExpression: FromMutable(fragment.ThenExpression)
@@ -8997,6 +9752,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SingleValueTypeCopyOption FromMutable(ScriptDom.SingleValueTypeCopyOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SingleValueTypeCopyOption))) { throw new NotImplementedException("Unexpected subtype of SingleValueTypeCopyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SingleValueTypeCopyOption(
                 singleValue: FromMutable(fragment.SingleValue)
             );
@@ -9004,6 +9760,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SizeFileDeclarationOption FromMutable(ScriptDom.SizeFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SizeFileDeclarationOption))) { throw new NotImplementedException("Unexpected subtype of SizeFileDeclarationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SizeFileDeclarationOption(
                 size: FromMutable(fragment.Size),
                 units: fragment.Units,
@@ -9013,6 +9770,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SoapMethod FromMutable(ScriptDom.SoapMethod fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SoapMethod))) { throw new NotImplementedException("Unexpected subtype of SoapMethod not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SoapMethod(
                 alias: FromMutable(fragment.Alias),
                 @namespace: FromMutable(fragment.Namespace),
@@ -9026,6 +9784,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SourceDeclaration FromMutable(ScriptDom.SourceDeclaration fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SourceDeclaration))) { throw new NotImplementedException("Unexpected subtype of SourceDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SourceDeclaration(
                 @value: FromMutable(fragment.Value)
             );
@@ -9033,6 +9792,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SpatialIndexRegularOption FromMutable(ScriptDom.SpatialIndexRegularOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SpatialIndexRegularOption))) { throw new NotImplementedException("Unexpected subtype of SpatialIndexRegularOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SpatialIndexRegularOption(
                 option: FromMutable(fragment.Option)
             );
@@ -9040,6 +9800,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SqlCommandIdentifier FromMutable(ScriptDom.SqlCommandIdentifier fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SqlCommandIdentifier))) { throw new NotImplementedException("Unexpected subtype of SqlCommandIdentifier not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SqlCommandIdentifier(
                 @value: fragment.Value,
                 quoteType: fragment.QuoteType
@@ -9048,6 +9809,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SqlDataTypeReference FromMutable(ScriptDom.SqlDataTypeReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SqlDataTypeReference))) { throw new NotImplementedException("Unexpected subtype of SqlDataTypeReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SqlDataTypeReference(
                 sqlDataTypeOption: fragment.SqlDataTypeOption,
                 parameters: fragment.Parameters.SelectList(FromMutable),
@@ -9057,6 +9819,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StateAuditOption FromMutable(ScriptDom.StateAuditOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.StateAuditOption))) { throw new NotImplementedException("Unexpected subtype of StateAuditOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new StateAuditOption(
                 @value: fragment.Value,
                 optionKind: fragment.OptionKind
@@ -9065,7 +9828,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StatementList FromMutable(ScriptDom.StatementList fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.StatementList)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as StatementList; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.StatementList))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as StatementList; }
             return new StatementList(
                 statements: fragment.Statements.SelectList(FromMutable)
             );
@@ -9073,6 +9836,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StatementListSnippet FromMutable(ScriptDom.StatementListSnippet fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.StatementListSnippet))) { throw new NotImplementedException("Unexpected subtype of StatementListSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new StatementListSnippet(
                 script: fragment.Script,
                 statements: fragment.Statements.SelectList(FromMutable)
@@ -9081,7 +9845,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StatisticsOption FromMutable(ScriptDom.StatisticsOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.StatisticsOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as StatisticsOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.StatisticsOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as StatisticsOption; }
             return new StatisticsOption(
                 optionKind: fragment.OptionKind
             );
@@ -9089,6 +9853,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StatisticsPartitionRange FromMutable(ScriptDom.StatisticsPartitionRange fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.StatisticsPartitionRange))) { throw new NotImplementedException("Unexpected subtype of StatisticsPartitionRange not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new StatisticsPartitionRange(
                 from: FromMutable(fragment.From),
                 to: FromMutable(fragment.To)
@@ -9097,6 +9862,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StopListFullTextIndexOption FromMutable(ScriptDom.StopListFullTextIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.StopListFullTextIndexOption))) { throw new NotImplementedException("Unexpected subtype of StopListFullTextIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new StopListFullTextIndexOption(
                 isOff: fragment.IsOff,
                 stopListName: FromMutable(fragment.StopListName),
@@ -9106,6 +9872,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StopRestoreOption FromMutable(ScriptDom.StopRestoreOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.StopRestoreOption))) { throw new NotImplementedException("Unexpected subtype of StopRestoreOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new StopRestoreOption(
                 mark: FromMutable(fragment.Mark),
                 after: FromMutable(fragment.After),
@@ -9116,6 +9883,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StringLiteral FromMutable(ScriptDom.StringLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.StringLiteral))) { throw new NotImplementedException("Unexpected subtype of StringLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new StringLiteral(
                 isNational: fragment.IsNational,
                 isLargeObject: fragment.IsLargeObject,
@@ -9126,6 +9894,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SubqueryComparisonPredicate FromMutable(ScriptDom.SubqueryComparisonPredicate fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SubqueryComparisonPredicate))) { throw new NotImplementedException("Unexpected subtype of SubqueryComparisonPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SubqueryComparisonPredicate(
                 expression: FromMutable(fragment.Expression),
                 comparisonType: fragment.ComparisonType,
@@ -9136,6 +9905,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SystemTimePeriodDefinition FromMutable(ScriptDom.SystemTimePeriodDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SystemTimePeriodDefinition))) { throw new NotImplementedException("Unexpected subtype of SystemTimePeriodDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SystemTimePeriodDefinition(
                 startTimeColumn: FromMutable(fragment.StartTimeColumn),
                 endTimeColumn: FromMutable(fragment.EndTimeColumn)
@@ -9144,6 +9914,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static SystemVersioningTableOption FromMutable(ScriptDom.SystemVersioningTableOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.SystemVersioningTableOption))) { throw new NotImplementedException("Unexpected subtype of SystemVersioningTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SystemVersioningTableOption(
                 optionState: fragment.OptionState,
                 consistencyCheckEnabled: fragment.ConsistencyCheckEnabled,
@@ -9155,6 +9926,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableClusteredIndexType FromMutable(ScriptDom.TableClusteredIndexType fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableClusteredIndexType))) { throw new NotImplementedException("Unexpected subtype of TableClusteredIndexType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableClusteredIndexType(
                 columns: fragment.Columns.SelectList(FromMutable),
                 columnStore: fragment.ColumnStore,
@@ -9164,6 +9936,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableDataCompressionOption FromMutable(ScriptDom.TableDataCompressionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableDataCompressionOption))) { throw new NotImplementedException("Unexpected subtype of TableDataCompressionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableDataCompressionOption(
                 dataCompressionOption: FromMutable(fragment.DataCompressionOption),
                 optionKind: fragment.OptionKind
@@ -9172,6 +9945,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableDefinition FromMutable(ScriptDom.TableDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableDefinition))) { throw new NotImplementedException("Unexpected subtype of TableDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableDefinition(
                 columnDefinitions: fragment.ColumnDefinitions.SelectList(FromMutable),
                 tableConstraints: fragment.TableConstraints.SelectList(FromMutable),
@@ -9182,6 +9956,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableDistributionOption FromMutable(ScriptDom.TableDistributionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableDistributionOption))) { throw new NotImplementedException("Unexpected subtype of TableDistributionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableDistributionOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -9190,6 +9965,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableHashDistributionPolicy FromMutable(ScriptDom.TableHashDistributionPolicy fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableHashDistributionPolicy))) { throw new NotImplementedException("Unexpected subtype of TableHashDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableHashDistributionPolicy(
                 distributionColumn: FromMutable(fragment.DistributionColumn)
             );
@@ -9197,7 +9973,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableHint FromMutable(ScriptDom.TableHint fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.TableHint)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as TableHint; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableHint))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as TableHint; }
             return new TableHint(
                 hintKind: fragment.HintKind
             );
@@ -9205,6 +9981,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableHintsOptimizerHint FromMutable(ScriptDom.TableHintsOptimizerHint fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableHintsOptimizerHint))) { throw new NotImplementedException("Unexpected subtype of TableHintsOptimizerHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableHintsOptimizerHint(
                 objectName: FromMutable(fragment.ObjectName),
                 tableHints: fragment.TableHints.SelectList(FromMutable),
@@ -9214,6 +9991,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableIndexOption FromMutable(ScriptDom.TableIndexOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableIndexOption))) { throw new NotImplementedException("Unexpected subtype of TableIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableIndexOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -9222,6 +10000,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableNonClusteredIndexType FromMutable(ScriptDom.TableNonClusteredIndexType fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableNonClusteredIndexType))) { throw new NotImplementedException("Unexpected subtype of TableNonClusteredIndexType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableNonClusteredIndexType(
                 
             );
@@ -9229,6 +10008,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TablePartitionOption FromMutable(ScriptDom.TablePartitionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TablePartitionOption))) { throw new NotImplementedException("Unexpected subtype of TablePartitionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TablePartitionOption(
                 partitionColumn: FromMutable(fragment.PartitionColumn),
                 partitionOptionSpecs: FromMutable(fragment.PartitionOptionSpecs),
@@ -9238,6 +10018,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TablePartitionOptionSpecifications FromMutable(ScriptDom.TablePartitionOptionSpecifications fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TablePartitionOptionSpecifications))) { throw new NotImplementedException("Unexpected subtype of TablePartitionOptionSpecifications not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TablePartitionOptionSpecifications(
                 range: fragment.Range,
                 boundaryValues: fragment.BoundaryValues.SelectList(FromMutable)
@@ -9246,6 +10027,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableReplicateDistributionPolicy FromMutable(ScriptDom.TableReplicateDistributionPolicy fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableReplicateDistributionPolicy))) { throw new NotImplementedException("Unexpected subtype of TableReplicateDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableReplicateDistributionPolicy(
                 
             );
@@ -9253,6 +10035,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableRoundRobinDistributionPolicy FromMutable(ScriptDom.TableRoundRobinDistributionPolicy fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableRoundRobinDistributionPolicy))) { throw new NotImplementedException("Unexpected subtype of TableRoundRobinDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableRoundRobinDistributionPolicy(
                 
             );
@@ -9260,6 +10043,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableSampleClause FromMutable(ScriptDom.TableSampleClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableSampleClause))) { throw new NotImplementedException("Unexpected subtype of TableSampleClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableSampleClause(
                 system: fragment.System,
                 sampleNumber: FromMutable(fragment.SampleNumber),
@@ -9270,6 +10054,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableValuedFunctionReturnType FromMutable(ScriptDom.TableValuedFunctionReturnType fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableValuedFunctionReturnType))) { throw new NotImplementedException("Unexpected subtype of TableValuedFunctionReturnType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableValuedFunctionReturnType(
                 declareTableVariableBody: FromMutable(fragment.DeclareTableVariableBody)
             );
@@ -9277,6 +10062,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TableXmlCompressionOption FromMutable(ScriptDom.TableXmlCompressionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TableXmlCompressionOption))) { throw new NotImplementedException("Unexpected subtype of TableXmlCompressionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableXmlCompressionOption(
                 xmlCompressionOption: FromMutable(fragment.XmlCompressionOption),
                 optionKind: fragment.OptionKind
@@ -9285,6 +10071,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TargetDeclaration FromMutable(ScriptDom.TargetDeclaration fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TargetDeclaration))) { throw new NotImplementedException("Unexpected subtype of TargetDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TargetDeclaration(
                 objectName: FromMutable(fragment.ObjectName),
                 targetDeclarationParameters: fragment.TargetDeclarationParameters.SelectList(FromMutable)
@@ -9293,6 +10080,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TargetRecoveryTimeDatabaseOption FromMutable(ScriptDom.TargetRecoveryTimeDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TargetRecoveryTimeDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of TargetRecoveryTimeDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TargetRecoveryTimeDatabaseOption(
                 recoveryTime: FromMutable(fragment.RecoveryTime),
                 unit: fragment.Unit,
@@ -9302,6 +10090,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TemporalClause FromMutable(ScriptDom.TemporalClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TemporalClause))) { throw new NotImplementedException("Unexpected subtype of TemporalClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TemporalClause(
                 temporalClauseType: fragment.TemporalClauseType,
                 startTime: FromMutable(fragment.StartTime),
@@ -9311,6 +10100,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ThrowStatement FromMutable(ScriptDom.ThrowStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ThrowStatement))) { throw new NotImplementedException("Unexpected subtype of ThrowStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ThrowStatement(
                 errorNumber: FromMutable(fragment.ErrorNumber),
                 message: FromMutable(fragment.Message),
@@ -9320,6 +10110,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TopRowFilter FromMutable(ScriptDom.TopRowFilter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TopRowFilter))) { throw new NotImplementedException("Unexpected subtype of TopRowFilter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TopRowFilter(
                 expression: FromMutable(fragment.Expression),
                 percent: fragment.Percent,
@@ -9329,6 +10120,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TriggerAction FromMutable(ScriptDom.TriggerAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TriggerAction))) { throw new NotImplementedException("Unexpected subtype of TriggerAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TriggerAction(
                 triggerActionType: fragment.TriggerActionType,
                 eventTypeGroup: FromMutable(fragment.EventTypeGroup)
@@ -9337,6 +10129,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TriggerObject FromMutable(ScriptDom.TriggerObject fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TriggerObject))) { throw new NotImplementedException("Unexpected subtype of TriggerObject not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TriggerObject(
                 name: FromMutable(fragment.Name),
                 triggerScope: fragment.TriggerScope
@@ -9345,7 +10138,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TriggerOption FromMutable(ScriptDom.TriggerOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.TriggerOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as TriggerOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TriggerOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as TriggerOption; }
             return new TriggerOption(
                 optionKind: fragment.OptionKind
             );
@@ -9353,6 +10146,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TruncateTableStatement FromMutable(ScriptDom.TruncateTableStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TruncateTableStatement))) { throw new NotImplementedException("Unexpected subtype of TruncateTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TruncateTableStatement(
                 tableName: FromMutable(fragment.TableName),
                 partitionRanges: fragment.PartitionRanges.SelectList(FromMutable)
@@ -9361,6 +10155,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TruncateTargetTableSwitchOption FromMutable(ScriptDom.TruncateTargetTableSwitchOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TruncateTargetTableSwitchOption))) { throw new NotImplementedException("Unexpected subtype of TruncateTargetTableSwitchOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TruncateTargetTableSwitchOption(
                 truncateTarget: fragment.TruncateTarget,
                 optionKind: fragment.OptionKind
@@ -9369,6 +10164,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TryCastCall FromMutable(ScriptDom.TryCastCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TryCastCall))) { throw new NotImplementedException("Unexpected subtype of TryCastCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TryCastCall(
                 dataType: FromMutable(fragment.DataType),
                 parameter: FromMutable(fragment.Parameter),
@@ -9378,6 +10174,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TryCatchStatement FromMutable(ScriptDom.TryCatchStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TryCatchStatement))) { throw new NotImplementedException("Unexpected subtype of TryCatchStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TryCatchStatement(
                 tryStatements: FromMutable(fragment.TryStatements),
                 catchStatements: FromMutable(fragment.CatchStatements)
@@ -9386,6 +10183,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TryConvertCall FromMutable(ScriptDom.TryConvertCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TryConvertCall))) { throw new NotImplementedException("Unexpected subtype of TryConvertCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TryConvertCall(
                 dataType: FromMutable(fragment.DataType),
                 parameter: FromMutable(fragment.Parameter),
@@ -9396,6 +10194,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TryParseCall FromMutable(ScriptDom.TryParseCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TryParseCall))) { throw new NotImplementedException("Unexpected subtype of TryParseCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TryParseCall(
                 stringValue: FromMutable(fragment.StringValue),
                 dataType: FromMutable(fragment.DataType),
@@ -9406,6 +10205,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TSEqualCall FromMutable(ScriptDom.TSEqualCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TSEqualCall))) { throw new NotImplementedException("Unexpected subtype of TSEqualCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TSEqualCall(
                 firstExpression: FromMutable(fragment.FirstExpression),
                 secondExpression: FromMutable(fragment.SecondExpression)
@@ -9414,6 +10214,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TSqlBatch FromMutable(ScriptDom.TSqlBatch fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TSqlBatch))) { throw new NotImplementedException("Unexpected subtype of TSqlBatch not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TSqlBatch(
                 statements: fragment.Statements.SelectList(FromMutable)
             );
@@ -9421,6 +10222,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TSqlFragmentSnippet FromMutable(ScriptDom.TSqlFragmentSnippet fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TSqlFragmentSnippet))) { throw new NotImplementedException("Unexpected subtype of TSqlFragmentSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TSqlFragmentSnippet(
                 script: fragment.Script
             );
@@ -9428,6 +10230,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TSqlScript FromMutable(ScriptDom.TSqlScript fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TSqlScript))) { throw new NotImplementedException("Unexpected subtype of TSqlScript not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TSqlScript(
                 batches: fragment.Batches.SelectList(FromMutable)
             );
@@ -9435,6 +10238,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static TSqlStatementSnippet FromMutable(ScriptDom.TSqlStatementSnippet fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.TSqlStatementSnippet))) { throw new NotImplementedException("Unexpected subtype of TSqlStatementSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TSqlStatementSnippet(
                 script: fragment.Script
             );
@@ -9442,6 +10246,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UnaryExpression FromMutable(ScriptDom.UnaryExpression fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UnaryExpression))) { throw new NotImplementedException("Unexpected subtype of UnaryExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UnaryExpression(
                 unaryExpressionType: fragment.UnaryExpressionType,
                 expression: FromMutable(fragment.Expression)
@@ -9450,6 +10255,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UniqueConstraintDefinition FromMutable(ScriptDom.UniqueConstraintDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UniqueConstraintDefinition))) { throw new NotImplementedException("Unexpected subtype of UniqueConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UniqueConstraintDefinition(
                 clustered: fragment.Clustered,
                 isPrimaryKey: fragment.IsPrimaryKey,
@@ -9465,6 +10271,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UnpivotedTableReference FromMutable(ScriptDom.UnpivotedTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UnpivotedTableReference))) { throw new NotImplementedException("Unexpected subtype of UnpivotedTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UnpivotedTableReference(
                 tableReference: FromMutable(fragment.TableReference),
                 inColumns: fragment.InColumns.SelectList(FromMutable),
@@ -9477,6 +10284,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UnqualifiedJoin FromMutable(ScriptDom.UnqualifiedJoin fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UnqualifiedJoin))) { throw new NotImplementedException("Unexpected subtype of UnqualifiedJoin not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UnqualifiedJoin(
                 unqualifiedJoinType: fragment.UnqualifiedJoinType,
                 firstTableReference: FromMutable(fragment.FirstTableReference),
@@ -9486,6 +10294,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UpdateCall FromMutable(ScriptDom.UpdateCall fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UpdateCall))) { throw new NotImplementedException("Unexpected subtype of UpdateCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateCall(
                 identifier: FromMutable(fragment.Identifier)
             );
@@ -9493,6 +10302,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UpdateForClause FromMutable(ScriptDom.UpdateForClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UpdateForClause))) { throw new NotImplementedException("Unexpected subtype of UpdateForClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateForClause(
                 columns: fragment.Columns.SelectList(FromMutable)
             );
@@ -9500,6 +10310,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UpdateMergeAction FromMutable(ScriptDom.UpdateMergeAction fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UpdateMergeAction))) { throw new NotImplementedException("Unexpected subtype of UpdateMergeAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateMergeAction(
                 setClauses: fragment.SetClauses.SelectList(FromMutable)
             );
@@ -9507,6 +10318,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UpdateSpecification FromMutable(ScriptDom.UpdateSpecification fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UpdateSpecification))) { throw new NotImplementedException("Unexpected subtype of UpdateSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateSpecification(
                 setClauses: fragment.SetClauses.SelectList(FromMutable),
                 fromClause: FromMutable(fragment.FromClause),
@@ -9520,6 +10332,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UpdateStatement FromMutable(ScriptDom.UpdateStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UpdateStatement))) { throw new NotImplementedException("Unexpected subtype of UpdateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateStatement(
                 updateSpecification: FromMutable(fragment.UpdateSpecification),
                 withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
@@ -9529,6 +10342,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UpdateStatisticsStatement FromMutable(ScriptDom.UpdateStatisticsStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UpdateStatisticsStatement))) { throw new NotImplementedException("Unexpected subtype of UpdateStatisticsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateStatisticsStatement(
                 schemaObjectName: FromMutable(fragment.SchemaObjectName),
                 subElements: fragment.SubElements.SelectList(FromMutable),
@@ -9538,6 +10352,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UpdateTextStatement FromMutable(ScriptDom.UpdateTextStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UpdateTextStatement))) { throw new NotImplementedException("Unexpected subtype of UpdateTextStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateTextStatement(
                 insertOffset: FromMutable(fragment.InsertOffset),
                 deleteLength: FromMutable(fragment.DeleteLength),
@@ -9553,6 +10368,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UseFederationStatement FromMutable(ScriptDom.UseFederationStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UseFederationStatement))) { throw new NotImplementedException("Unexpected subtype of UseFederationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UseFederationStatement(
                 federationName: FromMutable(fragment.FederationName),
                 distributionName: FromMutable(fragment.DistributionName),
@@ -9563,6 +10379,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UseHintList FromMutable(ScriptDom.UseHintList fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UseHintList))) { throw new NotImplementedException("Unexpected subtype of UseHintList not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UseHintList(
                 hints: fragment.Hints.SelectList(FromMutable),
                 hintKind: fragment.HintKind
@@ -9571,6 +10388,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UserDataTypeReference FromMutable(ScriptDom.UserDataTypeReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UserDataTypeReference))) { throw new NotImplementedException("Unexpected subtype of UserDataTypeReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UserDataTypeReference(
                 parameters: fragment.Parameters.SelectList(FromMutable),
                 name: FromMutable(fragment.Name)
@@ -9579,6 +10397,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UserDefinedTypeCallTarget FromMutable(ScriptDom.UserDefinedTypeCallTarget fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UserDefinedTypeCallTarget))) { throw new NotImplementedException("Unexpected subtype of UserDefinedTypeCallTarget not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UserDefinedTypeCallTarget(
                 schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
@@ -9586,6 +10405,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UserDefinedTypePropertyAccess FromMutable(ScriptDom.UserDefinedTypePropertyAccess fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UserDefinedTypePropertyAccess))) { throw new NotImplementedException("Unexpected subtype of UserDefinedTypePropertyAccess not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UserDefinedTypePropertyAccess(
                 callTarget: FromMutable(fragment.CallTarget),
                 propertyName: FromMutable(fragment.PropertyName),
@@ -9595,6 +10415,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UserLoginOption FromMutable(ScriptDom.UserLoginOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UserLoginOption))) { throw new NotImplementedException("Unexpected subtype of UserLoginOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UserLoginOption(
                 userLoginOptionType: fragment.UserLoginOptionType,
                 identifier: FromMutable(fragment.Identifier)
@@ -9603,6 +10424,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UserRemoteServiceBindingOption FromMutable(ScriptDom.UserRemoteServiceBindingOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UserRemoteServiceBindingOption))) { throw new NotImplementedException("Unexpected subtype of UserRemoteServiceBindingOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UserRemoteServiceBindingOption(
                 user: FromMutable(fragment.User),
                 optionKind: fragment.OptionKind
@@ -9611,6 +10433,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static UseStatement FromMutable(ScriptDom.UseStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.UseStatement))) { throw new NotImplementedException("Unexpected subtype of UseStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UseStatement(
                 databaseName: FromMutable(fragment.DatabaseName)
             );
@@ -9618,6 +10441,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ValuesInsertSource FromMutable(ScriptDom.ValuesInsertSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ValuesInsertSource))) { throw new NotImplementedException("Unexpected subtype of ValuesInsertSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ValuesInsertSource(
                 isDefaultValues: fragment.IsDefaultValues,
                 rowValues: fragment.RowValues.SelectList(FromMutable)
@@ -9626,6 +10450,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static VariableMethodCallTableReference FromMutable(ScriptDom.VariableMethodCallTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.VariableMethodCallTableReference))) { throw new NotImplementedException("Unexpected subtype of VariableMethodCallTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new VariableMethodCallTableReference(
                 variable: FromMutable(fragment.Variable),
                 methodName: FromMutable(fragment.MethodName),
@@ -9638,6 +10463,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static VariableReference FromMutable(ScriptDom.VariableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.VariableReference))) { throw new NotImplementedException("Unexpected subtype of VariableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new VariableReference(
                 name: fragment.Name,
                 collation: FromMutable(fragment.Collation)
@@ -9646,6 +10472,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static VariableTableReference FromMutable(ScriptDom.VariableTableReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.VariableTableReference))) { throw new NotImplementedException("Unexpected subtype of VariableTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new VariableTableReference(
                 variable: FromMutable(fragment.Variable),
                 alias: FromMutable(fragment.Alias),
@@ -9655,6 +10482,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static VariableValuePair FromMutable(ScriptDom.VariableValuePair fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.VariableValuePair))) { throw new NotImplementedException("Unexpected subtype of VariableValuePair not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new VariableValuePair(
                 variable: FromMutable(fragment.Variable),
                 @value: FromMutable(fragment.Value),
@@ -9664,6 +10492,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ViewDistributionOption FromMutable(ScriptDom.ViewDistributionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ViewDistributionOption))) { throw new NotImplementedException("Unexpected subtype of ViewDistributionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ViewDistributionOption(
                 @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
@@ -9672,6 +10501,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ViewForAppendOption FromMutable(ScriptDom.ViewForAppendOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ViewForAppendOption))) { throw new NotImplementedException("Unexpected subtype of ViewForAppendOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ViewForAppendOption(
                 optionKind: fragment.OptionKind
             );
@@ -9679,6 +10509,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ViewHashDistributionPolicy FromMutable(ScriptDom.ViewHashDistributionPolicy fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ViewHashDistributionPolicy))) { throw new NotImplementedException("Unexpected subtype of ViewHashDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ViewHashDistributionPolicy(
                 distributionColumn: FromMutable(fragment.DistributionColumn)
             );
@@ -9686,7 +10517,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ViewOption FromMutable(ScriptDom.ViewOption fragment) {
             if (fragment is null) { return null; }
-            if (fragment.GetType() != typeof(ScriptDom.ViewOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ViewOption; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ViewOption))) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ViewOption; }
             return new ViewOption(
                 optionKind: fragment.OptionKind
             );
@@ -9694,6 +10525,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static ViewRoundRobinDistributionPolicy FromMutable(ScriptDom.ViewRoundRobinDistributionPolicy fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.ViewRoundRobinDistributionPolicy))) { throw new NotImplementedException("Unexpected subtype of ViewRoundRobinDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ViewRoundRobinDistributionPolicy(
                 
             );
@@ -9701,6 +10533,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WaitAtLowPriorityOption FromMutable(ScriptDom.WaitAtLowPriorityOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WaitAtLowPriorityOption))) { throw new NotImplementedException("Unexpected subtype of WaitAtLowPriorityOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WaitAtLowPriorityOption(
                 options: fragment.Options.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
@@ -9709,6 +10542,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WaitForStatement FromMutable(ScriptDom.WaitForStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WaitForStatement))) { throw new NotImplementedException("Unexpected subtype of WaitForStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WaitForStatement(
                 waitForOption: fragment.WaitForOption,
                 parameter: FromMutable(fragment.Parameter),
@@ -9719,6 +10553,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WhereClause FromMutable(ScriptDom.WhereClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WhereClause))) { throw new NotImplementedException("Unexpected subtype of WhereClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WhereClause(
                 searchCondition: FromMutable(fragment.SearchCondition),
                 cursor: FromMutable(fragment.Cursor)
@@ -9727,6 +10562,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WhileStatement FromMutable(ScriptDom.WhileStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WhileStatement))) { throw new NotImplementedException("Unexpected subtype of WhileStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WhileStatement(
                 predicate: FromMutable(fragment.Predicate),
                 statement: FromMutable(fragment.Statement)
@@ -9735,6 +10571,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WindowClause FromMutable(ScriptDom.WindowClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WindowClause))) { throw new NotImplementedException("Unexpected subtype of WindowClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WindowClause(
                 windowDefinition: fragment.WindowDefinition.SelectList(FromMutable)
             );
@@ -9742,6 +10579,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WindowDefinition FromMutable(ScriptDom.WindowDefinition fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WindowDefinition))) { throw new NotImplementedException("Unexpected subtype of WindowDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WindowDefinition(
                 windowName: FromMutable(fragment.WindowName),
                 refWindowName: FromMutable(fragment.RefWindowName),
@@ -9753,6 +10591,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WindowDelimiter FromMutable(ScriptDom.WindowDelimiter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WindowDelimiter))) { throw new NotImplementedException("Unexpected subtype of WindowDelimiter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WindowDelimiter(
                 windowDelimiterType: fragment.WindowDelimiterType,
                 offsetValue: FromMutable(fragment.OffsetValue)
@@ -9761,6 +10600,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WindowFrameClause FromMutable(ScriptDom.WindowFrameClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WindowFrameClause))) { throw new NotImplementedException("Unexpected subtype of WindowFrameClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WindowFrameClause(
                 top: FromMutable(fragment.Top),
                 bottom: FromMutable(fragment.Bottom),
@@ -9770,6 +10610,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WindowsCreateLoginSource FromMutable(ScriptDom.WindowsCreateLoginSource fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WindowsCreateLoginSource))) { throw new NotImplementedException("Unexpected subtype of WindowsCreateLoginSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WindowsCreateLoginSource(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -9777,6 +10618,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WithCtesAndXmlNamespaces FromMutable(ScriptDom.WithCtesAndXmlNamespaces fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WithCtesAndXmlNamespaces))) { throw new NotImplementedException("Unexpected subtype of WithCtesAndXmlNamespaces not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WithCtesAndXmlNamespaces(
                 xmlNamespaces: FromMutable(fragment.XmlNamespaces),
                 commonTableExpressions: fragment.CommonTableExpressions.SelectList(FromMutable),
@@ -9786,6 +10628,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WithinGroupClause FromMutable(ScriptDom.WithinGroupClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WithinGroupClause))) { throw new NotImplementedException("Unexpected subtype of WithinGroupClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WithinGroupClause(
                 orderByClause: FromMutable(fragment.OrderByClause),
                 hasGraphPath: fragment.HasGraphPath
@@ -9794,6 +10637,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WitnessDatabaseOption FromMutable(ScriptDom.WitnessDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WitnessDatabaseOption))) { throw new NotImplementedException("Unexpected subtype of WitnessDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WitnessDatabaseOption(
                 witnessServer: FromMutable(fragment.WitnessServer),
                 isOff: fragment.IsOff,
@@ -9803,6 +10647,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WlmTimeLiteral FromMutable(ScriptDom.WlmTimeLiteral fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WlmTimeLiteral))) { throw new NotImplementedException("Unexpected subtype of WlmTimeLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WlmTimeLiteral(
                 timeString: FromMutable(fragment.TimeString)
             );
@@ -9810,6 +10655,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WorkloadGroupImportanceParameter FromMutable(ScriptDom.WorkloadGroupImportanceParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WorkloadGroupImportanceParameter))) { throw new NotImplementedException("Unexpected subtype of WorkloadGroupImportanceParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WorkloadGroupImportanceParameter(
                 parameterValue: fragment.ParameterValue,
                 parameterType: fragment.ParameterType
@@ -9818,6 +10664,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WorkloadGroupResourceParameter FromMutable(ScriptDom.WorkloadGroupResourceParameter fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WorkloadGroupResourceParameter))) { throw new NotImplementedException("Unexpected subtype of WorkloadGroupResourceParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WorkloadGroupResourceParameter(
                 parameterValue: FromMutable(fragment.ParameterValue),
                 parameterType: fragment.ParameterType
@@ -9826,6 +10673,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WriteTextStatement FromMutable(ScriptDom.WriteTextStatement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WriteTextStatement))) { throw new NotImplementedException("Unexpected subtype of WriteTextStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WriteTextStatement(
                 sourceParameter: FromMutable(fragment.SourceParameter),
                 bulk: fragment.Bulk,
@@ -9838,6 +10686,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static WsdlPayloadOption FromMutable(ScriptDom.WsdlPayloadOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.WsdlPayloadOption))) { throw new NotImplementedException("Unexpected subtype of WsdlPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WsdlPayloadOption(
                 isNone: fragment.IsNone,
                 @value: FromMutable(fragment.Value),
@@ -9847,6 +10696,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static XmlCompressionOption FromMutable(ScriptDom.XmlCompressionOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.XmlCompressionOption))) { throw new NotImplementedException("Unexpected subtype of XmlCompressionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlCompressionOption(
                 isCompressed: fragment.IsCompressed,
                 partitionRanges: fragment.PartitionRanges.SelectList(FromMutable),
@@ -9856,6 +10706,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static XmlDataTypeReference FromMutable(ScriptDom.XmlDataTypeReference fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.XmlDataTypeReference))) { throw new NotImplementedException("Unexpected subtype of XmlDataTypeReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlDataTypeReference(
                 xmlDataTypeOption: fragment.XmlDataTypeOption,
                 xmlSchemaCollection: FromMutable(fragment.XmlSchemaCollection),
@@ -9865,6 +10716,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static XmlForClause FromMutable(ScriptDom.XmlForClause fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.XmlForClause))) { throw new NotImplementedException("Unexpected subtype of XmlForClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlForClause(
                 options: fragment.Options.SelectList(FromMutable)
             );
@@ -9872,6 +10724,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static XmlForClauseOption FromMutable(ScriptDom.XmlForClauseOption fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.XmlForClauseOption))) { throw new NotImplementedException("Unexpected subtype of XmlForClauseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlForClauseOption(
                 optionKind: fragment.OptionKind,
                 @value: FromMutable(fragment.Value)
@@ -9880,6 +10733,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static XmlNamespaces FromMutable(ScriptDom.XmlNamespaces fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.XmlNamespaces))) { throw new NotImplementedException("Unexpected subtype of XmlNamespaces not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlNamespaces(
                 xmlNamespacesElements: fragment.XmlNamespacesElements.SelectList(FromMutable)
             );
@@ -9887,6 +10741,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static XmlNamespacesAliasElement FromMutable(ScriptDom.XmlNamespacesAliasElement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.XmlNamespacesAliasElement))) { throw new NotImplementedException("Unexpected subtype of XmlNamespacesAliasElement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlNamespacesAliasElement(
                 identifier: FromMutable(fragment.Identifier),
                 @string: FromMutable(fragment.String)
@@ -9895,6 +10750,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static XmlNamespacesDefaultElement FromMutable(ScriptDom.XmlNamespacesDefaultElement fragment) {
             if (fragment is null) { return null; }
+            if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.XmlNamespacesDefaultElement))) { throw new NotImplementedException("Unexpected subtype of XmlNamespacesDefaultElement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlNamespacesDefaultElement(
                 @string: FromMutable(fragment.String)
             );

@@ -59,7 +59,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BoundingBoxSpatialIndexOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.boundingBoxParameters, othr.boundingBoxParameters);
             if (compare != 0) { return compare; }

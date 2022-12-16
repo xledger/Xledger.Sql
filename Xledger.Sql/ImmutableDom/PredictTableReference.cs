@@ -113,7 +113,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PredictTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.modelVariable, othr.modelVariable);
             if (compare != 0) { return compare; }
