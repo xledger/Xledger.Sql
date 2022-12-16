@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OverClause ToMutableConcrete() {
             var ret = new ScriptDom.OverClause();
-            ret.WindowName = (ScriptDom.Identifier)windowName.ToMutable();
-            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause.ToMutable();
-            ret.WindowFrameClause = (ScriptDom.WindowFrameClause)windowFrameClause.ToMutable();
+            ret.WindowName = (ScriptDom.Identifier)windowName?.ToMutable();
+            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause?.ToMutable();
+            ret.WindowFrameClause = (ScriptDom.WindowFrameClause)windowFrameClause?.ToMutable();
             return ret;
         }
         

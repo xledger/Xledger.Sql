@@ -25,14 +25,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateEndpointStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateEndpointStatement();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.State = state;
-            ret.Affinity = (ScriptDom.EndpointAffinity)affinity.ToMutable();
+            ret.Affinity = (ScriptDom.EndpointAffinity)affinity?.ToMutable();
             ret.Protocol = protocol;
-            ret.ProtocolOptions.AddRange(protocolOptions.SelectList(c => (ScriptDom.EndpointProtocolOption)c.ToMutable()));
+            ret.ProtocolOptions.AddRange(protocolOptions.SelectList(c => (ScriptDom.EndpointProtocolOption)c?.ToMutable()));
             ret.EndpointType = endpointType;
-            ret.PayloadOptions.AddRange(payloadOptions.SelectList(c => (ScriptDom.PayloadOption)c.ToMutable()));
+            ret.PayloadOptions.AddRange(payloadOptions.SelectList(c => (ScriptDom.PayloadOption)c?.ToMutable()));
             return ret;
         }
         

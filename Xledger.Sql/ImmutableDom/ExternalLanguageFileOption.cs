@@ -33,12 +33,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalLanguageFileOption ToMutableConcrete() {
             var ret = new ScriptDom.ExternalLanguageFileOption();
-            ret.Content = (ScriptDom.ScalarExpression)content.ToMutable();
-            ret.FileName = (ScriptDom.StringLiteral)fileName.ToMutable();
-            ret.Path = (ScriptDom.StringLiteral)path.ToMutable();
-            ret.Platform = (ScriptDom.Identifier)platform.ToMutable();
-            ret.Parameters = (ScriptDom.StringLiteral)parameters.ToMutable();
-            ret.EnvironmentVariables = (ScriptDom.StringLiteral)environmentVariables.ToMutable();
+            ret.Content = (ScriptDom.ScalarExpression)content?.ToMutable();
+            ret.FileName = (ScriptDom.StringLiteral)fileName?.ToMutable();
+            ret.Path = (ScriptDom.StringLiteral)path?.ToMutable();
+            ret.Platform = (ScriptDom.Identifier)platform?.ToMutable();
+            ret.Parameters = (ScriptDom.StringLiteral)parameters?.ToMutable();
+            ret.EnvironmentVariables = (ScriptDom.StringLiteral)environmentVariables?.ToMutable();
             return ret;
         }
         

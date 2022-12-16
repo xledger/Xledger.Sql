@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropExternalStreamStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropExternalStreamStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsIfExists = isIfExists;
             return ret;
         }

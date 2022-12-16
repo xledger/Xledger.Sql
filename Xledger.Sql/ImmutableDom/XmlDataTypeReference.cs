@@ -23,8 +23,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.XmlDataTypeReference ToMutableConcrete() {
             var ret = new ScriptDom.XmlDataTypeReference();
             ret.XmlDataTypeOption = xmlDataTypeOption;
-            ret.XmlSchemaCollection = (ScriptDom.SchemaObjectName)xmlSchemaCollection.ToMutable();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.XmlSchemaCollection = (ScriptDom.SchemaObjectName)xmlSchemaCollection?.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
         

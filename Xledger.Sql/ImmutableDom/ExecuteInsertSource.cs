@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExecuteInsertSource ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteInsertSource();
-            ret.Execute = (ScriptDom.ExecuteSpecification)execute.ToMutable();
+            ret.Execute = (ScriptDom.ExecuteSpecification)execute?.ToMutable();
             return ret;
         }
         

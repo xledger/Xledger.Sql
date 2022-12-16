@@ -29,10 +29,10 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterViewStatement();
             ret.IsRebuild = isRebuild;
             ret.IsDisable = isDisable;
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.ViewOptions.AddRange(viewOptions.SelectList(c => (ScriptDom.ViewOption)c.ToMutable()));
-            ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement.ToMutable();
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.ViewOptions.AddRange(viewOptions.SelectList(c => (ScriptDom.ViewOption)c?.ToMutable()));
+            ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement?.ToMutable();
             ret.WithCheckOption = withCheckOption;
             ret.IsMaterialized = isMaterialized;
             return ret;

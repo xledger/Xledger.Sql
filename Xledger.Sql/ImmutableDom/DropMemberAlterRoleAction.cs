@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropMemberAlterRoleAction ToMutableConcrete() {
             var ret = new ScriptDom.DropMemberAlterRoleAction();
-            ret.Member = (ScriptDom.Identifier)member.ToMutable();
+            ret.Member = (ScriptDom.Identifier)member?.ToMutable();
             return ret;
         }
         

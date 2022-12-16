@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TopRowFilter ToMutableConcrete() {
             var ret = new ScriptDom.TopRowFilter();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.Percent = percent;
             ret.WithTies = withTies;
             return ret;

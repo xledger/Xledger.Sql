@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ResultSetsExecuteOption ToMutableConcrete() {
             var ret = new ScriptDom.ResultSetsExecuteOption();
             ret.ResultSetsOptionKind = resultSetsOptionKind;
-            ret.Definitions.AddRange(definitions.SelectList(c => (ScriptDom.ResultSetDefinition)c.ToMutable()));
+            ret.Definitions.AddRange(definitions.SelectList(c => (ScriptDom.ResultSetDefinition)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

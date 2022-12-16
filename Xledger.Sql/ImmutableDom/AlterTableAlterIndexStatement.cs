@@ -25,10 +25,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterTableAlterIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableAlterIndexStatement();
-            ret.IndexIdentifier = (ScriptDom.Identifier)indexIdentifier.ToMutable();
+            ret.IndexIdentifier = (ScriptDom.Identifier)indexIdentifier?.ToMutable();
             ret.AlterIndexType = alterIndexType;
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

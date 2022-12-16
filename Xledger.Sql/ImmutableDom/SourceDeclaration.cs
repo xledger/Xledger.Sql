@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SourceDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.SourceDeclaration();
-            ret.Value = (ScriptDom.EventSessionObjectName)@value.ToMutable();
+            ret.Value = (ScriptDom.EventSessionObjectName)@value?.ToMutable();
             return ret;
         }
         

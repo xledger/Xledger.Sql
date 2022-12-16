@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateRuleStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateRuleStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.Expression = (ScriptDom.BooleanExpression)expression.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.Expression = (ScriptDom.BooleanExpression)expression?.ToMutable();
             return ret;
         }
         

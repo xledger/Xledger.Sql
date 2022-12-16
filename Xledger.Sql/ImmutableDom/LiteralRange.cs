@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LiteralRange ToMutableConcrete() {
             var ret = new ScriptDom.LiteralRange();
-            ret.From = (ScriptDom.Literal)from.ToMutable();
-            ret.To = (ScriptDom.Literal)to.ToMutable();
+            ret.From = (ScriptDom.Literal)from?.ToMutable();
+            ret.To = (ScriptDom.Literal)to?.ToMutable();
             return ret;
         }
         

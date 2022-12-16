@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CopyCredentialOption ToMutableConcrete() {
             var ret = new ScriptDom.CopyCredentialOption();
-            ret.Identity = (ScriptDom.StringLiteral)identity.ToMutable();
-            ret.Secret = (ScriptDom.StringLiteral)secret.ToMutable();
+            ret.Identity = (ScriptDom.StringLiteral)identity?.ToMutable();
+            ret.Secret = (ScriptDom.StringLiteral)secret?.ToMutable();
             return ret;
         }
         

@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueryStoreTimeCleanupPolicyOption ToMutableConcrete() {
             var ret = new ScriptDom.QueryStoreTimeCleanupPolicyOption();
-            ret.StaleQueryThreshold = (ScriptDom.Literal)staleQueryThreshold.ToMutable();
+            ret.StaleQueryThreshold = (ScriptDom.Literal)staleQueryThreshold?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

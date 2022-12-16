@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropCryptographicProviderStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropCryptographicProviderStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsIfExists = isIfExists;
             return ret;
         }

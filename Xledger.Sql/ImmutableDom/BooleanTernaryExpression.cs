@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BooleanTernaryExpression ToMutableConcrete() {
             var ret = new ScriptDom.BooleanTernaryExpression();
             ret.TernaryExpressionType = ternaryExpressionType;
-            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression.ToMutable();
-            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression.ToMutable();
-            ret.ThirdExpression = (ScriptDom.ScalarExpression)thirdExpression.ToMutable();
+            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression?.ToMutable();
+            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression?.ToMutable();
+            ret.ThirdExpression = (ScriptDom.ScalarExpression)thirdExpression?.ToMutable();
             return ret;
         }
         

@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TableIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.TableIndexOption();
-            ret.Value = (ScriptDom.TableIndexType)@value.ToMutable();
+            ret.Value = (ScriptDom.TableIndexType)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterLoginOptionsStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterLoginOptionsStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c.ToMutable()));
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             return ret;
         }
         

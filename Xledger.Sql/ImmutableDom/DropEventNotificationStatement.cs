@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropEventNotificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropEventNotificationStatement();
-            ret.Notifications.AddRange(notifications.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Scope = (ScriptDom.EventNotificationObjectScope)scope.ToMutable();
+            ret.Notifications.AddRange(notifications.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Scope = (ScriptDom.EventNotificationObjectScope)scope?.ToMutable();
             return ret;
         }
         

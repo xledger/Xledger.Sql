@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OffsetClause ToMutableConcrete() {
             var ret = new ScriptDom.OffsetClause();
-            ret.OffsetExpression = (ScriptDom.ScalarExpression)offsetExpression.ToMutable();
-            ret.FetchExpression = (ScriptDom.ScalarExpression)fetchExpression.ToMutable();
+            ret.OffsetExpression = (ScriptDom.ScalarExpression)offsetExpression?.ToMutable();
+            ret.FetchExpression = (ScriptDom.ScalarExpression)fetchExpression?.ToMutable();
             return ret;
         }
         

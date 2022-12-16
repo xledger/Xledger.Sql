@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SchemaDeclarationItemOpenjson ToMutableConcrete() {
             var ret = new ScriptDom.SchemaDeclarationItemOpenjson();
             ret.AsJson = asJson;
-            ret.ColumnDefinition = (ScriptDom.ColumnDefinitionBase)columnDefinition.ToMutable();
-            ret.Mapping = (ScriptDom.ValueExpression)mapping.ToMutable();
+            ret.ColumnDefinition = (ScriptDom.ColumnDefinitionBase)columnDefinition?.ToMutable();
+            ret.Mapping = (ScriptDom.ValueExpression)mapping?.ToMutable();
             return ret;
         }
         

@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DropTriggerStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropTriggerStatement();
             ret.TriggerScope = triggerScope;
-            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
+            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

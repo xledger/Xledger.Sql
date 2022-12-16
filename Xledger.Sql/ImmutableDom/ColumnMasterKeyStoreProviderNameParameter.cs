@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ColumnMasterKeyStoreProviderNameParameter ToMutableConcrete() {
             var ret = new ScriptDom.ColumnMasterKeyStoreProviderNameParameter();
-            ret.Name = (ScriptDom.StringLiteral)name.ToMutable();
+            ret.Name = (ScriptDom.StringLiteral)name?.ToMutable();
             ret.ParameterKind = parameterKind;
             return ret;
         }

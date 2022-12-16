@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterTableRebuildStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableRebuildStatement();
-            ret.Partition = (ScriptDom.PartitionSpecifier)partition.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.Partition = (ScriptDom.PartitionSpecifier)partition?.ToMutable();
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationDiagnosticsLogOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationDiagnosticsLogOption)c?.ToMutable()));
             return ret;
         }
         

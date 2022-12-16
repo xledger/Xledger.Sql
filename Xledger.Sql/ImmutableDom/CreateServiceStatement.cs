@@ -21,10 +21,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateServiceStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateServiceStatement();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.QueueName = (ScriptDom.SchemaObjectName)queueName.ToMutable();
-            ret.ServiceContracts.AddRange(serviceContracts.SelectList(c => (ScriptDom.ServiceContract)c.ToMutable()));
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.QueueName = (ScriptDom.SchemaObjectName)queueName?.ToMutable();
+            ret.ServiceContracts.AddRange(serviceContracts.SelectList(c => (ScriptDom.ServiceContract)c?.ToMutable()));
             return ret;
         }
         

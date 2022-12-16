@@ -30,11 +30,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterAsymmetricKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterAsymmetricKeyStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.AttestedBy = (ScriptDom.Literal)attestedBy.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.AttestedBy = (ScriptDom.Literal)attestedBy?.ToMutable();
             ret.Kind = kind;
-            ret.EncryptionPassword = (ScriptDom.Literal)encryptionPassword.ToMutable();
-            ret.DecryptionPassword = (ScriptDom.Literal)decryptionPassword.ToMutable();
+            ret.EncryptionPassword = (ScriptDom.Literal)encryptionPassword?.ToMutable();
+            ret.DecryptionPassword = (ScriptDom.Literal)decryptionPassword?.ToMutable();
             return ret;
         }
         

@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AuditGuidAuditOption ToMutableConcrete() {
             var ret = new ScriptDom.AuditGuidAuditOption();
-            ret.Guid = (ScriptDom.Literal)guid.ToMutable();
+            ret.Guid = (ScriptDom.Literal)guid?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

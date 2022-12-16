@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DeviceInfo ToMutableConcrete() {
             var ret = new ScriptDom.DeviceInfo();
-            ret.LogicalDevice = (ScriptDom.IdentifierOrValueExpression)logicalDevice.ToMutable();
-            ret.PhysicalDevice = (ScriptDom.ValueExpression)physicalDevice.ToMutable();
+            ret.LogicalDevice = (ScriptDom.IdentifierOrValueExpression)logicalDevice?.ToMutable();
+            ret.PhysicalDevice = (ScriptDom.ValueExpression)physicalDevice?.ToMutable();
             ret.DeviceType = deviceType;
             return ret;
         }

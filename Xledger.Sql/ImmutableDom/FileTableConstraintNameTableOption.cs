@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FileTableConstraintNameTableOption ToMutableConcrete() {
             var ret = new ScriptDom.FileTableConstraintNameTableOption();
-            ret.Value = (ScriptDom.Identifier)@value.ToMutable();
+            ret.Value = (ScriptDom.Identifier)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

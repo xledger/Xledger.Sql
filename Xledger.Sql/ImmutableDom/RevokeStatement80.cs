@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.RevokeStatement80();
             ret.GrantOptionFor = grantOptionFor;
             ret.CascadeOption = cascadeOption;
-            ret.AsClause = (ScriptDom.Identifier)asClause.ToMutable();
-            ret.SecurityElement80 = (ScriptDom.SecurityElement80)securityElement80.ToMutable();
-            ret.SecurityUserClause80 = (ScriptDom.SecurityUserClause80)securityUserClause80.ToMutable();
+            ret.AsClause = (ScriptDom.Identifier)asClause?.ToMutable();
+            ret.SecurityElement80 = (ScriptDom.SecurityElement80)securityElement80?.ToMutable();
+            ret.SecurityUserClause80 = (ScriptDom.SecurityUserClause80)securityUserClause80?.ToMutable();
             return ret;
         }
         

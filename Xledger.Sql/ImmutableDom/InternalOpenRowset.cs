@@ -23,9 +23,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InternalOpenRowset ToMutableConcrete() {
             var ret = new ScriptDom.InternalOpenRowset();
-            ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
-            ret.VarArgs.AddRange(varArgs.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
+            ret.VarArgs.AddRange(varArgs.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

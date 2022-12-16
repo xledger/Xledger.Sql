@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RetentionDaysAuditTargetOption ToMutableConcrete() {
             var ret = new ScriptDom.RetentionDaysAuditTargetOption();
-            ret.Days = (ScriptDom.Literal)days.ToMutable();
+            ret.Days = (ScriptDom.Literal)days?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

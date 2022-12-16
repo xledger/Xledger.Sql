@@ -30,11 +30,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WindowDefinition ToMutableConcrete() {
             var ret = new ScriptDom.WindowDefinition();
-            ret.WindowName = (ScriptDom.Identifier)windowName.ToMutable();
-            ret.RefWindowName = (ScriptDom.Identifier)refWindowName.ToMutable();
-            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause.ToMutable();
-            ret.WindowFrameClause = (ScriptDom.WindowFrameClause)windowFrameClause.ToMutable();
+            ret.WindowName = (ScriptDom.Identifier)windowName?.ToMutable();
+            ret.RefWindowName = (ScriptDom.Identifier)refWindowName?.ToMutable();
+            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause?.ToMutable();
+            ret.WindowFrameClause = (ScriptDom.WindowFrameClause)windowFrameClause?.ToMutable();
             return ret;
         }
         

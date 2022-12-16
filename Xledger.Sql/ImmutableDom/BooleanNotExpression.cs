@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BooleanNotExpression ToMutableConcrete() {
             var ret = new ScriptDom.BooleanNotExpression();
-            ret.Expression = (ScriptDom.BooleanExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.BooleanExpression)expression?.ToMutable();
             return ret;
         }
         

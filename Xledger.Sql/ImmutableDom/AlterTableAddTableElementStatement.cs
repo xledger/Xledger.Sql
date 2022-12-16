@@ -23,8 +23,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterTableAddTableElementStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableAddTableElementStatement();
             ret.ExistingRowsCheckEnforcement = existingRowsCheckEnforcement;
-            ret.Definition = (ScriptDom.TableDefinition)definition.ToMutable();
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.Definition = (ScriptDom.TableDefinition)definition?.ToMutable();
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

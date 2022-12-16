@@ -38,14 +38,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OpenRowsetTableReference ToMutableConcrete() {
             var ret = new ScriptDom.OpenRowsetTableReference();
-            ret.ProviderName = (ScriptDom.StringLiteral)providerName.ToMutable();
-            ret.DataSource = (ScriptDom.StringLiteral)dataSource.ToMutable();
-            ret.UserId = (ScriptDom.StringLiteral)userId.ToMutable();
-            ret.Password = (ScriptDom.StringLiteral)password.ToMutable();
-            ret.ProviderString = (ScriptDom.StringLiteral)providerString.ToMutable();
-            ret.Query = (ScriptDom.StringLiteral)query.ToMutable();
-            ret.Object = (ScriptDom.SchemaObjectName)@object.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.ProviderName = (ScriptDom.StringLiteral)providerName?.ToMutable();
+            ret.DataSource = (ScriptDom.StringLiteral)dataSource?.ToMutable();
+            ret.UserId = (ScriptDom.StringLiteral)userId?.ToMutable();
+            ret.Password = (ScriptDom.StringLiteral)password?.ToMutable();
+            ret.ProviderString = (ScriptDom.StringLiteral)providerString?.ToMutable();
+            ret.Query = (ScriptDom.StringLiteral)query?.ToMutable();
+            ret.Object = (ScriptDom.SchemaObjectName)@object?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

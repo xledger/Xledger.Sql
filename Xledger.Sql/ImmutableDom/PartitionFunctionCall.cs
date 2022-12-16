@@ -25,10 +25,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PartitionFunctionCall ToMutableConcrete() {
             var ret = new ScriptDom.PartitionFunctionCall();
-            ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
-            ret.FunctionName = (ScriptDom.Identifier)functionName.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
+            ret.FunctionName = (ScriptDom.Identifier)functionName?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

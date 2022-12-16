@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CompressionDelayIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.CompressionDelayIndexOption();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.TimeUnit = timeUnit;
             ret.OptionKind = optionKind;
             return ret;

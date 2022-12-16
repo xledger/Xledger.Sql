@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CursorId ToMutableConcrete() {
             var ret = new ScriptDom.CursorId();
             ret.IsGlobal = isGlobal;
-            ret.Name = (ScriptDom.IdentifierOrValueExpression)name.ToMutable();
+            ret.Name = (ScriptDom.IdentifierOrValueExpression)name?.ToMutable();
             return ret;
         }
         

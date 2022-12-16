@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LiteralTableHint ToMutableConcrete() {
             var ret = new ScriptDom.LiteralTableHint();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.HintKind = hintKind;
             return ret;
         }

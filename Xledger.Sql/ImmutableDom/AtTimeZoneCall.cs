@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AtTimeZoneCall ToMutableConcrete() {
             var ret = new ScriptDom.AtTimeZoneCall();
-            ret.DateValue = (ScriptDom.ScalarExpression)dateValue.ToMutable();
-            ret.TimeZone = (ScriptDom.ScalarExpression)timeZone.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.DateValue = (ScriptDom.ScalarExpression)dateValue?.ToMutable();
+            ret.TimeZone = (ScriptDom.ScalarExpression)timeZone?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CopyColumnOption ToMutableConcrete() {
             var ret = new ScriptDom.CopyColumnOption();
-            ret.ColumnName = (ScriptDom.Identifier)columnName.ToMutable();
-            ret.DefaultValue = (ScriptDom.ScalarExpression)defaultValue.ToMutable();
-            ret.FieldNumber = (ScriptDom.IntegerLiteral)fieldNumber.ToMutable();
+            ret.ColumnName = (ScriptDom.Identifier)columnName?.ToMutable();
+            ret.DefaultValue = (ScriptDom.ScalarExpression)defaultValue?.ToMutable();
+            ret.FieldNumber = (ScriptDom.IntegerLiteral)fieldNumber?.ToMutable();
             return ret;
         }
         

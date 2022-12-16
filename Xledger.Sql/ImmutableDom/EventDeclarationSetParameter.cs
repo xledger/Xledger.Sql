@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.EventDeclarationSetParameter ToMutableConcrete() {
             var ret = new ScriptDom.EventDeclarationSetParameter();
-            ret.EventField = (ScriptDom.Identifier)eventField.ToMutable();
-            ret.EventValue = (ScriptDom.ScalarExpression)eventValue.ToMutable();
+            ret.EventField = (ScriptDom.Identifier)eventField?.ToMutable();
+            ret.EventValue = (ScriptDom.ScalarExpression)eventValue?.ToMutable();
             return ret;
         }
         

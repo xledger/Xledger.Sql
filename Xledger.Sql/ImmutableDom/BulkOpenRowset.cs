@@ -27,11 +27,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BulkOpenRowset ToMutableConcrete() {
             var ret = new ScriptDom.BulkOpenRowset();
-            ret.DataFiles.AddRange(dataFiles.SelectList(c => (ScriptDom.StringLiteral)c.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c.ToMutable()));
-            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.DataFiles.AddRange(dataFiles.SelectList(c => (ScriptDom.StringLiteral)c?.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c?.ToMutable()));
+            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

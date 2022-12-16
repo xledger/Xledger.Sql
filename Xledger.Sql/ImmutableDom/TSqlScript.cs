@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TSqlScript ToMutableConcrete() {
             var ret = new ScriptDom.TSqlScript();
-            ret.Batches.AddRange(batches.SelectList(c => (ScriptDom.TSqlBatch)c.ToMutable()));
+            ret.Batches.AddRange(batches.SelectList(c => (ScriptDom.TSqlBatch)c?.ToMutable()));
             return ret;
         }
         

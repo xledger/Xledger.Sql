@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ProviderKeyNameKeyOption ToMutableConcrete() {
             var ret = new ScriptDom.ProviderKeyNameKeyOption();
-            ret.KeyName = (ScriptDom.Literal)keyName.ToMutable();
+            ret.KeyName = (ScriptDom.Literal)keyName?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

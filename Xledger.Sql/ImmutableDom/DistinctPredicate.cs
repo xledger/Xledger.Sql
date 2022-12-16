@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DistinctPredicate ToMutableConcrete() {
             var ret = new ScriptDom.DistinctPredicate();
-            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression.ToMutable();
-            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression.ToMutable();
+            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression?.ToMutable();
+            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression?.ToMutable();
             ret.IsNot = isNot;
             return ret;
         }

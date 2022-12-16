@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WitnessDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.WitnessDatabaseOption();
-            ret.WitnessServer = (ScriptDom.Literal)witnessServer.ToMutable();
+            ret.WitnessServer = (ScriptDom.Literal)witnessServer?.ToMutable();
             ret.IsOff = isOff;
             ret.OptionKind = optionKind;
             return ret;

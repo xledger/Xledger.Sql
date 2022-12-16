@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetHadrClusterStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetHadrClusterStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationHadrClusterOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationHadrClusterOption)c?.ToMutable()));
             return ret;
         }
         

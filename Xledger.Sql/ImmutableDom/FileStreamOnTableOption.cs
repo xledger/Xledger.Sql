@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FileStreamOnTableOption ToMutableConcrete() {
             var ret = new ScriptDom.FileStreamOnTableOption();
-            ret.Value = (ScriptDom.IdentifierOrValueExpression)@value.ToMutable();
+            ret.Value = (ScriptDom.IdentifierOrValueExpression)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.LedgerTableOption();
             ret.OptionState = optionState;
             ret.AppendOnly = appendOnly;
-            ret.LedgerViewOption = (ScriptDom.LedgerViewOption)ledgerViewOption.ToMutable();
+            ret.LedgerViewOption = (ScriptDom.LedgerViewOption)ledgerViewOption?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

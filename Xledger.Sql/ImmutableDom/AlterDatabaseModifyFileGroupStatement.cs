@@ -32,12 +32,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterDatabaseModifyFileGroupStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseModifyFileGroupStatement();
-            ret.FileGroup = (ScriptDom.Identifier)fileGroup.ToMutable();
-            ret.NewFileGroupName = (ScriptDom.Identifier)newFileGroupName.ToMutable();
+            ret.FileGroup = (ScriptDom.Identifier)fileGroup?.ToMutable();
+            ret.NewFileGroupName = (ScriptDom.Identifier)newFileGroupName?.ToMutable();
             ret.MakeDefault = makeDefault;
             ret.UpdatabilityOption = updatabilityOption;
-            ret.Termination = (ScriptDom.AlterDatabaseTermination)termination.ToMutable();
-            ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
+            ret.Termination = (ScriptDom.AlterDatabaseTermination)termination?.ToMutable();
+            ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.UseCurrent = useCurrent;
             return ret;
         }

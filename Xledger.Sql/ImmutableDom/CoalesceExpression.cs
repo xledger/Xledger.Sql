@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CoalesceExpression ToMutableConcrete() {
             var ret = new ScriptDom.CoalesceExpression();
-            ret.Expressions.AddRange(expressions.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Expressions.AddRange(expressions.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

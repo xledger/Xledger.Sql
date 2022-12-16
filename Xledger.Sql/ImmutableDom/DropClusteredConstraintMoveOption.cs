@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropClusteredConstraintMoveOption ToMutableConcrete() {
             var ret = new ScriptDom.DropClusteredConstraintMoveOption();
-            ret.OptionValue = (ScriptDom.FileGroupOrPartitionScheme)optionValue.ToMutable();
+            ret.OptionValue = (ScriptDom.FileGroupOrPartitionScheme)optionValue?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

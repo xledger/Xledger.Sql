@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalTableDistributionOption ToMutableConcrete() {
             var ret = new ScriptDom.ExternalTableDistributionOption();
-            ret.Value = (ScriptDom.ExternalTableDistributionPolicy)@value.ToMutable();
+            ret.Value = (ScriptDom.ExternalTableDistributionPolicy)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

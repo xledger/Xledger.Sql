@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateDefaultStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateDefaultStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             return ret;
         }
         

@@ -24,11 +24,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OpenRowsetColumnDefinition ToMutableConcrete() {
             var ret = new ScriptDom.OpenRowsetColumnDefinition();
-            ret.ColumnOrdinal = (ScriptDom.IntegerLiteral)columnOrdinal.ToMutable();
-            ret.JsonPath = (ScriptDom.StringLiteral)jsonPath.ToMutable();
-            ret.ColumnIdentifier = (ScriptDom.Identifier)columnIdentifier.ToMutable();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.ColumnOrdinal = (ScriptDom.IntegerLiteral)columnOrdinal?.ToMutable();
+            ret.JsonPath = (ScriptDom.StringLiteral)jsonPath?.ToMutable();
+            ret.ColumnIdentifier = (ScriptDom.Identifier)columnIdentifier?.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

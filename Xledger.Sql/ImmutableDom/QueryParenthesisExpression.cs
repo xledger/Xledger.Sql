@@ -21,10 +21,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueryParenthesisExpression ToMutableConcrete() {
             var ret = new ScriptDom.QueryParenthesisExpression();
-            ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression.ToMutable();
-            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause.ToMutable();
-            ret.OffsetClause = (ScriptDom.OffsetClause)offsetClause.ToMutable();
-            ret.ForClause = (ScriptDom.ForClause)forClause.ToMutable();
+            ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression?.ToMutable();
+            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause?.ToMutable();
+            ret.OffsetClause = (ScriptDom.OffsetClause)offsetClause?.ToMutable();
+            ret.ForClause = (ScriptDom.ForClause)forClause?.ToMutable();
             return ret;
         }
         

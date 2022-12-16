@@ -22,8 +22,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MoveRestoreOption ToMutableConcrete() {
             var ret = new ScriptDom.MoveRestoreOption();
-            ret.LogicalFileName = (ScriptDom.ValueExpression)logicalFileName.ToMutable();
-            ret.OSFileName = (ScriptDom.ValueExpression)oSFileName.ToMutable();
+            ret.LogicalFileName = (ScriptDom.ValueExpression)logicalFileName?.ToMutable();
+            ret.OSFileName = (ScriptDom.ValueExpression)oSFileName?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

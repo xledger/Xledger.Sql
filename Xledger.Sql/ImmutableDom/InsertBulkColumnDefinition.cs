@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InsertBulkColumnDefinition ToMutableConcrete() {
             var ret = new ScriptDom.InsertBulkColumnDefinition();
-            ret.Column = (ScriptDom.ColumnDefinitionBase)column.ToMutable();
+            ret.Column = (ScriptDom.ColumnDefinitionBase)column?.ToMutable();
             ret.NullNotNull = nullNotNull;
             return ret;
         }

@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RevertStatement ToMutableConcrete() {
             var ret = new ScriptDom.RevertStatement();
-            ret.Cookie = (ScriptDom.ScalarExpression)cookie.ToMutable();
+            ret.Cookie = (ScriptDom.ScalarExpression)cookie?.ToMutable();
             return ret;
         }
         

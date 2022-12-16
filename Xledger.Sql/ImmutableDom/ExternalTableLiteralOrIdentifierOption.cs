@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalTableLiteralOrIdentifierOption ToMutableConcrete() {
             var ret = new ScriptDom.ExternalTableLiteralOrIdentifierOption();
-            ret.Value = (ScriptDom.IdentifierOrValueExpression)@value.ToMutable();
+            ret.Value = (ScriptDom.IdentifierOrValueExpression)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

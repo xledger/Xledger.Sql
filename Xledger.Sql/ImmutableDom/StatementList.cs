@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.StatementList ToMutableConcrete() {
             var ret = new ScriptDom.StatementList();
-            ret.Statements.AddRange(statements.SelectList(c => (ScriptDom.TSqlStatement)c.ToMutable()));
+            ret.Statements.AddRange(statements.SelectList(c => (ScriptDom.TSqlStatement)c?.ToMutable()));
             return ret;
         }
         

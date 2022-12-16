@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ExternalResourcePoolParameter ToMutableConcrete() {
             var ret = new ScriptDom.ExternalResourcePoolParameter();
             ret.ParameterType = parameterType;
-            ret.ParameterValue = (ScriptDom.Literal)parameterValue.ToMutable();
-            ret.AffinitySpecification = (ScriptDom.ExternalResourcePoolAffinitySpecification)affinitySpecification.ToMutable();
+            ret.ParameterValue = (ScriptDom.Literal)parameterValue?.ToMutable();
+            ret.AffinitySpecification = (ScriptDom.ExternalResourcePoolAffinitySpecification)affinitySpecification?.ToMutable();
             return ret;
         }
         

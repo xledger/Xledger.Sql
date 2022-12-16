@@ -25,10 +25,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TryParseCall ToMutableConcrete() {
             var ret = new ScriptDom.TryParseCall();
-            ret.StringValue = (ScriptDom.ScalarExpression)stringValue.ToMutable();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
-            ret.Culture = (ScriptDom.ScalarExpression)culture.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.StringValue = (ScriptDom.ScalarExpression)stringValue?.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
+            ret.Culture = (ScriptDom.ScalarExpression)culture?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

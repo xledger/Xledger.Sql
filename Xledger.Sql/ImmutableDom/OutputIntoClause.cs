@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OutputIntoClause ToMutableConcrete() {
             var ret = new ScriptDom.OutputIntoClause();
-            ret.SelectColumns.AddRange(selectColumns.SelectList(c => (ScriptDom.SelectElement)c.ToMutable()));
-            ret.IntoTable = (ScriptDom.TableReference)intoTable.ToMutable();
-            ret.IntoTableColumns.AddRange(intoTableColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.SelectColumns.AddRange(selectColumns.SelectList(c => (ScriptDom.SelectElement)c?.ToMutable()));
+            ret.IntoTable = (ScriptDom.TableReference)intoTable?.ToMutable();
+            ret.IntoTableColumns.AddRange(intoTableColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             return ret;
         }
         

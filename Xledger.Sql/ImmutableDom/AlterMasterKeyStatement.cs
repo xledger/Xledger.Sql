@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterMasterKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterMasterKeyStatement();
             ret.Option = option;
-            ret.Password = (ScriptDom.Literal)password.ToMutable();
+            ret.Password = (ScriptDom.Literal)password?.ToMutable();
             return ret;
         }
         

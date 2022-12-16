@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UseHintList ToMutableConcrete() {
             var ret = new ScriptDom.UseHintList();
-            ret.Hints.AddRange(hints.SelectList(c => (ScriptDom.StringLiteral)c.ToMutable()));
+            ret.Hints.AddRange(hints.SelectList(c => (ScriptDom.StringLiteral)c?.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }

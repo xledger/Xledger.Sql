@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ResampleStatisticsOption ToMutableConcrete() {
             var ret = new ScriptDom.ResampleStatisticsOption();
-            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.StatisticsPartitionRange)c.ToMutable()));
+            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.StatisticsPartitionRange)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

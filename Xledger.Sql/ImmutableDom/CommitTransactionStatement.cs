@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CommitTransactionStatement ToMutableConcrete() {
             var ret = new ScriptDom.CommitTransactionStatement();
             ret.DelayedDurabilityOption = delayedDurabilityOption;
-            ret.Name = (ScriptDom.IdentifierOrValueExpression)name.ToMutable();
+            ret.Name = (ScriptDom.IdentifierOrValueExpression)name?.ToMutable();
             return ret;
         }
         

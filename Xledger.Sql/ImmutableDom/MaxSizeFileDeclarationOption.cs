@@ -25,7 +25,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MaxSizeFileDeclarationOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxSizeFileDeclarationOption();
-            ret.MaxSize = (ScriptDom.Literal)maxSize.ToMutable();
+            ret.MaxSize = (ScriptDom.Literal)maxSize?.ToMutable();
             ret.Units = units;
             ret.Unlimited = unlimited;
             ret.OptionKind = optionKind;

@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OrderBulkInsertOption ToMutableConcrete() {
             var ret = new ScriptDom.OrderBulkInsertOption();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
             ret.IsUnique = isUnique;
             ret.OptionKind = optionKind;
             return ret;

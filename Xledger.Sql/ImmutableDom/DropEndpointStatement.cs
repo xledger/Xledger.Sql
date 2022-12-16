@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropEndpointStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropEndpointStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsIfExists = isIfExists;
             return ret;
         }

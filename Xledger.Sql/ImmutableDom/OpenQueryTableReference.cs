@@ -23,9 +23,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OpenQueryTableReference ToMutableConcrete() {
             var ret = new ScriptDom.OpenQueryTableReference();
-            ret.LinkedServer = (ScriptDom.Identifier)linkedServer.ToMutable();
-            ret.Query = (ScriptDom.StringLiteral)query.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.LinkedServer = (ScriptDom.Identifier)linkedServer?.ToMutable();
+            ret.Query = (ScriptDom.StringLiteral)query?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

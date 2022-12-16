@@ -27,9 +27,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SubqueryComparisonPredicate ToMutableConcrete() {
             var ret = new ScriptDom.SubqueryComparisonPredicate();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.ComparisonType = comparisonType;
-            ret.Subquery = (ScriptDom.ScalarSubquery)subquery.ToMutable();
+            ret.Subquery = (ScriptDom.ScalarSubquery)subquery?.ToMutable();
             ret.SubqueryComparisonPredicateType = subqueryComparisonPredicateType;
             return ret;
         }

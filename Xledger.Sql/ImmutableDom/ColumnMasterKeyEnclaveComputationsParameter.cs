@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ColumnMasterKeyEnclaveComputationsParameter ToMutableConcrete() {
             var ret = new ScriptDom.ColumnMasterKeyEnclaveComputationsParameter();
-            ret.Signature = (ScriptDom.BinaryLiteral)signature.ToMutable();
+            ret.Signature = (ScriptDom.BinaryLiteral)signature?.ToMutable();
             ret.ParameterKind = parameterKind;
             return ret;
         }

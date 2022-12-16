@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropDatabaseStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropDatabaseStatement();
-            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

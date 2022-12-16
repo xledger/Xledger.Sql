@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropColumnMasterKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropColumnMasterKeyStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsIfExists = isIfExists;
             return ret;
         }

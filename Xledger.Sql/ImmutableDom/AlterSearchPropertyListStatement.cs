@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterSearchPropertyListStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterSearchPropertyListStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Action = (ScriptDom.SearchPropertyListAction)action.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Action = (ScriptDom.SearchPropertyListAction)action?.ToMutable();
             return ret;
         }
         

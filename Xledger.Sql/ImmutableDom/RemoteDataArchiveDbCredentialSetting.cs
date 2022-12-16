@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RemoteDataArchiveDbCredentialSetting ToMutableConcrete() {
             var ret = new ScriptDom.RemoteDataArchiveDbCredentialSetting();
-            ret.Credential = (ScriptDom.Identifier)credential.ToMutable();
+            ret.Credential = (ScriptDom.Identifier)credential?.ToMutable();
             ret.SettingKind = settingKind;
             return ret;
         }

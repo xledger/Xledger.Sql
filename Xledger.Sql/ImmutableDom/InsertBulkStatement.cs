@@ -20,9 +20,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InsertBulkStatement ToMutableConcrete() {
             var ret = new ScriptDom.InsertBulkStatement();
-            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.InsertBulkColumnDefinition)c.ToMutable()));
-            ret.To = (ScriptDom.SchemaObjectName)to.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c.ToMutable()));
+            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.InsertBulkColumnDefinition)c?.ToMutable()));
+            ret.To = (ScriptDom.SchemaObjectName)to?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c?.ToMutable()));
             return ret;
         }
         

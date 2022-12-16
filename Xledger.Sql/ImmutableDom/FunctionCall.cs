@@ -46,17 +46,17 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FunctionCall ToMutableConcrete() {
             var ret = new ScriptDom.FunctionCall();
-            ret.CallTarget = (ScriptDom.CallTarget)callTarget.ToMutable();
-            ret.FunctionName = (ScriptDom.Identifier)functionName.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.CallTarget = (ScriptDom.CallTarget)callTarget?.ToMutable();
+            ret.FunctionName = (ScriptDom.Identifier)functionName?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.UniqueRowFilter = uniqueRowFilter;
-            ret.OverClause = (ScriptDom.OverClause)overClause.ToMutable();
-            ret.WithinGroupClause = (ScriptDom.WithinGroupClause)withinGroupClause.ToMutable();
-            ret.IgnoreRespectNulls.AddRange(ignoreRespectNulls.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.TrimOptions = (ScriptDom.Identifier)trimOptions.ToMutable();
-            ret.JsonParameters.AddRange(jsonParameters.SelectList(c => (ScriptDom.JsonKeyValue)c.ToMutable()));
-            ret.AbsentOrNullOnNull.AddRange(absentOrNullOnNull.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.OverClause = (ScriptDom.OverClause)overClause?.ToMutable();
+            ret.WithinGroupClause = (ScriptDom.WithinGroupClause)withinGroupClause?.ToMutable();
+            ret.IgnoreRespectNulls.AddRange(ignoreRespectNulls.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.TrimOptions = (ScriptDom.Identifier)trimOptions?.ToMutable();
+            ret.JsonParameters.AddRange(jsonParameters.SelectList(c => (ScriptDom.JsonKeyValue)c?.ToMutable()));
+            ret.AbsentOrNullOnNull.AddRange(absentOrNullOnNull.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

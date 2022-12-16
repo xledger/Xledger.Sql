@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FileTableCollateFileNameTableOption ToMutableConcrete() {
             var ret = new ScriptDom.FileTableCollateFileNameTableOption();
-            ret.Value = (ScriptDom.Identifier)@value.ToMutable();
+            ret.Value = (ScriptDom.Identifier)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

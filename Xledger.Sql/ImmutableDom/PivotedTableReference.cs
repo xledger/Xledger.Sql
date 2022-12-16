@@ -32,12 +32,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PivotedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.PivotedTableReference();
-            ret.TableReference = (ScriptDom.TableReference)tableReference.ToMutable();
-            ret.InColumns.AddRange(inColumns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.PivotColumn = (ScriptDom.ColumnReferenceExpression)pivotColumn.ToMutable();
-            ret.ValueColumns.AddRange(valueColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.AggregateFunctionIdentifier = (ScriptDom.MultiPartIdentifier)aggregateFunctionIdentifier.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.TableReference = (ScriptDom.TableReference)tableReference?.ToMutable();
+            ret.InColumns.AddRange(inColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.PivotColumn = (ScriptDom.ColumnReferenceExpression)pivotColumn?.ToMutable();
+            ret.ValueColumns.AddRange(valueColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.AggregateFunctionIdentifier = (ScriptDom.MultiPartIdentifier)aggregateFunctionIdentifier?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

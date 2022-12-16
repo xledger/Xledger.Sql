@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DeclareTableVariableBody ToMutableConcrete() {
             var ret = new ScriptDom.DeclareTableVariableBody();
-            ret.VariableName = (ScriptDom.Identifier)variableName.ToMutable();
+            ret.VariableName = (ScriptDom.Identifier)variableName?.ToMutable();
             ret.AsDefined = asDefined;
-            ret.Definition = (ScriptDom.TableDefinition)definition.ToMutable();
+            ret.Definition = (ScriptDom.TableDefinition)definition?.ToMutable();
             return ret;
         }
         

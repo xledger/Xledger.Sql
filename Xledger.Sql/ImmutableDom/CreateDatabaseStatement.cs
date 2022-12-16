@@ -42,15 +42,15 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateDatabaseStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateDatabaseStatement();
-            ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
-            ret.Containment = (ScriptDom.ContainmentDatabaseOption)containment.ToMutable();
-            ret.FileGroups.AddRange(fileGroups.SelectList(c => (ScriptDom.FileGroupDefinition)c.ToMutable()));
-            ret.LogOn.AddRange(logOn.SelectList(c => (ScriptDom.FileDeclaration)c.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DatabaseOption)c.ToMutable()));
+            ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
+            ret.Containment = (ScriptDom.ContainmentDatabaseOption)containment?.ToMutable();
+            ret.FileGroups.AddRange(fileGroups.SelectList(c => (ScriptDom.FileGroupDefinition)c?.ToMutable()));
+            ret.LogOn.AddRange(logOn.SelectList(c => (ScriptDom.FileDeclaration)c?.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DatabaseOption)c?.ToMutable()));
             ret.AttachMode = attachMode;
-            ret.DatabaseSnapshot = (ScriptDom.Identifier)databaseSnapshot.ToMutable();
-            ret.CopyOf = (ScriptDom.MultiPartIdentifier)copyOf.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.DatabaseSnapshot = (ScriptDom.Identifier)databaseSnapshot?.ToMutable();
+            ret.CopyOf = (ScriptDom.MultiPartIdentifier)copyOf?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

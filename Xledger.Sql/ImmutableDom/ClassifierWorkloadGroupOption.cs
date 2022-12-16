@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ClassifierWorkloadGroupOption ToMutableConcrete() {
             var ret = new ScriptDom.ClassifierWorkloadGroupOption();
-            ret.WorkloadGroupName = (ScriptDom.StringLiteral)workloadGroupName.ToMutable();
+            ret.WorkloadGroupName = (ScriptDom.StringLiteral)workloadGroupName?.ToMutable();
             ret.OptionType = optionType;
             return ret;
         }

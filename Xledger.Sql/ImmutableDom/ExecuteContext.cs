@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExecuteContext ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteContext();
-            ret.Principal = (ScriptDom.ScalarExpression)principal.ToMutable();
+            ret.Principal = (ScriptDom.ScalarExpression)principal?.ToMutable();
             ret.Kind = kind;
             return ret;
         }

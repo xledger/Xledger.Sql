@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SetIdentityInsertStatement ToMutableConcrete() {
             var ret = new ScriptDom.SetIdentityInsertStatement();
-            ret.Table = (ScriptDom.SchemaObjectName)table.ToMutable();
+            ret.Table = (ScriptDom.SchemaObjectName)table?.ToMutable();
             ret.IsOn = isOn;
             return ret;
         }

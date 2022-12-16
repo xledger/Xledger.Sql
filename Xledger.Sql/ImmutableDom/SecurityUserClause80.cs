@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SecurityUserClause80 ToMutableConcrete() {
             var ret = new ScriptDom.SecurityUserClause80();
-            ret.Users.AddRange(users.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Users.AddRange(users.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.UserType80 = userType80;
             return ret;
         }

@@ -24,13 +24,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateSpecification ToMutableConcrete() {
             var ret = new ScriptDom.UpdateSpecification();
-            ret.SetClauses.AddRange(setClauses.SelectList(c => (ScriptDom.SetClause)c.ToMutable()));
-            ret.FromClause = (ScriptDom.FromClause)fromClause.ToMutable();
-            ret.WhereClause = (ScriptDom.WhereClause)whereClause.ToMutable();
-            ret.Target = (ScriptDom.TableReference)target.ToMutable();
-            ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter.ToMutable();
-            ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause.ToMutable();
-            ret.OutputClause = (ScriptDom.OutputClause)outputClause.ToMutable();
+            ret.SetClauses.AddRange(setClauses.SelectList(c => (ScriptDom.SetClause)c?.ToMutable()));
+            ret.FromClause = (ScriptDom.FromClause)fromClause?.ToMutable();
+            ret.WhereClause = (ScriptDom.WhereClause)whereClause?.ToMutable();
+            ret.Target = (ScriptDom.TableReference)target?.ToMutable();
+            ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter?.ToMutable();
+            ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause?.ToMutable();
+            ret.OutputClause = (ScriptDom.OutputClause)outputClause?.ToMutable();
             return ret;
         }
         

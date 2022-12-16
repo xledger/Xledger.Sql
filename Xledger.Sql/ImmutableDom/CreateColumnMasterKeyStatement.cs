@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateColumnMasterKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateColumnMasterKeyStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ColumnMasterKeyParameter)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ColumnMasterKeyParameter)c?.ToMutable()));
             return ret;
         }
         

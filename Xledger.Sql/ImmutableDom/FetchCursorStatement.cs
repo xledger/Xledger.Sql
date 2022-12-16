@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FetchCursorStatement ToMutableConcrete() {
             var ret = new ScriptDom.FetchCursorStatement();
-            ret.FetchType = (ScriptDom.FetchType)fetchType.ToMutable();
-            ret.IntoVariables.AddRange(intoVariables.SelectList(c => (ScriptDom.VariableReference)c.ToMutable()));
-            ret.Cursor = (ScriptDom.CursorId)cursor.ToMutable();
+            ret.FetchType = (ScriptDom.FetchType)fetchType?.ToMutable();
+            ret.IntoVariables.AddRange(intoVariables.SelectList(c => (ScriptDom.VariableReference)c?.ToMutable()));
+            ret.Cursor = (ScriptDom.CursorId)cursor?.ToMutable();
             return ret;
         }
         

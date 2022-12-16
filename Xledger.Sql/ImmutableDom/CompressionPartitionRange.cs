@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CompressionPartitionRange ToMutableConcrete() {
             var ret = new ScriptDom.CompressionPartitionRange();
-            ret.From = (ScriptDom.ScalarExpression)from.ToMutable();
-            ret.To = (ScriptDom.ScalarExpression)to.ToMutable();
+            ret.From = (ScriptDom.ScalarExpression)from?.ToMutable();
+            ret.To = (ScriptDom.ScalarExpression)to?.ToMutable();
             return ret;
         }
         

@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.UserLoginOption ToMutableConcrete() {
             var ret = new ScriptDom.UserLoginOption();
             ret.UserLoginOptionType = userLoginOptionType;
-            ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
+            ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
             return ret;
         }
         

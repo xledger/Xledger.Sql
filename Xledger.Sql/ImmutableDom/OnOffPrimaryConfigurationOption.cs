@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.OnOffPrimaryConfigurationOption();
             ret.OptionState = optionState;
             ret.OptionKind = optionKind;
-            ret.GenericOptionKind = (ScriptDom.Identifier)genericOptionKind.ToMutable();
+            ret.GenericOptionKind = (ScriptDom.Identifier)genericOptionKind?.ToMutable();
             return ret;
         }
         

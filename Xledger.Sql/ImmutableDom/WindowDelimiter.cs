@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.WindowDelimiter ToMutableConcrete() {
             var ret = new ScriptDom.WindowDelimiter();
             ret.WindowDelimiterType = windowDelimiterType;
-            ret.OffsetValue = (ScriptDom.ScalarExpression)offsetValue.ToMutable();
+            ret.OffsetValue = (ScriptDom.ScalarExpression)offsetValue?.ToMutable();
             return ret;
         }
         

@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TSEqualCall ToMutableConcrete() {
             var ret = new ScriptDom.TSEqualCall();
-            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression.ToMutable();
-            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression.ToMutable();
+            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression?.ToMutable();
+            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression?.ToMutable();
             return ret;
         }
         

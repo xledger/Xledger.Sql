@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FullTextCatalogAndFileGroup ToMutableConcrete() {
             var ret = new ScriptDom.FullTextCatalogAndFileGroup();
-            ret.CatalogName = (ScriptDom.Identifier)catalogName.ToMutable();
-            ret.FileGroupName = (ScriptDom.Identifier)fileGroupName.ToMutable();
+            ret.CatalogName = (ScriptDom.Identifier)catalogName?.ToMutable();
+            ret.FileGroupName = (ScriptDom.Identifier)fileGroupName?.ToMutable();
             ret.FileGroupIsFirst = fileGroupIsFirst;
             return ret;
         }

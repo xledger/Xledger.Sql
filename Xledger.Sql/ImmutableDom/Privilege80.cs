@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.Privilege80 ToMutableConcrete() {
             var ret = new ScriptDom.Privilege80();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.PrivilegeType80 = privilegeType80;
             return ret;
         }

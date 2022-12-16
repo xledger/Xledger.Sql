@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CompositeGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.CompositeGroupingSpecification();
-            ret.Items.AddRange(items.SelectList(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
+            ret.Items.AddRange(items.SelectList(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
             return ret;
         }
         

@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterCryptographicProviderStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterCryptographicProviderStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.Option = option;
-            ret.File = (ScriptDom.Literal)file.ToMutable();
+            ret.File = (ScriptDom.Literal)file?.ToMutable();
             return ret;
         }
         

@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.TableSampleClause ToMutableConcrete() {
             var ret = new ScriptDom.TableSampleClause();
             ret.System = system;
-            ret.SampleNumber = (ScriptDom.ScalarExpression)sampleNumber.ToMutable();
+            ret.SampleNumber = (ScriptDom.ScalarExpression)sampleNumber?.ToMutable();
             ret.TableSampleClauseOption = tableSampleClauseOption;
-            ret.RepeatSeed = (ScriptDom.ScalarExpression)repeatSeed.ToMutable();
+            ret.RepeatSeed = (ScriptDom.ScalarExpression)repeatSeed?.ToMutable();
             return ret;
         }
         

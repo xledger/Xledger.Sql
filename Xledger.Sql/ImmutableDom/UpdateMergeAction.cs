@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateMergeAction ToMutableConcrete() {
             var ret = new ScriptDom.UpdateMergeAction();
-            ret.SetClauses.AddRange(setClauses.SelectList(c => (ScriptDom.SetClause)c.ToMutable()));
+            ret.SetClauses.AddRange(setClauses.SelectList(c => (ScriptDom.SetClause)c?.ToMutable()));
             return ret;
         }
         

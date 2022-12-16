@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GridsSpatialIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.GridsSpatialIndexOption();
-            ret.GridParameters.AddRange(gridParameters.SelectList(c => (ScriptDom.GridParameter)c.ToMutable()));
+            ret.GridParameters.AddRange(gridParameters.SelectList(c => (ScriptDom.GridParameter)c?.ToMutable()));
             return ret;
         }
         

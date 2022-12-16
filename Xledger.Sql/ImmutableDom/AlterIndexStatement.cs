@@ -35,12 +35,12 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterIndexStatement();
             ret.All = all;
             ret.AlterIndexType = alterIndexType;
-            ret.Partition = (ScriptDom.PartitionSpecifier)partition.ToMutable();
-            ret.PromotedPaths.AddRange(promotedPaths.SelectList(c => (ScriptDom.SelectiveXmlIndexPromotedPath)c.ToMutable()));
-            ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.Partition = (ScriptDom.PartitionSpecifier)partition?.ToMutable();
+            ret.PromotedPaths.AddRange(promotedPaths.SelectList(c => (ScriptDom.SelectiveXmlIndexPromotedPath)c?.ToMutable()));
+            ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
             return ret;
         }
         

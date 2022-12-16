@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AssemblyEncryptionSource ToMutableConcrete() {
             var ret = new ScriptDom.AssemblyEncryptionSource();
-            ret.Assembly = (ScriptDom.Identifier)assembly.ToMutable();
+            ret.Assembly = (ScriptDom.Identifier)assembly?.ToMutable();
             return ret;
         }
         

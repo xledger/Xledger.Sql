@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.EventDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.EventDeclaration();
-            ret.ObjectName = (ScriptDom.EventSessionObjectName)objectName.ToMutable();
-            ret.EventDeclarationSetParameters.AddRange(eventDeclarationSetParameters.SelectList(c => (ScriptDom.EventDeclarationSetParameter)c.ToMutable()));
-            ret.EventDeclarationActionParameters.AddRange(eventDeclarationActionParameters.SelectList(c => (ScriptDom.EventSessionObjectName)c.ToMutable()));
-            ret.EventDeclarationPredicateParameter = (ScriptDom.BooleanExpression)eventDeclarationPredicateParameter.ToMutable();
+            ret.ObjectName = (ScriptDom.EventSessionObjectName)objectName?.ToMutable();
+            ret.EventDeclarationSetParameters.AddRange(eventDeclarationSetParameters.SelectList(c => (ScriptDom.EventDeclarationSetParameter)c?.ToMutable()));
+            ret.EventDeclarationActionParameters.AddRange(eventDeclarationActionParameters.SelectList(c => (ScriptDom.EventSessionObjectName)c?.ToMutable()));
+            ret.EventDeclarationPredicateParameter = (ScriptDom.BooleanExpression)eventDeclarationPredicateParameter?.ToMutable();
             return ret;
         }
         

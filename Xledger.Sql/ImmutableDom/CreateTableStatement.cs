@@ -51,18 +51,18 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateTableStatement();
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             ret.AsEdge = asEdge;
             ret.AsFileTable = asFileTable;
             ret.AsNode = asNode;
-            ret.Definition = (ScriptDom.TableDefinition)definition.ToMutable();
-            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
-            ret.FederationScheme = (ScriptDom.FederationScheme)federationScheme.ToMutable();
-            ret.TextImageOn = (ScriptDom.IdentifierOrValueExpression)textImageOn.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c.ToMutable()));
-            ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement.ToMutable();
-            ret.CtasColumns.AddRange(ctasColumns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn.ToMutable();
+            ret.Definition = (ScriptDom.TableDefinition)definition?.ToMutable();
+            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
+            ret.FederationScheme = (ScriptDom.FederationScheme)federationScheme?.ToMutable();
+            ret.TextImageOn = (ScriptDom.IdentifierOrValueExpression)textImageOn?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c?.ToMutable()));
+            ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement?.ToMutable();
+            ret.CtasColumns.AddRange(ctasColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn?.ToMutable();
             return ret;
         }
         

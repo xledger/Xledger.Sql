@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ScalarSubquery ToMutableConcrete() {
             var ret = new ScriptDom.ScalarSubquery();
-            ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

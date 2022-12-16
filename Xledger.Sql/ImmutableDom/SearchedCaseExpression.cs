@@ -20,9 +20,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SearchedCaseExpression ToMutableConcrete() {
             var ret = new ScriptDom.SearchedCaseExpression();
-            ret.WhenClauses.AddRange(whenClauses.SelectList(c => (ScriptDom.SearchedWhenClause)c.ToMutable()));
-            ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.WhenClauses.AddRange(whenClauses.SelectList(c => (ScriptDom.SearchedWhenClause)c?.ToMutable()));
+            ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

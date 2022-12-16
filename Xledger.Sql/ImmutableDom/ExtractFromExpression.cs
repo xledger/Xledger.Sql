@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExtractFromExpression ToMutableConcrete() {
             var ret = new ScriptDom.ExtractFromExpression();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
-            ret.ExtractedElement = (ScriptDom.Identifier)extractedElement.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
+            ret.ExtractedElement = (ScriptDom.Identifier)extractedElement?.ToMutable();
             return ret;
         }
         

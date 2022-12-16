@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CellsPerObjectSpatialIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.CellsPerObjectSpatialIndexOption();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             return ret;
         }
         

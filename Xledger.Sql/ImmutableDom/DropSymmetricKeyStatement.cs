@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DropSymmetricKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropSymmetricKeyStatement();
             ret.RemoveProviderKey = removeProviderKey;
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsIfExists = isIfExists;
             return ret;
         }

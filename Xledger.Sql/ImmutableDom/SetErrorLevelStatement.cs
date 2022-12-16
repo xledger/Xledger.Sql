@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SetErrorLevelStatement ToMutableConcrete() {
             var ret = new ScriptDom.SetErrorLevelStatement();
-            ret.Level = (ScriptDom.ScalarExpression)level.ToMutable();
+            ret.Level = (ScriptDom.ScalarExpression)level?.ToMutable();
             return ret;
         }
         

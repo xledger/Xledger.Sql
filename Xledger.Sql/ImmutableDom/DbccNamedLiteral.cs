@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DbccNamedLiteral ToMutableConcrete() {
             var ret = new ScriptDom.DbccNamedLiteral();
             ret.Name = name;
-            ret.Value = (ScriptDom.ScalarExpression)@value.ToMutable();
+            ret.Value = (ScriptDom.ScalarExpression)@value?.ToMutable();
             return ret;
         }
         

@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AddFileSpec ToMutableConcrete() {
             var ret = new ScriptDom.AddFileSpec();
-            ret.File = (ScriptDom.ScalarExpression)file.ToMutable();
-            ret.FileName = (ScriptDom.Literal)fileName.ToMutable();
+            ret.File = (ScriptDom.ScalarExpression)file?.ToMutable();
+            ret.FileName = (ScriptDom.Literal)fileName?.ToMutable();
             return ret;
         }
         

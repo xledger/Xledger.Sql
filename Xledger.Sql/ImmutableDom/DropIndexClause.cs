@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropIndexClause ToMutableConcrete() {
             var ret = new ScriptDom.DropIndexClause();
-            ret.Index = (ScriptDom.Identifier)index.ToMutable();
-            ret.Object = (ScriptDom.SchemaObjectName)@object.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.Index = (ScriptDom.Identifier)index?.ToMutable();
+            ret.Object = (ScriptDom.SchemaObjectName)@object?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
             return ret;
         }
         

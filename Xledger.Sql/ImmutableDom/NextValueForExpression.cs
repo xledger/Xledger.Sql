@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.NextValueForExpression ToMutableConcrete() {
             var ret = new ScriptDom.NextValueForExpression();
-            ret.SequenceName = (ScriptDom.SchemaObjectName)sequenceName.ToMutable();
-            ret.OverClause = (ScriptDom.OverClause)overClause.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.SequenceName = (ScriptDom.SchemaObjectName)sequenceName?.ToMutable();
+            ret.OverClause = (ScriptDom.OverClause)overClause?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

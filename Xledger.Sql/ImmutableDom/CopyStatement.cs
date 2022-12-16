@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CopyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CopyStatement();
-            ret.From.AddRange(from.SelectList(c => (ScriptDom.StringLiteral)c.ToMutable()));
-            ret.Into = (ScriptDom.SchemaObjectName)into.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CopyOption)c.ToMutable()));
-            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.From.AddRange(from.SelectList(c => (ScriptDom.StringLiteral)c?.ToMutable()));
+            ret.Into = (ScriptDom.SchemaObjectName)into?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CopyOption)c?.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
             return ret;
         }
         

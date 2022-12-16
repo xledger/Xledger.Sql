@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.GlobalVariableExpression ToMutableConcrete() {
             var ret = new ScriptDom.GlobalVariableExpression();
             ret.Name = name;
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

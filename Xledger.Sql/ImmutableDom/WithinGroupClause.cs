@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WithinGroupClause ToMutableConcrete() {
             var ret = new ScriptDom.WithinGroupClause();
-            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause.ToMutable();
+            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause?.ToMutable();
             ret.HasGraphPath = hasGraphPath;
             return ret;
         }

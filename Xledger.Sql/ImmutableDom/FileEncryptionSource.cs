@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FileEncryptionSource ToMutableConcrete() {
             var ret = new ScriptDom.FileEncryptionSource();
             ret.IsExecutable = isExecutable;
-            ret.File = (ScriptDom.Literal)file.ToMutable();
+            ret.File = (ScriptDom.Literal)file?.ToMutable();
             return ret;
         }
         

@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AuditActionSpecification ToMutableConcrete() {
             var ret = new ScriptDom.AuditActionSpecification();
-            ret.Actions.AddRange(actions.SelectList(c => (ScriptDom.DatabaseAuditAction)c.ToMutable()));
-            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c.ToMutable()));
-            ret.TargetObject = (ScriptDom.SecurityTargetObject)targetObject.ToMutable();
+            ret.Actions.AddRange(actions.SelectList(c => (ScriptDom.DatabaseAuditAction)c?.ToMutable()));
+            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c?.ToMutable()));
+            ret.TargetObject = (ScriptDom.SecurityTargetObject)targetObject?.ToMutable();
             return ret;
         }
         

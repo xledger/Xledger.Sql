@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ClassifierMemberNameOption ToMutableConcrete() {
             var ret = new ScriptDom.ClassifierMemberNameOption();
-            ret.MemberName = (ScriptDom.StringLiteral)memberName.ToMutable();
+            ret.MemberName = (ScriptDom.StringLiteral)memberName?.ToMutable();
             ret.OptionType = optionType;
             return ret;
         }

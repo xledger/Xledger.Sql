@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IndexExpressionOption ToMutableConcrete() {
             var ret = new ScriptDom.IndexExpressionOption();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

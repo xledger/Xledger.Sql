@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SchemaObjectName ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectName();
-            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         

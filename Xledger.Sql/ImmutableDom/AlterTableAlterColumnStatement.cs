@@ -49,18 +49,18 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterTableAlterColumnStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableAlterColumnStatement();
-            ret.ColumnIdentifier = (ScriptDom.Identifier)columnIdentifier.ToMutable();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
+            ret.ColumnIdentifier = (ScriptDom.Identifier)columnIdentifier?.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
             ret.AlterTableAlterColumnOption = alterTableAlterColumnOption;
-            ret.StorageOptions = (ScriptDom.ColumnStorageOptions)storageOptions.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.StorageOptions = (ScriptDom.ColumnStorageOptions)storageOptions?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
             ret.GeneratedAlways = generatedAlways;
             ret.IsHidden = isHidden;
-            ret.Encryption = (ScriptDom.ColumnEncryptionDefinition)encryption.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Encryption = (ScriptDom.ColumnEncryptionDefinition)encryption?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             ret.IsMasked = isMasked;
-            ret.MaskingFunction = (ScriptDom.StringLiteral)maskingFunction.ToMutable();
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.MaskingFunction = (ScriptDom.StringLiteral)maskingFunction?.ToMutable();
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

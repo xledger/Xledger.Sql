@@ -20,9 +20,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateStatement ToMutableConcrete() {
             var ret = new ScriptDom.UpdateStatement();
-            ret.UpdateSpecification = (ScriptDom.UpdateSpecification)updateSpecification.ToMutable();
-            ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.UpdateSpecification = (ScriptDom.UpdateSpecification)updateSpecification?.ToMutable();
+            ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces?.ToMutable();
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
             return ret;
         }
         

@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BooleanComparisonExpression ToMutableConcrete() {
             var ret = new ScriptDom.BooleanComparisonExpression();
             ret.ComparisonType = comparisonType;
-            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression.ToMutable();
-            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression.ToMutable();
+            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression?.ToMutable();
+            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression?.ToMutable();
             return ret;
         }
         

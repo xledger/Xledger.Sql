@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueueDelayAuditOption ToMutableConcrete() {
             var ret = new ScriptDom.QueueDelayAuditOption();
-            ret.Delay = (ScriptDom.Literal)delay.ToMutable();
+            ret.Delay = (ScriptDom.Literal)delay?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

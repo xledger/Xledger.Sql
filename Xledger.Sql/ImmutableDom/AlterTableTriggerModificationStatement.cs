@@ -27,8 +27,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTableTriggerModificationStatement();
             ret.TriggerEnforcement = triggerEnforcement;
             ret.All = all;
-            ret.TriggerNames.AddRange(triggerNames.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.TriggerNames.AddRange(triggerNames.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

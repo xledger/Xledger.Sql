@@ -25,12 +25,12 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SelectStatementSnippet ToMutableConcrete() {
             var ret = new ScriptDom.SelectStatementSnippet();
             ret.Script = script;
-            ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression.ToMutable();
-            ret.Into = (ScriptDom.SchemaObjectName)into.ToMutable();
-            ret.On = (ScriptDom.Identifier)on.ToMutable();
-            ret.ComputeClauses.AddRange(computeClauses.SelectList(c => (ScriptDom.ComputeClause)c.ToMutable()));
-            ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression?.ToMutable();
+            ret.Into = (ScriptDom.SchemaObjectName)into?.ToMutable();
+            ret.On = (ScriptDom.Identifier)on?.ToMutable();
+            ret.ComputeClauses.AddRange(computeClauses.SelectList(c => (ScriptDom.ComputeClause)c?.ToMutable()));
+            ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces?.ToMutable();
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
             return ret;
         }
         

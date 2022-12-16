@@ -33,11 +33,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ReceiveStatement ToMutableConcrete() {
             var ret = new ScriptDom.ReceiveStatement();
-            ret.Top = (ScriptDom.ScalarExpression)top.ToMutable();
-            ret.SelectElements.AddRange(selectElements.SelectList(c => (ScriptDom.SelectElement)c.ToMutable()));
-            ret.Queue = (ScriptDom.SchemaObjectName)queue.ToMutable();
-            ret.Into = (ScriptDom.VariableTableReference)into.ToMutable();
-            ret.Where = (ScriptDom.ValueExpression)where.ToMutable();
+            ret.Top = (ScriptDom.ScalarExpression)top?.ToMutable();
+            ret.SelectElements.AddRange(selectElements.SelectList(c => (ScriptDom.SelectElement)c?.ToMutable()));
+            ret.Queue = (ScriptDom.SchemaObjectName)queue?.ToMutable();
+            ret.Into = (ScriptDom.VariableTableReference)into?.ToMutable();
+            ret.Where = (ScriptDom.ValueExpression)where?.ToMutable();
             ret.IsConversationGroupIdWhere = isConversationGroupIdWhere;
             return ret;
         }

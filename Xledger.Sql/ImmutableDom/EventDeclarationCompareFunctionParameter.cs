@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.EventDeclarationCompareFunctionParameter ToMutableConcrete() {
             var ret = new ScriptDom.EventDeclarationCompareFunctionParameter();
-            ret.Name = (ScriptDom.EventSessionObjectName)name.ToMutable();
-            ret.SourceDeclaration = (ScriptDom.SourceDeclaration)sourceDeclaration.ToMutable();
-            ret.EventValue = (ScriptDom.ScalarExpression)eventValue.ToMutable();
+            ret.Name = (ScriptDom.EventSessionObjectName)name?.ToMutable();
+            ret.SourceDeclaration = (ScriptDom.SourceDeclaration)sourceDeclaration?.ToMutable();
+            ret.EventValue = (ScriptDom.ScalarExpression)eventValue?.ToMutable();
             return ret;
         }
         

@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LiteralReplicaOption ToMutableConcrete() {
             var ret = new ScriptDom.LiteralReplicaOption();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

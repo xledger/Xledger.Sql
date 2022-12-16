@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UserDefinedTypePropertyAccess ToMutableConcrete() {
             var ret = new ScriptDom.UserDefinedTypePropertyAccess();
-            ret.CallTarget = (ScriptDom.CallTarget)callTarget.ToMutable();
-            ret.PropertyName = (ScriptDom.Identifier)propertyName.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.CallTarget = (ScriptDom.CallTarget)callTarget?.ToMutable();
+            ret.PropertyName = (ScriptDom.Identifier)propertyName?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

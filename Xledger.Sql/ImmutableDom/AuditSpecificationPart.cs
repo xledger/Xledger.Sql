@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AuditSpecificationPart ToMutableConcrete() {
             var ret = new ScriptDom.AuditSpecificationPart();
             ret.IsDrop = isDrop;
-            ret.Details = (ScriptDom.AuditSpecificationDetail)details.ToMutable();
+            ret.Details = (ScriptDom.AuditSpecificationDetail)details?.ToMutable();
             return ret;
         }
         

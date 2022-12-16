@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropFullTextIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropFullTextIndexStatement();
-            ret.TableName = (ScriptDom.SchemaObjectName)tableName.ToMutable();
+            ret.TableName = (ScriptDom.SchemaObjectName)tableName?.ToMutable();
             return ret;
         }
         

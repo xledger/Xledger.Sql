@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SessionTimeoutPayloadOption ToMutableConcrete() {
             var ret = new ScriptDom.SessionTimeoutPayloadOption();
             ret.IsNever = isNever;
-            ret.Timeout = (ScriptDom.Literal)timeout.ToMutable();
+            ret.Timeout = (ScriptDom.Literal)timeout?.ToMutable();
             ret.Kind = kind;
             return ret;
         }

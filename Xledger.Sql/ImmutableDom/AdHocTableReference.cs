@@ -23,9 +23,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AdHocTableReference ToMutableConcrete() {
             var ret = new ScriptDom.AdHocTableReference();
-            ret.DataSource = (ScriptDom.AdHocDataSource)dataSource.ToMutable();
-            ret.Object = (ScriptDom.SchemaObjectNameOrValueExpression)@object.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.DataSource = (ScriptDom.AdHocDataSource)dataSource?.ToMutable();
+            ret.Object = (ScriptDom.SchemaObjectNameOrValueExpression)@object?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SetTextSizeStatement ToMutableConcrete() {
             var ret = new ScriptDom.SetTextSizeStatement();
-            ret.TextSize = (ScriptDom.ScalarExpression)textSize.ToMutable();
+            ret.TextSize = (ScriptDom.ScalarExpression)textSize?.ToMutable();
             return ret;
         }
         

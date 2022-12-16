@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.GraphRecursiveMatchQuantifier ToMutableConcrete() {
             var ret = new ScriptDom.GraphRecursiveMatchQuantifier();
             ret.IsPlusSign = isPlusSign;
-            ret.LowerLimit = (ScriptDom.Literal)lowerLimit.ToMutable();
-            ret.UpperLimit = (ScriptDom.Literal)upperLimit.ToMutable();
+            ret.LowerLimit = (ScriptDom.Literal)lowerLimit?.ToMutable();
+            ret.UpperLimit = (ScriptDom.Literal)upperLimit?.ToMutable();
             return ret;
         }
         

@@ -23,8 +23,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ColumnReferenceExpression ToMutableConcrete() {
             var ret = new ScriptDom.ColumnReferenceExpression();
             ret.ColumnType = columnType;
-            ret.MultiPartIdentifier = (ScriptDom.MultiPartIdentifier)multiPartIdentifier.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.MultiPartIdentifier = (ScriptDom.MultiPartIdentifier)multiPartIdentifier?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

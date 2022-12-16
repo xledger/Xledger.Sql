@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterAuthorizationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterAuthorizationStatement();
-            ret.SecurityTargetObject = (ScriptDom.SecurityTargetObject)securityTargetObject.ToMutable();
+            ret.SecurityTargetObject = (ScriptDom.SecurityTargetObject)securityTargetObject?.ToMutable();
             ret.ToSchemaOwner = toSchemaOwner;
-            ret.PrincipalName = (ScriptDom.Identifier)principalName.ToMutable();
+            ret.PrincipalName = (ScriptDom.Identifier)principalName?.ToMutable();
             return ret;
         }
         

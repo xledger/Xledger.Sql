@@ -29,8 +29,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.FullTextStopListAction();
             ret.IsAdd = isAdd;
             ret.IsAll = isAll;
-            ret.StopWord = (ScriptDom.Literal)stopWord.ToMutable();
-            ret.LanguageTerm = (ScriptDom.IdentifierOrValueExpression)languageTerm.ToMutable();
+            ret.StopWord = (ScriptDom.Literal)stopWord?.ToMutable();
+            ret.LanguageTerm = (ScriptDom.IdentifierOrValueExpression)languageTerm?.ToMutable();
             return ret;
         }
         

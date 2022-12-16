@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MirrorToClause ToMutableConcrete() {
             var ret = new ScriptDom.MirrorToClause();
-            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c.ToMutable()));
+            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
             return ret;
         }
         

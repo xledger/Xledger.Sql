@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WhereClause ToMutableConcrete() {
             var ret = new ScriptDom.WhereClause();
-            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition.ToMutable();
-            ret.Cursor = (ScriptDom.CursorId)cursor.ToMutable();
+            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition?.ToMutable();
+            ret.Cursor = (ScriptDom.CursorId)cursor?.ToMutable();
             return ret;
         }
         

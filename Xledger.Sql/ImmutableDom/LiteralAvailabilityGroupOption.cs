@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LiteralAvailabilityGroupOption ToMutableConcrete() {
             var ret = new ScriptDom.LiteralAvailabilityGroupOption();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateTypeTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateTypeTableStatement();
-            ret.Definition = (ScriptDom.TableDefinition)definition.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c.ToMutable()));
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.Definition = (ScriptDom.TableDefinition)definition?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c?.ToMutable()));
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
         

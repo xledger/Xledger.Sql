@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateLoginStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateLoginStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Source = (ScriptDom.CreateLoginSource)source.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Source = (ScriptDom.CreateLoginSource)source?.ToMutable();
             return ret;
         }
         

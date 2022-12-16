@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropSearchPropertyListAction ToMutableConcrete() {
             var ret = new ScriptDom.DropSearchPropertyListAction();
-            ret.PropertyName = (ScriptDom.StringLiteral)propertyName.ToMutable();
+            ret.PropertyName = (ScriptDom.StringLiteral)propertyName?.ToMutable();
             return ret;
         }
         

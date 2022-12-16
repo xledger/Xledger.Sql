@@ -32,12 +32,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OpenXmlTableReference ToMutableConcrete() {
             var ret = new ScriptDom.OpenXmlTableReference();
-            ret.Variable = (ScriptDom.VariableReference)variable.ToMutable();
-            ret.RowPattern = (ScriptDom.ValueExpression)rowPattern.ToMutable();
-            ret.Flags = (ScriptDom.ValueExpression)flags.ToMutable();
-            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItem)c.ToMutable()));
-            ret.TableName = (ScriptDom.SchemaObjectName)tableName.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.Variable = (ScriptDom.VariableReference)variable?.ToMutable();
+            ret.RowPattern = (ScriptDom.ValueExpression)rowPattern?.ToMutable();
+            ret.Flags = (ScriptDom.ValueExpression)flags?.ToMutable();
+            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItem)c?.ToMutable()));
+            ret.TableName = (ScriptDom.SchemaObjectName)tableName?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

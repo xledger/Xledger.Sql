@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TruncateTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.TruncateTableStatement();
-            ret.TableName = (ScriptDom.SchemaObjectName)tableName.ToMutable();
-            ret.PartitionRanges.AddRange(partitionRanges.SelectList(c => (ScriptDom.CompressionPartitionRange)c.ToMutable()));
+            ret.TableName = (ScriptDom.SchemaObjectName)tableName?.ToMutable();
+            ret.PartitionRanges.AddRange(partitionRanges.SelectList(c => (ScriptDom.CompressionPartitionRange)c?.ToMutable()));
             return ret;
         }
         

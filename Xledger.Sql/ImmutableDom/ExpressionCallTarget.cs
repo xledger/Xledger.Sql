@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExpressionCallTarget ToMutableConcrete() {
             var ret = new ScriptDom.ExpressionCallTarget();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             return ret;
         }
         

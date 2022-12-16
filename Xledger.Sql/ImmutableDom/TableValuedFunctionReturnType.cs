@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TableValuedFunctionReturnType ToMutableConcrete() {
             var ret = new ScriptDom.TableValuedFunctionReturnType();
-            ret.DeclareTableVariableBody = (ScriptDom.DeclareTableVariableBody)declareTableVariableBody.ToMutable();
+            ret.DeclareTableVariableBody = (ScriptDom.DeclareTableVariableBody)declareTableVariableBody?.ToMutable();
             return ret;
         }
         

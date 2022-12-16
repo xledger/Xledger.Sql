@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WindowsCreateLoginSource ToMutableConcrete() {
             var ret = new ScriptDom.WindowsCreateLoginSource();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
             return ret;
         }
         

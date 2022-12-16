@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ValuesInsertSource ToMutableConcrete() {
             var ret = new ScriptDom.ValuesInsertSource();
             ret.IsDefaultValues = isDefaultValues;
-            ret.RowValues.AddRange(rowValues.SelectList(c => (ScriptDom.RowValue)c.ToMutable()));
+            ret.RowValues.AddRange(rowValues.SelectList(c => (ScriptDom.RowValue)c?.ToMutable()));
             return ret;
         }
         

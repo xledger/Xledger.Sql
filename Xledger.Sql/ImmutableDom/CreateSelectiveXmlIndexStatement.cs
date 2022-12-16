@@ -37,14 +37,14 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateSelectiveXmlIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSelectiveXmlIndexStatement();
             ret.IsSecondary = isSecondary;
-            ret.XmlColumn = (ScriptDom.Identifier)xmlColumn.ToMutable();
-            ret.PromotedPaths.AddRange(promotedPaths.SelectList(c => (ScriptDom.SelectiveXmlIndexPromotedPath)c.ToMutable()));
-            ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces.ToMutable();
-            ret.UsingXmlIndexName = (ScriptDom.Identifier)usingXmlIndexName.ToMutable();
-            ret.PathName = (ScriptDom.Identifier)pathName.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.XmlColumn = (ScriptDom.Identifier)xmlColumn?.ToMutable();
+            ret.PromotedPaths.AddRange(promotedPaths.SelectList(c => (ScriptDom.SelectiveXmlIndexPromotedPath)c?.ToMutable()));
+            ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces?.ToMutable();
+            ret.UsingXmlIndexName = (ScriptDom.Identifier)usingXmlIndexName?.ToMutable();
+            ret.PathName = (ScriptDom.Identifier)pathName?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
             return ret;
         }
         

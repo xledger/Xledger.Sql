@@ -31,9 +31,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.GraphMatchRecursivePredicate ToMutableConcrete() {
             var ret = new ScriptDom.GraphMatchRecursivePredicate();
             ret.Function = function;
-            ret.OuterNodeExpression = (ScriptDom.GraphMatchNodeExpression)outerNodeExpression.ToMutable();
-            ret.Expression.AddRange(expression.SelectList(c => (ScriptDom.BooleanExpression)c.ToMutable()));
-            ret.RecursiveQuantifier = (ScriptDom.GraphRecursiveMatchQuantifier)recursiveQuantifier.ToMutable();
+            ret.OuterNodeExpression = (ScriptDom.GraphMatchNodeExpression)outerNodeExpression?.ToMutable();
+            ret.Expression.AddRange(expression.SelectList(c => (ScriptDom.BooleanExpression)c?.ToMutable()));
+            ret.RecursiveQuantifier = (ScriptDom.GraphRecursiveMatchQuantifier)recursiveQuantifier?.ToMutable();
             ret.AnchorOnLeft = anchorOnLeft;
             return ret;
         }

@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FileDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.FileDeclaration();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FileDeclarationOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FileDeclarationOption)c?.ToMutable()));
             ret.IsPrimary = isPrimary;
             return ret;
         }

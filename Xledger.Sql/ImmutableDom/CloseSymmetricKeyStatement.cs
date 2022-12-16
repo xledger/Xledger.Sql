@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CloseSymmetricKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CloseSymmetricKeyStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.All = all;
             return ret;
         }

@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MoveConversationStatement ToMutableConcrete() {
             var ret = new ScriptDom.MoveConversationStatement();
-            ret.Conversation = (ScriptDom.ScalarExpression)conversation.ToMutable();
-            ret.Group = (ScriptDom.ScalarExpression)group.ToMutable();
+            ret.Conversation = (ScriptDom.ScalarExpression)conversation?.ToMutable();
+            ret.Group = (ScriptDom.ScalarExpression)group?.ToMutable();
             return ret;
         }
         

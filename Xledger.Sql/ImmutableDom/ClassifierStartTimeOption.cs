@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ClassifierStartTimeOption ToMutableConcrete() {
             var ret = new ScriptDom.ClassifierStartTimeOption();
-            ret.Time = (ScriptDom.WlmTimeLiteral)time.ToMutable();
+            ret.Time = (ScriptDom.WlmTimeLiteral)time?.ToMutable();
             ret.OptionType = optionType;
             return ret;
         }

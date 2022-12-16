@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LiteralPayloadOption ToMutableConcrete() {
             var ret = new ScriptDom.LiteralPayloadOption();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.Kind = kind;
             return ret;
         }

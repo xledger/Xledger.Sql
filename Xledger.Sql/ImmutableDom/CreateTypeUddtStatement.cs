@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateTypeUddtStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateTypeUddtStatement();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
-            ret.NullableConstraint = (ScriptDom.NullableConstraintDefinition)nullableConstraint.ToMutable();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
+            ret.NullableConstraint = (ScriptDom.NullableConstraintDefinition)nullableConstraint?.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
         

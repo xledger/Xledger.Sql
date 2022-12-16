@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterPartitionFunctionStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterPartitionFunctionStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsSplit = isSplit;
-            ret.Boundary = (ScriptDom.ScalarExpression)boundary.ToMutable();
+            ret.Boundary = (ScriptDom.ScalarExpression)boundary?.ToMutable();
             return ret;
         }
         

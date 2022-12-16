@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ScalarFunctionReturnType ToMutableConcrete() {
             var ret = new ScriptDom.ScalarFunctionReturnType();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
             return ret;
         }
         

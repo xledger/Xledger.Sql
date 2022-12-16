@@ -22,10 +22,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateCredentialStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateCredentialStatement();
-            ret.CryptographicProviderName = (ScriptDom.Identifier)cryptographicProviderName.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Identity = (ScriptDom.Literal)identity.ToMutable();
-            ret.Secret = (ScriptDom.Literal)secret.ToMutable();
+            ret.CryptographicProviderName = (ScriptDom.Identifier)cryptographicProviderName?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Identity = (ScriptDom.Literal)identity?.ToMutable();
+            ret.Secret = (ScriptDom.Literal)secret?.ToMutable();
             ret.IsDatabaseScoped = isDatabaseScoped;
             return ret;
         }

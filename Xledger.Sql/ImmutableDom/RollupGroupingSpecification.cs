@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RollupGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.RollupGroupingSpecification();
-            ret.Arguments.AddRange(arguments.SelectList(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
+            ret.Arguments.AddRange(arguments.SelectList(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
             return ret;
         }
         

@@ -45,14 +45,14 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Translated80SyntaxTo90 = translated80SyntaxTo90;
             ret.Unique = unique;
             ret.Clustered = clustered;
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
-            ret.IncludeColumns.AddRange(includeColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
-            ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate.ToMutable();
-            ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
+            ret.IncludeColumns.AddRange(includeColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
+            ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate?.ToMutable();
+            ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
             return ret;
         }
         

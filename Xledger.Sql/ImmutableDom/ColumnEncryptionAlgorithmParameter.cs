@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ColumnEncryptionAlgorithmParameter ToMutableConcrete() {
             var ret = new ScriptDom.ColumnEncryptionAlgorithmParameter();
-            ret.EncryptionAlgorithm = (ScriptDom.StringLiteral)encryptionAlgorithm.ToMutable();
+            ret.EncryptionAlgorithm = (ScriptDom.StringLiteral)encryptionAlgorithm?.ToMutable();
             ret.ParameterKind = parameterKind;
             return ret;
         }

@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ParenthesisExpression ToMutableConcrete() {
             var ret = new ScriptDom.ParenthesisExpression();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

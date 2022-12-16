@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SaveTransactionStatement ToMutableConcrete() {
             var ret = new ScriptDom.SaveTransactionStatement();
-            ret.Name = (ScriptDom.IdentifierOrValueExpression)name.ToMutable();
+            ret.Name = (ScriptDom.IdentifierOrValueExpression)name?.ToMutable();
             return ret;
         }
         

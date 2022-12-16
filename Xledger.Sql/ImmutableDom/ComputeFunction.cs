@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ComputeFunction ToMutableConcrete() {
             var ret = new ScriptDom.ComputeFunction();
             ret.ComputeFunctionType = computeFunctionType;
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             return ret;
         }
         

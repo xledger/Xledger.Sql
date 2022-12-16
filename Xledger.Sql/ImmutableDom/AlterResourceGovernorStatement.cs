@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterResourceGovernorStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterResourceGovernorStatement();
             ret.Command = command;
-            ret.ClassifierFunction = (ScriptDom.SchemaObjectName)classifierFunction.ToMutable();
+            ret.ClassifierFunction = (ScriptDom.SchemaObjectName)classifierFunction?.ToMutable();
             return ret;
         }
         

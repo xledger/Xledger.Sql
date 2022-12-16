@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SelectFunctionReturnType ToMutableConcrete() {
             var ret = new ScriptDom.SelectFunctionReturnType();
-            ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement.ToMutable();
+            ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement?.ToMutable();
             return ret;
         }
         

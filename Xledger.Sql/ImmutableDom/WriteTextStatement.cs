@@ -23,11 +23,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WriteTextStatement ToMutableConcrete() {
             var ret = new ScriptDom.WriteTextStatement();
-            ret.SourceParameter = (ScriptDom.ValueExpression)sourceParameter.ToMutable();
+            ret.SourceParameter = (ScriptDom.ValueExpression)sourceParameter?.ToMutable();
             ret.Bulk = bulk;
-            ret.Column = (ScriptDom.ColumnReferenceExpression)column.ToMutable();
-            ret.TextId = (ScriptDom.ValueExpression)textId.ToMutable();
-            ret.Timestamp = (ScriptDom.Literal)timestamp.ToMutable();
+            ret.Column = (ScriptDom.ColumnReferenceExpression)column?.ToMutable();
+            ret.TextId = (ScriptDom.ValueExpression)textId?.ToMutable();
+            ret.Timestamp = (ScriptDom.Literal)timestamp?.ToMutable();
             ret.WithLog = withLog;
             return ret;
         }

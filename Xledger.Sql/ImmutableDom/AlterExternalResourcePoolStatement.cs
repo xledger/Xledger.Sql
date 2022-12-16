@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterExternalResourcePoolStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterExternalResourcePoolStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ExternalResourcePoolParameters.AddRange(externalResourcePoolParameters.SelectList(c => (ScriptDom.ExternalResourcePoolParameter)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.ExternalResourcePoolParameters.AddRange(externalResourcePoolParameters.SelectList(c => (ScriptDom.ExternalResourcePoolParameter)c?.ToMutable()));
             return ret;
         }
         

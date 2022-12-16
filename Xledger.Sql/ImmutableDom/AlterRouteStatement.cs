@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterRouteStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterRouteStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.RouteOptions.AddRange(routeOptions.SelectList(c => (ScriptDom.RouteOption)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.RouteOptions.AddRange(routeOptions.SelectList(c => (ScriptDom.RouteOption)c?.ToMutable()));
             return ret;
         }
         

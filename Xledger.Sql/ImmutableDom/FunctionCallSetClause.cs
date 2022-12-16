@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FunctionCallSetClause ToMutableConcrete() {
             var ret = new ScriptDom.FunctionCallSetClause();
-            ret.MutatorFunction = (ScriptDom.FunctionCall)mutatorFunction.ToMutable();
+            ret.MutatorFunction = (ScriptDom.FunctionCall)mutatorFunction?.ToMutable();
             return ret;
         }
         

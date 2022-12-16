@@ -43,12 +43,12 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Clustered = clustered;
             ret.IsPrimaryKey = isPrimaryKey;
             ret.IsEnforced = isEnforced;
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
-            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
-            ret.IndexType = (ScriptDom.IndexType)indexType.ToMutable();
-            ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn.ToMutable();
-            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
+            ret.IndexType = (ScriptDom.IndexType)indexType?.ToMutable();
+            ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn?.ToMutable();
+            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier?.ToMutable();
             return ret;
         }
         

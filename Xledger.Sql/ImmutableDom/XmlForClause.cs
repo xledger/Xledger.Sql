@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.XmlForClause ToMutableConcrete() {
             var ret = new ScriptDom.XmlForClause();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.XmlForClauseOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.XmlForClauseOption)c?.ToMutable()));
             return ret;
         }
         

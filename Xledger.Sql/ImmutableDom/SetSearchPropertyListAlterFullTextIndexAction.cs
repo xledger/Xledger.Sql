@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SetSearchPropertyListAlterFullTextIndexAction ToMutableConcrete() {
             var ret = new ScriptDom.SetSearchPropertyListAlterFullTextIndexAction();
-            ret.SearchPropertyListOption = (ScriptDom.SearchPropertyListFullTextIndexOption)searchPropertyListOption.ToMutable();
+            ret.SearchPropertyListOption = (ScriptDom.SearchPropertyListFullTextIndexOption)searchPropertyListOption?.ToMutable();
             ret.WithNoPopulation = withNoPopulation;
             return ret;
         }

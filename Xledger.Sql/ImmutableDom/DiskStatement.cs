@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DiskStatement ToMutableConcrete() {
             var ret = new ScriptDom.DiskStatement();
             ret.DiskStatementType = diskStatementType;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DiskStatementOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DiskStatementOption)c?.ToMutable()));
             return ret;
         }
         

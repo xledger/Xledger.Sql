@@ -25,9 +25,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PartnerDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.PartnerDatabaseOption();
-            ret.PartnerServer = (ScriptDom.Literal)partnerServer.ToMutable();
+            ret.PartnerServer = (ScriptDom.Literal)partnerServer?.ToMutable();
             ret.PartnerOption = partnerOption;
-            ret.Timeout = (ScriptDom.Literal)timeout.ToMutable();
+            ret.Timeout = (ScriptDom.Literal)timeout?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

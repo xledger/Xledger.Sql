@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterTableFileTableNamespaceStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableFileTableNamespaceStatement();
             ret.IsEnable = isEnable;
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

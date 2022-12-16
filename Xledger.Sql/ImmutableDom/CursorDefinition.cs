@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CursorDefinition ToMutableConcrete() {
             var ret = new ScriptDom.CursorDefinition();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CursorOption)c.ToMutable()));
-            ret.Select = (ScriptDom.SelectStatement)select.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CursorOption)c?.ToMutable()));
+            ret.Select = (ScriptDom.SelectStatement)select?.ToMutable();
             return ret;
         }
         

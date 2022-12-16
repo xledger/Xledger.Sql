@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterFullTextStopListStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterFullTextStopListStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Action = (ScriptDom.FullTextStopListAction)action.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Action = (ScriptDom.FullTextStopListAction)action?.ToMutable();
             return ret;
         }
         

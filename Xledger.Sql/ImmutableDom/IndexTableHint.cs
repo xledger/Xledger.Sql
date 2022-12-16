@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IndexTableHint ToMutableConcrete() {
             var ret = new ScriptDom.IndexTableHint();
-            ret.IndexValues.AddRange(indexValues.SelectList(c => (ScriptDom.IdentifierOrValueExpression)c.ToMutable()));
+            ret.IndexValues.AddRange(indexValues.SelectList(c => (ScriptDom.IdentifierOrValueExpression)c?.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }

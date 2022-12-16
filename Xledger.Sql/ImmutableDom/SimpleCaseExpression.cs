@@ -23,10 +23,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SimpleCaseExpression ToMutableConcrete() {
             var ret = new ScriptDom.SimpleCaseExpression();
-            ret.InputExpression = (ScriptDom.ScalarExpression)inputExpression.ToMutable();
-            ret.WhenClauses.AddRange(whenClauses.SelectList(c => (ScriptDom.SimpleWhenClause)c.ToMutable()));
-            ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.InputExpression = (ScriptDom.ScalarExpression)inputExpression?.ToMutable();
+            ret.WhenClauses.AddRange(whenClauses.SelectList(c => (ScriptDom.SimpleWhenClause)c?.ToMutable()));
+            ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

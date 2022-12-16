@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BeginConversationTimerStatement ToMutableConcrete() {
             var ret = new ScriptDom.BeginConversationTimerStatement();
-            ret.Handle = (ScriptDom.ScalarExpression)handle.ToMutable();
-            ret.Timeout = (ScriptDom.ScalarExpression)timeout.ToMutable();
+            ret.Handle = (ScriptDom.ScalarExpression)handle?.ToMutable();
+            ret.Timeout = (ScriptDom.ScalarExpression)timeout?.ToMutable();
             return ret;
         }
         

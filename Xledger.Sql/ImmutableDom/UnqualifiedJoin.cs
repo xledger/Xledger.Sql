@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.UnqualifiedJoin ToMutableConcrete() {
             var ret = new ScriptDom.UnqualifiedJoin();
             ret.UnqualifiedJoinType = unqualifiedJoinType;
-            ret.FirstTableReference = (ScriptDom.TableReference)firstTableReference.ToMutable();
-            ret.SecondTableReference = (ScriptDom.TableReference)secondTableReference.ToMutable();
+            ret.FirstTableReference = (ScriptDom.TableReference)firstTableReference?.ToMutable();
+            ret.SecondTableReference = (ScriptDom.TableReference)secondTableReference?.ToMutable();
             return ret;
         }
         

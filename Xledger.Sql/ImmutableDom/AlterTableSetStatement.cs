@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterTableSetStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableSetStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c.ToMutable()));
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c?.ToMutable()));
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

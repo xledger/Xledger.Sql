@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CryptoMechanism ToMutableConcrete() {
             var ret = new ScriptDom.CryptoMechanism();
             ret.CryptoMechanismType = cryptoMechanismType;
-            ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
-            ret.PasswordOrSignature = (ScriptDom.Literal)passwordOrSignature.ToMutable();
+            ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
+            ret.PasswordOrSignature = (ScriptDom.Literal)passwordOrSignature?.ToMutable();
             return ret;
         }
         

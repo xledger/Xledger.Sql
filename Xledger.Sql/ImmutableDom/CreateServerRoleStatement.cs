@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateServerRoleStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateServerRoleStatement();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             return ret;
         }
         

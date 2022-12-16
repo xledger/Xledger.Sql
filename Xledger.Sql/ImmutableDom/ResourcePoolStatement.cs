@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ResourcePoolStatement ToMutableConcrete() {
             var ret = new ScriptDom.ResourcePoolStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ResourcePoolParameters.AddRange(resourcePoolParameters.SelectList(c => (ScriptDom.ResourcePoolParameter)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.ResourcePoolParameters.AddRange(resourcePoolParameters.SelectList(c => (ScriptDom.ResourcePoolParameter)c?.ToMutable()));
             return ret;
         }
         

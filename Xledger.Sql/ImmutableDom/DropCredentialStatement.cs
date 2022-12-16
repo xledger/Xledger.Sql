@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DropCredentialStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropCredentialStatement();
             ret.IsDatabaseScoped = isDatabaseScoped;
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsIfExists = isIfExists;
             return ret;
         }

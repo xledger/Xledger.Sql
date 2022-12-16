@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalFileFormatContainerOption ToMutableConcrete() {
             var ret = new ScriptDom.ExternalFileFormatContainerOption();
-            ret.Suboptions.AddRange(suboptions.SelectList(c => (ScriptDom.ExternalFileFormatOption)c.ToMutable()));
+            ret.Suboptions.AddRange(suboptions.SelectList(c => (ScriptDom.ExternalFileFormatOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

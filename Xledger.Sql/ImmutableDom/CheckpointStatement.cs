@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CheckpointStatement ToMutableConcrete() {
             var ret = new ScriptDom.CheckpointStatement();
-            ret.Duration = (ScriptDom.Literal)duration.ToMutable();
+            ret.Duration = (ScriptDom.Literal)duration?.ToMutable();
             return ret;
         }
         

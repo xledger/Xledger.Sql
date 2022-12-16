@@ -26,11 +26,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateSymmetricKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSymmetricKeyStatement();
-            ret.KeyOptions.AddRange(keyOptions.SelectList(c => (ScriptDom.KeyOption)c.ToMutable()));
-            ret.Provider = (ScriptDom.Identifier)provider.ToMutable();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.SelectList(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
+            ret.KeyOptions.AddRange(keyOptions.SelectList(c => (ScriptDom.KeyOption)c?.ToMutable()));
+            ret.Provider = (ScriptDom.Identifier)provider?.ToMutable();
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.SelectList(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
             return ret;
         }
         

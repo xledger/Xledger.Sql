@@ -26,11 +26,11 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterAvailabilityGroupStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterAvailabilityGroupStatement();
             ret.AlterAvailabilityGroupStatementType = alterAvailabilityGroupStatementType;
-            ret.Action = (ScriptDom.AlterAvailabilityGroupAction)action.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityGroupOption)c.ToMutable()));
-            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Replicas.AddRange(replicas.SelectList(c => (ScriptDom.AvailabilityReplica)c.ToMutable()));
+            ret.Action = (ScriptDom.AlterAvailabilityGroupAction)action?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityGroupOption)c?.ToMutable()));
+            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Replicas.AddRange(replicas.SelectList(c => (ScriptDom.AvailabilityReplica)c?.ToMutable()));
             return ret;
         }
         

@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.JsonKeyValue ToMutableConcrete() {
             var ret = new ScriptDom.JsonKeyValue();
-            ret.JsonKeyName = (ScriptDom.ScalarExpression)jsonKeyName.ToMutable();
-            ret.JsonValue = (ScriptDom.ScalarExpression)jsonValue.ToMutable();
+            ret.JsonKeyName = (ScriptDom.ScalarExpression)jsonKeyName?.ToMutable();
+            ret.JsonValue = (ScriptDom.ScalarExpression)jsonValue?.ToMutable();
             return ret;
         }
         

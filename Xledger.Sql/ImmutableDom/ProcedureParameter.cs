@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.ProcedureParameter();
             ret.IsVarying = isVarying;
             ret.Modifier = modifier;
-            ret.VariableName = (ScriptDom.Identifier)variableName.ToMutable();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
-            ret.Nullable = (ScriptDom.NullableConstraintDefinition)nullable.ToMutable();
-            ret.Value = (ScriptDom.ScalarExpression)@value.ToMutable();
+            ret.VariableName = (ScriptDom.Identifier)variableName?.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
+            ret.Nullable = (ScriptDom.NullableConstraintDefinition)nullable?.ToMutable();
+            ret.Value = (ScriptDom.ScalarExpression)@value?.ToMutable();
             return ret;
         }
         

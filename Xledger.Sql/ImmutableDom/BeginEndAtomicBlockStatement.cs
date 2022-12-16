@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BeginEndAtomicBlockStatement ToMutableConcrete() {
             var ret = new ScriptDom.BeginEndAtomicBlockStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AtomicBlockOption)c.ToMutable()));
-            ret.StatementList = (ScriptDom.StatementList)statementList.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AtomicBlockOption)c?.ToMutable()));
+            ret.StatementList = (ScriptDom.StatementList)statementList?.ToMutable();
             return ret;
         }
         

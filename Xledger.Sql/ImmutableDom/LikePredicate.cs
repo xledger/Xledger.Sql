@@ -30,11 +30,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LikePredicate ToMutableConcrete() {
             var ret = new ScriptDom.LikePredicate();
-            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression.ToMutable();
-            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression.ToMutable();
+            ret.FirstExpression = (ScriptDom.ScalarExpression)firstExpression?.ToMutable();
+            ret.SecondExpression = (ScriptDom.ScalarExpression)secondExpression?.ToMutable();
             ret.NotDefined = notDefined;
             ret.OdbcEscape = odbcEscape;
-            ret.EscapeExpression = (ScriptDom.ScalarExpression)escapeExpression.ToMutable();
+            ret.EscapeExpression = (ScriptDom.ScalarExpression)escapeExpression?.ToMutable();
             return ret;
         }
         

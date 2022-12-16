@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.HadrAvailabilityGroupDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.HadrAvailabilityGroupDatabaseOption();
-            ret.GroupName = (ScriptDom.Identifier)groupName.ToMutable();
+            ret.GroupName = (ScriptDom.Identifier)groupName?.ToMutable();
             ret.HadrOption = hadrOption;
             ret.OptionKind = optionKind;
             return ret;

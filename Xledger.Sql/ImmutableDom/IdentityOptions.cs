@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IdentityOptions ToMutableConcrete() {
             var ret = new ScriptDom.IdentityOptions();
-            ret.IdentitySeed = (ScriptDom.ScalarExpression)identitySeed.ToMutable();
-            ret.IdentityIncrement = (ScriptDom.ScalarExpression)identityIncrement.ToMutable();
+            ret.IdentitySeed = (ScriptDom.ScalarExpression)identitySeed?.ToMutable();
+            ret.IdentityIncrement = (ScriptDom.ScalarExpression)identityIncrement?.ToMutable();
             ret.IsIdentityNotForReplication = isIdentityNotForReplication;
             return ret;
         }

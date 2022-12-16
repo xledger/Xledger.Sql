@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ColumnWithSortOrder ToMutableConcrete() {
             var ret = new ScriptDom.ColumnWithSortOrder();
-            ret.Column = (ScriptDom.ColumnReferenceExpression)column.ToMutable();
+            ret.Column = (ScriptDom.ColumnReferenceExpression)column?.ToMutable();
             ret.SortOrder = sortOrder;
             return ret;
         }

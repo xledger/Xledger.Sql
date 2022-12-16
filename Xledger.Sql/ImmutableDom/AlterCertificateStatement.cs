@@ -27,12 +27,12 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterCertificateStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterCertificateStatement();
             ret.Kind = kind;
-            ret.AttestedBy = (ScriptDom.Literal)attestedBy.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.AttestedBy = (ScriptDom.Literal)attestedBy?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.ActiveForBeginDialog = activeForBeginDialog;
-            ret.PrivateKeyPath = (ScriptDom.Literal)privateKeyPath.ToMutable();
-            ret.EncryptionPassword = (ScriptDom.Literal)encryptionPassword.ToMutable();
-            ret.DecryptionPassword = (ScriptDom.Literal)decryptionPassword.ToMutable();
+            ret.PrivateKeyPath = (ScriptDom.Literal)privateKeyPath?.ToMutable();
+            ret.EncryptionPassword = (ScriptDom.Literal)encryptionPassword?.ToMutable();
+            ret.DecryptionPassword = (ScriptDom.Literal)decryptionPassword?.ToMutable();
             return ret;
         }
         

@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SimpleWhenClause ToMutableConcrete() {
             var ret = new ScriptDom.SimpleWhenClause();
-            ret.WhenExpression = (ScriptDom.ScalarExpression)whenExpression.ToMutable();
-            ret.ThenExpression = (ScriptDom.ScalarExpression)thenExpression.ToMutable();
+            ret.WhenExpression = (ScriptDom.ScalarExpression)whenExpression?.ToMutable();
+            ret.ThenExpression = (ScriptDom.ScalarExpression)thenExpression?.ToMutable();
             return ret;
         }
         

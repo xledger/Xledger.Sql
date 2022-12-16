@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TableDefinition ToMutableConcrete() {
             var ret = new ScriptDom.TableDefinition();
-            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.ColumnDefinition)c.ToMutable()));
-            ret.TableConstraints.AddRange(tableConstraints.SelectList(c => (ScriptDom.ConstraintDefinition)c.ToMutable()));
-            ret.Indexes.AddRange(indexes.SelectList(c => (ScriptDom.IndexDefinition)c.ToMutable()));
-            ret.SystemTimePeriod = (ScriptDom.SystemTimePeriodDefinition)systemTimePeriod.ToMutable();
+            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.ColumnDefinition)c?.ToMutable()));
+            ret.TableConstraints.AddRange(tableConstraints.SelectList(c => (ScriptDom.ConstraintDefinition)c?.ToMutable()));
+            ret.Indexes.AddRange(indexes.SelectList(c => (ScriptDom.IndexDefinition)c?.ToMutable()));
+            ret.SystemTimePeriod = (ScriptDom.SystemTimePeriodDefinition)systemTimePeriod?.ToMutable();
             return ret;
         }
         

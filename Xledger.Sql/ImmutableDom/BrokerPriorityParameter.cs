@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.BrokerPriorityParameter();
             ret.IsDefaultOrAny = isDefaultOrAny;
             ret.ParameterType = parameterType;
-            ret.ParameterValue = (ScriptDom.IdentifierOrValueExpression)parameterValue.ToMutable();
+            ret.ParameterValue = (ScriptDom.IdentifierOrValueExpression)parameterValue?.ToMutable();
             return ret;
         }
         

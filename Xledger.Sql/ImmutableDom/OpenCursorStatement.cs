@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OpenCursorStatement ToMutableConcrete() {
             var ret = new ScriptDom.OpenCursorStatement();
-            ret.Cursor = (ScriptDom.CursorId)cursor.ToMutable();
+            ret.Cursor = (ScriptDom.CursorId)cursor?.ToMutable();
             return ret;
         }
         

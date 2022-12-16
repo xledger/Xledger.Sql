@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GraphMatchPredicate ToMutableConcrete() {
             var ret = new ScriptDom.GraphMatchPredicate();
-            ret.Expression = (ScriptDom.BooleanExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.BooleanExpression)expression?.ToMutable();
             return ret;
         }
         

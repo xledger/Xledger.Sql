@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExecuteSpecification ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteSpecification();
-            ret.Variable = (ScriptDom.VariableReference)variable.ToMutable();
-            ret.LinkedServer = (ScriptDom.Identifier)linkedServer.ToMutable();
-            ret.ExecuteContext = (ScriptDom.ExecuteContext)executeContext.ToMutable();
-            ret.ExecutableEntity = (ScriptDom.ExecutableEntity)executableEntity.ToMutable();
+            ret.Variable = (ScriptDom.VariableReference)variable?.ToMutable();
+            ret.LinkedServer = (ScriptDom.Identifier)linkedServer?.ToMutable();
+            ret.ExecuteContext = (ScriptDom.ExecuteContext)executeContext?.ToMutable();
+            ret.ExecutableEntity = (ScriptDom.ExecutableEntity)executableEntity?.ToMutable();
             return ret;
         }
         

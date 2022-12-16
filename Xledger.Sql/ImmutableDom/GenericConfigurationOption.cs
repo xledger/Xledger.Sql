@@ -20,9 +20,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GenericConfigurationOption ToMutableConcrete() {
             var ret = new ScriptDom.GenericConfigurationOption();
-            ret.GenericOptionState = (ScriptDom.IdentifierOrScalarExpression)genericOptionState.ToMutable();
+            ret.GenericOptionState = (ScriptDom.IdentifierOrScalarExpression)genericOptionState?.ToMutable();
             ret.OptionKind = optionKind;
-            ret.GenericOptionKind = (ScriptDom.Identifier)genericOptionKind.ToMutable();
+            ret.GenericOptionKind = (ScriptDom.Identifier)genericOptionKind?.ToMutable();
             return ret;
         }
         

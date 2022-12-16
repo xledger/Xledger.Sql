@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.EventSessionObjectName ToMutableConcrete() {
             var ret = new ScriptDom.EventSessionObjectName();
-            ret.MultiPartIdentifier = (ScriptDom.MultiPartIdentifier)multiPartIdentifier.ToMutable();
+            ret.MultiPartIdentifier = (ScriptDom.MultiPartIdentifier)multiPartIdentifier?.ToMutable();
             return ret;
         }
         

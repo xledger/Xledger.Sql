@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FetchType ToMutableConcrete() {
             var ret = new ScriptDom.FetchType();
             ret.Orientation = orientation;
-            ret.RowOffset = (ScriptDom.ScalarExpression)rowOffset.ToMutable();
+            ret.RowOffset = (ScriptDom.ScalarExpression)rowOffset?.ToMutable();
             return ret;
         }
         

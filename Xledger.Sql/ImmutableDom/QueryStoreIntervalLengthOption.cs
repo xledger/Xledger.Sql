@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueryStoreIntervalLengthOption ToMutableConcrete() {
             var ret = new ScriptDom.QueryStoreIntervalLengthOption();
-            ret.StatsIntervalLength = (ScriptDom.Literal)statsIntervalLength.ToMutable();
+            ret.StatsIntervalLength = (ScriptDom.Literal)statsIntervalLength?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

@@ -20,9 +20,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateUserStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateUserStatement();
-            ret.UserLoginOption = (ScriptDom.UserLoginOption)userLoginOption.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.UserOptions.AddRange(userOptions.SelectList(c => (ScriptDom.PrincipalOption)c.ToMutable()));
+            ret.UserLoginOption = (ScriptDom.UserLoginOption)userLoginOption?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.UserOptions.AddRange(userOptions.SelectList(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
             return ret;
         }
         

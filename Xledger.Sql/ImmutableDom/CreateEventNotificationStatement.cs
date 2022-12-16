@@ -33,12 +33,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateEventNotificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateEventNotificationStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Scope = (ScriptDom.EventNotificationObjectScope)scope.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Scope = (ScriptDom.EventNotificationObjectScope)scope?.ToMutable();
             ret.WithFanIn = withFanIn;
-            ret.EventTypeGroups.AddRange(eventTypeGroups.SelectList(c => (ScriptDom.EventTypeGroupContainer)c.ToMutable()));
-            ret.BrokerService = (ScriptDom.Literal)brokerService.ToMutable();
-            ret.BrokerInstanceSpecifier = (ScriptDom.Literal)brokerInstanceSpecifier.ToMutable();
+            ret.EventTypeGroups.AddRange(eventTypeGroups.SelectList(c => (ScriptDom.EventTypeGroupContainer)c?.ToMutable()));
+            ret.BrokerService = (ScriptDom.Literal)brokerService?.ToMutable();
+            ret.BrokerInstanceSpecifier = (ScriptDom.Literal)brokerInstanceSpecifier?.ToMutable();
             return ret;
         }
         

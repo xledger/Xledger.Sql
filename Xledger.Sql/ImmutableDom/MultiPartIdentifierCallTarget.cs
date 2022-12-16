@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MultiPartIdentifierCallTarget ToMutableConcrete() {
             var ret = new ScriptDom.MultiPartIdentifierCallTarget();
-            ret.MultiPartIdentifier = (ScriptDom.MultiPartIdentifier)multiPartIdentifier.ToMutable();
+            ret.MultiPartIdentifier = (ScriptDom.MultiPartIdentifier)multiPartIdentifier?.ToMutable();
             return ret;
         }
         

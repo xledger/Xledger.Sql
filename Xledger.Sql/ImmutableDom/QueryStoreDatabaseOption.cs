@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Clear = clear;
             ret.ClearAll = clearAll;
             ret.OptionState = optionState;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.QueryStoreOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.QueryStoreOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

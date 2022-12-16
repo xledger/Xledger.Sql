@@ -1834,6 +1834,143 @@ namespace Xledger.Sql.ImmutableDom {
             }
         }
         
+        public static AlterCreateEndpointStatementBase FromMutable(ScriptDom.AlterCreateEndpointStatementBase fragment) => (AlterCreateEndpointStatementBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AlterCreateServiceStatementBase FromMutable(ScriptDom.AlterCreateServiceStatementBase fragment) => (AlterCreateServiceStatementBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AlterDatabaseScopedConfigurationStatement FromMutable(ScriptDom.AlterDatabaseScopedConfigurationStatement fragment) => (AlterDatabaseScopedConfigurationStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AlterDatabaseStatement FromMutable(ScriptDom.AlterDatabaseStatement fragment) => (AlterDatabaseStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AlterFullTextIndexAction FromMutable(ScriptDom.AlterFullTextIndexAction fragment) => (AlterFullTextIndexAction)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AlterLoginStatement FromMutable(ScriptDom.AlterLoginStatement fragment) => (AlterLoginStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AlterRoleAction FromMutable(ScriptDom.AlterRoleAction fragment) => (AlterRoleAction)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AlterTableStatement FromMutable(ScriptDom.AlterTableStatement fragment) => (AlterTableStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ApplicationRoleStatement FromMutable(ScriptDom.ApplicationRoleStatement fragment) => (ApplicationRoleStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AssemblyStatement FromMutable(ScriptDom.AssemblyStatement fragment) => (AssemblyStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AtomicBlockOption FromMutable(ScriptDom.AtomicBlockOption fragment) => (AtomicBlockOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AuditOption FromMutable(ScriptDom.AuditOption fragment) => (AuditOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AuditSpecificationDetail FromMutable(ScriptDom.AuditSpecificationDetail fragment) => (AuditSpecificationDetail)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AuditSpecificationStatement FromMutable(ScriptDom.AuditSpecificationStatement fragment) => (AuditSpecificationStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AuditTargetOption FromMutable(ScriptDom.AuditTargetOption fragment) => (AuditTargetOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AvailabilityGroupOption FromMutable(ScriptDom.AvailabilityGroupOption fragment) => (AvailabilityGroupOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AvailabilityGroupStatement FromMutable(ScriptDom.AvailabilityGroupStatement fragment) => (AvailabilityGroupStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static AvailabilityReplicaOption FromMutable(ScriptDom.AvailabilityReplicaOption fragment) => (AvailabilityReplicaOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static BackupRestoreMasterKeyStatementBase FromMutable(ScriptDom.BackupRestoreMasterKeyStatementBase fragment) => (BackupRestoreMasterKeyStatementBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static BackupStatement FromMutable(ScriptDom.BackupStatement fragment) => (BackupStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static BooleanExpression FromMutable(ScriptDom.BooleanExpression fragment) => (BooleanExpression)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static BrokerPriorityStatement FromMutable(ScriptDom.BrokerPriorityStatement fragment) => (BrokerPriorityStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static BulkInsertBase FromMutable(ScriptDom.BulkInsertBase fragment) => (BulkInsertBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static CallTarget FromMutable(ScriptDom.CallTarget fragment) => (CallTarget)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static CaseExpression FromMutable(ScriptDom.CaseExpression fragment) => (CaseExpression)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static CertificateStatementBase FromMutable(ScriptDom.CertificateStatementBase fragment) => (CertificateStatementBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ChangeTrackingOptionDetail FromMutable(ScriptDom.ChangeTrackingOptionDetail fragment) => (ChangeTrackingOptionDetail)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ColumnEncryptionDefinitionParameter FromMutable(ScriptDom.ColumnEncryptionDefinitionParameter fragment) => (ColumnEncryptionDefinitionParameter)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ColumnEncryptionKeyStatement FromMutable(ScriptDom.ColumnEncryptionKeyStatement fragment) => (ColumnEncryptionKeyStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ColumnEncryptionKeyValueParameter FromMutable(ScriptDom.ColumnEncryptionKeyValueParameter fragment) => (ColumnEncryptionKeyValueParameter)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ColumnMasterKeyParameter FromMutable(ScriptDom.ColumnMasterKeyParameter fragment) => (ColumnMasterKeyParameter)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ConstraintDefinition FromMutable(ScriptDom.ConstraintDefinition fragment) => (ConstraintDefinition)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static CopyStatementOptionBase FromMutable(ScriptDom.CopyStatementOptionBase fragment) => (CopyStatementOptionBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static CreateLoginSource FromMutable(ScriptDom.CreateLoginSource fragment) => (CreateLoginSource)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static CreateTypeStatement FromMutable(ScriptDom.CreateTypeStatement fragment) => (CreateTypeStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static CredentialStatement FromMutable(ScriptDom.CredentialStatement fragment) => (CredentialStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static CursorStatement FromMutable(ScriptDom.CursorStatement fragment) => (CursorStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DatabaseEncryptionKeyStatement FromMutable(ScriptDom.DatabaseEncryptionKeyStatement fragment) => (DatabaseEncryptionKeyStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DataModificationSpecification FromMutable(ScriptDom.DataModificationSpecification fragment) => (DataModificationSpecification)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DataModificationStatement FromMutable(ScriptDom.DataModificationStatement fragment) => (DataModificationStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DataTypeReference FromMutable(ScriptDom.DataTypeReference fragment) => (DataTypeReference)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DialogOption FromMutable(ScriptDom.DialogOption fragment) => (DialogOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DropChildObjectsStatement FromMutable(ScriptDom.DropChildObjectsStatement fragment) => (DropChildObjectsStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DropClusteredConstraintOption FromMutable(ScriptDom.DropClusteredConstraintOption fragment) => (DropClusteredConstraintOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DropIndexClauseBase FromMutable(ScriptDom.DropIndexClauseBase fragment) => (DropIndexClauseBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DropObjectsStatement FromMutable(ScriptDom.DropObjectsStatement fragment) => (DropObjectsStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static DropUnownedObjectStatement FromMutable(ScriptDom.DropUnownedObjectStatement fragment) => (DropUnownedObjectStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static EncryptionSource FromMutable(ScriptDom.EncryptionSource fragment) => (EncryptionSource)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static EndpointProtocolOption FromMutable(ScriptDom.EndpointProtocolOption fragment) => (EndpointProtocolOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static EventTypeGroupContainer FromMutable(ScriptDom.EventTypeGroupContainer fragment) => (EventTypeGroupContainer)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExecutableEntity FromMutable(ScriptDom.ExecutableEntity fragment) => (ExecutableEntity)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalDataSourceOption FromMutable(ScriptDom.ExternalDataSourceOption fragment) => (ExternalDataSourceOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalDataSourceStatement FromMutable(ScriptDom.ExternalDataSourceStatement fragment) => (ExternalDataSourceStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalFileFormatOption FromMutable(ScriptDom.ExternalFileFormatOption fragment) => (ExternalFileFormatOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalFileFormatStatement FromMutable(ScriptDom.ExternalFileFormatStatement fragment) => (ExternalFileFormatStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalLanguageStatement FromMutable(ScriptDom.ExternalLanguageStatement fragment) => (ExternalLanguageStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalLibraryStatement FromMutable(ScriptDom.ExternalLibraryStatement fragment) => (ExternalLibraryStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalStreamingJobStatement FromMutable(ScriptDom.ExternalStreamingJobStatement fragment) => (ExternalStreamingJobStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalStreamOption FromMutable(ScriptDom.ExternalStreamOption fragment) => (ExternalStreamOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalStreamStatement FromMutable(ScriptDom.ExternalStreamStatement fragment) => (ExternalStreamStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalTableDistributionPolicy FromMutable(ScriptDom.ExternalTableDistributionPolicy fragment) => (ExternalTableDistributionPolicy)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalTableOption FromMutable(ScriptDom.ExternalTableOption fragment) => (ExternalTableOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ExternalTableStatement FromMutable(ScriptDom.ExternalTableStatement fragment) => (ExternalTableStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ForClause FromMutable(ScriptDom.ForClause fragment) => (ForClause)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static FullTextCatalogOption FromMutable(ScriptDom.FullTextCatalogOption fragment) => (FullTextCatalogOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static FullTextCatalogStatement FromMutable(ScriptDom.FullTextCatalogStatement fragment) => (FullTextCatalogStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static FullTextIndexOption FromMutable(ScriptDom.FullTextIndexOption fragment) => (FullTextIndexOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static FunctionReturnType FromMutable(ScriptDom.FunctionReturnType fragment) => (FunctionReturnType)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static FunctionStatementBody FromMutable(ScriptDom.FunctionStatementBody fragment) => (FunctionStatementBody)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static GroupingSpecification FromMutable(ScriptDom.GroupingSpecification fragment) => (GroupingSpecification)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static IndexOption FromMutable(ScriptDom.IndexOption fragment) => (IndexOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static IndexStatement FromMutable(ScriptDom.IndexStatement fragment) => (IndexStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static InsertSource FromMutable(ScriptDom.InsertSource fragment) => (InsertSource)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static JoinTableReference FromMutable(ScriptDom.JoinTableReference fragment) => (JoinTableReference)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static KeyOption FromMutable(ScriptDom.KeyOption fragment) => (KeyOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static Literal FromMutable(ScriptDom.Literal fragment) => (Literal)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static LowPriorityLockWaitOption FromMutable(ScriptDom.LowPriorityLockWaitOption fragment) => (LowPriorityLockWaitOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static MasterKeyStatement FromMutable(ScriptDom.MasterKeyStatement fragment) => (MasterKeyStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static MergeAction FromMutable(ScriptDom.MergeAction fragment) => (MergeAction)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static MessageTypeStatementBase FromMutable(ScriptDom.MessageTypeStatementBase fragment) => (MessageTypeStatementBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static OptionValue FromMutable(ScriptDom.OptionValue fragment) => (OptionValue)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ParameterizedDataTypeReference FromMutable(ScriptDom.ParameterizedDataTypeReference fragment) => (ParameterizedDataTypeReference)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static PartitionSpecifications FromMutable(ScriptDom.PartitionSpecifications fragment) => (PartitionSpecifications)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static PayloadOption FromMutable(ScriptDom.PayloadOption fragment) => (PayloadOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static PrimaryExpression FromMutable(ScriptDom.PrimaryExpression fragment) => (PrimaryExpression)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ProcedureStatementBody FromMutable(ScriptDom.ProcedureStatementBody fragment) => (ProcedureStatementBody)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ProcedureStatementBodyBase FromMutable(ScriptDom.ProcedureStatementBodyBase fragment) => (ProcedureStatementBodyBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static QueryExpression FromMutable(ScriptDom.QueryExpression fragment) => (QueryExpression)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static QueryStoreOption FromMutable(ScriptDom.QueryStoreOption fragment) => (QueryStoreOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static QueueStatement FromMutable(ScriptDom.QueueStatement fragment) => (QueueStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static RemoteDataArchiveDatabaseSetting FromMutable(ScriptDom.RemoteDataArchiveDatabaseSetting fragment) => (RemoteDataArchiveDatabaseSetting)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static RemoteServiceBindingOption FromMutable(ScriptDom.RemoteServiceBindingOption fragment) => (RemoteServiceBindingOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static RemoteServiceBindingStatementBase FromMutable(ScriptDom.RemoteServiceBindingStatementBase fragment) => (RemoteServiceBindingStatementBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static RoleStatement FromMutable(ScriptDom.RoleStatement fragment) => (RoleStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static RouteStatement FromMutable(ScriptDom.RouteStatement fragment) => (RouteStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ScalarExpression FromMutable(ScriptDom.ScalarExpression fragment) => (ScalarExpression)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SearchPropertyListAction FromMutable(ScriptDom.SearchPropertyListAction fragment) => (SearchPropertyListAction)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SecurityElement80 FromMutable(ScriptDom.SecurityElement80 fragment) => (SecurityElement80)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SecurityPolicyStatement FromMutable(ScriptDom.SecurityPolicyStatement fragment) => (SecurityPolicyStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SecurityStatement FromMutable(ScriptDom.SecurityStatement fragment) => (SecurityStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SecurityStatementBody80 FromMutable(ScriptDom.SecurityStatementBody80 fragment) => (SecurityStatementBody80)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SelectElement FromMutable(ScriptDom.SelectElement fragment) => (SelectElement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SensitivityClassificationStatement FromMutable(ScriptDom.SensitivityClassificationStatement fragment) => (SensitivityClassificationStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SequenceStatement FromMutable(ScriptDom.SequenceStatement fragment) => (SequenceStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ServerAuditStatement FromMutable(ScriptDom.ServerAuditStatement fragment) => (ServerAuditStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SessionOption FromMutable(ScriptDom.SessionOption fragment) => (SessionOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SetClause FromMutable(ScriptDom.SetClause fragment) => (SetClause)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SetCommand FromMutable(ScriptDom.SetCommand fragment) => (SetCommand)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SetOnOffStatement FromMutable(ScriptDom.SetOnOffStatement fragment) => (SetOnOffStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SignatureStatementBase FromMutable(ScriptDom.SignatureStatementBase fragment) => (SignatureStatementBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SpatialIndexOption FromMutable(ScriptDom.SpatialIndexOption fragment) => (SpatialIndexOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static StatementWithCtesAndXmlNamespaces FromMutable(ScriptDom.StatementWithCtesAndXmlNamespaces fragment) => (StatementWithCtesAndXmlNamespaces)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static SymmetricKeyStatement FromMutable(ScriptDom.SymmetricKeyStatement fragment) => (SymmetricKeyStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TableDistributionPolicy FromMutable(ScriptDom.TableDistributionPolicy fragment) => (TableDistributionPolicy)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TableIndexType FromMutable(ScriptDom.TableIndexType fragment) => (TableIndexType)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TableOption FromMutable(ScriptDom.TableOption fragment) => (TableOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TableReference FromMutable(ScriptDom.TableReference fragment) => (TableReference)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TableReferenceWithAlias FromMutable(ScriptDom.TableReferenceWithAlias fragment) => (TableReferenceWithAlias)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TableReferenceWithAliasAndColumns FromMutable(ScriptDom.TableReferenceWithAliasAndColumns fragment) => (TableReferenceWithAliasAndColumns)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TableSwitchOption FromMutable(ScriptDom.TableSwitchOption fragment) => (TableSwitchOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TextModificationStatement FromMutable(ScriptDom.TextModificationStatement fragment) => (TextModificationStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TransactionStatement FromMutable(ScriptDom.TransactionStatement fragment) => (TransactionStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TriggerStatementBody FromMutable(ScriptDom.TriggerStatementBody fragment) => (TriggerStatementBody)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static TSqlStatement FromMutable(ScriptDom.TSqlStatement fragment) => (TSqlStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static UpdateDeleteSpecificationBase FromMutable(ScriptDom.UpdateDeleteSpecificationBase fragment) => (UpdateDeleteSpecificationBase)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static UserStatement FromMutable(ScriptDom.UserStatement fragment) => (UserStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ValueExpression FromMutable(ScriptDom.ValueExpression fragment) => (ValueExpression)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ViewDistributionPolicy FromMutable(ScriptDom.ViewDistributionPolicy fragment) => (ViewDistributionPolicy)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static ViewStatementBody FromMutable(ScriptDom.ViewStatementBody fragment) => (ViewStatementBody)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static WaitForSupportedStatement FromMutable(ScriptDom.WaitForSupportedStatement fragment) => (WaitForSupportedStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static WhenClause FromMutable(ScriptDom.WhenClause fragment) => (WhenClause)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static WorkloadClassifierOption FromMutable(ScriptDom.WorkloadClassifierOption fragment) => (WorkloadClassifierOption)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static WorkloadClassifierStatement FromMutable(ScriptDom.WorkloadClassifierStatement fragment) => (WorkloadClassifierStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static WorkloadGroupParameter FromMutable(ScriptDom.WorkloadGroupParameter fragment) => (WorkloadGroupParameter)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static WorkloadGroupStatement FromMutable(ScriptDom.WorkloadGroupStatement fragment) => (WorkloadGroupStatement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        public static XmlNamespacesElement FromMutable(ScriptDom.XmlNamespacesElement fragment) => (XmlNamespacesElement)FromMutable(fragment as ScriptDom.TSqlFragment);
+        
         public static AcceleratedDatabaseRecoveryDatabaseOption FromMutable(ScriptDom.AcceleratedDatabaseRecoveryDatabaseOption fragment) {
             if (fragment is null) { return null; }
             return new AcceleratedDatabaseRecoveryDatabaseOption(
@@ -1845,7 +1982,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static AddAlterFullTextIndexAction FromMutable(ScriptDom.AddAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
             return new AddAlterFullTextIndexAction(
-                columns: fragment.Columns.SelectList(c => (FullTextIndexColumn)FromMutable(c)),
+                columns: fragment.Columns.SelectList(FromMutable),
                 withNoPopulation: fragment.WithNoPopulation
             );
         }
@@ -1853,33 +1990,33 @@ namespace Xledger.Sql.ImmutableDom {
         public static AddFileSpec FromMutable(ScriptDom.AddFileSpec fragment) {
             if (fragment is null) { return null; }
             return new AddFileSpec(
-                file: (ScalarExpression)FromMutable(fragment.File),
-                fileName: (Literal)FromMutable(fragment.FileName)
+                file: FromMutable(fragment.File),
+                fileName: FromMutable(fragment.FileName)
             );
         }
         
         public static AddMemberAlterRoleAction FromMutable(ScriptDom.AddMemberAlterRoleAction fragment) {
             if (fragment is null) { return null; }
             return new AddMemberAlterRoleAction(
-                member: (Identifier)FromMutable(fragment.Member)
+                member: FromMutable(fragment.Member)
             );
         }
         
         public static AddSearchPropertyListAction FromMutable(ScriptDom.AddSearchPropertyListAction fragment) {
             if (fragment is null) { return null; }
             return new AddSearchPropertyListAction(
-                propertyName: (StringLiteral)FromMutable(fragment.PropertyName),
-                guid: (StringLiteral)FromMutable(fragment.Guid),
-                id: (IntegerLiteral)FromMutable(fragment.Id),
-                description: (StringLiteral)FromMutable(fragment.Description)
+                propertyName: FromMutable(fragment.PropertyName),
+                guid: FromMutable(fragment.Guid),
+                id: FromMutable(fragment.Id),
+                description: FromMutable(fragment.Description)
             );
         }
         
         public static AddSensitivityClassificationStatement FromMutable(ScriptDom.AddSensitivityClassificationStatement fragment) {
             if (fragment is null) { return null; }
             return new AddSensitivityClassificationStatement(
-                options: fragment.Options.SelectList(c => (SensitivityClassificationOption)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable)
             );
         }
         
@@ -1888,25 +2025,25 @@ namespace Xledger.Sql.ImmutableDom {
             return new AddSignatureStatement(
                 isCounter: fragment.IsCounter,
                 elementKind: fragment.ElementKind,
-                element: (SchemaObjectName)FromMutable(fragment.Element),
-                cryptos: fragment.Cryptos.SelectList(c => (CryptoMechanism)FromMutable(c))
+                element: FromMutable(fragment.Element),
+                cryptos: fragment.Cryptos.SelectList(FromMutable)
             );
         }
         
         public static AdHocDataSource FromMutable(ScriptDom.AdHocDataSource fragment) {
             if (fragment is null) { return null; }
             return new AdHocDataSource(
-                providerName: (StringLiteral)FromMutable(fragment.ProviderName),
-                initString: (StringLiteral)FromMutable(fragment.InitString)
+                providerName: FromMutable(fragment.ProviderName),
+                initString: FromMutable(fragment.InitString)
             );
         }
         
         public static AdHocTableReference FromMutable(ScriptDom.AdHocTableReference fragment) {
             if (fragment is null) { return null; }
             return new AdHocTableReference(
-                dataSource: (AdHocDataSource)FromMutable(fragment.DataSource),
-                @object: (SchemaObjectNameOrValueExpression)FromMutable(fragment.Object),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                dataSource: FromMutable(fragment.DataSource),
+                @object: FromMutable(fragment.Object),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -1922,45 +2059,46 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterApplicationRoleStatement FromMutable(ScriptDom.AlterApplicationRoleStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterApplicationRoleStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                applicationRoleOptions: fragment.ApplicationRoleOptions.SelectList(c => (ApplicationRoleOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                applicationRoleOptions: fragment.ApplicationRoleOptions.SelectList(FromMutable)
             );
         }
         
         public static AlterAssemblyStatement FromMutable(ScriptDom.AlterAssemblyStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterAssemblyStatement(
-                dropFiles: fragment.DropFiles.SelectList(c => (Literal)FromMutable(c)),
+                dropFiles: fragment.DropFiles.SelectList(FromMutable),
                 isDropAll: fragment.IsDropAll,
-                addFiles: fragment.AddFiles.SelectList(c => (AddFileSpec)FromMutable(c)),
-                name: (Identifier)FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                options: fragment.Options.SelectList(c => (AssemblyOption)FromMutable(c))
+                addFiles: fragment.AddFiles.SelectList(FromMutable),
+                name: FromMutable(fragment.Name),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static AlterAsymmetricKeyStatement FromMutable(ScriptDom.AlterAsymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterAsymmetricKeyStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                attestedBy: (Literal)FromMutable(fragment.AttestedBy),
+                name: FromMutable(fragment.Name),
+                attestedBy: FromMutable(fragment.AttestedBy),
                 kind: fragment.Kind,
-                encryptionPassword: (Literal)FromMutable(fragment.EncryptionPassword),
-                decryptionPassword: (Literal)FromMutable(fragment.DecryptionPassword)
+                encryptionPassword: FromMutable(fragment.EncryptionPassword),
+                decryptionPassword: FromMutable(fragment.DecryptionPassword)
             );
         }
         
         public static AlterAuthorizationStatement FromMutable(ScriptDom.AlterAuthorizationStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterAuthorizationStatement(
-                securityTargetObject: (SecurityTargetObject)FromMutable(fragment.SecurityTargetObject),
+                securityTargetObject: FromMutable(fragment.SecurityTargetObject),
                 toSchemaOwner: fragment.ToSchemaOwner,
-                principalName: (Identifier)FromMutable(fragment.PrincipalName)
+                principalName: FromMutable(fragment.PrincipalName)
             );
         }
         
         public static AlterAvailabilityGroupAction FromMutable(ScriptDom.AlterAvailabilityGroupAction fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterAvailabilityGroupAction)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterAvailabilityGroupAction; }
             return new AlterAvailabilityGroupAction(
                 actionType: fragment.ActionType
             );
@@ -1969,7 +2107,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterAvailabilityGroupFailoverAction FromMutable(ScriptDom.AlterAvailabilityGroupFailoverAction fragment) {
             if (fragment is null) { return null; }
             return new AlterAvailabilityGroupFailoverAction(
-                options: fragment.Options.SelectList(c => (AlterAvailabilityGroupFailoverOption)FromMutable(c)),
+                options: fragment.Options.SelectList(FromMutable),
                 actionType: fragment.ActionType
             );
         }
@@ -1978,7 +2116,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterAvailabilityGroupFailoverOption(
                 optionKind: fragment.OptionKind,
-                @value: (Literal)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
@@ -1986,19 +2124,19 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterAvailabilityGroupStatement(
                 alterAvailabilityGroupStatementType: fragment.AlterAvailabilityGroupStatementType,
-                action: (AlterAvailabilityGroupAction)FromMutable(fragment.Action),
-                name: (Identifier)FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(c => (AvailabilityGroupOption)FromMutable(c)),
-                databases: fragment.Databases.SelectList(c => (Identifier)FromMutable(c)),
-                replicas: fragment.Replicas.SelectList(c => (AvailabilityReplica)FromMutable(c))
+                action: FromMutable(fragment.Action),
+                name: FromMutable(fragment.Name),
+                options: fragment.Options.SelectList(FromMutable),
+                databases: fragment.Databases.SelectList(FromMutable),
+                replicas: fragment.Replicas.SelectList(FromMutable)
             );
         }
         
         public static AlterBrokerPriorityStatement FromMutable(ScriptDom.AlterBrokerPriorityStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterBrokerPriorityStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                brokerPriorityParameters: fragment.BrokerPriorityParameters.SelectList(c => (BrokerPriorityParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                brokerPriorityParameters: fragment.BrokerPriorityParameters.SelectList(FromMutable)
             );
         }
         
@@ -2006,19 +2144,19 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterCertificateStatement(
                 kind: fragment.Kind,
-                attestedBy: (Literal)FromMutable(fragment.AttestedBy),
-                name: (Identifier)FromMutable(fragment.Name),
+                attestedBy: FromMutable(fragment.AttestedBy),
+                name: FromMutable(fragment.Name),
                 activeForBeginDialog: fragment.ActiveForBeginDialog,
-                privateKeyPath: (Literal)FromMutable(fragment.PrivateKeyPath),
-                encryptionPassword: (Literal)FromMutable(fragment.EncryptionPassword),
-                decryptionPassword: (Literal)FromMutable(fragment.DecryptionPassword)
+                privateKeyPath: FromMutable(fragment.PrivateKeyPath),
+                encryptionPassword: FromMutable(fragment.EncryptionPassword),
+                decryptionPassword: FromMutable(fragment.DecryptionPassword)
             );
         }
         
         public static AlterColumnAlterFullTextIndexAction FromMutable(ScriptDom.AlterColumnAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
             return new AlterColumnAlterFullTextIndexAction(
-                column: (FullTextIndexColumn)FromMutable(fragment.Column),
+                column: FromMutable(fragment.Column),
                 withNoPopulation: fragment.WithNoPopulation
             );
         }
@@ -2027,17 +2165,17 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterColumnEncryptionKeyStatement(
                 alterType: fragment.AlterType,
-                name: (Identifier)FromMutable(fragment.Name),
-                columnEncryptionKeyValues: fragment.ColumnEncryptionKeyValues.SelectList(c => (ColumnEncryptionKeyValue)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                columnEncryptionKeyValues: fragment.ColumnEncryptionKeyValues.SelectList(FromMutable)
             );
         }
         
         public static AlterCredentialStatement FromMutable(ScriptDom.AlterCredentialStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterCredentialStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                identity: (Literal)FromMutable(fragment.Identity),
-                secret: (Literal)FromMutable(fragment.Secret),
+                name: FromMutable(fragment.Name),
+                identity: FromMutable(fragment.Identity),
+                secret: FromMutable(fragment.Secret),
                 isDatabaseScoped: fragment.IsDatabaseScoped
             );
         }
@@ -2045,19 +2183,19 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterCryptographicProviderStatement FromMutable(ScriptDom.AlterCryptographicProviderStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterCryptographicProviderStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 option: fragment.Option,
-                file: (Literal)FromMutable(fragment.File)
+                file: FromMutable(fragment.File)
             );
         }
         
         public static AlterDatabaseAddFileGroupStatement FromMutable(ScriptDom.AlterDatabaseAddFileGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseAddFileGroupStatement(
-                fileGroup: (Identifier)FromMutable(fragment.FileGroup),
+                fileGroup: FromMutable(fragment.FileGroup),
                 containsFileStream: fragment.ContainsFileStream,
                 containsMemoryOptimizedData: fragment.ContainsMemoryOptimizedData,
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2065,10 +2203,10 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseAddFileStatement FromMutable(ScriptDom.AlterDatabaseAddFileStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseAddFileStatement(
-                fileDeclarations: fragment.FileDeclarations.SelectList(c => (FileDeclaration)FromMutable(c)),
-                fileGroup: (Identifier)FromMutable(fragment.FileGroup),
+                fileDeclarations: fragment.FileDeclarations.SelectList(FromMutable),
+                fileGroup: FromMutable(fragment.FileGroup),
                 isLog: fragment.IsLog,
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2077,17 +2215,17 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterDatabaseAuditSpecificationStatement(
                 auditState: fragment.AuditState,
-                parts: fragment.Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
-                specificationName: (Identifier)FromMutable(fragment.SpecificationName),
-                auditName: (Identifier)FromMutable(fragment.AuditName)
+                parts: fragment.Parts.SelectList(FromMutable),
+                specificationName: FromMutable(fragment.SpecificationName),
+                auditName: FromMutable(fragment.AuditName)
             );
         }
         
         public static AlterDatabaseCollateStatement FromMutable(ScriptDom.AlterDatabaseCollateStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseCollateStatement(
-                collation: (Identifier)FromMutable(fragment.Collation),
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                collation: FromMutable(fragment.Collation),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2096,7 +2234,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterDatabaseEncryptionKeyStatement(
                 regenerate: fragment.Regenerate,
-                encryptor: (CryptoMechanism)FromMutable(fragment.Encryptor),
+                encryptor: FromMutable(fragment.Encryptor),
                 algorithm: fragment.Algorithm
             );
         }
@@ -2104,12 +2242,12 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseModifyFileGroupStatement FromMutable(ScriptDom.AlterDatabaseModifyFileGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseModifyFileGroupStatement(
-                fileGroup: (Identifier)FromMutable(fragment.FileGroup),
-                newFileGroupName: (Identifier)FromMutable(fragment.NewFileGroupName),
+                fileGroup: FromMutable(fragment.FileGroup),
+                newFileGroupName: FromMutable(fragment.NewFileGroupName),
                 makeDefault: fragment.MakeDefault,
                 updatabilityOption: fragment.UpdatabilityOption,
-                termination: (AlterDatabaseTermination)FromMutable(fragment.Termination),
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                termination: FromMutable(fragment.Termination),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2117,8 +2255,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseModifyFileStatement FromMutable(ScriptDom.AlterDatabaseModifyFileStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseModifyFileStatement(
-                fileDeclaration: (FileDeclaration)FromMutable(fragment.FileDeclaration),
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                fileDeclaration: FromMutable(fragment.FileDeclaration),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2126,8 +2264,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseModifyNameStatement FromMutable(ScriptDom.AlterDatabaseModifyNameStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseModifyNameStatement(
-                newDatabaseName: (Identifier)FromMutable(fragment.NewDatabaseName),
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                newDatabaseName: FromMutable(fragment.NewDatabaseName),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2135,8 +2273,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseRebuildLogStatement FromMutable(ScriptDom.AlterDatabaseRebuildLogStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseRebuildLogStatement(
-                fileDeclaration: (FileDeclaration)FromMutable(fragment.FileDeclaration),
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                fileDeclaration: FromMutable(fragment.FileDeclaration),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2144,8 +2282,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseRemoveFileGroupStatement FromMutable(ScriptDom.AlterDatabaseRemoveFileGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseRemoveFileGroupStatement(
-                fileGroup: (Identifier)FromMutable(fragment.FileGroup),
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                fileGroup: FromMutable(fragment.FileGroup),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2153,8 +2291,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseRemoveFileStatement FromMutable(ScriptDom.AlterDatabaseRemoveFileStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseRemoveFileStatement(
-                file: (Identifier)FromMutable(fragment.File),
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                file: FromMutable(fragment.File),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2162,7 +2300,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseScopedConfigurationClearStatement FromMutable(ScriptDom.AlterDatabaseScopedConfigurationClearStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseScopedConfigurationClearStatement(
-                option: (DatabaseConfigurationClearOption)FromMutable(fragment.Option),
+                option: FromMutable(fragment.Option),
                 secondary: fragment.Secondary
             );
         }
@@ -2170,7 +2308,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseScopedConfigurationSetStatement FromMutable(ScriptDom.AlterDatabaseScopedConfigurationSetStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseScopedConfigurationSetStatement(
-                option: (DatabaseConfigurationSetOption)FromMutable(fragment.Option),
+                option: FromMutable(fragment.Option),
                 secondary: fragment.Secondary
             );
         }
@@ -2178,9 +2316,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterDatabaseSetStatement FromMutable(ScriptDom.AlterDatabaseSetStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterDatabaseSetStatement(
-                termination: (AlterDatabaseTermination)FromMutable(fragment.Termination),
-                options: fragment.Options.SelectList(c => (DatabaseOption)FromMutable(c)),
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
+                termination: FromMutable(fragment.Termination),
+                options: fragment.Options.SelectList(FromMutable),
+                databaseName: FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
         }
@@ -2189,7 +2327,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterDatabaseTermination(
                 immediateRollback: fragment.ImmediateRollback,
-                rollbackAfter: (Literal)FromMutable(fragment.RollbackAfter),
+                rollbackAfter: FromMutable(fragment.RollbackAfter),
                 noWait: fragment.NoWait
             );
         }
@@ -2197,13 +2335,13 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterEndpointStatement FromMutable(ScriptDom.AlterEndpointStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterEndpointStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 state: fragment.State,
-                affinity: (EndpointAffinity)FromMutable(fragment.Affinity),
+                affinity: FromMutable(fragment.Affinity),
                 protocol: fragment.Protocol,
-                protocolOptions: fragment.ProtocolOptions.SelectList(c => (EndpointProtocolOption)FromMutable(c)),
+                protocolOptions: fragment.ProtocolOptions.SelectList(FromMutable),
                 endpointType: fragment.EndpointType,
-                payloadOptions: fragment.PayloadOptions.SelectList(c => (PayloadOption)FromMutable(c))
+                payloadOptions: fragment.PayloadOptions.SelectList(FromMutable)
             );
         }
         
@@ -2211,13 +2349,13 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterEventSessionStatement(
                 statementType: fragment.StatementType,
-                dropEventDeclarations: fragment.DropEventDeclarations.SelectList(c => (EventSessionObjectName)FromMutable(c)),
-                dropTargetDeclarations: fragment.DropTargetDeclarations.SelectList(c => (EventSessionObjectName)FromMutable(c)),
-                name: (Identifier)FromMutable(fragment.Name),
+                dropEventDeclarations: fragment.DropEventDeclarations.SelectList(FromMutable),
+                dropTargetDeclarations: fragment.DropTargetDeclarations.SelectList(FromMutable),
+                name: FromMutable(fragment.Name),
                 sessionScope: fragment.SessionScope,
-                eventDeclarations: fragment.EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
-                targetDeclarations: fragment.TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
-                sessionOptions: fragment.SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
+                eventDeclarations: fragment.EventDeclarations.SelectList(FromMutable),
+                targetDeclarations: fragment.TargetDeclarations.SelectList(FromMutable),
+                sessionOptions: fragment.SessionOptions.SelectList(FromMutable)
             );
         }
         
@@ -2225,50 +2363,50 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterExternalDataSourceStatement(
                 previousPushDownOption: fragment.PreviousPushDownOption,
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 dataSourceType: fragment.DataSourceType,
-                location: (Literal)FromMutable(fragment.Location),
+                location: FromMutable(fragment.Location),
                 pushdownOption: fragment.PushdownOption,
-                externalDataSourceOptions: fragment.ExternalDataSourceOptions.SelectList(c => (ExternalDataSourceOption)FromMutable(c))
+                externalDataSourceOptions: fragment.ExternalDataSourceOptions.SelectList(FromMutable)
             );
         }
         
         public static AlterExternalLanguageStatement FromMutable(ScriptDom.AlterExternalLanguageStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterExternalLanguageStatement(
-                platform: (Identifier)FromMutable(fragment.Platform),
-                operation: (Identifier)FromMutable(fragment.Operation),
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                externalLanguageFiles: fragment.ExternalLanguageFiles.SelectList(c => (ExternalLanguageFileOption)FromMutable(c))
+                platform: FromMutable(fragment.Platform),
+                operation: FromMutable(fragment.Operation),
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                externalLanguageFiles: fragment.ExternalLanguageFiles.SelectList(FromMutable)
             );
         }
         
         public static AlterExternalLibraryStatement FromMutable(ScriptDom.AlterExternalLibraryStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterExternalLibraryStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                language: (StringLiteral)FromMutable(fragment.Language),
-                externalLibraryFiles: fragment.ExternalLibraryFiles.SelectList(c => (ExternalLibraryFileOption)FromMutable(c))
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                language: FromMutable(fragment.Language),
+                externalLibraryFiles: fragment.ExternalLibraryFiles.SelectList(FromMutable)
             );
         }
         
         public static AlterExternalResourcePoolStatement FromMutable(ScriptDom.AlterExternalResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterExternalResourcePoolStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(FromMutable)
             );
         }
         
         public static AlterFederationStatement FromMutable(ScriptDom.AlterFederationStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterFederationStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 kind: fragment.Kind,
-                distributionName: (Identifier)FromMutable(fragment.DistributionName),
-                boundary: (ScalarExpression)FromMutable(fragment.Boundary)
+                distributionName: FromMutable(fragment.DistributionName),
+                boundary: FromMutable(fragment.Boundary)
             );
         }
         
@@ -2276,37 +2414,37 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterFullTextCatalogStatement(
                 action: fragment.Action,
-                name: (Identifier)FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(c => (FullTextCatalogOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static AlterFullTextIndexStatement FromMutable(ScriptDom.AlterFullTextIndexStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterFullTextIndexStatement(
-                onName: (SchemaObjectName)FromMutable(fragment.OnName),
-                action: (AlterFullTextIndexAction)FromMutable(fragment.Action)
+                onName: FromMutable(fragment.OnName),
+                action: FromMutable(fragment.Action)
             );
         }
         
         public static AlterFullTextStopListStatement FromMutable(ScriptDom.AlterFullTextStopListStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterFullTextStopListStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                action: (FullTextStopListAction)FromMutable(fragment.Action)
+                name: FromMutable(fragment.Name),
+                action: FromMutable(fragment.Action)
             );
         }
         
         public static AlterFunctionStatement FromMutable(ScriptDom.AlterFunctionStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterFunctionStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                returnType: (FunctionReturnType)FromMutable(fragment.ReturnType),
-                options: fragment.Options.SelectList(c => (FunctionOption)FromMutable(c)),
-                orderHint: (OrderBulkInsertOption)FromMutable(fragment.OrderHint),
-                parameters: fragment.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                name: FromMutable(fragment.Name),
+                returnType: FromMutable(fragment.ReturnType),
+                options: fragment.Options.SelectList(FromMutable),
+                orderHint: FromMutable(fragment.OrderHint),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
@@ -2315,12 +2453,12 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterIndexStatement(
                 all: fragment.All,
                 alterIndexType: fragment.AlterIndexType,
-                partition: (PartitionSpecifier)FromMutable(fragment.Partition),
-                promotedPaths: fragment.PromotedPaths.SelectList(c => (SelectiveXmlIndexPromotedPath)FromMutable(c)),
-                xmlNamespaces: (XmlNamespaces)FromMutable(fragment.XmlNamespaces),
-                name: (Identifier)FromMutable(fragment.Name),
-                onName: (SchemaObjectName)FromMutable(fragment.OnName),
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
+                partition: FromMutable(fragment.Partition),
+                promotedPaths: fragment.PromotedPaths.SelectList(FromMutable),
+                xmlNamespaces: FromMutable(fragment.XmlNamespaces),
+                name: FromMutable(fragment.Name),
+                onName: FromMutable(fragment.OnName),
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable)
             );
         }
         
@@ -2328,8 +2466,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterLoginAddDropCredentialStatement(
                 isAdd: fragment.IsAdd,
-                credentialName: (Identifier)FromMutable(fragment.CredentialName),
-                name: (Identifier)FromMutable(fragment.Name)
+                credentialName: FromMutable(fragment.CredentialName),
+                name: FromMutable(fragment.Name)
             );
         }
         
@@ -2337,15 +2475,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterLoginEnableDisableStatement(
                 isEnable: fragment.IsEnable,
-                name: (Identifier)FromMutable(fragment.Name)
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static AlterLoginOptionsStatement FromMutable(ScriptDom.AlterLoginOptionsStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterLoginOptionsStatement(
-                options: fragment.Options.SelectList(c => (PrincipalOption)FromMutable(c)),
-                name: (Identifier)FromMutable(fragment.Name)
+                options: fragment.Options.SelectList(FromMutable),
+                name: FromMutable(fragment.Name)
             );
         }
         
@@ -2353,61 +2491,61 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterMasterKeyStatement(
                 option: fragment.Option,
-                password: (Literal)FromMutable(fragment.Password)
+                password: FromMutable(fragment.Password)
             );
         }
         
         public static AlterMessageTypeStatement FromMutable(ScriptDom.AlterMessageTypeStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterMessageTypeStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 validationMethod: fragment.ValidationMethod,
-                xmlSchemaCollectionName: (SchemaObjectName)FromMutable(fragment.XmlSchemaCollectionName)
+                xmlSchemaCollectionName: FromMutable(fragment.XmlSchemaCollectionName)
             );
         }
         
         public static AlterPartitionFunctionStatement FromMutable(ScriptDom.AlterPartitionFunctionStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterPartitionFunctionStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isSplit: fragment.IsSplit,
-                boundary: (ScalarExpression)FromMutable(fragment.Boundary)
+                boundary: FromMutable(fragment.Boundary)
             );
         }
         
         public static AlterPartitionSchemeStatement FromMutable(ScriptDom.AlterPartitionSchemeStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterPartitionSchemeStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                fileGroup: (IdentifierOrValueExpression)FromMutable(fragment.FileGroup)
+                name: FromMutable(fragment.Name),
+                fileGroup: FromMutable(fragment.FileGroup)
             );
         }
         
         public static AlterProcedureStatement FromMutable(ScriptDom.AlterProcedureStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterProcedureStatement(
-                procedureReference: (ProcedureReference)FromMutable(fragment.ProcedureReference),
+                procedureReference: FromMutable(fragment.ProcedureReference),
                 isForReplication: fragment.IsForReplication,
-                options: fragment.Options.SelectList(c => (ProcedureOption)FromMutable(c)),
-                parameters: fragment.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                options: fragment.Options.SelectList(FromMutable),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
         public static AlterQueueStatement FromMutable(ScriptDom.AlterQueueStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterQueueStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                queueOptions: fragment.QueueOptions.SelectList(c => (QueueOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                queueOptions: fragment.QueueOptions.SelectList(FromMutable)
             );
         }
         
         public static AlterRemoteServiceBindingStatement FromMutable(ScriptDom.AlterRemoteServiceBindingStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterRemoteServiceBindingStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(c => (RemoteServiceBindingOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
@@ -2415,39 +2553,40 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterResourceGovernorStatement(
                 command: fragment.Command,
-                classifierFunction: (SchemaObjectName)FromMutable(fragment.ClassifierFunction)
+                classifierFunction: FromMutable(fragment.ClassifierFunction)
             );
         }
         
         public static AlterResourcePoolStatement FromMutable(ScriptDom.AlterResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterResourcePoolStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(FromMutable)
             );
         }
         
         public static AlterRoleStatement FromMutable(ScriptDom.AlterRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterRoleStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterRoleStatement; }
             return new AlterRoleStatement(
-                action: (AlterRoleAction)FromMutable(fragment.Action),
-                name: (Identifier)FromMutable(fragment.Name)
+                action: FromMutable(fragment.Action),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static AlterRouteStatement FromMutable(ScriptDom.AlterRouteStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterRouteStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                routeOptions: fragment.RouteOptions.SelectList(c => (RouteOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                routeOptions: fragment.RouteOptions.SelectList(FromMutable)
             );
         }
         
         public static AlterSchemaStatement FromMutable(ScriptDom.AlterSchemaStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterSchemaStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                objectName: (SchemaObjectName)FromMutable(fragment.ObjectName),
+                name: FromMutable(fragment.Name),
+                objectName: FromMutable(fragment.ObjectName),
                 objectKind: fragment.ObjectKind
             );
         }
@@ -2455,18 +2594,18 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterSearchPropertyListStatement FromMutable(ScriptDom.AlterSearchPropertyListStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterSearchPropertyListStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                action: (SearchPropertyListAction)FromMutable(fragment.Action)
+                name: FromMutable(fragment.Name),
+                action: FromMutable(fragment.Action)
             );
         }
         
         public static AlterSecurityPolicyStatement FromMutable(ScriptDom.AlterSecurityPolicyStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterSecurityPolicyStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 notForReplication: fragment.NotForReplication,
-                securityPolicyOptions: fragment.SecurityPolicyOptions.SelectList(c => (SecurityPolicyOption)FromMutable(c)),
-                securityPredicateActions: fragment.SecurityPredicateActions.SelectList(c => (SecurityPredicateAction)FromMutable(c)),
+                securityPolicyOptions: fragment.SecurityPolicyOptions.SelectList(FromMutable),
+                securityPredicateActions: fragment.SecurityPredicateActions.SelectList(FromMutable),
                 actionType: fragment.ActionType
             );
         }
@@ -2474,8 +2613,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterSequenceStatement FromMutable(ScriptDom.AlterSequenceStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterSequenceStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                sequenceOptions: fragment.SequenceOptions.SelectList(c => (SequenceOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                sequenceOptions: fragment.SequenceOptions.SelectList(FromMutable)
             );
         }
         
@@ -2483,38 +2622,39 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterServerAuditSpecificationStatement(
                 auditState: fragment.AuditState,
-                parts: fragment.Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
-                specificationName: (Identifier)FromMutable(fragment.SpecificationName),
-                auditName: (Identifier)FromMutable(fragment.AuditName)
+                parts: fragment.Parts.SelectList(FromMutable),
+                specificationName: FromMutable(fragment.SpecificationName),
+                auditName: FromMutable(fragment.AuditName)
             );
         }
         
         public static AlterServerAuditStatement FromMutable(ScriptDom.AlterServerAuditStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServerAuditStatement(
-                newName: (Identifier)FromMutable(fragment.NewName),
+                newName: FromMutable(fragment.NewName),
                 removeWhere: fragment.RemoveWhere,
-                auditName: (Identifier)FromMutable(fragment.AuditName),
-                auditTarget: (AuditTarget)FromMutable(fragment.AuditTarget),
-                options: fragment.Options.SelectList(c => (AuditOption)FromMutable(c)),
-                predicateExpression: (BooleanExpression)FromMutable(fragment.PredicateExpression)
+                auditName: FromMutable(fragment.AuditName),
+                auditTarget: FromMutable(fragment.AuditTarget),
+                options: fragment.Options.SelectList(FromMutable),
+                predicateExpression: FromMutable(fragment.PredicateExpression)
             );
         }
         
         public static AlterServerConfigurationBufferPoolExtensionContainerOption FromMutable(ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption fragment) {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationBufferPoolExtensionContainerOption(
-                suboptions: fragment.Suboptions.SelectList(c => (AlterServerConfigurationBufferPoolExtensionOption)FromMutable(c)),
+                suboptions: fragment.Suboptions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
         public static AlterServerConfigurationBufferPoolExtensionOption FromMutable(ScriptDom.AlterServerConfigurationBufferPoolExtensionOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationBufferPoolExtensionOption; }
             return new AlterServerConfigurationBufferPoolExtensionOption(
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
@@ -2523,7 +2663,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterServerConfigurationBufferPoolExtensionSizeOption(
                 sizeUnit: fragment.SizeUnit,
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
@@ -2532,32 +2672,34 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterServerConfigurationDiagnosticsLogMaxSizeOption(
                 sizeUnit: fragment.SizeUnit,
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
         public static AlterServerConfigurationDiagnosticsLogOption FromMutable(ScriptDom.AlterServerConfigurationDiagnosticsLogOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationDiagnosticsLogOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationDiagnosticsLogOption; }
             return new AlterServerConfigurationDiagnosticsLogOption(
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
         public static AlterServerConfigurationExternalAuthenticationContainerOption FromMutable(ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption fragment) {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationExternalAuthenticationContainerOption(
-                suboptions: fragment.Suboptions.SelectList(c => (AlterServerConfigurationExternalAuthenticationOption)FromMutable(c)),
+                suboptions: fragment.Suboptions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
         public static AlterServerConfigurationExternalAuthenticationOption FromMutable(ScriptDom.AlterServerConfigurationExternalAuthenticationOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationExternalAuthenticationOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AlterServerConfigurationExternalAuthenticationOption; }
             return new AlterServerConfigurationExternalAuthenticationOption(
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
@@ -2565,7 +2707,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationFailoverClusterPropertyOption(
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
@@ -2573,7 +2715,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationHadrClusterOption(
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue),
+                optionValue: FromMutable(fragment.OptionValue),
                 isLocal: fragment.IsLocal
             );
         }
@@ -2581,42 +2723,42 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterServerConfigurationSetBufferPoolExtensionStatement FromMutable(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationSetBufferPoolExtensionStatement(
-                options: fragment.Options.SelectList(c => (AlterServerConfigurationBufferPoolExtensionOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static AlterServerConfigurationSetDiagnosticsLogStatement FromMutable(ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationSetDiagnosticsLogStatement(
-                options: fragment.Options.SelectList(c => (AlterServerConfigurationDiagnosticsLogOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static AlterServerConfigurationSetExternalAuthenticationStatement FromMutable(ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationSetExternalAuthenticationStatement(
-                options: fragment.Options.SelectList(c => (AlterServerConfigurationExternalAuthenticationOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static AlterServerConfigurationSetFailoverClusterPropertyStatement FromMutable(ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationSetFailoverClusterPropertyStatement(
-                options: fragment.Options.SelectList(c => (AlterServerConfigurationFailoverClusterPropertyOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static AlterServerConfigurationSetHadrClusterStatement FromMutable(ScriptDom.AlterServerConfigurationSetHadrClusterStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationSetHadrClusterStatement(
-                options: fragment.Options.SelectList(c => (AlterServerConfigurationHadrClusterOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static AlterServerConfigurationSetSoftNumaStatement FromMutable(ScriptDom.AlterServerConfigurationSetSoftNumaStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationSetSoftNumaStatement(
-                options: fragment.Options.SelectList(c => (AlterServerConfigurationSoftNumaOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
@@ -2624,7 +2766,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationSoftNumaOption(
                 optionKind: fragment.OptionKind,
-                optionValue: (OptionValue)FromMutable(fragment.OptionValue)
+                optionValue: FromMutable(fragment.OptionValue)
             );
         }
         
@@ -2632,23 +2774,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterServerConfigurationStatement(
                 processAffinity: fragment.ProcessAffinity,
-                processAffinityRanges: fragment.ProcessAffinityRanges.SelectList(c => (ProcessAffinityRange)FromMutable(c))
+                processAffinityRanges: fragment.ProcessAffinityRanges.SelectList(FromMutable)
             );
         }
         
         public static AlterServerRoleStatement FromMutable(ScriptDom.AlterServerRoleStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServerRoleStatement(
-                action: (AlterRoleAction)FromMutable(fragment.Action),
-                name: (Identifier)FromMutable(fragment.Name)
+                action: FromMutable(fragment.Action),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static AlterServiceMasterKeyStatement FromMutable(ScriptDom.AlterServiceMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServiceMasterKeyStatement(
-                account: (Literal)FromMutable(fragment.Account),
-                password: (Literal)FromMutable(fragment.Password),
+                account: FromMutable(fragment.Account),
+                password: FromMutable(fragment.Password),
                 kind: fragment.Kind
             );
         }
@@ -2656,9 +2798,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterServiceStatement FromMutable(ScriptDom.AlterServiceStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterServiceStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                queueName: (SchemaObjectName)FromMutable(fragment.QueueName),
-                serviceContracts: fragment.ServiceContracts.SelectList(c => (ServiceContract)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                queueName: FromMutable(fragment.QueueName),
+                serviceContracts: fragment.ServiceContracts.SelectList(FromMutable)
             );
         }
         
@@ -2666,8 +2808,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterSymmetricKeyStatement(
                 isAdd: fragment.IsAdd,
-                name: (Identifier)FromMutable(fragment.Name),
-                encryptingMechanisms: fragment.EncryptingMechanisms.SelectList(c => (CryptoMechanism)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                encryptingMechanisms: fragment.EncryptingMechanisms.SelectList(FromMutable)
             );
         }
         
@@ -2675,45 +2817,45 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterTableAddTableElementStatement(
                 existingRowsCheckEnforcement: fragment.ExistingRowsCheckEnforcement,
-                definition: (TableDefinition)FromMutable(fragment.Definition),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                definition: FromMutable(fragment.Definition),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
         public static AlterTableAlterColumnStatement FromMutable(ScriptDom.AlterTableAlterColumnStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterTableAlterColumnStatement(
-                columnIdentifier: (Identifier)FromMutable(fragment.ColumnIdentifier),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
+                columnIdentifier: FromMutable(fragment.ColumnIdentifier),
+                dataType: FromMutable(fragment.DataType),
                 alterTableAlterColumnOption: fragment.AlterTableAlterColumnOption,
-                storageOptions: (ColumnStorageOptions)FromMutable(fragment.StorageOptions),
-                options: fragment.Options.SelectList(c => (IndexOption)FromMutable(c)),
+                storageOptions: FromMutable(fragment.StorageOptions),
+                options: fragment.Options.SelectList(FromMutable),
                 generatedAlways: fragment.GeneratedAlways,
                 isHidden: fragment.IsHidden,
-                encryption: (ColumnEncryptionDefinition)FromMutable(fragment.Encryption),
-                collation: (Identifier)FromMutable(fragment.Collation),
+                encryption: FromMutable(fragment.Encryption),
+                collation: FromMutable(fragment.Collation),
                 isMasked: fragment.IsMasked,
-                maskingFunction: (StringLiteral)FromMutable(fragment.MaskingFunction),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                maskingFunction: FromMutable(fragment.MaskingFunction),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
         public static AlterTableAlterIndexStatement FromMutable(ScriptDom.AlterTableAlterIndexStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterTableAlterIndexStatement(
-                indexIdentifier: (Identifier)FromMutable(fragment.IndexIdentifier),
+                indexIdentifier: FromMutable(fragment.IndexIdentifier),
                 alterIndexType: fragment.AlterIndexType,
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
         public static AlterTableAlterPartitionStatement FromMutable(ScriptDom.AlterTableAlterPartitionStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterTableAlterPartitionStatement(
-                boundaryValue: (ScalarExpression)FromMutable(fragment.BoundaryValue),
+                boundaryValue: FromMutable(fragment.BoundaryValue),
                 isSplit: fragment.IsSplit,
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
@@ -2722,7 +2864,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterTableChangeTrackingModificationStatement(
                 isEnable: fragment.IsEnable,
                 trackColumnsUpdated: fragment.TrackColumnsUpdated,
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
@@ -2732,8 +2874,8 @@ namespace Xledger.Sql.ImmutableDom {
                 existingRowsCheckEnforcement: fragment.ExistingRowsCheckEnforcement,
                 constraintEnforcement: fragment.ConstraintEnforcement,
                 all: fragment.All,
-                constraintNames: fragment.ConstraintNames.SelectList(c => (Identifier)FromMutable(c)),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                constraintNames: fragment.ConstraintNames.SelectList(FromMutable),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
@@ -2741,8 +2883,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterTableDropTableElement(
                 tableElementType: fragment.TableElementType,
-                name: (Identifier)FromMutable(fragment.Name),
-                dropClusteredConstraintOptions: fragment.DropClusteredConstraintOptions.SelectList(c => (DropClusteredConstraintOption)FromMutable(c)),
+                name: FromMutable(fragment.Name),
+                dropClusteredConstraintOptions: fragment.DropClusteredConstraintOptions.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -2750,8 +2892,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterTableDropTableElementStatement FromMutable(ScriptDom.AlterTableDropTableElementStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterTableDropTableElementStatement(
-                alterTableDropTableElements: fragment.AlterTableDropTableElements.SelectList(c => (AlterTableDropTableElement)FromMutable(c)),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                alterTableDropTableElements: fragment.AlterTableDropTableElements.SelectList(FromMutable),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
@@ -2759,35 +2901,35 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AlterTableFileTableNamespaceStatement(
                 isEnable: fragment.IsEnable,
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
         public static AlterTableRebuildStatement FromMutable(ScriptDom.AlterTableRebuildStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterTableRebuildStatement(
-                partition: (PartitionSpecifier)FromMutable(fragment.Partition),
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                partition: FromMutable(fragment.Partition),
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
         public static AlterTableSetStatement FromMutable(ScriptDom.AlterTableSetStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterTableSetStatement(
-                options: fragment.Options.SelectList(c => (TableOption)FromMutable(c)),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                options: fragment.Options.SelectList(FromMutable),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
         public static AlterTableSwitchStatement FromMutable(ScriptDom.AlterTableSwitchStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterTableSwitchStatement(
-                sourcePartitionNumber: (ScalarExpression)FromMutable(fragment.SourcePartitionNumber),
-                targetPartitionNumber: (ScalarExpression)FromMutable(fragment.TargetPartitionNumber),
-                targetTable: (SchemaObjectName)FromMutable(fragment.TargetTable),
-                options: fragment.Options.SelectList(c => (TableSwitchOption)FromMutable(c)),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                sourcePartitionNumber: FromMutable(fragment.SourcePartitionNumber),
+                targetPartitionNumber: FromMutable(fragment.TargetPartitionNumber),
+                targetTable: FromMutable(fragment.TargetTable),
+                options: fragment.Options.SelectList(FromMutable),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
@@ -2796,31 +2938,31 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterTableTriggerModificationStatement(
                 triggerEnforcement: fragment.TriggerEnforcement,
                 all: fragment.All,
-                triggerNames: fragment.TriggerNames.SelectList(c => (Identifier)FromMutable(c)),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                triggerNames: fragment.TriggerNames.SelectList(FromMutable),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
         public static AlterTriggerStatement FromMutable(ScriptDom.AlterTriggerStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterTriggerStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                triggerObject: (TriggerObject)FromMutable(fragment.TriggerObject),
-                options: fragment.Options.SelectList(c => (TriggerOption)FromMutable(c)),
+                name: FromMutable(fragment.Name),
+                triggerObject: FromMutable(fragment.TriggerObject),
+                options: fragment.Options.SelectList(FromMutable),
                 triggerType: fragment.TriggerType,
-                triggerActions: fragment.TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
+                triggerActions: fragment.TriggerActions.SelectList(FromMutable),
                 withAppend: fragment.WithAppend,
                 isNotForReplication: fragment.IsNotForReplication,
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
         public static AlterUserStatement FromMutable(ScriptDom.AlterUserStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterUserStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                userOptions: fragment.UserOptions.SelectList(c => (PrincipalOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                userOptions: fragment.UserOptions.SelectList(FromMutable)
             );
         }
         
@@ -2829,10 +2971,10 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterViewStatement(
                 isRebuild: fragment.IsRebuild,
                 isDisable: fragment.IsDisable,
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                viewOptions: fragment.ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
-                selectStatement: (SelectStatement)FromMutable(fragment.SelectStatement),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName),
+                columns: fragment.Columns.SelectList(FromMutable),
+                viewOptions: fragment.ViewOptions.SelectList(FromMutable),
+                selectStatement: FromMutable(fragment.SelectStatement),
                 withCheckOption: fragment.WithCheckOption,
                 isMaterialized: fragment.IsMaterialized
             );
@@ -2841,18 +2983,18 @@ namespace Xledger.Sql.ImmutableDom {
         public static AlterWorkloadGroupStatement FromMutable(ScriptDom.AlterWorkloadGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterWorkloadGroupStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                workloadGroupParameters: fragment.WorkloadGroupParameters.SelectList(c => (WorkloadGroupParameter)FromMutable(c)),
-                poolName: (Identifier)FromMutable(fragment.PoolName),
-                externalPoolName: (Identifier)FromMutable(fragment.ExternalPoolName)
+                name: FromMutable(fragment.Name),
+                workloadGroupParameters: fragment.WorkloadGroupParameters.SelectList(FromMutable),
+                poolName: FromMutable(fragment.PoolName),
+                externalPoolName: FromMutable(fragment.ExternalPoolName)
             );
         }
         
         public static AlterXmlSchemaCollectionStatement FromMutable(ScriptDom.AlterXmlSchemaCollectionStatement fragment) {
             if (fragment is null) { return null; }
             return new AlterXmlSchemaCollectionStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                name: FromMutable(fragment.Name),
+                expression: FromMutable(fragment.Expression)
             );
         }
         
@@ -2860,27 +3002,28 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ApplicationRoleOption(
                 optionKind: fragment.OptionKind,
-                @value: (IdentifierOrValueExpression)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static AssemblyEncryptionSource FromMutable(ScriptDom.AssemblyEncryptionSource fragment) {
             if (fragment is null) { return null; }
             return new AssemblyEncryptionSource(
-                assembly: (Identifier)FromMutable(fragment.Assembly)
+                assembly: FromMutable(fragment.Assembly)
             );
         }
         
         public static AssemblyName FromMutable(ScriptDom.AssemblyName fragment) {
             if (fragment is null) { return null; }
             return new AssemblyName(
-                name: (Identifier)FromMutable(fragment.Name),
-                className: (Identifier)FromMutable(fragment.ClassName)
+                name: FromMutable(fragment.Name),
+                className: FromMutable(fragment.ClassName)
             );
         }
         
         public static AssemblyOption FromMutable(ScriptDom.AssemblyOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AssemblyOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AssemblyOption; }
             return new AssemblyOption(
                 optionKind: fragment.OptionKind
             );
@@ -2889,9 +3032,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static AssignmentSetClause FromMutable(ScriptDom.AssignmentSetClause fragment) {
             if (fragment is null) { return null; }
             return new AssignmentSetClause(
-                variable: (VariableReference)FromMutable(fragment.Variable),
-                column: (ColumnReferenceExpression)FromMutable(fragment.Column),
-                newValue: (ScalarExpression)FromMutable(fragment.NewValue),
+                variable: FromMutable(fragment.Variable),
+                column: FromMutable(fragment.Column),
+                newValue: FromMutable(fragment.NewValue),
                 assignmentKind: fragment.AssignmentKind
             );
         }
@@ -2899,17 +3042,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static AsymmetricKeyCreateLoginSource FromMutable(ScriptDom.AsymmetricKeyCreateLoginSource fragment) {
             if (fragment is null) { return null; }
             return new AsymmetricKeyCreateLoginSource(
-                key: (Identifier)FromMutable(fragment.Key),
-                credential: (Identifier)FromMutable(fragment.Credential)
+                key: FromMutable(fragment.Key),
+                credential: FromMutable(fragment.Credential)
             );
         }
         
         public static AtTimeZoneCall FromMutable(ScriptDom.AtTimeZoneCall fragment) {
             if (fragment is null) { return null; }
             return new AtTimeZoneCall(
-                dateValue: (ScalarExpression)FromMutable(fragment.DateValue),
-                timeZone: (ScalarExpression)FromMutable(fragment.TimeZone),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                dateValue: FromMutable(fragment.DateValue),
+                timeZone: FromMutable(fragment.TimeZone),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -2923,16 +3066,16 @@ namespace Xledger.Sql.ImmutableDom {
         public static AuditActionSpecification FromMutable(ScriptDom.AuditActionSpecification fragment) {
             if (fragment is null) { return null; }
             return new AuditActionSpecification(
-                actions: fragment.Actions.SelectList(c => (DatabaseAuditAction)FromMutable(c)),
-                principals: fragment.Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
-                targetObject: (SecurityTargetObject)FromMutable(fragment.TargetObject)
+                actions: fragment.Actions.SelectList(FromMutable),
+                principals: fragment.Principals.SelectList(FromMutable),
+                targetObject: FromMutable(fragment.TargetObject)
             );
         }
         
         public static AuditGuidAuditOption FromMutable(ScriptDom.AuditGuidAuditOption fragment) {
             if (fragment is null) { return null; }
             return new AuditGuidAuditOption(
-                guid: (Literal)FromMutable(fragment.Guid),
+                guid: FromMutable(fragment.Guid),
                 optionKind: fragment.OptionKind
             );
         }
@@ -2941,7 +3084,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AuditSpecificationPart(
                 isDrop: fragment.IsDrop,
-                details: (AuditSpecificationDetail)FromMutable(fragment.Details)
+                details: FromMutable(fragment.Details)
             );
         }
         
@@ -2949,7 +3092,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AuditTarget(
                 targetKind: fragment.TargetKind,
-                targetOptions: fragment.TargetOptions.SelectList(c => (AuditTargetOption)FromMutable(c))
+                targetOptions: fragment.TargetOptions.SelectList(FromMutable)
             );
         }
         
@@ -2965,7 +3108,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AuthenticationPayloadOption(
                 protocol: fragment.Protocol,
-                certificate: (Identifier)FromMutable(fragment.Certificate),
+                certificate: FromMutable(fragment.Certificate),
                 tryCertificateFirst: fragment.TryCertificateFirst,
                 kind: fragment.Kind
             );
@@ -3000,7 +3143,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new AutomaticTuningDatabaseOption(
                 automaticTuningState: fragment.AutomaticTuningState,
-                options: fragment.Options.SelectList(c => (AutomaticTuningOption)FromMutable(c)),
+                options: fragment.Options.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -3031,6 +3174,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static AutomaticTuningOption FromMutable(ScriptDom.AutomaticTuningOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AutomaticTuningOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as AutomaticTuningOption; }
             return new AutomaticTuningOption(
                 optionKind: fragment.OptionKind,
                 @value: fragment.Value
@@ -3048,31 +3192,31 @@ namespace Xledger.Sql.ImmutableDom {
         public static AvailabilityReplica FromMutable(ScriptDom.AvailabilityReplica fragment) {
             if (fragment is null) { return null; }
             return new AvailabilityReplica(
-                serverName: (StringLiteral)FromMutable(fragment.ServerName),
-                options: fragment.Options.SelectList(c => (AvailabilityReplicaOption)FromMutable(c))
+                serverName: FromMutable(fragment.ServerName),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static BackupCertificateStatement FromMutable(ScriptDom.BackupCertificateStatement fragment) {
             if (fragment is null) { return null; }
             return new BackupCertificateStatement(
-                file: (Literal)FromMutable(fragment.File),
-                name: (Identifier)FromMutable(fragment.Name),
+                file: FromMutable(fragment.File),
+                name: FromMutable(fragment.Name),
                 activeForBeginDialog: fragment.ActiveForBeginDialog,
-                privateKeyPath: (Literal)FromMutable(fragment.PrivateKeyPath),
-                encryptionPassword: (Literal)FromMutable(fragment.EncryptionPassword),
-                decryptionPassword: (Literal)FromMutable(fragment.DecryptionPassword)
+                privateKeyPath: FromMutable(fragment.PrivateKeyPath),
+                encryptionPassword: FromMutable(fragment.EncryptionPassword),
+                decryptionPassword: FromMutable(fragment.DecryptionPassword)
             );
         }
         
         public static BackupDatabaseStatement FromMutable(ScriptDom.BackupDatabaseStatement fragment) {
             if (fragment is null) { return null; }
             return new BackupDatabaseStatement(
-                files: fragment.Files.SelectList(c => (BackupRestoreFileInfo)FromMutable(c)),
-                databaseName: (IdentifierOrValueExpression)FromMutable(fragment.DatabaseName),
-                options: fragment.Options.SelectList(c => (BackupOption)FromMutable(c)),
-                mirrorToClauses: fragment.MirrorToClauses.SelectList(c => (MirrorToClause)FromMutable(c)),
-                devices: fragment.Devices.SelectList(c => (DeviceInfo)FromMutable(c))
+                files: fragment.Files.SelectList(FromMutable),
+                databaseName: FromMutable(fragment.DatabaseName),
+                options: fragment.Options.SelectList(FromMutable),
+                mirrorToClauses: fragment.MirrorToClauses.SelectList(FromMutable),
+                devices: fragment.Devices.SelectList(FromMutable)
             );
         }
         
@@ -3080,32 +3224,33 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new BackupEncryptionOption(
                 algorithm: fragment.Algorithm,
-                encryptor: (CryptoMechanism)FromMutable(fragment.Encryptor),
+                encryptor: FromMutable(fragment.Encryptor),
                 optionKind: fragment.OptionKind,
-                @value: (ScalarExpression)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static BackupMasterKeyStatement FromMutable(ScriptDom.BackupMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new BackupMasterKeyStatement(
-                file: (Literal)FromMutable(fragment.File),
-                password: (Literal)FromMutable(fragment.Password)
+                file: FromMutable(fragment.File),
+                password: FromMutable(fragment.Password)
             );
         }
         
         public static BackupOption FromMutable(ScriptDom.BackupOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BackupOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BackupOption; }
             return new BackupOption(
                 optionKind: fragment.OptionKind,
-                @value: (ScalarExpression)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static BackupRestoreFileInfo FromMutable(ScriptDom.BackupRestoreFileInfo fragment) {
             if (fragment is null) { return null; }
             return new BackupRestoreFileInfo(
-                items: fragment.Items.SelectList(c => (ValueExpression)FromMutable(c)),
+                items: fragment.Items.SelectList(FromMutable),
                 itemKind: fragment.ItemKind
             );
         }
@@ -3113,33 +3258,33 @@ namespace Xledger.Sql.ImmutableDom {
         public static BackupServiceMasterKeyStatement FromMutable(ScriptDom.BackupServiceMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new BackupServiceMasterKeyStatement(
-                file: (Literal)FromMutable(fragment.File),
-                password: (Literal)FromMutable(fragment.Password)
+                file: FromMutable(fragment.File),
+                password: FromMutable(fragment.Password)
             );
         }
         
         public static BackupTransactionLogStatement FromMutable(ScriptDom.BackupTransactionLogStatement fragment) {
             if (fragment is null) { return null; }
             return new BackupTransactionLogStatement(
-                databaseName: (IdentifierOrValueExpression)FromMutable(fragment.DatabaseName),
-                options: fragment.Options.SelectList(c => (BackupOption)FromMutable(c)),
-                mirrorToClauses: fragment.MirrorToClauses.SelectList(c => (MirrorToClause)FromMutable(c)),
-                devices: fragment.Devices.SelectList(c => (DeviceInfo)FromMutable(c))
+                databaseName: FromMutable(fragment.DatabaseName),
+                options: fragment.Options.SelectList(FromMutable),
+                mirrorToClauses: fragment.MirrorToClauses.SelectList(FromMutable),
+                devices: fragment.Devices.SelectList(FromMutable)
             );
         }
         
         public static BackwardsCompatibleDropIndexClause FromMutable(ScriptDom.BackwardsCompatibleDropIndexClause fragment) {
             if (fragment is null) { return null; }
             return new BackwardsCompatibleDropIndexClause(
-                index: (ChildObjectName)FromMutable(fragment.Index)
+                index: FromMutable(fragment.Index)
             );
         }
         
         public static BeginConversationTimerStatement FromMutable(ScriptDom.BeginConversationTimerStatement fragment) {
             if (fragment is null) { return null; }
             return new BeginConversationTimerStatement(
-                handle: (ScalarExpression)FromMutable(fragment.Handle),
-                timeout: (ScalarExpression)FromMutable(fragment.Timeout)
+                handle: FromMutable(fragment.Handle),
+                timeout: FromMutable(fragment.Timeout)
             );
         }
         
@@ -3147,27 +3292,28 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new BeginDialogStatement(
                 isConversation: fragment.IsConversation,
-                handle: (VariableReference)FromMutable(fragment.Handle),
-                initiatorServiceName: (IdentifierOrValueExpression)FromMutable(fragment.InitiatorServiceName),
-                targetServiceName: (ValueExpression)FromMutable(fragment.TargetServiceName),
-                instanceSpec: (ValueExpression)FromMutable(fragment.InstanceSpec),
-                contractName: (IdentifierOrValueExpression)FromMutable(fragment.ContractName),
-                options: fragment.Options.SelectList(c => (DialogOption)FromMutable(c))
+                handle: FromMutable(fragment.Handle),
+                initiatorServiceName: FromMutable(fragment.InitiatorServiceName),
+                targetServiceName: FromMutable(fragment.TargetServiceName),
+                instanceSpec: FromMutable(fragment.InstanceSpec),
+                contractName: FromMutable(fragment.ContractName),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static BeginEndAtomicBlockStatement FromMutable(ScriptDom.BeginEndAtomicBlockStatement fragment) {
             if (fragment is null) { return null; }
             return new BeginEndAtomicBlockStatement(
-                options: fragment.Options.SelectList(c => (AtomicBlockOption)FromMutable(c)),
-                statementList: (StatementList)FromMutable(fragment.StatementList)
+                options: fragment.Options.SelectList(FromMutable),
+                statementList: FromMutable(fragment.StatementList)
             );
         }
         
         public static BeginEndBlockStatement FromMutable(ScriptDom.BeginEndBlockStatement fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BeginEndBlockStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BeginEndBlockStatement; }
             return new BeginEndBlockStatement(
-                statementList: (StatementList)FromMutable(fragment.StatementList)
+                statementList: FromMutable(fragment.StatementList)
             );
         }
         
@@ -3176,8 +3322,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new BeginTransactionStatement(
                 distributed: fragment.Distributed,
                 markDefined: fragment.MarkDefined,
-                markDescription: (ValueExpression)FromMutable(fragment.MarkDescription),
-                name: (IdentifierOrValueExpression)FromMutable(fragment.Name)
+                markDescription: FromMutable(fragment.MarkDescription),
+                name: FromMutable(fragment.Name)
             );
         }
         
@@ -3185,8 +3331,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new BinaryExpression(
                 binaryExpressionType: fragment.BinaryExpressionType,
-                firstExpression: (ScalarExpression)FromMutable(fragment.FirstExpression),
-                secondExpression: (ScalarExpression)FromMutable(fragment.SecondExpression)
+                firstExpression: FromMutable(fragment.FirstExpression),
+                secondExpression: FromMutable(fragment.SecondExpression)
             );
         }
         
@@ -3195,7 +3341,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new BinaryLiteral(
                 isLargeObject: fragment.IsLargeObject,
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -3204,11 +3350,11 @@ namespace Xledger.Sql.ImmutableDom {
             return new BinaryQueryExpression(
                 binaryQueryExpressionType: fragment.BinaryQueryExpressionType,
                 all: fragment.All,
-                firstQueryExpression: (QueryExpression)FromMutable(fragment.FirstQueryExpression),
-                secondQueryExpression: (QueryExpression)FromMutable(fragment.SecondQueryExpression),
-                orderByClause: (OrderByClause)FromMutable(fragment.OrderByClause),
-                offsetClause: (OffsetClause)FromMutable(fragment.OffsetClause),
-                forClause: (ForClause)FromMutable(fragment.ForClause)
+                firstQueryExpression: FromMutable(fragment.FirstQueryExpression),
+                secondQueryExpression: FromMutable(fragment.SecondQueryExpression),
+                orderByClause: FromMutable(fragment.OrderByClause),
+                offsetClause: FromMutable(fragment.OffsetClause),
+                forClause: FromMutable(fragment.ForClause)
             );
         }
         
@@ -3216,8 +3362,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new BooleanBinaryExpression(
                 binaryExpressionType: fragment.BinaryExpressionType,
-                firstExpression: (BooleanExpression)FromMutable(fragment.FirstExpression),
-                secondExpression: (BooleanExpression)FromMutable(fragment.SecondExpression)
+                firstExpression: FromMutable(fragment.FirstExpression),
+                secondExpression: FromMutable(fragment.SecondExpression)
             );
         }
         
@@ -3225,8 +3371,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new BooleanComparisonExpression(
                 comparisonType: fragment.ComparisonType,
-                firstExpression: (ScalarExpression)FromMutable(fragment.FirstExpression),
-                secondExpression: (ScalarExpression)FromMutable(fragment.SecondExpression)
+                firstExpression: FromMutable(fragment.FirstExpression),
+                secondExpression: FromMutable(fragment.SecondExpression)
             );
         }
         
@@ -3241,21 +3387,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new BooleanIsNullExpression(
                 isNot: fragment.IsNot,
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
         public static BooleanNotExpression FromMutable(ScriptDom.BooleanNotExpression fragment) {
             if (fragment is null) { return null; }
             return new BooleanNotExpression(
-                expression: (BooleanExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
         public static BooleanParenthesisExpression FromMutable(ScriptDom.BooleanParenthesisExpression fragment) {
             if (fragment is null) { return null; }
             return new BooleanParenthesisExpression(
-                expression: (BooleanExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
@@ -3263,9 +3409,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new BooleanTernaryExpression(
                 ternaryExpressionType: fragment.TernaryExpressionType,
-                firstExpression: (ScalarExpression)FromMutable(fragment.FirstExpression),
-                secondExpression: (ScalarExpression)FromMutable(fragment.SecondExpression),
-                thirdExpression: (ScalarExpression)FromMutable(fragment.ThirdExpression)
+                firstExpression: FromMutable(fragment.FirstExpression),
+                secondExpression: FromMutable(fragment.SecondExpression),
+                thirdExpression: FromMutable(fragment.ThirdExpression)
             );
         }
         
@@ -3273,14 +3419,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new BoundingBoxParameter(
                 parameter: fragment.Parameter,
-                @value: (ScalarExpression)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static BoundingBoxSpatialIndexOption FromMutable(ScriptDom.BoundingBoxSpatialIndexOption fragment) {
             if (fragment is null) { return null; }
             return new BoundingBoxSpatialIndexOption(
-                boundingBoxParameters: fragment.BoundingBoxParameters.SelectList(c => (BoundingBoxParameter)FromMutable(c))
+                boundingBoxParameters: fragment.BoundingBoxParameters.SelectList(FromMutable)
             );
         }
         
@@ -3296,7 +3442,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new BrokerPriorityParameter(
                 isDefaultOrAny: fragment.IsDefaultOrAny,
                 parameterType: fragment.ParameterType,
-                parameterValue: (IdentifierOrValueExpression)FromMutable(fragment.ParameterValue)
+                parameterValue: FromMutable(fragment.ParameterValue)
             );
         }
         
@@ -3310,15 +3456,16 @@ namespace Xledger.Sql.ImmutableDom {
         public static BuiltInFunctionTableReference FromMutable(ScriptDom.BuiltInFunctionTableReference fragment) {
             if (fragment is null) { return null; }
             return new BuiltInFunctionTableReference(
-                name: (Identifier)FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                name: FromMutable(fragment.Name),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
         
         public static BulkInsertOption FromMutable(ScriptDom.BulkInsertOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BulkInsertOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as BulkInsertOption; }
             return new BulkInsertOption(
                 optionKind: fragment.OptionKind
             );
@@ -3327,20 +3474,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static BulkInsertStatement FromMutable(ScriptDom.BulkInsertStatement fragment) {
             if (fragment is null) { return null; }
             return new BulkInsertStatement(
-                from: (IdentifierOrValueExpression)FromMutable(fragment.From),
-                to: (SchemaObjectName)FromMutable(fragment.To),
-                options: fragment.Options.SelectList(c => (BulkInsertOption)FromMutable(c))
+                from: FromMutable(fragment.From),
+                to: FromMutable(fragment.To),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static BulkOpenRowset FromMutable(ScriptDom.BulkOpenRowset fragment) {
             if (fragment is null) { return null; }
             return new BulkOpenRowset(
-                dataFiles: fragment.DataFiles.SelectList(c => (StringLiteral)FromMutable(c)),
-                options: fragment.Options.SelectList(c => (BulkInsertOption)FromMutable(c)),
-                withColumns: fragment.WithColumns.SelectList(c => (OpenRowsetColumnDefinition)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                dataFiles: fragment.DataFiles.SelectList(FromMutable),
+                options: fragment.Options.SelectList(FromMutable),
+                withColumns: fragment.WithColumns.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -3348,9 +3495,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static CastCall FromMutable(ScriptDom.CastCall fragment) {
             if (fragment is null) { return null; }
             return new CastCall(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                parameter: (ScalarExpression)FromMutable(fragment.Parameter),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                dataType: FromMutable(fragment.DataType),
+                parameter: FromMutable(fragment.Parameter),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -3365,15 +3512,15 @@ namespace Xledger.Sql.ImmutableDom {
         public static CellsPerObjectSpatialIndexOption FromMutable(ScriptDom.CellsPerObjectSpatialIndexOption fragment) {
             if (fragment is null) { return null; }
             return new CellsPerObjectSpatialIndexOption(
-                @value: (Literal)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static CertificateCreateLoginSource FromMutable(ScriptDom.CertificateCreateLoginSource fragment) {
             if (fragment is null) { return null; }
             return new CertificateCreateLoginSource(
-                certificate: (Identifier)FromMutable(fragment.Certificate),
-                credential: (Identifier)FromMutable(fragment.Credential)
+                certificate: FromMutable(fragment.Certificate),
+                credential: FromMutable(fragment.Credential)
             );
         }
         
@@ -3381,14 +3528,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CertificateOption(
                 kind: fragment.Kind,
-                @value: (Literal)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static ChangeRetentionChangeTrackingOptionDetail FromMutable(ScriptDom.ChangeRetentionChangeTrackingOptionDetail fragment) {
             if (fragment is null) { return null; }
             return new ChangeRetentionChangeTrackingOptionDetail(
-                retentionPeriod: (Literal)FromMutable(fragment.RetentionPeriod),
+                retentionPeriod: FromMutable(fragment.RetentionPeriod),
                 unit: fragment.Unit
             );
         }
@@ -3396,10 +3543,10 @@ namespace Xledger.Sql.ImmutableDom {
         public static ChangeTableChangesTableReference FromMutable(ScriptDom.ChangeTableChangesTableReference fragment) {
             if (fragment is null) { return null; }
             return new ChangeTableChangesTableReference(
-                target: (SchemaObjectName)FromMutable(fragment.Target),
-                sinceVersion: (ValueExpression)FromMutable(fragment.SinceVersion),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                target: FromMutable(fragment.Target),
+                sinceVersion: FromMutable(fragment.SinceVersion),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -3407,11 +3554,11 @@ namespace Xledger.Sql.ImmutableDom {
         public static ChangeTableVersionTableReference FromMutable(ScriptDom.ChangeTableVersionTableReference fragment) {
             if (fragment is null) { return null; }
             return new ChangeTableVersionTableReference(
-                target: (SchemaObjectName)FromMutable(fragment.Target),
-                primaryKeyColumns: fragment.PrimaryKeyColumns.SelectList(c => (Identifier)FromMutable(c)),
-                primaryKeyValues: fragment.PrimaryKeyValues.SelectList(c => (ScalarExpression)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                target: FromMutable(fragment.Target),
+                primaryKeyColumns: fragment.PrimaryKeyColumns.SelectList(FromMutable),
+                primaryKeyValues: fragment.PrimaryKeyValues.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -3420,7 +3567,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ChangeTrackingDatabaseOption(
                 optionState: fragment.OptionState,
-                details: fragment.Details.SelectList(c => (ChangeTrackingOptionDetail)FromMutable(c)),
+                details: fragment.Details.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -3444,30 +3591,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static CheckConstraintDefinition FromMutable(ScriptDom.CheckConstraintDefinition fragment) {
             if (fragment is null) { return null; }
             return new CheckConstraintDefinition(
-                checkCondition: (BooleanExpression)FromMutable(fragment.CheckCondition),
+                checkCondition: FromMutable(fragment.CheckCondition),
                 notForReplication: fragment.NotForReplication,
-                constraintIdentifier: (Identifier)FromMutable(fragment.ConstraintIdentifier)
+                constraintIdentifier: FromMutable(fragment.ConstraintIdentifier)
             );
         }
         
         public static CheckpointStatement FromMutable(ScriptDom.CheckpointStatement fragment) {
             if (fragment is null) { return null; }
             return new CheckpointStatement(
-                duration: (Literal)FromMutable(fragment.Duration)
+                duration: FromMutable(fragment.Duration)
             );
         }
         
         public static ChildObjectName FromMutable(ScriptDom.ChildObjectName fragment) {
             if (fragment is null) { return null; }
             return new ChildObjectName(
-                identifiers: fragment.Identifiers.SelectList(c => (Identifier)FromMutable(c))
+                identifiers: fragment.Identifiers.SelectList(FromMutable)
             );
         }
         
         public static ClassifierEndTimeOption FromMutable(ScriptDom.ClassifierEndTimeOption fragment) {
             if (fragment is null) { return null; }
             return new ClassifierEndTimeOption(
-                time: (WlmTimeLiteral)FromMutable(fragment.Time),
+                time: FromMutable(fragment.Time),
                 optionType: fragment.OptionType
             );
         }
@@ -3483,7 +3630,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ClassifierMemberNameOption FromMutable(ScriptDom.ClassifierMemberNameOption fragment) {
             if (fragment is null) { return null; }
             return new ClassifierMemberNameOption(
-                memberName: (StringLiteral)FromMutable(fragment.MemberName),
+                memberName: FromMutable(fragment.MemberName),
                 optionType: fragment.OptionType
             );
         }
@@ -3491,7 +3638,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ClassifierStartTimeOption FromMutable(ScriptDom.ClassifierStartTimeOption fragment) {
             if (fragment is null) { return null; }
             return new ClassifierStartTimeOption(
-                time: (WlmTimeLiteral)FromMutable(fragment.Time),
+                time: FromMutable(fragment.Time),
                 optionType: fragment.OptionType
             );
         }
@@ -3499,7 +3646,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ClassifierWlmContextOption FromMutable(ScriptDom.ClassifierWlmContextOption fragment) {
             if (fragment is null) { return null; }
             return new ClassifierWlmContextOption(
-                wlmContext: (StringLiteral)FromMutable(fragment.WlmContext),
+                wlmContext: FromMutable(fragment.WlmContext),
                 optionType: fragment.OptionType
             );
         }
@@ -3507,7 +3654,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ClassifierWlmLabelOption FromMutable(ScriptDom.ClassifierWlmLabelOption fragment) {
             if (fragment is null) { return null; }
             return new ClassifierWlmLabelOption(
-                wlmLabel: (StringLiteral)FromMutable(fragment.WlmLabel),
+                wlmLabel: FromMutable(fragment.WlmLabel),
                 optionType: fragment.OptionType
             );
         }
@@ -3515,7 +3662,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ClassifierWorkloadGroupOption FromMutable(ScriptDom.ClassifierWorkloadGroupOption fragment) {
             if (fragment is null) { return null; }
             return new ClassifierWorkloadGroupOption(
-                workloadGroupName: (StringLiteral)FromMutable(fragment.WorkloadGroupName),
+                workloadGroupName: FromMutable(fragment.WorkloadGroupName),
                 optionType: fragment.OptionType
             );
         }
@@ -3523,7 +3670,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static CloseCursorStatement FromMutable(ScriptDom.CloseCursorStatement fragment) {
             if (fragment is null) { return null; }
             return new CloseCursorStatement(
-                cursor: (CursorId)FromMutable(fragment.Cursor)
+                cursor: FromMutable(fragment.Cursor)
             );
         }
         
@@ -3537,7 +3684,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static CloseSymmetricKeyStatement FromMutable(ScriptDom.CloseSymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new CloseSymmetricKeyStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 all: fragment.All
             );
         }
@@ -3545,46 +3692,47 @@ namespace Xledger.Sql.ImmutableDom {
         public static CoalesceExpression FromMutable(ScriptDom.CoalesceExpression fragment) {
             if (fragment is null) { return null; }
             return new CoalesceExpression(
-                expressions: fragment.Expressions.SelectList(c => (ScalarExpression)FromMutable(c)),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                expressions: fragment.Expressions.SelectList(FromMutable),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static ColumnDefinition FromMutable(ScriptDom.ColumnDefinition fragment) {
             if (fragment is null) { return null; }
             return new ColumnDefinition(
-                computedColumnExpression: (ScalarExpression)FromMutable(fragment.ComputedColumnExpression),
+                computedColumnExpression: FromMutable(fragment.ComputedColumnExpression),
                 isPersisted: fragment.IsPersisted,
-                defaultConstraint: (DefaultConstraintDefinition)FromMutable(fragment.DefaultConstraint),
-                identityOptions: (IdentityOptions)FromMutable(fragment.IdentityOptions),
+                defaultConstraint: FromMutable(fragment.DefaultConstraint),
+                identityOptions: FromMutable(fragment.IdentityOptions),
                 isRowGuidCol: fragment.IsRowGuidCol,
-                constraints: fragment.Constraints.SelectList(c => (ConstraintDefinition)FromMutable(c)),
-                storageOptions: (ColumnStorageOptions)FromMutable(fragment.StorageOptions),
-                index: (IndexDefinition)FromMutable(fragment.Index),
+                constraints: fragment.Constraints.SelectList(FromMutable),
+                storageOptions: FromMutable(fragment.StorageOptions),
+                index: FromMutable(fragment.Index),
                 generatedAlways: fragment.GeneratedAlways,
                 isHidden: fragment.IsHidden,
-                encryption: (ColumnEncryptionDefinition)FromMutable(fragment.Encryption),
+                encryption: FromMutable(fragment.Encryption),
                 isMasked: fragment.IsMasked,
-                maskingFunction: (StringLiteral)FromMutable(fragment.MaskingFunction),
-                columnIdentifier: (Identifier)FromMutable(fragment.ColumnIdentifier),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                maskingFunction: FromMutable(fragment.MaskingFunction),
+                columnIdentifier: FromMutable(fragment.ColumnIdentifier),
+                dataType: FromMutable(fragment.DataType),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static ColumnDefinitionBase FromMutable(ScriptDom.ColumnDefinitionBase fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ColumnDefinitionBase)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ColumnDefinitionBase; }
             return new ColumnDefinitionBase(
-                columnIdentifier: (Identifier)FromMutable(fragment.ColumnIdentifier),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                columnIdentifier: FromMutable(fragment.ColumnIdentifier),
+                dataType: FromMutable(fragment.DataType),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static ColumnEncryptionAlgorithmNameParameter FromMutable(ScriptDom.ColumnEncryptionAlgorithmNameParameter fragment) {
             if (fragment is null) { return null; }
             return new ColumnEncryptionAlgorithmNameParameter(
-                algorithm: (StringLiteral)FromMutable(fragment.Algorithm),
+                algorithm: FromMutable(fragment.Algorithm),
                 parameterKind: fragment.ParameterKind
             );
         }
@@ -3592,7 +3740,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ColumnEncryptionAlgorithmParameter FromMutable(ScriptDom.ColumnEncryptionAlgorithmParameter fragment) {
             if (fragment is null) { return null; }
             return new ColumnEncryptionAlgorithmParameter(
-                encryptionAlgorithm: (StringLiteral)FromMutable(fragment.EncryptionAlgorithm),
+                encryptionAlgorithm: FromMutable(fragment.EncryptionAlgorithm),
                 parameterKind: fragment.ParameterKind
             );
         }
@@ -3600,14 +3748,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static ColumnEncryptionDefinition FromMutable(ScriptDom.ColumnEncryptionDefinition fragment) {
             if (fragment is null) { return null; }
             return new ColumnEncryptionDefinition(
-                parameters: fragment.Parameters.SelectList(c => (ColumnEncryptionDefinitionParameter)FromMutable(c))
+                parameters: fragment.Parameters.SelectList(FromMutable)
             );
         }
         
         public static ColumnEncryptionKeyNameParameter FromMutable(ScriptDom.ColumnEncryptionKeyNameParameter fragment) {
             if (fragment is null) { return null; }
             return new ColumnEncryptionKeyNameParameter(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 parameterKind: fragment.ParameterKind
             );
         }
@@ -3615,7 +3763,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ColumnEncryptionKeyValue FromMutable(ScriptDom.ColumnEncryptionKeyValue fragment) {
             if (fragment is null) { return null; }
             return new ColumnEncryptionKeyValue(
-                parameters: fragment.Parameters.SelectList(c => (ColumnEncryptionKeyValueParameter)FromMutable(c))
+                parameters: fragment.Parameters.SelectList(FromMutable)
             );
         }
         
@@ -3630,7 +3778,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ColumnMasterKeyEnclaveComputationsParameter FromMutable(ScriptDom.ColumnMasterKeyEnclaveComputationsParameter fragment) {
             if (fragment is null) { return null; }
             return new ColumnMasterKeyEnclaveComputationsParameter(
-                signature: (BinaryLiteral)FromMutable(fragment.Signature),
+                signature: FromMutable(fragment.Signature),
                 parameterKind: fragment.ParameterKind
             );
         }
@@ -3638,7 +3786,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ColumnMasterKeyNameParameter FromMutable(ScriptDom.ColumnMasterKeyNameParameter fragment) {
             if (fragment is null) { return null; }
             return new ColumnMasterKeyNameParameter(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 parameterKind: fragment.ParameterKind
             );
         }
@@ -3646,7 +3794,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ColumnMasterKeyPathParameter FromMutable(ScriptDom.ColumnMasterKeyPathParameter fragment) {
             if (fragment is null) { return null; }
             return new ColumnMasterKeyPathParameter(
-                path: (StringLiteral)FromMutable(fragment.Path),
+                path: FromMutable(fragment.Path),
                 parameterKind: fragment.ParameterKind
             );
         }
@@ -3654,7 +3802,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ColumnMasterKeyStoreProviderNameParameter FromMutable(ScriptDom.ColumnMasterKeyStoreProviderNameParameter fragment) {
             if (fragment is null) { return null; }
             return new ColumnMasterKeyStoreProviderNameParameter(
-                name: (StringLiteral)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 parameterKind: fragment.ParameterKind
             );
         }
@@ -3663,8 +3811,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ColumnReferenceExpression(
                 columnType: fragment.ColumnType,
-                multiPartIdentifier: (MultiPartIdentifier)FromMutable(fragment.MultiPartIdentifier),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                multiPartIdentifier: FromMutable(fragment.MultiPartIdentifier),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -3679,7 +3827,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ColumnWithSortOrder FromMutable(ScriptDom.ColumnWithSortOrder fragment) {
             if (fragment is null) { return null; }
             return new ColumnWithSortOrder(
-                column: (ColumnReferenceExpression)FromMutable(fragment.Column),
+                column: FromMutable(fragment.Column),
                 sortOrder: fragment.SortOrder
             );
         }
@@ -3696,30 +3844,30 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CommitTransactionStatement(
                 delayedDurabilityOption: fragment.DelayedDurabilityOption,
-                name: (IdentifierOrValueExpression)FromMutable(fragment.Name)
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static CommonTableExpression FromMutable(ScriptDom.CommonTableExpression fragment) {
             if (fragment is null) { return null; }
             return new CommonTableExpression(
-                expressionName: (Identifier)FromMutable(fragment.ExpressionName),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                queryExpression: (QueryExpression)FromMutable(fragment.QueryExpression)
+                expressionName: FromMutable(fragment.ExpressionName),
+                columns: fragment.Columns.SelectList(FromMutable),
+                queryExpression: FromMutable(fragment.QueryExpression)
             );
         }
         
         public static CompositeGroupingSpecification FromMutable(ScriptDom.CompositeGroupingSpecification fragment) {
             if (fragment is null) { return null; }
             return new CompositeGroupingSpecification(
-                items: fragment.Items.SelectList(c => (GroupingSpecification)FromMutable(c))
+                items: fragment.Items.SelectList(FromMutable)
             );
         }
         
         public static CompressionDelayIndexOption FromMutable(ScriptDom.CompressionDelayIndexOption fragment) {
             if (fragment is null) { return null; }
             return new CompressionDelayIndexOption(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
+                expression: FromMutable(fragment.Expression),
                 timeUnit: fragment.TimeUnit,
                 optionKind: fragment.OptionKind
             );
@@ -3736,16 +3884,16 @@ namespace Xledger.Sql.ImmutableDom {
         public static CompressionPartitionRange FromMutable(ScriptDom.CompressionPartitionRange fragment) {
             if (fragment is null) { return null; }
             return new CompressionPartitionRange(
-                from: (ScalarExpression)FromMutable(fragment.From),
-                to: (ScalarExpression)FromMutable(fragment.To)
+                from: FromMutable(fragment.From),
+                to: FromMutable(fragment.To)
             );
         }
         
         public static ComputeClause FromMutable(ScriptDom.ComputeClause fragment) {
             if (fragment is null) { return null; }
             return new ComputeClause(
-                computeFunctions: fragment.ComputeFunctions.SelectList(c => (ComputeFunction)FromMutable(c)),
-                byExpressions: fragment.ByExpressions.SelectList(c => (ScalarExpression)FromMutable(c))
+                computeFunctions: fragment.ComputeFunctions.SelectList(FromMutable),
+                byExpressions: fragment.ByExpressions.SelectList(FromMutable)
             );
         }
         
@@ -3753,7 +3901,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ComputeFunction(
                 computeFunctionType: fragment.ComputeFunctionType,
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
@@ -3775,7 +3923,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ContractMessage FromMutable(ScriptDom.ContractMessage fragment) {
             if (fragment is null) { return null; }
             return new ContractMessage(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 sentBy: fragment.SentBy
             );
         }
@@ -3783,27 +3931,27 @@ namespace Xledger.Sql.ImmutableDom {
         public static ConvertCall FromMutable(ScriptDom.ConvertCall fragment) {
             if (fragment is null) { return null; }
             return new ConvertCall(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                parameter: (ScalarExpression)FromMutable(fragment.Parameter),
-                style: (ScalarExpression)FromMutable(fragment.Style),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                dataType: FromMutable(fragment.DataType),
+                parameter: FromMutable(fragment.Parameter),
+                style: FromMutable(fragment.Style),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static CopyColumnOption FromMutable(ScriptDom.CopyColumnOption fragment) {
             if (fragment is null) { return null; }
             return new CopyColumnOption(
-                columnName: (Identifier)FromMutable(fragment.ColumnName),
-                defaultValue: (ScalarExpression)FromMutable(fragment.DefaultValue),
-                fieldNumber: (IntegerLiteral)FromMutable(fragment.FieldNumber)
+                columnName: FromMutable(fragment.ColumnName),
+                defaultValue: FromMutable(fragment.DefaultValue),
+                fieldNumber: FromMutable(fragment.FieldNumber)
             );
         }
         
         public static CopyCredentialOption FromMutable(ScriptDom.CopyCredentialOption fragment) {
             if (fragment is null) { return null; }
             return new CopyCredentialOption(
-                identity: (StringLiteral)FromMutable(fragment.Identity),
-                secret: (StringLiteral)FromMutable(fragment.Secret)
+                identity: FromMutable(fragment.Identity),
+                secret: FromMutable(fragment.Secret)
             );
         }
         
@@ -3811,137 +3959,137 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CopyOption(
                 kind: fragment.Kind,
-                @value: (CopyStatementOptionBase)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static CopyStatement FromMutable(ScriptDom.CopyStatement fragment) {
             if (fragment is null) { return null; }
             return new CopyStatement(
-                from: fragment.From.SelectList(c => (StringLiteral)FromMutable(c)),
-                into: (SchemaObjectName)FromMutable(fragment.Into),
-                options: fragment.Options.SelectList(c => (CopyOption)FromMutable(c)),
-                optimizerHints: fragment.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                from: fragment.From.SelectList(FromMutable),
+                into: FromMutable(fragment.Into),
+                options: fragment.Options.SelectList(FromMutable),
+                optimizerHints: fragment.OptimizerHints.SelectList(FromMutable)
             );
         }
         
         public static CreateAggregateStatement FromMutable(ScriptDom.CreateAggregateStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateAggregateStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                assemblyName: (AssemblyName)FromMutable(fragment.AssemblyName),
-                parameters: fragment.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                returnType: (DataTypeReference)FromMutable(fragment.ReturnType)
+                name: FromMutable(fragment.Name),
+                assemblyName: FromMutable(fragment.AssemblyName),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                returnType: FromMutable(fragment.ReturnType)
             );
         }
         
         public static CreateApplicationRoleStatement FromMutable(ScriptDom.CreateApplicationRoleStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateApplicationRoleStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                applicationRoleOptions: fragment.ApplicationRoleOptions.SelectList(c => (ApplicationRoleOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                applicationRoleOptions: fragment.ApplicationRoleOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateAssemblyStatement FromMutable(ScriptDom.CreateAssemblyStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateAssemblyStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                options: fragment.Options.SelectList(c => (AssemblyOption)FromMutable(c))
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static CreateAsymmetricKeyStatement FromMutable(ScriptDom.CreateAsymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateAsymmetricKeyStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                keySource: (EncryptionSource)FromMutable(fragment.KeySource),
+                name: FromMutable(fragment.Name),
+                keySource: FromMutable(fragment.KeySource),
                 encryptionAlgorithm: fragment.EncryptionAlgorithm,
-                password: (Literal)FromMutable(fragment.Password),
-                owner: (Identifier)FromMutable(fragment.Owner)
+                password: FromMutable(fragment.Password),
+                owner: FromMutable(fragment.Owner)
             );
         }
         
         public static CreateAvailabilityGroupStatement FromMutable(ScriptDom.CreateAvailabilityGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateAvailabilityGroupStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(c => (AvailabilityGroupOption)FromMutable(c)),
-                databases: fragment.Databases.SelectList(c => (Identifier)FromMutable(c)),
-                replicas: fragment.Replicas.SelectList(c => (AvailabilityReplica)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                options: fragment.Options.SelectList(FromMutable),
+                databases: fragment.Databases.SelectList(FromMutable),
+                replicas: fragment.Replicas.SelectList(FromMutable)
             );
         }
         
         public static CreateBrokerPriorityStatement FromMutable(ScriptDom.CreateBrokerPriorityStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateBrokerPriorityStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                brokerPriorityParameters: fragment.BrokerPriorityParameters.SelectList(c => (BrokerPriorityParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                brokerPriorityParameters: fragment.BrokerPriorityParameters.SelectList(FromMutable)
             );
         }
         
         public static CreateCertificateStatement FromMutable(ScriptDom.CreateCertificateStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateCertificateStatement(
-                certificateSource: (EncryptionSource)FromMutable(fragment.CertificateSource),
-                certificateOptions: fragment.CertificateOptions.SelectList(c => (CertificateOption)FromMutable(c)),
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
+                certificateSource: FromMutable(fragment.CertificateSource),
+                certificateOptions: fragment.CertificateOptions.SelectList(FromMutable),
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
                 activeForBeginDialog: fragment.ActiveForBeginDialog,
-                privateKeyPath: (Literal)FromMutable(fragment.PrivateKeyPath),
-                encryptionPassword: (Literal)FromMutable(fragment.EncryptionPassword),
-                decryptionPassword: (Literal)FromMutable(fragment.DecryptionPassword)
+                privateKeyPath: FromMutable(fragment.PrivateKeyPath),
+                encryptionPassword: FromMutable(fragment.EncryptionPassword),
+                decryptionPassword: FromMutable(fragment.DecryptionPassword)
             );
         }
         
         public static CreateColumnEncryptionKeyStatement FromMutable(ScriptDom.CreateColumnEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateColumnEncryptionKeyStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                columnEncryptionKeyValues: fragment.ColumnEncryptionKeyValues.SelectList(c => (ColumnEncryptionKeyValue)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                columnEncryptionKeyValues: fragment.ColumnEncryptionKeyValues.SelectList(FromMutable)
             );
         }
         
         public static CreateColumnMasterKeyStatement FromMutable(ScriptDom.CreateColumnMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateColumnMasterKeyStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(c => (ColumnMasterKeyParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                parameters: fragment.Parameters.SelectList(FromMutable)
             );
         }
         
         public static CreateColumnStoreIndexStatement FromMutable(ScriptDom.CreateColumnStoreIndexStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateColumnStoreIndexStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 clustered: fragment.Clustered,
-                onName: (SchemaObjectName)FromMutable(fragment.OnName),
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                filterPredicate: (BooleanExpression)FromMutable(fragment.FilterPredicate),
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(fragment.OnFileGroupOrPartitionScheme),
-                orderedColumns: fragment.OrderedColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                onName: FromMutable(fragment.OnName),
+                columns: fragment.Columns.SelectList(FromMutable),
+                filterPredicate: FromMutable(fragment.FilterPredicate),
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable),
+                onFileGroupOrPartitionScheme: FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                orderedColumns: fragment.OrderedColumns.SelectList(FromMutable)
             );
         }
         
         public static CreateContractStatement FromMutable(ScriptDom.CreateContractStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateContractStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                messages: fragment.Messages.SelectList(c => (ContractMessage)FromMutable(c)),
-                owner: (Identifier)FromMutable(fragment.Owner)
+                name: FromMutable(fragment.Name),
+                messages: fragment.Messages.SelectList(FromMutable),
+                owner: FromMutable(fragment.Owner)
             );
         }
         
         public static CreateCredentialStatement FromMutable(ScriptDom.CreateCredentialStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateCredentialStatement(
-                cryptographicProviderName: (Identifier)FromMutable(fragment.CryptographicProviderName),
-                name: (Identifier)FromMutable(fragment.Name),
-                identity: (Literal)FromMutable(fragment.Identity),
-                secret: (Literal)FromMutable(fragment.Secret),
+                cryptographicProviderName: FromMutable(fragment.CryptographicProviderName),
+                name: FromMutable(fragment.Name),
+                identity: FromMutable(fragment.Identity),
+                secret: FromMutable(fragment.Secret),
                 isDatabaseScoped: fragment.IsDatabaseScoped
             );
         }
@@ -3949,8 +4097,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static CreateCryptographicProviderStatement FromMutable(ScriptDom.CreateCryptographicProviderStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateCryptographicProviderStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                file: (Literal)FromMutable(fragment.File)
+                name: FromMutable(fragment.Name),
+                file: FromMutable(fragment.File)
             );
         }
         
@@ -3958,16 +4106,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CreateDatabaseAuditSpecificationStatement(
                 auditState: fragment.AuditState,
-                parts: fragment.Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
-                specificationName: (Identifier)FromMutable(fragment.SpecificationName),
-                auditName: (Identifier)FromMutable(fragment.AuditName)
+                parts: fragment.Parts.SelectList(FromMutable),
+                specificationName: FromMutable(fragment.SpecificationName),
+                auditName: FromMutable(fragment.AuditName)
             );
         }
         
         public static CreateDatabaseEncryptionKeyStatement FromMutable(ScriptDom.CreateDatabaseEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateDatabaseEncryptionKeyStatement(
-                encryptor: (CryptoMechanism)FromMutable(fragment.Encryptor),
+                encryptor: FromMutable(fragment.Encryptor),
                 algorithm: fragment.Algorithm
             );
         }
@@ -3975,193 +4123,193 @@ namespace Xledger.Sql.ImmutableDom {
         public static CreateDatabaseStatement FromMutable(ScriptDom.CreateDatabaseStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateDatabaseStatement(
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
-                containment: (ContainmentDatabaseOption)FromMutable(fragment.Containment),
-                fileGroups: fragment.FileGroups.SelectList(c => (FileGroupDefinition)FromMutable(c)),
-                logOn: fragment.LogOn.SelectList(c => (FileDeclaration)FromMutable(c)),
-                options: fragment.Options.SelectList(c => (DatabaseOption)FromMutable(c)),
+                databaseName: FromMutable(fragment.DatabaseName),
+                containment: FromMutable(fragment.Containment),
+                fileGroups: fragment.FileGroups.SelectList(FromMutable),
+                logOn: fragment.LogOn.SelectList(FromMutable),
+                options: fragment.Options.SelectList(FromMutable),
                 attachMode: fragment.AttachMode,
-                databaseSnapshot: (Identifier)FromMutable(fragment.DatabaseSnapshot),
-                copyOf: (MultiPartIdentifier)FromMutable(fragment.CopyOf),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                databaseSnapshot: FromMutable(fragment.DatabaseSnapshot),
+                copyOf: FromMutable(fragment.CopyOf),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static CreateDefaultStatement FromMutable(ScriptDom.CreateDefaultStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateDefaultStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                name: FromMutable(fragment.Name),
+                expression: FromMutable(fragment.Expression)
             );
         }
         
         public static CreateEndpointStatement FromMutable(ScriptDom.CreateEndpointStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateEndpointStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
                 state: fragment.State,
-                affinity: (EndpointAffinity)FromMutable(fragment.Affinity),
+                affinity: FromMutable(fragment.Affinity),
                 protocol: fragment.Protocol,
-                protocolOptions: fragment.ProtocolOptions.SelectList(c => (EndpointProtocolOption)FromMutable(c)),
+                protocolOptions: fragment.ProtocolOptions.SelectList(FromMutable),
                 endpointType: fragment.EndpointType,
-                payloadOptions: fragment.PayloadOptions.SelectList(c => (PayloadOption)FromMutable(c))
+                payloadOptions: fragment.PayloadOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateEventNotificationStatement FromMutable(ScriptDom.CreateEventNotificationStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateEventNotificationStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                scope: (EventNotificationObjectScope)FromMutable(fragment.Scope),
+                name: FromMutable(fragment.Name),
+                scope: FromMutable(fragment.Scope),
                 withFanIn: fragment.WithFanIn,
-                eventTypeGroups: fragment.EventTypeGroups.SelectList(c => (EventTypeGroupContainer)FromMutable(c)),
-                brokerService: (Literal)FromMutable(fragment.BrokerService),
-                brokerInstanceSpecifier: (Literal)FromMutable(fragment.BrokerInstanceSpecifier)
+                eventTypeGroups: fragment.EventTypeGroups.SelectList(FromMutable),
+                brokerService: FromMutable(fragment.BrokerService),
+                brokerInstanceSpecifier: FromMutable(fragment.BrokerInstanceSpecifier)
             );
         }
         
         public static CreateEventSessionStatement FromMutable(ScriptDom.CreateEventSessionStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateEventSessionStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 sessionScope: fragment.SessionScope,
-                eventDeclarations: fragment.EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
-                targetDeclarations: fragment.TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
-                sessionOptions: fragment.SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
+                eventDeclarations: fragment.EventDeclarations.SelectList(FromMutable),
+                targetDeclarations: fragment.TargetDeclarations.SelectList(FromMutable),
+                sessionOptions: fragment.SessionOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateExternalDataSourceStatement FromMutable(ScriptDom.CreateExternalDataSourceStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateExternalDataSourceStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 dataSourceType: fragment.DataSourceType,
-                location: (Literal)FromMutable(fragment.Location),
+                location: FromMutable(fragment.Location),
                 pushdownOption: fragment.PushdownOption,
-                externalDataSourceOptions: fragment.ExternalDataSourceOptions.SelectList(c => (ExternalDataSourceOption)FromMutable(c))
+                externalDataSourceOptions: fragment.ExternalDataSourceOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateExternalFileFormatStatement FromMutable(ScriptDom.CreateExternalFileFormatStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateExternalFileFormatStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 formatType: fragment.FormatType,
-                externalFileFormatOptions: fragment.ExternalFileFormatOptions.SelectList(c => (ExternalFileFormatOption)FromMutable(c))
+                externalFileFormatOptions: fragment.ExternalFileFormatOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateExternalLanguageStatement FromMutable(ScriptDom.CreateExternalLanguageStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateExternalLanguageStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                externalLanguageFiles: fragment.ExternalLanguageFiles.SelectList(c => (ExternalLanguageFileOption)FromMutable(c))
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                externalLanguageFiles: fragment.ExternalLanguageFiles.SelectList(FromMutable)
             );
         }
         
         public static CreateExternalLibraryStatement FromMutable(ScriptDom.CreateExternalLibraryStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateExternalLibraryStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                language: (StringLiteral)FromMutable(fragment.Language),
-                externalLibraryFiles: fragment.ExternalLibraryFiles.SelectList(c => (ExternalLibraryFileOption)FromMutable(c))
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                language: FromMutable(fragment.Language),
+                externalLibraryFiles: fragment.ExternalLibraryFiles.SelectList(FromMutable)
             );
         }
         
         public static CreateExternalResourcePoolStatement FromMutable(ScriptDom.CreateExternalResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateExternalResourcePoolStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(FromMutable)
             );
         }
         
         public static CreateExternalStreamingJobStatement FromMutable(ScriptDom.CreateExternalStreamingJobStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateExternalStreamingJobStatement(
-                name: (StringLiteral)FromMutable(fragment.Name),
-                statement: (StringLiteral)FromMutable(fragment.Statement)
+                name: FromMutable(fragment.Name),
+                statement: FromMutable(fragment.Statement)
             );
         }
         
         public static CreateExternalStreamStatement FromMutable(ScriptDom.CreateExternalStreamStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateExternalStreamStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                location: (Literal)FromMutable(fragment.Location),
-                inputOptions: (Literal)FromMutable(fragment.InputOptions),
-                outputOptions: (Literal)FromMutable(fragment.OutputOptions),
-                externalStreamOptions: fragment.ExternalStreamOptions.SelectList(c => (ExternalStreamOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                location: FromMutable(fragment.Location),
+                inputOptions: FromMutable(fragment.InputOptions),
+                outputOptions: FromMutable(fragment.OutputOptions),
+                externalStreamOptions: fragment.ExternalStreamOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateExternalTableStatement FromMutable(ScriptDom.CreateExternalTableStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateExternalTableStatement(
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName),
-                columnDefinitions: fragment.ColumnDefinitions.SelectList(c => (ExternalTableColumnDefinition)FromMutable(c)),
-                dataSource: (Identifier)FromMutable(fragment.DataSource),
-                externalTableOptions: fragment.ExternalTableOptions.SelectList(c => (ExternalTableOption)FromMutable(c)),
-                selectStatement: (SelectStatement)FromMutable(fragment.SelectStatement)
+                schemaObjectName: FromMutable(fragment.SchemaObjectName),
+                columnDefinitions: fragment.ColumnDefinitions.SelectList(FromMutable),
+                dataSource: FromMutable(fragment.DataSource),
+                externalTableOptions: fragment.ExternalTableOptions.SelectList(FromMutable),
+                selectStatement: FromMutable(fragment.SelectStatement)
             );
         }
         
         public static CreateFederationStatement FromMutable(ScriptDom.CreateFederationStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateFederationStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                distributionName: (Identifier)FromMutable(fragment.DistributionName),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType)
+                name: FromMutable(fragment.Name),
+                distributionName: FromMutable(fragment.DistributionName),
+                dataType: FromMutable(fragment.DataType)
             );
         }
         
         public static CreateFullTextCatalogStatement FromMutable(ScriptDom.CreateFullTextCatalogStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateFullTextCatalogStatement(
-                fileGroup: (Identifier)FromMutable(fragment.FileGroup),
-                path: (Literal)FromMutable(fragment.Path),
+                fileGroup: FromMutable(fragment.FileGroup),
+                path: FromMutable(fragment.Path),
                 isDefault: fragment.IsDefault,
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(c => (FullTextCatalogOption)FromMutable(c))
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static CreateFullTextIndexStatement FromMutable(ScriptDom.CreateFullTextIndexStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateFullTextIndexStatement(
-                onName: (SchemaObjectName)FromMutable(fragment.OnName),
-                fullTextIndexColumns: fragment.FullTextIndexColumns.SelectList(c => (FullTextIndexColumn)FromMutable(c)),
-                keyIndexName: (Identifier)FromMutable(fragment.KeyIndexName),
-                catalogAndFileGroup: (FullTextCatalogAndFileGroup)FromMutable(fragment.CatalogAndFileGroup),
-                options: fragment.Options.SelectList(c => (FullTextIndexOption)FromMutable(c))
+                onName: FromMutable(fragment.OnName),
+                fullTextIndexColumns: fragment.FullTextIndexColumns.SelectList(FromMutable),
+                keyIndexName: FromMutable(fragment.KeyIndexName),
+                catalogAndFileGroup: FromMutable(fragment.CatalogAndFileGroup),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static CreateFullTextStopListStatement FromMutable(ScriptDom.CreateFullTextStopListStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateFullTextStopListStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isSystemStopList: fragment.IsSystemStopList,
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
-                sourceStopListName: (Identifier)FromMutable(fragment.SourceStopListName),
-                owner: (Identifier)FromMutable(fragment.Owner)
+                databaseName: FromMutable(fragment.DatabaseName),
+                sourceStopListName: FromMutable(fragment.SourceStopListName),
+                owner: FromMutable(fragment.Owner)
             );
         }
         
         public static CreateFunctionStatement FromMutable(ScriptDom.CreateFunctionStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateFunctionStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                returnType: (FunctionReturnType)FromMutable(fragment.ReturnType),
-                options: fragment.Options.SelectList(c => (FunctionOption)FromMutable(c)),
-                orderHint: (OrderBulkInsertOption)FromMutable(fragment.OrderHint),
-                parameters: fragment.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                name: FromMutable(fragment.Name),
+                returnType: FromMutable(fragment.ReturnType),
+                options: fragment.Options.SelectList(FromMutable),
+                orderHint: FromMutable(fragment.OrderHint),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
@@ -4171,89 +4319,89 @@ namespace Xledger.Sql.ImmutableDom {
                 translated80SyntaxTo90: fragment.Translated80SyntaxTo90,
                 unique: fragment.Unique,
                 clustered: fragment.Clustered,
-                columns: fragment.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
-                includeColumns: fragment.IncludeColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(fragment.OnFileGroupOrPartitionScheme),
-                filterPredicate: (BooleanExpression)FromMutable(fragment.FilterPredicate),
-                fileStreamOn: (IdentifierOrValueExpression)FromMutable(fragment.FileStreamOn),
-                name: (Identifier)FromMutable(fragment.Name),
-                onName: (SchemaObjectName)FromMutable(fragment.OnName),
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
+                columns: fragment.Columns.SelectList(FromMutable),
+                includeColumns: fragment.IncludeColumns.SelectList(FromMutable),
+                onFileGroupOrPartitionScheme: FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                filterPredicate: FromMutable(fragment.FilterPredicate),
+                fileStreamOn: FromMutable(fragment.FileStreamOn),
+                name: FromMutable(fragment.Name),
+                onName: FromMutable(fragment.OnName),
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateLoginStatement FromMutable(ScriptDom.CreateLoginStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateLoginStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                source: (CreateLoginSource)FromMutable(fragment.Source)
+                name: FromMutable(fragment.Name),
+                source: FromMutable(fragment.Source)
             );
         }
         
         public static CreateMasterKeyStatement FromMutable(ScriptDom.CreateMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateMasterKeyStatement(
-                password: (Literal)FromMutable(fragment.Password)
+                password: FromMutable(fragment.Password)
             );
         }
         
         public static CreateMessageTypeStatement FromMutable(ScriptDom.CreateMessageTypeStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateMessageTypeStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
                 validationMethod: fragment.ValidationMethod,
-                xmlSchemaCollectionName: (SchemaObjectName)FromMutable(fragment.XmlSchemaCollectionName)
+                xmlSchemaCollectionName: FromMutable(fragment.XmlSchemaCollectionName)
             );
         }
         
         public static CreateOrAlterFunctionStatement FromMutable(ScriptDom.CreateOrAlterFunctionStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateOrAlterFunctionStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                returnType: (FunctionReturnType)FromMutable(fragment.ReturnType),
-                options: fragment.Options.SelectList(c => (FunctionOption)FromMutable(c)),
-                orderHint: (OrderBulkInsertOption)FromMutable(fragment.OrderHint),
-                parameters: fragment.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                name: FromMutable(fragment.Name),
+                returnType: FromMutable(fragment.ReturnType),
+                options: fragment.Options.SelectList(FromMutable),
+                orderHint: FromMutable(fragment.OrderHint),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
         public static CreateOrAlterProcedureStatement FromMutable(ScriptDom.CreateOrAlterProcedureStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateOrAlterProcedureStatement(
-                procedureReference: (ProcedureReference)FromMutable(fragment.ProcedureReference),
+                procedureReference: FromMutable(fragment.ProcedureReference),
                 isForReplication: fragment.IsForReplication,
-                options: fragment.Options.SelectList(c => (ProcedureOption)FromMutable(c)),
-                parameters: fragment.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                options: fragment.Options.SelectList(FromMutable),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
         public static CreateOrAlterTriggerStatement FromMutable(ScriptDom.CreateOrAlterTriggerStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateOrAlterTriggerStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                triggerObject: (TriggerObject)FromMutable(fragment.TriggerObject),
-                options: fragment.Options.SelectList(c => (TriggerOption)FromMutable(c)),
+                name: FromMutable(fragment.Name),
+                triggerObject: FromMutable(fragment.TriggerObject),
+                options: fragment.Options.SelectList(FromMutable),
                 triggerType: fragment.TriggerType,
-                triggerActions: fragment.TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
+                triggerActions: fragment.TriggerActions.SelectList(FromMutable),
                 withAppend: fragment.WithAppend,
                 isNotForReplication: fragment.IsNotForReplication,
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
         public static CreateOrAlterViewStatement FromMutable(ScriptDom.CreateOrAlterViewStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateOrAlterViewStatement(
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                viewOptions: fragment.ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
-                selectStatement: (SelectStatement)FromMutable(fragment.SelectStatement),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName),
+                columns: fragment.Columns.SelectList(FromMutable),
+                viewOptions: fragment.ViewOptions.SelectList(FromMutable),
+                selectStatement: FromMutable(fragment.SelectStatement),
                 withCheckOption: fragment.WithCheckOption,
                 isMaterialized: fragment.IsMaterialized
             );
@@ -4262,112 +4410,113 @@ namespace Xledger.Sql.ImmutableDom {
         public static CreatePartitionFunctionStatement FromMutable(ScriptDom.CreatePartitionFunctionStatement fragment) {
             if (fragment is null) { return null; }
             return new CreatePartitionFunctionStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                parameterType: (PartitionParameterType)FromMutable(fragment.ParameterType),
+                name: FromMutable(fragment.Name),
+                parameterType: FromMutable(fragment.ParameterType),
                 range: fragment.Range,
-                boundaryValues: fragment.BoundaryValues.SelectList(c => (ScalarExpression)FromMutable(c))
+                boundaryValues: fragment.BoundaryValues.SelectList(FromMutable)
             );
         }
         
         public static CreatePartitionSchemeStatement FromMutable(ScriptDom.CreatePartitionSchemeStatement fragment) {
             if (fragment is null) { return null; }
             return new CreatePartitionSchemeStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                partitionFunction: (Identifier)FromMutable(fragment.PartitionFunction),
+                name: FromMutable(fragment.Name),
+                partitionFunction: FromMutable(fragment.PartitionFunction),
                 isAll: fragment.IsAll,
-                fileGroups: fragment.FileGroups.SelectList(c => (IdentifierOrValueExpression)FromMutable(c))
+                fileGroups: fragment.FileGroups.SelectList(FromMutable)
             );
         }
         
         public static CreateProcedureStatement FromMutable(ScriptDom.CreateProcedureStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateProcedureStatement(
-                procedureReference: (ProcedureReference)FromMutable(fragment.ProcedureReference),
+                procedureReference: FromMutable(fragment.ProcedureReference),
                 isForReplication: fragment.IsForReplication,
-                options: fragment.Options.SelectList(c => (ProcedureOption)FromMutable(c)),
-                parameters: fragment.Parameters.SelectList(c => (ProcedureParameter)FromMutable(c)),
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                options: fragment.Options.SelectList(FromMutable),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
         public static CreateQueueStatement FromMutable(ScriptDom.CreateQueueStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateQueueStatement(
-                onFileGroup: (IdentifierOrValueExpression)FromMutable(fragment.OnFileGroup),
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                queueOptions: fragment.QueueOptions.SelectList(c => (QueueOption)FromMutable(c))
+                onFileGroup: FromMutable(fragment.OnFileGroup),
+                name: FromMutable(fragment.Name),
+                queueOptions: fragment.QueueOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateRemoteServiceBindingStatement FromMutable(ScriptDom.CreateRemoteServiceBindingStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateRemoteServiceBindingStatement(
-                service: (Literal)FromMutable(fragment.Service),
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(c => (RemoteServiceBindingOption)FromMutable(c))
+                service: FromMutable(fragment.Service),
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static CreateResourcePoolStatement FromMutable(ScriptDom.CreateResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateResourcePoolStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(FromMutable)
             );
         }
         
         public static CreateRoleStatement FromMutable(ScriptDom.CreateRoleStatement fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateRoleStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as CreateRoleStatement; }
             return new CreateRoleStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name)
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static CreateRouteStatement FromMutable(ScriptDom.CreateRouteStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateRouteStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                routeOptions: fragment.RouteOptions.SelectList(c => (RouteOption)FromMutable(c))
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                routeOptions: fragment.RouteOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateRuleStatement FromMutable(ScriptDom.CreateRuleStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateRuleStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                expression: (BooleanExpression)FromMutable(fragment.Expression)
+                name: FromMutable(fragment.Name),
+                expression: FromMutable(fragment.Expression)
             );
         }
         
         public static CreateSchemaStatement FromMutable(ScriptDom.CreateSchemaStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateSchemaStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                owner: (Identifier)FromMutable(fragment.Owner)
+                name: FromMutable(fragment.Name),
+                statementList: FromMutable(fragment.StatementList),
+                owner: FromMutable(fragment.Owner)
             );
         }
         
         public static CreateSearchPropertyListStatement FromMutable(ScriptDom.CreateSearchPropertyListStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateSearchPropertyListStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                sourceSearchPropertyList: (MultiPartIdentifier)FromMutable(fragment.SourceSearchPropertyList),
-                owner: (Identifier)FromMutable(fragment.Owner)
+                name: FromMutable(fragment.Name),
+                sourceSearchPropertyList: FromMutable(fragment.SourceSearchPropertyList),
+                owner: FromMutable(fragment.Owner)
             );
         }
         
         public static CreateSecurityPolicyStatement FromMutable(ScriptDom.CreateSecurityPolicyStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateSecurityPolicyStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 notForReplication: fragment.NotForReplication,
-                securityPolicyOptions: fragment.SecurityPolicyOptions.SelectList(c => (SecurityPolicyOption)FromMutable(c)),
-                securityPredicateActions: fragment.SecurityPredicateActions.SelectList(c => (SecurityPredicateAction)FromMutable(c)),
+                securityPolicyOptions: fragment.SecurityPolicyOptions.SelectList(FromMutable),
+                securityPredicateActions: fragment.SecurityPredicateActions.SelectList(FromMutable),
                 actionType: fragment.ActionType
             );
         }
@@ -4376,22 +4525,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CreateSelectiveXmlIndexStatement(
                 isSecondary: fragment.IsSecondary,
-                xmlColumn: (Identifier)FromMutable(fragment.XmlColumn),
-                promotedPaths: fragment.PromotedPaths.SelectList(c => (SelectiveXmlIndexPromotedPath)FromMutable(c)),
-                xmlNamespaces: (XmlNamespaces)FromMutable(fragment.XmlNamespaces),
-                usingXmlIndexName: (Identifier)FromMutable(fragment.UsingXmlIndexName),
-                pathName: (Identifier)FromMutable(fragment.PathName),
-                name: (Identifier)FromMutable(fragment.Name),
-                onName: (SchemaObjectName)FromMutable(fragment.OnName),
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
+                xmlColumn: FromMutable(fragment.XmlColumn),
+                promotedPaths: fragment.PromotedPaths.SelectList(FromMutable),
+                xmlNamespaces: FromMutable(fragment.XmlNamespaces),
+                usingXmlIndexName: FromMutable(fragment.UsingXmlIndexName),
+                pathName: FromMutable(fragment.PathName),
+                name: FromMutable(fragment.Name),
+                onName: FromMutable(fragment.OnName),
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateSequenceStatement FromMutable(ScriptDom.CreateSequenceStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateSequenceStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                sequenceOptions: fragment.SequenceOptions.SelectList(c => (SequenceOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                sequenceOptions: fragment.SequenceOptions.SelectList(FromMutable)
             );
         }
         
@@ -4399,157 +4548,157 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CreateServerAuditSpecificationStatement(
                 auditState: fragment.AuditState,
-                parts: fragment.Parts.SelectList(c => (AuditSpecificationPart)FromMutable(c)),
-                specificationName: (Identifier)FromMutable(fragment.SpecificationName),
-                auditName: (Identifier)FromMutable(fragment.AuditName)
+                parts: fragment.Parts.SelectList(FromMutable),
+                specificationName: FromMutable(fragment.SpecificationName),
+                auditName: FromMutable(fragment.AuditName)
             );
         }
         
         public static CreateServerAuditStatement FromMutable(ScriptDom.CreateServerAuditStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateServerAuditStatement(
-                auditName: (Identifier)FromMutable(fragment.AuditName),
-                auditTarget: (AuditTarget)FromMutable(fragment.AuditTarget),
-                options: fragment.Options.SelectList(c => (AuditOption)FromMutable(c)),
-                predicateExpression: (BooleanExpression)FromMutable(fragment.PredicateExpression)
+                auditName: FromMutable(fragment.AuditName),
+                auditTarget: FromMutable(fragment.AuditTarget),
+                options: fragment.Options.SelectList(FromMutable),
+                predicateExpression: FromMutable(fragment.PredicateExpression)
             );
         }
         
         public static CreateServerRoleStatement FromMutable(ScriptDom.CreateServerRoleStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateServerRoleStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name)
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static CreateServiceStatement FromMutable(ScriptDom.CreateServiceStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateServiceStatement(
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                queueName: (SchemaObjectName)FromMutable(fragment.QueueName),
-                serviceContracts: fragment.ServiceContracts.SelectList(c => (ServiceContract)FromMutable(c))
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                queueName: FromMutable(fragment.QueueName),
+                serviceContracts: fragment.ServiceContracts.SelectList(FromMutable)
             );
         }
         
         public static CreateSpatialIndexStatement FromMutable(ScriptDom.CreateSpatialIndexStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateSpatialIndexStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                @object: (SchemaObjectName)FromMutable(fragment.Object),
-                spatialColumnName: (Identifier)FromMutable(fragment.SpatialColumnName),
+                name: FromMutable(fragment.Name),
+                @object: FromMutable(fragment.Object),
+                spatialColumnName: FromMutable(fragment.SpatialColumnName),
                 spatialIndexingScheme: fragment.SpatialIndexingScheme,
-                spatialIndexOptions: fragment.SpatialIndexOptions.SelectList(c => (SpatialIndexOption)FromMutable(c)),
-                onFileGroup: (IdentifierOrValueExpression)FromMutable(fragment.OnFileGroup)
+                spatialIndexOptions: fragment.SpatialIndexOptions.SelectList(FromMutable),
+                onFileGroup: FromMutable(fragment.OnFileGroup)
             );
         }
         
         public static CreateStatisticsStatement FromMutable(ScriptDom.CreateStatisticsStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateStatisticsStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                onName: (SchemaObjectName)FromMutable(fragment.OnName),
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                statisticsOptions: fragment.StatisticsOptions.SelectList(c => (StatisticsOption)FromMutable(c)),
-                filterPredicate: (BooleanExpression)FromMutable(fragment.FilterPredicate)
+                name: FromMutable(fragment.Name),
+                onName: FromMutable(fragment.OnName),
+                columns: fragment.Columns.SelectList(FromMutable),
+                statisticsOptions: fragment.StatisticsOptions.SelectList(FromMutable),
+                filterPredicate: FromMutable(fragment.FilterPredicate)
             );
         }
         
         public static CreateSymmetricKeyStatement FromMutable(ScriptDom.CreateSymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateSymmetricKeyStatement(
-                keyOptions: fragment.KeyOptions.SelectList(c => (KeyOption)FromMutable(c)),
-                provider: (Identifier)FromMutable(fragment.Provider),
-                owner: (Identifier)FromMutable(fragment.Owner),
-                name: (Identifier)FromMutable(fragment.Name),
-                encryptingMechanisms: fragment.EncryptingMechanisms.SelectList(c => (CryptoMechanism)FromMutable(c))
+                keyOptions: fragment.KeyOptions.SelectList(FromMutable),
+                provider: FromMutable(fragment.Provider),
+                owner: FromMutable(fragment.Owner),
+                name: FromMutable(fragment.Name),
+                encryptingMechanisms: fragment.EncryptingMechanisms.SelectList(FromMutable)
             );
         }
         
         public static CreateSynonymStatement FromMutable(ScriptDom.CreateSynonymStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateSynonymStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                forName: (SchemaObjectName)FromMutable(fragment.ForName)
+                name: FromMutable(fragment.Name),
+                forName: FromMutable(fragment.ForName)
             );
         }
         
         public static CreateTableStatement FromMutable(ScriptDom.CreateTableStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateTableStatement(
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName),
                 asEdge: fragment.AsEdge,
                 asFileTable: fragment.AsFileTable,
                 asNode: fragment.AsNode,
-                definition: (TableDefinition)FromMutable(fragment.Definition),
-                onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(fragment.OnFileGroupOrPartitionScheme),
-                federationScheme: (FederationScheme)FromMutable(fragment.FederationScheme),
-                textImageOn: (IdentifierOrValueExpression)FromMutable(fragment.TextImageOn),
-                options: fragment.Options.SelectList(c => (TableOption)FromMutable(c)),
-                selectStatement: (SelectStatement)FromMutable(fragment.SelectStatement),
-                ctasColumns: fragment.CtasColumns.SelectList(c => (Identifier)FromMutable(c)),
-                fileStreamOn: (IdentifierOrValueExpression)FromMutable(fragment.FileStreamOn)
+                definition: FromMutable(fragment.Definition),
+                onFileGroupOrPartitionScheme: FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                federationScheme: FromMutable(fragment.FederationScheme),
+                textImageOn: FromMutable(fragment.TextImageOn),
+                options: fragment.Options.SelectList(FromMutable),
+                selectStatement: FromMutable(fragment.SelectStatement),
+                ctasColumns: fragment.CtasColumns.SelectList(FromMutable),
+                fileStreamOn: FromMutable(fragment.FileStreamOn)
             );
         }
         
         public static CreateTriggerStatement FromMutable(ScriptDom.CreateTriggerStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateTriggerStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                triggerObject: (TriggerObject)FromMutable(fragment.TriggerObject),
-                options: fragment.Options.SelectList(c => (TriggerOption)FromMutable(c)),
+                name: FromMutable(fragment.Name),
+                triggerObject: FromMutable(fragment.TriggerObject),
+                options: fragment.Options.SelectList(FromMutable),
                 triggerType: fragment.TriggerType,
-                triggerActions: fragment.TriggerActions.SelectList(c => (TriggerAction)FromMutable(c)),
+                triggerActions: fragment.TriggerActions.SelectList(FromMutable),
                 withAppend: fragment.WithAppend,
                 isNotForReplication: fragment.IsNotForReplication,
-                statementList: (StatementList)FromMutable(fragment.StatementList),
-                methodSpecifier: (MethodSpecifier)FromMutable(fragment.MethodSpecifier)
+                statementList: FromMutable(fragment.StatementList),
+                methodSpecifier: FromMutable(fragment.MethodSpecifier)
             );
         }
         
         public static CreateTypeTableStatement FromMutable(ScriptDom.CreateTypeTableStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateTypeTableStatement(
-                definition: (TableDefinition)FromMutable(fragment.Definition),
-                options: fragment.Options.SelectList(c => (TableOption)FromMutable(c)),
-                name: (SchemaObjectName)FromMutable(fragment.Name)
+                definition: FromMutable(fragment.Definition),
+                options: fragment.Options.SelectList(FromMutable),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static CreateTypeUddtStatement FromMutable(ScriptDom.CreateTypeUddtStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateTypeUddtStatement(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                nullableConstraint: (NullableConstraintDefinition)FromMutable(fragment.NullableConstraint),
-                name: (SchemaObjectName)FromMutable(fragment.Name)
+                dataType: FromMutable(fragment.DataType),
+                nullableConstraint: FromMutable(fragment.NullableConstraint),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static CreateTypeUdtStatement FromMutable(ScriptDom.CreateTypeUdtStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateTypeUdtStatement(
-                assemblyName: (AssemblyName)FromMutable(fragment.AssemblyName),
-                name: (SchemaObjectName)FromMutable(fragment.Name)
+                assemblyName: FromMutable(fragment.AssemblyName),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static CreateUserStatement FromMutable(ScriptDom.CreateUserStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateUserStatement(
-                userLoginOption: (UserLoginOption)FromMutable(fragment.UserLoginOption),
-                name: (Identifier)FromMutable(fragment.Name),
-                userOptions: fragment.UserOptions.SelectList(c => (PrincipalOption)FromMutable(c))
+                userLoginOption: FromMutable(fragment.UserLoginOption),
+                name: FromMutable(fragment.Name),
+                userOptions: fragment.UserOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateViewStatement FromMutable(ScriptDom.CreateViewStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateViewStatement(
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                viewOptions: fragment.ViewOptions.SelectList(c => (ViewOption)FromMutable(c)),
-                selectStatement: (SelectStatement)FromMutable(fragment.SelectStatement),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName),
+                columns: fragment.Columns.SelectList(FromMutable),
+                viewOptions: fragment.ViewOptions.SelectList(FromMutable),
+                selectStatement: FromMutable(fragment.SelectStatement),
                 withCheckOption: fragment.WithCheckOption,
                 isMaterialized: fragment.IsMaterialized
             );
@@ -4558,18 +4707,18 @@ namespace Xledger.Sql.ImmutableDom {
         public static CreateWorkloadClassifierStatement FromMutable(ScriptDom.CreateWorkloadClassifierStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateWorkloadClassifierStatement(
-                classifierName: (Identifier)FromMutable(fragment.ClassifierName),
-                options: fragment.Options.SelectList(c => (WorkloadClassifierOption)FromMutable(c))
+                classifierName: FromMutable(fragment.ClassifierName),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static CreateWorkloadGroupStatement FromMutable(ScriptDom.CreateWorkloadGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateWorkloadGroupStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                workloadGroupParameters: fragment.WorkloadGroupParameters.SelectList(c => (WorkloadGroupParameter)FromMutable(c)),
-                poolName: (Identifier)FromMutable(fragment.PoolName),
-                externalPoolName: (Identifier)FromMutable(fragment.ExternalPoolName)
+                name: FromMutable(fragment.Name),
+                workloadGroupParameters: fragment.WorkloadGroupParameters.SelectList(FromMutable),
+                poolName: FromMutable(fragment.PoolName),
+                externalPoolName: FromMutable(fragment.ExternalPoolName)
             );
         }
         
@@ -4577,21 +4726,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CreateXmlIndexStatement(
                 primary: fragment.Primary,
-                xmlColumn: (Identifier)FromMutable(fragment.XmlColumn),
-                secondaryXmlIndexName: (Identifier)FromMutable(fragment.SecondaryXmlIndexName),
+                xmlColumn: FromMutable(fragment.XmlColumn),
+                secondaryXmlIndexName: FromMutable(fragment.SecondaryXmlIndexName),
                 secondaryXmlIndexType: fragment.SecondaryXmlIndexType,
-                onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(fragment.OnFileGroupOrPartitionScheme),
-                name: (Identifier)FromMutable(fragment.Name),
-                onName: (SchemaObjectName)FromMutable(fragment.OnName),
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c))
+                onFileGroupOrPartitionScheme: FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                name: FromMutable(fragment.Name),
+                onName: FromMutable(fragment.OnName),
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable)
             );
         }
         
         public static CreateXmlSchemaCollectionStatement FromMutable(ScriptDom.CreateXmlSchemaCollectionStatement fragment) {
             if (fragment is null) { return null; }
             return new CreateXmlSchemaCollectionStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                name: FromMutable(fragment.Name),
+                expression: FromMutable(fragment.Expression)
             );
         }
         
@@ -4607,15 +4756,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CryptoMechanism(
                 cryptoMechanismType: fragment.CryptoMechanismType,
-                identifier: (Identifier)FromMutable(fragment.Identifier),
-                passwordOrSignature: (Literal)FromMutable(fragment.PasswordOrSignature)
+                identifier: FromMutable(fragment.Identifier),
+                passwordOrSignature: FromMutable(fragment.PasswordOrSignature)
             );
         }
         
         public static CubeGroupingSpecification FromMutable(ScriptDom.CubeGroupingSpecification fragment) {
             if (fragment is null) { return null; }
             return new CubeGroupingSpecification(
-                arguments: fragment.Arguments.SelectList(c => (GroupingSpecification)FromMutable(c))
+                arguments: fragment.Arguments.SelectList(FromMutable)
             );
         }
         
@@ -4630,8 +4779,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static CursorDefinition FromMutable(ScriptDom.CursorDefinition fragment) {
             if (fragment is null) { return null; }
             return new CursorDefinition(
-                options: fragment.Options.SelectList(c => (CursorOption)FromMutable(c)),
-                select: (SelectStatement)FromMutable(fragment.Select)
+                options: fragment.Options.SelectList(FromMutable),
+                select: FromMutable(fragment.Select)
             );
         }
         
@@ -4639,7 +4788,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new CursorId(
                 isGlobal: fragment.IsGlobal,
-                name: (IdentifierOrValueExpression)FromMutable(fragment.Name)
+                name: FromMutable(fragment.Name)
             );
         }
         
@@ -4661,20 +4810,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DatabaseConfigurationClearOption(
                 optionKind: fragment.OptionKind,
-                planHandle: (BinaryLiteral)FromMutable(fragment.PlanHandle)
+                planHandle: FromMutable(fragment.PlanHandle)
             );
         }
         
         public static DatabaseConfigurationSetOption FromMutable(ScriptDom.DatabaseConfigurationSetOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DatabaseConfigurationSetOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DatabaseConfigurationSetOption; }
             return new DatabaseConfigurationSetOption(
                 optionKind: fragment.OptionKind,
-                genericOptionKind: (Identifier)FromMutable(fragment.GenericOptionKind)
+                genericOptionKind: FromMutable(fragment.GenericOptionKind)
             );
         }
         
         public static DatabaseOption FromMutable(ScriptDom.DatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DatabaseOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DatabaseOption; }
             return new DatabaseOption(
                 optionKind: fragment.OptionKind
             );
@@ -4684,7 +4835,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DataCompressionOption(
                 compressionLevel: fragment.CompressionLevel,
-                partitionRanges: fragment.PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c)),
+                partitionRanges: fragment.PartitionRanges.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -4692,9 +4843,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static DataModificationTableReference FromMutable(ScriptDom.DataModificationTableReference fragment) {
             if (fragment is null) { return null; }
             return new DataModificationTableReference(
-                dataModificationSpecification: (DataModificationSpecification)FromMutable(fragment.DataModificationSpecification),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                dataModificationSpecification: FromMutable(fragment.DataModificationSpecification),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -4703,8 +4854,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DataRetentionTableOption(
                 optionState: fragment.OptionState,
-                filterColumn: (Identifier)FromMutable(fragment.FilterColumn),
-                retentionPeriod: (RetentionPeriodDefinition)FromMutable(fragment.RetentionPeriod),
+                filterColumn: FromMutable(fragment.FilterColumn),
+                retentionPeriod: FromMutable(fragment.RetentionPeriod),
                 optionKind: fragment.OptionKind
             );
         }
@@ -4712,7 +4863,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DataTypeSequenceOption FromMutable(ScriptDom.DataTypeSequenceOption fragment) {
             if (fragment is null) { return null; }
             return new DataTypeSequenceOption(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
+                dataType: FromMutable(fragment.DataType),
                 optionKind: fragment.OptionKind,
                 noValue: fragment.NoValue
             );
@@ -4722,7 +4873,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DbccNamedLiteral(
                 name: fragment.Name,
-                @value: (ScalarExpression)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
@@ -4739,8 +4890,8 @@ namespace Xledger.Sql.ImmutableDom {
                 dllName: fragment.DllName,
                 command: fragment.Command,
                 parenthesisRequired: fragment.ParenthesisRequired,
-                literals: fragment.Literals.SelectList(c => (DbccNamedLiteral)FromMutable(c)),
-                options: fragment.Options.SelectList(c => (DbccOption)FromMutable(c)),
+                literals: fragment.Literals.SelectList(FromMutable),
+                options: fragment.Options.SelectList(FromMutable),
                 optionsUseJoin: fragment.OptionsUseJoin
             );
         }
@@ -4748,58 +4899,59 @@ namespace Xledger.Sql.ImmutableDom {
         public static DeallocateCursorStatement FromMutable(ScriptDom.DeallocateCursorStatement fragment) {
             if (fragment is null) { return null; }
             return new DeallocateCursorStatement(
-                cursor: (CursorId)FromMutable(fragment.Cursor)
+                cursor: FromMutable(fragment.Cursor)
             );
         }
         
         public static DeclareCursorStatement FromMutable(ScriptDom.DeclareCursorStatement fragment) {
             if (fragment is null) { return null; }
             return new DeclareCursorStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                cursorDefinition: (CursorDefinition)FromMutable(fragment.CursorDefinition)
+                name: FromMutable(fragment.Name),
+                cursorDefinition: FromMutable(fragment.CursorDefinition)
             );
         }
         
         public static DeclareTableVariableBody FromMutable(ScriptDom.DeclareTableVariableBody fragment) {
             if (fragment is null) { return null; }
             return new DeclareTableVariableBody(
-                variableName: (Identifier)FromMutable(fragment.VariableName),
+                variableName: FromMutable(fragment.VariableName),
                 asDefined: fragment.AsDefined,
-                definition: (TableDefinition)FromMutable(fragment.Definition)
+                definition: FromMutable(fragment.Definition)
             );
         }
         
         public static DeclareTableVariableStatement FromMutable(ScriptDom.DeclareTableVariableStatement fragment) {
             if (fragment is null) { return null; }
             return new DeclareTableVariableStatement(
-                body: (DeclareTableVariableBody)FromMutable(fragment.Body)
+                body: FromMutable(fragment.Body)
             );
         }
         
         public static DeclareVariableElement FromMutable(ScriptDom.DeclareVariableElement fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DeclareVariableElement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as DeclareVariableElement; }
             return new DeclareVariableElement(
-                variableName: (Identifier)FromMutable(fragment.VariableName),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                nullable: (NullableConstraintDefinition)FromMutable(fragment.Nullable),
-                @value: (ScalarExpression)FromMutable(fragment.Value)
+                variableName: FromMutable(fragment.VariableName),
+                dataType: FromMutable(fragment.DataType),
+                nullable: FromMutable(fragment.Nullable),
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static DeclareVariableStatement FromMutable(ScriptDom.DeclareVariableStatement fragment) {
             if (fragment is null) { return null; }
             return new DeclareVariableStatement(
-                declarations: fragment.Declarations.SelectList(c => (DeclareVariableElement)FromMutable(c))
+                declarations: fragment.Declarations.SelectList(FromMutable)
             );
         }
         
         public static DefaultConstraintDefinition FromMutable(ScriptDom.DefaultConstraintDefinition fragment) {
             if (fragment is null) { return null; }
             return new DefaultConstraintDefinition(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
+                expression: FromMutable(fragment.Expression),
                 withValues: fragment.WithValues,
-                column: (Identifier)FromMutable(fragment.Column),
-                constraintIdentifier: (Identifier)FromMutable(fragment.ConstraintIdentifier)
+                column: FromMutable(fragment.Column),
+                constraintIdentifier: FromMutable(fragment.ConstraintIdentifier)
             );
         }
         
@@ -4807,7 +4959,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DefaultLiteral(
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -4829,21 +4981,21 @@ namespace Xledger.Sql.ImmutableDom {
         public static DeleteSpecification FromMutable(ScriptDom.DeleteSpecification fragment) {
             if (fragment is null) { return null; }
             return new DeleteSpecification(
-                fromClause: (FromClause)FromMutable(fragment.FromClause),
-                whereClause: (WhereClause)FromMutable(fragment.WhereClause),
-                target: (TableReference)FromMutable(fragment.Target),
-                topRowFilter: (TopRowFilter)FromMutable(fragment.TopRowFilter),
-                outputIntoClause: (OutputIntoClause)FromMutable(fragment.OutputIntoClause),
-                outputClause: (OutputClause)FromMutable(fragment.OutputClause)
+                fromClause: FromMutable(fragment.FromClause),
+                whereClause: FromMutable(fragment.WhereClause),
+                target: FromMutable(fragment.Target),
+                topRowFilter: FromMutable(fragment.TopRowFilter),
+                outputIntoClause: FromMutable(fragment.OutputIntoClause),
+                outputClause: FromMutable(fragment.OutputClause)
             );
         }
         
         public static DeleteStatement FromMutable(ScriptDom.DeleteStatement fragment) {
             if (fragment is null) { return null; }
             return new DeleteStatement(
-                deleteSpecification: (DeleteSpecification)FromMutable(fragment.DeleteSpecification),
-                withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(fragment.WithCtesAndXmlNamespaces),
-                optimizerHints: fragment.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                deleteSpecification: FromMutable(fragment.DeleteSpecification),
+                withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(FromMutable)
             );
         }
         
@@ -4851,10 +5003,10 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DenyStatement(
                 cascadeOption: fragment.CascadeOption,
-                permissions: fragment.Permissions.SelectList(c => (Permission)FromMutable(c)),
-                securityTargetObject: (SecurityTargetObject)FromMutable(fragment.SecurityTargetObject),
-                principals: fragment.Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
-                asClause: (Identifier)FromMutable(fragment.AsClause)
+                permissions: fragment.Permissions.SelectList(FromMutable),
+                securityTargetObject: FromMutable(fragment.SecurityTargetObject),
+                principals: fragment.Principals.SelectList(FromMutable),
+                asClause: FromMutable(fragment.AsClause)
             );
         }
         
@@ -4862,16 +5014,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DenyStatement80(
                 cascadeOption: fragment.CascadeOption,
-                securityElement80: (SecurityElement80)FromMutable(fragment.SecurityElement80),
-                securityUserClause80: (SecurityUserClause80)FromMutable(fragment.SecurityUserClause80)
+                securityElement80: FromMutable(fragment.SecurityElement80),
+                securityUserClause80: FromMutable(fragment.SecurityUserClause80)
             );
         }
         
         public static DeviceInfo FromMutable(ScriptDom.DeviceInfo fragment) {
             if (fragment is null) { return null; }
             return new DeviceInfo(
-                logicalDevice: (IdentifierOrValueExpression)FromMutable(fragment.LogicalDevice),
-                physicalDevice: (ValueExpression)FromMutable(fragment.PhysicalDevice),
+                logicalDevice: FromMutable(fragment.LogicalDevice),
+                physicalDevice: FromMutable(fragment.PhysicalDevice),
                 deviceType: fragment.DeviceType
             );
         }
@@ -4880,7 +5032,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DiskStatement(
                 diskStatementType: fragment.DiskStatementType,
-                options: fragment.Options.SelectList(c => (DiskStatementOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
@@ -4888,15 +5040,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DiskStatementOption(
                 optionKind: fragment.OptionKind,
-                @value: (IdentifierOrValueExpression)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static DistinctPredicate FromMutable(ScriptDom.DistinctPredicate fragment) {
             if (fragment is null) { return null; }
             return new DistinctPredicate(
-                firstExpression: (ScalarExpression)FromMutable(fragment.FirstExpression),
-                secondExpression: (ScalarExpression)FromMutable(fragment.SecondExpression),
+                firstExpression: FromMutable(fragment.FirstExpression),
+                secondExpression: FromMutable(fragment.SecondExpression),
                 isNot: fragment.IsNot
             );
         }
@@ -4904,7 +5056,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropAggregateStatement FromMutable(ScriptDom.DropAggregateStatement fragment) {
             if (fragment is null) { return null; }
             return new DropAggregateStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -4912,7 +5064,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropAlterFullTextIndexAction FromMutable(ScriptDom.DropAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
             return new DropAlterFullTextIndexAction(
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
+                columns: fragment.Columns.SelectList(FromMutable),
                 withNoPopulation: fragment.WithNoPopulation
             );
         }
@@ -4920,7 +5072,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropApplicationRoleStatement FromMutable(ScriptDom.DropApplicationRoleStatement fragment) {
             if (fragment is null) { return null; }
             return new DropApplicationRoleStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -4929,7 +5081,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DropAssemblyStatement(
                 withNoDependents: fragment.WithNoDependents,
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -4938,7 +5090,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DropAsymmetricKeyStatement(
                 removeProviderKey: fragment.RemoveProviderKey,
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -4946,7 +5098,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropAvailabilityGroupStatement FromMutable(ScriptDom.DropAvailabilityGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new DropAvailabilityGroupStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -4954,7 +5106,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropBrokerPriorityStatement FromMutable(ScriptDom.DropBrokerPriorityStatement fragment) {
             if (fragment is null) { return null; }
             return new DropBrokerPriorityStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -4962,7 +5114,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropCertificateStatement FromMutable(ScriptDom.DropCertificateStatement fragment) {
             if (fragment is null) { return null; }
             return new DropCertificateStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -4970,7 +5122,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropClusteredConstraintMoveOption FromMutable(ScriptDom.DropClusteredConstraintMoveOption fragment) {
             if (fragment is null) { return null; }
             return new DropClusteredConstraintMoveOption(
-                optionValue: (FileGroupOrPartitionScheme)FromMutable(fragment.OptionValue),
+                optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
             );
         }
@@ -4986,7 +5138,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropClusteredConstraintValueOption FromMutable(ScriptDom.DropClusteredConstraintValueOption fragment) {
             if (fragment is null) { return null; }
             return new DropClusteredConstraintValueOption(
-                optionValue: (Literal)FromMutable(fragment.OptionValue),
+                optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
             );
         }
@@ -4994,7 +5146,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropClusteredConstraintWaitAtLowPriorityLockOption FromMutable(ScriptDom.DropClusteredConstraintWaitAtLowPriorityLockOption fragment) {
             if (fragment is null) { return null; }
             return new DropClusteredConstraintWaitAtLowPriorityLockOption(
-                options: fragment.Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
+                options: fragment.Options.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5002,7 +5154,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropColumnEncryptionKeyStatement FromMutable(ScriptDom.DropColumnEncryptionKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new DropColumnEncryptionKeyStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5010,7 +5162,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropColumnMasterKeyStatement FromMutable(ScriptDom.DropColumnMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new DropColumnMasterKeyStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5018,7 +5170,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropContractStatement FromMutable(ScriptDom.DropContractStatement fragment) {
             if (fragment is null) { return null; }
             return new DropContractStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5027,7 +5179,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DropCredentialStatement(
                 isDatabaseScoped: fragment.IsDatabaseScoped,
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5035,7 +5187,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropCryptographicProviderStatement FromMutable(ScriptDom.DropCryptographicProviderStatement fragment) {
             if (fragment is null) { return null; }
             return new DropCryptographicProviderStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5043,7 +5195,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropDatabaseAuditSpecificationStatement FromMutable(ScriptDom.DropDatabaseAuditSpecificationStatement fragment) {
             if (fragment is null) { return null; }
             return new DropDatabaseAuditSpecificationStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5058,7 +5210,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropDatabaseStatement FromMutable(ScriptDom.DropDatabaseStatement fragment) {
             if (fragment is null) { return null; }
             return new DropDatabaseStatement(
-                databases: fragment.Databases.SelectList(c => (Identifier)FromMutable(c)),
+                databases: fragment.Databases.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5066,7 +5218,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropDefaultStatement FromMutable(ScriptDom.DropDefaultStatement fragment) {
             if (fragment is null) { return null; }
             return new DropDefaultStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5074,7 +5226,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropEndpointStatement FromMutable(ScriptDom.DropEndpointStatement fragment) {
             if (fragment is null) { return null; }
             return new DropEndpointStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5082,8 +5234,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropEventNotificationStatement FromMutable(ScriptDom.DropEventNotificationStatement fragment) {
             if (fragment is null) { return null; }
             return new DropEventNotificationStatement(
-                notifications: fragment.Notifications.SelectList(c => (Identifier)FromMutable(c)),
-                scope: (EventNotificationObjectScope)FromMutable(fragment.Scope)
+                notifications: fragment.Notifications.SelectList(FromMutable),
+                scope: FromMutable(fragment.Scope)
             );
         }
         
@@ -5091,7 +5243,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DropEventSessionStatement(
                 sessionScope: fragment.SessionScope,
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5099,7 +5251,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropExternalDataSourceStatement FromMutable(ScriptDom.DropExternalDataSourceStatement fragment) {
             if (fragment is null) { return null; }
             return new DropExternalDataSourceStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5107,7 +5259,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropExternalFileFormatStatement FromMutable(ScriptDom.DropExternalFileFormatStatement fragment) {
             if (fragment is null) { return null; }
             return new DropExternalFileFormatStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5115,23 +5267,23 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropExternalLanguageStatement FromMutable(ScriptDom.DropExternalLanguageStatement fragment) {
             if (fragment is null) { return null; }
             return new DropExternalLanguageStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                owner: (Identifier)FromMutable(fragment.Owner)
+                name: FromMutable(fragment.Name),
+                owner: FromMutable(fragment.Owner)
             );
         }
         
         public static DropExternalLibraryStatement FromMutable(ScriptDom.DropExternalLibraryStatement fragment) {
             if (fragment is null) { return null; }
             return new DropExternalLibraryStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                owner: (Identifier)FromMutable(fragment.Owner)
+                name: FromMutable(fragment.Name),
+                owner: FromMutable(fragment.Owner)
             );
         }
         
         public static DropExternalResourcePoolStatement FromMutable(ScriptDom.DropExternalResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
             return new DropExternalResourcePoolStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5139,7 +5291,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropExternalStreamingJobStatement FromMutable(ScriptDom.DropExternalStreamingJobStatement fragment) {
             if (fragment is null) { return null; }
             return new DropExternalStreamingJobStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5147,7 +5299,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropExternalStreamStatement FromMutable(ScriptDom.DropExternalStreamStatement fragment) {
             if (fragment is null) { return null; }
             return new DropExternalStreamStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5155,7 +5307,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropExternalTableStatement FromMutable(ScriptDom.DropExternalTableStatement fragment) {
             if (fragment is null) { return null; }
             return new DropExternalTableStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5163,7 +5315,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropFederationStatement FromMutable(ScriptDom.DropFederationStatement fragment) {
             if (fragment is null) { return null; }
             return new DropFederationStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5171,7 +5323,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropFullTextCatalogStatement FromMutable(ScriptDom.DropFullTextCatalogStatement fragment) {
             if (fragment is null) { return null; }
             return new DropFullTextCatalogStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5179,14 +5331,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropFullTextIndexStatement FromMutable(ScriptDom.DropFullTextIndexStatement fragment) {
             if (fragment is null) { return null; }
             return new DropFullTextIndexStatement(
-                tableName: (SchemaObjectName)FromMutable(fragment.TableName)
+                tableName: FromMutable(fragment.TableName)
             );
         }
         
         public static DropFullTextStopListStatement FromMutable(ScriptDom.DropFullTextStopListStatement fragment) {
             if (fragment is null) { return null; }
             return new DropFullTextStopListStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5194,7 +5346,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropFunctionStatement FromMutable(ScriptDom.DropFunctionStatement fragment) {
             if (fragment is null) { return null; }
             return new DropFunctionStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5202,16 +5354,16 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropIndexClause FromMutable(ScriptDom.DropIndexClause fragment) {
             if (fragment is null) { return null; }
             return new DropIndexClause(
-                index: (Identifier)FromMutable(fragment.Index),
-                @object: (SchemaObjectName)FromMutable(fragment.Object),
-                options: fragment.Options.SelectList(c => (IndexOption)FromMutable(c))
+                index: FromMutable(fragment.Index),
+                @object: FromMutable(fragment.Object),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static DropIndexStatement FromMutable(ScriptDom.DropIndexStatement fragment) {
             if (fragment is null) { return null; }
             return new DropIndexStatement(
-                dropIndexClauses: fragment.DropIndexClauses.SelectList(c => (DropIndexClauseBase)FromMutable(c)),
+                dropIndexClauses: fragment.DropIndexClauses.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5219,7 +5371,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropLoginStatement FromMutable(ScriptDom.DropLoginStatement fragment) {
             if (fragment is null) { return null; }
             return new DropLoginStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5234,14 +5386,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropMemberAlterRoleAction FromMutable(ScriptDom.DropMemberAlterRoleAction fragment) {
             if (fragment is null) { return null; }
             return new DropMemberAlterRoleAction(
-                member: (Identifier)FromMutable(fragment.Member)
+                member: FromMutable(fragment.Member)
             );
         }
         
         public static DropMessageTypeStatement FromMutable(ScriptDom.DropMessageTypeStatement fragment) {
             if (fragment is null) { return null; }
             return new DropMessageTypeStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5249,7 +5401,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropPartitionFunctionStatement FromMutable(ScriptDom.DropPartitionFunctionStatement fragment) {
             if (fragment is null) { return null; }
             return new DropPartitionFunctionStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5257,7 +5409,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropPartitionSchemeStatement FromMutable(ScriptDom.DropPartitionSchemeStatement fragment) {
             if (fragment is null) { return null; }
             return new DropPartitionSchemeStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5265,7 +5417,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropProcedureStatement FromMutable(ScriptDom.DropProcedureStatement fragment) {
             if (fragment is null) { return null; }
             return new DropProcedureStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5273,14 +5425,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropQueueStatement FromMutable(ScriptDom.DropQueueStatement fragment) {
             if (fragment is null) { return null; }
             return new DropQueueStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name)
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static DropRemoteServiceBindingStatement FromMutable(ScriptDom.DropRemoteServiceBindingStatement fragment) {
             if (fragment is null) { return null; }
             return new DropRemoteServiceBindingStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5288,7 +5440,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropResourcePoolStatement FromMutable(ScriptDom.DropResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
             return new DropResourcePoolStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5296,7 +5448,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropRoleStatement FromMutable(ScriptDom.DropRoleStatement fragment) {
             if (fragment is null) { return null; }
             return new DropRoleStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5304,7 +5456,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropRouteStatement FromMutable(ScriptDom.DropRouteStatement fragment) {
             if (fragment is null) { return null; }
             return new DropRouteStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5312,7 +5464,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropRuleStatement FromMutable(ScriptDom.DropRuleStatement fragment) {
             if (fragment is null) { return null; }
             return new DropRuleStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5320,7 +5472,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropSchemaStatement FromMutable(ScriptDom.DropSchemaStatement fragment) {
             if (fragment is null) { return null; }
             return new DropSchemaStatement(
-                schema: (SchemaObjectName)FromMutable(fragment.Schema),
+                schema: FromMutable(fragment.Schema),
                 dropBehavior: fragment.DropBehavior,
                 isIfExists: fragment.IsIfExists
             );
@@ -5329,14 +5481,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropSearchPropertyListAction FromMutable(ScriptDom.DropSearchPropertyListAction fragment) {
             if (fragment is null) { return null; }
             return new DropSearchPropertyListAction(
-                propertyName: (StringLiteral)FromMutable(fragment.PropertyName)
+                propertyName: FromMutable(fragment.PropertyName)
             );
         }
         
         public static DropSearchPropertyListStatement FromMutable(ScriptDom.DropSearchPropertyListStatement fragment) {
             if (fragment is null) { return null; }
             return new DropSearchPropertyListStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5344,7 +5496,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropSecurityPolicyStatement FromMutable(ScriptDom.DropSecurityPolicyStatement fragment) {
             if (fragment is null) { return null; }
             return new DropSecurityPolicyStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5352,14 +5504,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropSensitivityClassificationStatement FromMutable(ScriptDom.DropSensitivityClassificationStatement fragment) {
             if (fragment is null) { return null; }
             return new DropSensitivityClassificationStatement(
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                columns: fragment.Columns.SelectList(FromMutable)
             );
         }
         
         public static DropSequenceStatement FromMutable(ScriptDom.DropSequenceStatement fragment) {
             if (fragment is null) { return null; }
             return new DropSequenceStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5367,7 +5519,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropServerAuditSpecificationStatement FromMutable(ScriptDom.DropServerAuditSpecificationStatement fragment) {
             if (fragment is null) { return null; }
             return new DropServerAuditSpecificationStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5375,7 +5527,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropServerAuditStatement FromMutable(ScriptDom.DropServerAuditStatement fragment) {
             if (fragment is null) { return null; }
             return new DropServerAuditStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5383,7 +5535,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropServerRoleStatement FromMutable(ScriptDom.DropServerRoleStatement fragment) {
             if (fragment is null) { return null; }
             return new DropServerRoleStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5391,7 +5543,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropServiceStatement FromMutable(ScriptDom.DropServiceStatement fragment) {
             if (fragment is null) { return null; }
             return new DropServiceStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5401,15 +5553,15 @@ namespace Xledger.Sql.ImmutableDom {
             return new DropSignatureStatement(
                 isCounter: fragment.IsCounter,
                 elementKind: fragment.ElementKind,
-                element: (SchemaObjectName)FromMutable(fragment.Element),
-                cryptos: fragment.Cryptos.SelectList(c => (CryptoMechanism)FromMutable(c))
+                element: FromMutable(fragment.Element),
+                cryptos: fragment.Cryptos.SelectList(FromMutable)
             );
         }
         
         public static DropStatisticsStatement FromMutable(ScriptDom.DropStatisticsStatement fragment) {
             if (fragment is null) { return null; }
             return new DropStatisticsStatement(
-                objects: fragment.Objects.SelectList(c => (ChildObjectName)FromMutable(c))
+                objects: fragment.Objects.SelectList(FromMutable)
             );
         }
         
@@ -5417,7 +5569,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DropSymmetricKeyStatement(
                 removeProviderKey: fragment.RemoveProviderKey,
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5425,7 +5577,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropSynonymStatement FromMutable(ScriptDom.DropSynonymStatement fragment) {
             if (fragment is null) { return null; }
             return new DropSynonymStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5433,7 +5585,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropTableStatement FromMutable(ScriptDom.DropTableStatement fragment) {
             if (fragment is null) { return null; }
             return new DropTableStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5442,7 +5594,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new DropTriggerStatement(
                 triggerScope: fragment.TriggerScope,
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5450,7 +5602,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropTypeStatement FromMutable(ScriptDom.DropTypeStatement fragment) {
             if (fragment is null) { return null; }
             return new DropTypeStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5458,7 +5610,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropUserStatement FromMutable(ScriptDom.DropUserStatement fragment) {
             if (fragment is null) { return null; }
             return new DropUserStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5466,7 +5618,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropViewStatement FromMutable(ScriptDom.DropViewStatement fragment) {
             if (fragment is null) { return null; }
             return new DropViewStatement(
-                objects: fragment.Objects.SelectList(c => (SchemaObjectName)FromMutable(c)),
+                objects: fragment.Objects.SelectList(FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5474,7 +5626,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropWorkloadClassifierStatement FromMutable(ScriptDom.DropWorkloadClassifierStatement fragment) {
             if (fragment is null) { return null; }
             return new DropWorkloadClassifierStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5482,7 +5634,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropWorkloadGroupStatement FromMutable(ScriptDom.DropWorkloadGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new DropWorkloadGroupStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 isIfExists: fragment.IsIfExists
             );
         }
@@ -5490,7 +5642,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static DropXmlSchemaCollectionStatement FromMutable(ScriptDom.DropXmlSchemaCollectionStatement fragment) {
             if (fragment is null) { return null; }
             return new DropXmlSchemaCollectionStatement(
-                name: (SchemaObjectName)FromMutable(fragment.Name)
+                name: FromMutable(fragment.Name)
             );
         }
         
@@ -5515,15 +5667,15 @@ namespace Xledger.Sql.ImmutableDom {
             return new EnableDisableTriggerStatement(
                 triggerEnforcement: fragment.TriggerEnforcement,
                 all: fragment.All,
-                triggerNames: fragment.TriggerNames.SelectList(c => (SchemaObjectName)FromMutable(c)),
-                triggerObject: (TriggerObject)FromMutable(fragment.TriggerObject)
+                triggerNames: fragment.TriggerNames.SelectList(FromMutable),
+                triggerObject: FromMutable(fragment.TriggerObject)
             );
         }
         
         public static EncryptedValueParameter FromMutable(ScriptDom.EncryptedValueParameter fragment) {
             if (fragment is null) { return null; }
             return new EncryptedValueParameter(
-                @value: (BinaryLiteral)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 parameterKind: fragment.ParameterKind
             );
         }
@@ -5541,10 +5693,10 @@ namespace Xledger.Sql.ImmutableDom {
         public static EndConversationStatement FromMutable(ScriptDom.EndConversationStatement fragment) {
             if (fragment is null) { return null; }
             return new EndConversationStatement(
-                conversation: (ScalarExpression)FromMutable(fragment.Conversation),
+                conversation: FromMutable(fragment.Conversation),
                 withCleanup: fragment.WithCleanup,
-                errorCode: (ValueExpression)FromMutable(fragment.ErrorCode),
-                errorDescription: (ValueExpression)FromMutable(fragment.ErrorDescription)
+                errorCode: FromMutable(fragment.ErrorCode),
+                errorDescription: FromMutable(fragment.ErrorDescription)
             );
         }
         
@@ -5552,34 +5704,34 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new EndpointAffinity(
                 kind: fragment.Kind,
-                @value: (Literal)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static EventDeclaration FromMutable(ScriptDom.EventDeclaration fragment) {
             if (fragment is null) { return null; }
             return new EventDeclaration(
-                objectName: (EventSessionObjectName)FromMutable(fragment.ObjectName),
-                eventDeclarationSetParameters: fragment.EventDeclarationSetParameters.SelectList(c => (EventDeclarationSetParameter)FromMutable(c)),
-                eventDeclarationActionParameters: fragment.EventDeclarationActionParameters.SelectList(c => (EventSessionObjectName)FromMutable(c)),
-                eventDeclarationPredicateParameter: (BooleanExpression)FromMutable(fragment.EventDeclarationPredicateParameter)
+                objectName: FromMutable(fragment.ObjectName),
+                eventDeclarationSetParameters: fragment.EventDeclarationSetParameters.SelectList(FromMutable),
+                eventDeclarationActionParameters: fragment.EventDeclarationActionParameters.SelectList(FromMutable),
+                eventDeclarationPredicateParameter: FromMutable(fragment.EventDeclarationPredicateParameter)
             );
         }
         
         public static EventDeclarationCompareFunctionParameter FromMutable(ScriptDom.EventDeclarationCompareFunctionParameter fragment) {
             if (fragment is null) { return null; }
             return new EventDeclarationCompareFunctionParameter(
-                name: (EventSessionObjectName)FromMutable(fragment.Name),
-                sourceDeclaration: (SourceDeclaration)FromMutable(fragment.SourceDeclaration),
-                eventValue: (ScalarExpression)FromMutable(fragment.EventValue)
+                name: FromMutable(fragment.Name),
+                sourceDeclaration: FromMutable(fragment.SourceDeclaration),
+                eventValue: FromMutable(fragment.EventValue)
             );
         }
         
         public static EventDeclarationSetParameter FromMutable(ScriptDom.EventDeclarationSetParameter fragment) {
             if (fragment is null) { return null; }
             return new EventDeclarationSetParameter(
-                eventField: (Identifier)FromMutable(fragment.EventField),
-                eventValue: (ScalarExpression)FromMutable(fragment.EventValue)
+                eventField: FromMutable(fragment.EventField),
+                eventValue: FromMutable(fragment.EventValue)
             );
         }
         
@@ -5594,7 +5746,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new EventNotificationObjectScope(
                 target: fragment.Target,
-                queueName: (SchemaObjectName)FromMutable(fragment.QueueName)
+                queueName: FromMutable(fragment.QueueName)
             );
         }
         
@@ -5609,18 +5761,19 @@ namespace Xledger.Sql.ImmutableDom {
         public static EventSessionObjectName FromMutable(ScriptDom.EventSessionObjectName fragment) {
             if (fragment is null) { return null; }
             return new EventSessionObjectName(
-                multiPartIdentifier: (MultiPartIdentifier)FromMutable(fragment.MultiPartIdentifier)
+                multiPartIdentifier: FromMutable(fragment.MultiPartIdentifier)
             );
         }
         
         public static EventSessionStatement FromMutable(ScriptDom.EventSessionStatement fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.EventSessionStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as EventSessionStatement; }
             return new EventSessionStatement(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 sessionScope: fragment.SessionScope,
-                eventDeclarations: fragment.EventDeclarations.SelectList(c => (EventDeclaration)FromMutable(c)),
-                targetDeclarations: fragment.TargetDeclarations.SelectList(c => (TargetDeclaration)FromMutable(c)),
-                sessionOptions: fragment.SessionOptions.SelectList(c => (SessionOption)FromMutable(c))
+                eventDeclarations: fragment.EventDeclarations.SelectList(FromMutable),
+                targetDeclarations: fragment.TargetDeclarations.SelectList(FromMutable),
+                sessionOptions: fragment.SessionOptions.SelectList(FromMutable)
             );
         }
         
@@ -5634,17 +5787,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExecutableProcedureReference FromMutable(ScriptDom.ExecutableProcedureReference fragment) {
             if (fragment is null) { return null; }
             return new ExecutableProcedureReference(
-                procedureReference: (ProcedureReferenceName)FromMutable(fragment.ProcedureReference),
-                adHocDataSource: (AdHocDataSource)FromMutable(fragment.AdHocDataSource),
-                parameters: fragment.Parameters.SelectList(c => (ExecuteParameter)FromMutable(c))
+                procedureReference: FromMutable(fragment.ProcedureReference),
+                adHocDataSource: FromMutable(fragment.AdHocDataSource),
+                parameters: fragment.Parameters.SelectList(FromMutable)
             );
         }
         
         public static ExecutableStringList FromMutable(ScriptDom.ExecutableStringList fragment) {
             if (fragment is null) { return null; }
             return new ExecutableStringList(
-                strings: fragment.Strings.SelectList(c => (ValueExpression)FromMutable(c)),
-                parameters: fragment.Parameters.SelectList(c => (ExecuteParameter)FromMutable(c))
+                strings: fragment.Strings.SelectList(FromMutable),
+                parameters: fragment.Parameters.SelectList(FromMutable)
             );
         }
         
@@ -5652,14 +5805,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ExecuteAsClause(
                 executeAsOption: fragment.ExecuteAsOption,
-                literal: (Literal)FromMutable(fragment.Literal)
+                literal: FromMutable(fragment.Literal)
             );
         }
         
         public static ExecuteAsFunctionOption FromMutable(ScriptDom.ExecuteAsFunctionOption fragment) {
             if (fragment is null) { return null; }
             return new ExecuteAsFunctionOption(
-                executeAs: (ExecuteAsClause)FromMutable(fragment.ExecuteAs),
+                executeAs: FromMutable(fragment.ExecuteAs),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5667,7 +5820,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExecuteAsProcedureOption FromMutable(ScriptDom.ExecuteAsProcedureOption fragment) {
             if (fragment is null) { return null; }
             return new ExecuteAsProcedureOption(
-                executeAs: (ExecuteAsClause)FromMutable(fragment.ExecuteAs),
+                executeAs: FromMutable(fragment.ExecuteAs),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5676,15 +5829,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ExecuteAsStatement(
                 withNoRevert: fragment.WithNoRevert,
-                cookie: (VariableReference)FromMutable(fragment.Cookie),
-                executeContext: (ExecuteContext)FromMutable(fragment.ExecuteContext)
+                cookie: FromMutable(fragment.Cookie),
+                executeContext: FromMutable(fragment.ExecuteContext)
             );
         }
         
         public static ExecuteAsTriggerOption FromMutable(ScriptDom.ExecuteAsTriggerOption fragment) {
             if (fragment is null) { return null; }
             return new ExecuteAsTriggerOption(
-                executeAsClause: (ExecuteAsClause)FromMutable(fragment.ExecuteAsClause),
+                executeAsClause: FromMutable(fragment.ExecuteAsClause),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5692,7 +5845,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExecuteContext FromMutable(ScriptDom.ExecuteContext fragment) {
             if (fragment is null) { return null; }
             return new ExecuteContext(
-                principal: (ScalarExpression)FromMutable(fragment.Principal),
+                principal: FromMutable(fragment.Principal),
                 kind: fragment.Kind
             );
         }
@@ -5700,12 +5853,13 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExecuteInsertSource FromMutable(ScriptDom.ExecuteInsertSource fragment) {
             if (fragment is null) { return null; }
             return new ExecuteInsertSource(
-                execute: (ExecuteSpecification)FromMutable(fragment.Execute)
+                execute: FromMutable(fragment.Execute)
             );
         }
         
         public static ExecuteOption FromMutable(ScriptDom.ExecuteOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExecuteOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ExecuteOption; }
             return new ExecuteOption(
                 optionKind: fragment.OptionKind
             );
@@ -5714,8 +5868,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExecuteParameter FromMutable(ScriptDom.ExecuteParameter fragment) {
             if (fragment is null) { return null; }
             return new ExecuteParameter(
-                variable: (VariableReference)FromMutable(fragment.Variable),
-                parameterValue: (ScalarExpression)FromMutable(fragment.ParameterValue),
+                variable: FromMutable(fragment.Variable),
+                parameterValue: FromMutable(fragment.ParameterValue),
                 isOutput: fragment.IsOutput
             );
         }
@@ -5723,39 +5877,39 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExecuteSpecification FromMutable(ScriptDom.ExecuteSpecification fragment) {
             if (fragment is null) { return null; }
             return new ExecuteSpecification(
-                variable: (VariableReference)FromMutable(fragment.Variable),
-                linkedServer: (Identifier)FromMutable(fragment.LinkedServer),
-                executeContext: (ExecuteContext)FromMutable(fragment.ExecuteContext),
-                executableEntity: (ExecutableEntity)FromMutable(fragment.ExecutableEntity)
+                variable: FromMutable(fragment.Variable),
+                linkedServer: FromMutable(fragment.LinkedServer),
+                executeContext: FromMutable(fragment.ExecuteContext),
+                executableEntity: FromMutable(fragment.ExecutableEntity)
             );
         }
         
         public static ExecuteStatement FromMutable(ScriptDom.ExecuteStatement fragment) {
             if (fragment is null) { return null; }
             return new ExecuteStatement(
-                executeSpecification: (ExecuteSpecification)FromMutable(fragment.ExecuteSpecification),
-                options: fragment.Options.SelectList(c => (ExecuteOption)FromMutable(c))
+                executeSpecification: FromMutable(fragment.ExecuteSpecification),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static ExistsPredicate FromMutable(ScriptDom.ExistsPredicate fragment) {
             if (fragment is null) { return null; }
             return new ExistsPredicate(
-                subquery: (ScalarSubquery)FromMutable(fragment.Subquery)
+                subquery: FromMutable(fragment.Subquery)
             );
         }
         
         public static ExpressionCallTarget FromMutable(ScriptDom.ExpressionCallTarget fragment) {
             if (fragment is null) { return null; }
             return new ExpressionCallTarget(
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
         public static ExpressionGroupingSpecification FromMutable(ScriptDom.ExpressionGroupingSpecification fragment) {
             if (fragment is null) { return null; }
             return new ExpressionGroupingSpecification(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
+                expression: FromMutable(fragment.Expression),
                 distributedAggregation: fragment.DistributedAggregation
             );
         }
@@ -5764,21 +5918,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ExpressionWithSortOrder(
                 sortOrder: fragment.SortOrder,
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
         public static ExternalCreateLoginSource FromMutable(ScriptDom.ExternalCreateLoginSource fragment) {
             if (fragment is null) { return null; }
             return new ExternalCreateLoginSource(
-                options: fragment.Options.SelectList(c => (PrincipalOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static ExternalDataSourceLiteralOrIdentifierOption FromMutable(ScriptDom.ExternalDataSourceLiteralOrIdentifierOption fragment) {
             if (fragment is null) { return null; }
             return new ExternalDataSourceLiteralOrIdentifierOption(
-                @value: (IdentifierOrValueExpression)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5786,7 +5940,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExternalFileFormatContainerOption FromMutable(ScriptDom.ExternalFileFormatContainerOption fragment) {
             if (fragment is null) { return null; }
             return new ExternalFileFormatContainerOption(
-                suboptions: fragment.Suboptions.SelectList(c => (ExternalFileFormatOption)FromMutable(c)),
+                suboptions: fragment.Suboptions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5794,7 +5948,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExternalFileFormatLiteralOption FromMutable(ScriptDom.ExternalFileFormatLiteralOption fragment) {
             if (fragment is null) { return null; }
             return new ExternalFileFormatLiteralOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5810,21 +5964,21 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExternalLanguageFileOption FromMutable(ScriptDom.ExternalLanguageFileOption fragment) {
             if (fragment is null) { return null; }
             return new ExternalLanguageFileOption(
-                content: (ScalarExpression)FromMutable(fragment.Content),
-                fileName: (StringLiteral)FromMutable(fragment.FileName),
-                path: (StringLiteral)FromMutable(fragment.Path),
-                platform: (Identifier)FromMutable(fragment.Platform),
-                parameters: (StringLiteral)FromMutable(fragment.Parameters),
-                environmentVariables: (StringLiteral)FromMutable(fragment.EnvironmentVariables)
+                content: FromMutable(fragment.Content),
+                fileName: FromMutable(fragment.FileName),
+                path: FromMutable(fragment.Path),
+                platform: FromMutable(fragment.Platform),
+                parameters: FromMutable(fragment.Parameters),
+                environmentVariables: FromMutable(fragment.EnvironmentVariables)
             );
         }
         
         public static ExternalLibraryFileOption FromMutable(ScriptDom.ExternalLibraryFileOption fragment) {
             if (fragment is null) { return null; }
             return new ExternalLibraryFileOption(
-                content: (ScalarExpression)FromMutable(fragment.Content),
-                path: (StringLiteral)FromMutable(fragment.Path),
-                platform: (Identifier)FromMutable(fragment.Platform)
+                content: FromMutable(fragment.Content),
+                path: FromMutable(fragment.Path),
+                platform: FromMutable(fragment.Platform)
             );
         }
         
@@ -5832,9 +5986,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ExternalResourcePoolAffinitySpecification(
                 affinityType: fragment.AffinityType,
-                parameterValue: (Literal)FromMutable(fragment.ParameterValue),
+                parameterValue: FromMutable(fragment.ParameterValue),
                 isAuto: fragment.IsAuto,
-                poolAffinityRanges: fragment.PoolAffinityRanges.SelectList(c => (LiteralRange)FromMutable(c))
+                poolAffinityRanges: fragment.PoolAffinityRanges.SelectList(FromMutable)
             );
         }
         
@@ -5842,23 +5996,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ExternalResourcePoolParameter(
                 parameterType: fragment.ParameterType,
-                parameterValue: (Literal)FromMutable(fragment.ParameterValue),
-                affinitySpecification: (ExternalResourcePoolAffinitySpecification)FromMutable(fragment.AffinitySpecification)
+                parameterValue: FromMutable(fragment.ParameterValue),
+                affinitySpecification: FromMutable(fragment.AffinitySpecification)
             );
         }
         
         public static ExternalResourcePoolStatement FromMutable(ScriptDom.ExternalResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExternalResourcePoolStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ExternalResourcePoolStatement; }
             return new ExternalResourcePoolStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(c => (ExternalResourcePoolParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(FromMutable)
             );
         }
         
         public static ExternalStreamLiteralOrIdentifierOption FromMutable(ScriptDom.ExternalStreamLiteralOrIdentifierOption fragment) {
             if (fragment is null) { return null; }
             return new ExternalStreamLiteralOrIdentifierOption(
-                @value: (IdentifierOrValueExpression)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5866,15 +6021,15 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExternalTableColumnDefinition FromMutable(ScriptDom.ExternalTableColumnDefinition fragment) {
             if (fragment is null) { return null; }
             return new ExternalTableColumnDefinition(
-                columnDefinition: (ColumnDefinitionBase)FromMutable(fragment.ColumnDefinition),
-                nullableConstraint: (NullableConstraintDefinition)FromMutable(fragment.NullableConstraint)
+                columnDefinition: FromMutable(fragment.ColumnDefinition),
+                nullableConstraint: FromMutable(fragment.NullableConstraint)
             );
         }
         
         public static ExternalTableDistributionOption FromMutable(ScriptDom.ExternalTableDistributionOption fragment) {
             if (fragment is null) { return null; }
             return new ExternalTableDistributionOption(
-                @value: (ExternalTableDistributionPolicy)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5882,7 +6037,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExternalTableLiteralOrIdentifierOption FromMutable(ScriptDom.ExternalTableLiteralOrIdentifierOption fragment) {
             if (fragment is null) { return null; }
             return new ExternalTableLiteralOrIdentifierOption(
-                @value: (IdentifierOrValueExpression)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -5912,15 +6067,15 @@ namespace Xledger.Sql.ImmutableDom {
         public static ExternalTableShardedDistributionPolicy FromMutable(ScriptDom.ExternalTableShardedDistributionPolicy fragment) {
             if (fragment is null) { return null; }
             return new ExternalTableShardedDistributionPolicy(
-                shardingColumn: (Identifier)FromMutable(fragment.ShardingColumn)
+                shardingColumn: FromMutable(fragment.ShardingColumn)
             );
         }
         
         public static ExtractFromExpression FromMutable(ScriptDom.ExtractFromExpression fragment) {
             if (fragment is null) { return null; }
             return new ExtractFromExpression(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
-                extractedElement: (Identifier)FromMutable(fragment.ExtractedElement)
+                expression: FromMutable(fragment.Expression),
+                extractedElement: FromMutable(fragment.ExtractedElement)
             );
         }
         
@@ -5935,17 +6090,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static FederationScheme FromMutable(ScriptDom.FederationScheme fragment) {
             if (fragment is null) { return null; }
             return new FederationScheme(
-                distributionName: (Identifier)FromMutable(fragment.DistributionName),
-                columnName: (Identifier)FromMutable(fragment.ColumnName)
+                distributionName: FromMutable(fragment.DistributionName),
+                columnName: FromMutable(fragment.ColumnName)
             );
         }
         
         public static FetchCursorStatement FromMutable(ScriptDom.FetchCursorStatement fragment) {
             if (fragment is null) { return null; }
             return new FetchCursorStatement(
-                fetchType: (FetchType)FromMutable(fragment.FetchType),
-                intoVariables: fragment.IntoVariables.SelectList(c => (VariableReference)FromMutable(c)),
-                cursor: (CursorId)FromMutable(fragment.Cursor)
+                fetchType: FromMutable(fragment.FetchType),
+                intoVariables: fragment.IntoVariables.SelectList(FromMutable),
+                cursor: FromMutable(fragment.Cursor)
             );
         }
         
@@ -5953,20 +6108,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new FetchType(
                 orientation: fragment.Orientation,
-                rowOffset: (ScalarExpression)FromMutable(fragment.RowOffset)
+                rowOffset: FromMutable(fragment.RowOffset)
             );
         }
         
         public static FileDeclaration FromMutable(ScriptDom.FileDeclaration fragment) {
             if (fragment is null) { return null; }
             return new FileDeclaration(
-                options: fragment.Options.SelectList(c => (FileDeclarationOption)FromMutable(c)),
+                options: fragment.Options.SelectList(FromMutable),
                 isPrimary: fragment.IsPrimary
             );
         }
         
         public static FileDeclarationOption FromMutable(ScriptDom.FileDeclarationOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FileDeclarationOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as FileDeclarationOption; }
             return new FileDeclarationOption(
                 optionKind: fragment.OptionKind
             );
@@ -5976,15 +6132,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new FileEncryptionSource(
                 isExecutable: fragment.IsExecutable,
-                file: (Literal)FromMutable(fragment.File)
+                file: FromMutable(fragment.File)
             );
         }
         
         public static FileGroupDefinition FromMutable(ScriptDom.FileGroupDefinition fragment) {
             if (fragment is null) { return null; }
             return new FileGroupDefinition(
-                name: (Identifier)FromMutable(fragment.Name),
-                fileDeclarations: fragment.FileDeclarations.SelectList(c => (FileDeclaration)FromMutable(c)),
+                name: FromMutable(fragment.Name),
+                fileDeclarations: fragment.FileDeclarations.SelectList(FromMutable),
                 isDefault: fragment.IsDefault,
                 containsFileStream: fragment.ContainsFileStream,
                 containsMemoryOptimizedData: fragment.ContainsMemoryOptimizedData
@@ -5994,15 +6150,15 @@ namespace Xledger.Sql.ImmutableDom {
         public static FileGroupOrPartitionScheme FromMutable(ScriptDom.FileGroupOrPartitionScheme fragment) {
             if (fragment is null) { return null; }
             return new FileGroupOrPartitionScheme(
-                name: (IdentifierOrValueExpression)FromMutable(fragment.Name),
-                partitionSchemeColumns: fragment.PartitionSchemeColumns.SelectList(c => (Identifier)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                partitionSchemeColumns: fragment.PartitionSchemeColumns.SelectList(FromMutable)
             );
         }
         
         public static FileGrowthFileDeclarationOption FromMutable(ScriptDom.FileGrowthFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
             return new FileGrowthFileDeclarationOption(
-                growthIncrement: (Literal)FromMutable(fragment.GrowthIncrement),
+                growthIncrement: FromMutable(fragment.GrowthIncrement),
                 units: fragment.Units,
                 optionKind: fragment.OptionKind
             );
@@ -6011,7 +6167,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static FileNameFileDeclarationOption FromMutable(ScriptDom.FileNameFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
             return new FileNameFileDeclarationOption(
-                oSFileName: (Literal)FromMutable(fragment.OSFileName),
+                oSFileName: FromMutable(fragment.OSFileName),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6020,7 +6176,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new FileStreamDatabaseOption(
                 nonTransactedAccess: fragment.NonTransactedAccess,
-                directoryName: (Literal)FromMutable(fragment.DirectoryName),
+                directoryName: FromMutable(fragment.DirectoryName),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6028,7 +6184,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static FileStreamOnDropIndexOption FromMutable(ScriptDom.FileStreamOnDropIndexOption fragment) {
             if (fragment is null) { return null; }
             return new FileStreamOnDropIndexOption(
-                fileStreamOn: (IdentifierOrValueExpression)FromMutable(fragment.FileStreamOn),
+                fileStreamOn: FromMutable(fragment.FileStreamOn),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6036,7 +6192,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static FileStreamOnTableOption FromMutable(ScriptDom.FileStreamOnTableOption fragment) {
             if (fragment is null) { return null; }
             return new FileStreamOnTableOption(
-                @value: (IdentifierOrValueExpression)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6044,7 +6200,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static FileStreamRestoreOption FromMutable(ScriptDom.FileStreamRestoreOption fragment) {
             if (fragment is null) { return null; }
             return new FileStreamRestoreOption(
-                fileStreamOption: (FileStreamDatabaseOption)FromMutable(fragment.FileStreamOption),
+                fileStreamOption: FromMutable(fragment.FileStreamOption),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6052,7 +6208,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static FileTableCollateFileNameTableOption FromMutable(ScriptDom.FileTableCollateFileNameTableOption fragment) {
             if (fragment is null) { return null; }
             return new FileTableCollateFileNameTableOption(
-                @value: (Identifier)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6060,7 +6216,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static FileTableConstraintNameTableOption FromMutable(ScriptDom.FileTableConstraintNameTableOption fragment) {
             if (fragment is null) { return null; }
             return new FileTableConstraintNameTableOption(
-                @value: (Identifier)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6068,7 +6224,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static FileTableDirectoryTableOption FromMutable(ScriptDom.FileTableDirectoryTableOption fragment) {
             if (fragment is null) { return null; }
             return new FileTableDirectoryTableOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6076,8 +6232,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static ForceSeekTableHint FromMutable(ScriptDom.ForceSeekTableHint fragment) {
             if (fragment is null) { return null; }
             return new ForceSeekTableHint(
-                indexValue: (IdentifierOrValueExpression)FromMutable(fragment.IndexValue),
-                columnValues: fragment.ColumnValues.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                indexValue: FromMutable(fragment.IndexValue),
+                columnValues: fragment.ColumnValues.SelectList(FromMutable),
                 hintKind: fragment.HintKind
             );
         }
@@ -6085,29 +6241,29 @@ namespace Xledger.Sql.ImmutableDom {
         public static ForeignKeyConstraintDefinition FromMutable(ScriptDom.ForeignKeyConstraintDefinition fragment) {
             if (fragment is null) { return null; }
             return new ForeignKeyConstraintDefinition(
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                referenceTableName: (SchemaObjectName)FromMutable(fragment.ReferenceTableName),
-                referencedTableColumns: fragment.ReferencedTableColumns.SelectList(c => (Identifier)FromMutable(c)),
+                columns: fragment.Columns.SelectList(FromMutable),
+                referenceTableName: FromMutable(fragment.ReferenceTableName),
+                referencedTableColumns: fragment.ReferencedTableColumns.SelectList(FromMutable),
                 deleteAction: fragment.DeleteAction,
                 updateAction: fragment.UpdateAction,
                 notForReplication: fragment.NotForReplication,
-                constraintIdentifier: (Identifier)FromMutable(fragment.ConstraintIdentifier)
+                constraintIdentifier: FromMutable(fragment.ConstraintIdentifier)
             );
         }
         
         public static FromClause FromMutable(ScriptDom.FromClause fragment) {
             if (fragment is null) { return null; }
             return new FromClause(
-                tableReferences: fragment.TableReferences.SelectList(c => (TableReference)FromMutable(c)),
-                predictTableReference: fragment.PredictTableReference.SelectList(c => (PredictTableReference)FromMutable(c))
+                tableReferences: fragment.TableReferences.SelectList(FromMutable),
+                predictTableReference: fragment.PredictTableReference.SelectList(FromMutable)
             );
         }
         
         public static FullTextCatalogAndFileGroup FromMutable(ScriptDom.FullTextCatalogAndFileGroup fragment) {
             if (fragment is null) { return null; }
             return new FullTextCatalogAndFileGroup(
-                catalogName: (Identifier)FromMutable(fragment.CatalogName),
-                fileGroupName: (Identifier)FromMutable(fragment.FileGroupName),
+                catalogName: FromMutable(fragment.CatalogName),
+                fileGroupName: FromMutable(fragment.FileGroupName),
                 fileGroupIsFirst: fragment.FileGroupIsFirst
             );
         }
@@ -6115,9 +6271,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static FullTextIndexColumn FromMutable(ScriptDom.FullTextIndexColumn fragment) {
             if (fragment is null) { return null; }
             return new FullTextIndexColumn(
-                name: (Identifier)FromMutable(fragment.Name),
-                typeColumn: (Identifier)FromMutable(fragment.TypeColumn),
-                languageTerm: (IdentifierOrValueExpression)FromMutable(fragment.LanguageTerm),
+                name: FromMutable(fragment.Name),
+                typeColumn: FromMutable(fragment.TypeColumn),
+                languageTerm: FromMutable(fragment.LanguageTerm),
                 statisticalSemantics: fragment.StatisticalSemantics
             );
         }
@@ -6126,10 +6282,10 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new FullTextPredicate(
                 fullTextFunctionType: fragment.FullTextFunctionType,
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                @value: (ValueExpression)FromMutable(fragment.Value),
-                languageTerm: (ValueExpression)FromMutable(fragment.LanguageTerm),
-                propertyName: (StringLiteral)FromMutable(fragment.PropertyName)
+                columns: fragment.Columns.SelectList(FromMutable),
+                @value: FromMutable(fragment.Value),
+                languageTerm: FromMutable(fragment.LanguageTerm),
+                propertyName: FromMutable(fragment.PropertyName)
             );
         }
         
@@ -6138,8 +6294,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new FullTextStopListAction(
                 isAdd: fragment.IsAdd,
                 isAll: fragment.IsAll,
-                stopWord: (Literal)FromMutable(fragment.StopWord),
-                languageTerm: (IdentifierOrValueExpression)FromMutable(fragment.LanguageTerm)
+                stopWord: FromMutable(fragment.StopWord),
+                languageTerm: FromMutable(fragment.LanguageTerm)
             );
         }
         
@@ -6147,13 +6303,13 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new FullTextTableReference(
                 fullTextFunctionType: fragment.FullTextFunctionType,
-                tableName: (SchemaObjectName)FromMutable(fragment.TableName),
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                searchCondition: (ValueExpression)FromMutable(fragment.SearchCondition),
-                topN: (ValueExpression)FromMutable(fragment.TopN),
-                language: (ValueExpression)FromMutable(fragment.Language),
-                propertyName: (StringLiteral)FromMutable(fragment.PropertyName),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                tableName: FromMutable(fragment.TableName),
+                columns: fragment.Columns.SelectList(FromMutable),
+                searchCondition: FromMutable(fragment.SearchCondition),
+                topN: FromMutable(fragment.TopN),
+                language: FromMutable(fragment.Language),
+                propertyName: FromMutable(fragment.PropertyName),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -6161,29 +6317,30 @@ namespace Xledger.Sql.ImmutableDom {
         public static FunctionCall FromMutable(ScriptDom.FunctionCall fragment) {
             if (fragment is null) { return null; }
             return new FunctionCall(
-                callTarget: (CallTarget)FromMutable(fragment.CallTarget),
-                functionName: (Identifier)FromMutable(fragment.FunctionName),
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                callTarget: FromMutable(fragment.CallTarget),
+                functionName: FromMutable(fragment.FunctionName),
+                parameters: fragment.Parameters.SelectList(FromMutable),
                 uniqueRowFilter: fragment.UniqueRowFilter,
-                overClause: (OverClause)FromMutable(fragment.OverClause),
-                withinGroupClause: (WithinGroupClause)FromMutable(fragment.WithinGroupClause),
-                ignoreRespectNulls: fragment.IgnoreRespectNulls.SelectList(c => (Identifier)FromMutable(c)),
-                trimOptions: (Identifier)FromMutable(fragment.TrimOptions),
-                jsonParameters: fragment.JsonParameters.SelectList(c => (JsonKeyValue)FromMutable(c)),
-                absentOrNullOnNull: fragment.AbsentOrNullOnNull.SelectList(c => (Identifier)FromMutable(c)),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                overClause: FromMutable(fragment.OverClause),
+                withinGroupClause: FromMutable(fragment.WithinGroupClause),
+                ignoreRespectNulls: fragment.IgnoreRespectNulls.SelectList(FromMutable),
+                trimOptions: FromMutable(fragment.TrimOptions),
+                jsonParameters: fragment.JsonParameters.SelectList(FromMutable),
+                absentOrNullOnNull: fragment.AbsentOrNullOnNull.SelectList(FromMutable),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static FunctionCallSetClause FromMutable(ScriptDom.FunctionCallSetClause fragment) {
             if (fragment is null) { return null; }
             return new FunctionCallSetClause(
-                mutatorFunction: (FunctionCall)FromMutable(fragment.MutatorFunction)
+                mutatorFunction: FromMutable(fragment.MutatorFunction)
             );
         }
         
         public static FunctionOption FromMutable(ScriptDom.FunctionOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FunctionOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as FunctionOption; }
             return new FunctionOption(
                 optionKind: fragment.OptionKind
             );
@@ -6193,33 +6350,33 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new GeneralSetCommand(
                 commandType: fragment.CommandType,
-                parameter: (ScalarExpression)FromMutable(fragment.Parameter)
+                parameter: FromMutable(fragment.Parameter)
             );
         }
         
         public static GenericConfigurationOption FromMutable(ScriptDom.GenericConfigurationOption fragment) {
             if (fragment is null) { return null; }
             return new GenericConfigurationOption(
-                genericOptionState: (IdentifierOrScalarExpression)FromMutable(fragment.GenericOptionState),
+                genericOptionState: FromMutable(fragment.GenericOptionState),
                 optionKind: fragment.OptionKind,
-                genericOptionKind: (Identifier)FromMutable(fragment.GenericOptionKind)
+                genericOptionKind: FromMutable(fragment.GenericOptionKind)
             );
         }
         
         public static GetConversationGroupStatement FromMutable(ScriptDom.GetConversationGroupStatement fragment) {
             if (fragment is null) { return null; }
             return new GetConversationGroupStatement(
-                groupId: (VariableReference)FromMutable(fragment.GroupId),
-                queue: (SchemaObjectName)FromMutable(fragment.Queue)
+                groupId: FromMutable(fragment.GroupId),
+                queue: FromMutable(fragment.Queue)
             );
         }
         
         public static GlobalFunctionTableReference FromMutable(ScriptDom.GlobalFunctionTableReference fragment) {
             if (fragment is null) { return null; }
             return new GlobalFunctionTableReference(
-                name: (Identifier)FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                name: FromMutable(fragment.Name),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -6228,14 +6385,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new GlobalVariableExpression(
                 name: fragment.Name,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static GoToStatement FromMutable(ScriptDom.GoToStatement fragment) {
             if (fragment is null) { return null; }
             return new GoToStatement(
-                labelName: (Identifier)FromMutable(fragment.LabelName)
+                labelName: FromMutable(fragment.LabelName)
             );
         }
         
@@ -6250,10 +6407,10 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new GrantStatement(
                 withGrantOption: fragment.WithGrantOption,
-                permissions: fragment.Permissions.SelectList(c => (Permission)FromMutable(c)),
-                securityTargetObject: (SecurityTargetObject)FromMutable(fragment.SecurityTargetObject),
-                principals: fragment.Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
-                asClause: (Identifier)FromMutable(fragment.AsClause)
+                permissions: fragment.Permissions.SelectList(FromMutable),
+                securityTargetObject: FromMutable(fragment.SecurityTargetObject),
+                principals: fragment.Principals.SelectList(FromMutable),
+                asClause: FromMutable(fragment.AsClause)
             );
         }
         
@@ -6261,35 +6418,35 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new GrantStatement80(
                 withGrantOption: fragment.WithGrantOption,
-                asClause: (Identifier)FromMutable(fragment.AsClause),
-                securityElement80: (SecurityElement80)FromMutable(fragment.SecurityElement80),
-                securityUserClause80: (SecurityUserClause80)FromMutable(fragment.SecurityUserClause80)
+                asClause: FromMutable(fragment.AsClause),
+                securityElement80: FromMutable(fragment.SecurityElement80),
+                securityUserClause80: FromMutable(fragment.SecurityUserClause80)
             );
         }
         
         public static GraphConnectionBetweenNodes FromMutable(ScriptDom.GraphConnectionBetweenNodes fragment) {
             if (fragment is null) { return null; }
             return new GraphConnectionBetweenNodes(
-                fromNode: (SchemaObjectName)FromMutable(fragment.FromNode),
-                toNode: (SchemaObjectName)FromMutable(fragment.ToNode)
+                fromNode: FromMutable(fragment.FromNode),
+                toNode: FromMutable(fragment.ToNode)
             );
         }
         
         public static GraphConnectionConstraintDefinition FromMutable(ScriptDom.GraphConnectionConstraintDefinition fragment) {
             if (fragment is null) { return null; }
             return new GraphConnectionConstraintDefinition(
-                fromNodeToNodeList: fragment.FromNodeToNodeList.SelectList(c => (GraphConnectionBetweenNodes)FromMutable(c)),
+                fromNodeToNodeList: fragment.FromNodeToNodeList.SelectList(FromMutable),
                 deleteAction: fragment.DeleteAction,
-                constraintIdentifier: (Identifier)FromMutable(fragment.ConstraintIdentifier)
+                constraintIdentifier: FromMutable(fragment.ConstraintIdentifier)
             );
         }
         
         public static GraphMatchCompositeExpression FromMutable(ScriptDom.GraphMatchCompositeExpression fragment) {
             if (fragment is null) { return null; }
             return new GraphMatchCompositeExpression(
-                leftNode: (GraphMatchNodeExpression)FromMutable(fragment.LeftNode),
-                edge: (Identifier)FromMutable(fragment.Edge),
-                rightNode: (GraphMatchNodeExpression)FromMutable(fragment.RightNode),
+                leftNode: FromMutable(fragment.LeftNode),
+                edge: FromMutable(fragment.Edge),
+                rightNode: FromMutable(fragment.RightNode),
                 arrowOnRight: fragment.ArrowOnRight
             );
         }
@@ -6297,9 +6454,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static GraphMatchExpression FromMutable(ScriptDom.GraphMatchExpression fragment) {
             if (fragment is null) { return null; }
             return new GraphMatchExpression(
-                leftNode: (Identifier)FromMutable(fragment.LeftNode),
-                edge: (Identifier)FromMutable(fragment.Edge),
-                rightNode: (Identifier)FromMutable(fragment.RightNode),
+                leftNode: FromMutable(fragment.LeftNode),
+                edge: FromMutable(fragment.Edge),
+                rightNode: FromMutable(fragment.RightNode),
                 arrowOnRight: fragment.ArrowOnRight
             );
         }
@@ -6307,15 +6464,15 @@ namespace Xledger.Sql.ImmutableDom {
         public static GraphMatchLastNodePredicate FromMutable(ScriptDom.GraphMatchLastNodePredicate fragment) {
             if (fragment is null) { return null; }
             return new GraphMatchLastNodePredicate(
-                leftExpression: (GraphMatchNodeExpression)FromMutable(fragment.LeftExpression),
-                rightExpression: (GraphMatchNodeExpression)FromMutable(fragment.RightExpression)
+                leftExpression: FromMutable(fragment.LeftExpression),
+                rightExpression: FromMutable(fragment.RightExpression)
             );
         }
         
         public static GraphMatchNodeExpression FromMutable(ScriptDom.GraphMatchNodeExpression fragment) {
             if (fragment is null) { return null; }
             return new GraphMatchNodeExpression(
-                node: (Identifier)FromMutable(fragment.Node),
+                node: FromMutable(fragment.Node),
                 usesLastNode: fragment.UsesLastNode
             );
         }
@@ -6323,7 +6480,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static GraphMatchPredicate FromMutable(ScriptDom.GraphMatchPredicate fragment) {
             if (fragment is null) { return null; }
             return new GraphMatchPredicate(
-                expression: (BooleanExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
@@ -6331,9 +6488,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new GraphMatchRecursivePredicate(
                 function: fragment.Function,
-                outerNodeExpression: (GraphMatchNodeExpression)FromMutable(fragment.OuterNodeExpression),
-                expression: fragment.Expression.SelectList(c => (BooleanExpression)FromMutable(c)),
-                recursiveQuantifier: (GraphRecursiveMatchQuantifier)FromMutable(fragment.RecursiveQuantifier),
+                outerNodeExpression: FromMutable(fragment.OuterNodeExpression),
+                expression: fragment.Expression.SelectList(FromMutable),
+                recursiveQuantifier: FromMutable(fragment.RecursiveQuantifier),
                 anchorOnLeft: fragment.AnchorOnLeft
             );
         }
@@ -6342,8 +6499,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new GraphRecursiveMatchQuantifier(
                 isPlusSign: fragment.IsPlusSign,
-                lowerLimit: (Literal)FromMutable(fragment.LowerLimit),
-                upperLimit: (Literal)FromMutable(fragment.UpperLimit)
+                lowerLimit: FromMutable(fragment.LowerLimit),
+                upperLimit: FromMutable(fragment.UpperLimit)
             );
         }
         
@@ -6358,7 +6515,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static GridsSpatialIndexOption FromMutable(ScriptDom.GridsSpatialIndexOption fragment) {
             if (fragment is null) { return null; }
             return new GridsSpatialIndexOption(
-                gridParameters: fragment.GridParameters.SelectList(c => (GridParameter)FromMutable(c))
+                gridParameters: fragment.GridParameters.SelectList(FromMutable)
             );
         }
         
@@ -6367,21 +6524,21 @@ namespace Xledger.Sql.ImmutableDom {
             return new GroupByClause(
                 groupByOption: fragment.GroupByOption,
                 all: fragment.All,
-                groupingSpecifications: fragment.GroupingSpecifications.SelectList(c => (GroupingSpecification)FromMutable(c))
+                groupingSpecifications: fragment.GroupingSpecifications.SelectList(FromMutable)
             );
         }
         
         public static GroupingSetsGroupingSpecification FromMutable(ScriptDom.GroupingSetsGroupingSpecification fragment) {
             if (fragment is null) { return null; }
             return new GroupingSetsGroupingSpecification(
-                sets: fragment.Sets.SelectList(c => (GroupingSpecification)FromMutable(c))
+                sets: fragment.Sets.SelectList(FromMutable)
             );
         }
         
         public static HadrAvailabilityGroupDatabaseOption FromMutable(ScriptDom.HadrAvailabilityGroupDatabaseOption fragment) {
             if (fragment is null) { return null; }
             return new HadrAvailabilityGroupDatabaseOption(
-                groupName: (Identifier)FromMutable(fragment.GroupName),
+                groupName: FromMutable(fragment.GroupName),
                 hadrOption: fragment.HadrOption,
                 optionKind: fragment.OptionKind
             );
@@ -6389,6 +6546,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static HadrDatabaseOption FromMutable(ScriptDom.HadrDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.HadrDatabaseOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as HadrDatabaseOption; }
             return new HadrDatabaseOption(
                 hadrOption: fragment.HadrOption,
                 optionKind: fragment.OptionKind
@@ -6398,12 +6556,13 @@ namespace Xledger.Sql.ImmutableDom {
         public static HavingClause FromMutable(ScriptDom.HavingClause fragment) {
             if (fragment is null) { return null; }
             return new HavingClause(
-                searchCondition: (BooleanExpression)FromMutable(fragment.SearchCondition)
+                searchCondition: FromMutable(fragment.SearchCondition)
             );
         }
         
         public static Identifier FromMutable(ScriptDom.Identifier fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.Identifier)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as Identifier; }
             return new Identifier(
                 @value: fragment.Value,
                 quoteType: fragment.QuoteType
@@ -6413,7 +6572,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static IdentifierAtomicBlockOption FromMutable(ScriptDom.IdentifierAtomicBlockOption fragment) {
             if (fragment is null) { return null; }
             return new IdentifierAtomicBlockOption(
-                @value: (Identifier)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6421,7 +6580,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static IdentifierDatabaseOption FromMutable(ScriptDom.IdentifierDatabaseOption fragment) {
             if (fragment is null) { return null; }
             return new IdentifierDatabaseOption(
-                @value: (Identifier)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6431,30 +6590,30 @@ namespace Xledger.Sql.ImmutableDom {
             return new IdentifierLiteral(
                 quoteType: fragment.QuoteType,
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static IdentifierOrScalarExpression FromMutable(ScriptDom.IdentifierOrScalarExpression fragment) {
             if (fragment is null) { return null; }
             return new IdentifierOrScalarExpression(
-                identifier: (Identifier)FromMutable(fragment.Identifier),
-                scalarExpression: (ScalarExpression)FromMutable(fragment.ScalarExpression)
+                identifier: FromMutable(fragment.Identifier),
+                scalarExpression: FromMutable(fragment.ScalarExpression)
             );
         }
         
         public static IdentifierOrValueExpression FromMutable(ScriptDom.IdentifierOrValueExpression fragment) {
             if (fragment is null) { return null; }
             return new IdentifierOrValueExpression(
-                identifier: (Identifier)FromMutable(fragment.Identifier),
-                valueExpression: (ValueExpression)FromMutable(fragment.ValueExpression)
+                identifier: FromMutable(fragment.Identifier),
+                valueExpression: FromMutable(fragment.ValueExpression)
             );
         }
         
         public static IdentifierPrincipalOption FromMutable(ScriptDom.IdentifierPrincipalOption fragment) {
             if (fragment is null) { return null; }
             return new IdentifierPrincipalOption(
-                identifier: (Identifier)FromMutable(fragment.Identifier),
+                identifier: FromMutable(fragment.Identifier),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6471,17 +6630,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static IdentityFunctionCall FromMutable(ScriptDom.IdentityFunctionCall fragment) {
             if (fragment is null) { return null; }
             return new IdentityFunctionCall(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                seed: (ScalarExpression)FromMutable(fragment.Seed),
-                increment: (ScalarExpression)FromMutable(fragment.Increment)
+                dataType: FromMutable(fragment.DataType),
+                seed: FromMutable(fragment.Seed),
+                increment: FromMutable(fragment.Increment)
             );
         }
         
         public static IdentityOptions FromMutable(ScriptDom.IdentityOptions fragment) {
             if (fragment is null) { return null; }
             return new IdentityOptions(
-                identitySeed: (ScalarExpression)FromMutable(fragment.IdentitySeed),
-                identityIncrement: (ScalarExpression)FromMutable(fragment.IdentityIncrement),
+                identitySeed: FromMutable(fragment.IdentitySeed),
+                identityIncrement: FromMutable(fragment.IdentityIncrement),
                 isIdentityNotForReplication: fragment.IsIdentityNotForReplication
             );
         }
@@ -6489,7 +6648,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static IdentityValueKeyOption FromMutable(ScriptDom.IdentityValueKeyOption fragment) {
             if (fragment is null) { return null; }
             return new IdentityValueKeyOption(
-                identityPhrase: (Literal)FromMutable(fragment.IdentityPhrase),
+                identityPhrase: FromMutable(fragment.IdentityPhrase),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6497,9 +6656,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static IfStatement FromMutable(ScriptDom.IfStatement fragment) {
             if (fragment is null) { return null; }
             return new IfStatement(
-                predicate: (BooleanExpression)FromMutable(fragment.Predicate),
-                thenStatement: (TSqlStatement)FromMutable(fragment.ThenStatement),
-                elseStatement: (TSqlStatement)FromMutable(fragment.ElseStatement)
+                predicate: FromMutable(fragment.Predicate),
+                thenStatement: FromMutable(fragment.ThenStatement),
+                elseStatement: FromMutable(fragment.ElseStatement)
             );
         }
         
@@ -6515,38 +6674,39 @@ namespace Xledger.Sql.ImmutableDom {
         public static IIfCall FromMutable(ScriptDom.IIfCall fragment) {
             if (fragment is null) { return null; }
             return new IIfCall(
-                predicate: (BooleanExpression)FromMutable(fragment.Predicate),
-                thenExpression: (ScalarExpression)FromMutable(fragment.ThenExpression),
-                elseExpression: (ScalarExpression)FromMutable(fragment.ElseExpression),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                predicate: FromMutable(fragment.Predicate),
+                thenExpression: FromMutable(fragment.ThenExpression),
+                elseExpression: FromMutable(fragment.ElseExpression),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static IndexDefinition FromMutable(ScriptDom.IndexDefinition fragment) {
             if (fragment is null) { return null; }
             return new IndexDefinition(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 unique: fragment.Unique,
-                indexType: (IndexType)FromMutable(fragment.IndexType),
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
-                includeColumns: fragment.IncludeColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(fragment.OnFileGroupOrPartitionScheme),
-                filterPredicate: (BooleanExpression)FromMutable(fragment.FilterPredicate),
-                fileStreamOn: (IdentifierOrValueExpression)FromMutable(fragment.FileStreamOn)
+                indexType: FromMutable(fragment.IndexType),
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable),
+                includeColumns: fragment.IncludeColumns.SelectList(FromMutable),
+                onFileGroupOrPartitionScheme: FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                filterPredicate: FromMutable(fragment.FilterPredicate),
+                fileStreamOn: FromMutable(fragment.FileStreamOn)
             );
         }
         
         public static IndexExpressionOption FromMutable(ScriptDom.IndexExpressionOption fragment) {
             if (fragment is null) { return null; }
             return new IndexExpressionOption(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
+                expression: FromMutable(fragment.Expression),
                 optionKind: fragment.OptionKind
             );
         }
         
         public static IndexStateOption FromMutable(ScriptDom.IndexStateOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.IndexStateOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as IndexStateOption; }
             return new IndexStateOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -6556,7 +6716,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static IndexTableHint FromMutable(ScriptDom.IndexTableHint fragment) {
             if (fragment is null) { return null; }
             return new IndexTableHint(
-                indexValues: fragment.IndexValues.SelectList(c => (IdentifierOrValueExpression)FromMutable(c)),
+                indexValues: fragment.IndexValues.SelectList(FromMutable),
                 hintKind: fragment.HintKind
             );
         }
@@ -6571,9 +6731,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static InlineDerivedTable FromMutable(ScriptDom.InlineDerivedTable fragment) {
             if (fragment is null) { return null; }
             return new InlineDerivedTable(
-                rowValues: fragment.RowValues.SelectList(c => (RowValue)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                rowValues: fragment.RowValues.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -6589,7 +6749,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static InlineResultSetDefinition FromMutable(ScriptDom.InlineResultSetDefinition fragment) {
             if (fragment is null) { return null; }
             return new InlineResultSetDefinition(
-                resultColumnDefinitions: fragment.ResultColumnDefinitions.SelectList(c => (ResultColumnDefinition)FromMutable(c)),
+                resultColumnDefinitions: fragment.ResultColumnDefinitions.SelectList(FromMutable),
                 resultSetType: fragment.ResultSetType
             );
         }
@@ -6597,17 +6757,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static InPredicate FromMutable(ScriptDom.InPredicate fragment) {
             if (fragment is null) { return null; }
             return new InPredicate(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
-                subquery: (ScalarSubquery)FromMutable(fragment.Subquery),
+                expression: FromMutable(fragment.Expression),
+                subquery: FromMutable(fragment.Subquery),
                 notDefined: fragment.NotDefined,
-                values: fragment.Values.SelectList(c => (ScalarExpression)FromMutable(c))
+                values: fragment.Values.SelectList(FromMutable)
             );
         }
         
         public static InsertBulkColumnDefinition FromMutable(ScriptDom.InsertBulkColumnDefinition fragment) {
             if (fragment is null) { return null; }
             return new InsertBulkColumnDefinition(
-                column: (ColumnDefinitionBase)FromMutable(fragment.Column),
+                column: FromMutable(fragment.Column),
                 nullNotNull: fragment.NullNotNull
             );
         }
@@ -6615,17 +6775,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static InsertBulkStatement FromMutable(ScriptDom.InsertBulkStatement fragment) {
             if (fragment is null) { return null; }
             return new InsertBulkStatement(
-                columnDefinitions: fragment.ColumnDefinitions.SelectList(c => (InsertBulkColumnDefinition)FromMutable(c)),
-                to: (SchemaObjectName)FromMutable(fragment.To),
-                options: fragment.Options.SelectList(c => (BulkInsertOption)FromMutable(c))
+                columnDefinitions: fragment.ColumnDefinitions.SelectList(FromMutable),
+                to: FromMutable(fragment.To),
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static InsertMergeAction FromMutable(ScriptDom.InsertMergeAction fragment) {
             if (fragment is null) { return null; }
             return new InsertMergeAction(
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                source: (ValuesInsertSource)FromMutable(fragment.Source)
+                columns: fragment.Columns.SelectList(FromMutable),
+                source: FromMutable(fragment.Source)
             );
         }
         
@@ -6633,21 +6793,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new InsertSpecification(
                 insertOption: fragment.InsertOption,
-                insertSource: (InsertSource)FromMutable(fragment.InsertSource),
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                target: (TableReference)FromMutable(fragment.Target),
-                topRowFilter: (TopRowFilter)FromMutable(fragment.TopRowFilter),
-                outputIntoClause: (OutputIntoClause)FromMutable(fragment.OutputIntoClause),
-                outputClause: (OutputClause)FromMutable(fragment.OutputClause)
+                insertSource: FromMutable(fragment.InsertSource),
+                columns: fragment.Columns.SelectList(FromMutable),
+                target: FromMutable(fragment.Target),
+                topRowFilter: FromMutable(fragment.TopRowFilter),
+                outputIntoClause: FromMutable(fragment.OutputIntoClause),
+                outputClause: FromMutable(fragment.OutputClause)
             );
         }
         
         public static InsertStatement FromMutable(ScriptDom.InsertStatement fragment) {
             if (fragment is null) { return null; }
             return new InsertStatement(
-                insertSpecification: (InsertSpecification)FromMutable(fragment.InsertSpecification),
-                withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(fragment.WithCtesAndXmlNamespaces),
-                optimizerHints: fragment.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                insertSpecification: FromMutable(fragment.InsertSpecification),
+                withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(FromMutable)
             );
         }
         
@@ -6655,16 +6815,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new IntegerLiteral(
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static InternalOpenRowset FromMutable(ScriptDom.InternalOpenRowset fragment) {
             if (fragment is null) { return null; }
             return new InternalOpenRowset(
-                identifier: (Identifier)FromMutable(fragment.Identifier),
-                varArgs: fragment.VarArgs.SelectList(c => (ScalarExpression)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                identifier: FromMutable(fragment.Identifier),
+                varArgs: fragment.VarArgs.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -6672,24 +6832,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static IPv4 FromMutable(ScriptDom.IPv4 fragment) {
             if (fragment is null) { return null; }
             return new IPv4(
-                octetOne: (Literal)FromMutable(fragment.OctetOne),
-                octetTwo: (Literal)FromMutable(fragment.OctetTwo),
-                octetThree: (Literal)FromMutable(fragment.OctetThree),
-                octetFour: (Literal)FromMutable(fragment.OctetFour)
+                octetOne: FromMutable(fragment.OctetOne),
+                octetTwo: FromMutable(fragment.OctetTwo),
+                octetThree: FromMutable(fragment.OctetThree),
+                octetFour: FromMutable(fragment.OctetFour)
             );
         }
         
         public static JoinParenthesisTableReference FromMutable(ScriptDom.JoinParenthesisTableReference fragment) {
             if (fragment is null) { return null; }
             return new JoinParenthesisTableReference(
-                join: (TableReference)FromMutable(fragment.Join)
+                join: FromMutable(fragment.Join)
             );
         }
         
         public static JsonForClause FromMutable(ScriptDom.JsonForClause fragment) {
             if (fragment is null) { return null; }
             return new JsonForClause(
-                options: fragment.Options.SelectList(c => (JsonForClauseOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
@@ -6697,22 +6857,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new JsonForClauseOption(
                 optionKind: fragment.OptionKind,
-                @value: (Literal)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static JsonKeyValue FromMutable(ScriptDom.JsonKeyValue fragment) {
             if (fragment is null) { return null; }
             return new JsonKeyValue(
-                jsonKeyName: (ScalarExpression)FromMutable(fragment.JsonKeyName),
-                jsonValue: (ScalarExpression)FromMutable(fragment.JsonValue)
+                jsonKeyName: FromMutable(fragment.JsonKeyName),
+                jsonValue: FromMutable(fragment.JsonValue)
             );
         }
         
         public static KeySourceKeyOption FromMutable(ScriptDom.KeySourceKeyOption fragment) {
             if (fragment is null) { return null; }
             return new KeySourceKeyOption(
-                passPhrase: (Literal)FromMutable(fragment.PassPhrase),
+                passPhrase: FromMutable(fragment.PassPhrase),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6720,7 +6880,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static KillQueryNotificationSubscriptionStatement FromMutable(ScriptDom.KillQueryNotificationSubscriptionStatement fragment) {
             if (fragment is null) { return null; }
             return new KillQueryNotificationSubscriptionStatement(
-                subscriptionId: (Literal)FromMutable(fragment.SubscriptionId),
+                subscriptionId: FromMutable(fragment.SubscriptionId),
                 all: fragment.All
             );
         }
@@ -6728,7 +6888,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static KillStatement FromMutable(ScriptDom.KillStatement fragment) {
             if (fragment is null) { return null; }
             return new KillStatement(
-                parameter: (ScalarExpression)FromMutable(fragment.Parameter),
+                parameter: FromMutable(fragment.Parameter),
                 withStatusOnly: fragment.WithStatusOnly
             );
         }
@@ -6736,7 +6896,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static KillStatsJobStatement FromMutable(ScriptDom.KillStatsJobStatement fragment) {
             if (fragment is null) { return null; }
             return new KillStatsJobStatement(
-                jobId: (ScalarExpression)FromMutable(fragment.JobId)
+                jobId: FromMutable(fragment.JobId)
             );
         }
         
@@ -6760,7 +6920,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new LedgerTableOption(
                 optionState: fragment.OptionState,
                 appendOnly: fragment.AppendOnly,
-                ledgerViewOption: (LedgerViewOption)FromMutable(fragment.LedgerViewOption),
+                ledgerViewOption: FromMutable(fragment.LedgerViewOption),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6768,11 +6928,11 @@ namespace Xledger.Sql.ImmutableDom {
         public static LedgerViewOption FromMutable(ScriptDom.LedgerViewOption fragment) {
             if (fragment is null) { return null; }
             return new LedgerViewOption(
-                viewName: (SchemaObjectName)FromMutable(fragment.ViewName),
-                transactionIdColumnName: (Identifier)FromMutable(fragment.TransactionIdColumnName),
-                sequenceNumberColumnName: (Identifier)FromMutable(fragment.SequenceNumberColumnName),
-                operationTypeColumnName: (Identifier)FromMutable(fragment.OperationTypeColumnName),
-                operationTypeDescColumnName: (Identifier)FromMutable(fragment.OperationTypeDescColumnName),
+                viewName: FromMutable(fragment.ViewName),
+                transactionIdColumnName: FromMutable(fragment.TransactionIdColumnName),
+                sequenceNumberColumnName: FromMutable(fragment.SequenceNumberColumnName),
+                operationTypeColumnName: FromMutable(fragment.OperationTypeColumnName),
+                operationTypeDescColumnName: FromMutable(fragment.OperationTypeDescColumnName),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6780,26 +6940,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static LeftFunctionCall FromMutable(ScriptDom.LeftFunctionCall fragment) {
             if (fragment is null) { return null; }
             return new LeftFunctionCall(
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static LikePredicate FromMutable(ScriptDom.LikePredicate fragment) {
             if (fragment is null) { return null; }
             return new LikePredicate(
-                firstExpression: (ScalarExpression)FromMutable(fragment.FirstExpression),
-                secondExpression: (ScalarExpression)FromMutable(fragment.SecondExpression),
+                firstExpression: FromMutable(fragment.FirstExpression),
+                secondExpression: FromMutable(fragment.SecondExpression),
                 notDefined: fragment.NotDefined,
                 odbcEscape: fragment.OdbcEscape,
-                escapeExpression: (ScalarExpression)FromMutable(fragment.EscapeExpression)
+                escapeExpression: FromMutable(fragment.EscapeExpression)
             );
         }
         
         public static LineNoStatement FromMutable(ScriptDom.LineNoStatement fragment) {
             if (fragment is null) { return null; }
             return new LineNoStatement(
-                lineNo: (IntegerLiteral)FromMutable(fragment.LineNo)
+                lineNo: FromMutable(fragment.LineNo)
             );
         }
         
@@ -6807,9 +6967,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ListenerIPEndpointProtocolOption(
                 isAll: fragment.IsAll,
-                iPv6: (Literal)FromMutable(fragment.IPv6),
-                iPv4PartOne: (IPv4)FromMutable(fragment.IPv4PartOne),
-                iPv4PartTwo: (IPv4)FromMutable(fragment.IPv4PartTwo),
+                iPv6: FromMutable(fragment.IPv6),
+                iPv4PartOne: FromMutable(fragment.IPv4PartOne),
+                iPv4PartTwo: FromMutable(fragment.IPv4PartTwo),
                 kind: fragment.Kind
             );
         }
@@ -6817,14 +6977,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static ListTypeCopyOption FromMutable(ScriptDom.ListTypeCopyOption fragment) {
             if (fragment is null) { return null; }
             return new ListTypeCopyOption(
-                options: fragment.Options.SelectList(c => (CopyStatementOptionBase)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static LiteralAtomicBlockOption FromMutable(ScriptDom.LiteralAtomicBlockOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralAtomicBlockOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6832,7 +6992,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralAuditTargetOption FromMutable(ScriptDom.LiteralAuditTargetOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralAuditTargetOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6840,7 +7000,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralAvailabilityGroupOption FromMutable(ScriptDom.LiteralAvailabilityGroupOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralAvailabilityGroupOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6848,7 +7008,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralBulkInsertOption FromMutable(ScriptDom.LiteralBulkInsertOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralBulkInsertOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6856,7 +7016,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralDatabaseOption FromMutable(ScriptDom.LiteralDatabaseOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralDatabaseOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6864,7 +7024,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralEndpointProtocolOption FromMutable(ScriptDom.LiteralEndpointProtocolOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralEndpointProtocolOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 kind: fragment.Kind
             );
         }
@@ -6872,7 +7032,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralOpenRowsetCosmosOption FromMutable(ScriptDom.LiteralOpenRowsetCosmosOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralOpenRowsetCosmosOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6880,7 +7040,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralOptimizerHint FromMutable(ScriptDom.LiteralOptimizerHint fragment) {
             if (fragment is null) { return null; }
             return new LiteralOptimizerHint(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 hintKind: fragment.HintKind
             );
         }
@@ -6888,14 +7048,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralOptionValue FromMutable(ScriptDom.LiteralOptionValue fragment) {
             if (fragment is null) { return null; }
             return new LiteralOptionValue(
-                @value: (Literal)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static LiteralPayloadOption FromMutable(ScriptDom.LiteralPayloadOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralPayloadOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 kind: fragment.Kind
             );
         }
@@ -6903,23 +7063,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralPrincipalOption FromMutable(ScriptDom.LiteralPrincipalOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralPrincipalOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
         
         public static LiteralRange FromMutable(ScriptDom.LiteralRange fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LiteralRange)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as LiteralRange; }
             return new LiteralRange(
-                from: (Literal)FromMutable(fragment.From),
-                to: (Literal)FromMutable(fragment.To)
+                from: FromMutable(fragment.From),
+                to: FromMutable(fragment.To)
             );
         }
         
         public static LiteralReplicaOption FromMutable(ScriptDom.LiteralReplicaOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralReplicaOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6927,7 +7088,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralSessionOption FromMutable(ScriptDom.LiteralSessionOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralSessionOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 unit: fragment.Unit,
                 optionKind: fragment.OptionKind
             );
@@ -6936,7 +7097,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralStatisticsOption FromMutable(ScriptDom.LiteralStatisticsOption fragment) {
             if (fragment is null) { return null; }
             return new LiteralStatisticsOption(
-                literal: (Literal)FromMutable(fragment.Literal),
+                literal: FromMutable(fragment.Literal),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6944,7 +7105,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LiteralTableHint FromMutable(ScriptDom.LiteralTableHint fragment) {
             if (fragment is null) { return null; }
             return new LiteralTableHint(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 hintKind: fragment.HintKind
             );
         }
@@ -6952,7 +7113,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LocationOption FromMutable(ScriptDom.LocationOption fragment) {
             if (fragment is null) { return null; }
             return new LocationOption(
-                locationValue: (Identifier)FromMutable(fragment.LocationValue),
+                locationValue: FromMutable(fragment.LocationValue),
                 optionKind: fragment.OptionKind
             );
         }
@@ -6984,7 +7145,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LowPriorityLockWaitMaxDurationOption FromMutable(ScriptDom.LowPriorityLockWaitMaxDurationOption fragment) {
             if (fragment is null) { return null; }
             return new LowPriorityLockWaitMaxDurationOption(
-                maxDuration: (Literal)FromMutable(fragment.MaxDuration),
+                maxDuration: FromMutable(fragment.MaxDuration),
                 unit: fragment.Unit,
                 optionKind: fragment.OptionKind
             );
@@ -6993,7 +7154,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static LowPriorityLockWaitTableSwitchOption FromMutable(ScriptDom.LowPriorityLockWaitTableSwitchOption fragment) {
             if (fragment is null) { return null; }
             return new LowPriorityLockWaitTableSwitchOption(
-                options: fragment.Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
+                options: fragment.Options.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7002,7 +7163,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new MaxDispatchLatencySessionOption(
                 isInfinite: fragment.IsInfinite,
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7010,17 +7171,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static MaxDopConfigurationOption FromMutable(ScriptDom.MaxDopConfigurationOption fragment) {
             if (fragment is null) { return null; }
             return new MaxDopConfigurationOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 primary: fragment.Primary,
                 optionKind: fragment.OptionKind,
-                genericOptionKind: (Identifier)FromMutable(fragment.GenericOptionKind)
+                genericOptionKind: FromMutable(fragment.GenericOptionKind)
             );
         }
         
         public static MaxDurationOption FromMutable(ScriptDom.MaxDurationOption fragment) {
             if (fragment is null) { return null; }
             return new MaxDurationOption(
-                maxDuration: (Literal)FromMutable(fragment.MaxDuration),
+                maxDuration: FromMutable(fragment.MaxDuration),
                 unit: fragment.Unit,
                 optionKind: fragment.OptionKind
             );
@@ -7030,14 +7191,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new MaxLiteral(
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static MaxRolloverFilesAuditTargetOption FromMutable(ScriptDom.MaxRolloverFilesAuditTargetOption fragment) {
             if (fragment is null) { return null; }
             return new MaxRolloverFilesAuditTargetOption(
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 isUnlimited: fragment.IsUnlimited,
                 optionKind: fragment.OptionKind
             );
@@ -7047,7 +7208,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new MaxSizeAuditTargetOption(
                 isUnlimited: fragment.IsUnlimited,
-                size: (Literal)FromMutable(fragment.Size),
+                size: FromMutable(fragment.Size),
                 unit: fragment.Unit,
                 optionKind: fragment.OptionKind
             );
@@ -7056,7 +7217,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static MaxSizeDatabaseOption FromMutable(ScriptDom.MaxSizeDatabaseOption fragment) {
             if (fragment is null) { return null; }
             return new MaxSizeDatabaseOption(
-                maxSize: (Literal)FromMutable(fragment.MaxSize),
+                maxSize: FromMutable(fragment.MaxSize),
                 units: fragment.Units,
                 optionKind: fragment.OptionKind
             );
@@ -7065,7 +7226,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static MaxSizeFileDeclarationOption FromMutable(ScriptDom.MaxSizeFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
             return new MaxSizeFileDeclarationOption(
-                maxSize: (Literal)FromMutable(fragment.MaxSize),
+                maxSize: FromMutable(fragment.MaxSize),
                 units: fragment.Units,
                 unlimited: fragment.Unlimited,
                 optionKind: fragment.OptionKind
@@ -7092,47 +7253,47 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new MergeActionClause(
                 condition: fragment.Condition,
-                searchCondition: (BooleanExpression)FromMutable(fragment.SearchCondition),
-                action: (MergeAction)FromMutable(fragment.Action)
+                searchCondition: FromMutable(fragment.SearchCondition),
+                action: FromMutable(fragment.Action)
             );
         }
         
         public static MergeSpecification FromMutable(ScriptDom.MergeSpecification fragment) {
             if (fragment is null) { return null; }
             return new MergeSpecification(
-                tableAlias: (Identifier)FromMutable(fragment.TableAlias),
-                tableReference: (TableReference)FromMutable(fragment.TableReference),
-                searchCondition: (BooleanExpression)FromMutable(fragment.SearchCondition),
-                actionClauses: fragment.ActionClauses.SelectList(c => (MergeActionClause)FromMutable(c)),
-                target: (TableReference)FromMutable(fragment.Target),
-                topRowFilter: (TopRowFilter)FromMutable(fragment.TopRowFilter),
-                outputIntoClause: (OutputIntoClause)FromMutable(fragment.OutputIntoClause),
-                outputClause: (OutputClause)FromMutable(fragment.OutputClause)
+                tableAlias: FromMutable(fragment.TableAlias),
+                tableReference: FromMutable(fragment.TableReference),
+                searchCondition: FromMutable(fragment.SearchCondition),
+                actionClauses: fragment.ActionClauses.SelectList(FromMutable),
+                target: FromMutable(fragment.Target),
+                topRowFilter: FromMutable(fragment.TopRowFilter),
+                outputIntoClause: FromMutable(fragment.OutputIntoClause),
+                outputClause: FromMutable(fragment.OutputClause)
             );
         }
         
         public static MergeStatement FromMutable(ScriptDom.MergeStatement fragment) {
             if (fragment is null) { return null; }
             return new MergeStatement(
-                mergeSpecification: (MergeSpecification)FromMutable(fragment.MergeSpecification),
-                withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(fragment.WithCtesAndXmlNamespaces),
-                optimizerHints: fragment.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                mergeSpecification: FromMutable(fragment.MergeSpecification),
+                withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(FromMutable)
             );
         }
         
         public static MethodSpecifier FromMutable(ScriptDom.MethodSpecifier fragment) {
             if (fragment is null) { return null; }
             return new MethodSpecifier(
-                assemblyName: (Identifier)FromMutable(fragment.AssemblyName),
-                className: (Identifier)FromMutable(fragment.ClassName),
-                methodName: (Identifier)FromMutable(fragment.MethodName)
+                assemblyName: FromMutable(fragment.AssemblyName),
+                className: FromMutable(fragment.ClassName),
+                methodName: FromMutable(fragment.MethodName)
             );
         }
         
         public static MirrorToClause FromMutable(ScriptDom.MirrorToClause fragment) {
             if (fragment is null) { return null; }
             return new MirrorToClause(
-                devices: fragment.Devices.SelectList(c => (DeviceInfo)FromMutable(c))
+                devices: fragment.Devices.SelectList(FromMutable)
             );
         }
         
@@ -7140,23 +7301,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new MoneyLiteral(
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static MoveConversationStatement FromMutable(ScriptDom.MoveConversationStatement fragment) {
             if (fragment is null) { return null; }
             return new MoveConversationStatement(
-                conversation: (ScalarExpression)FromMutable(fragment.Conversation),
-                group: (ScalarExpression)FromMutable(fragment.Group)
+                conversation: FromMutable(fragment.Conversation),
+                group: FromMutable(fragment.Group)
             );
         }
         
         public static MoveRestoreOption FromMutable(ScriptDom.MoveRestoreOption fragment) {
             if (fragment is null) { return null; }
             return new MoveRestoreOption(
-                logicalFileName: (ValueExpression)FromMutable(fragment.LogicalFileName),
-                oSFileName: (ValueExpression)FromMutable(fragment.OSFileName),
+                logicalFileName: FromMutable(fragment.LogicalFileName),
+                oSFileName: FromMutable(fragment.OSFileName),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7164,33 +7325,34 @@ namespace Xledger.Sql.ImmutableDom {
         public static MoveToDropIndexOption FromMutable(ScriptDom.MoveToDropIndexOption fragment) {
             if (fragment is null) { return null; }
             return new MoveToDropIndexOption(
-                moveTo: (FileGroupOrPartitionScheme)FromMutable(fragment.MoveTo),
+                moveTo: FromMutable(fragment.MoveTo),
                 optionKind: fragment.OptionKind
             );
         }
         
         public static MultiPartIdentifier FromMutable(ScriptDom.MultiPartIdentifier fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MultiPartIdentifier)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as MultiPartIdentifier; }
             return new MultiPartIdentifier(
-                identifiers: fragment.Identifiers.SelectList(c => (Identifier)FromMutable(c))
+                identifiers: fragment.Identifiers.SelectList(FromMutable)
             );
         }
         
         public static MultiPartIdentifierCallTarget FromMutable(ScriptDom.MultiPartIdentifierCallTarget fragment) {
             if (fragment is null) { return null; }
             return new MultiPartIdentifierCallTarget(
-                multiPartIdentifier: (MultiPartIdentifier)FromMutable(fragment.MultiPartIdentifier)
+                multiPartIdentifier: FromMutable(fragment.MultiPartIdentifier)
             );
         }
         
         public static NamedTableReference FromMutable(ScriptDom.NamedTableReference fragment) {
             if (fragment is null) { return null; }
             return new NamedTableReference(
-                schemaObject: (SchemaObjectName)FromMutable(fragment.SchemaObject),
-                tableHints: fragment.TableHints.SelectList(c => (TableHint)FromMutable(c)),
-                tableSampleClause: (TableSampleClause)FromMutable(fragment.TableSampleClause),
-                temporalClause: (TemporalClause)FromMutable(fragment.TemporalClause),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                schemaObject: FromMutable(fragment.SchemaObject),
+                tableHints: fragment.TableHints.SelectList(FromMutable),
+                tableSampleClause: FromMutable(fragment.TableSampleClause),
+                temporalClause: FromMutable(fragment.TemporalClause),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -7198,7 +7360,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static NameFileDeclarationOption FromMutable(ScriptDom.NameFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
             return new NameFileDeclarationOption(
-                logicalFileName: (IdentifierOrValueExpression)FromMutable(fragment.LogicalFileName),
+                logicalFileName: FromMutable(fragment.LogicalFileName),
                 isNewName: fragment.IsNewName,
                 optionKind: fragment.OptionKind
             );
@@ -7207,9 +7369,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static NextValueForExpression FromMutable(ScriptDom.NextValueForExpression fragment) {
             if (fragment is null) { return null; }
             return new NextValueForExpression(
-                sequenceName: (SchemaObjectName)FromMutable(fragment.SequenceName),
-                overClause: (OverClause)FromMutable(fragment.OverClause),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                sequenceName: FromMutable(fragment.SequenceName),
+                overClause: FromMutable(fragment.OverClause),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -7217,16 +7379,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new NullableConstraintDefinition(
                 nullable: fragment.Nullable,
-                constraintIdentifier: (Identifier)FromMutable(fragment.ConstraintIdentifier)
+                constraintIdentifier: FromMutable(fragment.ConstraintIdentifier)
             );
         }
         
         public static NullIfExpression FromMutable(ScriptDom.NullIfExpression fragment) {
             if (fragment is null) { return null; }
             return new NullIfExpression(
-                firstExpression: (ScalarExpression)FromMutable(fragment.FirstExpression),
-                secondExpression: (ScalarExpression)FromMutable(fragment.SecondExpression),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                firstExpression: FromMutable(fragment.FirstExpression),
+                secondExpression: FromMutable(fragment.SecondExpression),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -7234,7 +7396,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new NullLiteral(
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -7242,24 +7404,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new NumericLiteral(
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static OdbcConvertSpecification FromMutable(ScriptDom.OdbcConvertSpecification fragment) {
             if (fragment is null) { return null; }
             return new OdbcConvertSpecification(
-                identifier: (Identifier)FromMutable(fragment.Identifier)
+                identifier: FromMutable(fragment.Identifier)
             );
         }
         
         public static OdbcFunctionCall FromMutable(ScriptDom.OdbcFunctionCall fragment) {
             if (fragment is null) { return null; }
             return new OdbcFunctionCall(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 parametersUsed: fragment.ParametersUsed,
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -7269,22 +7431,22 @@ namespace Xledger.Sql.ImmutableDom {
                 odbcLiteralType: fragment.OdbcLiteralType,
                 isNational: fragment.IsNational,
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static OdbcQualifiedJoinTableReference FromMutable(ScriptDom.OdbcQualifiedJoinTableReference fragment) {
             if (fragment is null) { return null; }
             return new OdbcQualifiedJoinTableReference(
-                tableReference: (TableReference)FromMutable(fragment.TableReference)
+                tableReference: FromMutable(fragment.TableReference)
             );
         }
         
         public static OffsetClause FromMutable(ScriptDom.OffsetClause fragment) {
             if (fragment is null) { return null; }
             return new OffsetClause(
-                offsetExpression: (ScalarExpression)FromMutable(fragment.OffsetExpression),
-                fetchExpression: (ScalarExpression)FromMutable(fragment.FetchExpression)
+                offsetExpression: FromMutable(fragment.OffsetExpression),
+                fetchExpression: FromMutable(fragment.FetchExpression)
             );
         }
         
@@ -7299,14 +7461,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static OnlineIndexLowPriorityLockWaitOption FromMutable(ScriptDom.OnlineIndexLowPriorityLockWaitOption fragment) {
             if (fragment is null) { return null; }
             return new OnlineIndexLowPriorityLockWaitOption(
-                options: fragment.Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static OnlineIndexOption FromMutable(ScriptDom.OnlineIndexOption fragment) {
             if (fragment is null) { return null; }
             return new OnlineIndexOption(
-                lowPriorityLockWaitOption: (OnlineIndexLowPriorityLockWaitOption)FromMutable(fragment.LowPriorityLockWaitOption),
+                lowPriorityLockWaitOption: FromMutable(fragment.LowPriorityLockWaitOption),
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
             );
@@ -7338,6 +7500,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OnOffDatabaseOption FromMutable(ScriptDom.OnOffDatabaseOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OnOffDatabaseOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OnOffDatabaseOption; }
             return new OnOffDatabaseOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind
@@ -7372,7 +7535,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new OnOffPrimaryConfigurationOption(
                 optionState: fragment.OptionState,
                 optionKind: fragment.OptionKind,
-                genericOptionKind: (Identifier)FromMutable(fragment.GenericOptionKind)
+                genericOptionKind: FromMutable(fragment.GenericOptionKind)
             );
         }
         
@@ -7411,17 +7574,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static OpenCursorStatement FromMutable(ScriptDom.OpenCursorStatement fragment) {
             if (fragment is null) { return null; }
             return new OpenCursorStatement(
-                cursor: (CursorId)FromMutable(fragment.Cursor)
+                cursor: FromMutable(fragment.Cursor)
             );
         }
         
         public static OpenJsonTableReference FromMutable(ScriptDom.OpenJsonTableReference fragment) {
             if (fragment is null) { return null; }
             return new OpenJsonTableReference(
-                variable: (ScalarExpression)FromMutable(fragment.Variable),
-                rowPattern: (ScalarExpression)FromMutable(fragment.RowPattern),
-                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItemOpenjson)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                variable: FromMutable(fragment.Variable),
+                rowPattern: FromMutable(fragment.RowPattern),
+                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -7429,16 +7592,16 @@ namespace Xledger.Sql.ImmutableDom {
         public static OpenMasterKeyStatement FromMutable(ScriptDom.OpenMasterKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new OpenMasterKeyStatement(
-                password: (Literal)FromMutable(fragment.Password)
+                password: FromMutable(fragment.Password)
             );
         }
         
         public static OpenQueryTableReference FromMutable(ScriptDom.OpenQueryTableReference fragment) {
             if (fragment is null) { return null; }
             return new OpenQueryTableReference(
-                linkedServer: (Identifier)FromMutable(fragment.LinkedServer),
-                query: (StringLiteral)FromMutable(fragment.Query),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                linkedServer: FromMutable(fragment.LinkedServer),
+                query: FromMutable(fragment.Query),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -7446,27 +7609,28 @@ namespace Xledger.Sql.ImmutableDom {
         public static OpenRowsetColumnDefinition FromMutable(ScriptDom.OpenRowsetColumnDefinition fragment) {
             if (fragment is null) { return null; }
             return new OpenRowsetColumnDefinition(
-                columnOrdinal: (IntegerLiteral)FromMutable(fragment.ColumnOrdinal),
-                jsonPath: (StringLiteral)FromMutable(fragment.JsonPath),
-                columnIdentifier: (Identifier)FromMutable(fragment.ColumnIdentifier),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                columnOrdinal: FromMutable(fragment.ColumnOrdinal),
+                jsonPath: FromMutable(fragment.JsonPath),
+                columnIdentifier: FromMutable(fragment.ColumnIdentifier),
+                dataType: FromMutable(fragment.DataType),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static OpenRowsetCosmos FromMutable(ScriptDom.OpenRowsetCosmos fragment) {
             if (fragment is null) { return null; }
             return new OpenRowsetCosmos(
-                options: fragment.Options.SelectList(c => (OpenRowsetCosmosOption)FromMutable(c)),
-                withColumns: fragment.WithColumns.SelectList(c => (OpenRowsetColumnDefinition)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                options: fragment.Options.SelectList(FromMutable),
+                withColumns: fragment.WithColumns.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
         
         public static OpenRowsetCosmosOption FromMutable(ScriptDom.OpenRowsetCosmosOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OpenRowsetCosmosOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OpenRowsetCosmosOption; }
             return new OpenRowsetCosmosOption(
                 optionKind: fragment.OptionKind
             );
@@ -7475,14 +7639,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static OpenRowsetTableReference FromMutable(ScriptDom.OpenRowsetTableReference fragment) {
             if (fragment is null) { return null; }
             return new OpenRowsetTableReference(
-                providerName: (StringLiteral)FromMutable(fragment.ProviderName),
-                dataSource: (StringLiteral)FromMutable(fragment.DataSource),
-                userId: (StringLiteral)FromMutable(fragment.UserId),
-                password: (StringLiteral)FromMutable(fragment.Password),
-                providerString: (StringLiteral)FromMutable(fragment.ProviderString),
-                query: (StringLiteral)FromMutable(fragment.Query),
-                @object: (SchemaObjectName)FromMutable(fragment.Object),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                providerName: FromMutable(fragment.ProviderName),
+                dataSource: FromMutable(fragment.DataSource),
+                userId: FromMutable(fragment.UserId),
+                password: FromMutable(fragment.Password),
+                providerString: FromMutable(fragment.ProviderString),
+                query: FromMutable(fragment.Query),
+                @object: FromMutable(fragment.Object),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -7490,20 +7654,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static OpenSymmetricKeyStatement FromMutable(ScriptDom.OpenSymmetricKeyStatement fragment) {
             if (fragment is null) { return null; }
             return new OpenSymmetricKeyStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                decryptionMechanism: (CryptoMechanism)FromMutable(fragment.DecryptionMechanism)
+                name: FromMutable(fragment.Name),
+                decryptionMechanism: FromMutable(fragment.DecryptionMechanism)
             );
         }
         
         public static OpenXmlTableReference FromMutable(ScriptDom.OpenXmlTableReference fragment) {
             if (fragment is null) { return null; }
             return new OpenXmlTableReference(
-                variable: (VariableReference)FromMutable(fragment.Variable),
-                rowPattern: (ValueExpression)FromMutable(fragment.RowPattern),
-                flags: (ValueExpression)FromMutable(fragment.Flags),
-                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItem)FromMutable(c)),
-                tableName: (SchemaObjectName)FromMutable(fragment.TableName),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                variable: FromMutable(fragment.Variable),
+                rowPattern: FromMutable(fragment.RowPattern),
+                flags: FromMutable(fragment.Flags),
+                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(FromMutable),
+                tableName: FromMutable(fragment.TableName),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -7519,7 +7683,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static OptimizeForOptimizerHint FromMutable(ScriptDom.OptimizeForOptimizerHint fragment) {
             if (fragment is null) { return null; }
             return new OptimizeForOptimizerHint(
-                pairs: fragment.Pairs.SelectList(c => (VariableValuePair)FromMutable(c)),
+                pairs: fragment.Pairs.SelectList(FromMutable),
                 isForUnknown: fragment.IsForUnknown,
                 hintKind: fragment.HintKind
             );
@@ -7527,6 +7691,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static OptimizerHint FromMutable(ScriptDom.OptimizerHint fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OptimizerHint)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as OptimizerHint; }
             return new OptimizerHint(
                 hintKind: fragment.HintKind
             );
@@ -7535,7 +7700,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static OrderBulkInsertOption FromMutable(ScriptDom.OrderBulkInsertOption fragment) {
             if (fragment is null) { return null; }
             return new OrderBulkInsertOption(
-                columns: fragment.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
+                columns: fragment.Columns.SelectList(FromMutable),
                 isUnique: fragment.IsUnique,
                 optionKind: fragment.OptionKind
             );
@@ -7544,14 +7709,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static OrderByClause FromMutable(ScriptDom.OrderByClause fragment) {
             if (fragment is null) { return null; }
             return new OrderByClause(
-                orderByElements: fragment.OrderByElements.SelectList(c => (ExpressionWithSortOrder)FromMutable(c))
+                orderByElements: fragment.OrderByElements.SelectList(FromMutable)
             );
         }
         
         public static OrderIndexOption FromMutable(ScriptDom.OrderIndexOption fragment) {
             if (fragment is null) { return null; }
             return new OrderIndexOption(
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
+                columns: fragment.Columns.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7559,26 +7724,26 @@ namespace Xledger.Sql.ImmutableDom {
         public static OutputClause FromMutable(ScriptDom.OutputClause fragment) {
             if (fragment is null) { return null; }
             return new OutputClause(
-                selectColumns: fragment.SelectColumns.SelectList(c => (SelectElement)FromMutable(c))
+                selectColumns: fragment.SelectColumns.SelectList(FromMutable)
             );
         }
         
         public static OutputIntoClause FromMutable(ScriptDom.OutputIntoClause fragment) {
             if (fragment is null) { return null; }
             return new OutputIntoClause(
-                selectColumns: fragment.SelectColumns.SelectList(c => (SelectElement)FromMutable(c)),
-                intoTable: (TableReference)FromMutable(fragment.IntoTable),
-                intoTableColumns: fragment.IntoTableColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                selectColumns: fragment.SelectColumns.SelectList(FromMutable),
+                intoTable: FromMutable(fragment.IntoTable),
+                intoTableColumns: fragment.IntoTableColumns.SelectList(FromMutable)
             );
         }
         
         public static OverClause FromMutable(ScriptDom.OverClause fragment) {
             if (fragment is null) { return null; }
             return new OverClause(
-                windowName: (Identifier)FromMutable(fragment.WindowName),
-                partitions: fragment.Partitions.SelectList(c => (ScalarExpression)FromMutable(c)),
-                orderByClause: (OrderByClause)FromMutable(fragment.OrderByClause),
-                windowFrameClause: (WindowFrameClause)FromMutable(fragment.WindowFrameClause)
+                windowName: FromMutable(fragment.WindowName),
+                partitions: fragment.Partitions.SelectList(FromMutable),
+                orderByClause: FromMutable(fragment.OrderByClause),
+                windowFrameClause: FromMutable(fragment.WindowFrameClause)
             );
         }
         
@@ -7602,50 +7767,50 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ParameterlessCall(
                 parameterlessCallType: fragment.ParameterlessCallType,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static ParenthesisExpression FromMutable(ScriptDom.ParenthesisExpression fragment) {
             if (fragment is null) { return null; }
             return new ParenthesisExpression(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                expression: FromMutable(fragment.Expression),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static ParseCall FromMutable(ScriptDom.ParseCall fragment) {
             if (fragment is null) { return null; }
             return new ParseCall(
-                stringValue: (ScalarExpression)FromMutable(fragment.StringValue),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                culture: (ScalarExpression)FromMutable(fragment.Culture),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                stringValue: FromMutable(fragment.StringValue),
+                dataType: FromMutable(fragment.DataType),
+                culture: FromMutable(fragment.Culture),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static PartitionFunctionCall FromMutable(ScriptDom.PartitionFunctionCall fragment) {
             if (fragment is null) { return null; }
             return new PartitionFunctionCall(
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName),
-                functionName: (Identifier)FromMutable(fragment.FunctionName),
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                databaseName: FromMutable(fragment.DatabaseName),
+                functionName: FromMutable(fragment.FunctionName),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static PartitionParameterType FromMutable(ScriptDom.PartitionParameterType fragment) {
             if (fragment is null) { return null; }
             return new PartitionParameterType(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                dataType: FromMutable(fragment.DataType),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static PartitionSpecifier FromMutable(ScriptDom.PartitionSpecifier fragment) {
             if (fragment is null) { return null; }
             return new PartitionSpecifier(
-                number: (ScalarExpression)FromMutable(fragment.Number),
+                number: FromMutable(fragment.Number),
                 all: fragment.All
             );
         }
@@ -7653,9 +7818,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static PartnerDatabaseOption FromMutable(ScriptDom.PartnerDatabaseOption fragment) {
             if (fragment is null) { return null; }
             return new PartnerDatabaseOption(
-                partnerServer: (Literal)FromMutable(fragment.PartnerServer),
+                partnerServer: FromMutable(fragment.PartnerServer),
                 partnerOption: fragment.PartnerOption,
-                timeout: (Literal)FromMutable(fragment.Timeout),
+                timeout: FromMutable(fragment.Timeout),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7663,8 +7828,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static PasswordAlterPrincipalOption FromMutable(ScriptDom.PasswordAlterPrincipalOption fragment) {
             if (fragment is null) { return null; }
             return new PasswordAlterPrincipalOption(
-                password: (Literal)FromMutable(fragment.Password),
-                oldPassword: (Literal)FromMutable(fragment.OldPassword),
+                password: FromMutable(fragment.Password),
+                oldPassword: FromMutable(fragment.OldPassword),
                 mustChange: fragment.MustChange,
                 unlock: fragment.Unlock,
                 hashed: fragment.Hashed,
@@ -7675,18 +7840,18 @@ namespace Xledger.Sql.ImmutableDom {
         public static PasswordCreateLoginSource FromMutable(ScriptDom.PasswordCreateLoginSource fragment) {
             if (fragment is null) { return null; }
             return new PasswordCreateLoginSource(
-                password: (Literal)FromMutable(fragment.Password),
+                password: FromMutable(fragment.Password),
                 hashed: fragment.Hashed,
                 mustChange: fragment.MustChange,
-                options: fragment.Options.SelectList(c => (PrincipalOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static Permission FromMutable(ScriptDom.Permission fragment) {
             if (fragment is null) { return null; }
             return new Permission(
-                identifiers: fragment.Identifiers.SelectList(c => (Identifier)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c))
+                identifiers: fragment.Identifiers.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable)
             );
         }
         
@@ -7701,12 +7866,12 @@ namespace Xledger.Sql.ImmutableDom {
         public static PivotedTableReference FromMutable(ScriptDom.PivotedTableReference fragment) {
             if (fragment is null) { return null; }
             return new PivotedTableReference(
-                tableReference: (TableReference)FromMutable(fragment.TableReference),
-                inColumns: fragment.InColumns.SelectList(c => (Identifier)FromMutable(c)),
-                pivotColumn: (ColumnReferenceExpression)FromMutable(fragment.PivotColumn),
-                valueColumns: fragment.ValueColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                aggregateFunctionIdentifier: (MultiPartIdentifier)FromMutable(fragment.AggregateFunctionIdentifier),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                tableReference: FromMutable(fragment.TableReference),
+                inColumns: fragment.InColumns.SelectList(FromMutable),
+                pivotColumn: FromMutable(fragment.PivotColumn),
+                valueColumns: fragment.ValueColumns.SelectList(FromMutable),
+                aggregateFunctionIdentifier: FromMutable(fragment.AggregateFunctionIdentifier),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -7730,12 +7895,12 @@ namespace Xledger.Sql.ImmutableDom {
         public static PredictTableReference FromMutable(ScriptDom.PredictTableReference fragment) {
             if (fragment is null) { return null; }
             return new PredictTableReference(
-                modelVariable: (ScalarExpression)FromMutable(fragment.ModelVariable),
-                modelSubquery: (ScalarSubquery)FromMutable(fragment.ModelSubquery),
-                dataSource: (TableReferenceWithAlias)FromMutable(fragment.DataSource),
-                runTime: (Identifier)FromMutable(fragment.RunTime),
-                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(c => (SchemaDeclarationItem)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                modelVariable: FromMutable(fragment.ModelVariable),
+                modelSubquery: FromMutable(fragment.ModelSubquery),
+                dataSource: FromMutable(fragment.DataSource),
+                runTime: FromMutable(fragment.RunTime),
+                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -7750,6 +7915,7 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static PrincipalOption FromMutable(ScriptDom.PrincipalOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.PrincipalOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as PrincipalOption; }
             return new PrincipalOption(
                 optionKind: fragment.OptionKind
             );
@@ -7758,14 +7924,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static PrintStatement FromMutable(ScriptDom.PrintStatement fragment) {
             if (fragment is null) { return null; }
             return new PrintStatement(
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
         public static Privilege80 FromMutable(ScriptDom.Privilege80 fragment) {
             if (fragment is null) { return null; }
             return new Privilege80(
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
+                columns: fragment.Columns.SelectList(FromMutable),
                 privilegeType80: fragment.PrivilegeType80
             );
         }
@@ -7773,14 +7939,15 @@ namespace Xledger.Sql.ImmutableDom {
         public static PrivilegeSecurityElement80 FromMutable(ScriptDom.PrivilegeSecurityElement80 fragment) {
             if (fragment is null) { return null; }
             return new PrivilegeSecurityElement80(
-                privileges: fragment.Privileges.SelectList(c => (Privilege80)FromMutable(c)),
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c))
+                privileges: fragment.Privileges.SelectList(FromMutable),
+                schemaObjectName: FromMutable(fragment.SchemaObjectName),
+                columns: fragment.Columns.SelectList(FromMutable)
             );
         }
         
         public static ProcedureOption FromMutable(ScriptDom.ProcedureOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ProcedureOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ProcedureOption; }
             return new ProcedureOption(
                 optionKind: fragment.OptionKind
             );
@@ -7791,49 +7958,49 @@ namespace Xledger.Sql.ImmutableDom {
             return new ProcedureParameter(
                 isVarying: fragment.IsVarying,
                 modifier: fragment.Modifier,
-                variableName: (Identifier)FromMutable(fragment.VariableName),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                nullable: (NullableConstraintDefinition)FromMutable(fragment.Nullable),
-                @value: (ScalarExpression)FromMutable(fragment.Value)
+                variableName: FromMutable(fragment.VariableName),
+                dataType: FromMutable(fragment.DataType),
+                nullable: FromMutable(fragment.Nullable),
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static ProcedureReference FromMutable(ScriptDom.ProcedureReference fragment) {
             if (fragment is null) { return null; }
             return new ProcedureReference(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
-                number: (Literal)FromMutable(fragment.Number)
+                name: FromMutable(fragment.Name),
+                number: FromMutable(fragment.Number)
             );
         }
         
         public static ProcedureReferenceName FromMutable(ScriptDom.ProcedureReferenceName fragment) {
             if (fragment is null) { return null; }
             return new ProcedureReferenceName(
-                procedureReference: (ProcedureReference)FromMutable(fragment.ProcedureReference),
-                procedureVariable: (VariableReference)FromMutable(fragment.ProcedureVariable)
+                procedureReference: FromMutable(fragment.ProcedureReference),
+                procedureVariable: FromMutable(fragment.ProcedureVariable)
             );
         }
         
         public static ProcessAffinityRange FromMutable(ScriptDom.ProcessAffinityRange fragment) {
             if (fragment is null) { return null; }
             return new ProcessAffinityRange(
-                from: (Literal)FromMutable(fragment.From),
-                to: (Literal)FromMutable(fragment.To)
+                from: FromMutable(fragment.From),
+                to: FromMutable(fragment.To)
             );
         }
         
         public static ProviderEncryptionSource FromMutable(ScriptDom.ProviderEncryptionSource fragment) {
             if (fragment is null) { return null; }
             return new ProviderEncryptionSource(
-                name: (Identifier)FromMutable(fragment.Name),
-                keyOptions: fragment.KeyOptions.SelectList(c => (KeyOption)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                keyOptions: fragment.KeyOptions.SelectList(FromMutable)
             );
         }
         
         public static ProviderKeyNameKeyOption FromMutable(ScriptDom.ProviderKeyNameKeyOption fragment) {
             if (fragment is null) { return null; }
             return new ProviderKeyNameKeyOption(
-                keyName: (Literal)FromMutable(fragment.KeyName),
+                keyName: FromMutable(fragment.KeyName),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7841,20 +8008,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static QualifiedJoin FromMutable(ScriptDom.QualifiedJoin fragment) {
             if (fragment is null) { return null; }
             return new QualifiedJoin(
-                searchCondition: (BooleanExpression)FromMutable(fragment.SearchCondition),
+                searchCondition: FromMutable(fragment.SearchCondition),
                 qualifiedJoinType: fragment.QualifiedJoinType,
                 joinHint: fragment.JoinHint,
-                firstTableReference: (TableReference)FromMutable(fragment.FirstTableReference),
-                secondTableReference: (TableReference)FromMutable(fragment.SecondTableReference)
+                firstTableReference: FromMutable(fragment.FirstTableReference),
+                secondTableReference: FromMutable(fragment.SecondTableReference)
             );
         }
         
         public static QueryDerivedTable FromMutable(ScriptDom.QueryDerivedTable fragment) {
             if (fragment is null) { return null; }
             return new QueryDerivedTable(
-                queryExpression: (QueryExpression)FromMutable(fragment.QueryExpression),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                queryExpression: FromMutable(fragment.QueryExpression),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -7862,10 +8029,10 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueryParenthesisExpression FromMutable(ScriptDom.QueryParenthesisExpression fragment) {
             if (fragment is null) { return null; }
             return new QueryParenthesisExpression(
-                queryExpression: (QueryExpression)FromMutable(fragment.QueryExpression),
-                orderByClause: (OrderByClause)FromMutable(fragment.OrderByClause),
-                offsetClause: (OffsetClause)FromMutable(fragment.OffsetClause),
-                forClause: (ForClause)FromMutable(fragment.ForClause)
+                queryExpression: FromMutable(fragment.QueryExpression),
+                orderByClause: FromMutable(fragment.OrderByClause),
+                offsetClause: FromMutable(fragment.OffsetClause),
+                forClause: FromMutable(fragment.ForClause)
             );
         }
         
@@ -7873,16 +8040,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new QuerySpecification(
                 uniqueRowFilter: fragment.UniqueRowFilter,
-                topRowFilter: (TopRowFilter)FromMutable(fragment.TopRowFilter),
-                selectElements: fragment.SelectElements.SelectList(c => (SelectElement)FromMutable(c)),
-                fromClause: (FromClause)FromMutable(fragment.FromClause),
-                whereClause: (WhereClause)FromMutable(fragment.WhereClause),
-                groupByClause: (GroupByClause)FromMutable(fragment.GroupByClause),
-                havingClause: (HavingClause)FromMutable(fragment.HavingClause),
-                windowClause: (WindowClause)FromMutable(fragment.WindowClause),
-                orderByClause: (OrderByClause)FromMutable(fragment.OrderByClause),
-                offsetClause: (OffsetClause)FromMutable(fragment.OffsetClause),
-                forClause: (ForClause)FromMutable(fragment.ForClause)
+                topRowFilter: FromMutable(fragment.TopRowFilter),
+                selectElements: fragment.SelectElements.SelectList(FromMutable),
+                fromClause: FromMutable(fragment.FromClause),
+                whereClause: FromMutable(fragment.WhereClause),
+                groupByClause: FromMutable(fragment.GroupByClause),
+                havingClause: FromMutable(fragment.HavingClause),
+                windowClause: FromMutable(fragment.WindowClause),
+                orderByClause: FromMutable(fragment.OrderByClause),
+                offsetClause: FromMutable(fragment.OffsetClause),
+                forClause: FromMutable(fragment.ForClause)
             );
         }
         
@@ -7900,7 +8067,7 @@ namespace Xledger.Sql.ImmutableDom {
                 clear: fragment.Clear,
                 clearAll: fragment.ClearAll,
                 optionState: fragment.OptionState,
-                options: fragment.Options.SelectList(c => (QueryStoreOption)FromMutable(c)),
+                options: fragment.Options.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7908,7 +8075,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueryStoreDataFlushIntervalOption FromMutable(ScriptDom.QueryStoreDataFlushIntervalOption fragment) {
             if (fragment is null) { return null; }
             return new QueryStoreDataFlushIntervalOption(
-                flushInterval: (Literal)FromMutable(fragment.FlushInterval),
+                flushInterval: FromMutable(fragment.FlushInterval),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7925,7 +8092,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueryStoreIntervalLengthOption FromMutable(ScriptDom.QueryStoreIntervalLengthOption fragment) {
             if (fragment is null) { return null; }
             return new QueryStoreIntervalLengthOption(
-                statsIntervalLength: (Literal)FromMutable(fragment.StatsIntervalLength),
+                statsIntervalLength: FromMutable(fragment.StatsIntervalLength),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7933,7 +8100,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueryStoreMaxPlansPerQueryOption FromMutable(ScriptDom.QueryStoreMaxPlansPerQueryOption fragment) {
             if (fragment is null) { return null; }
             return new QueryStoreMaxPlansPerQueryOption(
-                maxPlansPerQuery: (Literal)FromMutable(fragment.MaxPlansPerQuery),
+                maxPlansPerQuery: FromMutable(fragment.MaxPlansPerQuery),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7941,7 +8108,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueryStoreMaxStorageSizeOption FromMutable(ScriptDom.QueryStoreMaxStorageSizeOption fragment) {
             if (fragment is null) { return null; }
             return new QueryStoreMaxStorageSizeOption(
-                maxQdsSize: (Literal)FromMutable(fragment.MaxQdsSize),
+                maxQdsSize: FromMutable(fragment.MaxQdsSize),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7957,7 +8124,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueryStoreTimeCleanupPolicyOption FromMutable(ScriptDom.QueryStoreTimeCleanupPolicyOption fragment) {
             if (fragment is null) { return null; }
             return new QueryStoreTimeCleanupPolicyOption(
-                staleQueryThreshold: (Literal)FromMutable(fragment.StaleQueryThreshold),
+                staleQueryThreshold: FromMutable(fragment.StaleQueryThreshold),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7965,7 +8132,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueueDelayAuditOption FromMutable(ScriptDom.QueueDelayAuditOption fragment) {
             if (fragment is null) { return null; }
             return new QueueDelayAuditOption(
-                delay: (Literal)FromMutable(fragment.Delay),
+                delay: FromMutable(fragment.Delay),
                 optionKind: fragment.OptionKind
             );
         }
@@ -7973,13 +8140,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueueExecuteAsOption FromMutable(ScriptDom.QueueExecuteAsOption fragment) {
             if (fragment is null) { return null; }
             return new QueueExecuteAsOption(
-                optionValue: (ExecuteAsClause)FromMutable(fragment.OptionValue),
+                optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
             );
         }
         
         public static QueueOption FromMutable(ScriptDom.QueueOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QueueOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as QueueOption; }
             return new QueueOption(
                 optionKind: fragment.OptionKind
             );
@@ -7988,7 +8156,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueueProcedureOption FromMutable(ScriptDom.QueueProcedureOption fragment) {
             if (fragment is null) { return null; }
             return new QueueProcedureOption(
-                optionValue: (SchemaObjectName)FromMutable(fragment.OptionValue),
+                optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8004,7 +8172,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static QueueValueOption FromMutable(ScriptDom.QueueValueOption fragment) {
             if (fragment is null) { return null; }
             return new QueueValueOption(
-                optionValue: (ValueExpression)FromMutable(fragment.OptionValue),
+                optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8012,18 +8180,18 @@ namespace Xledger.Sql.ImmutableDom {
         public static RaiseErrorLegacyStatement FromMutable(ScriptDom.RaiseErrorLegacyStatement fragment) {
             if (fragment is null) { return null; }
             return new RaiseErrorLegacyStatement(
-                firstParameter: (ScalarExpression)FromMutable(fragment.FirstParameter),
-                secondParameter: (ValueExpression)FromMutable(fragment.SecondParameter)
+                firstParameter: FromMutable(fragment.FirstParameter),
+                secondParameter: FromMutable(fragment.SecondParameter)
             );
         }
         
         public static RaiseErrorStatement FromMutable(ScriptDom.RaiseErrorStatement fragment) {
             if (fragment is null) { return null; }
             return new RaiseErrorStatement(
-                firstParameter: (ScalarExpression)FromMutable(fragment.FirstParameter),
-                secondParameter: (ScalarExpression)FromMutable(fragment.SecondParameter),
-                thirdParameter: (ScalarExpression)FromMutable(fragment.ThirdParameter),
-                optionalParameters: fragment.OptionalParameters.SelectList(c => (ScalarExpression)FromMutable(c)),
+                firstParameter: FromMutable(fragment.FirstParameter),
+                secondParameter: FromMutable(fragment.SecondParameter),
+                thirdParameter: FromMutable(fragment.ThirdParameter),
+                optionalParameters: fragment.OptionalParameters.SelectList(FromMutable),
                 raiseErrorOptions: fragment.RaiseErrorOptions
             );
         }
@@ -8038,10 +8206,10 @@ namespace Xledger.Sql.ImmutableDom {
         public static ReadTextStatement FromMutable(ScriptDom.ReadTextStatement fragment) {
             if (fragment is null) { return null; }
             return new ReadTextStatement(
-                column: (ColumnReferenceExpression)FromMutable(fragment.Column),
-                textPointer: (ValueExpression)FromMutable(fragment.TextPointer),
-                offset: (ValueExpression)FromMutable(fragment.Offset),
-                size: (ValueExpression)FromMutable(fragment.Size),
+                column: FromMutable(fragment.Column),
+                textPointer: FromMutable(fragment.TextPointer),
+                offset: FromMutable(fragment.Offset),
+                size: FromMutable(fragment.Size),
                 holdLock: fragment.HoldLock
             );
         }
@@ -8050,18 +8218,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new RealLiteral(
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static ReceiveStatement FromMutable(ScriptDom.ReceiveStatement fragment) {
             if (fragment is null) { return null; }
             return new ReceiveStatement(
-                top: (ScalarExpression)FromMutable(fragment.Top),
-                selectElements: fragment.SelectElements.SelectList(c => (SelectElement)FromMutable(c)),
-                queue: (SchemaObjectName)FromMutable(fragment.Queue),
-                into: (VariableTableReference)FromMutable(fragment.Into),
-                where: (ValueExpression)FromMutable(fragment.Where),
+                top: FromMutable(fragment.Top),
+                selectElements: fragment.SelectElements.SelectList(FromMutable),
+                queue: FromMutable(fragment.Queue),
+                into: FromMutable(fragment.Into),
+                where: FromMutable(fragment.Where),
                 isConversationGroupIdWhere: fragment.IsConversationGroupIdWhere
             );
         }
@@ -8088,7 +8256,7 @@ namespace Xledger.Sql.ImmutableDom {
                 migrationState: fragment.MigrationState,
                 isMigrationStateSpecified: fragment.IsMigrationStateSpecified,
                 isFilterPredicateSpecified: fragment.IsFilterPredicateSpecified,
-                filterPredicate: (FunctionCall)FromMutable(fragment.FilterPredicate),
+                filterPredicate: FromMutable(fragment.FilterPredicate),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8097,7 +8265,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new RemoteDataArchiveDatabaseOption(
                 optionState: fragment.OptionState,
-                settings: fragment.Settings.SelectList(c => (RemoteDataArchiveDatabaseSetting)FromMutable(c)),
+                settings: fragment.Settings.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8105,7 +8273,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static RemoteDataArchiveDbCredentialSetting FromMutable(ScriptDom.RemoteDataArchiveDbCredentialSetting fragment) {
             if (fragment is null) { return null; }
             return new RemoteDataArchiveDbCredentialSetting(
-                credential: (Identifier)FromMutable(fragment.Credential),
+                credential: FromMutable(fragment.Credential),
                 settingKind: fragment.SettingKind
             );
         }
@@ -8121,7 +8289,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static RemoteDataArchiveDbServerSetting FromMutable(ScriptDom.RemoteDataArchiveDbServerSetting fragment) {
             if (fragment is null) { return null; }
             return new RemoteDataArchiveDbServerSetting(
-                server: (StringLiteral)FromMutable(fragment.Server),
+                server: FromMutable(fragment.Server),
                 settingKind: fragment.SettingKind
             );
         }
@@ -8138,7 +8306,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static RenameAlterRoleAction FromMutable(ScriptDom.RenameAlterRoleAction fragment) {
             if (fragment is null) { return null; }
             return new RenameAlterRoleAction(
-                newName: (Identifier)FromMutable(fragment.NewName)
+                newName: FromMutable(fragment.NewName)
             );
         }
         
@@ -8147,15 +8315,15 @@ namespace Xledger.Sql.ImmutableDom {
             return new RenameEntityStatement(
                 renameEntityType: fragment.RenameEntityType,
                 separatorType: fragment.SeparatorType,
-                oldName: (SchemaObjectName)FromMutable(fragment.OldName),
-                newName: (Identifier)FromMutable(fragment.NewName)
+                oldName: FromMutable(fragment.OldName),
+                newName: FromMutable(fragment.NewName)
             );
         }
         
         public static ResampleStatisticsOption FromMutable(ScriptDom.ResampleStatisticsOption fragment) {
             if (fragment is null) { return null; }
             return new ResampleStatisticsOption(
-                partitions: fragment.Partitions.SelectList(c => (StatisticsPartitionRange)FromMutable(c)),
+                partitions: fragment.Partitions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8164,9 +8332,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ResourcePoolAffinitySpecification(
                 affinityType: fragment.AffinityType,
-                parameterValue: (Literal)FromMutable(fragment.ParameterValue),
+                parameterValue: FromMutable(fragment.ParameterValue),
                 isAuto: fragment.IsAuto,
-                poolAffinityRanges: fragment.PoolAffinityRanges.SelectList(c => (LiteralRange)FromMutable(c))
+                poolAffinityRanges: fragment.PoolAffinityRanges.SelectList(FromMutable)
             );
         }
         
@@ -8174,16 +8342,17 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ResourcePoolParameter(
                 parameterType: fragment.ParameterType,
-                parameterValue: (Literal)FromMutable(fragment.ParameterValue),
-                affinitySpecification: (ResourcePoolAffinitySpecification)FromMutable(fragment.AffinitySpecification)
+                parameterValue: FromMutable(fragment.ParameterValue),
+                affinitySpecification: FromMutable(fragment.AffinitySpecification)
             );
         }
         
         public static ResourcePoolStatement FromMutable(ScriptDom.ResourcePoolStatement fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ResourcePoolStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ResourcePoolStatement; }
             return new ResourcePoolStatement(
-                name: (Identifier)FromMutable(fragment.Name),
-                resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(c => (ResourcePoolParameter)FromMutable(c))
+                name: FromMutable(fragment.Name),
+                resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(FromMutable)
             );
         }
         
@@ -8191,14 +8360,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new RestoreMasterKeyStatement(
                 isForce: fragment.IsForce,
-                encryptionPassword: (Literal)FromMutable(fragment.EncryptionPassword),
-                file: (Literal)FromMutable(fragment.File),
-                password: (Literal)FromMutable(fragment.Password)
+                encryptionPassword: FromMutable(fragment.EncryptionPassword),
+                file: FromMutable(fragment.File),
+                password: FromMutable(fragment.Password)
             );
         }
         
         public static RestoreOption FromMutable(ScriptDom.RestoreOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.RestoreOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as RestoreOption; }
             return new RestoreOption(
                 optionKind: fragment.OptionKind
             );
@@ -8208,18 +8378,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new RestoreServiceMasterKeyStatement(
                 isForce: fragment.IsForce,
-                file: (Literal)FromMutable(fragment.File),
-                password: (Literal)FromMutable(fragment.Password)
+                file: FromMutable(fragment.File),
+                password: FromMutable(fragment.Password)
             );
         }
         
         public static RestoreStatement FromMutable(ScriptDom.RestoreStatement fragment) {
             if (fragment is null) { return null; }
             return new RestoreStatement(
-                databaseName: (IdentifierOrValueExpression)FromMutable(fragment.DatabaseName),
-                devices: fragment.Devices.SelectList(c => (DeviceInfo)FromMutable(c)),
-                files: fragment.Files.SelectList(c => (BackupRestoreFileInfo)FromMutable(c)),
-                options: fragment.Options.SelectList(c => (RestoreOption)FromMutable(c)),
+                databaseName: FromMutable(fragment.DatabaseName),
+                devices: fragment.Devices.SelectList(FromMutable),
+                files: fragment.Files.SelectList(FromMutable),
+                options: fragment.Options.SelectList(FromMutable),
                 kind: fragment.Kind
             );
         }
@@ -8227,13 +8397,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static ResultColumnDefinition FromMutable(ScriptDom.ResultColumnDefinition fragment) {
             if (fragment is null) { return null; }
             return new ResultColumnDefinition(
-                columnDefinition: (ColumnDefinitionBase)FromMutable(fragment.ColumnDefinition),
-                nullable: (NullableConstraintDefinition)FromMutable(fragment.Nullable)
+                columnDefinition: FromMutable(fragment.ColumnDefinition),
+                nullable: FromMutable(fragment.Nullable)
             );
         }
         
         public static ResultSetDefinition FromMutable(ScriptDom.ResultSetDefinition fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ResultSetDefinition)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ResultSetDefinition; }
             return new ResultSetDefinition(
                 resultSetType: fragment.ResultSetType
             );
@@ -8243,7 +8414,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ResultSetsExecuteOption(
                 resultSetsOptionKind: fragment.ResultSetsOptionKind,
-                definitions: fragment.Definitions.SelectList(c => (ResultSetDefinition)FromMutable(c)),
+                definitions: fragment.Definitions.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8251,7 +8422,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static RetentionDaysAuditTargetOption FromMutable(ScriptDom.RetentionDaysAuditTargetOption fragment) {
             if (fragment is null) { return null; }
             return new RetentionDaysAuditTargetOption(
-                days: (Literal)FromMutable(fragment.Days),
+                days: FromMutable(fragment.Days),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8259,7 +8430,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static RetentionPeriodDefinition FromMutable(ScriptDom.RetentionPeriodDefinition fragment) {
             if (fragment is null) { return null; }
             return new RetentionPeriodDefinition(
-                duration: (IntegerLiteral)FromMutable(fragment.Duration),
+                duration: FromMutable(fragment.Duration),
                 units: fragment.Units,
                 isInfinity: fragment.IsInfinity
             );
@@ -8268,14 +8439,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static ReturnStatement FromMutable(ScriptDom.ReturnStatement fragment) {
             if (fragment is null) { return null; }
             return new ReturnStatement(
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
         public static RevertStatement FromMutable(ScriptDom.RevertStatement fragment) {
             if (fragment is null) { return null; }
             return new RevertStatement(
-                cookie: (ScalarExpression)FromMutable(fragment.Cookie)
+                cookie: FromMutable(fragment.Cookie)
             );
         }
         
@@ -8284,10 +8455,10 @@ namespace Xledger.Sql.ImmutableDom {
             return new RevokeStatement(
                 grantOptionFor: fragment.GrantOptionFor,
                 cascadeOption: fragment.CascadeOption,
-                permissions: fragment.Permissions.SelectList(c => (Permission)FromMutable(c)),
-                securityTargetObject: (SecurityTargetObject)FromMutable(fragment.SecurityTargetObject),
-                principals: fragment.Principals.SelectList(c => (SecurityPrincipal)FromMutable(c)),
-                asClause: (Identifier)FromMutable(fragment.AsClause)
+                permissions: fragment.Permissions.SelectList(FromMutable),
+                securityTargetObject: FromMutable(fragment.SecurityTargetObject),
+                principals: fragment.Principals.SelectList(FromMutable),
+                asClause: FromMutable(fragment.AsClause)
             );
         }
         
@@ -8296,17 +8467,17 @@ namespace Xledger.Sql.ImmutableDom {
             return new RevokeStatement80(
                 grantOptionFor: fragment.GrantOptionFor,
                 cascadeOption: fragment.CascadeOption,
-                asClause: (Identifier)FromMutable(fragment.AsClause),
-                securityElement80: (SecurityElement80)FromMutable(fragment.SecurityElement80),
-                securityUserClause80: (SecurityUserClause80)FromMutable(fragment.SecurityUserClause80)
+                asClause: FromMutable(fragment.AsClause),
+                securityElement80: FromMutable(fragment.SecurityElement80),
+                securityUserClause80: FromMutable(fragment.SecurityUserClause80)
             );
         }
         
         public static RightFunctionCall FromMutable(ScriptDom.RightFunctionCall fragment) {
             if (fragment is null) { return null; }
             return new RightFunctionCall(
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -8321,14 +8492,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static RollbackTransactionStatement FromMutable(ScriptDom.RollbackTransactionStatement fragment) {
             if (fragment is null) { return null; }
             return new RollbackTransactionStatement(
-                name: (IdentifierOrValueExpression)FromMutable(fragment.Name)
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static RollupGroupingSpecification FromMutable(ScriptDom.RollupGroupingSpecification fragment) {
             if (fragment is null) { return null; }
             return new RollupGroupingSpecification(
-                arguments: fragment.Arguments.SelectList(c => (GroupingSpecification)FromMutable(c))
+                arguments: fragment.Arguments.SelectList(FromMutable)
             );
         }
         
@@ -8336,28 +8507,28 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new RouteOption(
                 optionKind: fragment.OptionKind,
-                literal: (Literal)FromMutable(fragment.Literal)
+                literal: FromMutable(fragment.Literal)
             );
         }
         
         public static RowValue FromMutable(ScriptDom.RowValue fragment) {
             if (fragment is null) { return null; }
             return new RowValue(
-                columnValues: fragment.ColumnValues.SelectList(c => (ScalarExpression)FromMutable(c))
+                columnValues: fragment.ColumnValues.SelectList(FromMutable)
             );
         }
         
         public static SaveTransactionStatement FromMutable(ScriptDom.SaveTransactionStatement fragment) {
             if (fragment is null) { return null; }
             return new SaveTransactionStatement(
-                name: (IdentifierOrValueExpression)FromMutable(fragment.Name)
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static ScalarExpressionDialogOption FromMutable(ScriptDom.ScalarExpressionDialogOption fragment) {
             if (fragment is null) { return null; }
             return new ScalarExpressionDialogOption(
-                @value: (ScalarExpression)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8365,7 +8536,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ScalarExpressionRestoreOption FromMutable(ScriptDom.ScalarExpressionRestoreOption fragment) {
             if (fragment is null) { return null; }
             return new ScalarExpressionRestoreOption(
-                @value: (ScalarExpression)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8373,7 +8544,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ScalarExpressionSequenceOption FromMutable(ScriptDom.ScalarExpressionSequenceOption fragment) {
             if (fragment is null) { return null; }
             return new ScalarExpressionSequenceOption(
-                optionValue: (ScalarExpression)FromMutable(fragment.OptionValue),
+                optionValue: FromMutable(fragment.OptionValue),
                 optionKind: fragment.OptionKind,
                 noValue: fragment.NoValue
             );
@@ -8389,23 +8560,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static ScalarFunctionReturnType FromMutable(ScriptDom.ScalarFunctionReturnType fragment) {
             if (fragment is null) { return null; }
             return new ScalarFunctionReturnType(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType)
+                dataType: FromMutable(fragment.DataType)
             );
         }
         
         public static ScalarSubquery FromMutable(ScriptDom.ScalarSubquery fragment) {
             if (fragment is null) { return null; }
             return new ScalarSubquery(
-                queryExpression: (QueryExpression)FromMutable(fragment.QueryExpression),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                queryExpression: FromMutable(fragment.QueryExpression),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static SchemaDeclarationItem FromMutable(ScriptDom.SchemaDeclarationItem fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SchemaDeclarationItem)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SchemaDeclarationItem; }
             return new SchemaDeclarationItem(
-                columnDefinition: (ColumnDefinitionBase)FromMutable(fragment.ColumnDefinition),
-                mapping: (ValueExpression)FromMutable(fragment.Mapping)
+                columnDefinition: FromMutable(fragment.ColumnDefinition),
+                mapping: FromMutable(fragment.Mapping)
             );
         }
         
@@ -8413,34 +8585,35 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SchemaDeclarationItemOpenjson(
                 asJson: fragment.AsJson,
-                columnDefinition: (ColumnDefinitionBase)FromMutable(fragment.ColumnDefinition),
-                mapping: (ValueExpression)FromMutable(fragment.Mapping)
+                columnDefinition: FromMutable(fragment.ColumnDefinition),
+                mapping: FromMutable(fragment.Mapping)
             );
         }
         
         public static SchemaObjectFunctionTableReference FromMutable(ScriptDom.SchemaObjectFunctionTableReference fragment) {
             if (fragment is null) { return null; }
             return new SchemaObjectFunctionTableReference(
-                schemaObject: (SchemaObjectName)FromMutable(fragment.SchemaObject),
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                schemaObject: FromMutable(fragment.SchemaObject),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
         
         public static SchemaObjectName FromMutable(ScriptDom.SchemaObjectName fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SchemaObjectName)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SchemaObjectName; }
             return new SchemaObjectName(
-                identifiers: fragment.Identifiers.SelectList(c => (Identifier)FromMutable(c))
+                identifiers: fragment.Identifiers.SelectList(FromMutable)
             );
         }
         
         public static SchemaObjectNameOrValueExpression FromMutable(ScriptDom.SchemaObjectNameOrValueExpression fragment) {
             if (fragment is null) { return null; }
             return new SchemaObjectNameOrValueExpression(
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName),
-                valueExpression: (ValueExpression)FromMutable(fragment.ValueExpression)
+                schemaObjectName: FromMutable(fragment.SchemaObjectName),
+                valueExpression: FromMutable(fragment.ValueExpression)
             );
         }
         
@@ -8448,14 +8621,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SchemaObjectNameSnippet(
                 script: fragment.Script,
-                identifiers: fragment.Identifiers.SelectList(c => (Identifier)FromMutable(c))
+                identifiers: fragment.Identifiers.SelectList(FromMutable)
             );
         }
         
         public static SchemaObjectResultSetDefinition FromMutable(ScriptDom.SchemaObjectResultSetDefinition fragment) {
             if (fragment is null) { return null; }
             return new SchemaObjectResultSetDefinition(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 resultSetType: fragment.ResultSetType
             );
         }
@@ -8471,17 +8644,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static SearchedCaseExpression FromMutable(ScriptDom.SearchedCaseExpression fragment) {
             if (fragment is null) { return null; }
             return new SearchedCaseExpression(
-                whenClauses: fragment.WhenClauses.SelectList(c => (SearchedWhenClause)FromMutable(c)),
-                elseExpression: (ScalarExpression)FromMutable(fragment.ElseExpression),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                whenClauses: fragment.WhenClauses.SelectList(FromMutable),
+                elseExpression: FromMutable(fragment.ElseExpression),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static SearchedWhenClause FromMutable(ScriptDom.SearchedWhenClause fragment) {
             if (fragment is null) { return null; }
             return new SearchedWhenClause(
-                whenExpression: (BooleanExpression)FromMutable(fragment.WhenExpression),
-                thenExpression: (ScalarExpression)FromMutable(fragment.ThenExpression)
+                whenExpression: FromMutable(fragment.WhenExpression),
+                thenExpression: FromMutable(fragment.ThenExpression)
             );
         }
         
@@ -8489,7 +8662,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SearchPropertyListFullTextIndexOption(
                 isOff: fragment.IsOff,
-                propertyListName: (Identifier)FromMutable(fragment.PropertyListName),
+                propertyListName: FromMutable(fragment.PropertyListName),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8515,8 +8688,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new SecurityPredicateAction(
                 actionType: fragment.ActionType,
                 securityPredicateType: fragment.SecurityPredicateType,
-                functionCall: (FunctionCall)FromMutable(fragment.FunctionCall),
-                targetObjectName: (SchemaObjectName)FromMutable(fragment.TargetObjectName),
+                functionCall: FromMutable(fragment.FunctionCall),
+                targetObjectName: FromMutable(fragment.TargetObjectName),
                 securityPredicateOperation: fragment.SecurityPredicateOperation
             );
         }
@@ -8525,7 +8698,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SecurityPrincipal(
                 principalType: fragment.PrincipalType,
-                identifier: (Identifier)FromMutable(fragment.Identifier)
+                identifier: FromMutable(fragment.Identifier)
             );
         }
         
@@ -8533,22 +8706,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SecurityTargetObject(
                 objectKind: fragment.ObjectKind,
-                objectName: (SecurityTargetObjectName)FromMutable(fragment.ObjectName),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c))
+                objectName: FromMutable(fragment.ObjectName),
+                columns: fragment.Columns.SelectList(FromMutable)
             );
         }
         
         public static SecurityTargetObjectName FromMutable(ScriptDom.SecurityTargetObjectName fragment) {
             if (fragment is null) { return null; }
             return new SecurityTargetObjectName(
-                multiPartIdentifier: (MultiPartIdentifier)FromMutable(fragment.MultiPartIdentifier)
+                multiPartIdentifier: FromMutable(fragment.MultiPartIdentifier)
             );
         }
         
         public static SecurityUserClause80 FromMutable(ScriptDom.SecurityUserClause80 fragment) {
             if (fragment is null) { return null; }
             return new SecurityUserClause80(
-                users: fragment.Users.SelectList(c => (Identifier)FromMutable(c)),
+                users: fragment.Users.SelectList(FromMutable),
                 userType80: fragment.UserType80
             );
         }
@@ -8556,25 +8729,25 @@ namespace Xledger.Sql.ImmutableDom {
         public static SelectFunctionReturnType FromMutable(ScriptDom.SelectFunctionReturnType fragment) {
             if (fragment is null) { return null; }
             return new SelectFunctionReturnType(
-                selectStatement: (SelectStatement)FromMutable(fragment.SelectStatement)
+                selectStatement: FromMutable(fragment.SelectStatement)
             );
         }
         
         public static SelectInsertSource FromMutable(ScriptDom.SelectInsertSource fragment) {
             if (fragment is null) { return null; }
             return new SelectInsertSource(
-                select: (QueryExpression)FromMutable(fragment.Select)
+                select: FromMutable(fragment.Select)
             );
         }
         
         public static SelectiveXmlIndexPromotedPath FromMutable(ScriptDom.SelectiveXmlIndexPromotedPath fragment) {
             if (fragment is null) { return null; }
             return new SelectiveXmlIndexPromotedPath(
-                name: (Identifier)FromMutable(fragment.Name),
-                path: (Literal)FromMutable(fragment.Path),
-                sQLDataType: (DataTypeReference)FromMutable(fragment.SQLDataType),
-                xQueryDataType: (Literal)FromMutable(fragment.XQueryDataType),
-                maxLength: (IntegerLiteral)FromMutable(fragment.MaxLength),
+                name: FromMutable(fragment.Name),
+                path: FromMutable(fragment.Path),
+                sQLDataType: FromMutable(fragment.SQLDataType),
+                xQueryDataType: FromMutable(fragment.XQueryDataType),
+                maxLength: FromMutable(fragment.MaxLength),
                 isSingleton: fragment.IsSingleton
             );
         }
@@ -8582,16 +8755,16 @@ namespace Xledger.Sql.ImmutableDom {
         public static SelectScalarExpression FromMutable(ScriptDom.SelectScalarExpression fragment) {
             if (fragment is null) { return null; }
             return new SelectScalarExpression(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
-                columnName: (IdentifierOrValueExpression)FromMutable(fragment.ColumnName)
+                expression: FromMutable(fragment.Expression),
+                columnName: FromMutable(fragment.ColumnName)
             );
         }
         
         public static SelectSetVariable FromMutable(ScriptDom.SelectSetVariable fragment) {
             if (fragment is null) { return null; }
             return new SelectSetVariable(
-                variable: (VariableReference)FromMutable(fragment.Variable),
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
+                variable: FromMutable(fragment.Variable),
+                expression: FromMutable(fragment.Expression),
                 assignmentKind: fragment.AssignmentKind
             );
         }
@@ -8599,19 +8772,20 @@ namespace Xledger.Sql.ImmutableDom {
         public static SelectStarExpression FromMutable(ScriptDom.SelectStarExpression fragment) {
             if (fragment is null) { return null; }
             return new SelectStarExpression(
-                qualifier: (MultiPartIdentifier)FromMutable(fragment.Qualifier)
+                qualifier: FromMutable(fragment.Qualifier)
             );
         }
         
         public static SelectStatement FromMutable(ScriptDom.SelectStatement fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SelectStatement)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SelectStatement; }
             return new SelectStatement(
-                queryExpression: (QueryExpression)FromMutable(fragment.QueryExpression),
-                into: (SchemaObjectName)FromMutable(fragment.Into),
-                on: (Identifier)FromMutable(fragment.On),
-                computeClauses: fragment.ComputeClauses.SelectList(c => (ComputeClause)FromMutable(c)),
-                withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(fragment.WithCtesAndXmlNamespaces),
-                optimizerHints: fragment.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                queryExpression: FromMutable(fragment.QueryExpression),
+                into: FromMutable(fragment.Into),
+                on: FromMutable(fragment.On),
+                computeClauses: fragment.ComputeClauses.SelectList(FromMutable),
+                withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(FromMutable)
             );
         }
         
@@ -8619,12 +8793,12 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SelectStatementSnippet(
                 script: fragment.Script,
-                queryExpression: (QueryExpression)FromMutable(fragment.QueryExpression),
-                into: (SchemaObjectName)FromMutable(fragment.Into),
-                on: (Identifier)FromMutable(fragment.On),
-                computeClauses: fragment.ComputeClauses.SelectList(c => (ComputeClause)FromMutable(c)),
-                withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(fragment.WithCtesAndXmlNamespaces),
-                optimizerHints: fragment.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                queryExpression: FromMutable(fragment.QueryExpression),
+                into: FromMutable(fragment.Into),
+                on: FromMutable(fragment.On),
+                computeClauses: fragment.ComputeClauses.SelectList(FromMutable),
+                withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(FromMutable)
             );
         }
         
@@ -8632,12 +8806,12 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SemanticTableReference(
                 semanticFunctionType: fragment.SemanticFunctionType,
-                tableName: (SchemaObjectName)FromMutable(fragment.TableName),
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                sourceKey: (ScalarExpression)FromMutable(fragment.SourceKey),
-                matchedColumn: (ColumnReferenceExpression)FromMutable(fragment.MatchedColumn),
-                matchedKey: (ScalarExpression)FromMutable(fragment.MatchedKey),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                tableName: FromMutable(fragment.TableName),
+                columns: fragment.Columns.SelectList(FromMutable),
+                sourceKey: FromMutable(fragment.SourceKey),
+                matchedColumn: FromMutable(fragment.MatchedColumn),
+                matchedKey: FromMutable(fragment.MatchedKey),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -8645,9 +8819,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static SendStatement FromMutable(ScriptDom.SendStatement fragment) {
             if (fragment is null) { return null; }
             return new SendStatement(
-                conversationHandles: fragment.ConversationHandles.SelectList(c => (ScalarExpression)FromMutable(c)),
-                messageTypeName: (IdentifierOrValueExpression)FromMutable(fragment.MessageTypeName),
-                messageBody: (ScalarExpression)FromMutable(fragment.MessageBody)
+                conversationHandles: fragment.ConversationHandles.SelectList(FromMutable),
+                messageTypeName: FromMutable(fragment.MessageTypeName),
+                messageBody: FromMutable(fragment.MessageBody)
             );
         }
         
@@ -8655,12 +8829,13 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SensitivityClassificationOption(
                 type: fragment.Type,
-                @value: (Literal)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static SequenceOption FromMutable(ScriptDom.SequenceOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SequenceOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as SequenceOption; }
             return new SequenceOption(
                 optionKind: fragment.OptionKind,
                 noValue: fragment.NoValue
@@ -8670,7 +8845,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ServiceContract FromMutable(ScriptDom.ServiceContract fragment) {
             if (fragment is null) { return null; }
             return new ServiceContract(
-                name: (Identifier)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 action: fragment.Action
             );
         }
@@ -8679,7 +8854,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SessionTimeoutPayloadOption(
                 isNever: fragment.IsNever,
-                timeout: (Literal)FromMutable(fragment.Timeout),
+                timeout: FromMutable(fragment.Timeout),
                 kind: fragment.Kind
             );
         }
@@ -8687,14 +8862,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static SetCommandStatement FromMutable(ScriptDom.SetCommandStatement fragment) {
             if (fragment is null) { return null; }
             return new SetCommandStatement(
-                commands: fragment.Commands.SelectList(c => (SetCommand)FromMutable(c))
+                commands: fragment.Commands.SelectList(FromMutable)
             );
         }
         
         public static SetErrorLevelStatement FromMutable(ScriptDom.SetErrorLevelStatement fragment) {
             if (fragment is null) { return null; }
             return new SetErrorLevelStatement(
-                level: (ScalarExpression)FromMutable(fragment.Level)
+                level: FromMutable(fragment.Level)
             );
         }
         
@@ -8708,7 +8883,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static SetIdentityInsertStatement FromMutable(ScriptDom.SetIdentityInsertStatement fragment) {
             if (fragment is null) { return null; }
             return new SetIdentityInsertStatement(
-                table: (SchemaObjectName)FromMutable(fragment.Table),
+                table: FromMutable(fragment.Table),
                 isOn: fragment.IsOn
             );
         }
@@ -8724,14 +8899,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static SetRowCountStatement FromMutable(ScriptDom.SetRowCountStatement fragment) {
             if (fragment is null) { return null; }
             return new SetRowCountStatement(
-                numberRows: (ValueExpression)FromMutable(fragment.NumberRows)
+                numberRows: FromMutable(fragment.NumberRows)
             );
         }
         
         public static SetSearchPropertyListAlterFullTextIndexAction FromMutable(ScriptDom.SetSearchPropertyListAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
             return new SetSearchPropertyListAlterFullTextIndexAction(
-                searchPropertyListOption: (SearchPropertyListFullTextIndexOption)FromMutable(fragment.SearchPropertyListOption),
+                searchPropertyListOption: FromMutable(fragment.SearchPropertyListOption),
                 withNoPopulation: fragment.WithNoPopulation
             );
         }
@@ -8747,7 +8922,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static SetStopListAlterFullTextIndexAction FromMutable(ScriptDom.SetStopListAlterFullTextIndexAction fragment) {
             if (fragment is null) { return null; }
             return new SetStopListAlterFullTextIndexAction(
-                stopListOption: (StopListFullTextIndexOption)FromMutable(fragment.StopListOption),
+                stopListOption: FromMutable(fragment.StopListOption),
                 withNoPopulation: fragment.WithNoPopulation
             );
         }
@@ -8755,7 +8930,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static SetTextSizeStatement FromMutable(ScriptDom.SetTextSizeStatement fragment) {
             if (fragment is null) { return null; }
             return new SetTextSizeStatement(
-                textSize: (ScalarExpression)FromMutable(fragment.TextSize)
+                textSize: FromMutable(fragment.TextSize)
             );
         }
         
@@ -8769,7 +8944,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static SetUserStatement FromMutable(ScriptDom.SetUserStatement fragment) {
             if (fragment is null) { return null; }
             return new SetUserStatement(
-                userName: (ValueExpression)FromMutable(fragment.UserName),
+                userName: FromMutable(fragment.UserName),
                 withNoReset: fragment.WithNoReset
             );
         }
@@ -8777,13 +8952,13 @@ namespace Xledger.Sql.ImmutableDom {
         public static SetVariableStatement FromMutable(ScriptDom.SetVariableStatement fragment) {
             if (fragment is null) { return null; }
             return new SetVariableStatement(
-                variable: (VariableReference)FromMutable(fragment.Variable),
+                variable: FromMutable(fragment.Variable),
                 separatorType: fragment.SeparatorType,
-                identifier: (Identifier)FromMutable(fragment.Identifier),
+                identifier: FromMutable(fragment.Identifier),
                 functionCallExists: fragment.FunctionCallExists,
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
-                cursorDefinition: (CursorDefinition)FromMutable(fragment.CursorDefinition),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                expression: FromMutable(fragment.Expression),
+                cursorDefinition: FromMutable(fragment.CursorDefinition),
                 assignmentKind: fragment.AssignmentKind
             );
         }
@@ -8805,32 +8980,32 @@ namespace Xledger.Sql.ImmutableDom {
         public static SimpleCaseExpression FromMutable(ScriptDom.SimpleCaseExpression fragment) {
             if (fragment is null) { return null; }
             return new SimpleCaseExpression(
-                inputExpression: (ScalarExpression)FromMutable(fragment.InputExpression),
-                whenClauses: fragment.WhenClauses.SelectList(c => (SimpleWhenClause)FromMutable(c)),
-                elseExpression: (ScalarExpression)FromMutable(fragment.ElseExpression),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                inputExpression: FromMutable(fragment.InputExpression),
+                whenClauses: fragment.WhenClauses.SelectList(FromMutable),
+                elseExpression: FromMutable(fragment.ElseExpression),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static SimpleWhenClause FromMutable(ScriptDom.SimpleWhenClause fragment) {
             if (fragment is null) { return null; }
             return new SimpleWhenClause(
-                whenExpression: (ScalarExpression)FromMutable(fragment.WhenExpression),
-                thenExpression: (ScalarExpression)FromMutable(fragment.ThenExpression)
+                whenExpression: FromMutable(fragment.WhenExpression),
+                thenExpression: FromMutable(fragment.ThenExpression)
             );
         }
         
         public static SingleValueTypeCopyOption FromMutable(ScriptDom.SingleValueTypeCopyOption fragment) {
             if (fragment is null) { return null; }
             return new SingleValueTypeCopyOption(
-                singleValue: (IdentifierOrValueExpression)FromMutable(fragment.SingleValue)
+                singleValue: FromMutable(fragment.SingleValue)
             );
         }
         
         public static SizeFileDeclarationOption FromMutable(ScriptDom.SizeFileDeclarationOption fragment) {
             if (fragment is null) { return null; }
             return new SizeFileDeclarationOption(
-                size: (Literal)FromMutable(fragment.Size),
+                size: FromMutable(fragment.Size),
                 units: fragment.Units,
                 optionKind: fragment.OptionKind
             );
@@ -8839,10 +9014,10 @@ namespace Xledger.Sql.ImmutableDom {
         public static SoapMethod FromMutable(ScriptDom.SoapMethod fragment) {
             if (fragment is null) { return null; }
             return new SoapMethod(
-                alias: (Literal)FromMutable(fragment.Alias),
-                @namespace: (Literal)FromMutable(fragment.Namespace),
+                alias: FromMutable(fragment.Alias),
+                @namespace: FromMutable(fragment.Namespace),
                 action: fragment.Action,
-                name: (Literal)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 format: fragment.Format,
                 schema: fragment.Schema,
                 kind: fragment.Kind
@@ -8852,14 +9027,14 @@ namespace Xledger.Sql.ImmutableDom {
         public static SourceDeclaration FromMutable(ScriptDom.SourceDeclaration fragment) {
             if (fragment is null) { return null; }
             return new SourceDeclaration(
-                @value: (EventSessionObjectName)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static SpatialIndexRegularOption FromMutable(ScriptDom.SpatialIndexRegularOption fragment) {
             if (fragment is null) { return null; }
             return new SpatialIndexRegularOption(
-                option: (IndexOption)FromMutable(fragment.Option)
+                option: FromMutable(fragment.Option)
             );
         }
         
@@ -8875,8 +9050,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new SqlDataTypeReference(
                 sqlDataTypeOption: fragment.SqlDataTypeOption,
-                parameters: fragment.Parameters.SelectList(c => (Literal)FromMutable(c)),
-                name: (SchemaObjectName)FromMutable(fragment.Name)
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                name: FromMutable(fragment.Name)
             );
         }
         
@@ -8890,8 +9065,9 @@ namespace Xledger.Sql.ImmutableDom {
         
         public static StatementList FromMutable(ScriptDom.StatementList fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.StatementList)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as StatementList; }
             return new StatementList(
-                statements: fragment.Statements.SelectList(c => (TSqlStatement)FromMutable(c))
+                statements: fragment.Statements.SelectList(FromMutable)
             );
         }
         
@@ -8899,12 +9075,13 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new StatementListSnippet(
                 script: fragment.Script,
-                statements: fragment.Statements.SelectList(c => (TSqlStatement)FromMutable(c))
+                statements: fragment.Statements.SelectList(FromMutable)
             );
         }
         
         public static StatisticsOption FromMutable(ScriptDom.StatisticsOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.StatisticsOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as StatisticsOption; }
             return new StatisticsOption(
                 optionKind: fragment.OptionKind
             );
@@ -8913,8 +9090,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static StatisticsPartitionRange FromMutable(ScriptDom.StatisticsPartitionRange fragment) {
             if (fragment is null) { return null; }
             return new StatisticsPartitionRange(
-                from: (IntegerLiteral)FromMutable(fragment.From),
-                to: (IntegerLiteral)FromMutable(fragment.To)
+                from: FromMutable(fragment.From),
+                to: FromMutable(fragment.To)
             );
         }
         
@@ -8922,7 +9099,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new StopListFullTextIndexOption(
                 isOff: fragment.IsOff,
-                stopListName: (Identifier)FromMutable(fragment.StopListName),
+                stopListName: FromMutable(fragment.StopListName),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8930,8 +9107,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static StopRestoreOption FromMutable(ScriptDom.StopRestoreOption fragment) {
             if (fragment is null) { return null; }
             return new StopRestoreOption(
-                mark: (ValueExpression)FromMutable(fragment.Mark),
-                after: (ValueExpression)FromMutable(fragment.After),
+                mark: FromMutable(fragment.Mark),
+                after: FromMutable(fragment.After),
                 isStopAt: fragment.IsStopAt,
                 optionKind: fragment.OptionKind
             );
@@ -8943,16 +9120,16 @@ namespace Xledger.Sql.ImmutableDom {
                 isNational: fragment.IsNational,
                 isLargeObject: fragment.IsLargeObject,
                 @value: fragment.Value,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static SubqueryComparisonPredicate FromMutable(ScriptDom.SubqueryComparisonPredicate fragment) {
             if (fragment is null) { return null; }
             return new SubqueryComparisonPredicate(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
+                expression: FromMutable(fragment.Expression),
                 comparisonType: fragment.ComparisonType,
-                subquery: (ScalarSubquery)FromMutable(fragment.Subquery),
+                subquery: FromMutable(fragment.Subquery),
                 subqueryComparisonPredicateType: fragment.SubqueryComparisonPredicateType
             );
         }
@@ -8960,8 +9137,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static SystemTimePeriodDefinition FromMutable(ScriptDom.SystemTimePeriodDefinition fragment) {
             if (fragment is null) { return null; }
             return new SystemTimePeriodDefinition(
-                startTimeColumn: (Identifier)FromMutable(fragment.StartTimeColumn),
-                endTimeColumn: (Identifier)FromMutable(fragment.EndTimeColumn)
+                startTimeColumn: FromMutable(fragment.StartTimeColumn),
+                endTimeColumn: FromMutable(fragment.EndTimeColumn)
             );
         }
         
@@ -8970,8 +9147,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new SystemVersioningTableOption(
                 optionState: fragment.OptionState,
                 consistencyCheckEnabled: fragment.ConsistencyCheckEnabled,
-                historyTable: (SchemaObjectName)FromMutable(fragment.HistoryTable),
-                retentionPeriod: (RetentionPeriodDefinition)FromMutable(fragment.RetentionPeriod),
+                historyTable: FromMutable(fragment.HistoryTable),
+                retentionPeriod: FromMutable(fragment.RetentionPeriod),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8979,16 +9156,16 @@ namespace Xledger.Sql.ImmutableDom {
         public static TableClusteredIndexType FromMutable(ScriptDom.TableClusteredIndexType fragment) {
             if (fragment is null) { return null; }
             return new TableClusteredIndexType(
-                columns: fragment.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
+                columns: fragment.Columns.SelectList(FromMutable),
                 columnStore: fragment.ColumnStore,
-                orderedColumns: fragment.OrderedColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                orderedColumns: fragment.OrderedColumns.SelectList(FromMutable)
             );
         }
         
         public static TableDataCompressionOption FromMutable(ScriptDom.TableDataCompressionOption fragment) {
             if (fragment is null) { return null; }
             return new TableDataCompressionOption(
-                dataCompressionOption: (DataCompressionOption)FromMutable(fragment.DataCompressionOption),
+                dataCompressionOption: FromMutable(fragment.DataCompressionOption),
                 optionKind: fragment.OptionKind
             );
         }
@@ -8996,17 +9173,17 @@ namespace Xledger.Sql.ImmutableDom {
         public static TableDefinition FromMutable(ScriptDom.TableDefinition fragment) {
             if (fragment is null) { return null; }
             return new TableDefinition(
-                columnDefinitions: fragment.ColumnDefinitions.SelectList(c => (ColumnDefinition)FromMutable(c)),
-                tableConstraints: fragment.TableConstraints.SelectList(c => (ConstraintDefinition)FromMutable(c)),
-                indexes: fragment.Indexes.SelectList(c => (IndexDefinition)FromMutable(c)),
-                systemTimePeriod: (SystemTimePeriodDefinition)FromMutable(fragment.SystemTimePeriod)
+                columnDefinitions: fragment.ColumnDefinitions.SelectList(FromMutable),
+                tableConstraints: fragment.TableConstraints.SelectList(FromMutable),
+                indexes: fragment.Indexes.SelectList(FromMutable),
+                systemTimePeriod: FromMutable(fragment.SystemTimePeriod)
             );
         }
         
         public static TableDistributionOption FromMutable(ScriptDom.TableDistributionOption fragment) {
             if (fragment is null) { return null; }
             return new TableDistributionOption(
-                @value: (TableDistributionPolicy)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -9014,12 +9191,13 @@ namespace Xledger.Sql.ImmutableDom {
         public static TableHashDistributionPolicy FromMutable(ScriptDom.TableHashDistributionPolicy fragment) {
             if (fragment is null) { return null; }
             return new TableHashDistributionPolicy(
-                distributionColumn: (Identifier)FromMutable(fragment.DistributionColumn)
+                distributionColumn: FromMutable(fragment.DistributionColumn)
             );
         }
         
         public static TableHint FromMutable(ScriptDom.TableHint fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TableHint)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as TableHint; }
             return new TableHint(
                 hintKind: fragment.HintKind
             );
@@ -9028,8 +9206,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static TableHintsOptimizerHint FromMutable(ScriptDom.TableHintsOptimizerHint fragment) {
             if (fragment is null) { return null; }
             return new TableHintsOptimizerHint(
-                objectName: (SchemaObjectName)FromMutable(fragment.ObjectName),
-                tableHints: fragment.TableHints.SelectList(c => (TableHint)FromMutable(c)),
+                objectName: FromMutable(fragment.ObjectName),
+                tableHints: fragment.TableHints.SelectList(FromMutable),
                 hintKind: fragment.HintKind
             );
         }
@@ -9037,7 +9215,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static TableIndexOption FromMutable(ScriptDom.TableIndexOption fragment) {
             if (fragment is null) { return null; }
             return new TableIndexOption(
-                @value: (TableIndexType)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -9052,8 +9230,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static TablePartitionOption FromMutable(ScriptDom.TablePartitionOption fragment) {
             if (fragment is null) { return null; }
             return new TablePartitionOption(
-                partitionColumn: (Identifier)FromMutable(fragment.PartitionColumn),
-                partitionOptionSpecs: (TablePartitionOptionSpecifications)FromMutable(fragment.PartitionOptionSpecs),
+                partitionColumn: FromMutable(fragment.PartitionColumn),
+                partitionOptionSpecs: FromMutable(fragment.PartitionOptionSpecs),
                 optionKind: fragment.OptionKind
             );
         }
@@ -9062,7 +9240,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new TablePartitionOptionSpecifications(
                 range: fragment.Range,
-                boundaryValues: fragment.BoundaryValues.SelectList(c => (ScalarExpression)FromMutable(c))
+                boundaryValues: fragment.BoundaryValues.SelectList(FromMutable)
             );
         }
         
@@ -9084,23 +9262,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new TableSampleClause(
                 system: fragment.System,
-                sampleNumber: (ScalarExpression)FromMutable(fragment.SampleNumber),
+                sampleNumber: FromMutable(fragment.SampleNumber),
                 tableSampleClauseOption: fragment.TableSampleClauseOption,
-                repeatSeed: (ScalarExpression)FromMutable(fragment.RepeatSeed)
+                repeatSeed: FromMutable(fragment.RepeatSeed)
             );
         }
         
         public static TableValuedFunctionReturnType FromMutable(ScriptDom.TableValuedFunctionReturnType fragment) {
             if (fragment is null) { return null; }
             return new TableValuedFunctionReturnType(
-                declareTableVariableBody: (DeclareTableVariableBody)FromMutable(fragment.DeclareTableVariableBody)
+                declareTableVariableBody: FromMutable(fragment.DeclareTableVariableBody)
             );
         }
         
         public static TableXmlCompressionOption FromMutable(ScriptDom.TableXmlCompressionOption fragment) {
             if (fragment is null) { return null; }
             return new TableXmlCompressionOption(
-                xmlCompressionOption: (XmlCompressionOption)FromMutable(fragment.XmlCompressionOption),
+                xmlCompressionOption: FromMutable(fragment.XmlCompressionOption),
                 optionKind: fragment.OptionKind
             );
         }
@@ -9108,15 +9286,15 @@ namespace Xledger.Sql.ImmutableDom {
         public static TargetDeclaration FromMutable(ScriptDom.TargetDeclaration fragment) {
             if (fragment is null) { return null; }
             return new TargetDeclaration(
-                objectName: (EventSessionObjectName)FromMutable(fragment.ObjectName),
-                targetDeclarationParameters: fragment.TargetDeclarationParameters.SelectList(c => (EventDeclarationSetParameter)FromMutable(c))
+                objectName: FromMutable(fragment.ObjectName),
+                targetDeclarationParameters: fragment.TargetDeclarationParameters.SelectList(FromMutable)
             );
         }
         
         public static TargetRecoveryTimeDatabaseOption FromMutable(ScriptDom.TargetRecoveryTimeDatabaseOption fragment) {
             if (fragment is null) { return null; }
             return new TargetRecoveryTimeDatabaseOption(
-                recoveryTime: (Literal)FromMutable(fragment.RecoveryTime),
+                recoveryTime: FromMutable(fragment.RecoveryTime),
                 unit: fragment.Unit,
                 optionKind: fragment.OptionKind
             );
@@ -9126,24 +9304,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new TemporalClause(
                 temporalClauseType: fragment.TemporalClauseType,
-                startTime: (ScalarExpression)FromMutable(fragment.StartTime),
-                endTime: (ScalarExpression)FromMutable(fragment.EndTime)
+                startTime: FromMutable(fragment.StartTime),
+                endTime: FromMutable(fragment.EndTime)
             );
         }
         
         public static ThrowStatement FromMutable(ScriptDom.ThrowStatement fragment) {
             if (fragment is null) { return null; }
             return new ThrowStatement(
-                errorNumber: (ValueExpression)FromMutable(fragment.ErrorNumber),
-                message: (ValueExpression)FromMutable(fragment.Message),
-                state: (ValueExpression)FromMutable(fragment.State)
+                errorNumber: FromMutable(fragment.ErrorNumber),
+                message: FromMutable(fragment.Message),
+                state: FromMutable(fragment.State)
             );
         }
         
         public static TopRowFilter FromMutable(ScriptDom.TopRowFilter fragment) {
             if (fragment is null) { return null; }
             return new TopRowFilter(
-                expression: (ScalarExpression)FromMutable(fragment.Expression),
+                expression: FromMutable(fragment.Expression),
                 percent: fragment.Percent,
                 withTies: fragment.WithTies
             );
@@ -9153,20 +9331,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new TriggerAction(
                 triggerActionType: fragment.TriggerActionType,
-                eventTypeGroup: (EventTypeGroupContainer)FromMutable(fragment.EventTypeGroup)
+                eventTypeGroup: FromMutable(fragment.EventTypeGroup)
             );
         }
         
         public static TriggerObject FromMutable(ScriptDom.TriggerObject fragment) {
             if (fragment is null) { return null; }
             return new TriggerObject(
-                name: (SchemaObjectName)FromMutable(fragment.Name),
+                name: FromMutable(fragment.Name),
                 triggerScope: fragment.TriggerScope
             );
         }
         
         public static TriggerOption FromMutable(ScriptDom.TriggerOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TriggerOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as TriggerOption; }
             return new TriggerOption(
                 optionKind: fragment.OptionKind
             );
@@ -9175,8 +9354,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static TruncateTableStatement FromMutable(ScriptDom.TruncateTableStatement fragment) {
             if (fragment is null) { return null; }
             return new TruncateTableStatement(
-                tableName: (SchemaObjectName)FromMutable(fragment.TableName),
-                partitionRanges: fragment.PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c))
+                tableName: FromMutable(fragment.TableName),
+                partitionRanges: fragment.PartitionRanges.SelectList(FromMutable)
             );
         }
         
@@ -9191,52 +9370,52 @@ namespace Xledger.Sql.ImmutableDom {
         public static TryCastCall FromMutable(ScriptDom.TryCastCall fragment) {
             if (fragment is null) { return null; }
             return new TryCastCall(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                parameter: (ScalarExpression)FromMutable(fragment.Parameter),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                dataType: FromMutable(fragment.DataType),
+                parameter: FromMutable(fragment.Parameter),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static TryCatchStatement FromMutable(ScriptDom.TryCatchStatement fragment) {
             if (fragment is null) { return null; }
             return new TryCatchStatement(
-                tryStatements: (StatementList)FromMutable(fragment.TryStatements),
-                catchStatements: (StatementList)FromMutable(fragment.CatchStatements)
+                tryStatements: FromMutable(fragment.TryStatements),
+                catchStatements: FromMutable(fragment.CatchStatements)
             );
         }
         
         public static TryConvertCall FromMutable(ScriptDom.TryConvertCall fragment) {
             if (fragment is null) { return null; }
             return new TryConvertCall(
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                parameter: (ScalarExpression)FromMutable(fragment.Parameter),
-                style: (ScalarExpression)FromMutable(fragment.Style),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                dataType: FromMutable(fragment.DataType),
+                parameter: FromMutable(fragment.Parameter),
+                style: FromMutable(fragment.Style),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static TryParseCall FromMutable(ScriptDom.TryParseCall fragment) {
             if (fragment is null) { return null; }
             return new TryParseCall(
-                stringValue: (ScalarExpression)FromMutable(fragment.StringValue),
-                dataType: (DataTypeReference)FromMutable(fragment.DataType),
-                culture: (ScalarExpression)FromMutable(fragment.Culture),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                stringValue: FromMutable(fragment.StringValue),
+                dataType: FromMutable(fragment.DataType),
+                culture: FromMutable(fragment.Culture),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static TSEqualCall FromMutable(ScriptDom.TSEqualCall fragment) {
             if (fragment is null) { return null; }
             return new TSEqualCall(
-                firstExpression: (ScalarExpression)FromMutable(fragment.FirstExpression),
-                secondExpression: (ScalarExpression)FromMutable(fragment.SecondExpression)
+                firstExpression: FromMutable(fragment.FirstExpression),
+                secondExpression: FromMutable(fragment.SecondExpression)
             );
         }
         
         public static TSqlBatch FromMutable(ScriptDom.TSqlBatch fragment) {
             if (fragment is null) { return null; }
             return new TSqlBatch(
-                statements: fragment.Statements.SelectList(c => (TSqlStatement)FromMutable(c))
+                statements: fragment.Statements.SelectList(FromMutable)
             );
         }
         
@@ -9250,7 +9429,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static TSqlScript FromMutable(ScriptDom.TSqlScript fragment) {
             if (fragment is null) { return null; }
             return new TSqlScript(
-                batches: fragment.Batches.SelectList(c => (TSqlBatch)FromMutable(c))
+                batches: fragment.Batches.SelectList(FromMutable)
             );
         }
         
@@ -9265,7 +9444,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new UnaryExpression(
                 unaryExpressionType: fragment.UnaryExpressionType,
-                expression: (ScalarExpression)FromMutable(fragment.Expression)
+                expression: FromMutable(fragment.Expression)
             );
         }
         
@@ -9275,23 +9454,23 @@ namespace Xledger.Sql.ImmutableDom {
                 clustered: fragment.Clustered,
                 isPrimaryKey: fragment.IsPrimaryKey,
                 isEnforced: fragment.IsEnforced,
-                columns: fragment.Columns.SelectList(c => (ColumnWithSortOrder)FromMutable(c)),
-                indexOptions: fragment.IndexOptions.SelectList(c => (IndexOption)FromMutable(c)),
-                onFileGroupOrPartitionScheme: (FileGroupOrPartitionScheme)FromMutable(fragment.OnFileGroupOrPartitionScheme),
-                indexType: (IndexType)FromMutable(fragment.IndexType),
-                fileStreamOn: (IdentifierOrValueExpression)FromMutable(fragment.FileStreamOn),
-                constraintIdentifier: (Identifier)FromMutable(fragment.ConstraintIdentifier)
+                columns: fragment.Columns.SelectList(FromMutable),
+                indexOptions: fragment.IndexOptions.SelectList(FromMutable),
+                onFileGroupOrPartitionScheme: FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                indexType: FromMutable(fragment.IndexType),
+                fileStreamOn: FromMutable(fragment.FileStreamOn),
+                constraintIdentifier: FromMutable(fragment.ConstraintIdentifier)
             );
         }
         
         public static UnpivotedTableReference FromMutable(ScriptDom.UnpivotedTableReference fragment) {
             if (fragment is null) { return null; }
             return new UnpivotedTableReference(
-                tableReference: (TableReference)FromMutable(fragment.TableReference),
-                inColumns: fragment.InColumns.SelectList(c => (ColumnReferenceExpression)FromMutable(c)),
-                pivotColumn: (Identifier)FromMutable(fragment.PivotColumn),
-                valueColumn: (Identifier)FromMutable(fragment.ValueColumn),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                tableReference: FromMutable(fragment.TableReference),
+                inColumns: fragment.InColumns.SelectList(FromMutable),
+                pivotColumn: FromMutable(fragment.PivotColumn),
+                valueColumn: FromMutable(fragment.ValueColumn),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -9300,74 +9479,74 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new UnqualifiedJoin(
                 unqualifiedJoinType: fragment.UnqualifiedJoinType,
-                firstTableReference: (TableReference)FromMutable(fragment.FirstTableReference),
-                secondTableReference: (TableReference)FromMutable(fragment.SecondTableReference)
+                firstTableReference: FromMutable(fragment.FirstTableReference),
+                secondTableReference: FromMutable(fragment.SecondTableReference)
             );
         }
         
         public static UpdateCall FromMutable(ScriptDom.UpdateCall fragment) {
             if (fragment is null) { return null; }
             return new UpdateCall(
-                identifier: (Identifier)FromMutable(fragment.Identifier)
+                identifier: FromMutable(fragment.Identifier)
             );
         }
         
         public static UpdateForClause FromMutable(ScriptDom.UpdateForClause fragment) {
             if (fragment is null) { return null; }
             return new UpdateForClause(
-                columns: fragment.Columns.SelectList(c => (ColumnReferenceExpression)FromMutable(c))
+                columns: fragment.Columns.SelectList(FromMutable)
             );
         }
         
         public static UpdateMergeAction FromMutable(ScriptDom.UpdateMergeAction fragment) {
             if (fragment is null) { return null; }
             return new UpdateMergeAction(
-                setClauses: fragment.SetClauses.SelectList(c => (SetClause)FromMutable(c))
+                setClauses: fragment.SetClauses.SelectList(FromMutable)
             );
         }
         
         public static UpdateSpecification FromMutable(ScriptDom.UpdateSpecification fragment) {
             if (fragment is null) { return null; }
             return new UpdateSpecification(
-                setClauses: fragment.SetClauses.SelectList(c => (SetClause)FromMutable(c)),
-                fromClause: (FromClause)FromMutable(fragment.FromClause),
-                whereClause: (WhereClause)FromMutable(fragment.WhereClause),
-                target: (TableReference)FromMutable(fragment.Target),
-                topRowFilter: (TopRowFilter)FromMutable(fragment.TopRowFilter),
-                outputIntoClause: (OutputIntoClause)FromMutable(fragment.OutputIntoClause),
-                outputClause: (OutputClause)FromMutable(fragment.OutputClause)
+                setClauses: fragment.SetClauses.SelectList(FromMutable),
+                fromClause: FromMutable(fragment.FromClause),
+                whereClause: FromMutable(fragment.WhereClause),
+                target: FromMutable(fragment.Target),
+                topRowFilter: FromMutable(fragment.TopRowFilter),
+                outputIntoClause: FromMutable(fragment.OutputIntoClause),
+                outputClause: FromMutable(fragment.OutputClause)
             );
         }
         
         public static UpdateStatement FromMutable(ScriptDom.UpdateStatement fragment) {
             if (fragment is null) { return null; }
             return new UpdateStatement(
-                updateSpecification: (UpdateSpecification)FromMutable(fragment.UpdateSpecification),
-                withCtesAndXmlNamespaces: (WithCtesAndXmlNamespaces)FromMutable(fragment.WithCtesAndXmlNamespaces),
-                optimizerHints: fragment.OptimizerHints.SelectList(c => (OptimizerHint)FromMutable(c))
+                updateSpecification: FromMutable(fragment.UpdateSpecification),
+                withCtesAndXmlNamespaces: FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(FromMutable)
             );
         }
         
         public static UpdateStatisticsStatement FromMutable(ScriptDom.UpdateStatisticsStatement fragment) {
             if (fragment is null) { return null; }
             return new UpdateStatisticsStatement(
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName),
-                subElements: fragment.SubElements.SelectList(c => (Identifier)FromMutable(c)),
-                statisticsOptions: fragment.StatisticsOptions.SelectList(c => (StatisticsOption)FromMutable(c))
+                schemaObjectName: FromMutable(fragment.SchemaObjectName),
+                subElements: fragment.SubElements.SelectList(FromMutable),
+                statisticsOptions: fragment.StatisticsOptions.SelectList(FromMutable)
             );
         }
         
         public static UpdateTextStatement FromMutable(ScriptDom.UpdateTextStatement fragment) {
             if (fragment is null) { return null; }
             return new UpdateTextStatement(
-                insertOffset: (ScalarExpression)FromMutable(fragment.InsertOffset),
-                deleteLength: (ScalarExpression)FromMutable(fragment.DeleteLength),
-                sourceColumn: (ColumnReferenceExpression)FromMutable(fragment.SourceColumn),
-                sourceParameter: (ValueExpression)FromMutable(fragment.SourceParameter),
+                insertOffset: FromMutable(fragment.InsertOffset),
+                deleteLength: FromMutable(fragment.DeleteLength),
+                sourceColumn: FromMutable(fragment.SourceColumn),
+                sourceParameter: FromMutable(fragment.SourceParameter),
                 bulk: fragment.Bulk,
-                column: (ColumnReferenceExpression)FromMutable(fragment.Column),
-                textId: (ValueExpression)FromMutable(fragment.TextId),
-                timestamp: (Literal)FromMutable(fragment.Timestamp),
+                column: FromMutable(fragment.Column),
+                textId: FromMutable(fragment.TextId),
+                timestamp: FromMutable(fragment.Timestamp),
                 withLog: fragment.WithLog
             );
         }
@@ -9375,9 +9554,9 @@ namespace Xledger.Sql.ImmutableDom {
         public static UseFederationStatement FromMutable(ScriptDom.UseFederationStatement fragment) {
             if (fragment is null) { return null; }
             return new UseFederationStatement(
-                federationName: (Identifier)FromMutable(fragment.FederationName),
-                distributionName: (Identifier)FromMutable(fragment.DistributionName),
-                @value: (ScalarExpression)FromMutable(fragment.Value),
+                federationName: FromMutable(fragment.FederationName),
+                distributionName: FromMutable(fragment.DistributionName),
+                @value: FromMutable(fragment.Value),
                 filtering: fragment.Filtering
             );
         }
@@ -9385,7 +9564,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static UseHintList FromMutable(ScriptDom.UseHintList fragment) {
             if (fragment is null) { return null; }
             return new UseHintList(
-                hints: fragment.Hints.SelectList(c => (StringLiteral)FromMutable(c)),
+                hints: fragment.Hints.SelectList(FromMutable),
                 hintKind: fragment.HintKind
             );
         }
@@ -9393,24 +9572,24 @@ namespace Xledger.Sql.ImmutableDom {
         public static UserDataTypeReference FromMutable(ScriptDom.UserDataTypeReference fragment) {
             if (fragment is null) { return null; }
             return new UserDataTypeReference(
-                parameters: fragment.Parameters.SelectList(c => (Literal)FromMutable(c)),
-                name: (SchemaObjectName)FromMutable(fragment.Name)
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static UserDefinedTypeCallTarget FromMutable(ScriptDom.UserDefinedTypeCallTarget fragment) {
             if (fragment is null) { return null; }
             return new UserDefinedTypeCallTarget(
-                schemaObjectName: (SchemaObjectName)FromMutable(fragment.SchemaObjectName)
+                schemaObjectName: FromMutable(fragment.SchemaObjectName)
             );
         }
         
         public static UserDefinedTypePropertyAccess FromMutable(ScriptDom.UserDefinedTypePropertyAccess fragment) {
             if (fragment is null) { return null; }
             return new UserDefinedTypePropertyAccess(
-                callTarget: (CallTarget)FromMutable(fragment.CallTarget),
-                propertyName: (Identifier)FromMutable(fragment.PropertyName),
-                collation: (Identifier)FromMutable(fragment.Collation)
+                callTarget: FromMutable(fragment.CallTarget),
+                propertyName: FromMutable(fragment.PropertyName),
+                collation: FromMutable(fragment.Collation)
             );
         }
         
@@ -9418,14 +9597,14 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new UserLoginOption(
                 userLoginOptionType: fragment.UserLoginOptionType,
-                identifier: (Identifier)FromMutable(fragment.Identifier)
+                identifier: FromMutable(fragment.Identifier)
             );
         }
         
         public static UserRemoteServiceBindingOption FromMutable(ScriptDom.UserRemoteServiceBindingOption fragment) {
             if (fragment is null) { return null; }
             return new UserRemoteServiceBindingOption(
-                user: (Identifier)FromMutable(fragment.User),
+                user: FromMutable(fragment.User),
                 optionKind: fragment.OptionKind
             );
         }
@@ -9433,7 +9612,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static UseStatement FromMutable(ScriptDom.UseStatement fragment) {
             if (fragment is null) { return null; }
             return new UseStatement(
-                databaseName: (Identifier)FromMutable(fragment.DatabaseName)
+                databaseName: FromMutable(fragment.DatabaseName)
             );
         }
         
@@ -9441,18 +9620,18 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new ValuesInsertSource(
                 isDefaultValues: fragment.IsDefaultValues,
-                rowValues: fragment.RowValues.SelectList(c => (RowValue)FromMutable(c))
+                rowValues: fragment.RowValues.SelectList(FromMutable)
             );
         }
         
         public static VariableMethodCallTableReference FromMutable(ScriptDom.VariableMethodCallTableReference fragment) {
             if (fragment is null) { return null; }
             return new VariableMethodCallTableReference(
-                variable: (VariableReference)FromMutable(fragment.Variable),
-                methodName: (Identifier)FromMutable(fragment.MethodName),
-                parameters: fragment.Parameters.SelectList(c => (ScalarExpression)FromMutable(c)),
-                columns: fragment.Columns.SelectList(c => (Identifier)FromMutable(c)),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                variable: FromMutable(fragment.Variable),
+                methodName: FromMutable(fragment.MethodName),
+                parameters: fragment.Parameters.SelectList(FromMutable),
+                columns: fragment.Columns.SelectList(FromMutable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -9461,15 +9640,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new VariableReference(
                 name: fragment.Name,
-                collation: (Identifier)FromMutable(fragment.Collation)
+                collation: FromMutable(fragment.Collation)
             );
         }
         
         public static VariableTableReference FromMutable(ScriptDom.VariableTableReference fragment) {
             if (fragment is null) { return null; }
             return new VariableTableReference(
-                variable: (VariableReference)FromMutable(fragment.Variable),
-                alias: (Identifier)FromMutable(fragment.Alias),
+                variable: FromMutable(fragment.Variable),
+                alias: FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );
         }
@@ -9477,8 +9656,8 @@ namespace Xledger.Sql.ImmutableDom {
         public static VariableValuePair FromMutable(ScriptDom.VariableValuePair fragment) {
             if (fragment is null) { return null; }
             return new VariableValuePair(
-                variable: (VariableReference)FromMutable(fragment.Variable),
-                @value: (ScalarExpression)FromMutable(fragment.Value),
+                variable: FromMutable(fragment.Variable),
+                @value: FromMutable(fragment.Value),
                 isForUnknown: fragment.IsForUnknown
             );
         }
@@ -9486,7 +9665,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static ViewDistributionOption FromMutable(ScriptDom.ViewDistributionOption fragment) {
             if (fragment is null) { return null; }
             return new ViewDistributionOption(
-                @value: (ViewDistributionPolicy)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 optionKind: fragment.OptionKind
             );
         }
@@ -9501,12 +9680,13 @@ namespace Xledger.Sql.ImmutableDom {
         public static ViewHashDistributionPolicy FromMutable(ScriptDom.ViewHashDistributionPolicy fragment) {
             if (fragment is null) { return null; }
             return new ViewHashDistributionPolicy(
-                distributionColumn: (Identifier)FromMutable(fragment.DistributionColumn)
+                distributionColumn: FromMutable(fragment.DistributionColumn)
             );
         }
         
         public static ViewOption FromMutable(ScriptDom.ViewOption fragment) {
             if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ViewOption)) { return FromMutable(fragment as ScriptDom.TSqlFragment) as ViewOption; }
             return new ViewOption(
                 optionKind: fragment.OptionKind
             );
@@ -9522,7 +9702,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static WaitAtLowPriorityOption FromMutable(ScriptDom.WaitAtLowPriorityOption fragment) {
             if (fragment is null) { return null; }
             return new WaitAtLowPriorityOption(
-                options: fragment.Options.SelectList(c => (LowPriorityLockWaitOption)FromMutable(c)),
+                options: fragment.Options.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -9531,43 +9711,43 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new WaitForStatement(
                 waitForOption: fragment.WaitForOption,
-                parameter: (ValueExpression)FromMutable(fragment.Parameter),
-                timeout: (ScalarExpression)FromMutable(fragment.Timeout),
-                statement: (WaitForSupportedStatement)FromMutable(fragment.Statement)
+                parameter: FromMutable(fragment.Parameter),
+                timeout: FromMutable(fragment.Timeout),
+                statement: FromMutable(fragment.Statement)
             );
         }
         
         public static WhereClause FromMutable(ScriptDom.WhereClause fragment) {
             if (fragment is null) { return null; }
             return new WhereClause(
-                searchCondition: (BooleanExpression)FromMutable(fragment.SearchCondition),
-                cursor: (CursorId)FromMutable(fragment.Cursor)
+                searchCondition: FromMutable(fragment.SearchCondition),
+                cursor: FromMutable(fragment.Cursor)
             );
         }
         
         public static WhileStatement FromMutable(ScriptDom.WhileStatement fragment) {
             if (fragment is null) { return null; }
             return new WhileStatement(
-                predicate: (BooleanExpression)FromMutable(fragment.Predicate),
-                statement: (TSqlStatement)FromMutable(fragment.Statement)
+                predicate: FromMutable(fragment.Predicate),
+                statement: FromMutable(fragment.Statement)
             );
         }
         
         public static WindowClause FromMutable(ScriptDom.WindowClause fragment) {
             if (fragment is null) { return null; }
             return new WindowClause(
-                windowDefinition: fragment.WindowDefinition.SelectList(c => (WindowDefinition)FromMutable(c))
+                windowDefinition: fragment.WindowDefinition.SelectList(FromMutable)
             );
         }
         
         public static WindowDefinition FromMutable(ScriptDom.WindowDefinition fragment) {
             if (fragment is null) { return null; }
             return new WindowDefinition(
-                windowName: (Identifier)FromMutable(fragment.WindowName),
-                refWindowName: (Identifier)FromMutable(fragment.RefWindowName),
-                partitions: fragment.Partitions.SelectList(c => (ScalarExpression)FromMutable(c)),
-                orderByClause: (OrderByClause)FromMutable(fragment.OrderByClause),
-                windowFrameClause: (WindowFrameClause)FromMutable(fragment.WindowFrameClause)
+                windowName: FromMutable(fragment.WindowName),
+                refWindowName: FromMutable(fragment.RefWindowName),
+                partitions: fragment.Partitions.SelectList(FromMutable),
+                orderByClause: FromMutable(fragment.OrderByClause),
+                windowFrameClause: FromMutable(fragment.WindowFrameClause)
             );
         }
         
@@ -9575,15 +9755,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new WindowDelimiter(
                 windowDelimiterType: fragment.WindowDelimiterType,
-                offsetValue: (ScalarExpression)FromMutable(fragment.OffsetValue)
+                offsetValue: FromMutable(fragment.OffsetValue)
             );
         }
         
         public static WindowFrameClause FromMutable(ScriptDom.WindowFrameClause fragment) {
             if (fragment is null) { return null; }
             return new WindowFrameClause(
-                top: (WindowDelimiter)FromMutable(fragment.Top),
-                bottom: (WindowDelimiter)FromMutable(fragment.Bottom),
+                top: FromMutable(fragment.Top),
+                bottom: FromMutable(fragment.Bottom),
                 windowFrameType: fragment.WindowFrameType
             );
         }
@@ -9591,23 +9771,23 @@ namespace Xledger.Sql.ImmutableDom {
         public static WindowsCreateLoginSource FromMutable(ScriptDom.WindowsCreateLoginSource fragment) {
             if (fragment is null) { return null; }
             return new WindowsCreateLoginSource(
-                options: fragment.Options.SelectList(c => (PrincipalOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
         public static WithCtesAndXmlNamespaces FromMutable(ScriptDom.WithCtesAndXmlNamespaces fragment) {
             if (fragment is null) { return null; }
             return new WithCtesAndXmlNamespaces(
-                xmlNamespaces: (XmlNamespaces)FromMutable(fragment.XmlNamespaces),
-                commonTableExpressions: fragment.CommonTableExpressions.SelectList(c => (CommonTableExpression)FromMutable(c)),
-                changeTrackingContext: (ValueExpression)FromMutable(fragment.ChangeTrackingContext)
+                xmlNamespaces: FromMutable(fragment.XmlNamespaces),
+                commonTableExpressions: fragment.CommonTableExpressions.SelectList(FromMutable),
+                changeTrackingContext: FromMutable(fragment.ChangeTrackingContext)
             );
         }
         
         public static WithinGroupClause FromMutable(ScriptDom.WithinGroupClause fragment) {
             if (fragment is null) { return null; }
             return new WithinGroupClause(
-                orderByClause: (OrderByClause)FromMutable(fragment.OrderByClause),
+                orderByClause: FromMutable(fragment.OrderByClause),
                 hasGraphPath: fragment.HasGraphPath
             );
         }
@@ -9615,7 +9795,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static WitnessDatabaseOption FromMutable(ScriptDom.WitnessDatabaseOption fragment) {
             if (fragment is null) { return null; }
             return new WitnessDatabaseOption(
-                witnessServer: (Literal)FromMutable(fragment.WitnessServer),
+                witnessServer: FromMutable(fragment.WitnessServer),
                 isOff: fragment.IsOff,
                 optionKind: fragment.OptionKind
             );
@@ -9624,7 +9804,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static WlmTimeLiteral FromMutable(ScriptDom.WlmTimeLiteral fragment) {
             if (fragment is null) { return null; }
             return new WlmTimeLiteral(
-                timeString: (StringLiteral)FromMutable(fragment.TimeString)
+                timeString: FromMutable(fragment.TimeString)
             );
         }
         
@@ -9639,7 +9819,7 @@ namespace Xledger.Sql.ImmutableDom {
         public static WorkloadGroupResourceParameter FromMutable(ScriptDom.WorkloadGroupResourceParameter fragment) {
             if (fragment is null) { return null; }
             return new WorkloadGroupResourceParameter(
-                parameterValue: (Literal)FromMutable(fragment.ParameterValue),
+                parameterValue: FromMutable(fragment.ParameterValue),
                 parameterType: fragment.ParameterType
             );
         }
@@ -9647,11 +9827,11 @@ namespace Xledger.Sql.ImmutableDom {
         public static WriteTextStatement FromMutable(ScriptDom.WriteTextStatement fragment) {
             if (fragment is null) { return null; }
             return new WriteTextStatement(
-                sourceParameter: (ValueExpression)FromMutable(fragment.SourceParameter),
+                sourceParameter: FromMutable(fragment.SourceParameter),
                 bulk: fragment.Bulk,
-                column: (ColumnReferenceExpression)FromMutable(fragment.Column),
-                textId: (ValueExpression)FromMutable(fragment.TextId),
-                timestamp: (Literal)FromMutable(fragment.Timestamp),
+                column: FromMutable(fragment.Column),
+                textId: FromMutable(fragment.TextId),
+                timestamp: FromMutable(fragment.Timestamp),
                 withLog: fragment.WithLog
             );
         }
@@ -9660,7 +9840,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new WsdlPayloadOption(
                 isNone: fragment.IsNone,
-                @value: (Literal)FromMutable(fragment.Value),
+                @value: FromMutable(fragment.Value),
                 kind: fragment.Kind
             );
         }
@@ -9669,7 +9849,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new XmlCompressionOption(
                 isCompressed: fragment.IsCompressed,
-                partitionRanges: fragment.PartitionRanges.SelectList(c => (CompressionPartitionRange)FromMutable(c)),
+                partitionRanges: fragment.PartitionRanges.SelectList(FromMutable),
                 optionKind: fragment.OptionKind
             );
         }
@@ -9678,15 +9858,15 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new XmlDataTypeReference(
                 xmlDataTypeOption: fragment.XmlDataTypeOption,
-                xmlSchemaCollection: (SchemaObjectName)FromMutable(fragment.XmlSchemaCollection),
-                name: (SchemaObjectName)FromMutable(fragment.Name)
+                xmlSchemaCollection: FromMutable(fragment.XmlSchemaCollection),
+                name: FromMutable(fragment.Name)
             );
         }
         
         public static XmlForClause FromMutable(ScriptDom.XmlForClause fragment) {
             if (fragment is null) { return null; }
             return new XmlForClause(
-                options: fragment.Options.SelectList(c => (XmlForClauseOption)FromMutable(c))
+                options: fragment.Options.SelectList(FromMutable)
             );
         }
         
@@ -9694,29 +9874,29 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             return new XmlForClauseOption(
                 optionKind: fragment.OptionKind,
-                @value: (Literal)FromMutable(fragment.Value)
+                @value: FromMutable(fragment.Value)
             );
         }
         
         public static XmlNamespaces FromMutable(ScriptDom.XmlNamespaces fragment) {
             if (fragment is null) { return null; }
             return new XmlNamespaces(
-                xmlNamespacesElements: fragment.XmlNamespacesElements.SelectList(c => (XmlNamespacesElement)FromMutable(c))
+                xmlNamespacesElements: fragment.XmlNamespacesElements.SelectList(FromMutable)
             );
         }
         
         public static XmlNamespacesAliasElement FromMutable(ScriptDom.XmlNamespacesAliasElement fragment) {
             if (fragment is null) { return null; }
             return new XmlNamespacesAliasElement(
-                identifier: (Identifier)FromMutable(fragment.Identifier),
-                @string: (StringLiteral)FromMutable(fragment.String)
+                identifier: FromMutable(fragment.Identifier),
+                @string: FromMutable(fragment.String)
             );
         }
         
         public static XmlNamespacesDefaultElement FromMutable(ScriptDom.XmlNamespacesDefaultElement fragment) {
             if (fragment is null) { return null; }
             return new XmlNamespacesDefaultElement(
-                @string: (StringLiteral)FromMutable(fragment.String)
+                @string: FromMutable(fragment.String)
             );
         }
     

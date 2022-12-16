@@ -20,9 +20,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateQueueStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateQueueStatement();
-            ret.OnFileGroup = (ScriptDom.IdentifierOrValueExpression)onFileGroup.ToMutable();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.QueueOptions.AddRange(queueOptions.SelectList(c => (ScriptDom.QueueOption)c.ToMutable()));
+            ret.OnFileGroup = (ScriptDom.IdentifierOrValueExpression)onFileGroup?.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.QueueOptions.AddRange(queueOptions.SelectList(c => (ScriptDom.QueueOption)c?.ToMutable()));
             return ret;
         }
         

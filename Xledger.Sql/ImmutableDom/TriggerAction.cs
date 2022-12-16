@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.TriggerAction ToMutableConcrete() {
             var ret = new ScriptDom.TriggerAction();
             ret.TriggerActionType = triggerActionType;
-            ret.EventTypeGroup = (ScriptDom.EventTypeGroupContainer)eventTypeGroup.ToMutable();
+            ret.EventTypeGroup = (ScriptDom.EventTypeGroupContainer)eventTypeGroup?.ToMutable();
             return ret;
         }
         

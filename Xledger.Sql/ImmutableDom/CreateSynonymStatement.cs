@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateSynonymStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSynonymStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.ForName = (ScriptDom.SchemaObjectName)forName.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.ForName = (ScriptDom.SchemaObjectName)forName?.ToMutable();
             return ret;
         }
         

@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.NullableConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.NullableConstraintDefinition();
             ret.Nullable = nullable;
-            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier.ToMutable();
+            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier?.ToMutable();
             return ret;
         }
         

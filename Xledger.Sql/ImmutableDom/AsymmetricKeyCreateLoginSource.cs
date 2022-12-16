@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AsymmetricKeyCreateLoginSource ToMutableConcrete() {
             var ret = new ScriptDom.AsymmetricKeyCreateLoginSource();
-            ret.Key = (ScriptDom.Identifier)key.ToMutable();
-            ret.Credential = (ScriptDom.Identifier)credential.ToMutable();
+            ret.Key = (ScriptDom.Identifier)key?.ToMutable();
+            ret.Credential = (ScriptDom.Identifier)credential?.ToMutable();
             return ret;
         }
         

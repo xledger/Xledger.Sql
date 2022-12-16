@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterServerConfigurationBufferPoolExtensionOption ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationBufferPoolExtensionOption();
             ret.OptionKind = optionKind;
-            ret.OptionValue = (ScriptDom.OptionValue)optionValue.ToMutable();
+            ret.OptionValue = (ScriptDom.OptionValue)optionValue?.ToMutable();
             return ret;
         }
         

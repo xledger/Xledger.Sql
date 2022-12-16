@@ -23,8 +23,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterLoginAddDropCredentialStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterLoginAddDropCredentialStatement();
             ret.IsAdd = isAdd;
-            ret.CredentialName = (ScriptDom.Identifier)credentialName.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.CredentialName = (ScriptDom.Identifier)credentialName?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             return ret;
         }
         

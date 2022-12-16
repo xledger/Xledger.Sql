@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.KillStatement ToMutableConcrete() {
             var ret = new ScriptDom.KillStatement();
-            ret.Parameter = (ScriptDom.ScalarExpression)parameter.ToMutable();
+            ret.Parameter = (ScriptDom.ScalarExpression)parameter?.ToMutable();
             ret.WithStatusOnly = withStatusOnly;
             return ret;
         }

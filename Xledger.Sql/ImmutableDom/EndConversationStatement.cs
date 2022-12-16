@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.EndConversationStatement ToMutableConcrete() {
             var ret = new ScriptDom.EndConversationStatement();
-            ret.Conversation = (ScriptDom.ScalarExpression)conversation.ToMutable();
+            ret.Conversation = (ScriptDom.ScalarExpression)conversation?.ToMutable();
             ret.WithCleanup = withCleanup;
-            ret.ErrorCode = (ScriptDom.ValueExpression)errorCode.ToMutable();
-            ret.ErrorDescription = (ScriptDom.ValueExpression)errorDescription.ToMutable();
+            ret.ErrorCode = (ScriptDom.ValueExpression)errorCode?.ToMutable();
+            ret.ErrorDescription = (ScriptDom.ValueExpression)errorDescription?.ToMutable();
             return ret;
         }
         

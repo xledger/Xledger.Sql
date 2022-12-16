@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BackupOption ToMutableConcrete() {
             var ret = new ScriptDom.BackupOption();
             ret.OptionKind = optionKind;
-            ret.Value = (ScriptDom.ScalarExpression)@value.ToMutable();
+            ret.Value = (ScriptDom.ScalarExpression)@value?.ToMutable();
             return ret;
         }
         

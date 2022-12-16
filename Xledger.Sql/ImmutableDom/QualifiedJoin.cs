@@ -26,11 +26,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QualifiedJoin ToMutableConcrete() {
             var ret = new ScriptDom.QualifiedJoin();
-            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition.ToMutable();
+            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition?.ToMutable();
             ret.QualifiedJoinType = qualifiedJoinType;
             ret.JoinHint = joinHint;
-            ret.FirstTableReference = (ScriptDom.TableReference)firstTableReference.ToMutable();
-            ret.SecondTableReference = (ScriptDom.TableReference)secondTableReference.ToMutable();
+            ret.FirstTableReference = (ScriptDom.TableReference)firstTableReference?.ToMutable();
+            ret.SecondTableReference = (ScriptDom.TableReference)secondTableReference?.ToMutable();
             return ret;
         }
         

@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterColumnAlterFullTextIndexAction ToMutableConcrete() {
             var ret = new ScriptDom.AlterColumnAlterFullTextIndexAction();
-            ret.Column = (ScriptDom.FullTextIndexColumn)column.ToMutable();
+            ret.Column = (ScriptDom.FullTextIndexColumn)column?.ToMutable();
             ret.WithNoPopulation = withNoPopulation;
             return ret;
         }

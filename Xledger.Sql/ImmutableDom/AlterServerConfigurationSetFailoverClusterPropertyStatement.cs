@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption)c?.ToMutable()));
             return ret;
         }
         

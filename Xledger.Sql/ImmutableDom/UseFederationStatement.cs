@@ -27,9 +27,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UseFederationStatement ToMutableConcrete() {
             var ret = new ScriptDom.UseFederationStatement();
-            ret.FederationName = (ScriptDom.Identifier)federationName.ToMutable();
-            ret.DistributionName = (ScriptDom.Identifier)distributionName.ToMutable();
-            ret.Value = (ScriptDom.ScalarExpression)@value.ToMutable();
+            ret.FederationName = (ScriptDom.Identifier)federationName?.ToMutable();
+            ret.DistributionName = (ScriptDom.Identifier)distributionName?.ToMutable();
+            ret.Value = (ScriptDom.ScalarExpression)@value?.ToMutable();
             ret.Filtering = filtering;
             return ret;
         }

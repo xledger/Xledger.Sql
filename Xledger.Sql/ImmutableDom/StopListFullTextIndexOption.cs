@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.StopListFullTextIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.StopListFullTextIndexOption();
             ret.IsOff = isOff;
-            ret.StopListName = (ScriptDom.Identifier)stopListName.ToMutable();
+            ret.StopListName = (ScriptDom.Identifier)stopListName?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

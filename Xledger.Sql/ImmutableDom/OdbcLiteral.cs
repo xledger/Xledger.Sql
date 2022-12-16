@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.OdbcLiteralType = odbcLiteralType;
             ret.IsNational = isNational;
             ret.Value = @value;
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

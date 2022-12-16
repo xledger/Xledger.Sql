@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ScalarExpressionDialogOption ToMutableConcrete() {
             var ret = new ScriptDom.ScalarExpressionDialogOption();
-            ret.Value = (ScriptDom.ScalarExpression)@value.ToMutable();
+            ret.Value = (ScriptDom.ScalarExpression)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

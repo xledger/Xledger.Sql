@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AutomaticTuningDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.AutomaticTuningDatabaseOption();
             ret.AutomaticTuningState = automaticTuningState;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AutomaticTuningOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AutomaticTuningOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

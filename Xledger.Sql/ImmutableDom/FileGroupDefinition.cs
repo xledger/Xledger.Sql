@@ -30,8 +30,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FileGroupDefinition ToMutableConcrete() {
             var ret = new ScriptDom.FileGroupDefinition();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.FileDeclarations.AddRange(fileDeclarations.SelectList(c => (ScriptDom.FileDeclaration)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.FileDeclarations.AddRange(fileDeclarations.SelectList(c => (ScriptDom.FileDeclaration)c?.ToMutable()));
             ret.IsDefault = isDefault;
             ret.ContainsFileStream = containsFileStream;
             ret.ContainsMemoryOptimizedData = containsMemoryOptimizedData;

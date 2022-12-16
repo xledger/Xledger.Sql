@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WithCtesAndXmlNamespaces ToMutableConcrete() {
             var ret = new ScriptDom.WithCtesAndXmlNamespaces();
-            ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces.ToMutable();
-            ret.CommonTableExpressions.AddRange(commonTableExpressions.SelectList(c => (ScriptDom.CommonTableExpression)c.ToMutable()));
-            ret.ChangeTrackingContext = (ScriptDom.ValueExpression)changeTrackingContext.ToMutable();
+            ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces?.ToMutable();
+            ret.CommonTableExpressions.AddRange(commonTableExpressions.SelectList(c => (ScriptDom.CommonTableExpression)c?.ToMutable()));
+            ret.ChangeTrackingContext = (ScriptDom.ValueExpression)changeTrackingContext?.ToMutable();
             return ret;
         }
         

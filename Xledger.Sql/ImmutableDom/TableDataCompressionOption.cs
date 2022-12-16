@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TableDataCompressionOption ToMutableConcrete() {
             var ret = new ScriptDom.TableDataCompressionOption();
-            ret.DataCompressionOption = (ScriptDom.DataCompressionOption)dataCompressionOption.ToMutable();
+            ret.DataCompressionOption = (ScriptDom.DataCompressionOption)dataCompressionOption?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

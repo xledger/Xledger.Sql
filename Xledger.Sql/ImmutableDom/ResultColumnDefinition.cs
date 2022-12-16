@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ResultColumnDefinition ToMutableConcrete() {
             var ret = new ScriptDom.ResultColumnDefinition();
-            ret.ColumnDefinition = (ScriptDom.ColumnDefinitionBase)columnDefinition.ToMutable();
-            ret.Nullable = (ScriptDom.NullableConstraintDefinition)nullable.ToMutable();
+            ret.ColumnDefinition = (ScriptDom.ColumnDefinitionBase)columnDefinition?.ToMutable();
+            ret.Nullable = (ScriptDom.NullableConstraintDefinition)nullable?.ToMutable();
             return ret;
         }
         

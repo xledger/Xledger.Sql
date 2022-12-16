@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.MergeActionClause ToMutableConcrete() {
             var ret = new ScriptDom.MergeActionClause();
             ret.Condition = condition;
-            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition.ToMutable();
-            ret.Action = (ScriptDom.MergeAction)action.ToMutable();
+            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition?.ToMutable();
+            ret.Action = (ScriptDom.MergeAction)action?.ToMutable();
             return ret;
         }
         

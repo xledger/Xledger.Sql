@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SearchPropertyListFullTextIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.SearchPropertyListFullTextIndexOption();
             ret.IsOff = isOff;
-            ret.PropertyListName = (ScriptDom.Identifier)propertyListName.ToMutable();
+            ret.PropertyListName = (ScriptDom.Identifier)propertyListName?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

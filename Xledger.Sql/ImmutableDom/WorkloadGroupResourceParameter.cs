@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WorkloadGroupResourceParameter ToMutableConcrete() {
             var ret = new ScriptDom.WorkloadGroupResourceParameter();
-            ret.ParameterValue = (ScriptDom.Literal)parameterValue.ToMutable();
+            ret.ParameterValue = (ScriptDom.Literal)parameterValue?.ToMutable();
             ret.ParameterType = parameterType;
             return ret;
         }

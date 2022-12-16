@@ -29,11 +29,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.NamedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.NamedTableReference();
-            ret.SchemaObject = (ScriptDom.SchemaObjectName)schemaObject.ToMutable();
-            ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c.ToMutable()));
-            ret.TableSampleClause = (ScriptDom.TableSampleClause)tableSampleClause.ToMutable();
-            ret.TemporalClause = (ScriptDom.TemporalClause)temporalClause.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.SchemaObject = (ScriptDom.SchemaObjectName)schemaObject?.ToMutable();
+            ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c?.ToMutable()));
+            ret.TableSampleClause = (ScriptDom.TableSampleClause)tableSampleClause?.ToMutable();
+            ret.TemporalClause = (ScriptDom.TemporalClause)temporalClause?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

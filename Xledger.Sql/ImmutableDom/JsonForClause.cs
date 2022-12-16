@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.JsonForClause ToMutableConcrete() {
             var ret = new ScriptDom.JsonForClause();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.JsonForClauseOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.JsonForClauseOption)c?.ToMutable()));
             return ret;
         }
         

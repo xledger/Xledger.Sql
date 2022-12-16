@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BooleanBinaryExpression ToMutableConcrete() {
             var ret = new ScriptDom.BooleanBinaryExpression();
             ret.BinaryExpressionType = binaryExpressionType;
-            ret.FirstExpression = (ScriptDom.BooleanExpression)firstExpression.ToMutable();
-            ret.SecondExpression = (ScriptDom.BooleanExpression)secondExpression.ToMutable();
+            ret.FirstExpression = (ScriptDom.BooleanExpression)firstExpression?.ToMutable();
+            ret.SecondExpression = (ScriptDom.BooleanExpression)secondExpression?.ToMutable();
             return ret;
         }
         

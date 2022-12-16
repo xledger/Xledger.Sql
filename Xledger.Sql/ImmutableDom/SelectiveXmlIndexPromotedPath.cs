@@ -33,11 +33,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SelectiveXmlIndexPromotedPath ToMutableConcrete() {
             var ret = new ScriptDom.SelectiveXmlIndexPromotedPath();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Path = (ScriptDom.Literal)path.ToMutable();
-            ret.SQLDataType = (ScriptDom.DataTypeReference)sQLDataType.ToMutable();
-            ret.XQueryDataType = (ScriptDom.Literal)xQueryDataType.ToMutable();
-            ret.MaxLength = (ScriptDom.IntegerLiteral)maxLength.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Path = (ScriptDom.Literal)path?.ToMutable();
+            ret.SQLDataType = (ScriptDom.DataTypeReference)sQLDataType?.ToMutable();
+            ret.XQueryDataType = (ScriptDom.Literal)xQueryDataType?.ToMutable();
+            ret.MaxLength = (ScriptDom.IntegerLiteral)maxLength?.ToMutable();
             ret.IsSingleton = isSingleton;
             return ret;
         }

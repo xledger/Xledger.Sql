@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UserRemoteServiceBindingOption ToMutableConcrete() {
             var ret = new ScriptDom.UserRemoteServiceBindingOption();
-            ret.User = (ScriptDom.Identifier)user.ToMutable();
+            ret.User = (ScriptDom.Identifier)user?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

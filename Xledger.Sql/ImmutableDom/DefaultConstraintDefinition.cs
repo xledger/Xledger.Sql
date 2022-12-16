@@ -25,10 +25,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DefaultConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.DefaultConstraintDefinition();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.WithValues = withValues;
-            ret.Column = (ScriptDom.Identifier)column.ToMutable();
-            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier.ToMutable();
+            ret.Column = (ScriptDom.Identifier)column?.ToMutable();
+            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier?.ToMutable();
             return ret;
         }
         

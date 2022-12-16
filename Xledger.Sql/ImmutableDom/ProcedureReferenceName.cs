@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ProcedureReferenceName ToMutableConcrete() {
             var ret = new ScriptDom.ProcedureReferenceName();
-            ret.ProcedureReference = (ScriptDom.ProcedureReference)procedureReference.ToMutable();
-            ret.ProcedureVariable = (ScriptDom.VariableReference)procedureVariable.ToMutable();
+            ret.ProcedureReference = (ScriptDom.ProcedureReference)procedureReference?.ToMutable();
+            ret.ProcedureVariable = (ScriptDom.VariableReference)procedureVariable?.ToMutable();
             return ret;
         }
         

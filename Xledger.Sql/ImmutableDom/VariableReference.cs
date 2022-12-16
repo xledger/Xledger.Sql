@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.VariableReference ToMutableConcrete() {
             var ret = new ScriptDom.VariableReference();
             ret.Name = name;
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

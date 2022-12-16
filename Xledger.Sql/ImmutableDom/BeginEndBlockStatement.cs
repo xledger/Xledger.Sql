@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BeginEndBlockStatement ToMutableConcrete() {
             var ret = new ScriptDom.BeginEndBlockStatement();
-            ret.StatementList = (ScriptDom.StatementList)statementList.ToMutable();
+            ret.StatementList = (ScriptDom.StatementList)statementList?.ToMutable();
             return ret;
         }
         

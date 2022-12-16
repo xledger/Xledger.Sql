@@ -27,9 +27,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GraphMatchCompositeExpression ToMutableConcrete() {
             var ret = new ScriptDom.GraphMatchCompositeExpression();
-            ret.LeftNode = (ScriptDom.GraphMatchNodeExpression)leftNode.ToMutable();
-            ret.Edge = (ScriptDom.Identifier)edge.ToMutable();
-            ret.RightNode = (ScriptDom.GraphMatchNodeExpression)rightNode.ToMutable();
+            ret.LeftNode = (ScriptDom.GraphMatchNodeExpression)leftNode?.ToMutable();
+            ret.Edge = (ScriptDom.Identifier)edge?.ToMutable();
+            ret.RightNode = (ScriptDom.GraphMatchNodeExpression)rightNode?.ToMutable();
             ret.ArrowOnRight = arrowOnRight;
             return ret;
         }

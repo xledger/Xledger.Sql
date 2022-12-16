@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExistsPredicate ToMutableConcrete() {
             var ret = new ScriptDom.ExistsPredicate();
-            ret.Subquery = (ScriptDom.ScalarSubquery)subquery.ToMutable();
+            ret.Subquery = (ScriptDom.ScalarSubquery)subquery?.ToMutable();
             return ret;
         }
         

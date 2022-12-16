@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ContractMessage ToMutableConcrete() {
             var ret = new ScriptDom.ContractMessage();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.SentBy = sentBy;
             return ret;
         }

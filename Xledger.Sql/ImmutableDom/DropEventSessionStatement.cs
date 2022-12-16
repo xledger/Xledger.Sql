@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DropEventSessionStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropEventSessionStatement();
             ret.SessionScope = sessionScope;
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsIfExists = isIfExists;
             return ret;
         }

@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.HavingClause ToMutableConcrete() {
             var ret = new ScriptDom.HavingClause();
-            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition.ToMutable();
+            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition?.ToMutable();
             return ret;
         }
         

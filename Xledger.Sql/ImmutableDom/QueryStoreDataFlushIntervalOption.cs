@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueryStoreDataFlushIntervalOption ToMutableConcrete() {
             var ret = new ScriptDom.QueryStoreDataFlushIntervalOption();
-            ret.FlushInterval = (ScriptDom.Literal)flushInterval.ToMutable();
+            ret.FlushInterval = (ScriptDom.Literal)flushInterval?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

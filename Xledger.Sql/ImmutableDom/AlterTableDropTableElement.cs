@@ -28,8 +28,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterTableDropTableElement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableDropTableElement();
             ret.TableElementType = tableElementType;
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.DropClusteredConstraintOptions.AddRange(dropClusteredConstraintOptions.SelectList(c => (ScriptDom.DropClusteredConstraintOption)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.DropClusteredConstraintOptions.AddRange(dropClusteredConstraintOptions.SelectList(c => (ScriptDom.DropClusteredConstraintOption)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

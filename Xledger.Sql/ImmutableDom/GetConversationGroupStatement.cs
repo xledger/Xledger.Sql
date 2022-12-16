@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GetConversationGroupStatement ToMutableConcrete() {
             var ret = new ScriptDom.GetConversationGroupStatement();
-            ret.GroupId = (ScriptDom.VariableReference)groupId.ToMutable();
-            ret.Queue = (ScriptDom.SchemaObjectName)queue.ToMutable();
+            ret.GroupId = (ScriptDom.VariableReference)groupId?.ToMutable();
+            ret.Queue = (ScriptDom.SchemaObjectName)queue?.ToMutable();
             return ret;
         }
         

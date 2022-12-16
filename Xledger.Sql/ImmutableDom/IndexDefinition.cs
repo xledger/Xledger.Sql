@@ -42,15 +42,15 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IndexDefinition ToMutableConcrete() {
             var ret = new ScriptDom.IndexDefinition();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.Unique = unique;
-            ret.IndexType = (ScriptDom.IndexType)indexType.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c.ToMutable()));
-            ret.IncludeColumns.AddRange(includeColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
-            ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate.ToMutable();
-            ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn.ToMutable();
+            ret.IndexType = (ScriptDom.IndexType)indexType?.ToMutable();
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
+            ret.IncludeColumns.AddRange(includeColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
+            ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate?.ToMutable();
+            ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn?.ToMutable();
             return ret;
         }
         

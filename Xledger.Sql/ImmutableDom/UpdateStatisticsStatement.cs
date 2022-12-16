@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateStatisticsStatement ToMutableConcrete() {
             var ret = new ScriptDom.UpdateStatisticsStatement();
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
-            ret.SubElements.AddRange(subElements.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.StatisticsOptions.AddRange(statisticsOptions.SelectList(c => (ScriptDom.StatisticsOption)c.ToMutable()));
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
+            ret.SubElements.AddRange(subElements.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.StatisticsOptions.AddRange(statisticsOptions.SelectList(c => (ScriptDom.StatisticsOption)c?.ToMutable()));
             return ret;
         }
         

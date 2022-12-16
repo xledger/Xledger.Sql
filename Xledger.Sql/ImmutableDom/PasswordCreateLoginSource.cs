@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PasswordCreateLoginSource ToMutableConcrete() {
             var ret = new ScriptDom.PasswordCreateLoginSource();
-            ret.Password = (ScriptDom.Literal)password.ToMutable();
+            ret.Password = (ScriptDom.Literal)password?.ToMutable();
             ret.Hashed = hashed;
             ret.MustChange = mustChange;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
             return ret;
         }
         

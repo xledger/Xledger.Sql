@@ -16,9 +16,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServiceStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServiceStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.QueueName = (ScriptDom.SchemaObjectName)queueName.ToMutable();
-            ret.ServiceContracts.AddRange(serviceContracts.SelectList(c => (ScriptDom.ServiceContract)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.QueueName = (ScriptDom.SchemaObjectName)queueName?.ToMutable();
+            ret.ServiceContracts.AddRange(serviceContracts.SelectList(c => (ScriptDom.ServiceContract)c?.ToMutable()));
             return ret;
         }
         

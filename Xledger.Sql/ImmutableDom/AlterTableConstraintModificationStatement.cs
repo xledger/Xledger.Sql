@@ -31,8 +31,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.ExistingRowsCheckEnforcement = existingRowsCheckEnforcement;
             ret.ConstraintEnforcement = constraintEnforcement;
             ret.All = all;
-            ret.ConstraintNames.AddRange(constraintNames.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.ConstraintNames.AddRange(constraintNames.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

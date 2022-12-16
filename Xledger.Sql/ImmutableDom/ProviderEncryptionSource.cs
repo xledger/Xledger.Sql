@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ProviderEncryptionSource ToMutableConcrete() {
             var ret = new ScriptDom.ProviderEncryptionSource();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.KeyOptions.AddRange(keyOptions.SelectList(c => (ScriptDom.KeyOption)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.KeyOptions.AddRange(keyOptions.SelectList(c => (ScriptDom.KeyOption)c?.ToMutable()));
             return ret;
         }
         

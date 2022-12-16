@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GraphMatchLastNodePredicate ToMutableConcrete() {
             var ret = new ScriptDom.GraphMatchLastNodePredicate();
-            ret.LeftExpression = (ScriptDom.GraphMatchNodeExpression)leftExpression.ToMutable();
-            ret.RightExpression = (ScriptDom.GraphMatchNodeExpression)rightExpression.ToMutable();
+            ret.LeftExpression = (ScriptDom.GraphMatchNodeExpression)leftExpression?.ToMutable();
+            ret.RightExpression = (ScriptDom.GraphMatchNodeExpression)rightExpression?.ToMutable();
             return ret;
         }
         

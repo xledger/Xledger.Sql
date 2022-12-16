@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ExpressionWithSortOrder ToMutableConcrete() {
             var ret = new ScriptDom.ExpressionWithSortOrder();
             ret.SortOrder = sortOrder;
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             return ret;
         }
         

@@ -30,10 +30,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RaiseErrorStatement ToMutableConcrete() {
             var ret = new ScriptDom.RaiseErrorStatement();
-            ret.FirstParameter = (ScriptDom.ScalarExpression)firstParameter.ToMutable();
-            ret.SecondParameter = (ScriptDom.ScalarExpression)secondParameter.ToMutable();
-            ret.ThirdParameter = (ScriptDom.ScalarExpression)thirdParameter.ToMutable();
-            ret.OptionalParameters.AddRange(optionalParameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.FirstParameter = (ScriptDom.ScalarExpression)firstParameter?.ToMutable();
+            ret.SecondParameter = (ScriptDom.ScalarExpression)secondParameter?.ToMutable();
+            ret.ThirdParameter = (ScriptDom.ScalarExpression)thirdParameter?.ToMutable();
+            ret.OptionalParameters.AddRange(optionalParameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.RaiseErrorOptions = raiseErrorOptions;
             return ret;
         }

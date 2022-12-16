@@ -30,13 +30,13 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterEventSessionStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterEventSessionStatement();
             ret.StatementType = statementType;
-            ret.DropEventDeclarations.AddRange(dropEventDeclarations.SelectList(c => (ScriptDom.EventSessionObjectName)c.ToMutable()));
-            ret.DropTargetDeclarations.AddRange(dropTargetDeclarations.SelectList(c => (ScriptDom.EventSessionObjectName)c.ToMutable()));
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.DropEventDeclarations.AddRange(dropEventDeclarations.SelectList(c => (ScriptDom.EventSessionObjectName)c?.ToMutable()));
+            ret.DropTargetDeclarations.AddRange(dropTargetDeclarations.SelectList(c => (ScriptDom.EventSessionObjectName)c?.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.SessionScope = sessionScope;
-            ret.EventDeclarations.AddRange(eventDeclarations.SelectList(c => (ScriptDom.EventDeclaration)c.ToMutable()));
-            ret.TargetDeclarations.AddRange(targetDeclarations.SelectList(c => (ScriptDom.TargetDeclaration)c.ToMutable()));
-            ret.SessionOptions.AddRange(sessionOptions.SelectList(c => (ScriptDom.SessionOption)c.ToMutable()));
+            ret.EventDeclarations.AddRange(eventDeclarations.SelectList(c => (ScriptDom.EventDeclaration)c?.ToMutable()));
+            ret.TargetDeclarations.AddRange(targetDeclarations.SelectList(c => (ScriptDom.TargetDeclaration)c?.ToMutable()));
+            ret.SessionOptions.AddRange(sessionOptions.SelectList(c => (ScriptDom.SessionOption)c?.ToMutable()));
             return ret;
         }
         

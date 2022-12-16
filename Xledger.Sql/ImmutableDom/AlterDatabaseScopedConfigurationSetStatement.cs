@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterDatabaseScopedConfigurationSetStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseScopedConfigurationSetStatement();
-            ret.Option = (ScriptDom.DatabaseConfigurationSetOption)option.ToMutable();
+            ret.Option = (ScriptDom.DatabaseConfigurationSetOption)option?.ToMutable();
             ret.Secondary = secondary;
             return ret;
         }

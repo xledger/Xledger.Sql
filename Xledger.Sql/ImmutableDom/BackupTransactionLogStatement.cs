@@ -17,10 +17,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BackupTransactionLogStatement ToMutableConcrete() {
             var ret = new ScriptDom.BackupTransactionLogStatement();
-            ret.DatabaseName = (ScriptDom.IdentifierOrValueExpression)databaseName.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BackupOption)c.ToMutable()));
-            ret.MirrorToClauses.AddRange(mirrorToClauses.SelectList(c => (ScriptDom.MirrorToClause)c.ToMutable()));
-            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c.ToMutable()));
+            ret.DatabaseName = (ScriptDom.IdentifierOrValueExpression)databaseName?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BackupOption)c?.ToMutable()));
+            ret.MirrorToClauses.AddRange(mirrorToClauses.SelectList(c => (ScriptDom.MirrorToClause)c?.ToMutable()));
+            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
             return ret;
         }
         

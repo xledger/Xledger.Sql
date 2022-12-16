@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateExternalStreamingJobStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateExternalStreamingJobStatement();
-            ret.Name = (ScriptDom.StringLiteral)name.ToMutable();
-            ret.Statement = (ScriptDom.StringLiteral)statement.ToMutable();
+            ret.Name = (ScriptDom.StringLiteral)name?.ToMutable();
+            ret.Statement = (ScriptDom.StringLiteral)statement?.ToMutable();
             return ret;
         }
         

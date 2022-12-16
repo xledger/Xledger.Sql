@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LiteralSessionOption ToMutableConcrete() {
             var ret = new ScriptDom.LiteralSessionOption();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.Unit = unit;
             ret.OptionKind = optionKind;
             return ret;

@@ -21,10 +21,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateExternalLibraryStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateExternalLibraryStatement();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Language = (ScriptDom.StringLiteral)language.ToMutable();
-            ret.ExternalLibraryFiles.AddRange(externalLibraryFiles.SelectList(c => (ScriptDom.ExternalLibraryFileOption)c.ToMutable()));
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Language = (ScriptDom.StringLiteral)language?.ToMutable();
+            ret.ExternalLibraryFiles.AddRange(externalLibraryFiles.SelectList(c => (ScriptDom.ExternalLibraryFileOption)c?.ToMutable()));
             return ret;
         }
         

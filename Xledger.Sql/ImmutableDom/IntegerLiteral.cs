@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.IntegerLiteral ToMutableConcrete() {
             var ret = new ScriptDom.IntegerLiteral();
             ret.Value = @value;
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

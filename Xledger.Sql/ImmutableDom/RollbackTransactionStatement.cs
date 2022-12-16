@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RollbackTransactionStatement ToMutableConcrete() {
             var ret = new ScriptDom.RollbackTransactionStatement();
-            ret.Name = (ScriptDom.IdentifierOrValueExpression)name.ToMutable();
+            ret.Name = (ScriptDom.IdentifierOrValueExpression)name?.ToMutable();
             return ret;
         }
         

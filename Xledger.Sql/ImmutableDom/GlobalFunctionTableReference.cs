@@ -23,9 +23,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GlobalFunctionTableReference ToMutableConcrete() {
             var ret = new ScriptDom.GlobalFunctionTableReference();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

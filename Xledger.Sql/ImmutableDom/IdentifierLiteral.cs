@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.IdentifierLiteral();
             ret.QuoteType = quoteType;
             ret.Value = @value;
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

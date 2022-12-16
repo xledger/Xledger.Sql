@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.MaxDispatchLatencySessionOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxDispatchLatencySessionOption();
             ret.IsInfinite = isInfinite;
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

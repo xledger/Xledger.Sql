@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropSynonymStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropSynonymStatement();
-            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c.ToMutable()));
+            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

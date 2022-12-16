@@ -18,11 +18,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateExternalDataSourceStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateExternalDataSourceStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.DataSourceType = dataSourceType;
-            ret.Location = (ScriptDom.Literal)location.ToMutable();
+            ret.Location = (ScriptDom.Literal)location?.ToMutable();
             ret.PushdownOption = pushdownOption;
-            ret.ExternalDataSourceOptions.AddRange(externalDataSourceOptions.SelectList(c => (ScriptDom.ExternalDataSourceOption)c.ToMutable()));
+            ret.ExternalDataSourceOptions.AddRange(externalDataSourceOptions.SelectList(c => (ScriptDom.ExternalDataSourceOption)c?.ToMutable()));
             return ret;
         }
         

@@ -27,12 +27,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterAssemblyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterAssemblyStatement();
-            ret.DropFiles.AddRange(dropFiles.SelectList(c => (ScriptDom.Literal)c.ToMutable()));
+            ret.DropFiles.AddRange(dropFiles.SelectList(c => (ScriptDom.Literal)c?.ToMutable()));
             ret.IsDropAll = isDropAll;
-            ret.AddFiles.AddRange(addFiles.SelectList(c => (ScriptDom.AddFileSpec)c.ToMutable()));
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AssemblyOption)c.ToMutable()));
+            ret.AddFiles.AddRange(addFiles.SelectList(c => (ScriptDom.AddFileSpec)c?.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AssemblyOption)c?.ToMutable()));
             return ret;
         }
         

@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateSearchPropertyListStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSearchPropertyListStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.SourceSearchPropertyList = (ScriptDom.MultiPartIdentifier)sourceSearchPropertyList.ToMutable();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.SourceSearchPropertyList = (ScriptDom.MultiPartIdentifier)sourceSearchPropertyList?.ToMutable();
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             return ret;
         }
         

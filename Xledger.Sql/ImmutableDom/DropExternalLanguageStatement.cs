@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropExternalLanguageStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropExternalLanguageStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             return ret;
         }
         

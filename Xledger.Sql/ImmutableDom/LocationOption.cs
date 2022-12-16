@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LocationOption ToMutableConcrete() {
             var ret = new ScriptDom.LocationOption();
-            ret.LocationValue = (ScriptDom.Identifier)locationValue.ToMutable();
+            ret.LocationValue = (ScriptDom.Identifier)locationValue?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

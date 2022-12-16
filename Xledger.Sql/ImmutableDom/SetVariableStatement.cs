@@ -39,13 +39,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SetVariableStatement ToMutableConcrete() {
             var ret = new ScriptDom.SetVariableStatement();
-            ret.Variable = (ScriptDom.VariableReference)variable.ToMutable();
+            ret.Variable = (ScriptDom.VariableReference)variable?.ToMutable();
             ret.SeparatorType = separatorType;
-            ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
+            ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
             ret.FunctionCallExists = functionCallExists;
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
-            ret.CursorDefinition = (ScriptDom.CursorDefinition)cursorDefinition.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
+            ret.CursorDefinition = (ScriptDom.CursorDefinition)cursorDefinition?.ToMutable();
             ret.AssignmentKind = assignmentKind;
             return ret;
         }

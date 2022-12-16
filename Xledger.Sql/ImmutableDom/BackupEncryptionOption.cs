@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BackupEncryptionOption ToMutableConcrete() {
             var ret = new ScriptDom.BackupEncryptionOption();
             ret.Algorithm = algorithm;
-            ret.Encryptor = (ScriptDom.CryptoMechanism)encryptor.ToMutable();
+            ret.Encryptor = (ScriptDom.CryptoMechanism)encryptor?.ToMutable();
             ret.OptionKind = optionKind;
-            ret.Value = (ScriptDom.ScalarExpression)@value.ToMutable();
+            ret.Value = (ScriptDom.ScalarExpression)@value?.ToMutable();
             return ret;
         }
         

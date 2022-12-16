@@ -23,10 +23,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateRemoteServiceBindingStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateRemoteServiceBindingStatement();
-            ret.Service = (ScriptDom.Literal)service.ToMutable();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RemoteServiceBindingOption)c.ToMutable()));
+            ret.Service = (ScriptDom.Literal)service?.ToMutable();
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RemoteServiceBindingOption)c?.ToMutable()));
             return ret;
         }
         

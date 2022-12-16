@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ProcessAffinityRange ToMutableConcrete() {
             var ret = new ScriptDom.ProcessAffinityRange();
-            ret.From = (ScriptDom.Literal)from.ToMutable();
-            ret.To = (ScriptDom.Literal)to.ToMutable();
+            ret.From = (ScriptDom.Literal)from?.ToMutable();
+            ret.To = (ScriptDom.Literal)to?.ToMutable();
             return ret;
         }
         

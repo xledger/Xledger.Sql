@@ -21,9 +21,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InlineDerivedTable ToMutableConcrete() {
             var ret = new ScriptDom.InlineDerivedTable();
-            ret.RowValues.AddRange(rowValues.SelectList(c => (ScriptDom.RowValue)c.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.RowValues.AddRange(rowValues.SelectList(c => (ScriptDom.RowValue)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.XmlNamespacesDefaultElement ToMutableConcrete() {
             var ret = new ScriptDom.XmlNamespacesDefaultElement();
-            ret.String = (ScriptDom.StringLiteral)@string.ToMutable();
+            ret.String = (ScriptDom.StringLiteral)@string?.ToMutable();
             return ret;
         }
         

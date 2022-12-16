@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WlmTimeLiteral ToMutableConcrete() {
             var ret = new ScriptDom.WlmTimeLiteral();
-            ret.TimeString = (ScriptDom.StringLiteral)timeString.ToMutable();
+            ret.TimeString = (ScriptDom.StringLiteral)timeString?.ToMutable();
             return ret;
         }
         

@@ -30,11 +30,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateFullTextStopListStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateFullTextStopListStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.IsSystemStopList = isSystemStopList;
-            ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
-            ret.SourceStopListName = (ScriptDom.Identifier)sourceStopListName.ToMutable();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
+            ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
+            ret.SourceStopListName = (ScriptDom.Identifier)sourceStopListName?.ToMutable();
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             return ret;
         }
         

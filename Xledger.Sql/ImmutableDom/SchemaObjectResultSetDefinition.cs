@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SchemaObjectResultSetDefinition ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectResultSetDefinition();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.ResultSetType = resultSetType;
             return ret;
         }

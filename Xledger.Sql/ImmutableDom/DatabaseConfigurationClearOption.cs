@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DatabaseConfigurationClearOption ToMutableConcrete() {
             var ret = new ScriptDom.DatabaseConfigurationClearOption();
             ret.OptionKind = optionKind;
-            ret.PlanHandle = (ScriptDom.BinaryLiteral)planHandle.ToMutable();
+            ret.PlanHandle = (ScriptDom.BinaryLiteral)planHandle?.ToMutable();
             return ret;
         }
         

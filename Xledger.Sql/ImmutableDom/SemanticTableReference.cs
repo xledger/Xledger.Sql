@@ -36,12 +36,12 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SemanticTableReference ToMutableConcrete() {
             var ret = new ScriptDom.SemanticTableReference();
             ret.SemanticFunctionType = semanticFunctionType;
-            ret.TableName = (ScriptDom.SchemaObjectName)tableName.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.SourceKey = (ScriptDom.ScalarExpression)sourceKey.ToMutable();
-            ret.MatchedColumn = (ScriptDom.ColumnReferenceExpression)matchedColumn.ToMutable();
-            ret.MatchedKey = (ScriptDom.ScalarExpression)matchedKey.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.TableName = (ScriptDom.SchemaObjectName)tableName?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.SourceKey = (ScriptDom.ScalarExpression)sourceKey?.ToMutable();
+            ret.MatchedColumn = (ScriptDom.ColumnReferenceExpression)matchedColumn?.ToMutable();
+            ret.MatchedKey = (ScriptDom.ScalarExpression)matchedKey?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

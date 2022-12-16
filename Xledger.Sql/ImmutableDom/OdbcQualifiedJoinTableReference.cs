@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OdbcQualifiedJoinTableReference ToMutableConcrete() {
             var ret = new ScriptDom.OdbcQualifiedJoinTableReference();
-            ret.TableReference = (ScriptDom.TableReference)tableReference.ToMutable();
+            ret.TableReference = (ScriptDom.TableReference)tableReference?.ToMutable();
             return ret;
         }
         

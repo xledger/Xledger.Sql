@@ -22,8 +22,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TablePartitionOption ToMutableConcrete() {
             var ret = new ScriptDom.TablePartitionOption();
-            ret.PartitionColumn = (ScriptDom.Identifier)partitionColumn.ToMutable();
-            ret.PartitionOptionSpecs = (ScriptDom.TablePartitionOptionSpecifications)partitionOptionSpecs.ToMutable();
+            ret.PartitionColumn = (ScriptDom.Identifier)partitionColumn?.ToMutable();
+            ret.PartitionOptionSpecs = (ScriptDom.TablePartitionOptionSpecifications)partitionOptionSpecs?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

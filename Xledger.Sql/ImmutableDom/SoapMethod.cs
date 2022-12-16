@@ -34,10 +34,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SoapMethod ToMutableConcrete() {
             var ret = new ScriptDom.SoapMethod();
-            ret.Alias = (ScriptDom.Literal)alias.ToMutable();
-            ret.Namespace = (ScriptDom.Literal)@namespace.ToMutable();
+            ret.Alias = (ScriptDom.Literal)alias?.ToMutable();
+            ret.Namespace = (ScriptDom.Literal)@namespace?.ToMutable();
             ret.Action = action;
-            ret.Name = (ScriptDom.Literal)name.ToMutable();
+            ret.Name = (ScriptDom.Literal)name?.ToMutable();
             ret.Format = format;
             ret.Schema = schema;
             ret.Kind = kind;

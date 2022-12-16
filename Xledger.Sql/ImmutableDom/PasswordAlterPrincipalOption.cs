@@ -31,8 +31,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PasswordAlterPrincipalOption ToMutableConcrete() {
             var ret = new ScriptDom.PasswordAlterPrincipalOption();
-            ret.Password = (ScriptDom.Literal)password.ToMutable();
-            ret.OldPassword = (ScriptDom.Literal)oldPassword.ToMutable();
+            ret.Password = (ScriptDom.Literal)password?.ToMutable();
+            ret.OldPassword = (ScriptDom.Literal)oldPassword?.ToMutable();
             ret.MustChange = mustChange;
             ret.Unlock = unlock;
             ret.Hashed = hashed;

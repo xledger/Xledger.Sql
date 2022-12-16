@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterFullTextIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterFullTextIndexStatement();
-            ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.Action = (ScriptDom.AlterFullTextIndexAction)action.ToMutable();
+            ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
+            ret.Action = (ScriptDom.AlterFullTextIndexAction)action?.ToMutable();
             return ret;
         }
         

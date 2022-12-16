@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DeclareVariableStatement ToMutableConcrete() {
             var ret = new ScriptDom.DeclareVariableStatement();
-            ret.Declarations.AddRange(declarations.SelectList(c => (ScriptDom.DeclareVariableElement)c.ToMutable()));
+            ret.Declarations.AddRange(declarations.SelectList(c => (ScriptDom.DeclareVariableElement)c?.ToMutable()));
             return ret;
         }
         

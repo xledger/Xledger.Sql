@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterFederationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterFederationStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.Kind = kind;
-            ret.DistributionName = (ScriptDom.Identifier)distributionName.ToMutable();
-            ret.Boundary = (ScriptDom.ScalarExpression)boundary.ToMutable();
+            ret.DistributionName = (ScriptDom.Identifier)distributionName?.ToMutable();
+            ret.Boundary = (ScriptDom.ScalarExpression)boundary?.ToMutable();
             return ret;
         }
         

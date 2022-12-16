@@ -32,8 +32,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.SecurityPredicateAction();
             ret.ActionType = actionType;
             ret.SecurityPredicateType = securityPredicateType;
-            ret.FunctionCall = (ScriptDom.FunctionCall)functionCall.ToMutable();
-            ret.TargetObjectName = (ScriptDom.SchemaObjectName)targetObjectName.ToMutable();
+            ret.FunctionCall = (ScriptDom.FunctionCall)functionCall?.ToMutable();
+            ret.TargetObjectName = (ScriptDom.SchemaObjectName)targetObjectName?.ToMutable();
             ret.SecurityPredicateOperation = securityPredicateOperation;
             return ret;
         }

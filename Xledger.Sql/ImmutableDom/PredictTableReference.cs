@@ -32,12 +32,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PredictTableReference ToMutableConcrete() {
             var ret = new ScriptDom.PredictTableReference();
-            ret.ModelVariable = (ScriptDom.ScalarExpression)modelVariable.ToMutable();
-            ret.ModelSubquery = (ScriptDom.ScalarSubquery)modelSubquery.ToMutable();
-            ret.DataSource = (ScriptDom.TableReferenceWithAlias)dataSource.ToMutable();
-            ret.RunTime = (ScriptDom.Identifier)runTime.ToMutable();
-            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItem)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.ModelVariable = (ScriptDom.ScalarExpression)modelVariable?.ToMutable();
+            ret.ModelSubquery = (ScriptDom.ScalarSubquery)modelSubquery?.ToMutable();
+            ret.DataSource = (ScriptDom.TableReferenceWithAlias)dataSource?.ToMutable();
+            ret.RunTime = (ScriptDom.Identifier)runTime?.ToMutable();
+            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItem)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

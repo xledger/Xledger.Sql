@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MethodSpecifier ToMutableConcrete() {
             var ret = new ScriptDom.MethodSpecifier();
-            ret.AssemblyName = (ScriptDom.Identifier)assemblyName.ToMutable();
-            ret.ClassName = (ScriptDom.Identifier)className.ToMutable();
-            ret.MethodName = (ScriptDom.Identifier)methodName.ToMutable();
+            ret.AssemblyName = (ScriptDom.Identifier)assemblyName?.ToMutable();
+            ret.ClassName = (ScriptDom.Identifier)className?.ToMutable();
+            ret.MethodName = (ScriptDom.Identifier)methodName?.ToMutable();
             return ret;
         }
         

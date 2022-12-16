@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IdentityValueKeyOption ToMutableConcrete() {
             var ret = new ScriptDom.IdentityValueKeyOption();
-            ret.IdentityPhrase = (ScriptDom.Literal)identityPhrase.ToMutable();
+            ret.IdentityPhrase = (ScriptDom.Literal)identityPhrase?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

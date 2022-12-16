@@ -26,8 +26,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DataRetentionTableOption ToMutableConcrete() {
             var ret = new ScriptDom.DataRetentionTableOption();
             ret.OptionState = optionState;
-            ret.FilterColumn = (ScriptDom.Identifier)filterColumn.ToMutable();
-            ret.RetentionPeriod = (ScriptDom.RetentionPeriodDefinition)retentionPeriod.ToMutable();
+            ret.FilterColumn = (ScriptDom.Identifier)filterColumn?.ToMutable();
+            ret.RetentionPeriod = (ScriptDom.RetentionPeriodDefinition)retentionPeriod?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

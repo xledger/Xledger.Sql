@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterSymmetricKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterSymmetricKeyStatement();
             ret.IsAdd = isAdd;
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.SelectList(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.SelectList(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
             return ret;
         }
         

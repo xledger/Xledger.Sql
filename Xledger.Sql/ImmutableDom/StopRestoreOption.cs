@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.StopRestoreOption ToMutableConcrete() {
             var ret = new ScriptDom.StopRestoreOption();
-            ret.Mark = (ScriptDom.ValueExpression)mark.ToMutable();
-            ret.After = (ScriptDom.ValueExpression)after.ToMutable();
+            ret.Mark = (ScriptDom.ValueExpression)mark?.ToMutable();
+            ret.After = (ScriptDom.ValueExpression)after?.ToMutable();
             ret.IsStopAt = isStopAt;
             ret.OptionKind = optionKind;
             return ret;

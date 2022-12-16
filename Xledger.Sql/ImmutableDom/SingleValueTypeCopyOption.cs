@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SingleValueTypeCopyOption ToMutableConcrete() {
             var ret = new ScriptDom.SingleValueTypeCopyOption();
-            ret.SingleValue = (ScriptDom.IdentifierOrValueExpression)singleValue.ToMutable();
+            ret.SingleValue = (ScriptDom.IdentifierOrValueExpression)singleValue?.ToMutable();
             return ret;
         }
         

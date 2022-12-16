@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetSoftNumaStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetSoftNumaStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationSoftNumaOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationSoftNumaOption)c?.ToMutable()));
             return ret;
         }
         

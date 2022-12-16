@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterFullTextCatalogStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterFullTextCatalogStatement();
             ret.Action = action;
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextCatalogOption)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextCatalogOption)c?.ToMutable()));
             return ret;
         }
         

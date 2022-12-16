@@ -30,11 +30,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.EventSessionStatement ToMutableConcrete() {
             var ret = new ScriptDom.EventSessionStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.SessionScope = sessionScope;
-            ret.EventDeclarations.AddRange(eventDeclarations.SelectList(c => (ScriptDom.EventDeclaration)c.ToMutable()));
-            ret.TargetDeclarations.AddRange(targetDeclarations.SelectList(c => (ScriptDom.TargetDeclaration)c.ToMutable()));
-            ret.SessionOptions.AddRange(sessionOptions.SelectList(c => (ScriptDom.SessionOption)c.ToMutable()));
+            ret.EventDeclarations.AddRange(eventDeclarations.SelectList(c => (ScriptDom.EventDeclaration)c?.ToMutable()));
+            ret.TargetDeclarations.AddRange(targetDeclarations.SelectList(c => (ScriptDom.TargetDeclaration)c?.ToMutable()));
+            ret.SessionOptions.AddRange(sessionOptions.SelectList(c => (ScriptDom.SessionOption)c?.ToMutable()));
             return ret;
         }
         

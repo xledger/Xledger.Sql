@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreatePartitionFunctionStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreatePartitionFunctionStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ParameterType = (ScriptDom.PartitionParameterType)parameterType.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.ParameterType = (ScriptDom.PartitionParameterType)parameterType?.ToMutable();
             ret.Range = range;
-            ret.BoundaryValues.AddRange(boundaryValues.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.BoundaryValues.AddRange(boundaryValues.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         

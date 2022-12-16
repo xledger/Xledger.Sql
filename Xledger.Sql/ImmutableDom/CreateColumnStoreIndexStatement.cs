@@ -39,14 +39,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateColumnStoreIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateColumnStoreIndexStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.Clustered = clustered;
-            ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
-            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
-            ret.OrderedColumns.AddRange(orderedColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate?.ToMutable();
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
+            ret.OrderedColumns.AddRange(orderedColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             return ret;
         }
         

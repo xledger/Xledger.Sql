@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ChangeTrackingDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.ChangeTrackingDatabaseOption();
             ret.OptionState = optionState;
-            ret.Details.AddRange(details.SelectList(c => (ScriptDom.ChangeTrackingOptionDetail)c.ToMutable()));
+            ret.Details.AddRange(details.SelectList(c => (ScriptDom.ChangeTrackingOptionDetail)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

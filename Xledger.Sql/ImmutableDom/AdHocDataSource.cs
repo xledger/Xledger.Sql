@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AdHocDataSource ToMutableConcrete() {
             var ret = new ScriptDom.AdHocDataSource();
-            ret.ProviderName = (ScriptDom.StringLiteral)providerName.ToMutable();
-            ret.InitString = (ScriptDom.StringLiteral)initString.ToMutable();
+            ret.ProviderName = (ScriptDom.StringLiteral)providerName?.ToMutable();
+            ret.InitString = (ScriptDom.StringLiteral)initString?.ToMutable();
             return ret;
         }
         

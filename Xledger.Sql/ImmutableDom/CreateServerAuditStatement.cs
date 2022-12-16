@@ -17,10 +17,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateServerAuditStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateServerAuditStatement();
-            ret.AuditName = (ScriptDom.Identifier)auditName.ToMutable();
-            ret.AuditTarget = (ScriptDom.AuditTarget)auditTarget.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AuditOption)c.ToMutable()));
-            ret.PredicateExpression = (ScriptDom.BooleanExpression)predicateExpression.ToMutable();
+            ret.AuditName = (ScriptDom.Identifier)auditName?.ToMutable();
+            ret.AuditTarget = (ScriptDom.AuditTarget)auditTarget?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AuditOption)c?.ToMutable()));
+            ret.PredicateExpression = (ScriptDom.BooleanExpression)predicateExpression?.ToMutable();
             return ret;
         }
         

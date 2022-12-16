@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OptimizeForOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.OptimizeForOptimizerHint();
-            ret.Pairs.AddRange(pairs.SelectList(c => (ScriptDom.VariableValuePair)c.ToMutable()));
+            ret.Pairs.AddRange(pairs.SelectList(c => (ScriptDom.VariableValuePair)c?.ToMutable()));
             ret.IsForUnknown = isForUnknown;
             ret.HintKind = hintKind;
             return ret;

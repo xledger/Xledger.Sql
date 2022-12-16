@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DataTypeSequenceOption ToMutableConcrete() {
             var ret = new ScriptDom.DataTypeSequenceOption();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
             ret.OptionKind = optionKind;
             ret.NoValue = noValue;
             return ret;

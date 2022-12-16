@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BackupRestoreFileInfo ToMutableConcrete() {
             var ret = new ScriptDom.BackupRestoreFileInfo();
-            ret.Items.AddRange(items.SelectList(c => (ScriptDom.ValueExpression)c.ToMutable()));
+            ret.Items.AddRange(items.SelectList(c => (ScriptDom.ValueExpression)c?.ToMutable()));
             ret.ItemKind = itemKind;
             return ret;
         }

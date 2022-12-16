@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MoveToDropIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.MoveToDropIndexOption();
-            ret.MoveTo = (ScriptDom.FileGroupOrPartitionScheme)moveTo.ToMutable();
+            ret.MoveTo = (ScriptDom.FileGroupOrPartitionScheme)moveTo?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

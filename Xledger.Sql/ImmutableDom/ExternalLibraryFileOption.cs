@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalLibraryFileOption ToMutableConcrete() {
             var ret = new ScriptDom.ExternalLibraryFileOption();
-            ret.Content = (ScriptDom.ScalarExpression)content.ToMutable();
-            ret.Path = (ScriptDom.StringLiteral)path.ToMutable();
-            ret.Platform = (ScriptDom.Identifier)platform.ToMutable();
+            ret.Content = (ScriptDom.ScalarExpression)content?.ToMutable();
+            ret.Path = (ScriptDom.StringLiteral)path?.ToMutable();
+            ret.Platform = (ScriptDom.Identifier)platform?.ToMutable();
             return ret;
         }
         

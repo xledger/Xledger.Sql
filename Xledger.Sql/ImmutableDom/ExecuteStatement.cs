@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExecuteStatement ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteStatement();
-            ret.ExecuteSpecification = (ScriptDom.ExecuteSpecification)executeSpecification.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.ExecuteOption)c.ToMutable()));
+            ret.ExecuteSpecification = (ScriptDom.ExecuteSpecification)executeSpecification?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.ExecuteOption)c?.ToMutable()));
             return ret;
         }
         

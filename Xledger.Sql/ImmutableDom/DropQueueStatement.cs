@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropQueueStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropQueueStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
         

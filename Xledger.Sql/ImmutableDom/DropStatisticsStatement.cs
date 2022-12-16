@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropStatisticsStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropStatisticsStatement();
-            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.ChildObjectName)c.ToMutable()));
+            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.ChildObjectName)c?.ToMutable()));
             return ret;
         }
         

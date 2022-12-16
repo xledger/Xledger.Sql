@@ -18,11 +18,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateExternalStreamStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateExternalStreamStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Location = (ScriptDom.Literal)location.ToMutable();
-            ret.InputOptions = (ScriptDom.Literal)inputOptions.ToMutable();
-            ret.OutputOptions = (ScriptDom.Literal)outputOptions.ToMutable();
-            ret.ExternalStreamOptions.AddRange(externalStreamOptions.SelectList(c => (ScriptDom.ExternalStreamOption)c.ToMutable()));
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Location = (ScriptDom.Literal)location?.ToMutable();
+            ret.InputOptions = (ScriptDom.Literal)inputOptions?.ToMutable();
+            ret.OutputOptions = (ScriptDom.Literal)outputOptions?.ToMutable();
+            ret.ExternalStreamOptions.AddRange(externalStreamOptions.SelectList(c => (ScriptDom.ExternalStreamOption)c?.ToMutable()));
             return ret;
         }
         

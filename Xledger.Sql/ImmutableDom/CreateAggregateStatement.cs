@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateAggregateStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateAggregateStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.AssemblyName = (ScriptDom.AssemblyName)assemblyName.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c.ToMutable()));
-            ret.ReturnType = (ScriptDom.DataTypeReference)returnType.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.AssemblyName = (ScriptDom.AssemblyName)assemblyName?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c?.ToMutable()));
+            ret.ReturnType = (ScriptDom.DataTypeReference)returnType?.ToMutable();
             return ret;
         }
         

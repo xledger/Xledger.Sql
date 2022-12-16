@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterAvailabilityGroupFailoverAction ToMutableConcrete() {
             var ret = new ScriptDom.AlterAvailabilityGroupFailoverAction();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterAvailabilityGroupFailoverOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterAvailabilityGroupFailoverOption)c?.ToMutable()));
             ret.ActionType = actionType;
             return ret;
         }

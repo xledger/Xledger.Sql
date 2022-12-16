@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.XmlCompressionOption ToMutableConcrete() {
             var ret = new ScriptDom.XmlCompressionOption();
             ret.IsCompressed = isCompressed;
-            ret.PartitionRanges.AddRange(partitionRanges.SelectList(c => (ScriptDom.CompressionPartitionRange)c.ToMutable()));
+            ret.PartitionRanges.AddRange(partitionRanges.SelectList(c => (ScriptDom.CompressionPartitionRange)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

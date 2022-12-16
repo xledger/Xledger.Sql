@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExpressionGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.ExpressionGroupingSpecification();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.DistributedAggregation = distributedAggregation;
             return ret;
         }

@@ -27,11 +27,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.VariableMethodCallTableReference ToMutableConcrete() {
             var ret = new ScriptDom.VariableMethodCallTableReference();
-            ret.Variable = (ScriptDom.VariableReference)variable.ToMutable();
-            ret.MethodName = (ScriptDom.Identifier)methodName.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.Variable = (ScriptDom.VariableReference)variable?.ToMutable();
+            ret.MethodName = (ScriptDom.Identifier)methodName?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

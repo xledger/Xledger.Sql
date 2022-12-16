@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.GroupByClause();
             ret.GroupByOption = groupByOption;
             ret.All = all;
-            ret.GroupingSpecifications.AddRange(groupingSpecifications.SelectList(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
+            ret.GroupingSpecifications.AddRange(groupingSpecifications.SelectList(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
             return ret;
         }
         

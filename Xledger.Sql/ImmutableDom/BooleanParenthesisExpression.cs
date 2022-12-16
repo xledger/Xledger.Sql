@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BooleanParenthesisExpression ToMutableConcrete() {
             var ret = new ScriptDom.BooleanParenthesisExpression();
-            ret.Expression = (ScriptDom.BooleanExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.BooleanExpression)expression?.ToMutable();
             return ret;
         }
         

@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InPredicate ToMutableConcrete() {
             var ret = new ScriptDom.InPredicate();
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
-            ret.Subquery = (ScriptDom.ScalarSubquery)subquery.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
+            ret.Subquery = (ScriptDom.ScalarSubquery)subquery?.ToMutable();
             ret.NotDefined = notDefined;
-            ret.Values.AddRange(values.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.Values.AddRange(values.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         

@@ -31,14 +31,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MergeSpecification ToMutableConcrete() {
             var ret = new ScriptDom.MergeSpecification();
-            ret.TableAlias = (ScriptDom.Identifier)tableAlias.ToMutable();
-            ret.TableReference = (ScriptDom.TableReference)tableReference.ToMutable();
-            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition.ToMutable();
-            ret.ActionClauses.AddRange(actionClauses.SelectList(c => (ScriptDom.MergeActionClause)c.ToMutable()));
-            ret.Target = (ScriptDom.TableReference)target.ToMutable();
-            ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter.ToMutable();
-            ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause.ToMutable();
-            ret.OutputClause = (ScriptDom.OutputClause)outputClause.ToMutable();
+            ret.TableAlias = (ScriptDom.Identifier)tableAlias?.ToMutable();
+            ret.TableReference = (ScriptDom.TableReference)tableReference?.ToMutable();
+            ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition?.ToMutable();
+            ret.ActionClauses.AddRange(actionClauses.SelectList(c => (ScriptDom.MergeActionClause)c?.ToMutable()));
+            ret.Target = (ScriptDom.TableReference)target?.ToMutable();
+            ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter?.ToMutable();
+            ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause?.ToMutable();
+            ret.OutputClause = (ScriptDom.OutputClause)outputClause?.ToMutable();
             return ret;
         }
         

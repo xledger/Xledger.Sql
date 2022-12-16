@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MaxSizeDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxSizeDatabaseOption();
-            ret.MaxSize = (ScriptDom.Literal)maxSize.ToMutable();
+            ret.MaxSize = (ScriptDom.Literal)maxSize?.ToMutable();
             ret.Units = units;
             ret.OptionKind = optionKind;
             return ret;

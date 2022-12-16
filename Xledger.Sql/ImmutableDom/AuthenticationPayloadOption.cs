@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AuthenticationPayloadOption ToMutableConcrete() {
             var ret = new ScriptDom.AuthenticationPayloadOption();
             ret.Protocol = protocol;
-            ret.Certificate = (ScriptDom.Identifier)certificate.ToMutable();
+            ret.Certificate = (ScriptDom.Identifier)certificate?.ToMutable();
             ret.TryCertificateFirst = tryCertificateFirst;
             ret.Kind = kind;
             return ret;

@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)c?.ToMutable()));
             return ret;
         }
         

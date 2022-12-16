@@ -22,15 +22,15 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateTriggerStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateTriggerStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.TriggerObject = (ScriptDom.TriggerObject)triggerObject.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TriggerOption)c.ToMutable()));
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.TriggerObject = (ScriptDom.TriggerObject)triggerObject?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TriggerOption)c?.ToMutable()));
             ret.TriggerType = triggerType;
-            ret.TriggerActions.AddRange(triggerActions.SelectList(c => (ScriptDom.TriggerAction)c.ToMutable()));
+            ret.TriggerActions.AddRange(triggerActions.SelectList(c => (ScriptDom.TriggerAction)c?.ToMutable()));
             ret.WithAppend = withAppend;
             ret.IsNotForReplication = isNotForReplication;
-            ret.StatementList = (ScriptDom.StatementList)statementList.ToMutable();
-            ret.MethodSpecifier = (ScriptDom.MethodSpecifier)methodSpecifier.ToMutable();
+            ret.StatementList = (ScriptDom.StatementList)statementList?.ToMutable();
+            ret.MethodSpecifier = (ScriptDom.MethodSpecifier)methodSpecifier?.ToMutable();
             return ret;
         }
         

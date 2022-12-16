@@ -30,11 +30,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateStatisticsStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateStatisticsStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.StatisticsOptions.AddRange(statisticsOptions.SelectList(c => (ScriptDom.StatisticsOption)c.ToMutable()));
-            ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.StatisticsOptions.AddRange(statisticsOptions.SelectList(c => (ScriptDom.StatisticsOption)c?.ToMutable()));
+            ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate?.ToMutable();
             return ret;
         }
         

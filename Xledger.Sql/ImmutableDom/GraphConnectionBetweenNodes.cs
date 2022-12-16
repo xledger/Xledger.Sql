@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GraphConnectionBetweenNodes ToMutableConcrete() {
             var ret = new ScriptDom.GraphConnectionBetweenNodes();
-            ret.FromNode = (ScriptDom.SchemaObjectName)fromNode.ToMutable();
-            ret.ToNode = (ScriptDom.SchemaObjectName)toNode.ToMutable();
+            ret.FromNode = (ScriptDom.SchemaObjectName)fromNode?.ToMutable();
+            ret.ToNode = (ScriptDom.SchemaObjectName)toNode?.ToMutable();
             return ret;
         }
         

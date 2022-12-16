@@ -18,9 +18,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterServerAuditSpecificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerAuditSpecificationStatement();
             ret.AuditState = auditState;
-            ret.Parts.AddRange(parts.SelectList(c => (ScriptDom.AuditSpecificationPart)c.ToMutable()));
-            ret.SpecificationName = (ScriptDom.Identifier)specificationName.ToMutable();
-            ret.AuditName = (ScriptDom.Identifier)auditName.ToMutable();
+            ret.Parts.AddRange(parts.SelectList(c => (ScriptDom.AuditSpecificationPart)c?.ToMutable()));
+            ret.SpecificationName = (ScriptDom.Identifier)specificationName?.ToMutable();
+            ret.AuditName = (ScriptDom.Identifier)auditName?.ToMutable();
             return ret;
         }
         

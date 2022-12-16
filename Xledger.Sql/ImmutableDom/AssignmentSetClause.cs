@@ -27,9 +27,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AssignmentSetClause ToMutableConcrete() {
             var ret = new ScriptDom.AssignmentSetClause();
-            ret.Variable = (ScriptDom.VariableReference)variable.ToMutable();
-            ret.Column = (ScriptDom.ColumnReferenceExpression)column.ToMutable();
-            ret.NewValue = (ScriptDom.ScalarExpression)newValue.ToMutable();
+            ret.Variable = (ScriptDom.VariableReference)variable?.ToMutable();
+            ret.Column = (ScriptDom.ColumnReferenceExpression)column?.ToMutable();
+            ret.NewValue = (ScriptDom.ScalarExpression)newValue?.ToMutable();
             ret.AssignmentKind = assignmentKind;
             return ret;
         }

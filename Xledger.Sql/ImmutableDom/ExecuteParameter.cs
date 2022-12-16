@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExecuteParameter ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteParameter();
-            ret.Variable = (ScriptDom.VariableReference)variable.ToMutable();
-            ret.ParameterValue = (ScriptDom.ScalarExpression)parameterValue.ToMutable();
+            ret.Variable = (ScriptDom.VariableReference)variable?.ToMutable();
+            ret.ParameterValue = (ScriptDom.ScalarExpression)parameterValue?.ToMutable();
             ret.IsOutput = isOutput;
             return ret;
         }

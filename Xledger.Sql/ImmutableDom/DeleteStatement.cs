@@ -20,9 +20,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DeleteStatement ToMutableConcrete() {
             var ret = new ScriptDom.DeleteStatement();
-            ret.DeleteSpecification = (ScriptDom.DeleteSpecification)deleteSpecification.ToMutable();
-            ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c.ToMutable()));
+            ret.DeleteSpecification = (ScriptDom.DeleteSpecification)deleteSpecification?.ToMutable();
+            ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces?.ToMutable();
+            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
             return ret;
         }
         

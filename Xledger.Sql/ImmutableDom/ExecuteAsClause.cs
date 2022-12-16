@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ExecuteAsClause ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteAsClause();
             ret.ExecuteAsOption = executeAsOption;
-            ret.Literal = (ScriptDom.Literal)literal.ToMutable();
+            ret.Literal = (ScriptDom.Literal)literal?.ToMutable();
             return ret;
         }
         

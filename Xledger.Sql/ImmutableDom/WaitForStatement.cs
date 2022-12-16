@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.WaitForStatement ToMutableConcrete() {
             var ret = new ScriptDom.WaitForStatement();
             ret.WaitForOption = waitForOption;
-            ret.Parameter = (ScriptDom.ValueExpression)parameter.ToMutable();
-            ret.Timeout = (ScriptDom.ScalarExpression)timeout.ToMutable();
-            ret.Statement = (ScriptDom.WaitForSupportedStatement)statement.ToMutable();
+            ret.Parameter = (ScriptDom.ValueExpression)parameter?.ToMutable();
+            ret.Timeout = (ScriptDom.ScalarExpression)timeout?.ToMutable();
+            ret.Statement = (ScriptDom.WaitForSupportedStatement)statement?.ToMutable();
             return ret;
         }
         

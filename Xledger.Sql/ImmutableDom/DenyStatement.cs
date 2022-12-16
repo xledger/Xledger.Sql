@@ -23,10 +23,10 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DenyStatement ToMutableConcrete() {
             var ret = new ScriptDom.DenyStatement();
             ret.CascadeOption = cascadeOption;
-            ret.Permissions.AddRange(permissions.SelectList(c => (ScriptDom.Permission)c.ToMutable()));
-            ret.SecurityTargetObject = (ScriptDom.SecurityTargetObject)securityTargetObject.ToMutable();
-            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c.ToMutable()));
-            ret.AsClause = (ScriptDom.Identifier)asClause.ToMutable();
+            ret.Permissions.AddRange(permissions.SelectList(c => (ScriptDom.Permission)c?.ToMutable()));
+            ret.SecurityTargetObject = (ScriptDom.SecurityTargetObject)securityTargetObject?.ToMutable();
+            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c?.ToMutable()));
+            ret.AsClause = (ScriptDom.Identifier)asClause?.ToMutable();
             return ret;
         }
         

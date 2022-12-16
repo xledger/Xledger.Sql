@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OrderByClause ToMutableConcrete() {
             var ret = new ScriptDom.OrderByClause();
-            ret.OrderByElements.AddRange(orderByElements.SelectList(c => (ScriptDom.ExpressionWithSortOrder)c.ToMutable()));
+            ret.OrderByElements.AddRange(orderByElements.SelectList(c => (ScriptDom.ExpressionWithSortOrder)c?.ToMutable()));
             return ret;
         }
         

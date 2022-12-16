@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SpatialIndexRegularOption ToMutableConcrete() {
             var ret = new ScriptDom.SpatialIndexRegularOption();
-            ret.Option = (ScriptDom.IndexOption)option.ToMutable();
+            ret.Option = (ScriptDom.IndexOption)option?.ToMutable();
             return ret;
         }
         

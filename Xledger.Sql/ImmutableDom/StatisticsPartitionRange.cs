@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.StatisticsPartitionRange ToMutableConcrete() {
             var ret = new ScriptDom.StatisticsPartitionRange();
-            ret.From = (ScriptDom.IntegerLiteral)from.ToMutable();
-            ret.To = (ScriptDom.IntegerLiteral)to.ToMutable();
+            ret.From = (ScriptDom.IntegerLiteral)from?.ToMutable();
+            ret.To = (ScriptDom.IntegerLiteral)to?.ToMutable();
             return ret;
         }
         

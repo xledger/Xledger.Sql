@@ -21,9 +21,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DataModificationTableReference ToMutableConcrete() {
             var ret = new ScriptDom.DataModificationTableReference();
-            ret.DataModificationSpecification = (ScriptDom.DataModificationSpecification)dataModificationSpecification.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.DataModificationSpecification = (ScriptDom.DataModificationSpecification)dataModificationSpecification?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

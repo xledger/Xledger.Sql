@@ -25,10 +25,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IIfCall ToMutableConcrete() {
             var ret = new ScriptDom.IIfCall();
-            ret.Predicate = (ScriptDom.BooleanExpression)predicate.ToMutable();
-            ret.ThenExpression = (ScriptDom.ScalarExpression)thenExpression.ToMutable();
-            ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Predicate = (ScriptDom.BooleanExpression)predicate?.ToMutable();
+            ret.ThenExpression = (ScriptDom.ScalarExpression)thenExpression?.ToMutable();
+            ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

@@ -23,9 +23,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterDatabaseSetStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseSetStatement();
-            ret.Termination = (ScriptDom.AlterDatabaseTermination)termination.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DatabaseOption)c.ToMutable()));
-            ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
+            ret.Termination = (ScriptDom.AlterDatabaseTermination)termination?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DatabaseOption)c?.ToMutable()));
+            ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.UseCurrent = useCurrent;
             return ret;
         }

@@ -20,8 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterDatabaseModifyNameStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseModifyNameStatement();
-            ret.NewDatabaseName = (ScriptDom.Identifier)newDatabaseName.ToMutable();
-            ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
+            ret.NewDatabaseName = (ScriptDom.Identifier)newDatabaseName?.ToMutable();
+            ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.UseCurrent = useCurrent;
             return ret;
         }

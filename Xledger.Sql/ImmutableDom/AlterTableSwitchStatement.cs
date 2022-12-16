@@ -28,11 +28,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterTableSwitchStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableSwitchStatement();
-            ret.SourcePartitionNumber = (ScriptDom.ScalarExpression)sourcePartitionNumber.ToMutable();
-            ret.TargetPartitionNumber = (ScriptDom.ScalarExpression)targetPartitionNumber.ToMutable();
-            ret.TargetTable = (ScriptDom.SchemaObjectName)targetTable.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableSwitchOption)c.ToMutable()));
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.SourcePartitionNumber = (ScriptDom.ScalarExpression)sourcePartitionNumber?.ToMutable();
+            ret.TargetPartitionNumber = (ScriptDom.ScalarExpression)targetPartitionNumber?.ToMutable();
+            ret.TargetTable = (ScriptDom.SchemaObjectName)targetTable?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableSwitchOption)c?.ToMutable()));
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

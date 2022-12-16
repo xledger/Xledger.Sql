@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BackupMasterKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.BackupMasterKeyStatement();
-            ret.File = (ScriptDom.Literal)file.ToMutable();
-            ret.Password = (ScriptDom.Literal)password.ToMutable();
+            ret.File = (ScriptDom.Literal)file?.ToMutable();
+            ret.Password = (ScriptDom.Literal)password?.ToMutable();
             return ret;
         }
         

@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CopyOption ToMutableConcrete() {
             var ret = new ScriptDom.CopyOption();
             ret.Kind = kind;
-            ret.Value = (ScriptDom.CopyStatementOptionBase)@value.ToMutable();
+            ret.Value = (ScriptDom.CopyStatementOptionBase)@value?.ToMutable();
             return ret;
         }
         

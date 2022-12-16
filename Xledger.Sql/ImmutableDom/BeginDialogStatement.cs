@@ -37,12 +37,12 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BeginDialogStatement ToMutableConcrete() {
             var ret = new ScriptDom.BeginDialogStatement();
             ret.IsConversation = isConversation;
-            ret.Handle = (ScriptDom.VariableReference)handle.ToMutable();
-            ret.InitiatorServiceName = (ScriptDom.IdentifierOrValueExpression)initiatorServiceName.ToMutable();
-            ret.TargetServiceName = (ScriptDom.ValueExpression)targetServiceName.ToMutable();
-            ret.InstanceSpec = (ScriptDom.ValueExpression)instanceSpec.ToMutable();
-            ret.ContractName = (ScriptDom.IdentifierOrValueExpression)contractName.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DialogOption)c.ToMutable()));
+            ret.Handle = (ScriptDom.VariableReference)handle?.ToMutable();
+            ret.InitiatorServiceName = (ScriptDom.IdentifierOrValueExpression)initiatorServiceName?.ToMutable();
+            ret.TargetServiceName = (ScriptDom.ValueExpression)targetServiceName?.ToMutable();
+            ret.InstanceSpec = (ScriptDom.ValueExpression)instanceSpec?.ToMutable();
+            ret.ContractName = (ScriptDom.IdentifierOrValueExpression)contractName?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DialogOption)c?.ToMutable()));
             return ret;
         }
         

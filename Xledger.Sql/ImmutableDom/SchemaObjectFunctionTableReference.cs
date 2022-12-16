@@ -24,10 +24,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SchemaObjectFunctionTableReference ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectFunctionTableReference();
-            ret.SchemaObject = (ScriptDom.SchemaObjectName)schemaObject.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.SchemaObject = (ScriptDom.SchemaObjectName)schemaObject?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

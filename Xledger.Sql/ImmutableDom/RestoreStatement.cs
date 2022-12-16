@@ -30,10 +30,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RestoreStatement ToMutableConcrete() {
             var ret = new ScriptDom.RestoreStatement();
-            ret.DatabaseName = (ScriptDom.IdentifierOrValueExpression)databaseName.ToMutable();
-            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c.ToMutable()));
-            ret.Files.AddRange(files.SelectList(c => (ScriptDom.BackupRestoreFileInfo)c.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RestoreOption)c.ToMutable()));
+            ret.DatabaseName = (ScriptDom.IdentifierOrValueExpression)databaseName?.ToMutable();
+            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
+            ret.Files.AddRange(files.SelectList(c => (ScriptDom.BackupRestoreFileInfo)c?.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RestoreOption)c?.ToMutable()));
             ret.Kind = kind;
             return ret;
         }

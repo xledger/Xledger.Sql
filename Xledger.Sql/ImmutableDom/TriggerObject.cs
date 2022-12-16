@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TriggerObject ToMutableConcrete() {
             var ret = new ScriptDom.TriggerObject();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.TriggerScope = triggerScope;
             return ret;
         }

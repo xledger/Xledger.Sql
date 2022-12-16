@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterTableDropTableElementStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableDropTableElementStatement();
-            ret.AlterTableDropTableElements.AddRange(alterTableDropTableElements.SelectList(c => (ScriptDom.AlterTableDropTableElement)c.ToMutable()));
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.AlterTableDropTableElements.AddRange(alterTableDropTableElements.SelectList(c => (ScriptDom.AlterTableDropTableElement)c?.ToMutable()));
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

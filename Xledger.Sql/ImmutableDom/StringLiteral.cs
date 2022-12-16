@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.IsNational = isNational;
             ret.IsLargeObject = isLargeObject;
             ret.Value = @value;
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

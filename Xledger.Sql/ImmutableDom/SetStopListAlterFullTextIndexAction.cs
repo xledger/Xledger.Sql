@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SetStopListAlterFullTextIndexAction ToMutableConcrete() {
             var ret = new ScriptDom.SetStopListAlterFullTextIndexAction();
-            ret.StopListOption = (ScriptDom.StopListFullTextIndexOption)stopListOption.ToMutable();
+            ret.StopListOption = (ScriptDom.StopListFullTextIndexOption)stopListOption?.ToMutable();
             ret.WithNoPopulation = withNoPopulation;
             return ret;
         }

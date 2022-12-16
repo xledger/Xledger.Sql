@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropIndexStatement();
-            ret.DropIndexClauses.AddRange(dropIndexClauses.SelectList(c => (ScriptDom.DropIndexClauseBase)c.ToMutable()));
+            ret.DropIndexClauses.AddRange(dropIndexClauses.SelectList(c => (ScriptDom.DropIndexClauseBase)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }

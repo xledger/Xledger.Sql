@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RemoteDataArchiveDbServerSetting ToMutableConcrete() {
             var ret = new ScriptDom.RemoteDataArchiveDbServerSetting();
-            ret.Server = (ScriptDom.StringLiteral)server.ToMutable();
+            ret.Server = (ScriptDom.StringLiteral)server?.ToMutable();
             ret.SettingKind = settingKind;
             return ret;
         }

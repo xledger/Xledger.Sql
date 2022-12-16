@@ -20,8 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterDatabaseCollateStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseCollateStatement();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
-            ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
+            ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.UseCurrent = useCurrent;
             return ret;
         }

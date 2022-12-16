@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.BinaryLiteral();
             ret.IsLargeObject = isLargeObject;
             ret.Value = @value;
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

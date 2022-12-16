@@ -23,10 +23,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MaxDopConfigurationOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxDopConfigurationOption();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.Primary = primary;
             ret.OptionKind = optionKind;
-            ret.GenericOptionKind = (ScriptDom.Identifier)genericOptionKind.ToMutable();
+            ret.GenericOptionKind = (ScriptDom.Identifier)genericOptionKind?.ToMutable();
             return ret;
         }
         

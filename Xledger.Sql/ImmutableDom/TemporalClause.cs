@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.TemporalClause ToMutableConcrete() {
             var ret = new ScriptDom.TemporalClause();
             ret.TemporalClauseType = temporalClauseType;
-            ret.StartTime = (ScriptDom.ScalarExpression)startTime.ToMutable();
-            ret.EndTime = (ScriptDom.ScalarExpression)endTime.ToMutable();
+            ret.StartTime = (ScriptDom.ScalarExpression)startTime?.ToMutable();
+            ret.EndTime = (ScriptDom.ScalarExpression)endTime?.ToMutable();
             return ret;
         }
         

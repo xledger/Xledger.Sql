@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MaxDurationOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxDurationOption();
-            ret.MaxDuration = (ScriptDom.Literal)maxDuration.ToMutable();
+            ret.MaxDuration = (ScriptDom.Literal)maxDuration?.ToMutable();
             ret.Unit = unit;
             ret.OptionKind = optionKind;
             return ret;

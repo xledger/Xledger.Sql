@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OdbcConvertSpecification ToMutableConcrete() {
             var ret = new ScriptDom.OdbcConvertSpecification();
-            ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
+            ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
             return ret;
         }
         

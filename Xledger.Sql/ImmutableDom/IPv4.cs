@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IPv4 ToMutableConcrete() {
             var ret = new ScriptDom.IPv4();
-            ret.OctetOne = (ScriptDom.Literal)octetOne.ToMutable();
-            ret.OctetTwo = (ScriptDom.Literal)octetTwo.ToMutable();
-            ret.OctetThree = (ScriptDom.Literal)octetThree.ToMutable();
-            ret.OctetFour = (ScriptDom.Literal)octetFour.ToMutable();
+            ret.OctetOne = (ScriptDom.Literal)octetOne?.ToMutable();
+            ret.OctetTwo = (ScriptDom.Literal)octetTwo?.ToMutable();
+            ret.OctetThree = (ScriptDom.Literal)octetThree?.ToMutable();
+            ret.OctetFour = (ScriptDom.Literal)octetFour?.ToMutable();
             return ret;
         }
         

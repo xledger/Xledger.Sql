@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CommonTableExpression ToMutableConcrete() {
             var ret = new ScriptDom.CommonTableExpression();
-            ret.ExpressionName = (ScriptDom.Identifier)expressionName.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression.ToMutable();
+            ret.ExpressionName = (ScriptDom.Identifier)expressionName?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression?.ToMutable();
             return ret;
         }
         

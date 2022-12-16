@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueryStoreMaxStorageSizeOption ToMutableConcrete() {
             var ret = new ScriptDom.QueryStoreMaxStorageSizeOption();
-            ret.MaxQdsSize = (ScriptDom.Literal)maxQdsSize.ToMutable();
+            ret.MaxQdsSize = (ScriptDom.Literal)maxQdsSize?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

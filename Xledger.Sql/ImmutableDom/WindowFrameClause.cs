@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WindowFrameClause ToMutableConcrete() {
             var ret = new ScriptDom.WindowFrameClause();
-            ret.Top = (ScriptDom.WindowDelimiter)top.ToMutable();
-            ret.Bottom = (ScriptDom.WindowDelimiter)bottom.ToMutable();
+            ret.Top = (ScriptDom.WindowDelimiter)top?.ToMutable();
+            ret.Bottom = (ScriptDom.WindowDelimiter)bottom?.ToMutable();
             ret.WindowFrameType = windowFrameType;
             return ret;
         }

@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SetUserStatement ToMutableConcrete() {
             var ret = new ScriptDom.SetUserStatement();
-            ret.UserName = (ScriptDom.ValueExpression)userName.ToMutable();
+            ret.UserName = (ScriptDom.ValueExpression)userName?.ToMutable();
             ret.WithNoReset = withNoReset;
             return ret;
         }

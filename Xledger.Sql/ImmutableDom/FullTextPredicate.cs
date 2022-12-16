@@ -31,10 +31,10 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FullTextPredicate ToMutableConcrete() {
             var ret = new ScriptDom.FullTextPredicate();
             ret.FullTextFunctionType = fullTextFunctionType;
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.Value = (ScriptDom.ValueExpression)@value.ToMutable();
-            ret.LanguageTerm = (ScriptDom.ValueExpression)languageTerm.ToMutable();
-            ret.PropertyName = (ScriptDom.StringLiteral)propertyName.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Value = (ScriptDom.ValueExpression)@value?.ToMutable();
+            ret.LanguageTerm = (ScriptDom.ValueExpression)languageTerm?.ToMutable();
+            ret.PropertyName = (ScriptDom.StringLiteral)propertyName?.ToMutable();
             return ret;
         }
         

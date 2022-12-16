@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.KillStatsJobStatement ToMutableConcrete() {
             var ret = new ScriptDom.KillStatsJobStatement();
-            ret.JobId = (ScriptDom.ScalarExpression)jobId.ToMutable();
+            ret.JobId = (ScriptDom.ScalarExpression)jobId?.ToMutable();
             return ret;
         }
         

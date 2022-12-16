@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CertificateCreateLoginSource ToMutableConcrete() {
             var ret = new ScriptDom.CertificateCreateLoginSource();
-            ret.Certificate = (ScriptDom.Identifier)certificate.ToMutable();
-            ret.Credential = (ScriptDom.Identifier)credential.ToMutable();
+            ret.Certificate = (ScriptDom.Identifier)certificate?.ToMutable();
+            ret.Credential = (ScriptDom.Identifier)credential?.ToMutable();
             return ret;
         }
         

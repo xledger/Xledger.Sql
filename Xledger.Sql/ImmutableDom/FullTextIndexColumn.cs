@@ -27,9 +27,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FullTextIndexColumn ToMutableConcrete() {
             var ret = new ScriptDom.FullTextIndexColumn();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.TypeColumn = (ScriptDom.Identifier)typeColumn.ToMutable();
-            ret.LanguageTerm = (ScriptDom.IdentifierOrValueExpression)languageTerm.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.TypeColumn = (ScriptDom.Identifier)typeColumn?.ToMutable();
+            ret.LanguageTerm = (ScriptDom.IdentifierOrValueExpression)languageTerm?.ToMutable();
             ret.StatisticalSemantics = statisticalSemantics;
             return ret;
         }

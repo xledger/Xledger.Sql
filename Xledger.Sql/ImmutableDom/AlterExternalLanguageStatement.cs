@@ -26,11 +26,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterExternalLanguageStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterExternalLanguageStatement();
-            ret.Platform = (ScriptDom.Identifier)platform.ToMutable();
-            ret.Operation = (ScriptDom.Identifier)operation.ToMutable();
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ExternalLanguageFiles.AddRange(externalLanguageFiles.SelectList(c => (ScriptDom.ExternalLanguageFileOption)c.ToMutable()));
+            ret.Platform = (ScriptDom.Identifier)platform?.ToMutable();
+            ret.Operation = (ScriptDom.Identifier)operation?.ToMutable();
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.ExternalLanguageFiles.AddRange(externalLanguageFiles.SelectList(c => (ScriptDom.ExternalLanguageFileOption)c?.ToMutable()));
             return ret;
         }
         

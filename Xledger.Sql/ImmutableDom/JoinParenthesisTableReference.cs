@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.JoinParenthesisTableReference ToMutableConcrete() {
             var ret = new ScriptDom.JoinParenthesisTableReference();
-            ret.Join = (ScriptDom.TableReference)join.ToMutable();
+            ret.Join = (ScriptDom.TableReference)join?.ToMutable();
             return ret;
         }
         

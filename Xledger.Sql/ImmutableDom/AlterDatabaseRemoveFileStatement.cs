@@ -20,8 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterDatabaseRemoveFileStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseRemoveFileStatement();
-            ret.File = (ScriptDom.Identifier)file.ToMutable();
-            ret.DatabaseName = (ScriptDom.Identifier)databaseName.ToMutable();
+            ret.File = (ScriptDom.Identifier)file?.ToMutable();
+            ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.UseCurrent = useCurrent;
             return ret;
         }

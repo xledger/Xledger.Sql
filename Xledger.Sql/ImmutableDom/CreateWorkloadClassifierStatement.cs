@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateWorkloadClassifierStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateWorkloadClassifierStatement();
-            ret.ClassifierName = (ScriptDom.Identifier)classifierName.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.WorkloadClassifierOption)c.ToMutable()));
+            ret.ClassifierName = (ScriptDom.Identifier)classifierName?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.WorkloadClassifierOption)c?.ToMutable()));
             return ret;
         }
         

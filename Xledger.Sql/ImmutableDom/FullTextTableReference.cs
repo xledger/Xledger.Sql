@@ -39,13 +39,13 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FullTextTableReference ToMutableConcrete() {
             var ret = new ScriptDom.FullTextTableReference();
             ret.FullTextFunctionType = fullTextFunctionType;
-            ret.TableName = (ScriptDom.SchemaObjectName)tableName.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.SearchCondition = (ScriptDom.ValueExpression)searchCondition.ToMutable();
-            ret.TopN = (ScriptDom.ValueExpression)topN.ToMutable();
-            ret.Language = (ScriptDom.ValueExpression)language.ToMutable();
-            ret.PropertyName = (ScriptDom.StringLiteral)propertyName.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.TableName = (ScriptDom.SchemaObjectName)tableName?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.SearchCondition = (ScriptDom.ValueExpression)searchCondition?.ToMutable();
+            ret.TopN = (ScriptDom.ValueExpression)topN?.ToMutable();
+            ret.Language = (ScriptDom.ValueExpression)language?.ToMutable();
+            ret.PropertyName = (ScriptDom.StringLiteral)propertyName?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

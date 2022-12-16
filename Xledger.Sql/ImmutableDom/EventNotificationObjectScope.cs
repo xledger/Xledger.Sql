@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.EventNotificationObjectScope ToMutableConcrete() {
             var ret = new ScriptDom.EventNotificationObjectScope();
             ret.Target = target;
-            ret.QueueName = (ScriptDom.SchemaObjectName)queueName.ToMutable();
+            ret.QueueName = (ScriptDom.SchemaObjectName)queueName?.ToMutable();
             return ret;
         }
         

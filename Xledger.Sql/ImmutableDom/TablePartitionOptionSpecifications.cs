@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.TablePartitionOptionSpecifications ToMutableConcrete() {
             var ret = new ScriptDom.TablePartitionOptionSpecifications();
             ret.Range = range;
-            ret.BoundaryValues.AddRange(boundaryValues.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.BoundaryValues.AddRange(boundaryValues.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         

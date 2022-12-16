@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RetentionPeriodDefinition ToMutableConcrete() {
             var ret = new ScriptDom.RetentionPeriodDefinition();
-            ret.Duration = (ScriptDom.IntegerLiteral)duration.ToMutable();
+            ret.Duration = (ScriptDom.IntegerLiteral)duration?.ToMutable();
             ret.Units = units;
             ret.IsInfinity = isInfinity;
             return ret;

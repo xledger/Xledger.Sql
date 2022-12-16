@@ -27,11 +27,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ChangeTableVersionTableReference ToMutableConcrete() {
             var ret = new ScriptDom.ChangeTableVersionTableReference();
-            ret.Target = (ScriptDom.SchemaObjectName)target.ToMutable();
-            ret.PrimaryKeyColumns.AddRange(primaryKeyColumns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.PrimaryKeyValues.AddRange(primaryKeyValues.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.Target = (ScriptDom.SchemaObjectName)target?.ToMutable();
+            ret.PrimaryKeyColumns.AddRange(primaryKeyColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.PrimaryKeyValues.AddRange(primaryKeyValues.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

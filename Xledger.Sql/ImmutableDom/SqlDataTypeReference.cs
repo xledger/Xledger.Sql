@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SqlDataTypeReference ToMutableConcrete() {
             var ret = new ScriptDom.SqlDataTypeReference();
             ret.SqlDataTypeOption = sqlDataTypeOption;
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.Literal)c.ToMutable()));
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.Literal)c?.ToMutable()));
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
         

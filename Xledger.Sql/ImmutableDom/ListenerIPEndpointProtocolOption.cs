@@ -29,9 +29,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ListenerIPEndpointProtocolOption ToMutableConcrete() {
             var ret = new ScriptDom.ListenerIPEndpointProtocolOption();
             ret.IsAll = isAll;
-            ret.IPv6 = (ScriptDom.Literal)iPv6.ToMutable();
-            ret.IPv4PartOne = (ScriptDom.IPv4)iPv4PartOne.ToMutable();
-            ret.IPv4PartTwo = (ScriptDom.IPv4)iPv4PartTwo.ToMutable();
+            ret.IPv6 = (ScriptDom.Literal)iPv6?.ToMutable();
+            ret.IPv4PartOne = (ScriptDom.IPv4)iPv4PartOne?.ToMutable();
+            ret.IPv4PartTwo = (ScriptDom.IPv4)iPv4PartTwo?.ToMutable();
             ret.Kind = kind;
             return ret;
         }

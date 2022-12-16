@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SelectStarExpression ToMutableConcrete() {
             var ret = new ScriptDom.SelectStarExpression();
-            ret.Qualifier = (ScriptDom.MultiPartIdentifier)qualifier.ToMutable();
+            ret.Qualifier = (ScriptDom.MultiPartIdentifier)qualifier?.ToMutable();
             return ret;
         }
         

@@ -43,16 +43,16 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.QuerySpecification ToMutableConcrete() {
             var ret = new ScriptDom.QuerySpecification();
             ret.UniqueRowFilter = uniqueRowFilter;
-            ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter.ToMutable();
-            ret.SelectElements.AddRange(selectElements.SelectList(c => (ScriptDom.SelectElement)c.ToMutable()));
-            ret.FromClause = (ScriptDom.FromClause)fromClause.ToMutable();
-            ret.WhereClause = (ScriptDom.WhereClause)whereClause.ToMutable();
-            ret.GroupByClause = (ScriptDom.GroupByClause)groupByClause.ToMutable();
-            ret.HavingClause = (ScriptDom.HavingClause)havingClause.ToMutable();
-            ret.WindowClause = (ScriptDom.WindowClause)windowClause.ToMutable();
-            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause.ToMutable();
-            ret.OffsetClause = (ScriptDom.OffsetClause)offsetClause.ToMutable();
-            ret.ForClause = (ScriptDom.ForClause)forClause.ToMutable();
+            ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter?.ToMutable();
+            ret.SelectElements.AddRange(selectElements.SelectList(c => (ScriptDom.SelectElement)c?.ToMutable()));
+            ret.FromClause = (ScriptDom.FromClause)fromClause?.ToMutable();
+            ret.WhereClause = (ScriptDom.WhereClause)whereClause?.ToMutable();
+            ret.GroupByClause = (ScriptDom.GroupByClause)groupByClause?.ToMutable();
+            ret.HavingClause = (ScriptDom.HavingClause)havingClause?.ToMutable();
+            ret.WindowClause = (ScriptDom.WindowClause)windowClause?.ToMutable();
+            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause?.ToMutable();
+            ret.OffsetClause = (ScriptDom.OffsetClause)offsetClause?.ToMutable();
+            ret.ForClause = (ScriptDom.ForClause)forClause?.ToMutable();
             return ret;
         }
         

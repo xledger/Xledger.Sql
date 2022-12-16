@@ -29,8 +29,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.RenameEntityStatement();
             ret.RenameEntityType = renameEntityType;
             ret.SeparatorType = separatorType;
-            ret.OldName = (ScriptDom.SchemaObjectName)oldName.ToMutable();
-            ret.NewName = (ScriptDom.Identifier)newName.ToMutable();
+            ret.OldName = (ScriptDom.SchemaObjectName)oldName?.ToMutable();
+            ret.NewName = (ScriptDom.Identifier)newName?.ToMutable();
             return ret;
         }
         

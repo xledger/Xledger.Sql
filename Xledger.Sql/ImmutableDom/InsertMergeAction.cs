@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InsertMergeAction ToMutableConcrete() {
             var ret = new ScriptDom.InsertMergeAction();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.Source = (ScriptDom.ValuesInsertSource)source.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Source = (ScriptDom.ValuesInsertSource)source?.ToMutable();
             return ret;
         }
         

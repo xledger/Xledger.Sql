@@ -27,10 +27,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AddSearchPropertyListAction ToMutableConcrete() {
             var ret = new ScriptDom.AddSearchPropertyListAction();
-            ret.PropertyName = (ScriptDom.StringLiteral)propertyName.ToMutable();
-            ret.Guid = (ScriptDom.StringLiteral)guid.ToMutable();
-            ret.Id = (ScriptDom.IntegerLiteral)id.ToMutable();
-            ret.Description = (ScriptDom.StringLiteral)description.ToMutable();
+            ret.PropertyName = (ScriptDom.StringLiteral)propertyName?.ToMutable();
+            ret.Guid = (ScriptDom.StringLiteral)guid?.ToMutable();
+            ret.Id = (ScriptDom.IntegerLiteral)id?.ToMutable();
+            ret.Description = (ScriptDom.StringLiteral)description?.ToMutable();
             return ret;
         }
         

@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ParameterlessCall ToMutableConcrete() {
             var ret = new ScriptDom.ParameterlessCall();
             ret.ParameterlessCallType = parameterlessCallType;
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

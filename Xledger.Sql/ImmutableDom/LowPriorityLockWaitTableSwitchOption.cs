@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LowPriorityLockWaitTableSwitchOption ToMutableConcrete() {
             var ret = new ScriptDom.LowPriorityLockWaitTableSwitchOption();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.LowPriorityLockWaitOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.LowPriorityLockWaitOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

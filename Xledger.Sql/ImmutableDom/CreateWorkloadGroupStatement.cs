@@ -17,10 +17,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateWorkloadGroupStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateWorkloadGroupStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.WorkloadGroupParameters.AddRange(workloadGroupParameters.SelectList(c => (ScriptDom.WorkloadGroupParameter)c.ToMutable()));
-            ret.PoolName = (ScriptDom.Identifier)poolName.ToMutable();
-            ret.ExternalPoolName = (ScriptDom.Identifier)externalPoolName.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.WorkloadGroupParameters.AddRange(workloadGroupParameters.SelectList(c => (ScriptDom.WorkloadGroupParameter)c?.ToMutable()));
+            ret.PoolName = (ScriptDom.Identifier)poolName?.ToMutable();
+            ret.ExternalPoolName = (ScriptDom.Identifier)externalPoolName?.ToMutable();
             return ret;
         }
         

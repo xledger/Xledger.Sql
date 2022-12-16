@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CheckConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.CheckConstraintDefinition();
-            ret.CheckCondition = (ScriptDom.BooleanExpression)checkCondition.ToMutable();
+            ret.CheckCondition = (ScriptDom.BooleanExpression)checkCondition?.ToMutable();
             ret.NotForReplication = notForReplication;
-            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier.ToMutable();
+            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier?.ToMutable();
             return ret;
         }
         

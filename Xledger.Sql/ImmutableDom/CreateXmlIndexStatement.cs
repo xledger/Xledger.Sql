@@ -34,13 +34,13 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateXmlIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateXmlIndexStatement();
             ret.Primary = primary;
-            ret.XmlColumn = (ScriptDom.Identifier)xmlColumn.ToMutable();
-            ret.SecondaryXmlIndexName = (ScriptDom.Identifier)secondaryXmlIndexName.ToMutable();
+            ret.XmlColumn = (ScriptDom.Identifier)xmlColumn?.ToMutable();
+            ret.SecondaryXmlIndexName = (ScriptDom.Identifier)secondaryXmlIndexName?.ToMutable();
             ret.SecondaryXmlIndexType = secondaryXmlIndexType;
-            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c.ToMutable()));
+            ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
+            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
             return ret;
         }
         

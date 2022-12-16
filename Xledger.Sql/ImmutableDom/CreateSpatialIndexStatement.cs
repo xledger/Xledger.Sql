@@ -33,12 +33,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateSpatialIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSpatialIndexStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Object = (ScriptDom.SchemaObjectName)@object.ToMutable();
-            ret.SpatialColumnName = (ScriptDom.Identifier)spatialColumnName.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Object = (ScriptDom.SchemaObjectName)@object?.ToMutable();
+            ret.SpatialColumnName = (ScriptDom.Identifier)spatialColumnName?.ToMutable();
             ret.SpatialIndexingScheme = spatialIndexingScheme;
-            ret.SpatialIndexOptions.AddRange(spatialIndexOptions.SelectList(c => (ScriptDom.SpatialIndexOption)c.ToMutable()));
-            ret.OnFileGroup = (ScriptDom.IdentifierOrValueExpression)onFileGroup.ToMutable();
+            ret.SpatialIndexOptions.AddRange(spatialIndexOptions.SelectList(c => (ScriptDom.SpatialIndexOption)c?.ToMutable()));
+            ret.OnFileGroup = (ScriptDom.IdentifierOrValueExpression)onFileGroup?.ToMutable();
             return ret;
         }
         

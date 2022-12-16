@@ -29,12 +29,12 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateFullTextCatalogStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateFullTextCatalogStatement();
-            ret.FileGroup = (ScriptDom.Identifier)fileGroup.ToMutable();
-            ret.Path = (ScriptDom.Literal)path.ToMutable();
+            ret.FileGroup = (ScriptDom.Identifier)fileGroup?.ToMutable();
+            ret.Path = (ScriptDom.Literal)path?.ToMutable();
             ret.IsDefault = isDefault;
-            ret.Owner = (ScriptDom.Identifier)owner.ToMutable();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextCatalogOption)c.ToMutable()));
+            ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextCatalogOption)c?.ToMutable()));
             return ret;
         }
         

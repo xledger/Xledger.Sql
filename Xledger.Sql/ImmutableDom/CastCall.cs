@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CastCall ToMutableConcrete() {
             var ret = new ScriptDom.CastCall();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
-            ret.Parameter = (ScriptDom.ScalarExpression)parameter.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
+            ret.Parameter = (ScriptDom.ScalarExpression)parameter?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

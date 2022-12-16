@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServiceMasterKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServiceMasterKeyStatement();
-            ret.Account = (ScriptDom.Literal)account.ToMutable();
-            ret.Password = (ScriptDom.Literal)password.ToMutable();
+            ret.Account = (ScriptDom.Literal)account?.ToMutable();
+            ret.Password = (ScriptDom.Literal)password?.ToMutable();
             ret.Kind = kind;
             return ret;
         }

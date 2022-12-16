@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateFederationStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateFederationStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.DistributionName = (ScriptDom.Identifier)distributionName.ToMutable();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.DistributionName = (ScriptDom.Identifier)distributionName?.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
             return ret;
         }
         

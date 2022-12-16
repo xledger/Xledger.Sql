@@ -22,8 +22,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ForceSeekTableHint ToMutableConcrete() {
             var ret = new ScriptDom.ForceSeekTableHint();
-            ret.IndexValue = (ScriptDom.IdentifierOrValueExpression)indexValue.ToMutable();
-            ret.ColumnValues.AddRange(columnValues.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.IndexValue = (ScriptDom.IdentifierOrValueExpression)indexValue?.ToMutable();
+            ret.ColumnValues.AddRange(columnValues.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }

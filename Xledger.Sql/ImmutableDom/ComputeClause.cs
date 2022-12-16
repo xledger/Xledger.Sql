@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ComputeClause ToMutableConcrete() {
             var ret = new ScriptDom.ComputeClause();
-            ret.ComputeFunctions.AddRange(computeFunctions.SelectList(c => (ScriptDom.ComputeFunction)c.ToMutable()));
-            ret.ByExpressions.AddRange(byExpressions.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
+            ret.ComputeFunctions.AddRange(computeFunctions.SelectList(c => (ScriptDom.ComputeFunction)c?.ToMutable()));
+            ret.ByExpressions.AddRange(byExpressions.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         

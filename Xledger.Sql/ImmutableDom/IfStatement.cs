@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IfStatement ToMutableConcrete() {
             var ret = new ScriptDom.IfStatement();
-            ret.Predicate = (ScriptDom.BooleanExpression)predicate.ToMutable();
-            ret.ThenStatement = (ScriptDom.TSqlStatement)thenStatement.ToMutable();
-            ret.ElseStatement = (ScriptDom.TSqlStatement)elseStatement.ToMutable();
+            ret.Predicate = (ScriptDom.BooleanExpression)predicate?.ToMutable();
+            ret.ThenStatement = (ScriptDom.TSqlStatement)thenStatement?.ToMutable();
+            ret.ElseStatement = (ScriptDom.TSqlStatement)elseStatement?.ToMutable();
             return ret;
         }
         

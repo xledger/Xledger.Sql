@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DenyStatement80 ToMutableConcrete() {
             var ret = new ScriptDom.DenyStatement80();
             ret.CascadeOption = cascadeOption;
-            ret.SecurityElement80 = (ScriptDom.SecurityElement80)securityElement80.ToMutable();
-            ret.SecurityUserClause80 = (ScriptDom.SecurityUserClause80)securityUserClause80.ToMutable();
+            ret.SecurityElement80 = (ScriptDom.SecurityElement80)securityElement80?.ToMutable();
+            ret.SecurityUserClause80 = (ScriptDom.SecurityUserClause80)securityUserClause80?.ToMutable();
             return ret;
         }
         

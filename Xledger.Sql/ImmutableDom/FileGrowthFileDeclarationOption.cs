@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FileGrowthFileDeclarationOption ToMutableConcrete() {
             var ret = new ScriptDom.FileGrowthFileDeclarationOption();
-            ret.GrowthIncrement = (ScriptDom.Literal)growthIncrement.ToMutable();
+            ret.GrowthIncrement = (ScriptDom.Literal)growthIncrement?.ToMutable();
             ret.Units = units;
             ret.OptionKind = optionKind;
             return ret;

@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateCall ToMutableConcrete() {
             var ret = new ScriptDom.UpdateCall();
-            ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
+            ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
             return ret;
         }
         

@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterLoginEnableDisableStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterLoginEnableDisableStatement();
             ret.IsEnable = isEnable;
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             return ret;
         }
         

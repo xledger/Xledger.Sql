@@ -31,11 +31,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LedgerViewOption ToMutableConcrete() {
             var ret = new ScriptDom.LedgerViewOption();
-            ret.ViewName = (ScriptDom.SchemaObjectName)viewName.ToMutable();
-            ret.TransactionIdColumnName = (ScriptDom.Identifier)transactionIdColumnName.ToMutable();
-            ret.SequenceNumberColumnName = (ScriptDom.Identifier)sequenceNumberColumnName.ToMutable();
-            ret.OperationTypeColumnName = (ScriptDom.Identifier)operationTypeColumnName.ToMutable();
-            ret.OperationTypeDescColumnName = (ScriptDom.Identifier)operationTypeDescColumnName.ToMutable();
+            ret.ViewName = (ScriptDom.SchemaObjectName)viewName?.ToMutable();
+            ret.TransactionIdColumnName = (ScriptDom.Identifier)transactionIdColumnName?.ToMutable();
+            ret.SequenceNumberColumnName = (ScriptDom.Identifier)sequenceNumberColumnName?.ToMutable();
+            ret.OperationTypeColumnName = (ScriptDom.Identifier)operationTypeColumnName?.ToMutable();
+            ret.OperationTypeDescColumnName = (ScriptDom.Identifier)operationTypeDescColumnName?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

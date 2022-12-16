@@ -16,9 +16,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterMessageTypeStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterMessageTypeStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.ValidationMethod = validationMethod;
-            ret.XmlSchemaCollectionName = (ScriptDom.SchemaObjectName)xmlSchemaCollectionName.ToMutable();
+            ret.XmlSchemaCollectionName = (ScriptDom.SchemaObjectName)xmlSchemaCollectionName?.ToMutable();
             return ret;
         }
         

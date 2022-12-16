@@ -26,10 +26,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OpenJsonTableReference ToMutableConcrete() {
             var ret = new ScriptDom.OpenJsonTableReference();
-            ret.Variable = (ScriptDom.ScalarExpression)variable.ToMutable();
-            ret.RowPattern = (ScriptDom.ScalarExpression)rowPattern.ToMutable();
-            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItemOpenjson)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.Variable = (ScriptDom.ScalarExpression)variable?.ToMutable();
+            ret.RowPattern = (ScriptDom.ScalarExpression)rowPattern?.ToMutable();
+            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItemOpenjson)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

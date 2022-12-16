@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WindowClause ToMutableConcrete() {
             var ret = new ScriptDom.WindowClause();
-            ret.WindowDefinition.AddRange(windowDefinition.SelectList(c => (ScriptDom.WindowDefinition)c.ToMutable()));
+            ret.WindowDefinition.AddRange(windowDefinition.SelectList(c => (ScriptDom.WindowDefinition)c?.ToMutable()));
             return ret;
         }
         

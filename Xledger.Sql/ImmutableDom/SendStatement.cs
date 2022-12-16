@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SendStatement ToMutableConcrete() {
             var ret = new ScriptDom.SendStatement();
-            ret.ConversationHandles.AddRange(conversationHandles.SelectList(c => (ScriptDom.ScalarExpression)c.ToMutable()));
-            ret.MessageTypeName = (ScriptDom.IdentifierOrValueExpression)messageTypeName.ToMutable();
-            ret.MessageBody = (ScriptDom.ScalarExpression)messageBody.ToMutable();
+            ret.ConversationHandles.AddRange(conversationHandles.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.MessageTypeName = (ScriptDom.IdentifierOrValueExpression)messageTypeName?.ToMutable();
+            ret.MessageBody = (ScriptDom.ScalarExpression)messageBody?.ToMutable();
             return ret;
         }
         

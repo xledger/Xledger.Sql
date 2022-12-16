@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTableChangeTrackingModificationStatement();
             ret.IsEnable = isEnable;
             ret.TrackColumnsUpdated = trackColumnsUpdated;
-            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName.ToMutable();
+            ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
         

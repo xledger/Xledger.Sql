@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExecutableProcedureReference ToMutableConcrete() {
             var ret = new ScriptDom.ExecutableProcedureReference();
-            ret.ProcedureReference = (ScriptDom.ProcedureReferenceName)procedureReference.ToMutable();
-            ret.AdHocDataSource = (ScriptDom.AdHocDataSource)adHocDataSource.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ExecuteParameter)c.ToMutable()));
+            ret.ProcedureReference = (ScriptDom.ProcedureReferenceName)procedureReference?.ToMutable();
+            ret.AdHocDataSource = (ScriptDom.AdHocDataSource)adHocDataSource?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ExecuteParameter)c?.ToMutable()));
             return ret;
         }
         

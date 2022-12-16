@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LiteralStatisticsOption ToMutableConcrete() {
             var ret = new ScriptDom.LiteralStatisticsOption();
-            ret.Literal = (ScriptDom.Literal)literal.ToMutable();
+            ret.Literal = (ScriptDom.Literal)literal?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

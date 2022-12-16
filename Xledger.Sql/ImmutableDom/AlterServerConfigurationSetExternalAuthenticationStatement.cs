@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)c?.ToMutable()));
             return ret;
         }
         

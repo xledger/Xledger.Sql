@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SizeFileDeclarationOption ToMutableConcrete() {
             var ret = new ScriptDom.SizeFileDeclarationOption();
-            ret.Size = (ScriptDom.Literal)size.ToMutable();
+            ret.Size = (ScriptDom.Literal)size?.ToMutable();
             ret.Units = units;
             ret.OptionKind = optionKind;
             return ret;

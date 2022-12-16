@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropXmlSchemaCollectionStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropXmlSchemaCollectionStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
         

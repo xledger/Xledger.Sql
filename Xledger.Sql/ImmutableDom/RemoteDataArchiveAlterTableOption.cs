@@ -35,7 +35,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.MigrationState = migrationState;
             ret.IsMigrationStateSpecified = isMigrationStateSpecified;
             ret.IsFilterPredicateSpecified = isFilterPredicateSpecified;
-            ret.FilterPredicate = (ScriptDom.FunctionCall)filterPredicate.ToMutable();
+            ret.FilterPredicate = (ScriptDom.FunctionCall)filterPredicate?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

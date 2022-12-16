@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AddSensitivityClassificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AddSensitivityClassificationStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.SensitivityClassificationOption)c.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.SensitivityClassificationOption)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             return ret;
         }
         

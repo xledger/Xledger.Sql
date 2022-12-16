@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ClassifierWlmLabelOption ToMutableConcrete() {
             var ret = new ScriptDom.ClassifierWlmLabelOption();
-            ret.WlmLabel = (ScriptDom.StringLiteral)wlmLabel.ToMutable();
+            ret.WlmLabel = (ScriptDom.StringLiteral)wlmLabel?.ToMutable();
             ret.OptionType = optionType;
             return ret;
         }

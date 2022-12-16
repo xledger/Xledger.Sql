@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.DropSignatureStatement();
             ret.IsCounter = isCounter;
             ret.ElementKind = elementKind;
-            ret.Element = (ScriptDom.SchemaObjectName)element.ToMutable();
-            ret.Cryptos.AddRange(cryptos.SelectList(c => (ScriptDom.CryptoMechanism)c.ToMutable()));
+            ret.Element = (ScriptDom.SchemaObjectName)element?.ToMutable();
+            ret.Cryptos.AddRange(cryptos.SelectList(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
             return ret;
         }
         

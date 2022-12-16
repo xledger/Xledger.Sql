@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AvailabilityReplica ToMutableConcrete() {
             var ret = new ScriptDom.AvailabilityReplica();
-            ret.ServerName = (ScriptDom.StringLiteral)serverName.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityReplicaOption)c.ToMutable()));
+            ret.ServerName = (ScriptDom.StringLiteral)serverName?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityReplicaOption)c?.ToMutable()));
             return ret;
         }
         

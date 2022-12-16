@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.RemoteDataArchiveDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.RemoteDataArchiveDatabaseOption();
             ret.OptionState = optionState;
-            ret.Settings.AddRange(settings.SelectList(c => (ScriptDom.RemoteDataArchiveDatabaseSetting)c.ToMutable()));
+            ret.Settings.AddRange(settings.SelectList(c => (ScriptDom.RemoteDataArchiveDatabaseSetting)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }

@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.FileNameFileDeclarationOption ToMutableConcrete() {
             var ret = new ScriptDom.FileNameFileDeclarationOption();
-            ret.OSFileName = (ScriptDom.Literal)oSFileName.ToMutable();
+            ret.OSFileName = (ScriptDom.Literal)oSFileName?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

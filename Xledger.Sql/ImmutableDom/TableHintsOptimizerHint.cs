@@ -22,8 +22,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TableHintsOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.TableHintsOptimizerHint();
-            ret.ObjectName = (ScriptDom.SchemaObjectName)objectName.ToMutable();
-            ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c.ToMutable()));
+            ret.ObjectName = (ScriptDom.SchemaObjectName)objectName?.ToMutable();
+            ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c?.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }

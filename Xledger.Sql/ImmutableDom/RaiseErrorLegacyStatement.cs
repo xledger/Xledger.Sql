@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RaiseErrorLegacyStatement ToMutableConcrete() {
             var ret = new ScriptDom.RaiseErrorLegacyStatement();
-            ret.FirstParameter = (ScriptDom.ScalarExpression)firstParameter.ToMutable();
-            ret.SecondParameter = (ScriptDom.ValueExpression)secondParameter.ToMutable();
+            ret.FirstParameter = (ScriptDom.ScalarExpression)firstParameter?.ToMutable();
+            ret.SecondParameter = (ScriptDom.ValueExpression)secondParameter?.ToMutable();
             return ret;
         }
         

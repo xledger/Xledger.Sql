@@ -27,8 +27,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.BeginTransactionStatement();
             ret.Distributed = distributed;
             ret.MarkDefined = markDefined;
-            ret.MarkDescription = (ScriptDom.ValueExpression)markDescription.ToMutable();
-            ret.Name = (ScriptDom.IdentifierOrValueExpression)name.ToMutable();
+            ret.MarkDescription = (ScriptDom.ValueExpression)markDescription?.ToMutable();
+            ret.Name = (ScriptDom.IdentifierOrValueExpression)name?.ToMutable();
             return ret;
         }
         

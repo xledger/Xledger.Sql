@@ -34,13 +34,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ForeignKeyConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.ForeignKeyConstraintDefinition();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.ReferenceTableName = (ScriptDom.SchemaObjectName)referenceTableName.ToMutable();
-            ret.ReferencedTableColumns.AddRange(referencedTableColumns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.ReferenceTableName = (ScriptDom.SchemaObjectName)referenceTableName?.ToMutable();
+            ret.ReferencedTableColumns.AddRange(referencedTableColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.DeleteAction = deleteAction;
             ret.UpdateAction = updateAction;
             ret.NotForReplication = notForReplication;
-            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier.ToMutable();
+            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier?.ToMutable();
             return ret;
         }
         

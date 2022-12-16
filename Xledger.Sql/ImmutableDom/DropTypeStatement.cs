@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropTypeStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropTypeStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.IsIfExists = isIfExists;
             return ret;
         }

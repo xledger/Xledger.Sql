@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.KillQueryNotificationSubscriptionStatement ToMutableConcrete() {
             var ret = new ScriptDom.KillQueryNotificationSubscriptionStatement();
-            ret.SubscriptionId = (ScriptDom.Literal)subscriptionId.ToMutable();
+            ret.SubscriptionId = (ScriptDom.Literal)subscriptionId?.ToMutable();
             ret.All = all;
             return ret;
         }

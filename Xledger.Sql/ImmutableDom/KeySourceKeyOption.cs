@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.KeySourceKeyOption ToMutableConcrete() {
             var ret = new ScriptDom.KeySourceKeyOption();
-            ret.PassPhrase = (ScriptDom.Literal)passPhrase.ToMutable();
+            ret.PassPhrase = (ScriptDom.Literal)passPhrase?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

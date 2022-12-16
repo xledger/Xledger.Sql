@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CertificateOption ToMutableConcrete() {
             var ret = new ScriptDom.CertificateOption();
             ret.Kind = kind;
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             return ret;
         }
         

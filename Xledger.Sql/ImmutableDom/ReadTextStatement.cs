@@ -30,10 +30,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ReadTextStatement ToMutableConcrete() {
             var ret = new ScriptDom.ReadTextStatement();
-            ret.Column = (ScriptDom.ColumnReferenceExpression)column.ToMutable();
-            ret.TextPointer = (ScriptDom.ValueExpression)textPointer.ToMutable();
-            ret.Offset = (ScriptDom.ValueExpression)offset.ToMutable();
-            ret.Size = (ScriptDom.ValueExpression)size.ToMutable();
+            ret.Column = (ScriptDom.ColumnReferenceExpression)column?.ToMutable();
+            ret.TextPointer = (ScriptDom.ValueExpression)textPointer?.ToMutable();
+            ret.Offset = (ScriptDom.ValueExpression)offset?.ToMutable();
+            ret.Size = (ScriptDom.ValueExpression)size?.ToMutable();
             ret.HoldLock = holdLock;
             return ret;
         }

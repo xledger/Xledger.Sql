@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ClassifierWlmContextOption ToMutableConcrete() {
             var ret = new ScriptDom.ClassifierWlmContextOption();
-            ret.WlmContext = (ScriptDom.StringLiteral)wlmContext.ToMutable();
+            ret.WlmContext = (ScriptDom.StringLiteral)wlmContext?.ToMutable();
             ret.OptionType = optionType;
             return ret;
         }

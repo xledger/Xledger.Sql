@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterServerConfigurationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationStatement();
             ret.ProcessAffinity = processAffinity;
-            ret.ProcessAffinityRanges.AddRange(processAffinityRanges.SelectList(c => (ScriptDom.ProcessAffinityRange)c.ToMutable()));
+            ret.ProcessAffinityRanges.AddRange(processAffinityRanges.SelectList(c => (ScriptDom.ProcessAffinityRange)c?.ToMutable()));
             return ret;
         }
         

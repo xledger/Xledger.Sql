@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LiteralEndpointProtocolOption ToMutableConcrete() {
             var ret = new ScriptDom.LiteralEndpointProtocolOption();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.Kind = kind;
             return ret;
         }

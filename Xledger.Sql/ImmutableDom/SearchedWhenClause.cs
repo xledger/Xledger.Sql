@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SearchedWhenClause ToMutableConcrete() {
             var ret = new ScriptDom.SearchedWhenClause();
-            ret.WhenExpression = (ScriptDom.BooleanExpression)whenExpression.ToMutable();
-            ret.ThenExpression = (ScriptDom.ScalarExpression)thenExpression.ToMutable();
+            ret.WhenExpression = (ScriptDom.BooleanExpression)whenExpression?.ToMutable();
+            ret.ThenExpression = (ScriptDom.ScalarExpression)thenExpression?.ToMutable();
             return ret;
         }
         

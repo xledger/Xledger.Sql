@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GraphConnectionConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.GraphConnectionConstraintDefinition();
-            ret.FromNodeToNodeList.AddRange(fromNodeToNodeList.SelectList(c => (ScriptDom.GraphConnectionBetweenNodes)c.ToMutable()));
+            ret.FromNodeToNodeList.AddRange(fromNodeToNodeList.SelectList(c => (ScriptDom.GraphConnectionBetweenNodes)c?.ToMutable()));
             ret.DeleteAction = deleteAction;
-            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier.ToMutable();
+            ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier?.ToMutable();
             return ret;
         }
         

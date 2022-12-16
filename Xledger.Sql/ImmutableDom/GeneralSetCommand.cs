@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.GeneralSetCommand ToMutableConcrete() {
             var ret = new ScriptDom.GeneralSetCommand();
             ret.CommandType = commandType;
-            ret.Parameter = (ScriptDom.ScalarExpression)parameter.ToMutable();
+            ret.Parameter = (ScriptDom.ScalarExpression)parameter?.ToMutable();
             return ret;
         }
         

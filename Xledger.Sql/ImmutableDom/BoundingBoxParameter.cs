@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BoundingBoxParameter ToMutableConcrete() {
             var ret = new ScriptDom.BoundingBoxParameter();
             ret.Parameter = parameter;
-            ret.Value = (ScriptDom.ScalarExpression)@value.ToMutable();
+            ret.Value = (ScriptDom.ScalarExpression)@value?.ToMutable();
             return ret;
         }
         

@@ -57,22 +57,22 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ColumnDefinition ToMutableConcrete() {
             var ret = new ScriptDom.ColumnDefinition();
-            ret.ComputedColumnExpression = (ScriptDom.ScalarExpression)computedColumnExpression.ToMutable();
+            ret.ComputedColumnExpression = (ScriptDom.ScalarExpression)computedColumnExpression?.ToMutable();
             ret.IsPersisted = isPersisted;
-            ret.DefaultConstraint = (ScriptDom.DefaultConstraintDefinition)defaultConstraint.ToMutable();
-            ret.IdentityOptions = (ScriptDom.IdentityOptions)identityOptions.ToMutable();
+            ret.DefaultConstraint = (ScriptDom.DefaultConstraintDefinition)defaultConstraint?.ToMutable();
+            ret.IdentityOptions = (ScriptDom.IdentityOptions)identityOptions?.ToMutable();
             ret.IsRowGuidCol = isRowGuidCol;
-            ret.Constraints.AddRange(constraints.SelectList(c => (ScriptDom.ConstraintDefinition)c.ToMutable()));
-            ret.StorageOptions = (ScriptDom.ColumnStorageOptions)storageOptions.ToMutable();
-            ret.Index = (ScriptDom.IndexDefinition)index.ToMutable();
+            ret.Constraints.AddRange(constraints.SelectList(c => (ScriptDom.ConstraintDefinition)c?.ToMutable()));
+            ret.StorageOptions = (ScriptDom.ColumnStorageOptions)storageOptions?.ToMutable();
+            ret.Index = (ScriptDom.IndexDefinition)index?.ToMutable();
             ret.GeneratedAlways = generatedAlways;
             ret.IsHidden = isHidden;
-            ret.Encryption = (ScriptDom.ColumnEncryptionDefinition)encryption.ToMutable();
+            ret.Encryption = (ScriptDom.ColumnEncryptionDefinition)encryption?.ToMutable();
             ret.IsMasked = isMasked;
-            ret.MaskingFunction = (ScriptDom.StringLiteral)maskingFunction.ToMutable();
-            ret.ColumnIdentifier = (ScriptDom.Identifier)columnIdentifier.ToMutable();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
-            ret.Collation = (ScriptDom.Identifier)collation.ToMutable();
+            ret.MaskingFunction = (ScriptDom.StringLiteral)maskingFunction?.ToMutable();
+            ret.ColumnIdentifier = (ScriptDom.Identifier)columnIdentifier?.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
+            ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
         

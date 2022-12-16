@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ListTypeCopyOption ToMutableConcrete() {
             var ret = new ScriptDom.ListTypeCopyOption();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CopyStatementOptionBase)c.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CopyStatementOptionBase)c?.ToMutable()));
             return ret;
         }
         

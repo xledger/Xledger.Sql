@@ -29,11 +29,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UnpivotedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.UnpivotedTableReference();
-            ret.TableReference = (ScriptDom.TableReference)tableReference.ToMutable();
-            ret.InColumns.AddRange(inColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.PivotColumn = (ScriptDom.Identifier)pivotColumn.ToMutable();
-            ret.ValueColumn = (ScriptDom.Identifier)valueColumn.ToMutable();
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.TableReference = (ScriptDom.TableReference)tableReference?.ToMutable();
+            ret.InColumns.AddRange(inColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.PivotColumn = (ScriptDom.Identifier)pivotColumn?.ToMutable();
+            ret.ValueColumn = (ScriptDom.Identifier)valueColumn?.ToMutable();
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

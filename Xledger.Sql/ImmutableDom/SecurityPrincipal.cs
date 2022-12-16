@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SecurityPrincipal ToMutableConcrete() {
             var ret = new ScriptDom.SecurityPrincipal();
             ret.PrincipalType = principalType;
-            ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
+            ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
             return ret;
         }
         

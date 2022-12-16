@@ -32,14 +32,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateTextStatement ToMutableConcrete() {
             var ret = new ScriptDom.UpdateTextStatement();
-            ret.InsertOffset = (ScriptDom.ScalarExpression)insertOffset.ToMutable();
-            ret.DeleteLength = (ScriptDom.ScalarExpression)deleteLength.ToMutable();
-            ret.SourceColumn = (ScriptDom.ColumnReferenceExpression)sourceColumn.ToMutable();
-            ret.SourceParameter = (ScriptDom.ValueExpression)sourceParameter.ToMutable();
+            ret.InsertOffset = (ScriptDom.ScalarExpression)insertOffset?.ToMutable();
+            ret.DeleteLength = (ScriptDom.ScalarExpression)deleteLength?.ToMutable();
+            ret.SourceColumn = (ScriptDom.ColumnReferenceExpression)sourceColumn?.ToMutable();
+            ret.SourceParameter = (ScriptDom.ValueExpression)sourceParameter?.ToMutable();
             ret.Bulk = bulk;
-            ret.Column = (ScriptDom.ColumnReferenceExpression)column.ToMutable();
-            ret.TextId = (ScriptDom.ValueExpression)textId.ToMutable();
-            ret.Timestamp = (ScriptDom.Literal)timestamp.ToMutable();
+            ret.Column = (ScriptDom.ColumnReferenceExpression)column?.ToMutable();
+            ret.TextId = (ScriptDom.ValueExpression)textId?.ToMutable();
+            ret.Timestamp = (ScriptDom.Literal)timestamp?.ToMutable();
             ret.WithLog = withLog;
             return ret;
         }

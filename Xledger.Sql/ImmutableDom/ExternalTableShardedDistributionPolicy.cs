@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalTableShardedDistributionPolicy ToMutableConcrete() {
             var ret = new ScriptDom.ExternalTableShardedDistributionPolicy();
-            ret.ShardingColumn = (ScriptDom.Identifier)shardingColumn.ToMutable();
+            ret.ShardingColumn = (ScriptDom.Identifier)shardingColumn?.ToMutable();
             return ret;
         }
         

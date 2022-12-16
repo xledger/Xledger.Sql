@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BackwardsCompatibleDropIndexClause ToMutableConcrete() {
             var ret = new ScriptDom.BackwardsCompatibleDropIndexClause();
-            ret.Index = (ScriptDom.ChildObjectName)index.ToMutable();
+            ret.Index = (ScriptDom.ChildObjectName)index?.ToMutable();
             return ret;
         }
         

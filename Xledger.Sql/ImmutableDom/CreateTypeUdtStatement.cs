@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateTypeUdtStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateTypeUdtStatement();
-            ret.AssemblyName = (ScriptDom.AssemblyName)assemblyName.ToMutable();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.AssemblyName = (ScriptDom.AssemblyName)assemblyName?.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
         

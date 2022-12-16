@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GoToStatement ToMutableConcrete() {
             var ret = new ScriptDom.GoToStatement();
-            ret.LabelName = (ScriptDom.Identifier)labelName.ToMutable();
+            ret.LabelName = (ScriptDom.Identifier)labelName?.ToMutable();
             return ret;
         }
         

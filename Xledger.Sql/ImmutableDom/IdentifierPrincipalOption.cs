@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IdentifierPrincipalOption ToMutableConcrete() {
             var ret = new ScriptDom.IdentifierPrincipalOption();
-            ret.Identifier = (ScriptDom.Identifier)identifier.ToMutable();
+            ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

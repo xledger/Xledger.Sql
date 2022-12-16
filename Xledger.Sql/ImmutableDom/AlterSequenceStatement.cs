@@ -15,8 +15,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterSequenceStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterSequenceStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.SequenceOptions.AddRange(sequenceOptions.SelectList(c => (ScriptDom.SequenceOption)c.ToMutable()));
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.SequenceOptions.AddRange(sequenceOptions.SelectList(c => (ScriptDom.SequenceOption)c?.ToMutable()));
             return ret;
         }
         

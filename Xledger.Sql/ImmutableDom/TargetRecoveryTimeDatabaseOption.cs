@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TargetRecoveryTimeDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.TargetRecoveryTimeDatabaseOption();
-            ret.RecoveryTime = (ScriptDom.Literal)recoveryTime.ToMutable();
+            ret.RecoveryTime = (ScriptDom.Literal)recoveryTime?.ToMutable();
             ret.Unit = unit;
             ret.OptionKind = optionKind;
             return ret;

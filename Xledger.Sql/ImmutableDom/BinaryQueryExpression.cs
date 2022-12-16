@@ -32,11 +32,11 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.BinaryQueryExpression();
             ret.BinaryQueryExpressionType = binaryQueryExpressionType;
             ret.All = all;
-            ret.FirstQueryExpression = (ScriptDom.QueryExpression)firstQueryExpression.ToMutable();
-            ret.SecondQueryExpression = (ScriptDom.QueryExpression)secondQueryExpression.ToMutable();
-            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause.ToMutable();
-            ret.OffsetClause = (ScriptDom.OffsetClause)offsetClause.ToMutable();
-            ret.ForClause = (ScriptDom.ForClause)forClause.ToMutable();
+            ret.FirstQueryExpression = (ScriptDom.QueryExpression)firstQueryExpression?.ToMutable();
+            ret.SecondQueryExpression = (ScriptDom.QueryExpression)secondQueryExpression?.ToMutable();
+            ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause?.ToMutable();
+            ret.OffsetClause = (ScriptDom.OffsetClause)offsetClause?.ToMutable();
+            ret.ForClause = (ScriptDom.ForClause)forClause?.ToMutable();
             return ret;
         }
         

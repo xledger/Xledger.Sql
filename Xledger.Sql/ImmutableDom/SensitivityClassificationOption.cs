@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SensitivityClassificationOption ToMutableConcrete() {
             var ret = new ScriptDom.SensitivityClassificationOption();
             ret.Type = type;
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             return ret;
         }
         

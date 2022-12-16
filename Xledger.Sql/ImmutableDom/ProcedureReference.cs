@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ProcedureReference ToMutableConcrete() {
             var ret = new ScriptDom.ProcedureReference();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.Number = (ScriptDom.Literal)number.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.Number = (ScriptDom.Literal)number?.ToMutable();
             return ret;
         }
         

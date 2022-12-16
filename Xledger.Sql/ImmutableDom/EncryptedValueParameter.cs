@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.EncryptedValueParameter ToMutableConcrete() {
             var ret = new ScriptDom.EncryptedValueParameter();
-            ret.Value = (ScriptDom.BinaryLiteral)@value.ToMutable();
+            ret.Value = (ScriptDom.BinaryLiteral)@value?.ToMutable();
             ret.ParameterKind = parameterKind;
             return ret;
         }

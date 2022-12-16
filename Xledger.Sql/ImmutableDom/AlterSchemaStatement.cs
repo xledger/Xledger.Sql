@@ -24,8 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterSchemaStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterSchemaStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.ObjectName = (ScriptDom.SchemaObjectName)objectName.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.ObjectName = (ScriptDom.SchemaObjectName)objectName?.ToMutable();
             ret.ObjectKind = objectKind;
             return ret;
         }

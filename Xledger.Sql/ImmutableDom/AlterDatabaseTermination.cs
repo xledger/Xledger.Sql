@@ -25,7 +25,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterDatabaseTermination ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseTermination();
             ret.ImmediateRollback = immediateRollback;
-            ret.RollbackAfter = (ScriptDom.Literal)rollbackAfter.ToMutable();
+            ret.RollbackAfter = (ScriptDom.Literal)rollbackAfter?.ToMutable();
             ret.NoWait = noWait;
             return ret;
         }

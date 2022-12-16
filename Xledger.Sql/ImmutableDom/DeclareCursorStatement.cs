@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DeclareCursorStatement ToMutableConcrete() {
             var ret = new ScriptDom.DeclareCursorStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.CursorDefinition = (ScriptDom.CursorDefinition)cursorDefinition.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.CursorDefinition = (ScriptDom.CursorDefinition)cursorDefinition?.ToMutable();
             return ret;
         }
         

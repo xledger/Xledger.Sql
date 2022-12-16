@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.IdentityFunctionCall ToMutableConcrete() {
             var ret = new ScriptDom.IdentityFunctionCall();
-            ret.DataType = (ScriptDom.DataTypeReference)dataType.ToMutable();
-            ret.Seed = (ScriptDom.ScalarExpression)seed.ToMutable();
-            ret.Increment = (ScriptDom.ScalarExpression)increment.ToMutable();
+            ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
+            ret.Seed = (ScriptDom.ScalarExpression)seed?.ToMutable();
+            ret.Increment = (ScriptDom.ScalarExpression)increment?.ToMutable();
             return ret;
         }
         

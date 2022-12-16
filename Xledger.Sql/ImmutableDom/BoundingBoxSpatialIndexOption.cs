@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.BoundingBoxSpatialIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.BoundingBoxSpatialIndexOption();
-            ret.BoundingBoxParameters.AddRange(boundingBoxParameters.SelectList(c => (ScriptDom.BoundingBoxParameter)c.ToMutable()));
+            ret.BoundingBoxParameters.AddRange(boundingBoxParameters.SelectList(c => (ScriptDom.BoundingBoxParameter)c?.ToMutable()));
             return ret;
         }
         

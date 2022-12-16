@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueueExecuteAsOption ToMutableConcrete() {
             var ret = new ScriptDom.QueueExecuteAsOption();
-            ret.OptionValue = (ScriptDom.ExecuteAsClause)optionValue.ToMutable();
+            ret.OptionValue = (ScriptDom.ExecuteAsClause)optionValue?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

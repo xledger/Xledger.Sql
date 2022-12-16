@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.EndpointAffinity ToMutableConcrete() {
             var ret = new ScriptDom.EndpointAffinity();
             ret.Kind = kind;
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             return ret;
         }
         

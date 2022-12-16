@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BooleanIsNullExpression ToMutableConcrete() {
             var ret = new ScriptDom.BooleanIsNullExpression();
             ret.IsNot = isNot;
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             return ret;
         }
         

@@ -29,12 +29,12 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.InsertSpecification ToMutableConcrete() {
             var ret = new ScriptDom.InsertSpecification();
             ret.InsertOption = insertOption;
-            ret.InsertSource = (ScriptDom.InsertSource)insertSource.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c.ToMutable()));
-            ret.Target = (ScriptDom.TableReference)target.ToMutable();
-            ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter.ToMutable();
-            ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause.ToMutable();
-            ret.OutputClause = (ScriptDom.OutputClause)outputClause.ToMutable();
+            ret.InsertSource = (ScriptDom.InsertSource)insertSource?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Target = (ScriptDom.TableReference)target?.ToMutable();
+            ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter?.ToMutable();
+            ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause?.ToMutable();
+            ret.OutputClause = (ScriptDom.OutputClause)outputClause?.ToMutable();
             return ret;
         }
         

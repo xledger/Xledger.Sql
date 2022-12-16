@@ -20,13 +20,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateOrAlterFunctionStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateOrAlterFunctionStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
-            ret.ReturnType = (ScriptDom.FunctionReturnType)returnType.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FunctionOption)c.ToMutable()));
-            ret.OrderHint = (ScriptDom.OrderBulkInsertOption)orderHint.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c.ToMutable()));
-            ret.StatementList = (ScriptDom.StatementList)statementList.ToMutable();
-            ret.MethodSpecifier = (ScriptDom.MethodSpecifier)methodSpecifier.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
+            ret.ReturnType = (ScriptDom.FunctionReturnType)returnType?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FunctionOption)c?.ToMutable()));
+            ret.OrderHint = (ScriptDom.OrderBulkInsertOption)orderHint?.ToMutable();
+            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c?.ToMutable()));
+            ret.StatementList = (ScriptDom.StatementList)statementList?.ToMutable();
+            ret.MethodSpecifier = (ScriptDom.MethodSpecifier)methodSpecifier?.ToMutable();
             return ret;
         }
         

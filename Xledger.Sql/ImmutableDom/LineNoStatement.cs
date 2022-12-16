@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.LineNoStatement ToMutableConcrete() {
             var ret = new ScriptDom.LineNoStatement();
-            ret.LineNo = (ScriptDom.IntegerLiteral)lineNo.ToMutable();
+            ret.LineNo = (ScriptDom.IntegerLiteral)lineNo?.ToMutable();
             return ret;
         }
         

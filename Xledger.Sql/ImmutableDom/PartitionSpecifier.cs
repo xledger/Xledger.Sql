@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.PartitionSpecifier ToMutableConcrete() {
             var ret = new ScriptDom.PartitionSpecifier();
-            ret.Number = (ScriptDom.ScalarExpression)number.ToMutable();
+            ret.Number = (ScriptDom.ScalarExpression)number?.ToMutable();
             ret.All = all;
             return ret;
         }

@@ -24,10 +24,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OpenRowsetCosmos ToMutableConcrete() {
             var ret = new ScriptDom.OpenRowsetCosmos();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.OpenRowsetCosmosOption)c.ToMutable()));
-            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
-            ret.Alias = (ScriptDom.Identifier)alias.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.OpenRowsetCosmosOption)c?.ToMutable()));
+            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
         }

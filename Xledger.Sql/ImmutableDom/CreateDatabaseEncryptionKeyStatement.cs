@@ -15,7 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateDatabaseEncryptionKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateDatabaseEncryptionKeyStatement();
-            ret.Encryptor = (ScriptDom.CryptoMechanism)encryptor.ToMutable();
+            ret.Encryptor = (ScriptDom.CryptoMechanism)encryptor?.ToMutable();
             ret.Algorithm = algorithm;
             return ret;
         }

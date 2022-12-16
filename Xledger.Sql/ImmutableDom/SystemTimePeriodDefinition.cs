@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SystemTimePeriodDefinition ToMutableConcrete() {
             var ret = new ScriptDom.SystemTimePeriodDefinition();
-            ret.StartTimeColumn = (ScriptDom.Identifier)startTimeColumn.ToMutable();
-            ret.EndTimeColumn = (ScriptDom.Identifier)endTimeColumn.ToMutable();
+            ret.StartTimeColumn = (ScriptDom.Identifier)startTimeColumn?.ToMutable();
+            ret.EndTimeColumn = (ScriptDom.Identifier)endTimeColumn?.ToMutable();
             return ret;
         }
         

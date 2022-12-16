@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.OutputClause ToMutableConcrete() {
             var ret = new ScriptDom.OutputClause();
-            ret.SelectColumns.AddRange(selectColumns.SelectList(c => (ScriptDom.SelectElement)c.ToMutable()));
+            ret.SelectColumns.AddRange(selectColumns.SelectList(c => (ScriptDom.SelectElement)c?.ToMutable()));
             return ret;
         }
         

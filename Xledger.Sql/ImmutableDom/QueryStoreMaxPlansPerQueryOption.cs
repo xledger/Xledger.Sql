@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueryStoreMaxPlansPerQueryOption ToMutableConcrete() {
             var ret = new ScriptDom.QueryStoreMaxPlansPerQueryOption();
-            ret.MaxPlansPerQuery = (ScriptDom.Literal)maxPlansPerQuery.ToMutable();
+            ret.MaxPlansPerQuery = (ScriptDom.Literal)maxPlansPerQuery?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

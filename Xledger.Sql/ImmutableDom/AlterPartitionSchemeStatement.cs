@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterPartitionSchemeStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterPartitionSchemeStatement();
-            ret.Name = (ScriptDom.Identifier)name.ToMutable();
-            ret.FileGroup = (ScriptDom.IdentifierOrValueExpression)fileGroup.ToMutable();
+            ret.Name = (ScriptDom.Identifier)name?.ToMutable();
+            ret.FileGroup = (ScriptDom.IdentifierOrValueExpression)fileGroup?.ToMutable();
             return ret;
         }
         

@@ -30,8 +30,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.SystemVersioningTableOption();
             ret.OptionState = optionState;
             ret.ConsistencyCheckEnabled = consistencyCheckEnabled;
-            ret.HistoryTable = (ScriptDom.SchemaObjectName)historyTable.ToMutable();
-            ret.RetentionPeriod = (ScriptDom.RetentionPeriodDefinition)retentionPeriod.ToMutable();
+            ret.HistoryTable = (ScriptDom.SchemaObjectName)historyTable?.ToMutable();
+            ret.RetentionPeriod = (ScriptDom.RetentionPeriodDefinition)retentionPeriod?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

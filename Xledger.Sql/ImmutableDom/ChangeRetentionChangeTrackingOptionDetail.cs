@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ChangeRetentionChangeTrackingOptionDetail ToMutableConcrete() {
             var ret = new ScriptDom.ChangeRetentionChangeTrackingOptionDetail();
-            ret.RetentionPeriod = (ScriptDom.Literal)retentionPeriod.ToMutable();
+            ret.RetentionPeriod = (ScriptDom.Literal)retentionPeriod?.ToMutable();
             ret.Unit = unit;
             return ret;
         }

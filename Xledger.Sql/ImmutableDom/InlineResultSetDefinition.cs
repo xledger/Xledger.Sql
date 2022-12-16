@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.InlineResultSetDefinition ToMutableConcrete() {
             var ret = new ScriptDom.InlineResultSetDefinition();
-            ret.ResultColumnDefinitions.AddRange(resultColumnDefinitions.SelectList(c => (ScriptDom.ResultColumnDefinition)c.ToMutable()));
+            ret.ResultColumnDefinitions.AddRange(resultColumnDefinitions.SelectList(c => (ScriptDom.ResultColumnDefinition)c?.ToMutable()));
             ret.ResultSetType = resultSetType;
             return ret;
         }

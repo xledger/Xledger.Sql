@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.MaxRolloverFilesAuditTargetOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxRolloverFilesAuditTargetOption();
-            ret.Value = (ScriptDom.Literal)@value.ToMutable();
+            ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.IsUnlimited = isUnlimited;
             ret.OptionKind = optionKind;
             return ret;

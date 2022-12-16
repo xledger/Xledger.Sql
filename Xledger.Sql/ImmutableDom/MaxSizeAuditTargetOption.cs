@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.MaxSizeAuditTargetOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxSizeAuditTargetOption();
             ret.IsUnlimited = isUnlimited;
-            ret.Size = (ScriptDom.Literal)size.ToMutable();
+            ret.Size = (ScriptDom.Literal)size?.ToMutable();
             ret.Unit = unit;
             ret.OptionKind = optionKind;
             return ret;

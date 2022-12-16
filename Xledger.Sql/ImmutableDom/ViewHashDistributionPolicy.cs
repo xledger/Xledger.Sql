@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ViewHashDistributionPolicy ToMutableConcrete() {
             var ret = new ScriptDom.ViewHashDistributionPolicy();
-            ret.DistributionColumn = (ScriptDom.Identifier)distributionColumn.ToMutable();
+            ret.DistributionColumn = (ScriptDom.Identifier)distributionColumn?.ToMutable();
             return ret;
         }
         

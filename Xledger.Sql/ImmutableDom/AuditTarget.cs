@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AuditTarget ToMutableConcrete() {
             var ret = new ScriptDom.AuditTarget();
             ret.TargetKind = targetKind;
-            ret.TargetOptions.AddRange(targetOptions.SelectList(c => (ScriptDom.AuditTargetOption)c.ToMutable()));
+            ret.TargetOptions.AddRange(targetOptions.SelectList(c => (ScriptDom.AuditTargetOption)c?.ToMutable()));
             return ret;
         }
         

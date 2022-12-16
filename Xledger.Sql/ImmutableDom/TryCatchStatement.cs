@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.TryCatchStatement ToMutableConcrete() {
             var ret = new ScriptDom.TryCatchStatement();
-            ret.TryStatements = (ScriptDom.StatementList)tryStatements.ToMutable();
-            ret.CatchStatements = (ScriptDom.StatementList)catchStatements.ToMutable();
+            ret.TryStatements = (ScriptDom.StatementList)tryStatements?.ToMutable();
+            ret.CatchStatements = (ScriptDom.StatementList)catchStatements?.ToMutable();
             return ret;
         }
         

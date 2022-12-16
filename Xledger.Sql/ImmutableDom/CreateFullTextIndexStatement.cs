@@ -30,11 +30,11 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateFullTextIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateFullTextIndexStatement();
-            ret.OnName = (ScriptDom.SchemaObjectName)onName.ToMutable();
-            ret.FullTextIndexColumns.AddRange(fullTextIndexColumns.SelectList(c => (ScriptDom.FullTextIndexColumn)c.ToMutable()));
-            ret.KeyIndexName = (ScriptDom.Identifier)keyIndexName.ToMutable();
-            ret.CatalogAndFileGroup = (ScriptDom.FullTextCatalogAndFileGroup)catalogAndFileGroup.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextIndexOption)c.ToMutable()));
+            ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
+            ret.FullTextIndexColumns.AddRange(fullTextIndexColumns.SelectList(c => (ScriptDom.FullTextIndexColumn)c?.ToMutable()));
+            ret.KeyIndexName = (ScriptDom.Identifier)keyIndexName?.ToMutable();
+            ret.CatalogAndFileGroup = (ScriptDom.FullTextCatalogAndFileGroup)catalogAndFileGroup?.ToMutable();
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextIndexOption)c?.ToMutable()));
             return ret;
         }
         

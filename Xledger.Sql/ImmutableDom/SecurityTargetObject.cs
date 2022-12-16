@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SecurityTargetObject ToMutableConcrete() {
             var ret = new ScriptDom.SecurityTargetObject();
             ret.ObjectKind = objectKind;
-            ret.ObjectName = (ScriptDom.SecurityTargetObjectName)objectName.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c.ToMutable()));
+            ret.ObjectName = (ScriptDom.SecurityTargetObjectName)objectName?.ToMutable();
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         

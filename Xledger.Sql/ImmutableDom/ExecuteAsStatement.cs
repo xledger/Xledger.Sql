@@ -25,8 +25,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ExecuteAsStatement ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteAsStatement();
             ret.WithNoRevert = withNoRevert;
-            ret.Cookie = (ScriptDom.VariableReference)cookie.ToMutable();
-            ret.ExecuteContext = (ScriptDom.ExecuteContext)executeContext.ToMutable();
+            ret.Cookie = (ScriptDom.VariableReference)cookie?.ToMutable();
+            ret.ExecuteContext = (ScriptDom.ExecuteContext)executeContext?.ToMutable();
             return ret;
         }
         

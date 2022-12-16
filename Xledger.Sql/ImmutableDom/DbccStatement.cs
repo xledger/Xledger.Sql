@@ -36,8 +36,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DllName = dllName;
             ret.Command = command;
             ret.ParenthesisRequired = parenthesisRequired;
-            ret.Literals.AddRange(literals.SelectList(c => (ScriptDom.DbccNamedLiteral)c.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DbccOption)c.ToMutable()));
+            ret.Literals.AddRange(literals.SelectList(c => (ScriptDom.DbccNamedLiteral)c?.ToMutable()));
+            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DbccOption)c?.ToMutable()));
             ret.OptionsUseJoin = optionsUseJoin;
             return ret;
         }

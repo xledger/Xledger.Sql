@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.UnaryExpression ToMutableConcrete() {
             var ret = new ScriptDom.UnaryExpression();
             ret.UnaryExpressionType = unaryExpressionType;
-            ret.Expression = (ScriptDom.ScalarExpression)expression.ToMutable();
+            ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             return ret;
         }
         

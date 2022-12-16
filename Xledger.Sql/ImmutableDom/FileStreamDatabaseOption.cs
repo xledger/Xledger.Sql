@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FileStreamDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.FileStreamDatabaseOption();
             ret.NonTransactedAccess = nonTransactedAccess;
-            ret.DirectoryName = (ScriptDom.Literal)directoryName.ToMutable();
+            ret.DirectoryName = (ScriptDom.Literal)directoryName?.ToMutable();
             ret.OptionKind = optionKind;
             return ret;
         }

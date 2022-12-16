@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.SetRowCountStatement ToMutableConcrete() {
             var ret = new ScriptDom.SetRowCountStatement();
-            ret.NumberRows = (ScriptDom.ValueExpression)numberRows.ToMutable();
+            ret.NumberRows = (ScriptDom.ValueExpression)numberRows?.ToMutable();
             return ret;
         }
         

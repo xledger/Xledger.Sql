@@ -18,10 +18,10 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.CreateSecurityPolicyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSecurityPolicyStatement();
-            ret.Name = (ScriptDom.SchemaObjectName)name.ToMutable();
+            ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.NotForReplication = notForReplication;
-            ret.SecurityPolicyOptions.AddRange(securityPolicyOptions.SelectList(c => (ScriptDom.SecurityPolicyOption)c.ToMutable()));
-            ret.SecurityPredicateActions.AddRange(securityPredicateActions.SelectList(c => (ScriptDom.SecurityPredicateAction)c.ToMutable()));
+            ret.SecurityPolicyOptions.AddRange(securityPolicyOptions.SelectList(c => (ScriptDom.SecurityPolicyOption)c?.ToMutable()));
+            ret.SecurityPredicateActions.AddRange(securityPredicateActions.SelectList(c => (ScriptDom.SecurityPredicateAction)c?.ToMutable()));
             ret.ActionType = actionType;
             return ret;
         }

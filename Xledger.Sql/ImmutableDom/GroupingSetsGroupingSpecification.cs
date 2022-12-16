@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.GroupingSetsGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.GroupingSetsGroupingSpecification();
-            ret.Sets.AddRange(sets.SelectList(c => (ScriptDom.GroupingSpecification)c.ToMutable()));
+            ret.Sets.AddRange(sets.SelectList(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
             return ret;
         }
         
