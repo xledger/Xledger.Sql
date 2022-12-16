@@ -600,6 +600,12 @@ public class ClassDef {
         wl($"    }}");
 		wl($"}}");
 
+		wl("");
+		foreach ((var idx, var typ) in TaggedAbstractFragmentTypes()) {
+			if (typ.Name == "TSqlFragment") { continue; }
+			wl($"public static {typ.Name} FromMutable(ScriptDom.{typ.Name} fragment) => ({typ.Name})FromMutable(fragment as ScriptDom.TSqlFragment);");
+		}
+
 		foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
 			var def = UserQuery.GetImmClassdef(typ);
 			wl("");
@@ -609,11 +615,11 @@ public class ClassDef {
 			var ctorPms = new List<string>();
 			foreach (var prop in def.Props) {
 				if (prop.IsScriptDomType && prop.IsList) {
-					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}.SelectList(c => ({prop.InnerTypeLiteral})FromMutable(c))");
+					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}.SelectList(FromMutable)");
                 } else if (prop.IsList) {
                     ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList(fragment.{prop.Name})");
                 } else if (prop.IsScriptDomType) {
-                    ctorPms.Add($"{LowerName(prop.Name)}: ({prop.TypeLiteral})FromMutable(fragment.{prop.Name})");
+                    ctorPms.Add($"{LowerName(prop.Name)}: FromMutable(fragment.{prop.Name})");
                 } else {
                     ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}");
                 }
@@ -653,6 +659,15 @@ public static IEnumerable<(int idx, Type typ)> TaggedConcreteFragmentTypes() {
         yield return (i, typ);
         i += 1;
     }
+}
+
+public static IEnumerable<(int idx, Type typ)> TaggedAbstractFragmentTypes() {
+	var i = 1;
+	foreach (var typ in FragmentTypes().OrderBy(t => t.Name)) {
+		if (!typ.IsAbstract) { continue; }
+		yield return (i, typ);
+		i += 1;
+	}
 }
 
 public class PropDef {
