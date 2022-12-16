@@ -17,7 +17,18 @@ void Main() {
         pathsToDelete.Add(f);
     }
 
-    foreach (var t in types) {
+	foreach (var t in types) {
+		Subtypes[t.Name] = new HashSet<string>();
+	}
+
+	foreach (var t in types) {
+		var newClassDef = GetImmClassdef(t);
+		if (!string.IsNullOrEmpty(newClassDef.ParentTypeName)) {
+			Subtypes[newClassDef.ParentTypeName].Add(newClassDef.Name);
+		}
+	}
+	
+	foreach (var t in types) {
         //if (t.Name != "TSqlFragment") {
         //    continue;
         //}
@@ -52,6 +63,8 @@ static HashSet<string> SkipPropNames = new HashSet<string> {
     "LastTokenIndex",
     "ScriptTokenStream"
 };
+
+static Dictionary<string, HashSet<string>> Subtypes = new Dictionary<string, HashSet<string>>();
 
 static ClassDef GetImmClassdef(Type t) {
     var d = new ClassDef { Name = t.Name, IsAbstract = t.IsAbstract };
@@ -541,7 +554,7 @@ public class ClassDef {
             wl("");
             wl(TagDict().IndentLines(4));
             wl("");
-            wl(FromCsFunction().IndentLines(4));
+            wl(FromMutableFunction().IndentLines(4));
 		} else {
 			//wl(FromMutableFunction().IndentLines(4));
 		}
@@ -565,18 +578,18 @@ public class ClassDef {
         return sb.ToString();
     }
 
-	public string FromMutableFunction() {
-		var sb = new StringBuilder();
-		void wl(string s) { sb.AppendLine(s); }
+//	public string FromMutableFunction() {
+//		var sb = new StringBuilder();
+//		void wl(string s) { sb.AppendLine(s); }
+//
+//		wl($"public static {Name} FromMutable(ScriptDom.{Name} fragment) {{");
+//		wl($"    return ({Name})TSqlFragment.FromMutable(fragment);");
+//		wl($"}}");
+//
+//        return sb.ToString();
+//    }
 
-		wl($"public static {Name} FromMutable(ScriptDom.{Name} fragment) {{");
-		wl($"    return ({Name})TSqlFragment.FromMutable(fragment);");
-		wl($"}}");
-
-        return sb.ToString();
-    }
-
-    public static string FromCsFunction() {
+    public static string FromMutableFunction() {
         var sb = new StringBuilder();
         void wl(string s) { sb.AppendLine(s); }
 
@@ -611,6 +624,9 @@ public class ClassDef {
 			wl("");
 			wl($"public static {typ.Name} FromMutable(ScriptDom.{typ.Name} fragment) {{");
 			wl($"    if (fragment is null) {{ return null; }}");
+			if (Subtypes.TryGetValue(typ.Name, out var subtypes) && subtypes.Count > 0) {
+				wl($"    if (fragment.GetType() != typeof(ScriptDom.{typ.Name})) {{ return FromMutable(fragment as ScriptDom.TSqlFragment) as {typ.Name}; }}");
+			}
 			wl($"    return new {typ.Name}(");
 			var ctorPms = new List<string>();
 			foreach (var prop in def.Props) {

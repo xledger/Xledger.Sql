@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Xledger.Sql.ImmutableDom;
 using Xunit;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
@@ -97,6 +98,27 @@ namespace Xledger.Sql.Test {
             var frag = TSqlFragment.FromMutable(dom);
 
             Assert.NotNull(frag);
+
+            var sql = "SELECT 1 OPTION(USE HINT('DISABLE_TSQL_SCALAR_UDF_INLINING'))";
+            dom = Parse(sql);
+            var script = (ScriptDom.TSqlScript)dom;
+            var stmt = script.Batches[0].Statements[0] as ScriptDom.SelectStatement;
+            Assert.NotEmpty(stmt.OptimizerHints);
+            ScriptDom.OptimizerHint hint = stmt.OptimizerHints.First();
+            Assert.NotNull(hint);
+            Assert.IsType<ScriptDom.UseHintList>(hint);
+            var useHintList = hint as ScriptDom.UseHintList;
+            Assert.Equal(ScriptDom.OptimizerHintKind.Unspecified, useHintList.HintKind);
+            Assert.Single(useHintList.Hints);
+            Assert.Equal("DISABLE_TSQL_SCALAR_UDF_INLINING", useHintList.Hints[0].Value);
+
+            OptimizerHint immHint = OptimizerHint.FromMutable(hint);
+            Assert.NotNull(immHint);
+            Assert.IsType<UseHintList>(immHint);
+            var immUseHintList = immHint as UseHintList;
+            Assert.Equal(ScriptDom.OptimizerHintKind.Unspecified, immUseHintList.HintKind);
+            Assert.Single(immUseHintList.Hints);
+            Assert.Equal("DISABLE_TSQL_SCALAR_UDF_INLINING", immUseHintList.Hints[0].Value);
         }
 
         [Fact]
