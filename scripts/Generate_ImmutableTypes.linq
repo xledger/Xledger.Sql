@@ -382,7 +382,6 @@ public class ClassDef {
         sb.AppendLine($"    return ToMutableConcrete();");
         sb.AppendLine($"}}");
 
-
         return sb.ToString();
     }
 
@@ -464,7 +463,7 @@ public class ClassDef {
 			wl($"public override int CompareTo(TSqlFragment that) {{");
 			wl($"    var compare = 1;");
 			wl($"    if (that == null) {{ return compare; }}");
-			wl($"    if (this.GetType() != that.GetType()) {{ return this.GetType().Name.CompareTo(that.GetType().Name); }}");
+			wl($"    if (!object.ReferenceEquals(this.GetType(), that.GetType())) {{ return this.GetType().Name.CompareTo(that.GetType().Name); }}");
 			wl($"    var othr = ({Name})that;");
 			foreach (var prop in Props) {
 				if (prop.TypeLiteral == "string") {
@@ -555,8 +554,6 @@ public class ClassDef {
             wl(TagDict().IndentLines(4));
             wl("");
             wl(FromMutableFunction().IndentLines(4));
-		} else {
-			//wl(FromMutableFunction().IndentLines(4));
 		}
 
         wl($"}}");
@@ -578,17 +575,6 @@ public class ClassDef {
         return sb.ToString();
     }
 
-//	public string FromMutableFunction() {
-//		var sb = new StringBuilder();
-//		void wl(string s) { sb.AppendLine(s); }
-//
-//		wl($"public static {Name} FromMutable(ScriptDom.{Name} fragment) {{");
-//		wl($"    return ({Name})TSqlFragment.FromMutable(fragment);");
-//		wl($"}}");
-//
-//        return sb.ToString();
-//    }
-
     public static string FromMutableFunction() {
         var sb = new StringBuilder();
         void wl(string s) { sb.AppendLine(s); }
@@ -602,11 +588,8 @@ public class ClassDef {
 
         wl($"    switch (tag) {{");
         foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
-			//            var def = UserQuery.GetImmClassdef(typ);
 			var node = $"fragment as ScriptDom.{typ.Name}";
 			wl($"        case {idx}: return FromMutable({node});");
-//            wl($"            return new {typ.Name}(");
-//            var ctorPms = new List<string>();
         }
         wl($"        default: throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
         wl($"    }}");
@@ -615,6 +598,7 @@ public class ClassDef {
 		wl("");
 		foreach ((var idx, var typ) in TaggedAbstractFragmentTypes()) {
 			if (typ.Name == "TSqlFragment") { continue; }
+			// With Subtypes we could generated a less needlessly recursive version of this.
 			wl($"public static {typ.Name} FromMutable(ScriptDom.{typ.Name} fragment) => ({typ.Name})FromMutable(fragment as ScriptDom.TSqlFragment);");
 		}
 
@@ -624,7 +608,10 @@ public class ClassDef {
 			wl($"public static {typ.Name} FromMutable(ScriptDom.{typ.Name} fragment) {{");
 			wl($"    if (fragment is null) {{ return null; }}");
 			if (Subtypes.TryGetValue(typ.Name, out var subtypes) && subtypes.Count > 0) {
-				wl($"    if (fragment.GetType() != typeof(ScriptDom.{typ.Name})) {{ return FromMutable(fragment as ScriptDom.TSqlFragment) as {typ.Name}; }}");
+				// With Subtypes we could generated a less needlessly recursive version of this.
+				wl($"    if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.{typ.Name}))) {{ return FromMutable(fragment as ScriptDom.TSqlFragment) as {typ.Name}; }}");
+			} else {
+				wl($"    if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.{typ.Name}))) {{ throw new NotImplementedException(\"Unexpected subtype of {typ.Name} not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\"); }}");
 			}
 			wl($"    return new {typ.Name}(");
 			var ctorPms = new List<string>();
