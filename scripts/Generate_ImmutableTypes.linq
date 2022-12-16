@@ -594,7 +594,6 @@ public class ClassDef {
         void wl(string s) { sb.AppendLine(s); }
 
 		wl($"public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {{");
-		wl($"    var st = new System.Diagnostics.StackTrace();");
 		wl($"    if (fragment is null) {{ return null; }}");
         wl($"    if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {{");
         wl($"        throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
