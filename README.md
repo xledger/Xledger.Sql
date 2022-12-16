@@ -28,3 +28,14 @@ nuget init Xledger.Sql\bin\Debug c:\packages;
 ```powershell
 dotnet add package Xledger.Sql --source c:\packages --prerelease
 ```
+
+## Running the Tests
+
+```powershell
+dotnet test Xledger.Sql.Test
+```
+
+To list the available tests:
+```powershell
+dotnet test Xledger.Sql.Test --list-tests
+```

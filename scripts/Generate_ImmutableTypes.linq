@@ -354,9 +354,9 @@ public class ClassDef {
         sb.AppendLine($"    var ret = new ScriptDom.{Name}();");
         foreach (var prop in this.Props) {
             if (prop.IsScriptDomType && prop.IsList) {
-                sb.AppendLine($"    ret.{prop.Name}.AddRange({LowerName(prop.Name)}.SelectList(c => (ScriptDom.{prop.InnerTypeLiteral})c.ToMutable()));");
+                sb.AppendLine($"    ret.{prop.Name}.AddRange({LowerName(prop.Name)}.SelectList(c => (ScriptDom.{prop.InnerTypeLiteral})c?.ToMutable()));");
             } else if (prop.IsScriptDomType) {
-                sb.AppendLine($"    ret.{prop.Name} = (ScriptDom.{prop.TypeLiteral}){LowerName(prop.Name)}.ToMutable();");
+                sb.AppendLine($"    ret.{prop.Name} = (ScriptDom.{prop.TypeLiteral}){LowerName(prop.Name)}?.ToMutable();");
             } else {
                 sb.AppendLine($"    ret.{prop.Name} = {LowerName(prop.Name)};");
             }
