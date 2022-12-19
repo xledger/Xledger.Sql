@@ -23,6 +23,7 @@ void Main() {
 
 	foreach (var t in types) {
 		var newClassDef = GetImmClassdef(t);
+		ImmClassdefs[newClassDef.Name] = newClassDef;
 		if (!string.IsNullOrEmpty(newClassDef.ParentTypeName)) {
 			Subtypes[newClassDef.ParentTypeName].Add(newClassDef.Name);
 		}
@@ -32,7 +33,7 @@ void Main() {
         //if (t.Name != "TSqlFragment") {
         //    continue;
         //}
-        var newClassDef = GetImmClassdef(t);
+        var newClassDef = ImmClassdefs[t.Name];
         newClassDef.Dump();
         newClassDef.FieldDefs().Dump("Field defs");
         newClassDef.PropsDecls().Dump("Prop Decls");
@@ -65,6 +66,7 @@ static HashSet<string> SkipPropNames = new HashSet<string> {
 };
 
 static Dictionary<string, HashSet<string>> Subtypes = new Dictionary<string, HashSet<string>>();
+static Dictionary<string, ClassDef> ImmClassdefs = new Dictionary<string, ClassDef>();
 
 static ClassDef GetImmClassdef(Type t) {
     var d = new ClassDef { Name = t.Name, IsAbstract = t.IsAbstract };
@@ -178,8 +180,6 @@ static string GetPropTypeLiteral(Type type) {
     }
     throw new Exception($"Unexpected type {type.FullName}");
 }
-
-
 
 public bool IsList(Type t) {
     return t.GetInterfaces().Any(it => it.IsGenericType && it.Name == "ICollection`1");
@@ -363,7 +363,12 @@ public class ClassDef {
 			}
             return sb.ToString();
         }
-        sb.AppendLine($"public ScriptDom.{Name} ToMutableConcrete() {{");
+
+		if (ImmClassdefs.TryGetValue(ParentTypeName, out var parentType) && !parentType.IsAbstract) {
+			sb.AppendLine($"public new ScriptDom.{Name} ToMutableConcrete() {{");
+		} else {
+			sb.AppendLine($"public ScriptDom.{Name} ToMutableConcrete() {{");
+		}
         sb.AppendLine($"    var ret = new ScriptDom.{Name}();");
         foreach (var prop in this.Props) {
             if (prop.IsScriptDomType && prop.IsList) {
@@ -463,7 +468,7 @@ public class ClassDef {
 			wl($"public override int CompareTo(TSqlFragment that) {{");
 			wl($"    var compare = 1;");
 			wl($"    if (that == null) {{ return compare; }}");
-			wl($"    if (!object.ReferenceEquals(this.GetType(), that.GetType())) {{ return this.GetType().Name.CompareTo(that.GetType().Name); }}");
+			wl($"    if (this.GetType() != that.GetType()) {{ return this.GetType().Name.CompareTo(that.GetType().Name); }}");
 			wl($"    var othr = ({Name})that;");
 			foreach (var prop in Props) {
 				if (prop.TypeLiteral == "string") {
@@ -475,25 +480,16 @@ public class ClassDef {
 			}
 			wl($"    return compare;");
 			wl($"}} ");
+			wl($"");
 
 			wl($"public static bool operator < ({Name} left, {Name} right) => Comparer.DefaultInvariant.Compare(left, right) <  0;");
 			wl($"public static bool operator <=({Name} left, {Name} right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;");
 			wl($"public static bool operator > ({Name} left, {Name} right) => Comparer.DefaultInvariant.Compare(left, right) >  0;");
 			wl($"public static bool operator >=({Name} left, {Name} right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;");
-
-			//		wl($"public static bool operator ==({Name} left, {Name} right) {{");
-			//		wl($"    return EqualityComparer<{Name}>.Default.Equals(left, right);");
-			//		wl($"}}");
-			//		wl($"");
-			//
-			//		wl($"public static bool operator !=({Name} left, {Name} right) {{");
-			//		wl($"    return !(left == right);");
-			//		wl($"}}");
 		}
 		
 		return sb.ToString();
 	}
-
 
 	public string FullClassDef()
 	{
@@ -550,13 +546,11 @@ public class ClassDef {
 		wl(GetCompareToMethods().IndentLines(4).NullIfBlank(), false);
         
         if (Name == "TSqlFragment") {
-            wl("");
             wl(TagDict().IndentLines(4));
-            wl("");
-            wl(FromMutableFunction().IndentLines(4));
 		}
+		wl(FromMutableFunction().IndentLines(4));
 
-        wl($"}}");
+		wl($"}}");
 
         return sb.ToString();
     }
@@ -575,59 +569,53 @@ public class ClassDef {
         return sb.ToString();
     }
 
-    public static string FromMutableFunction() {
+    public string FromMutableFunction() {
         var sb = new StringBuilder();
         void wl(string s) { sb.AppendLine(s); }
-
-		wl($"public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {{");
-		wl($"    if (fragment is null) {{ return null; }}");
-        wl($"    if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {{");
-        wl($"        throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
-        wl($"    }}");
-        wl($"");
-
-        wl($"    switch (tag) {{");
-        foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
-			var node = $"fragment as ScriptDom.{typ.Name}";
-			wl($"        case {idx}: return FromMutable({node});");
-        }
-        wl($"        default: throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
-        wl($"    }}");
-		wl($"}}");
-
-		wl("");
-		foreach ((var idx, var typ) in TaggedAbstractFragmentTypes()) {
-			if (typ.Name == "TSqlFragment") { continue; }
-			// With Subtypes we could generated a less needlessly recursive version of this.
-			wl($"public static {typ.Name} FromMutable(ScriptDom.{typ.Name} fragment) => ({typ.Name})FromMutable(fragment as ScriptDom.TSqlFragment);");
-		}
-
-		foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
-			var def = UserQuery.GetImmClassdef(typ);
-			wl("");
-			wl($"public static {typ.Name} FromMutable(ScriptDom.{typ.Name} fragment) {{");
+		
+		if (Name == "TSqlFragment") {
+			wl($"public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {{");
 			wl($"    if (fragment is null) {{ return null; }}");
-			if (Subtypes.TryGetValue(typ.Name, out var subtypes) && subtypes.Count > 0) {
-				// With Subtypes we could generated a less needlessly recursive version of this.
-				wl($"    if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.{typ.Name}))) {{ return FromMutable(fragment as ScriptDom.TSqlFragment) as {typ.Name}; }}");
-			} else {
-				wl($"    if (!object.ReferenceEquals(fragment.GetType(), typeof(ScriptDom.{typ.Name}))) {{ throw new NotImplementedException(\"Unexpected subtype of {typ.Name} not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\"); }}");
+			wl($"    if (!TagNumberByTypeName.TryGetValue(fragment.GetType().Name, out var tag)) {{");
+			wl($"        throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
+			wl($"    }}");
+			wl($"");
+
+			wl($"    switch (tag) {{");
+			foreach ((var idx, var typ) in TaggedConcreteFragmentTypes()) {
+				var node = $"fragment as ScriptDom.{typ.Name}";
+				wl($"        case {idx}: return {typ.Name}.FromMutable({node});");
 			}
-			wl($"    return new {typ.Name}(");
+			wl($"        default: throw new NotImplementedException(\"Type not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\");");
+			wl($"    }}");
+			wl($"}}");
+		} else if (IsAbstract) {
+			// With Subtypes we could generate a less needlessly recursive version of this.
+			wl($"public static {Name} FromMutable(ScriptDom.{Name} fragment) => ({Name})TSqlFragment.FromMutable(fragment);");
+		} else {
+			wl($"public static {Name} FromMutable(ScriptDom.{Name} fragment) {{");
+			wl($"    if (fragment is null) {{ return null; }}");
+			if (Subtypes.TryGetValue(Name, out var subtypes) && subtypes.Count > 0) {
+				// With Subtypes we could generate a less needlessly recursive version of this.
+				wl($"    if (fragment.GetType() != typeof(ScriptDom.{Name})) {{ return TSqlFragment.FromMutable(fragment) as {Name}; }}");
+			} else {
+				wl($"    if (fragment.GetType() != typeof(ScriptDom.{Name})) {{ throw new NotImplementedException(\"Unexpected subtype of {Name} not implemented: \" + fragment.GetType().Name + \". Regenerate immutable type library.\"); }}");
+			}
+			wl($"    return new {Name}(");
 			var ctorPms = new List<string>();
-			foreach (var prop in def.Props) {
+			foreach (var prop in Props) {
 				if (prop.IsScriptDomType && prop.IsList) {
-					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}.SelectList(FromMutable)");
-                } else if (prop.IsList) {
-                    ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList(fragment.{prop.Name})");
-                } else if (prop.IsScriptDomType) {
-                    ctorPms.Add($"{LowerName(prop.Name)}: FromMutable(fragment.{prop.Name})");
-                } else {
-                    ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}");
-                }
-            }
-            wl(ctorPms.StringJoin(",\n").IndentLines(8));
-            wl($"    );");
+					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}.SelectList(ImmutableDom.{prop.InnerTypeLiteral}.FromMutable)");
+				} else if (prop.IsList) {
+					ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList(fragment.{prop.Name})");
+				} else if (prop.IsScriptDomType) {
+					ctorPms.Add($"{LowerName(prop.Name)}: ImmutableDom.{prop.TypeLiteral}.FromMutable(fragment.{prop.Name})");
+				} else {
+					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}");
+				}
+			}
+			wl(ctorPms.StringJoin(",\n").IndentLines(8));
+			wl($"    );");
 			wl($"}}");
 		}
 
@@ -717,15 +705,15 @@ public static class Exts {
         }
         return sb.ToString();
 
-        //var lines = txt.Split(new char[] { '\n' }, opts);
-        //var indentStr = new String(' ', indent);
-        //for (int i = 0; i < lines.Length; i++) {
-        //    lines[i] = (indentStr + lines[i]).TrimEnd();
-        //}
-        //return string.Join("\n", lines);
-    }
+		//var lines = txt.Split(new char[] { '\n' }, opts);
+		//var indentStr = new String(' ', indent);
+		//for (int i = 0; i < lines.Length; i++) {
+		//    lines[i] = (indentStr + lines[i]).TrimEnd();
+		//}
+		//return string.Join("\n", lines);
+	}
 
-    public static string NullIfBlank(this string s) {
-        return string.IsNullOrWhiteSpace(s) ? null : s;
-    }
+	public static string NullIfBlank(this string s) {
+		return string.IsNullOrWhiteSpace(s) ? null : s;
+	}
 }
