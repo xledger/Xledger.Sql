@@ -12,7 +12,7 @@ The tests in [Xledger.Sql.Test](./Xledger.Sql.Test) demonstrate how to use this 
 
 To generate a new NuGet package to verify that the package is sane.
 
-1. Increment the `<VersionSuffix>` in [Xledger.Sql/Xledger.Sql.csproj]; or `<VersionPrefix>` if releasing a new major, minor, or patch version.
+1. Increment the `<VersionSuffix>` in [Xledger.Sql/Xledger.Sql.csproj](./Xledger.Sql/Xledger.Sql.csproj); or `<VersionPrefix>` if releasing a new major, minor, or patch version.
 2. Run.
 For Release:
 ```powershell
