@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ProviderEncryptionSource)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ProviderEncryptionSource left, ProviderEncryptionSource right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ProviderEncryptionSource left, ProviderEncryptionSource right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ProviderEncryptionSource left, ProviderEncryptionSource right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ProviderEncryptionSource left, ProviderEncryptionSource right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ProviderEncryptionSource FromMutable(ScriptDom.ProviderEncryptionSource fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ProviderEncryptionSource)) { throw new NotImplementedException("Unexpected subtype of ProviderEncryptionSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ProviderEncryptionSource(
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                keyOptions: fragment.KeyOptions.SelectList(ImmutableDom.KeyOption.FromMutable)
+            );
+        }
     
     }
 

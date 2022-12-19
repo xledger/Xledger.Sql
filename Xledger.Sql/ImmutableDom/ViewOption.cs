@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ViewOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ViewOption left, ViewOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ViewOption left, ViewOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ViewOption left, ViewOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ViewOption left, ViewOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ViewOption FromMutable(ScriptDom.ViewOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ViewOption)) { return TSqlFragment.FromMutable(fragment) as ViewOption; }
+            return new ViewOption(
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

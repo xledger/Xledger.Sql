@@ -55,16 +55,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropStatisticsStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.objects, othr.objects);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DropStatisticsStatement left, DropStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DropStatisticsStatement left, DropStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DropStatisticsStatement left, DropStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropStatisticsStatement left, DropStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DropStatisticsStatement FromMutable(ScriptDom.DropStatisticsStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DropStatisticsStatement)) { throw new NotImplementedException("Unexpected subtype of DropStatisticsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DropStatisticsStatement(
+                objects: fragment.Objects.SelectList(ImmutableDom.ChildObjectName.FromMutable)
+            );
+        }
     
     }
 

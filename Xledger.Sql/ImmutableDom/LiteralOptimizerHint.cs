@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.hintKind = hintKind;
         }
     
-        public ScriptDom.LiteralOptimizerHint ToMutableConcrete() {
+        public new ScriptDom.LiteralOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.LiteralOptimizerHint();
             ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.HintKind = hintKind;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LiteralOptimizerHint)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (LiteralOptimizerHint left, LiteralOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(LiteralOptimizerHint left, LiteralOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (LiteralOptimizerHint left, LiteralOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LiteralOptimizerHint left, LiteralOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static LiteralOptimizerHint FromMutable(ScriptDom.LiteralOptimizerHint fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LiteralOptimizerHint)) { throw new NotImplementedException("Unexpected subtype of LiteralOptimizerHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new LiteralOptimizerHint(
+                @value: ImmutableDom.Literal.FromMutable(fragment.Value),
+                hintKind: fragment.HintKind
+            );
+        }
     
     }
 

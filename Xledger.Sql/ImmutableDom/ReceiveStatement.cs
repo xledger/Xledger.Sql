@@ -107,7 +107,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ReceiveStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.top, othr.top);
             if (compare != 0) { return compare; }
@@ -123,10 +123,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ReceiveStatement left, ReceiveStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ReceiveStatement left, ReceiveStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ReceiveStatement left, ReceiveStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ReceiveStatement left, ReceiveStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ReceiveStatement FromMutable(ScriptDom.ReceiveStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ReceiveStatement)) { throw new NotImplementedException("Unexpected subtype of ReceiveStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ReceiveStatement(
+                top: ImmutableDom.ScalarExpression.FromMutable(fragment.Top),
+                selectElements: fragment.SelectElements.SelectList(ImmutableDom.SelectElement.FromMutable),
+                queue: ImmutableDom.SchemaObjectName.FromMutable(fragment.Queue),
+                into: ImmutableDom.VariableTableReference.FromMutable(fragment.Into),
+                where: ImmutableDom.ValueExpression.FromMutable(fragment.Where),
+                isConversationGroupIdWhere: fragment.IsConversationGroupIdWhere
+            );
+        }
     
     }
 

@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SetCommandStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.commands, othr.commands);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SetCommandStatement left, SetCommandStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SetCommandStatement left, SetCommandStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SetCommandStatement left, SetCommandStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SetCommandStatement left, SetCommandStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SetCommandStatement FromMutable(ScriptDom.SetCommandStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SetCommandStatement)) { throw new NotImplementedException("Unexpected subtype of SetCommandStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SetCommandStatement(
+                commands: fragment.Commands.SelectList(ImmutableDom.SetCommand.FromMutable)
+            );
+        }
     
     }
 

@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateSymmetricKeyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.keyOptions, othr.keyOptions);
             if (compare != 0) { return compare; }
@@ -107,10 +107,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateSymmetricKeyStatement left, CreateSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateSymmetricKeyStatement FromMutable(ScriptDom.CreateSymmetricKeyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateSymmetricKeyStatement)) { throw new NotImplementedException("Unexpected subtype of CreateSymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateSymmetricKeyStatement(
+                keyOptions: fragment.KeyOptions.SelectList(ImmutableDom.KeyOption.FromMutable),
+                provider: ImmutableDom.Identifier.FromMutable(fragment.Provider),
+                owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                encryptingMechanisms: fragment.EncryptingMechanisms.SelectList(ImmutableDom.CryptoMechanism.FromMutable)
+            );
+        }
     
     }
 

@@ -61,7 +61,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropProcedureStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.objects, othr.objects);
             if (compare != 0) { return compare; }
@@ -69,10 +69,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DropProcedureStatement left, DropProcedureStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DropProcedureStatement left, DropProcedureStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DropProcedureStatement left, DropProcedureStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropProcedureStatement left, DropProcedureStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DropProcedureStatement FromMutable(ScriptDom.DropProcedureStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DropProcedureStatement)) { throw new NotImplementedException("Unexpected subtype of DropProcedureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DropProcedureStatement(
+                objects: fragment.Objects.SelectList(ImmutableDom.SchemaObjectName.FromMutable),
+                isIfExists: fragment.IsIfExists
+            );
+        }
     
     }
 

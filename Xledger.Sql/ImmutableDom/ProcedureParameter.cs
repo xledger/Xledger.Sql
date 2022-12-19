@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.@value = @value;
         }
     
-        public ScriptDom.ProcedureParameter ToMutableConcrete() {
+        public new ScriptDom.ProcedureParameter ToMutableConcrete() {
             var ret = new ScriptDom.ProcedureParameter();
             ret.IsVarying = isVarying;
             ret.Modifier = modifier;
@@ -99,7 +99,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ProcedureParameter)that;
             compare = Comparer.DefaultInvariant.Compare(this.isVarying, othr.isVarying);
             if (compare != 0) { return compare; }
@@ -115,10 +115,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ProcedureParameter left, ProcedureParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ProcedureParameter left, ProcedureParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ProcedureParameter left, ProcedureParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ProcedureParameter left, ProcedureParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ProcedureParameter FromMutable(ScriptDom.ProcedureParameter fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ProcedureParameter)) { throw new NotImplementedException("Unexpected subtype of ProcedureParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ProcedureParameter(
+                isVarying: fragment.IsVarying,
+                modifier: fragment.Modifier,
+                variableName: ImmutableDom.Identifier.FromMutable(fragment.VariableName),
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
+                nullable: ImmutableDom.NullableConstraintDefinition.FromMutable(fragment.Nullable),
+                @value: ImmutableDom.ScalarExpression.FromMutable(fragment.Value)
+            );
+        }
     
     }
 

@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public Identifier Name => name;
     
+        public static AlterLoginStatement FromMutable(ScriptDom.AlterLoginStatement fragment) => (AlterLoginStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

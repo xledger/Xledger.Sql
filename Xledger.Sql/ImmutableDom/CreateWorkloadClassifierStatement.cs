@@ -63,7 +63,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateWorkloadClassifierStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.classifierName, othr.classifierName);
             if (compare != 0) { return compare; }
@@ -71,10 +71,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateWorkloadClassifierStatement left, CreateWorkloadClassifierStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateWorkloadClassifierStatement FromMutable(ScriptDom.CreateWorkloadClassifierStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateWorkloadClassifierStatement)) { throw new NotImplementedException("Unexpected subtype of CreateWorkloadClassifierStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateWorkloadClassifierStatement(
+                classifierName: ImmutableDom.Identifier.FromMutable(fragment.ClassifierName),
+                options: fragment.Options.SelectList(ImmutableDom.WorkloadClassifierOption.FromMutable)
+            );
+        }
     
     }
 

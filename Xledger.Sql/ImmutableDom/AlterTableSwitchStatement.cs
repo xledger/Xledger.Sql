@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableSwitchStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.sourcePartitionNumber, othr.sourcePartitionNumber);
             if (compare != 0) { return compare; }
@@ -111,10 +111,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterTableSwitchStatement left, AlterTableSwitchStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterTableSwitchStatement left, AlterTableSwitchStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterTableSwitchStatement left, AlterTableSwitchStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableSwitchStatement left, AlterTableSwitchStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterTableSwitchStatement FromMutable(ScriptDom.AlterTableSwitchStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterTableSwitchStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableSwitchStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterTableSwitchStatement(
+                sourcePartitionNumber: ImmutableDom.ScalarExpression.FromMutable(fragment.SourcePartitionNumber),
+                targetPartitionNumber: ImmutableDom.ScalarExpression.FromMutable(fragment.TargetPartitionNumber),
+                targetTable: ImmutableDom.SchemaObjectName.FromMutable(fragment.TargetTable),
+                options: fragment.Options.SelectList(ImmutableDom.TableSwitchOption.FromMutable),
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
+            );
+        }
     
     }
 

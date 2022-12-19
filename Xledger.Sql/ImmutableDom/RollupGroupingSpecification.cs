@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RollupGroupingSpecification)that;
             compare = Comparer.DefaultInvariant.Compare(this.arguments, othr.arguments);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (RollupGroupingSpecification left, RollupGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(RollupGroupingSpecification left, RollupGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (RollupGroupingSpecification left, RollupGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RollupGroupingSpecification left, RollupGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static RollupGroupingSpecification FromMutable(ScriptDom.RollupGroupingSpecification fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.RollupGroupingSpecification)) { throw new NotImplementedException("Unexpected subtype of RollupGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new RollupGroupingSpecification(
+                arguments: fragment.Arguments.SelectList(ImmutableDom.GroupingSpecification.FromMutable)
+            );
+        }
     
     }
 

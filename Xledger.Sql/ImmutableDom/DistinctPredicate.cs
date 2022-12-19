@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DistinctPredicate)that;
             compare = Comparer.DefaultInvariant.Compare(this.firstExpression, othr.firstExpression);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DistinctPredicate left, DistinctPredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DistinctPredicate left, DistinctPredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DistinctPredicate left, DistinctPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DistinctPredicate left, DistinctPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DistinctPredicate FromMutable(ScriptDom.DistinctPredicate fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DistinctPredicate)) { throw new NotImplementedException("Unexpected subtype of DistinctPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DistinctPredicate(
+                firstExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.FirstExpression),
+                secondExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.SecondExpression),
+                isNot: fragment.IsNot
+            );
+        }
     
     }
 

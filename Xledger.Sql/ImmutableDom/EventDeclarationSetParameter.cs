@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (EventDeclarationSetParameter)that;
             compare = Comparer.DefaultInvariant.Compare(this.eventField, othr.eventField);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (EventDeclarationSetParameter left, EventDeclarationSetParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(EventDeclarationSetParameter left, EventDeclarationSetParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (EventDeclarationSetParameter left, EventDeclarationSetParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EventDeclarationSetParameter left, EventDeclarationSetParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static EventDeclarationSetParameter FromMutable(ScriptDom.EventDeclarationSetParameter fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.EventDeclarationSetParameter)) { throw new NotImplementedException("Unexpected subtype of EventDeclarationSetParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new EventDeclarationSetParameter(
+                eventField: ImmutableDom.Identifier.FromMutable(fragment.EventField),
+                eventValue: ImmutableDom.ScalarExpression.FromMutable(fragment.EventValue)
+            );
+        }
     
     }
 

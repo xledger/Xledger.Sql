@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.genericOptionKind = genericOptionKind;
         }
     
-        public ScriptDom.MaxDopConfigurationOption ToMutableConcrete() {
+        public new ScriptDom.MaxDopConfigurationOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxDopConfigurationOption();
             ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.Primary = primary;
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MaxDopConfigurationOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -95,10 +95,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (MaxDopConfigurationOption left, MaxDopConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(MaxDopConfigurationOption left, MaxDopConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (MaxDopConfigurationOption left, MaxDopConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxDopConfigurationOption left, MaxDopConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static MaxDopConfigurationOption FromMutable(ScriptDom.MaxDopConfigurationOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MaxDopConfigurationOption)) { throw new NotImplementedException("Unexpected subtype of MaxDopConfigurationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new MaxDopConfigurationOption(
+                @value: ImmutableDom.Literal.FromMutable(fragment.Value),
+                primary: fragment.Primary,
+                optionKind: fragment.OptionKind,
+                genericOptionKind: ImmutableDom.Identifier.FromMutable(fragment.GenericOptionKind)
+            );
+        }
     
     }
 

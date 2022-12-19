@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.identifiers = ImmList<Identifier>.FromList(identifiers);
         }
     
-        public ScriptDom.SchemaObjectNameSnippet ToMutableConcrete() {
+        public new ScriptDom.SchemaObjectNameSnippet ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectNameSnippet();
             ret.Script = script;
             ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SchemaObjectNameSnippet)that;
             compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.script, othr.script);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SchemaObjectNameSnippet left, SchemaObjectNameSnippet right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SchemaObjectNameSnippet left, SchemaObjectNameSnippet right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SchemaObjectNameSnippet left, SchemaObjectNameSnippet right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SchemaObjectNameSnippet left, SchemaObjectNameSnippet right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SchemaObjectNameSnippet FromMutable(ScriptDom.SchemaObjectNameSnippet fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SchemaObjectNameSnippet)) { throw new NotImplementedException("Unexpected subtype of SchemaObjectNameSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SchemaObjectNameSnippet(
+                script: fragment.Script,
+                identifiers: fragment.Identifiers.SelectList(ImmutableDom.Identifier.FromMutable)
+            );
+        }
     
     }
 

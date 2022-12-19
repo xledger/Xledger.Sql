@@ -89,7 +89,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TryParseCall)that;
             compare = Comparer.DefaultInvariant.Compare(this.stringValue, othr.stringValue);
             if (compare != 0) { return compare; }
@@ -101,10 +101,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (TryParseCall left, TryParseCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(TryParseCall left, TryParseCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (TryParseCall left, TryParseCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TryParseCall left, TryParseCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static TryParseCall FromMutable(ScriptDom.TryParseCall fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TryParseCall)) { throw new NotImplementedException("Unexpected subtype of TryParseCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new TryParseCall(
+                stringValue: ImmutableDom.ScalarExpression.FromMutable(fragment.StringValue),
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
+                culture: ImmutableDom.ScalarExpression.FromMutable(fragment.Culture),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

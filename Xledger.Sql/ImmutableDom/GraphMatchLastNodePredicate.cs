@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphMatchLastNodePredicate)that;
             compare = Comparer.DefaultInvariant.Compare(this.leftExpression, othr.leftExpression);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GraphMatchLastNodePredicate left, GraphMatchLastNodePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GraphMatchLastNodePredicate FromMutable(ScriptDom.GraphMatchLastNodePredicate fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GraphMatchLastNodePredicate)) { throw new NotImplementedException("Unexpected subtype of GraphMatchLastNodePredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GraphMatchLastNodePredicate(
+                leftExpression: ImmutableDom.GraphMatchNodeExpression.FromMutable(fragment.LeftExpression),
+                rightExpression: ImmutableDom.GraphMatchNodeExpression.FromMutable(fragment.RightExpression)
+            );
+        }
     
     }
 

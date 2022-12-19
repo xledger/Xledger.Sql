@@ -123,7 +123,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SetVariableStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
@@ -143,10 +143,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SetVariableStatement left, SetVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SetVariableStatement left, SetVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SetVariableStatement left, SetVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SetVariableStatement left, SetVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SetVariableStatement FromMutable(ScriptDom.SetVariableStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SetVariableStatement)) { throw new NotImplementedException("Unexpected subtype of SetVariableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SetVariableStatement(
+                variable: ImmutableDom.VariableReference.FromMutable(fragment.Variable),
+                separatorType: fragment.SeparatorType,
+                identifier: ImmutableDom.Identifier.FromMutable(fragment.Identifier),
+                functionCallExists: fragment.FunctionCallExists,
+                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                expression: ImmutableDom.ScalarExpression.FromMutable(fragment.Expression),
+                cursorDefinition: ImmutableDom.CursorDefinition.FromMutable(fragment.CursorDefinition),
+                assignmentKind: fragment.AssignmentKind
+            );
+        }
     
     }
 

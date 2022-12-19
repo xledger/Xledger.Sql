@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.statements = ImmList<TSqlStatement>.FromList(statements);
         }
     
-        public ScriptDom.StatementListSnippet ToMutableConcrete() {
+        public new ScriptDom.StatementListSnippet ToMutableConcrete() {
             var ret = new ScriptDom.StatementListSnippet();
             ret.Script = script;
             ret.Statements.AddRange(statements.SelectList(c => (ScriptDom.TSqlStatement)c?.ToMutable()));
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (StatementListSnippet)that;
             compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.script, othr.script);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (StatementListSnippet left, StatementListSnippet right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(StatementListSnippet left, StatementListSnippet right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (StatementListSnippet left, StatementListSnippet right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(StatementListSnippet left, StatementListSnippet right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static StatementListSnippet FromMutable(ScriptDom.StatementListSnippet fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.StatementListSnippet)) { throw new NotImplementedException("Unexpected subtype of StatementListSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new StatementListSnippet(
+                script: fragment.Script,
+                statements: fragment.Statements.SelectList(ImmutableDom.TSqlStatement.FromMutable)
+            );
+        }
     
     }
 

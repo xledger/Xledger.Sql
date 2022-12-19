@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UnaryExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.unaryExpressionType, othr.unaryExpressionType);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (UnaryExpression left, UnaryExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(UnaryExpression left, UnaryExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (UnaryExpression left, UnaryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UnaryExpression left, UnaryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static UnaryExpression FromMutable(ScriptDom.UnaryExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.UnaryExpression)) { throw new NotImplementedException("Unexpected subtype of UnaryExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new UnaryExpression(
+                unaryExpressionType: fragment.UnaryExpressionType,
+                expression: ImmutableDom.ScalarExpression.FromMutable(fragment.Expression)
+            );
+        }
     
     }
 

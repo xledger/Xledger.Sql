@@ -81,7 +81,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CopyColumnOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.columnName, othr.columnName);
             if (compare != 0) { return compare; }
@@ -91,10 +91,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CopyColumnOption left, CopyColumnOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CopyColumnOption left, CopyColumnOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CopyColumnOption left, CopyColumnOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CopyColumnOption left, CopyColumnOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CopyColumnOption FromMutable(ScriptDom.CopyColumnOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CopyColumnOption)) { throw new NotImplementedException("Unexpected subtype of CopyColumnOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CopyColumnOption(
+                columnName: ImmutableDom.Identifier.FromMutable(fragment.ColumnName),
+                defaultValue: ImmutableDom.ScalarExpression.FromMutable(fragment.DefaultValue),
+                fieldNumber: ImmutableDom.IntegerLiteral.FromMutable(fragment.FieldNumber)
+            );
+        }
     
     }
 

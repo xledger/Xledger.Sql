@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.@value = @value;
         }
     
-        public ScriptDom.AutomaticTuningForceLastGoodPlanOption ToMutableConcrete() {
+        public new ScriptDom.AutomaticTuningForceLastGoodPlanOption ToMutableConcrete() {
             var ret = new ScriptDom.AutomaticTuningForceLastGoodPlanOption();
             ret.OptionKind = optionKind;
             ret.Value = @value;
@@ -61,7 +61,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AutomaticTuningForceLastGoodPlanOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
@@ -69,10 +69,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AutomaticTuningForceLastGoodPlanOption left, AutomaticTuningForceLastGoodPlanOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AutomaticTuningForceLastGoodPlanOption left, AutomaticTuningForceLastGoodPlanOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AutomaticTuningForceLastGoodPlanOption left, AutomaticTuningForceLastGoodPlanOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutomaticTuningForceLastGoodPlanOption left, AutomaticTuningForceLastGoodPlanOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AutomaticTuningForceLastGoodPlanOption FromMutable(ScriptDom.AutomaticTuningForceLastGoodPlanOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AutomaticTuningForceLastGoodPlanOption)) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningForceLastGoodPlanOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AutomaticTuningForceLastGoodPlanOption(
+                optionKind: fragment.OptionKind,
+                @value: fragment.Value
+            );
+        }
     
     }
 

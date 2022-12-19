@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropFullTextIndexStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.tableName, othr.tableName);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DropFullTextIndexStatement left, DropFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DropFullTextIndexStatement left, DropFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DropFullTextIndexStatement left, DropFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropFullTextIndexStatement left, DropFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DropFullTextIndexStatement FromMutable(ScriptDom.DropFullTextIndexStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DropFullTextIndexStatement)) { throw new NotImplementedException("Unexpected subtype of DropFullTextIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DropFullTextIndexStatement(
+                tableName: ImmutableDom.SchemaObjectName.FromMutable(fragment.TableName)
+            );
+        }
     
     }
 

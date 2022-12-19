@@ -107,7 +107,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterCertificateStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.kind, othr.kind);
             if (compare != 0) { return compare; }
@@ -125,10 +125,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterCertificateStatement left, AlterCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterCertificateStatement left, AlterCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterCertificateStatement left, AlterCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterCertificateStatement left, AlterCertificateStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterCertificateStatement FromMutable(ScriptDom.AlterCertificateStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterCertificateStatement)) { throw new NotImplementedException("Unexpected subtype of AlterCertificateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterCertificateStatement(
+                kind: fragment.Kind,
+                attestedBy: ImmutableDom.Literal.FromMutable(fragment.AttestedBy),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                activeForBeginDialog: fragment.ActiveForBeginDialog,
+                privateKeyPath: ImmutableDom.Literal.FromMutable(fragment.PrivateKeyPath),
+                encryptionPassword: ImmutableDom.Literal.FromMutable(fragment.EncryptionPassword),
+                decryptionPassword: ImmutableDom.Literal.FromMutable(fragment.DecryptionPassword)
+            );
+        }
     
     }
 

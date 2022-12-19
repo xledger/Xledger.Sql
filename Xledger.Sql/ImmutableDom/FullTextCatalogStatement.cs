@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<FullTextCatalogOption> Options => options;
     
+        public static FullTextCatalogStatement FromMutable(ScriptDom.FullTextCatalogStatement fragment) => (FullTextCatalogStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

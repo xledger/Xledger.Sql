@@ -111,7 +111,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExternalLanguageFileOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.content, othr.content);
             if (compare != 0) { return compare; }
@@ -127,10 +127,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ExternalLanguageFileOption left, ExternalLanguageFileOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ExternalLanguageFileOption left, ExternalLanguageFileOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ExternalLanguageFileOption left, ExternalLanguageFileOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExternalLanguageFileOption left, ExternalLanguageFileOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ExternalLanguageFileOption FromMutable(ScriptDom.ExternalLanguageFileOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExternalLanguageFileOption)) { throw new NotImplementedException("Unexpected subtype of ExternalLanguageFileOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ExternalLanguageFileOption(
+                content: ImmutableDom.ScalarExpression.FromMutable(fragment.Content),
+                fileName: ImmutableDom.StringLiteral.FromMutable(fragment.FileName),
+                path: ImmutableDom.StringLiteral.FromMutable(fragment.Path),
+                platform: ImmutableDom.Identifier.FromMutable(fragment.Platform),
+                parameters: ImmutableDom.StringLiteral.FromMutable(fragment.Parameters),
+                environmentVariables: ImmutableDom.StringLiteral.FromMutable(fragment.EnvironmentVariables)
+            );
+        }
     
     }
 

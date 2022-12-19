@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.LiteralOpenRowsetCosmosOption ToMutableConcrete() {
+        public new ScriptDom.LiteralOpenRowsetCosmosOption ToMutableConcrete() {
             var ret = new ScriptDom.LiteralOpenRowsetCosmosOption();
             ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.OptionKind = optionKind;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LiteralOpenRowsetCosmosOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (LiteralOpenRowsetCosmosOption left, LiteralOpenRowsetCosmosOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(LiteralOpenRowsetCosmosOption left, LiteralOpenRowsetCosmosOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (LiteralOpenRowsetCosmosOption left, LiteralOpenRowsetCosmosOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LiteralOpenRowsetCosmosOption left, LiteralOpenRowsetCosmosOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static LiteralOpenRowsetCosmosOption FromMutable(ScriptDom.LiteralOpenRowsetCosmosOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LiteralOpenRowsetCosmosOption)) { throw new NotImplementedException("Unexpected subtype of LiteralOpenRowsetCosmosOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new LiteralOpenRowsetCosmosOption(
+                @value: ImmutableDom.Literal.FromMutable(fragment.Value),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

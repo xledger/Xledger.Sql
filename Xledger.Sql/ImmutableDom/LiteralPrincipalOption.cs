@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.LiteralPrincipalOption ToMutableConcrete() {
+        public new ScriptDom.LiteralPrincipalOption ToMutableConcrete() {
             var ret = new ScriptDom.LiteralPrincipalOption();
             ret.Value = (ScriptDom.Literal)@value?.ToMutable();
             ret.OptionKind = optionKind;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LiteralPrincipalOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (LiteralPrincipalOption left, LiteralPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(LiteralPrincipalOption left, LiteralPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (LiteralPrincipalOption left, LiteralPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LiteralPrincipalOption left, LiteralPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static LiteralPrincipalOption FromMutable(ScriptDom.LiteralPrincipalOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LiteralPrincipalOption)) { throw new NotImplementedException("Unexpected subtype of LiteralPrincipalOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new LiteralPrincipalOption(
+                @value: ImmutableDom.Literal.FromMutable(fragment.Value),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SetRowCountStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.numberRows, othr.numberRows);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SetRowCountStatement left, SetRowCountStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SetRowCountStatement left, SetRowCountStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SetRowCountStatement left, SetRowCountStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SetRowCountStatement left, SetRowCountStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SetRowCountStatement FromMutable(ScriptDom.SetRowCountStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SetRowCountStatement)) { throw new NotImplementedException("Unexpected subtype of SetRowCountStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SetRowCountStatement(
+                numberRows: ImmutableDom.ValueExpression.FromMutable(fragment.NumberRows)
+            );
+        }
     
     }
 

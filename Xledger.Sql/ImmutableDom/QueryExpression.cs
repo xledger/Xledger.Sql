@@ -16,6 +16,8 @@ namespace Xledger.Sql.ImmutableDom {
         public OffsetClause OffsetClause => offsetClause;
         public ForClause ForClause => forClause;
     
+        public static QueryExpression FromMutable(ScriptDom.QueryExpression fragment) => (QueryExpression)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

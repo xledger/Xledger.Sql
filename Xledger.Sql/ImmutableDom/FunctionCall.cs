@@ -149,7 +149,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FunctionCall)that;
             compare = Comparer.DefaultInvariant.Compare(this.callTarget, othr.callTarget);
             if (compare != 0) { return compare; }
@@ -175,10 +175,29 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (FunctionCall left, FunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(FunctionCall left, FunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (FunctionCall left, FunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FunctionCall left, FunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static FunctionCall FromMutable(ScriptDom.FunctionCall fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FunctionCall)) { throw new NotImplementedException("Unexpected subtype of FunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new FunctionCall(
+                callTarget: ImmutableDom.CallTarget.FromMutable(fragment.CallTarget),
+                functionName: ImmutableDom.Identifier.FromMutable(fragment.FunctionName),
+                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                uniqueRowFilter: fragment.UniqueRowFilter,
+                overClause: ImmutableDom.OverClause.FromMutable(fragment.OverClause),
+                withinGroupClause: ImmutableDom.WithinGroupClause.FromMutable(fragment.WithinGroupClause),
+                ignoreRespectNulls: fragment.IgnoreRespectNulls.SelectList(ImmutableDom.Identifier.FromMutable),
+                trimOptions: ImmutableDom.Identifier.FromMutable(fragment.TrimOptions),
+                jsonParameters: fragment.JsonParameters.SelectList(ImmutableDom.JsonKeyValue.FromMutable),
+                absentOrNullOnNull: fragment.AbsentOrNullOnNull.SelectList(ImmutableDom.Identifier.FromMutable),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

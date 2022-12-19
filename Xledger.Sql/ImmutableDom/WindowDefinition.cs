@@ -99,7 +99,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WindowDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.windowName, othr.windowName);
             if (compare != 0) { return compare; }
@@ -113,10 +113,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (WindowDefinition left, WindowDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(WindowDefinition left, WindowDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (WindowDefinition left, WindowDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WindowDefinition left, WindowDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static WindowDefinition FromMutable(ScriptDom.WindowDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.WindowDefinition)) { throw new NotImplementedException("Unexpected subtype of WindowDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new WindowDefinition(
+                windowName: ImmutableDom.Identifier.FromMutable(fragment.WindowName),
+                refWindowName: ImmutableDom.Identifier.FromMutable(fragment.RefWindowName),
+                partitions: fragment.Partitions.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                orderByClause: ImmutableDom.OrderByClause.FromMutable(fragment.OrderByClause),
+                windowFrameClause: ImmutableDom.WindowFrameClause.FromMutable(fragment.WindowFrameClause)
+            );
+        }
     
     }
 

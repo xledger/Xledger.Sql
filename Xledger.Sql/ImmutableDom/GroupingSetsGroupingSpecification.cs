@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GroupingSetsGroupingSpecification)that;
             compare = Comparer.DefaultInvariant.Compare(this.sets, othr.sets);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GroupingSetsGroupingSpecification left, GroupingSetsGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GroupingSetsGroupingSpecification left, GroupingSetsGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GroupingSetsGroupingSpecification left, GroupingSetsGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GroupingSetsGroupingSpecification left, GroupingSetsGroupingSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GroupingSetsGroupingSpecification FromMutable(ScriptDom.GroupingSetsGroupingSpecification fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GroupingSetsGroupingSpecification)) { throw new NotImplementedException("Unexpected subtype of GroupingSetsGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GroupingSetsGroupingSpecification(
+                sets: fragment.Sets.SelectList(ImmutableDom.GroupingSpecification.FromMutable)
+            );
+        }
     
     }
 

@@ -133,7 +133,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IndexDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -155,10 +155,27 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (IndexDefinition left, IndexDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(IndexDefinition left, IndexDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (IndexDefinition left, IndexDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(IndexDefinition left, IndexDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static IndexDefinition FromMutable(ScriptDom.IndexDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.IndexDefinition)) { throw new NotImplementedException("Unexpected subtype of IndexDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new IndexDefinition(
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                unique: fragment.Unique,
+                indexType: ImmutableDom.IndexType.FromMutable(fragment.IndexType),
+                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable),
+                columns: fragment.Columns.SelectList(ImmutableDom.ColumnWithSortOrder.FromMutable),
+                includeColumns: fragment.IncludeColumns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                filterPredicate: ImmutableDom.BooleanExpression.FromMutable(fragment.FilterPredicate),
+                fileStreamOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.FileStreamOn)
+            );
+        }
     
     }
 

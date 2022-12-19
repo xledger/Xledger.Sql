@@ -99,7 +99,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ReadTextStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.column, othr.column);
             if (compare != 0) { return compare; }
@@ -113,10 +113,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ReadTextStatement left, ReadTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ReadTextStatement FromMutable(ScriptDom.ReadTextStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ReadTextStatement)) { throw new NotImplementedException("Unexpected subtype of ReadTextStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ReadTextStatement(
+                column: ImmutableDom.ColumnReferenceExpression.FromMutable(fragment.Column),
+                textPointer: ImmutableDom.ValueExpression.FromMutable(fragment.TextPointer),
+                offset: ImmutableDom.ValueExpression.FromMutable(fragment.Offset),
+                size: ImmutableDom.ValueExpression.FromMutable(fragment.Size),
+                holdLock: fragment.HoldLock
+            );
+        }
     
     }
 

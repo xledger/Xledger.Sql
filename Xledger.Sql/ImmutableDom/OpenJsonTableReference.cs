@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OpenJsonTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
@@ -107,10 +107,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OpenJsonTableReference left, OpenJsonTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OpenJsonTableReference left, OpenJsonTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OpenJsonTableReference left, OpenJsonTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OpenJsonTableReference left, OpenJsonTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OpenJsonTableReference FromMutable(ScriptDom.OpenJsonTableReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OpenJsonTableReference)) { throw new NotImplementedException("Unexpected subtype of OpenJsonTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OpenJsonTableReference(
+                variable: ImmutableDom.ScalarExpression.FromMutable(fragment.Variable),
+                rowPattern: ImmutableDom.ScalarExpression.FromMutable(fragment.RowPattern),
+                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(ImmutableDom.SchemaDeclarationItemOpenjson.FromMutable),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

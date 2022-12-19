@@ -107,7 +107,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateEndpointStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
@@ -127,10 +127,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateEndpointStatement left, CreateEndpointStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateEndpointStatement left, CreateEndpointStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateEndpointStatement left, CreateEndpointStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateEndpointStatement left, CreateEndpointStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateEndpointStatement FromMutable(ScriptDom.CreateEndpointStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateEndpointStatement)) { throw new NotImplementedException("Unexpected subtype of CreateEndpointStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateEndpointStatement(
+                owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                state: fragment.State,
+                affinity: ImmutableDom.EndpointAffinity.FromMutable(fragment.Affinity),
+                protocol: fragment.Protocol,
+                protocolOptions: fragment.ProtocolOptions.SelectList(ImmutableDom.EndpointProtocolOption.FromMutable),
+                endpointType: fragment.EndpointType,
+                payloadOptions: fragment.PayloadOptions.SelectList(ImmutableDom.PayloadOption.FromMutable)
+            );
+        }
     
     }
 

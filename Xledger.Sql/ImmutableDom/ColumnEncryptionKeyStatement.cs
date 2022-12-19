@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<ColumnEncryptionKeyValue> ColumnEncryptionKeyValues => columnEncryptionKeyValues;
     
+        public static ColumnEncryptionKeyStatement FromMutable(ScriptDom.ColumnEncryptionKeyStatement fragment) => (ColumnEncryptionKeyStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

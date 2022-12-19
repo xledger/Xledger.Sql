@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableAddTableElementStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.existingRowsCheckEnforcement, othr.existingRowsCheckEnforcement);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterTableAddTableElementStatement left, AlterTableAddTableElementStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterTableAddTableElementStatement left, AlterTableAddTableElementStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterTableAddTableElementStatement left, AlterTableAddTableElementStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableAddTableElementStatement left, AlterTableAddTableElementStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterTableAddTableElementStatement FromMutable(ScriptDom.AlterTableAddTableElementStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterTableAddTableElementStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableAddTableElementStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterTableAddTableElementStatement(
+                existingRowsCheckEnforcement: fragment.ExistingRowsCheckEnforcement,
+                definition: ImmutableDom.TableDefinition.FromMutable(fragment.Definition),
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
+            );
+        }
     
     }
 

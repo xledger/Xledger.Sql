@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QueryParenthesisExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.queryExpression, othr.queryExpression);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryParenthesisExpression left, QueryParenthesisExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static QueryParenthesisExpression FromMutable(ScriptDom.QueryParenthesisExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QueryParenthesisExpression)) { throw new NotImplementedException("Unexpected subtype of QueryParenthesisExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new QueryParenthesisExpression(
+                queryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.QueryExpression),
+                orderByClause: ImmutableDom.OrderByClause.FromMutable(fragment.OrderByClause),
+                offsetClause: ImmutableDom.OffsetClause.FromMutable(fragment.OffsetClause),
+                forClause: ImmutableDom.ForClause.FromMutable(fragment.ForClause)
+            );
+        }
     
     }
 

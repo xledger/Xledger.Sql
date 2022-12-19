@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.@value = @value;
         }
     
-        public ScriptDom.AutomaticTuningMaintainIndexOption ToMutableConcrete() {
+        public new ScriptDom.AutomaticTuningMaintainIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.AutomaticTuningMaintainIndexOption();
             ret.OptionKind = optionKind;
             ret.Value = @value;
@@ -61,7 +61,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AutomaticTuningMaintainIndexOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
@@ -69,10 +69,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AutomaticTuningMaintainIndexOption left, AutomaticTuningMaintainIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AutomaticTuningMaintainIndexOption left, AutomaticTuningMaintainIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AutomaticTuningMaintainIndexOption left, AutomaticTuningMaintainIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutomaticTuningMaintainIndexOption left, AutomaticTuningMaintainIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AutomaticTuningMaintainIndexOption FromMutable(ScriptDom.AutomaticTuningMaintainIndexOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AutomaticTuningMaintainIndexOption)) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningMaintainIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AutomaticTuningMaintainIndexOption(
+                optionKind: fragment.OptionKind,
+                @value: fragment.Value
+            );
+        }
     
     }
 

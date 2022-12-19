@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableDropTableElement)that;
             compare = Comparer.DefaultInvariant.Compare(this.tableElementType, othr.tableElementType);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterTableDropTableElement left, AlterTableDropTableElement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterTableDropTableElement left, AlterTableDropTableElement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterTableDropTableElement left, AlterTableDropTableElement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableDropTableElement left, AlterTableDropTableElement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterTableDropTableElement FromMutable(ScriptDom.AlterTableDropTableElement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterTableDropTableElement)) { throw new NotImplementedException("Unexpected subtype of AlterTableDropTableElement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterTableDropTableElement(
+                tableElementType: fragment.TableElementType,
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                dropClusteredConstraintOptions: fragment.DropClusteredConstraintOptions.SelectList(ImmutableDom.DropClusteredConstraintOption.FromMutable),
+                isIfExists: fragment.IsIfExists
+            );
+        }
     
     }
 

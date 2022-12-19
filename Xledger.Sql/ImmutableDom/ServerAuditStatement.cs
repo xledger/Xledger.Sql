@@ -18,6 +18,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AuditOption> Options => options;
         public BooleanExpression PredicateExpression => predicateExpression;
     
+        public static ServerAuditStatement FromMutable(ScriptDom.ServerAuditStatement fragment) => (ServerAuditStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

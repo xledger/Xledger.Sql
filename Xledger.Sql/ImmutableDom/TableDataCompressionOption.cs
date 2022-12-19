@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TableDataCompressionOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.dataCompressionOption, othr.dataCompressionOption);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (TableDataCompressionOption left, TableDataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(TableDataCompressionOption left, TableDataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (TableDataCompressionOption left, TableDataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TableDataCompressionOption left, TableDataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static TableDataCompressionOption FromMutable(ScriptDom.TableDataCompressionOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TableDataCompressionOption)) { throw new NotImplementedException("Unexpected subtype of TableDataCompressionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new TableDataCompressionOption(
+                dataCompressionOption: ImmutableDom.DataCompressionOption.FromMutable(fragment.DataCompressionOption),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

@@ -81,7 +81,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ColumnDefinitionBase)that;
             compare = Comparer.DefaultInvariant.Compare(this.columnIdentifier, othr.columnIdentifier);
             if (compare != 0) { return compare; }
@@ -91,10 +91,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ColumnDefinitionBase left, ColumnDefinitionBase right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ColumnDefinitionBase left, ColumnDefinitionBase right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ColumnDefinitionBase left, ColumnDefinitionBase right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ColumnDefinitionBase left, ColumnDefinitionBase right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ColumnDefinitionBase FromMutable(ScriptDom.ColumnDefinitionBase fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ColumnDefinitionBase)) { return TSqlFragment.FromMutable(fragment) as ColumnDefinitionBase; }
+            return new ColumnDefinitionBase(
+                columnIdentifier: ImmutableDom.Identifier.FromMutable(fragment.ColumnIdentifier),
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

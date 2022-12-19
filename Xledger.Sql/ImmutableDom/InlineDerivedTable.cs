@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InlineDerivedTable)that;
             compare = Comparer.DefaultInvariant.Compare(this.rowValues, othr.rowValues);
             if (compare != 0) { return compare; }
@@ -91,10 +91,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (InlineDerivedTable left, InlineDerivedTable right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(InlineDerivedTable left, InlineDerivedTable right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (InlineDerivedTable left, InlineDerivedTable right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(InlineDerivedTable left, InlineDerivedTable right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static InlineDerivedTable FromMutable(ScriptDom.InlineDerivedTable fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.InlineDerivedTable)) { throw new NotImplementedException("Unexpected subtype of InlineDerivedTable not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new InlineDerivedTable(
+                rowValues: fragment.RowValues.SelectList(ImmutableDom.RowValue.FromMutable),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

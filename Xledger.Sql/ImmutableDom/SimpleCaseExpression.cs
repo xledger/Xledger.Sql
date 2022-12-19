@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SimpleCaseExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.inputExpression, othr.inputExpression);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SimpleCaseExpression left, SimpleCaseExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SimpleCaseExpression FromMutable(ScriptDom.SimpleCaseExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SimpleCaseExpression)) { throw new NotImplementedException("Unexpected subtype of SimpleCaseExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SimpleCaseExpression(
+                inputExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.InputExpression),
+                whenClauses: fragment.WhenClauses.SelectList(ImmutableDom.SimpleWhenClause.FromMutable),
+                elseExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.ElseExpression),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

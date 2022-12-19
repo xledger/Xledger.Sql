@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.ResampleStatisticsOption ToMutableConcrete() {
+        public new ScriptDom.ResampleStatisticsOption ToMutableConcrete() {
             var ret = new ScriptDom.ResampleStatisticsOption();
             ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.StatisticsPartitionRange)c?.ToMutable()));
             ret.OptionKind = optionKind;
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ResampleStatisticsOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.partitions, othr.partitions);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ResampleStatisticsOption left, ResampleStatisticsOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ResampleStatisticsOption left, ResampleStatisticsOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ResampleStatisticsOption left, ResampleStatisticsOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ResampleStatisticsOption left, ResampleStatisticsOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ResampleStatisticsOption FromMutable(ScriptDom.ResampleStatisticsOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ResampleStatisticsOption)) { throw new NotImplementedException("Unexpected subtype of ResampleStatisticsOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ResampleStatisticsOption(
+                partitions: fragment.Partitions.SelectList(ImmutableDom.StatisticsPartitionRange.FromMutable),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

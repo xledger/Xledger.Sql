@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterExternalDataSourceStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.previousPushDownOption, othr.previousPushDownOption);
             if (compare != 0) { return compare; }
@@ -109,10 +109,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterExternalDataSourceStatement left, AlterExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterExternalDataSourceStatement left, AlterExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterExternalDataSourceStatement left, AlterExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterExternalDataSourceStatement left, AlterExternalDataSourceStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterExternalDataSourceStatement FromMutable(ScriptDom.AlterExternalDataSourceStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterExternalDataSourceStatement)) { throw new NotImplementedException("Unexpected subtype of AlterExternalDataSourceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterExternalDataSourceStatement(
+                previousPushDownOption: fragment.PreviousPushDownOption,
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                dataSourceType: fragment.DataSourceType,
+                location: ImmutableDom.Literal.FromMutable(fragment.Location),
+                pushdownOption: fragment.PushdownOption,
+                externalDataSourceOptions: fragment.ExternalDataSourceOptions.SelectList(ImmutableDom.ExternalDataSourceOption.FromMutable)
+            );
+        }
     
     }
 

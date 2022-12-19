@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OpenMasterKeyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.password, othr.password);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OpenMasterKeyStatement left, OpenMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OpenMasterKeyStatement left, OpenMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OpenMasterKeyStatement left, OpenMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OpenMasterKeyStatement left, OpenMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OpenMasterKeyStatement FromMutable(ScriptDom.OpenMasterKeyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OpenMasterKeyStatement)) { throw new NotImplementedException("Unexpected subtype of OpenMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OpenMasterKeyStatement(
+                password: ImmutableDom.Literal.FromMutable(fragment.Password)
+            );
+        }
     
     }
 

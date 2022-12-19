@@ -127,7 +127,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UpdateTextStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.insertOffset, othr.insertOffset);
             if (compare != 0) { return compare; }
@@ -149,10 +149,27 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (UpdateTextStatement left, UpdateTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(UpdateTextStatement left, UpdateTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (UpdateTextStatement left, UpdateTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UpdateTextStatement left, UpdateTextStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static UpdateTextStatement FromMutable(ScriptDom.UpdateTextStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.UpdateTextStatement)) { throw new NotImplementedException("Unexpected subtype of UpdateTextStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new UpdateTextStatement(
+                insertOffset: ImmutableDom.ScalarExpression.FromMutable(fragment.InsertOffset),
+                deleteLength: ImmutableDom.ScalarExpression.FromMutable(fragment.DeleteLength),
+                sourceColumn: ImmutableDom.ColumnReferenceExpression.FromMutable(fragment.SourceColumn),
+                sourceParameter: ImmutableDom.ValueExpression.FromMutable(fragment.SourceParameter),
+                bulk: fragment.Bulk,
+                column: ImmutableDom.ColumnReferenceExpression.FromMutable(fragment.Column),
+                textId: ImmutableDom.ValueExpression.FromMutable(fragment.TextId),
+                timestamp: ImmutableDom.Literal.FromMutable(fragment.Timestamp),
+                withLog: fragment.WithLog
+            );
+        }
     
     }
 

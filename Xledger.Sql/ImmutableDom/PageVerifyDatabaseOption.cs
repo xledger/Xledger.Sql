@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.PageVerifyDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.PageVerifyDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.PageVerifyDatabaseOption();
             ret.Value = @value;
             ret.OptionKind = optionKind;
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PageVerifyDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (PageVerifyDatabaseOption left, PageVerifyDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(PageVerifyDatabaseOption left, PageVerifyDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (PageVerifyDatabaseOption left, PageVerifyDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PageVerifyDatabaseOption left, PageVerifyDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static PageVerifyDatabaseOption FromMutable(ScriptDom.PageVerifyDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.PageVerifyDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of PageVerifyDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new PageVerifyDatabaseOption(
+                @value: fragment.Value,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

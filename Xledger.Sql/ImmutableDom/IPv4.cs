@@ -91,7 +91,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IPv4)that;
             compare = Comparer.DefaultInvariant.Compare(this.octetOne, othr.octetOne);
             if (compare != 0) { return compare; }
@@ -103,10 +103,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (IPv4 left, IPv4 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(IPv4 left, IPv4 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (IPv4 left, IPv4 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(IPv4 left, IPv4 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static IPv4 FromMutable(ScriptDom.IPv4 fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.IPv4)) { throw new NotImplementedException("Unexpected subtype of IPv4 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new IPv4(
+                octetOne: ImmutableDom.Literal.FromMutable(fragment.OctetOne),
+                octetTwo: ImmutableDom.Literal.FromMutable(fragment.OctetTwo),
+                octetThree: ImmutableDom.Literal.FromMutable(fragment.OctetThree),
+                octetFour: ImmutableDom.Literal.FromMutable(fragment.OctetFour)
+            );
+        }
     
     }
 

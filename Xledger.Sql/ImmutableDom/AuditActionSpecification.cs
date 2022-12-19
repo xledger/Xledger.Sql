@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AuditActionSpecification)that;
             compare = Comparer.DefaultInvariant.Compare(this.actions, othr.actions);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AuditActionSpecification left, AuditActionSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AuditActionSpecification left, AuditActionSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AuditActionSpecification left, AuditActionSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AuditActionSpecification left, AuditActionSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AuditActionSpecification FromMutable(ScriptDom.AuditActionSpecification fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AuditActionSpecification)) { throw new NotImplementedException("Unexpected subtype of AuditActionSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AuditActionSpecification(
+                actions: fragment.Actions.SelectList(ImmutableDom.DatabaseAuditAction.FromMutable),
+                principals: fragment.Principals.SelectList(ImmutableDom.SecurityPrincipal.FromMutable),
+                targetObject: ImmutableDom.SecurityTargetObject.FromMutable(fragment.TargetObject)
+            );
+        }
     
     }
 

@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Literal File => file;
         public Literal Password => password;
     
+        public static BackupRestoreMasterKeyStatementBase FromMutable(ScriptDom.BackupRestoreMasterKeyStatementBase fragment) => (BackupRestoreMasterKeyStatementBase)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

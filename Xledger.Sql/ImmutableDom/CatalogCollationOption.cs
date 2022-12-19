@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.CatalogCollationOption ToMutableConcrete() {
+        public new ScriptDom.CatalogCollationOption ToMutableConcrete() {
             var ret = new ScriptDom.CatalogCollationOption();
             ret.CatalogCollation = catalogCollation;
             ret.OptionKind = optionKind;
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CatalogCollationOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.catalogCollation, othr.catalogCollation);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CatalogCollationOption left, CatalogCollationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CatalogCollationOption FromMutable(ScriptDom.CatalogCollationOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CatalogCollationOption)) { throw new NotImplementedException("Unexpected subtype of CatalogCollationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CatalogCollationOption(
+                catalogCollation: fragment.CatalogCollation,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

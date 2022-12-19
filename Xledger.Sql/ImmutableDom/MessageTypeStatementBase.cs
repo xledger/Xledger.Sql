@@ -16,6 +16,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.MessageValidationMethod ValidationMethod => validationMethod;
         public SchemaObjectName XmlSchemaCollectionName => xmlSchemaCollectionName;
     
+        public static MessageTypeStatementBase FromMutable(ScriptDom.MessageTypeStatementBase fragment) => (MessageTypeStatementBase)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

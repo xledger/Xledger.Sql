@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LockEscalationTableOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (LockEscalationTableOption left, LockEscalationTableOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(LockEscalationTableOption left, LockEscalationTableOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (LockEscalationTableOption left, LockEscalationTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LockEscalationTableOption left, LockEscalationTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static LockEscalationTableOption FromMutable(ScriptDom.LockEscalationTableOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LockEscalationTableOption)) { throw new NotImplementedException("Unexpected subtype of LockEscalationTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new LockEscalationTableOption(
+                @value: fragment.Value,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

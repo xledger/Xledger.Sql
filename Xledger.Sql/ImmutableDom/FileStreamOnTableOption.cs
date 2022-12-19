@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FileStreamOnTableOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (FileStreamOnTableOption left, FileStreamOnTableOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(FileStreamOnTableOption left, FileStreamOnTableOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (FileStreamOnTableOption left, FileStreamOnTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FileStreamOnTableOption left, FileStreamOnTableOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static FileStreamOnTableOption FromMutable(ScriptDom.FileStreamOnTableOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FileStreamOnTableOption)) { throw new NotImplementedException("Unexpected subtype of FileStreamOnTableOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new FileStreamOnTableOption(
+                @value: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.Value),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

@@ -81,7 +81,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ThrowStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.errorNumber, othr.errorNumber);
             if (compare != 0) { return compare; }
@@ -91,10 +91,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ThrowStatement left, ThrowStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ThrowStatement left, ThrowStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ThrowStatement left, ThrowStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ThrowStatement left, ThrowStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ThrowStatement FromMutable(ScriptDom.ThrowStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ThrowStatement)) { throw new NotImplementedException("Unexpected subtype of ThrowStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ThrowStatement(
+                errorNumber: ImmutableDom.ValueExpression.FromMutable(fragment.ErrorNumber),
+                message: ImmutableDom.ValueExpression.FromMutable(fragment.Message),
+                state: ImmutableDom.ValueExpression.FromMutable(fragment.State)
+            );
+        }
     
     }
 

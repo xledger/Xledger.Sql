@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public SecurityElement80 SecurityElement80 => securityElement80;
         public SecurityUserClause80 SecurityUserClause80 => securityUserClause80;
     
+        public static SecurityStatementBody80 FromMutable(ScriptDom.SecurityStatementBody80 fragment) => (SecurityStatementBody80)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

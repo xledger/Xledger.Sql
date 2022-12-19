@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableAlterPartitionStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.boundaryValue, othr.boundaryValue);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterTableAlterPartitionStatement left, AlterTableAlterPartitionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterTableAlterPartitionStatement left, AlterTableAlterPartitionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterTableAlterPartitionStatement left, AlterTableAlterPartitionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableAlterPartitionStatement left, AlterTableAlterPartitionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterTableAlterPartitionStatement FromMutable(ScriptDom.AlterTableAlterPartitionStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterTableAlterPartitionStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableAlterPartitionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterTableAlterPartitionStatement(
+                boundaryValue: ImmutableDom.ScalarExpression.FromMutable(fragment.BoundaryValue),
+                isSplit: fragment.IsSplit,
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
+            );
+        }
     
     }
 

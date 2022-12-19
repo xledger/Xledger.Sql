@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CoalesceExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.expressions, othr.expressions);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CoalesceExpression left, CoalesceExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CoalesceExpression left, CoalesceExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CoalesceExpression left, CoalesceExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CoalesceExpression left, CoalesceExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CoalesceExpression FromMutable(ScriptDom.CoalesceExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CoalesceExpression)) { throw new NotImplementedException("Unexpected subtype of CoalesceExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CoalesceExpression(
+                expressions: fragment.Expressions.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

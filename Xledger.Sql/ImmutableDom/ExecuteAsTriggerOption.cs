@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.ExecuteAsTriggerOption ToMutableConcrete() {
+        public new ScriptDom.ExecuteAsTriggerOption ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteAsTriggerOption();
             ret.ExecuteAsClause = (ScriptDom.ExecuteAsClause)executeAsClause?.ToMutable();
             ret.OptionKind = optionKind;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExecuteAsTriggerOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.executeAsClause, othr.executeAsClause);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ExecuteAsTriggerOption left, ExecuteAsTriggerOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ExecuteAsTriggerOption left, ExecuteAsTriggerOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ExecuteAsTriggerOption left, ExecuteAsTriggerOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExecuteAsTriggerOption left, ExecuteAsTriggerOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ExecuteAsTriggerOption FromMutable(ScriptDom.ExecuteAsTriggerOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExecuteAsTriggerOption)) { throw new NotImplementedException("Unexpected subtype of ExecuteAsTriggerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ExecuteAsTriggerOption(
+                executeAsClause: ImmutableDom.ExecuteAsClause.FromMutable(fragment.ExecuteAsClause),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

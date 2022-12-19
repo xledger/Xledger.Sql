@@ -151,7 +151,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QuerySpecification)that;
             compare = Comparer.DefaultInvariant.Compare(this.uniqueRowFilter, othr.uniqueRowFilter);
             if (compare != 0) { return compare; }
@@ -177,10 +177,29 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (QuerySpecification left, QuerySpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(QuerySpecification left, QuerySpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (QuerySpecification left, QuerySpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QuerySpecification left, QuerySpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static QuerySpecification FromMutable(ScriptDom.QuerySpecification fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QuerySpecification)) { throw new NotImplementedException("Unexpected subtype of QuerySpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new QuerySpecification(
+                uniqueRowFilter: fragment.UniqueRowFilter,
+                topRowFilter: ImmutableDom.TopRowFilter.FromMutable(fragment.TopRowFilter),
+                selectElements: fragment.SelectElements.SelectList(ImmutableDom.SelectElement.FromMutable),
+                fromClause: ImmutableDom.FromClause.FromMutable(fragment.FromClause),
+                whereClause: ImmutableDom.WhereClause.FromMutable(fragment.WhereClause),
+                groupByClause: ImmutableDom.GroupByClause.FromMutable(fragment.GroupByClause),
+                havingClause: ImmutableDom.HavingClause.FromMutable(fragment.HavingClause),
+                windowClause: ImmutableDom.WindowClause.FromMutable(fragment.WindowClause),
+                orderByClause: ImmutableDom.OrderByClause.FromMutable(fragment.OrderByClause),
+                offsetClause: ImmutableDom.OffsetClause.FromMutable(fragment.OffsetClause),
+                forClause: ImmutableDom.ForClause.FromMutable(fragment.ForClause)
+            );
+        }
     
     }
 

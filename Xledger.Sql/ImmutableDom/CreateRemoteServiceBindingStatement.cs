@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateRemoteServiceBindingStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.service, othr.service);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateRemoteServiceBindingStatement left, CreateRemoteServiceBindingStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateRemoteServiceBindingStatement FromMutable(ScriptDom.CreateRemoteServiceBindingStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateRemoteServiceBindingStatement)) { throw new NotImplementedException("Unexpected subtype of CreateRemoteServiceBindingStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateRemoteServiceBindingStatement(
+                service: ImmutableDom.Literal.FromMutable(fragment.Service),
+                owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                options: fragment.Options.SelectList(ImmutableDom.RemoteServiceBindingOption.FromMutable)
+            );
+        }
     
     }
 

@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CastCall)that;
             compare = Comparer.DefaultInvariant.Compare(this.dataType, othr.dataType);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CastCall left, CastCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CastCall left, CastCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CastCall left, CastCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CastCall left, CastCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CastCall FromMutable(ScriptDom.CastCall fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CastCall)) { throw new NotImplementedException("Unexpected subtype of CastCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CastCall(
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
+                parameter: ImmutableDom.ScalarExpression.FromMutable(fragment.Parameter),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

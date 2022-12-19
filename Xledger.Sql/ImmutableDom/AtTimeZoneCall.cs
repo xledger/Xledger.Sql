@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AtTimeZoneCall)that;
             compare = Comparer.DefaultInvariant.Compare(this.dateValue, othr.dateValue);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AtTimeZoneCall left, AtTimeZoneCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AtTimeZoneCall left, AtTimeZoneCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AtTimeZoneCall left, AtTimeZoneCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AtTimeZoneCall left, AtTimeZoneCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AtTimeZoneCall FromMutable(ScriptDom.AtTimeZoneCall fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AtTimeZoneCall)) { throw new NotImplementedException("Unexpected subtype of AtTimeZoneCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AtTimeZoneCall(
+                dateValue: ImmutableDom.ScalarExpression.FromMutable(fragment.DateValue),
+                timeZone: ImmutableDom.ScalarExpression.FromMutable(fragment.TimeZone),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

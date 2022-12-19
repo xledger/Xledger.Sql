@@ -57,16 +57,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DeallocateCursorStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.cursor, othr.cursor);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DeallocateCursorStatement left, DeallocateCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DeallocateCursorStatement left, DeallocateCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DeallocateCursorStatement left, DeallocateCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DeallocateCursorStatement left, DeallocateCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DeallocateCursorStatement FromMutable(ScriptDom.DeallocateCursorStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DeallocateCursorStatement)) { throw new NotImplementedException("Unexpected subtype of DeallocateCursorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DeallocateCursorStatement(
+                cursor: ImmutableDom.CursorId.FromMutable(fragment.Cursor)
+            );
+        }
     
     }
 

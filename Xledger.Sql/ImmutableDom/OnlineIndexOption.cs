@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.OnlineIndexOption ToMutableConcrete() {
+        public new ScriptDom.OnlineIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.OnlineIndexOption();
             ret.LowPriorityLockWaitOption = (ScriptDom.OnlineIndexLowPriorityLockWaitOption)lowPriorityLockWaitOption?.ToMutable();
             ret.OptionState = optionState;
@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OnlineIndexOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.lowPriorityLockWaitOption, othr.lowPriorityLockWaitOption);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OnlineIndexOption left, OnlineIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OnlineIndexOption left, OnlineIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OnlineIndexOption left, OnlineIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OnlineIndexOption left, OnlineIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OnlineIndexOption FromMutable(ScriptDom.OnlineIndexOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OnlineIndexOption)) { throw new NotImplementedException("Unexpected subtype of OnlineIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OnlineIndexOption(
+                lowPriorityLockWaitOption: ImmutableDom.OnlineIndexLowPriorityLockWaitOption.FromMutable(fragment.LowPriorityLockWaitOption),
+                optionState: fragment.OptionState,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

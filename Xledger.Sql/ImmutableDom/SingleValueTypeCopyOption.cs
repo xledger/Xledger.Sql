@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SingleValueTypeCopyOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.singleValue, othr.singleValue);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SingleValueTypeCopyOption left, SingleValueTypeCopyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SingleValueTypeCopyOption FromMutable(ScriptDom.SingleValueTypeCopyOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SingleValueTypeCopyOption)) { throw new NotImplementedException("Unexpected subtype of SingleValueTypeCopyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SingleValueTypeCopyOption(
+                singleValue: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.SingleValue)
+            );
+        }
     
     }
 

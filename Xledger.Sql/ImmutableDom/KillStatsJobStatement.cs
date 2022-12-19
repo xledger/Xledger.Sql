@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (KillStatsJobStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.jobId, othr.jobId);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (KillStatsJobStatement left, KillStatsJobStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(KillStatsJobStatement left, KillStatsJobStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (KillStatsJobStatement left, KillStatsJobStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(KillStatsJobStatement left, KillStatsJobStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static KillStatsJobStatement FromMutable(ScriptDom.KillStatsJobStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.KillStatsJobStatement)) { throw new NotImplementedException("Unexpected subtype of KillStatsJobStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new KillStatsJobStatement(
+                jobId: ImmutableDom.ScalarExpression.FromMutable(fragment.JobId)
+            );
+        }
     
     }
 

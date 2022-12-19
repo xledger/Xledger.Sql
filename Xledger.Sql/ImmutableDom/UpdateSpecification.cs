@@ -107,7 +107,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UpdateSpecification)that;
             compare = Comparer.DefaultInvariant.Compare(this.setClauses, othr.setClauses);
             if (compare != 0) { return compare; }
@@ -125,10 +125,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (UpdateSpecification left, UpdateSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(UpdateSpecification left, UpdateSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (UpdateSpecification left, UpdateSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UpdateSpecification left, UpdateSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static UpdateSpecification FromMutable(ScriptDom.UpdateSpecification fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.UpdateSpecification)) { throw new NotImplementedException("Unexpected subtype of UpdateSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new UpdateSpecification(
+                setClauses: fragment.SetClauses.SelectList(ImmutableDom.SetClause.FromMutable),
+                fromClause: ImmutableDom.FromClause.FromMutable(fragment.FromClause),
+                whereClause: ImmutableDom.WhereClause.FromMutable(fragment.WhereClause),
+                target: ImmutableDom.TableReference.FromMutable(fragment.Target),
+                topRowFilter: ImmutableDom.TopRowFilter.FromMutable(fragment.TopRowFilter),
+                outputIntoClause: ImmutableDom.OutputIntoClause.FromMutable(fragment.OutputIntoClause),
+                outputClause: ImmutableDom.OutputClause.FromMutable(fragment.OutputClause)
+            );
+        }
     
     }
 

@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DiskStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.diskStatementType, othr.diskStatementType);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DiskStatement left, DiskStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DiskStatement left, DiskStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DiskStatement left, DiskStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DiskStatement left, DiskStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DiskStatement FromMutable(ScriptDom.DiskStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DiskStatement)) { throw new NotImplementedException("Unexpected subtype of DiskStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DiskStatement(
+                diskStatementType: fragment.DiskStatementType,
+                options: fragment.Options.SelectList(ImmutableDom.DiskStatementOption.FromMutable)
+            );
+        }
     
     }
 

@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PrivilegeSecurityElement80)that;
             compare = Comparer.DefaultInvariant.Compare(this.privileges, othr.privileges);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (PrivilegeSecurityElement80 left, PrivilegeSecurityElement80 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(PrivilegeSecurityElement80 left, PrivilegeSecurityElement80 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (PrivilegeSecurityElement80 left, PrivilegeSecurityElement80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PrivilegeSecurityElement80 left, PrivilegeSecurityElement80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static PrivilegeSecurityElement80 FromMutable(ScriptDom.PrivilegeSecurityElement80 fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.PrivilegeSecurityElement80)) { throw new NotImplementedException("Unexpected subtype of PrivilegeSecurityElement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new PrivilegeSecurityElement80(
+                privileges: fragment.Privileges.SelectList(ImmutableDom.Privilege80.FromMutable),
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable)
+            );
+        }
     
     }
 

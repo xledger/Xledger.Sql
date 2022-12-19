@@ -91,7 +91,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterDatabaseAddFileStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.fileDeclarations, othr.fileDeclarations);
             if (compare != 0) { return compare; }
@@ -105,10 +105,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterDatabaseAddFileStatement left, AlterDatabaseAddFileStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterDatabaseAddFileStatement left, AlterDatabaseAddFileStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterDatabaseAddFileStatement left, AlterDatabaseAddFileStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterDatabaseAddFileStatement left, AlterDatabaseAddFileStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterDatabaseAddFileStatement FromMutable(ScriptDom.AlterDatabaseAddFileStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterDatabaseAddFileStatement)) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseAddFileStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterDatabaseAddFileStatement(
+                fileDeclarations: fragment.FileDeclarations.SelectList(ImmutableDom.FileDeclaration.FromMutable),
+                fileGroup: ImmutableDom.Identifier.FromMutable(fragment.FileGroup),
+                isLog: fragment.IsLog,
+                databaseName: ImmutableDom.Identifier.FromMutable(fragment.DatabaseName),
+                useCurrent: fragment.UseCurrent
+            );
+        }
     
     }
 

@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BulkOpenRowset)that;
             compare = Comparer.DefaultInvariant.Compare(this.dataFiles, othr.dataFiles);
             if (compare != 0) { return compare; }
@@ -111,10 +111,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (BulkOpenRowset left, BulkOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(BulkOpenRowset left, BulkOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (BulkOpenRowset left, BulkOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BulkOpenRowset left, BulkOpenRowset right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static BulkOpenRowset FromMutable(ScriptDom.BulkOpenRowset fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BulkOpenRowset)) { throw new NotImplementedException("Unexpected subtype of BulkOpenRowset not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new BulkOpenRowset(
+                dataFiles: fragment.DataFiles.SelectList(ImmutableDom.StringLiteral.FromMutable),
+                options: fragment.Options.SelectList(ImmutableDom.BulkInsertOption.FromMutable),
+                withColumns: fragment.WithColumns.SelectList(ImmutableDom.OpenRowsetColumnDefinition.FromMutable),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

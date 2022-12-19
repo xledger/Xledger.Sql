@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableRebuildStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.partition, othr.partition);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterTableRebuildStatement left, AlterTableRebuildStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterTableRebuildStatement left, AlterTableRebuildStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterTableRebuildStatement left, AlterTableRebuildStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableRebuildStatement left, AlterTableRebuildStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterTableRebuildStatement FromMutable(ScriptDom.AlterTableRebuildStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterTableRebuildStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableRebuildStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterTableRebuildStatement(
+                partition: ImmutableDom.PartitionSpecifier.FromMutable(fragment.Partition),
+                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable),
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
+            );
+        }
     
     }
 

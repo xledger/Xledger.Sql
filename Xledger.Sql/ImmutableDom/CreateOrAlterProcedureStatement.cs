@@ -91,7 +91,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateOrAlterProcedureStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.procedureReference, othr.procedureReference);
             if (compare != 0) { return compare; }
@@ -107,10 +107,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateOrAlterProcedureStatement left, CreateOrAlterProcedureStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateOrAlterProcedureStatement left, CreateOrAlterProcedureStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateOrAlterProcedureStatement left, CreateOrAlterProcedureStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateOrAlterProcedureStatement left, CreateOrAlterProcedureStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateOrAlterProcedureStatement FromMutable(ScriptDom.CreateOrAlterProcedureStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateOrAlterProcedureStatement)) { throw new NotImplementedException("Unexpected subtype of CreateOrAlterProcedureStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateOrAlterProcedureStatement(
+                procedureReference: ImmutableDom.ProcedureReference.FromMutable(fragment.ProcedureReference),
+                isForReplication: fragment.IsForReplication,
+                options: fragment.Options.SelectList(ImmutableDom.ProcedureOption.FromMutable),
+                parameters: fragment.Parameters.SelectList(ImmutableDom.ProcedureParameter.FromMutable),
+                statementList: ImmutableDom.StatementList.FromMutable(fragment.StatementList),
+                methodSpecifier: ImmutableDom.MethodSpecifier.FromMutable(fragment.MethodSpecifier)
+            );
+        }
     
     }
 

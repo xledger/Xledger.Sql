@@ -63,7 +63,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterUserStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -71,10 +71,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterUserStatement left, AlterUserStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterUserStatement left, AlterUserStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterUserStatement left, AlterUserStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterUserStatement left, AlterUserStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterUserStatement FromMutable(ScriptDom.AlterUserStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterUserStatement)) { throw new NotImplementedException("Unexpected subtype of AlterUserStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterUserStatement(
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                userOptions: fragment.UserOptions.SelectList(ImmutableDom.PrincipalOption.FromMutable)
+            );
+        }
     
     }
 

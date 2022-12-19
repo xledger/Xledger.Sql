@@ -89,7 +89,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IIfCall)that;
             compare = Comparer.DefaultInvariant.Compare(this.predicate, othr.predicate);
             if (compare != 0) { return compare; }
@@ -101,10 +101,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (IIfCall left, IIfCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(IIfCall left, IIfCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (IIfCall left, IIfCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(IIfCall left, IIfCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static IIfCall FromMutable(ScriptDom.IIfCall fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.IIfCall)) { throw new NotImplementedException("Unexpected subtype of IIfCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new IIfCall(
+                predicate: ImmutableDom.BooleanExpression.FromMutable(fragment.Predicate),
+                thenExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.ThenExpression),
+                elseExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.ElseExpression),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

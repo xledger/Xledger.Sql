@@ -24,6 +24,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.EndpointType EndpointType => endpointType;
         public IReadOnlyList<PayloadOption> PayloadOptions => payloadOptions;
     
+        public static AlterCreateEndpointStatementBase FromMutable(ScriptDom.AlterCreateEndpointStatementBase fragment) => (AlterCreateEndpointStatementBase)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

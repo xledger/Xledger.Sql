@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ParameterlessCall)that;
             compare = Comparer.DefaultInvariant.Compare(this.parameterlessCallType, othr.parameterlessCallType);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ParameterlessCall left, ParameterlessCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ParameterlessCall left, ParameterlessCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ParameterlessCall left, ParameterlessCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ParameterlessCall left, ParameterlessCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ParameterlessCall FromMutable(ScriptDom.ParameterlessCall fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ParameterlessCall)) { throw new NotImplementedException("Unexpected subtype of ParameterlessCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ParameterlessCall(
+                parameterlessCallType: fragment.ParameterlessCallType,
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

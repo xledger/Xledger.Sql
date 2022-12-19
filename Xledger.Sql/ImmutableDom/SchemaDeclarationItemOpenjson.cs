@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.mapping = mapping;
         }
     
-        public ScriptDom.SchemaDeclarationItemOpenjson ToMutableConcrete() {
+        public new ScriptDom.SchemaDeclarationItemOpenjson ToMutableConcrete() {
             var ret = new ScriptDom.SchemaDeclarationItemOpenjson();
             ret.AsJson = asJson;
             ret.ColumnDefinition = (ScriptDom.ColumnDefinitionBase)columnDefinition?.ToMutable();
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SchemaDeclarationItemOpenjson)that;
             compare = Comparer.DefaultInvariant.Compare(this.asJson, othr.asJson);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SchemaDeclarationItemOpenjson left, SchemaDeclarationItemOpenjson right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SchemaDeclarationItemOpenjson left, SchemaDeclarationItemOpenjson right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SchemaDeclarationItemOpenjson left, SchemaDeclarationItemOpenjson right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SchemaDeclarationItemOpenjson left, SchemaDeclarationItemOpenjson right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SchemaDeclarationItemOpenjson FromMutable(ScriptDom.SchemaDeclarationItemOpenjson fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SchemaDeclarationItemOpenjson)) { throw new NotImplementedException("Unexpected subtype of SchemaDeclarationItemOpenjson not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SchemaDeclarationItemOpenjson(
+                asJson: fragment.AsJson,
+                columnDefinition: ImmutableDom.ColumnDefinitionBase.FromMutable(fragment.ColumnDefinition),
+                mapping: ImmutableDom.ValueExpression.FromMutable(fragment.Mapping)
+            );
+        }
     
     }
 

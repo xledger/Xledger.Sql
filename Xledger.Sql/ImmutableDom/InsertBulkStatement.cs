@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InsertBulkStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.columnDefinitions, othr.columnDefinitions);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (InsertBulkStatement left, InsertBulkStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(InsertBulkStatement left, InsertBulkStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (InsertBulkStatement left, InsertBulkStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(InsertBulkStatement left, InsertBulkStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static InsertBulkStatement FromMutable(ScriptDom.InsertBulkStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.InsertBulkStatement)) { throw new NotImplementedException("Unexpected subtype of InsertBulkStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new InsertBulkStatement(
+                columnDefinitions: fragment.ColumnDefinitions.SelectList(ImmutableDom.InsertBulkColumnDefinition.FromMutable),
+                to: ImmutableDom.SchemaObjectName.FromMutable(fragment.To),
+                options: fragment.Options.SelectList(ImmutableDom.BulkInsertOption.FromMutable)
+            );
+        }
     
     }
 

@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LiteralSessionOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (LiteralSessionOption left, LiteralSessionOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(LiteralSessionOption left, LiteralSessionOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (LiteralSessionOption left, LiteralSessionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LiteralSessionOption left, LiteralSessionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static LiteralSessionOption FromMutable(ScriptDom.LiteralSessionOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LiteralSessionOption)) { throw new NotImplementedException("Unexpected subtype of LiteralSessionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new LiteralSessionOption(
+                @value: ImmutableDom.Literal.FromMutable(fragment.Value),
+                unit: fragment.Unit,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

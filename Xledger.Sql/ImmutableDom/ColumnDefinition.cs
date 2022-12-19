@@ -55,7 +55,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.collation = collation;
         }
     
-        public ScriptDom.ColumnDefinition ToMutableConcrete() {
+        public new ScriptDom.ColumnDefinition ToMutableConcrete() {
             var ret = new ScriptDom.ColumnDefinition();
             ret.ComputedColumnExpression = (ScriptDom.ScalarExpression)computedColumnExpression?.ToMutable();
             ret.IsPersisted = isPersisted;
@@ -193,7 +193,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ColumnDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.computedColumnExpression, othr.computedColumnExpression);
             if (compare != 0) { return compare; }
@@ -229,10 +229,34 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ColumnDefinition left, ColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ColumnDefinition left, ColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ColumnDefinition left, ColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ColumnDefinition left, ColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ColumnDefinition FromMutable(ScriptDom.ColumnDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ColumnDefinition)) { throw new NotImplementedException("Unexpected subtype of ColumnDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ColumnDefinition(
+                computedColumnExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.ComputedColumnExpression),
+                isPersisted: fragment.IsPersisted,
+                defaultConstraint: ImmutableDom.DefaultConstraintDefinition.FromMutable(fragment.DefaultConstraint),
+                identityOptions: ImmutableDom.IdentityOptions.FromMutable(fragment.IdentityOptions),
+                isRowGuidCol: fragment.IsRowGuidCol,
+                constraints: fragment.Constraints.SelectList(ImmutableDom.ConstraintDefinition.FromMutable),
+                storageOptions: ImmutableDom.ColumnStorageOptions.FromMutable(fragment.StorageOptions),
+                index: ImmutableDom.IndexDefinition.FromMutable(fragment.Index),
+                generatedAlways: fragment.GeneratedAlways,
+                isHidden: fragment.IsHidden,
+                encryption: ImmutableDom.ColumnEncryptionDefinition.FromMutable(fragment.Encryption),
+                isMasked: fragment.IsMasked,
+                maskingFunction: ImmutableDom.StringLiteral.FromMutable(fragment.MaskingFunction),
+                columnIdentifier: ImmutableDom.Identifier.FromMutable(fragment.ColumnIdentifier),
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

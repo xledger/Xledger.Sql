@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<RouteOption> RouteOptions => routeOptions;
     
+        public static RouteStatement FromMutable(ScriptDom.RouteStatement fragment) => (RouteStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UserDefinedTypePropertyAccess)that;
             compare = Comparer.DefaultInvariant.Compare(this.callTarget, othr.callTarget);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (UserDefinedTypePropertyAccess left, UserDefinedTypePropertyAccess right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(UserDefinedTypePropertyAccess left, UserDefinedTypePropertyAccess right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (UserDefinedTypePropertyAccess left, UserDefinedTypePropertyAccess right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UserDefinedTypePropertyAccess left, UserDefinedTypePropertyAccess right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static UserDefinedTypePropertyAccess FromMutable(ScriptDom.UserDefinedTypePropertyAccess fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.UserDefinedTypePropertyAccess)) { throw new NotImplementedException("Unexpected subtype of UserDefinedTypePropertyAccess not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new UserDefinedTypePropertyAccess(
+                callTarget: ImmutableDom.CallTarget.FromMutable(fragment.CallTarget),
+                propertyName: ImmutableDom.Identifier.FromMutable(fragment.PropertyName),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

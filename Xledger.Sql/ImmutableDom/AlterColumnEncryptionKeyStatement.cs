@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterColumnEncryptionKeyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.alterType, othr.alterType);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterColumnEncryptionKeyStatement left, AlterColumnEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterColumnEncryptionKeyStatement left, AlterColumnEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterColumnEncryptionKeyStatement left, AlterColumnEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterColumnEncryptionKeyStatement left, AlterColumnEncryptionKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterColumnEncryptionKeyStatement FromMutable(ScriptDom.AlterColumnEncryptionKeyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterColumnEncryptionKeyStatement)) { throw new NotImplementedException("Unexpected subtype of AlterColumnEncryptionKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterColumnEncryptionKeyStatement(
+                alterType: fragment.AlterType,
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                columnEncryptionKeyValues: fragment.ColumnEncryptionKeyValues.SelectList(ImmutableDom.ColumnEncryptionKeyValue.FromMutable)
+            );
+        }
     
     }
 

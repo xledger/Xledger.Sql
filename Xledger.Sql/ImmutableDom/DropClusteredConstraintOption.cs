@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DropClusteredConstraintOptionKind OptionKind => optionKind;
     
+        public static DropClusteredConstraintOption FromMutable(ScriptDom.DropClusteredConstraintOption fragment) => (DropClusteredConstraintOption)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

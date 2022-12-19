@@ -131,7 +131,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FullTextTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.fullTextFunctionType, othr.fullTextFunctionType);
             if (compare != 0) { return compare; }
@@ -153,10 +153,27 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (FullTextTableReference left, FullTextTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(FullTextTableReference left, FullTextTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (FullTextTableReference left, FullTextTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FullTextTableReference left, FullTextTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static FullTextTableReference FromMutable(ScriptDom.FullTextTableReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FullTextTableReference)) { throw new NotImplementedException("Unexpected subtype of FullTextTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new FullTextTableReference(
+                fullTextFunctionType: fragment.FullTextFunctionType,
+                tableName: ImmutableDom.SchemaObjectName.FromMutable(fragment.TableName),
+                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                searchCondition: ImmutableDom.ValueExpression.FromMutable(fragment.SearchCondition),
+                topN: ImmutableDom.ValueExpression.FromMutable(fragment.TopN),
+                language: ImmutableDom.ValueExpression.FromMutable(fragment.Language),
+                propertyName: ImmutableDom.StringLiteral.FromMutable(fragment.PropertyName),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

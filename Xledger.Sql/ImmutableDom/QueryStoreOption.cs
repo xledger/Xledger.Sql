@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.QueryStoreOptionKind OptionKind => optionKind;
     
+        public static QueryStoreOption FromMutable(ScriptDom.QueryStoreOption fragment) => (QueryStoreOption)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

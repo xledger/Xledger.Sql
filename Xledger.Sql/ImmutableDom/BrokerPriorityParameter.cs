@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BrokerPriorityParameter)that;
             compare = Comparer.DefaultInvariant.Compare(this.isDefaultOrAny, othr.isDefaultOrAny);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (BrokerPriorityParameter left, BrokerPriorityParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(BrokerPriorityParameter left, BrokerPriorityParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (BrokerPriorityParameter left, BrokerPriorityParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BrokerPriorityParameter left, BrokerPriorityParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static BrokerPriorityParameter FromMutable(ScriptDom.BrokerPriorityParameter fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BrokerPriorityParameter)) { throw new NotImplementedException("Unexpected subtype of BrokerPriorityParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new BrokerPriorityParameter(
+                isDefaultOrAny: fragment.IsDefaultOrAny,
+                parameterType: fragment.ParameterType,
+                parameterValue: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.ParameterValue)
+            );
+        }
     
     }
 

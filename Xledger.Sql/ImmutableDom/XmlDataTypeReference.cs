@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (XmlDataTypeReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.xmlDataTypeOption, othr.xmlDataTypeOption);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (XmlDataTypeReference left, XmlDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(XmlDataTypeReference left, XmlDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (XmlDataTypeReference left, XmlDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(XmlDataTypeReference left, XmlDataTypeReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static XmlDataTypeReference FromMutable(ScriptDom.XmlDataTypeReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.XmlDataTypeReference)) { throw new NotImplementedException("Unexpected subtype of XmlDataTypeReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new XmlDataTypeReference(
+                xmlDataTypeOption: fragment.XmlDataTypeOption,
+                xmlSchemaCollection: ImmutableDom.SchemaObjectName.FromMutable(fragment.XmlSchemaCollection),
+                name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name)
+            );
+        }
     
     }
 

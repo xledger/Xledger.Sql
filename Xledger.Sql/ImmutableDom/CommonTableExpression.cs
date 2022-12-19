@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CommonTableExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.expressionName, othr.expressionName);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CommonTableExpression left, CommonTableExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CommonTableExpression left, CommonTableExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CommonTableExpression left, CommonTableExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CommonTableExpression left, CommonTableExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CommonTableExpression FromMutable(ScriptDom.CommonTableExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CommonTableExpression)) { throw new NotImplementedException("Unexpected subtype of CommonTableExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CommonTableExpression(
+                expressionName: ImmutableDom.Identifier.FromMutable(fragment.ExpressionName),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                queryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.QueryExpression)
+            );
+        }
     
     }
 

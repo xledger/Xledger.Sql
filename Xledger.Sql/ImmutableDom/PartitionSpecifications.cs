@@ -8,6 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class PartitionSpecifications : TSqlFragment {
+        public static PartitionSpecifications FromMutable(ScriptDom.PartitionSpecifications fragment) => (PartitionSpecifications)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

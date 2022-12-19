@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphMatchRecursivePredicate)that;
             compare = Comparer.DefaultInvariant.Compare(this.function, othr.function);
             if (compare != 0) { return compare; }
@@ -109,10 +109,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GraphMatchRecursivePredicate left, GraphMatchRecursivePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GraphMatchRecursivePredicate FromMutable(ScriptDom.GraphMatchRecursivePredicate fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GraphMatchRecursivePredicate)) { throw new NotImplementedException("Unexpected subtype of GraphMatchRecursivePredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GraphMatchRecursivePredicate(
+                function: fragment.Function,
+                outerNodeExpression: ImmutableDom.GraphMatchNodeExpression.FromMutable(fragment.OuterNodeExpression),
+                expression: fragment.Expression.SelectList(ImmutableDom.BooleanExpression.FromMutable),
+                recursiveQuantifier: ImmutableDom.GraphRecursiveMatchQuantifier.FromMutable(fragment.RecursiveQuantifier),
+                anchorOnLeft: fragment.AnchorOnLeft
+            );
+        }
     
     }
 

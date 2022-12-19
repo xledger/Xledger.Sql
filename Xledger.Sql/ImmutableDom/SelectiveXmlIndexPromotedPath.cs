@@ -109,7 +109,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SelectiveXmlIndexPromotedPath)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -125,10 +125,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SelectiveXmlIndexPromotedPath left, SelectiveXmlIndexPromotedPath right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SelectiveXmlIndexPromotedPath FromMutable(ScriptDom.SelectiveXmlIndexPromotedPath fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SelectiveXmlIndexPromotedPath)) { throw new NotImplementedException("Unexpected subtype of SelectiveXmlIndexPromotedPath not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SelectiveXmlIndexPromotedPath(
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                path: ImmutableDom.Literal.FromMutable(fragment.Path),
+                sQLDataType: ImmutableDom.DataTypeReference.FromMutable(fragment.SQLDataType),
+                xQueryDataType: ImmutableDom.Literal.FromMutable(fragment.XQueryDataType),
+                maxLength: ImmutableDom.IntegerLiteral.FromMutable(fragment.MaxLength),
+                isSingleton: fragment.IsSingleton
+            );
+        }
     
     }
 

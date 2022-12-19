@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FullTextCatalogAndFileGroup)that;
             compare = Comparer.DefaultInvariant.Compare(this.catalogName, othr.catalogName);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (FullTextCatalogAndFileGroup left, FullTextCatalogAndFileGroup right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(FullTextCatalogAndFileGroup left, FullTextCatalogAndFileGroup right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (FullTextCatalogAndFileGroup left, FullTextCatalogAndFileGroup right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FullTextCatalogAndFileGroup left, FullTextCatalogAndFileGroup right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static FullTextCatalogAndFileGroup FromMutable(ScriptDom.FullTextCatalogAndFileGroup fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FullTextCatalogAndFileGroup)) { throw new NotImplementedException("Unexpected subtype of FullTextCatalogAndFileGroup not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new FullTextCatalogAndFileGroup(
+                catalogName: ImmutableDom.Identifier.FromMutable(fragment.CatalogName),
+                fileGroupName: ImmutableDom.Identifier.FromMutable(fragment.FileGroupName),
+                fileGroupIsFirst: fragment.FileGroupIsFirst
+            );
+        }
     
     }
 

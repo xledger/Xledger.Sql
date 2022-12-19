@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SetErrorLevelStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.level, othr.level);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SetErrorLevelStatement left, SetErrorLevelStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SetErrorLevelStatement left, SetErrorLevelStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SetErrorLevelStatement left, SetErrorLevelStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SetErrorLevelStatement left, SetErrorLevelStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SetErrorLevelStatement FromMutable(ScriptDom.SetErrorLevelStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SetErrorLevelStatement)) { throw new NotImplementedException("Unexpected subtype of SetErrorLevelStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SetErrorLevelStatement(
+                level: ImmutableDom.ScalarExpression.FromMutable(fragment.Level)
+            );
+        }
     
     }
 

@@ -89,7 +89,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphMatchExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.leftNode, othr.leftNode);
             if (compare != 0) { return compare; }
@@ -101,10 +101,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GraphMatchExpression left, GraphMatchExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GraphMatchExpression left, GraphMatchExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GraphMatchExpression left, GraphMatchExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GraphMatchExpression left, GraphMatchExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GraphMatchExpression FromMutable(ScriptDom.GraphMatchExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GraphMatchExpression)) { throw new NotImplementedException("Unexpected subtype of GraphMatchExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GraphMatchExpression(
+                leftNode: ImmutableDom.Identifier.FromMutable(fragment.LeftNode),
+                edge: ImmutableDom.Identifier.FromMutable(fragment.Edge),
+                rightNode: ImmutableDom.Identifier.FromMutable(fragment.RightNode),
+                arrowOnRight: fragment.ArrowOnRight
+            );
+        }
     
     }
 

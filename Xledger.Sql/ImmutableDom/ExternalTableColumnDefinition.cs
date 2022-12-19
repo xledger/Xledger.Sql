@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExternalTableColumnDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.columnDefinition, othr.columnDefinition);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExternalTableColumnDefinition left, ExternalTableColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ExternalTableColumnDefinition FromMutable(ScriptDom.ExternalTableColumnDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExternalTableColumnDefinition)) { throw new NotImplementedException("Unexpected subtype of ExternalTableColumnDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ExternalTableColumnDefinition(
+                columnDefinition: ImmutableDom.ColumnDefinitionBase.FromMutable(fragment.ColumnDefinition),
+                nullableConstraint: ImmutableDom.NullableConstraintDefinition.FromMutable(fragment.NullableConstraint)
+            );
+        }
     
     }
 

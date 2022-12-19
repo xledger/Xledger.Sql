@@ -143,7 +143,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateIndexStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.translated80SyntaxTo90, othr.translated80SyntaxTo90);
             if (compare != 0) { return compare; }
@@ -169,10 +169,29 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateIndexStatement left, CreateIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateIndexStatement left, CreateIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateIndexStatement left, CreateIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateIndexStatement left, CreateIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateIndexStatement FromMutable(ScriptDom.CreateIndexStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateIndexStatement)) { throw new NotImplementedException("Unexpected subtype of CreateIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateIndexStatement(
+                translated80SyntaxTo90: fragment.Translated80SyntaxTo90,
+                unique: fragment.Unique,
+                clustered: fragment.Clustered,
+                columns: fragment.Columns.SelectList(ImmutableDom.ColumnWithSortOrder.FromMutable),
+                includeColumns: fragment.IncludeColumns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                filterPredicate: ImmutableDom.BooleanExpression.FromMutable(fragment.FilterPredicate),
+                fileStreamOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.FileStreamOn),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                onName: ImmutableDom.SchemaObjectName.FromMutable(fragment.OnName),
+                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable)
+            );
+        }
     
     }
 

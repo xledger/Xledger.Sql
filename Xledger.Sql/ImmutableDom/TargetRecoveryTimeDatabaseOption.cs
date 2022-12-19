@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.TargetRecoveryTimeDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.TargetRecoveryTimeDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.TargetRecoveryTimeDatabaseOption();
             ret.RecoveryTime = (ScriptDom.Literal)recoveryTime?.ToMutable();
             ret.Unit = unit;
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TargetRecoveryTimeDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.recoveryTime, othr.recoveryTime);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (TargetRecoveryTimeDatabaseOption left, TargetRecoveryTimeDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(TargetRecoveryTimeDatabaseOption left, TargetRecoveryTimeDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (TargetRecoveryTimeDatabaseOption left, TargetRecoveryTimeDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TargetRecoveryTimeDatabaseOption left, TargetRecoveryTimeDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static TargetRecoveryTimeDatabaseOption FromMutable(ScriptDom.TargetRecoveryTimeDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TargetRecoveryTimeDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of TargetRecoveryTimeDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new TargetRecoveryTimeDatabaseOption(
+                recoveryTime: ImmutableDom.Literal.FromMutable(fragment.RecoveryTime),
+                unit: fragment.Unit,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

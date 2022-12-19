@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DenyStatement80)that;
             compare = Comparer.DefaultInvariant.Compare(this.cascadeOption, othr.cascadeOption);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DenyStatement80 left, DenyStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DenyStatement80 left, DenyStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DenyStatement80 left, DenyStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DenyStatement80 left, DenyStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DenyStatement80 FromMutable(ScriptDom.DenyStatement80 fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DenyStatement80)) { throw new NotImplementedException("Unexpected subtype of DenyStatement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DenyStatement80(
+                cascadeOption: fragment.CascadeOption,
+                securityElement80: ImmutableDom.SecurityElement80.FromMutable(fragment.SecurityElement80),
+                securityUserClause80: ImmutableDom.SecurityUserClause80.FromMutable(fragment.SecurityUserClause80)
+            );
+        }
     
     }
 

@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
         }
     
-        public ScriptDom.CreateServerRoleStatement ToMutableConcrete() {
+        public new ScriptDom.CreateServerRoleStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateServerRoleStatement();
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateServerRoleStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.owner, othr.owner);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateServerRoleStatement left, CreateServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateServerRoleStatement left, CreateServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateServerRoleStatement left, CreateServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateServerRoleStatement left, CreateServerRoleStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateServerRoleStatement FromMutable(ScriptDom.CreateServerRoleStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateServerRoleStatement)) { throw new NotImplementedException("Unexpected subtype of CreateServerRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateServerRoleStatement(
+                owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name)
+            );
+        }
     
     }
 

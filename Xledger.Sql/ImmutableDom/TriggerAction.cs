@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TriggerAction)that;
             compare = Comparer.DefaultInvariant.Compare(this.triggerActionType, othr.triggerActionType);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (TriggerAction left, TriggerAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(TriggerAction left, TriggerAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (TriggerAction left, TriggerAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TriggerAction left, TriggerAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static TriggerAction FromMutable(ScriptDom.TriggerAction fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TriggerAction)) { throw new NotImplementedException("Unexpected subtype of TriggerAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new TriggerAction(
+                triggerActionType: fragment.TriggerActionType,
+                eventTypeGroup: ImmutableDom.EventTypeGroupContainer.FromMutable(fragment.EventTypeGroup)
+            );
+        }
     
     }
 

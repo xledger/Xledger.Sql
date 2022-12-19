@@ -18,6 +18,8 @@ namespace Xledger.Sql.ImmutableDom {
         public SchemaObjectName Element => element;
         public IReadOnlyList<CryptoMechanism> Cryptos => cryptos;
     
+        public static SignatureStatementBase FromMutable(ScriptDom.SignatureStatementBase fragment) => (SignatureStatementBase)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

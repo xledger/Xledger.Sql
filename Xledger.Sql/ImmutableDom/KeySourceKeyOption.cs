@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (KeySourceKeyOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.passPhrase, othr.passPhrase);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (KeySourceKeyOption left, KeySourceKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(KeySourceKeyOption left, KeySourceKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (KeySourceKeyOption left, KeySourceKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(KeySourceKeyOption left, KeySourceKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static KeySourceKeyOption FromMutable(ScriptDom.KeySourceKeyOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.KeySourceKeyOption)) { throw new NotImplementedException("Unexpected subtype of KeySourceKeyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new KeySourceKeyOption(
+                passPhrase: ImmutableDom.Literal.FromMutable(fragment.PassPhrase),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

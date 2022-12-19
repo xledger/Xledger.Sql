@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RestoreServiceMasterKeyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.isForce, othr.isForce);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (RestoreServiceMasterKeyStatement left, RestoreServiceMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(RestoreServiceMasterKeyStatement left, RestoreServiceMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (RestoreServiceMasterKeyStatement left, RestoreServiceMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RestoreServiceMasterKeyStatement left, RestoreServiceMasterKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static RestoreServiceMasterKeyStatement FromMutable(ScriptDom.RestoreServiceMasterKeyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.RestoreServiceMasterKeyStatement)) { throw new NotImplementedException("Unexpected subtype of RestoreServiceMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new RestoreServiceMasterKeyStatement(
+                isForce: fragment.IsForce,
+                file: ImmutableDom.Literal.FromMutable(fragment.File),
+                password: ImmutableDom.Literal.FromMutable(fragment.Password)
+            );
+        }
     
     }
 

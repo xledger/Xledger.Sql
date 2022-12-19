@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerConfigurationSetFailoverClusterPropertyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterServerConfigurationSetFailoverClusterPropertyStatement left, AlterServerConfigurationSetFailoverClusterPropertyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterServerConfigurationSetFailoverClusterPropertyStatement left, AlterServerConfigurationSetFailoverClusterPropertyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterServerConfigurationSetFailoverClusterPropertyStatement left, AlterServerConfigurationSetFailoverClusterPropertyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationSetFailoverClusterPropertyStatement left, AlterServerConfigurationSetFailoverClusterPropertyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterServerConfigurationSetFailoverClusterPropertyStatement FromMutable(ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetFailoverClusterPropertyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterServerConfigurationSetFailoverClusterPropertyStatement(
+                options: fragment.Options.SelectList(ImmutableDom.AlterServerConfigurationFailoverClusterPropertyOption.FromMutable)
+            );
+        }
     
     }
 

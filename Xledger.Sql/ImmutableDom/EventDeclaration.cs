@@ -87,7 +87,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (EventDeclaration)that;
             compare = Comparer.DefaultInvariant.Compare(this.objectName, othr.objectName);
             if (compare != 0) { return compare; }
@@ -99,10 +99,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (EventDeclaration left, EventDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(EventDeclaration left, EventDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (EventDeclaration left, EventDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EventDeclaration left, EventDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static EventDeclaration FromMutable(ScriptDom.EventDeclaration fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.EventDeclaration)) { throw new NotImplementedException("Unexpected subtype of EventDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new EventDeclaration(
+                objectName: ImmutableDom.EventSessionObjectName.FromMutable(fragment.ObjectName),
+                eventDeclarationSetParameters: fragment.EventDeclarationSetParameters.SelectList(ImmutableDom.EventDeclarationSetParameter.FromMutable),
+                eventDeclarationActionParameters: fragment.EventDeclarationActionParameters.SelectList(ImmutableDom.EventSessionObjectName.FromMutable),
+                eventDeclarationPredicateParameter: ImmutableDom.BooleanExpression.FromMutable(fragment.EventDeclarationPredicateParameter)
+            );
+        }
     
     }
 

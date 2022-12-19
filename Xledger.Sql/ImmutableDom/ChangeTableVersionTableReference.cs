@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ChangeTableVersionTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.target, othr.target);
             if (compare != 0) { return compare; }
@@ -113,10 +113,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ChangeTableVersionTableReference left, ChangeTableVersionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ChangeTableVersionTableReference left, ChangeTableVersionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ChangeTableVersionTableReference left, ChangeTableVersionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ChangeTableVersionTableReference left, ChangeTableVersionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ChangeTableVersionTableReference FromMutable(ScriptDom.ChangeTableVersionTableReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ChangeTableVersionTableReference)) { throw new NotImplementedException("Unexpected subtype of ChangeTableVersionTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ChangeTableVersionTableReference(
+                target: ImmutableDom.SchemaObjectName.FromMutable(fragment.Target),
+                primaryKeyColumns: fragment.PrimaryKeyColumns.SelectList(ImmutableDom.Identifier.FromMutable),
+                primaryKeyValues: fragment.PrimaryKeyValues.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

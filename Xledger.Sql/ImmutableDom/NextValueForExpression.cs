@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (NextValueForExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.sequenceName, othr.sequenceName);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (NextValueForExpression left, NextValueForExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(NextValueForExpression left, NextValueForExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (NextValueForExpression left, NextValueForExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(NextValueForExpression left, NextValueForExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static NextValueForExpression FromMutable(ScriptDom.NextValueForExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.NextValueForExpression)) { throw new NotImplementedException("Unexpected subtype of NextValueForExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new NextValueForExpression(
+                sequenceName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SequenceName),
+                overClause: ImmutableDom.OverClause.FromMutable(fragment.OverClause),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

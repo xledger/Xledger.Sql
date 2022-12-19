@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.QueryStoreDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.QueryStoreDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.QueryStoreDatabaseOption();
             ret.Clear = clear;
             ret.ClearAll = clearAll;
@@ -89,7 +89,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QueryStoreDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.clear, othr.clear);
             if (compare != 0) { return compare; }
@@ -103,10 +103,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryStoreDatabaseOption left, QueryStoreDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static QueryStoreDatabaseOption FromMutable(ScriptDom.QueryStoreDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QueryStoreDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of QueryStoreDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new QueryStoreDatabaseOption(
+                clear: fragment.Clear,
+                clearAll: fragment.ClearAll,
+                optionState: fragment.OptionState,
+                options: fragment.Options.SelectList(ImmutableDom.QueryStoreOption.FromMutable),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

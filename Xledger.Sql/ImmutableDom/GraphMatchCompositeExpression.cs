@@ -89,7 +89,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GraphMatchCompositeExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.leftNode, othr.leftNode);
             if (compare != 0) { return compare; }
@@ -101,10 +101,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GraphMatchCompositeExpression left, GraphMatchCompositeExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GraphMatchCompositeExpression left, GraphMatchCompositeExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GraphMatchCompositeExpression left, GraphMatchCompositeExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GraphMatchCompositeExpression left, GraphMatchCompositeExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GraphMatchCompositeExpression FromMutable(ScriptDom.GraphMatchCompositeExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GraphMatchCompositeExpression)) { throw new NotImplementedException("Unexpected subtype of GraphMatchCompositeExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GraphMatchCompositeExpression(
+                leftNode: ImmutableDom.GraphMatchNodeExpression.FromMutable(fragment.LeftNode),
+                edge: ImmutableDom.Identifier.FromMutable(fragment.Edge),
+                rightNode: ImmutableDom.GraphMatchNodeExpression.FromMutable(fragment.RightNode),
+                arrowOnRight: fragment.ArrowOnRight
+            );
+        }
     
     }
 

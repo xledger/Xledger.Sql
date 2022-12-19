@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MergeStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.mergeSpecification, othr.mergeSpecification);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (MergeStatement left, MergeStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(MergeStatement left, MergeStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (MergeStatement left, MergeStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MergeStatement left, MergeStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static MergeStatement FromMutable(ScriptDom.MergeStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MergeStatement)) { throw new NotImplementedException("Unexpected subtype of MergeStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new MergeStatement(
+                mergeSpecification: ImmutableDom.MergeSpecification.FromMutable(fragment.MergeSpecification),
+                withCtesAndXmlNamespaces: ImmutableDom.WithCtesAndXmlNamespaces.FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(ImmutableDom.OptimizerHint.FromMutable)
+            );
+        }
     
     }
 

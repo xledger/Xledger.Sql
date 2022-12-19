@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LiteralOptionValue)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (LiteralOptionValue left, LiteralOptionValue right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(LiteralOptionValue left, LiteralOptionValue right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (LiteralOptionValue left, LiteralOptionValue right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LiteralOptionValue left, LiteralOptionValue right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static LiteralOptionValue FromMutable(ScriptDom.LiteralOptionValue fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LiteralOptionValue)) { throw new NotImplementedException("Unexpected subtype of LiteralOptionValue not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new LiteralOptionValue(
+                @value: ImmutableDom.Literal.FromMutable(fragment.Value)
+            );
+        }
     
     }
 

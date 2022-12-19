@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TargetDeclaration)that;
             compare = Comparer.DefaultInvariant.Compare(this.objectName, othr.objectName);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (TargetDeclaration left, TargetDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(TargetDeclaration left, TargetDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (TargetDeclaration left, TargetDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TargetDeclaration left, TargetDeclaration right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static TargetDeclaration FromMutable(ScriptDom.TargetDeclaration fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TargetDeclaration)) { throw new NotImplementedException("Unexpected subtype of TargetDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new TargetDeclaration(
+                objectName: ImmutableDom.EventSessionObjectName.FromMutable(fragment.ObjectName),
+                targetDeclarationParameters: fragment.TargetDeclarationParameters.SelectList(ImmutableDom.EventDeclarationSetParameter.FromMutable)
+            );
+        }
     
     }
 

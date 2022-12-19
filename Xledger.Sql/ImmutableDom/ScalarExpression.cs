@@ -8,6 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class ScalarExpression : TSqlFragment {
+        public static ScalarExpression FromMutable(ScriptDom.ScalarExpression fragment) => (ScalarExpression)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

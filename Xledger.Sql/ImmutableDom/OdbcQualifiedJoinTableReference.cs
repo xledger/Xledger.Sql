@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OdbcQualifiedJoinTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.tableReference, othr.tableReference);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OdbcQualifiedJoinTableReference left, OdbcQualifiedJoinTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OdbcQualifiedJoinTableReference FromMutable(ScriptDom.OdbcQualifiedJoinTableReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OdbcQualifiedJoinTableReference)) { throw new NotImplementedException("Unexpected subtype of OdbcQualifiedJoinTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OdbcQualifiedJoinTableReference(
+                tableReference: ImmutableDom.TableReference.FromMutable(fragment.TableReference)
+            );
+        }
     
     }
 

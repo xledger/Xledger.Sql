@@ -16,6 +16,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ExternalFileFormatType FormatType => formatType;
         public IReadOnlyList<ExternalFileFormatOption> ExternalFileFormatOptions => externalFileFormatOptions;
     
+        public static ExternalFileFormatStatement FromMutable(ScriptDom.ExternalFileFormatStatement fragment) => (ExternalFileFormatStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

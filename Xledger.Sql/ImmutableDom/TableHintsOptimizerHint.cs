@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.hintKind = hintKind;
         }
     
-        public ScriptDom.TableHintsOptimizerHint ToMutableConcrete() {
+        public new ScriptDom.TableHintsOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.TableHintsOptimizerHint();
             ret.ObjectName = (ScriptDom.SchemaObjectName)objectName?.ToMutable();
             ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c?.ToMutable()));
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TableHintsOptimizerHint)that;
             compare = Comparer.DefaultInvariant.Compare(this.objectName, othr.objectName);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (TableHintsOptimizerHint left, TableHintsOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(TableHintsOptimizerHint left, TableHintsOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (TableHintsOptimizerHint left, TableHintsOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TableHintsOptimizerHint left, TableHintsOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static TableHintsOptimizerHint FromMutable(ScriptDom.TableHintsOptimizerHint fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TableHintsOptimizerHint)) { throw new NotImplementedException("Unexpected subtype of TableHintsOptimizerHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new TableHintsOptimizerHint(
+                objectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.ObjectName),
+                tableHints: fragment.TableHints.SelectList(ImmutableDom.TableHint.FromMutable),
+                hintKind: fragment.HintKind
+            );
+        }
     
     }
 

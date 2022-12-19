@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WithCtesAndXmlNamespaces)that;
             compare = Comparer.DefaultInvariant.Compare(this.xmlNamespaces, othr.xmlNamespaces);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WithCtesAndXmlNamespaces left, WithCtesAndXmlNamespaces right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static WithCtesAndXmlNamespaces FromMutable(ScriptDom.WithCtesAndXmlNamespaces fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.WithCtesAndXmlNamespaces)) { throw new NotImplementedException("Unexpected subtype of WithCtesAndXmlNamespaces not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new WithCtesAndXmlNamespaces(
+                xmlNamespaces: ImmutableDom.XmlNamespaces.FromMutable(fragment.XmlNamespaces),
+                commonTableExpressions: fragment.CommonTableExpressions.SelectList(ImmutableDom.CommonTableExpression.FromMutable),
+                changeTrackingContext: ImmutableDom.ValueExpression.FromMutable(fragment.ChangeTrackingContext)
+            );
+        }
     
     }
 

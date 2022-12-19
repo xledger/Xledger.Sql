@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public Literal Password => password;
     
+        public static MasterKeyStatement FromMutable(ScriptDom.MasterKeyStatement fragment) => (MasterKeyStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

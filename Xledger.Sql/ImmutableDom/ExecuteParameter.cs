@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExecuteParameter)that;
             compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ExecuteParameter left, ExecuteParameter right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ExecuteParameter left, ExecuteParameter right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ExecuteParameter left, ExecuteParameter right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExecuteParameter left, ExecuteParameter right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ExecuteParameter FromMutable(ScriptDom.ExecuteParameter fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExecuteParameter)) { throw new NotImplementedException("Unexpected subtype of ExecuteParameter not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ExecuteParameter(
+                variable: ImmutableDom.VariableReference.FromMutable(fragment.Variable),
+                parameterValue: ImmutableDom.ScalarExpression.FromMutable(fragment.ParameterValue),
+                isOutput: fragment.IsOutput
+            );
+        }
     
     }
 

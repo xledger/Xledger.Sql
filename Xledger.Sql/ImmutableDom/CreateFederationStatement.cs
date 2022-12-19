@@ -81,7 +81,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateFederationStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -91,10 +91,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateFederationStatement left, CreateFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateFederationStatement left, CreateFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateFederationStatement left, CreateFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateFederationStatement left, CreateFederationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateFederationStatement FromMutable(ScriptDom.CreateFederationStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateFederationStatement)) { throw new NotImplementedException("Unexpected subtype of CreateFederationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateFederationStatement(
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                distributionName: ImmutableDom.Identifier.FromMutable(fragment.DistributionName),
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType)
+            );
+        }
     
     }
 

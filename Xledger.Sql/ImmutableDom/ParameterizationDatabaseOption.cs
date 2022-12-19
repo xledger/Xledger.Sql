@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.ParameterizationDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.ParameterizationDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.ParameterizationDatabaseOption();
             ret.IsSimple = isSimple;
             ret.OptionKind = optionKind;
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ParameterizationDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.isSimple, othr.isSimple);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ParameterizationDatabaseOption left, ParameterizationDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ParameterizationDatabaseOption left, ParameterizationDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ParameterizationDatabaseOption left, ParameterizationDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ParameterizationDatabaseOption left, ParameterizationDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ParameterizationDatabaseOption FromMutable(ScriptDom.ParameterizationDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ParameterizationDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of ParameterizationDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ParameterizationDatabaseOption(
+                isSimple: fragment.IsSimple,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

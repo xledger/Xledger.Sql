@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BooleanComparisonExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.comparisonType, othr.comparisonType);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (BooleanComparisonExpression left, BooleanComparisonExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(BooleanComparisonExpression left, BooleanComparisonExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (BooleanComparisonExpression left, BooleanComparisonExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BooleanComparisonExpression left, BooleanComparisonExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static BooleanComparisonExpression FromMutable(ScriptDom.BooleanComparisonExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BooleanComparisonExpression)) { throw new NotImplementedException("Unexpected subtype of BooleanComparisonExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new BooleanComparisonExpression(
+                comparisonType: fragment.ComparisonType,
+                firstExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.FirstExpression),
+                secondExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.SecondExpression)
+            );
+        }
     
     }
 

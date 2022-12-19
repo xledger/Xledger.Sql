@@ -133,7 +133,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateDatabaseStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
@@ -155,10 +155,27 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateDatabaseStatement left, CreateDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateDatabaseStatement left, CreateDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateDatabaseStatement left, CreateDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateDatabaseStatement left, CreateDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateDatabaseStatement FromMutable(ScriptDom.CreateDatabaseStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateDatabaseStatement)) { throw new NotImplementedException("Unexpected subtype of CreateDatabaseStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateDatabaseStatement(
+                databaseName: ImmutableDom.Identifier.FromMutable(fragment.DatabaseName),
+                containment: ImmutableDom.ContainmentDatabaseOption.FromMutable(fragment.Containment),
+                fileGroups: fragment.FileGroups.SelectList(ImmutableDom.FileGroupDefinition.FromMutable),
+                logOn: fragment.LogOn.SelectList(ImmutableDom.FileDeclaration.FromMutable),
+                options: fragment.Options.SelectList(ImmutableDom.DatabaseOption.FromMutable),
+                attachMode: fragment.AttachMode,
+                databaseSnapshot: ImmutableDom.Identifier.FromMutable(fragment.DatabaseSnapshot),
+                copyOf: ImmutableDom.MultiPartIdentifier.FromMutable(fragment.CopyOf),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

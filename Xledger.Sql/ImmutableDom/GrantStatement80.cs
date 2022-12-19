@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GrantStatement80)that;
             compare = Comparer.DefaultInvariant.Compare(this.withGrantOption, othr.withGrantOption);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GrantStatement80 left, GrantStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GrantStatement80 left, GrantStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GrantStatement80 left, GrantStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GrantStatement80 left, GrantStatement80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GrantStatement80 FromMutable(ScriptDom.GrantStatement80 fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GrantStatement80)) { throw new NotImplementedException("Unexpected subtype of GrantStatement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GrantStatement80(
+                withGrantOption: fragment.WithGrantOption,
+                asClause: ImmutableDom.Identifier.FromMutable(fragment.AsClause),
+                securityElement80: ImmutableDom.SecurityElement80.FromMutable(fragment.SecurityElement80),
+                securityUserClause80: ImmutableDom.SecurityUserClause80.FromMutable(fragment.SecurityUserClause80)
+            );
+        }
     
     }
 

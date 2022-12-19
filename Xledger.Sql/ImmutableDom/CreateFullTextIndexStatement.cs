@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateFullTextIndexStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.onName, othr.onName);
             if (compare != 0) { return compare; }
@@ -111,10 +111,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateFullTextIndexStatement left, CreateFullTextIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateFullTextIndexStatement FromMutable(ScriptDom.CreateFullTextIndexStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateFullTextIndexStatement)) { throw new NotImplementedException("Unexpected subtype of CreateFullTextIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateFullTextIndexStatement(
+                onName: ImmutableDom.SchemaObjectName.FromMutable(fragment.OnName),
+                fullTextIndexColumns: fragment.FullTextIndexColumns.SelectList(ImmutableDom.FullTextIndexColumn.FromMutable),
+                keyIndexName: ImmutableDom.Identifier.FromMutable(fragment.KeyIndexName),
+                catalogAndFileGroup: ImmutableDom.FullTextCatalogAndFileGroup.FromMutable(fragment.CatalogAndFileGroup),
+                options: fragment.Options.SelectList(ImmutableDom.FullTextIndexOption.FromMutable)
+            );
+        }
     
     }
 

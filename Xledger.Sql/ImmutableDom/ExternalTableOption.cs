@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ExternalTableOptionKind OptionKind => optionKind;
     
+        public static ExternalTableOption FromMutable(ScriptDom.ExternalTableOption fragment) => (ExternalTableOption)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

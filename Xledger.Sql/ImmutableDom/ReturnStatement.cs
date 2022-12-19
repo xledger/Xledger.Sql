@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ReturnStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.expression, othr.expression);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ReturnStatement left, ReturnStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ReturnStatement left, ReturnStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ReturnStatement left, ReturnStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ReturnStatement left, ReturnStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ReturnStatement FromMutable(ScriptDom.ReturnStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ReturnStatement)) { throw new NotImplementedException("Unexpected subtype of ReturnStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ReturnStatement(
+                expression: ImmutableDom.ScalarExpression.FromMutable(fragment.Expression)
+            );
+        }
     
     }
 

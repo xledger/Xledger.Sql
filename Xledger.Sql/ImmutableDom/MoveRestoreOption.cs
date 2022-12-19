@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.MoveRestoreOption ToMutableConcrete() {
+        public new ScriptDom.MoveRestoreOption ToMutableConcrete() {
             var ret = new ScriptDom.MoveRestoreOption();
             ret.LogicalFileName = (ScriptDom.ValueExpression)logicalFileName?.ToMutable();
             ret.OSFileName = (ScriptDom.ValueExpression)oSFileName?.ToMutable();
@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MoveRestoreOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.logicalFileName, othr.logicalFileName);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (MoveRestoreOption left, MoveRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(MoveRestoreOption left, MoveRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (MoveRestoreOption left, MoveRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MoveRestoreOption left, MoveRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static MoveRestoreOption FromMutable(ScriptDom.MoveRestoreOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MoveRestoreOption)) { throw new NotImplementedException("Unexpected subtype of MoveRestoreOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new MoveRestoreOption(
+                logicalFileName: ImmutableDom.ValueExpression.FromMutable(fragment.LogicalFileName),
+                oSFileName: ImmutableDom.ValueExpression.FromMutable(fragment.OSFileName),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

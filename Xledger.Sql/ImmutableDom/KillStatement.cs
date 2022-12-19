@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (KillStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.parameter, othr.parameter);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (KillStatement left, KillStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(KillStatement left, KillStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (KillStatement left, KillStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(KillStatement left, KillStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static KillStatement FromMutable(ScriptDom.KillStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.KillStatement)) { throw new NotImplementedException("Unexpected subtype of KillStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new KillStatement(
+                parameter: ImmutableDom.ScalarExpression.FromMutable(fragment.Parameter),
+                withStatusOnly: fragment.WithStatusOnly
+            );
+        }
     
     }
 

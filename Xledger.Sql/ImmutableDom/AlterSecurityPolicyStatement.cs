@@ -81,7 +81,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterSecurityPolicyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -95,10 +95,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterSecurityPolicyStatement left, AlterSecurityPolicyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterSecurityPolicyStatement left, AlterSecurityPolicyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterSecurityPolicyStatement left, AlterSecurityPolicyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterSecurityPolicyStatement left, AlterSecurityPolicyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterSecurityPolicyStatement FromMutable(ScriptDom.AlterSecurityPolicyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterSecurityPolicyStatement)) { throw new NotImplementedException("Unexpected subtype of AlterSecurityPolicyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterSecurityPolicyStatement(
+                name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
+                notForReplication: fragment.NotForReplication,
+                securityPolicyOptions: fragment.SecurityPolicyOptions.SelectList(ImmutableDom.SecurityPolicyOption.FromMutable),
+                securityPredicateActions: fragment.SecurityPredicateActions.SelectList(ImmutableDom.SecurityPredicateAction.FromMutable),
+                actionType: fragment.ActionType
+            );
+        }
     
     }
 

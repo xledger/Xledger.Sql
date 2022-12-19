@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RaiseErrorLegacyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.firstParameter, othr.firstParameter);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (RaiseErrorLegacyStatement left, RaiseErrorLegacyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(RaiseErrorLegacyStatement left, RaiseErrorLegacyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (RaiseErrorLegacyStatement left, RaiseErrorLegacyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RaiseErrorLegacyStatement left, RaiseErrorLegacyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static RaiseErrorLegacyStatement FromMutable(ScriptDom.RaiseErrorLegacyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.RaiseErrorLegacyStatement)) { throw new NotImplementedException("Unexpected subtype of RaiseErrorLegacyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new RaiseErrorLegacyStatement(
+                firstParameter: ImmutableDom.ScalarExpression.FromMutable(fragment.FirstParameter),
+                secondParameter: ImmutableDom.ValueExpression.FromMutable(fragment.SecondParameter)
+            );
+        }
     
     }
 

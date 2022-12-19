@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropAsymmetricKeyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.removeProviderKey, othr.removeProviderKey);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DropAsymmetricKeyStatement left, DropAsymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DropAsymmetricKeyStatement left, DropAsymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DropAsymmetricKeyStatement left, DropAsymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropAsymmetricKeyStatement left, DropAsymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DropAsymmetricKeyStatement FromMutable(ScriptDom.DropAsymmetricKeyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DropAsymmetricKeyStatement)) { throw new NotImplementedException("Unexpected subtype of DropAsymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DropAsymmetricKeyStatement(
+                removeProviderKey: fragment.RemoveProviderKey,
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                isIfExists: fragment.IsIfExists
+            );
+        }
     
     }
 

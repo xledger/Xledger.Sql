@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.AutomaticTuningDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.AutomaticTuningDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.AutomaticTuningDatabaseOption();
             ret.AutomaticTuningState = automaticTuningState;
             ret.Options.AddRange(options.SelectList(c => (ScriptDom.AutomaticTuningOption)c?.ToMutable()));
@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AutomaticTuningDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.automaticTuningState, othr.automaticTuningState);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AutomaticTuningDatabaseOption left, AutomaticTuningDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AutomaticTuningDatabaseOption left, AutomaticTuningDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AutomaticTuningDatabaseOption left, AutomaticTuningDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutomaticTuningDatabaseOption left, AutomaticTuningDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AutomaticTuningDatabaseOption FromMutable(ScriptDom.AutomaticTuningDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AutomaticTuningDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AutomaticTuningDatabaseOption(
+                automaticTuningState: fragment.AutomaticTuningState,
+                options: fragment.Options.SelectList(ImmutableDom.AutomaticTuningOption.FromMutable),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

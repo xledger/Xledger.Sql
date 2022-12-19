@@ -109,7 +109,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InsertSpecification)that;
             compare = Comparer.DefaultInvariant.Compare(this.insertOption, othr.insertOption);
             if (compare != 0) { return compare; }
@@ -127,10 +127,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(InsertSpecification left, InsertSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static InsertSpecification FromMutable(ScriptDom.InsertSpecification fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.InsertSpecification)) { throw new NotImplementedException("Unexpected subtype of InsertSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new InsertSpecification(
+                insertOption: fragment.InsertOption,
+                insertSource: ImmutableDom.InsertSource.FromMutable(fragment.InsertSource),
+                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                target: ImmutableDom.TableReference.FromMutable(fragment.Target),
+                topRowFilter: ImmutableDom.TopRowFilter.FromMutable(fragment.TopRowFilter),
+                outputIntoClause: ImmutableDom.OutputIntoClause.FromMutable(fragment.OutputIntoClause),
+                outputClause: ImmutableDom.OutputClause.FromMutable(fragment.OutputClause)
+            );
+        }
     
     }
 

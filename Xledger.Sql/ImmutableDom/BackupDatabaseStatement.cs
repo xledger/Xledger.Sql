@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BackupDatabaseStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.files, othr.files);
             if (compare != 0) { return compare; }
@@ -99,10 +99,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (BackupDatabaseStatement left, BackupDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(BackupDatabaseStatement left, BackupDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (BackupDatabaseStatement left, BackupDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BackupDatabaseStatement left, BackupDatabaseStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static BackupDatabaseStatement FromMutable(ScriptDom.BackupDatabaseStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BackupDatabaseStatement)) { throw new NotImplementedException("Unexpected subtype of BackupDatabaseStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new BackupDatabaseStatement(
+                files: fragment.Files.SelectList(ImmutableDom.BackupRestoreFileInfo.FromMutable),
+                databaseName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.DatabaseName),
+                options: fragment.Options.SelectList(ImmutableDom.BackupOption.FromMutable),
+                mirrorToClauses: fragment.MirrorToClauses.SelectList(ImmutableDom.MirrorToClause.FromMutable),
+                devices: fragment.Devices.SelectList(ImmutableDom.DeviceInfo.FromMutable)
+            );
+        }
     
     }
 

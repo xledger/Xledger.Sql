@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CompressionDelayIndexOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.expression, othr.expression);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CompressionDelayIndexOption left, CompressionDelayIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CompressionDelayIndexOption left, CompressionDelayIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CompressionDelayIndexOption left, CompressionDelayIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CompressionDelayIndexOption left, CompressionDelayIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CompressionDelayIndexOption FromMutable(ScriptDom.CompressionDelayIndexOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CompressionDelayIndexOption)) { throw new NotImplementedException("Unexpected subtype of CompressionDelayIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CompressionDelayIndexOption(
+                expression: ImmutableDom.ScalarExpression.FromMutable(fragment.Expression),
+                timeUnit: fragment.TimeUnit,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

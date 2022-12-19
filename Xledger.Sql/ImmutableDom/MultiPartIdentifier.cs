@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MultiPartIdentifier)that;
             compare = Comparer.DefaultInvariant.Compare(this.identifiers, othr.identifiers);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (MultiPartIdentifier left, MultiPartIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(MultiPartIdentifier left, MultiPartIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (MultiPartIdentifier left, MultiPartIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MultiPartIdentifier left, MultiPartIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static MultiPartIdentifier FromMutable(ScriptDom.MultiPartIdentifier fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MultiPartIdentifier)) { return TSqlFragment.FromMutable(fragment) as MultiPartIdentifier; }
+            return new MultiPartIdentifier(
+                identifiers: fragment.Identifiers.SelectList(ImmutableDom.Identifier.FromMutable)
+            );
+        }
     
     }
 

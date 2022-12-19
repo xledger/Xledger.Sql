@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QualifiedJoin)that;
             compare = Comparer.DefaultInvariant.Compare(this.searchCondition, othr.searchCondition);
             if (compare != 0) { return compare; }
@@ -107,10 +107,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QualifiedJoin left, QualifiedJoin right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static QualifiedJoin FromMutable(ScriptDom.QualifiedJoin fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QualifiedJoin)) { throw new NotImplementedException("Unexpected subtype of QualifiedJoin not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new QualifiedJoin(
+                searchCondition: ImmutableDom.BooleanExpression.FromMutable(fragment.SearchCondition),
+                qualifiedJoinType: fragment.QualifiedJoinType,
+                joinHint: fragment.JoinHint,
+                firstTableReference: ImmutableDom.TableReference.FromMutable(fragment.FirstTableReference),
+                secondTableReference: ImmutableDom.TableReference.FromMutable(fragment.SecondTableReference)
+            );
+        }
     
     }
 

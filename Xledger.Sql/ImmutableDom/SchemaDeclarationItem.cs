@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SchemaDeclarationItem)that;
             compare = Comparer.DefaultInvariant.Compare(this.columnDefinition, othr.columnDefinition);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SchemaDeclarationItem left, SchemaDeclarationItem right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SchemaDeclarationItem left, SchemaDeclarationItem right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SchemaDeclarationItem left, SchemaDeclarationItem right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SchemaDeclarationItem left, SchemaDeclarationItem right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SchemaDeclarationItem FromMutable(ScriptDom.SchemaDeclarationItem fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SchemaDeclarationItem)) { return TSqlFragment.FromMutable(fragment) as SchemaDeclarationItem; }
+            return new SchemaDeclarationItem(
+                columnDefinition: ImmutableDom.ColumnDefinitionBase.FromMutable(fragment.ColumnDefinition),
+                mapping: ImmutableDom.ValueExpression.FromMutable(fragment.Mapping)
+            );
+        }
     
     }
 

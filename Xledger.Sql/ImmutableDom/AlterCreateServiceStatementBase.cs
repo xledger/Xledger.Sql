@@ -16,6 +16,8 @@ namespace Xledger.Sql.ImmutableDom {
         public SchemaObjectName QueueName => queueName;
         public IReadOnlyList<ServiceContract> ServiceContracts => serviceContracts;
     
+        public static AlterCreateServiceStatementBase FromMutable(ScriptDom.AlterCreateServiceStatementBase fragment) => (AlterCreateServiceStatementBase)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

@@ -87,7 +87,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GrantStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.withGrantOption, othr.withGrantOption);
             if (compare != 0) { return compare; }
@@ -101,10 +101,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GrantStatement left, GrantStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GrantStatement left, GrantStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GrantStatement left, GrantStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GrantStatement left, GrantStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GrantStatement FromMutable(ScriptDom.GrantStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GrantStatement)) { throw new NotImplementedException("Unexpected subtype of GrantStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GrantStatement(
+                withGrantOption: fragment.WithGrantOption,
+                permissions: fragment.Permissions.SelectList(ImmutableDom.Permission.FromMutable),
+                securityTargetObject: ImmutableDom.SecurityTargetObject.FromMutable(fragment.SecurityTargetObject),
+                principals: fragment.Principals.SelectList(ImmutableDom.SecurityPrincipal.FromMutable),
+                asClause: ImmutableDom.Identifier.FromMutable(fragment.AsClause)
+            );
+        }
     
     }
 

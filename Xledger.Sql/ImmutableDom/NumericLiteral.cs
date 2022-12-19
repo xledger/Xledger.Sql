@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (NumericLiteral)that;
             compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (NumericLiteral left, NumericLiteral right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(NumericLiteral left, NumericLiteral right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (NumericLiteral left, NumericLiteral right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(NumericLiteral left, NumericLiteral right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static NumericLiteral FromMutable(ScriptDom.NumericLiteral fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.NumericLiteral)) { throw new NotImplementedException("Unexpected subtype of NumericLiteral not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new NumericLiteral(
+                @value: fragment.Value,
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (EnableDisableTriggerStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.triggerEnforcement, othr.triggerEnforcement);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (EnableDisableTriggerStatement left, EnableDisableTriggerStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(EnableDisableTriggerStatement left, EnableDisableTriggerStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (EnableDisableTriggerStatement left, EnableDisableTriggerStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(EnableDisableTriggerStatement left, EnableDisableTriggerStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static EnableDisableTriggerStatement FromMutable(ScriptDom.EnableDisableTriggerStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.EnableDisableTriggerStatement)) { throw new NotImplementedException("Unexpected subtype of EnableDisableTriggerStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new EnableDisableTriggerStatement(
+                triggerEnforcement: fragment.TriggerEnforcement,
+                all: fragment.All,
+                triggerNames: fragment.TriggerNames.SelectList(ImmutableDom.SchemaObjectName.FromMutable),
+                triggerObject: ImmutableDom.TriggerObject.FromMutable(fragment.TriggerObject)
+            );
+        }
     
     }
 

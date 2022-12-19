@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.hintKind = hintKind;
         }
     
-        public ScriptDom.ForceSeekTableHint ToMutableConcrete() {
+        public new ScriptDom.ForceSeekTableHint ToMutableConcrete() {
             var ret = new ScriptDom.ForceSeekTableHint();
             ret.IndexValue = (ScriptDom.IdentifierOrValueExpression)indexValue?.ToMutable();
             ret.ColumnValues.AddRange(columnValues.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ForceSeekTableHint)that;
             compare = Comparer.DefaultInvariant.Compare(this.indexValue, othr.indexValue);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ForceSeekTableHint left, ForceSeekTableHint right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ForceSeekTableHint FromMutable(ScriptDom.ForceSeekTableHint fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ForceSeekTableHint)) { throw new NotImplementedException("Unexpected subtype of ForceSeekTableHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ForceSeekTableHint(
+                indexValue: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.IndexValue),
+                columnValues: fragment.ColumnValues.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                hintKind: fragment.HintKind
+            );
+        }
     
     }
 

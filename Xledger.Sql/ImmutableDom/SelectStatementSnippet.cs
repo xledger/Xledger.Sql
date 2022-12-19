@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optimizerHints = ImmList<OptimizerHint>.FromList(optimizerHints);
         }
     
-        public ScriptDom.SelectStatementSnippet ToMutableConcrete() {
+        public new ScriptDom.SelectStatementSnippet ToMutableConcrete() {
             var ret = new ScriptDom.SelectStatementSnippet();
             ret.Script = script;
             ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression?.ToMutable();
@@ -105,7 +105,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SelectStatementSnippet)that;
             compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.script, othr.script);
             if (compare != 0) { return compare; }
@@ -123,10 +123,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SelectStatementSnippet left, SelectStatementSnippet right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SelectStatementSnippet left, SelectStatementSnippet right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SelectStatementSnippet left, SelectStatementSnippet right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SelectStatementSnippet left, SelectStatementSnippet right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SelectStatementSnippet FromMutable(ScriptDom.SelectStatementSnippet fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SelectStatementSnippet)) { throw new NotImplementedException("Unexpected subtype of SelectStatementSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SelectStatementSnippet(
+                script: fragment.Script,
+                queryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.QueryExpression),
+                into: ImmutableDom.SchemaObjectName.FromMutable(fragment.Into),
+                on: ImmutableDom.Identifier.FromMutable(fragment.On),
+                computeClauses: fragment.ComputeClauses.SelectList(ImmutableDom.ComputeClause.FromMutable),
+                withCtesAndXmlNamespaces: ImmutableDom.WithCtesAndXmlNamespaces.FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(ImmutableDom.OptimizerHint.FromMutable)
+            );
+        }
     
     }
 

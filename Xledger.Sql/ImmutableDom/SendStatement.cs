@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SendStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.conversationHandles, othr.conversationHandles);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SendStatement left, SendStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SendStatement left, SendStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SendStatement left, SendStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SendStatement left, SendStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SendStatement FromMutable(ScriptDom.SendStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SendStatement)) { throw new NotImplementedException("Unexpected subtype of SendStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SendStatement(
+                conversationHandles: fragment.ConversationHandles.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                messageTypeName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.MessageTypeName),
+                messageBody: ImmutableDom.ScalarExpression.FromMutable(fragment.MessageBody)
+            );
+        }
     
     }
 

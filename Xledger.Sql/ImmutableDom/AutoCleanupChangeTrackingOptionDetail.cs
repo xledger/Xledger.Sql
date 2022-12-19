@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AutoCleanupChangeTrackingOptionDetail)that;
             compare = Comparer.DefaultInvariant.Compare(this.isOn, othr.isOn);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AutoCleanupChangeTrackingOptionDetail left, AutoCleanupChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AutoCleanupChangeTrackingOptionDetail left, AutoCleanupChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AutoCleanupChangeTrackingOptionDetail left, AutoCleanupChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutoCleanupChangeTrackingOptionDetail left, AutoCleanupChangeTrackingOptionDetail right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AutoCleanupChangeTrackingOptionDetail FromMutable(ScriptDom.AutoCleanupChangeTrackingOptionDetail fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AutoCleanupChangeTrackingOptionDetail)) { throw new NotImplementedException("Unexpected subtype of AutoCleanupChangeTrackingOptionDetail not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AutoCleanupChangeTrackingOptionDetail(
+                isOn: fragment.IsOn
+            );
+        }
     
     }
 

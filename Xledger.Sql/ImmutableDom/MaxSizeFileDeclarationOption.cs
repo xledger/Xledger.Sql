@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.MaxSizeFileDeclarationOption ToMutableConcrete() {
+        public new ScriptDom.MaxSizeFileDeclarationOption ToMutableConcrete() {
             var ret = new ScriptDom.MaxSizeFileDeclarationOption();
             ret.MaxSize = (ScriptDom.Literal)maxSize?.ToMutable();
             ret.Units = units;
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MaxSizeFileDeclarationOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.maxSize, othr.maxSize);
             if (compare != 0) { return compare; }
@@ -95,10 +95,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MaxSizeFileDeclarationOption left, MaxSizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static MaxSizeFileDeclarationOption FromMutable(ScriptDom.MaxSizeFileDeclarationOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MaxSizeFileDeclarationOption)) { throw new NotImplementedException("Unexpected subtype of MaxSizeFileDeclarationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new MaxSizeFileDeclarationOption(
+                maxSize: ImmutableDom.Literal.FromMutable(fragment.MaxSize),
+                units: fragment.Units,
+                unlimited: fragment.Unlimited,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

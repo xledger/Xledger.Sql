@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.resourcePoolParameters = ImmList<ResourcePoolParameter>.FromList(resourcePoolParameters);
         }
     
-        public ScriptDom.CreateResourcePoolStatement ToMutableConcrete() {
+        public new ScriptDom.CreateResourcePoolStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateResourcePoolStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.ResourcePoolParameters.AddRange(resourcePoolParameters.SelectList(c => (ScriptDom.ResourcePoolParameter)c?.ToMutable()));
@@ -63,7 +63,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateResourcePoolStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -71,10 +71,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateResourcePoolStatement left, CreateResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateResourcePoolStatement left, CreateResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateResourcePoolStatement left, CreateResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateResourcePoolStatement left, CreateResourcePoolStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateResourcePoolStatement FromMutable(ScriptDom.CreateResourcePoolStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateResourcePoolStatement)) { throw new NotImplementedException("Unexpected subtype of CreateResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateResourcePoolStatement(
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(ImmutableDom.ResourcePoolParameter.FromMutable)
+            );
+        }
     
     }
 

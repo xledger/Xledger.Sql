@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.DialogOptionKind OptionKind => optionKind;
     
+        public static DialogOption FromMutable(ScriptDom.DialogOption fragment) => (DialogOption)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

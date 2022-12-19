@@ -107,7 +107,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterViewStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.isRebuild, othr.isRebuild);
             if (compare != 0) { return compare; }
@@ -127,10 +127,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterViewStatement left, AlterViewStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterViewStatement left, AlterViewStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterViewStatement left, AlterViewStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterViewStatement left, AlterViewStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterViewStatement FromMutable(ScriptDom.AlterViewStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterViewStatement)) { throw new NotImplementedException("Unexpected subtype of AlterViewStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterViewStatement(
+                isRebuild: fragment.IsRebuild,
+                isDisable: fragment.IsDisable,
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                viewOptions: fragment.ViewOptions.SelectList(ImmutableDom.ViewOption.FromMutable),
+                selectStatement: ImmutableDom.SelectStatement.FromMutable(fragment.SelectStatement),
+                withCheckOption: fragment.WithCheckOption,
+                isMaterialized: fragment.IsMaterialized
+            );
+        }
     
     }
 

@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RetentionPeriodDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.duration, othr.duration);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (RetentionPeriodDefinition left, RetentionPeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(RetentionPeriodDefinition left, RetentionPeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (RetentionPeriodDefinition left, RetentionPeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RetentionPeriodDefinition left, RetentionPeriodDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static RetentionPeriodDefinition FromMutable(ScriptDom.RetentionPeriodDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.RetentionPeriodDefinition)) { throw new NotImplementedException("Unexpected subtype of RetentionPeriodDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new RetentionPeriodDefinition(
+                duration: ImmutableDom.IntegerLiteral.FromMutable(fragment.Duration),
+                units: fragment.Units,
+                isInfinity: fragment.IsInfinity
+            );
+        }
     
     }
 

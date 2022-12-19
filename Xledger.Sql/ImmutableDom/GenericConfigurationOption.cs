@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.genericOptionKind = genericOptionKind;
         }
     
-        public ScriptDom.GenericConfigurationOption ToMutableConcrete() {
+        public new ScriptDom.GenericConfigurationOption ToMutableConcrete() {
             var ret = new ScriptDom.GenericConfigurationOption();
             ret.GenericOptionState = (ScriptDom.IdentifierOrScalarExpression)genericOptionState?.ToMutable();
             ret.OptionKind = optionKind;
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GenericConfigurationOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.genericOptionState, othr.genericOptionState);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GenericConfigurationOption left, GenericConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GenericConfigurationOption left, GenericConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GenericConfigurationOption left, GenericConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GenericConfigurationOption left, GenericConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GenericConfigurationOption FromMutable(ScriptDom.GenericConfigurationOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GenericConfigurationOption)) { throw new NotImplementedException("Unexpected subtype of GenericConfigurationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GenericConfigurationOption(
+                genericOptionState: ImmutableDom.IdentifierOrScalarExpression.FromMutable(fragment.GenericOptionState),
+                optionKind: fragment.OptionKind,
+                genericOptionKind: ImmutableDom.Identifier.FromMutable(fragment.GenericOptionKind)
+            );
+        }
     
     }
 

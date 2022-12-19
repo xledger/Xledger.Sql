@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerConfigurationSetBufferPoolExtensionStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterServerConfigurationSetBufferPoolExtensionStatement left, AlterServerConfigurationSetBufferPoolExtensionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterServerConfigurationSetBufferPoolExtensionStatement left, AlterServerConfigurationSetBufferPoolExtensionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterServerConfigurationSetBufferPoolExtensionStatement left, AlterServerConfigurationSetBufferPoolExtensionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationSetBufferPoolExtensionStatement left, AlterServerConfigurationSetBufferPoolExtensionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterServerConfigurationSetBufferPoolExtensionStatement FromMutable(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetBufferPoolExtensionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterServerConfigurationSetBufferPoolExtensionStatement(
+                options: fragment.Options.SelectList(ImmutableDom.AlterServerConfigurationBufferPoolExtensionOption.FromMutable)
+            );
+        }
     
     }
 

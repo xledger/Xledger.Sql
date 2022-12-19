@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.NameFileDeclarationOption ToMutableConcrete() {
+        public new ScriptDom.NameFileDeclarationOption ToMutableConcrete() {
             var ret = new ScriptDom.NameFileDeclarationOption();
             ret.LogicalFileName = (ScriptDom.IdentifierOrValueExpression)logicalFileName?.ToMutable();
             ret.IsNewName = isNewName;
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (NameFileDeclarationOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.logicalFileName, othr.logicalFileName);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (NameFileDeclarationOption left, NameFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(NameFileDeclarationOption left, NameFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (NameFileDeclarationOption left, NameFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(NameFileDeclarationOption left, NameFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static NameFileDeclarationOption FromMutable(ScriptDom.NameFileDeclarationOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.NameFileDeclarationOption)) { throw new NotImplementedException("Unexpected subtype of NameFileDeclarationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new NameFileDeclarationOption(
+                logicalFileName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.LogicalFileName),
+                isNewName: fragment.IsNewName,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

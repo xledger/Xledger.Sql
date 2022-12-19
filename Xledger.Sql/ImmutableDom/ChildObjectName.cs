@@ -12,7 +12,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.identifiers = ImmList<Identifier>.FromList(identifiers);
         }
     
-        public ScriptDom.ChildObjectName ToMutableConcrete() {
+        public new ScriptDom.ChildObjectName ToMutableConcrete() {
             var ret = new ScriptDom.ChildObjectName();
             ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
@@ -55,16 +55,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ChildObjectName)that;
             compare = Comparer.DefaultInvariant.Compare(this.identifiers, othr.identifiers);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ChildObjectName left, ChildObjectName right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ChildObjectName left, ChildObjectName right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ChildObjectName left, ChildObjectName right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ChildObjectName left, ChildObjectName right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ChildObjectName FromMutable(ScriptDom.ChildObjectName fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ChildObjectName)) { throw new NotImplementedException("Unexpected subtype of ChildObjectName not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ChildObjectName(
+                identifiers: fragment.Identifiers.SelectList(ImmutableDom.Identifier.FromMutable)
+            );
+        }
     
     }
 

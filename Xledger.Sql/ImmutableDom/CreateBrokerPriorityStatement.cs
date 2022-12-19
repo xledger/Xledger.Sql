@@ -63,7 +63,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateBrokerPriorityStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -71,10 +71,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateBrokerPriorityStatement left, CreateBrokerPriorityStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateBrokerPriorityStatement left, CreateBrokerPriorityStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateBrokerPriorityStatement left, CreateBrokerPriorityStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateBrokerPriorityStatement left, CreateBrokerPriorityStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateBrokerPriorityStatement FromMutable(ScriptDom.CreateBrokerPriorityStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateBrokerPriorityStatement)) { throw new NotImplementedException("Unexpected subtype of CreateBrokerPriorityStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateBrokerPriorityStatement(
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                brokerPriorityParameters: fragment.BrokerPriorityParameters.SelectList(ImmutableDom.BrokerPriorityParameter.FromMutable)
+            );
+        }
     
     }
 

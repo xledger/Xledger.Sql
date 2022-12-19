@@ -18,6 +18,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Literal Secret => secret;
         public bool IsDatabaseScoped => isDatabaseScoped;
     
+        public static CredentialStatement FromMutable(ScriptDom.CredentialStatement fragment) => (CredentialStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

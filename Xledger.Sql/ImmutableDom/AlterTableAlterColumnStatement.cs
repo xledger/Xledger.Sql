@@ -159,7 +159,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableAlterColumnStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.columnIdentifier, othr.columnIdentifier);
             if (compare != 0) { return compare; }
@@ -187,10 +187,30 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableAlterColumnStatement left, AlterTableAlterColumnStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterTableAlterColumnStatement FromMutable(ScriptDom.AlterTableAlterColumnStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterTableAlterColumnStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableAlterColumnStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterTableAlterColumnStatement(
+                columnIdentifier: ImmutableDom.Identifier.FromMutable(fragment.ColumnIdentifier),
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
+                alterTableAlterColumnOption: fragment.AlterTableAlterColumnOption,
+                storageOptions: ImmutableDom.ColumnStorageOptions.FromMutable(fragment.StorageOptions),
+                options: fragment.Options.SelectList(ImmutableDom.IndexOption.FromMutable),
+                generatedAlways: fragment.GeneratedAlways,
+                isHidden: fragment.IsHidden,
+                encryption: ImmutableDom.ColumnEncryptionDefinition.FromMutable(fragment.Encryption),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation),
+                isMasked: fragment.IsMasked,
+                maskingFunction: ImmutableDom.StringLiteral.FromMutable(fragment.MaskingFunction),
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
+            );
+        }
     
     }
 

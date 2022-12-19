@@ -107,7 +107,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LedgerViewOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.viewName, othr.viewName);
             if (compare != 0) { return compare; }
@@ -123,10 +123,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (LedgerViewOption left, LedgerViewOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(LedgerViewOption left, LedgerViewOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (LedgerViewOption left, LedgerViewOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LedgerViewOption left, LedgerViewOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static LedgerViewOption FromMutable(ScriptDom.LedgerViewOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LedgerViewOption)) { throw new NotImplementedException("Unexpected subtype of LedgerViewOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new LedgerViewOption(
+                viewName: ImmutableDom.SchemaObjectName.FromMutable(fragment.ViewName),
+                transactionIdColumnName: ImmutableDom.Identifier.FromMutable(fragment.TransactionIdColumnName),
+                sequenceNumberColumnName: ImmutableDom.Identifier.FromMutable(fragment.SequenceNumberColumnName),
+                operationTypeColumnName: ImmutableDom.Identifier.FromMutable(fragment.OperationTypeColumnName),
+                operationTypeDescColumnName: ImmutableDom.Identifier.FromMutable(fragment.OperationTypeDescColumnName),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

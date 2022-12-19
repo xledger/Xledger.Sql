@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WindowFrameClause)that;
             compare = Comparer.DefaultInvariant.Compare(this.top, othr.top);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (WindowFrameClause left, WindowFrameClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(WindowFrameClause left, WindowFrameClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (WindowFrameClause left, WindowFrameClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WindowFrameClause left, WindowFrameClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static WindowFrameClause FromMutable(ScriptDom.WindowFrameClause fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.WindowFrameClause)) { throw new NotImplementedException("Unexpected subtype of WindowFrameClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new WindowFrameClause(
+                top: ImmutableDom.WindowDelimiter.FromMutable(fragment.Top),
+                bottom: ImmutableDom.WindowDelimiter.FromMutable(fragment.Bottom),
+                windowFrameType: fragment.WindowFrameType
+            );
+        }
     
     }
 

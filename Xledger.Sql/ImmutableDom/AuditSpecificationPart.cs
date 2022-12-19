@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AuditSpecificationPart)that;
             compare = Comparer.DefaultInvariant.Compare(this.isDrop, othr.isDrop);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AuditSpecificationPart left, AuditSpecificationPart right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AuditSpecificationPart left, AuditSpecificationPart right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AuditSpecificationPart left, AuditSpecificationPart right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AuditSpecificationPart left, AuditSpecificationPart right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AuditSpecificationPart FromMutable(ScriptDom.AuditSpecificationPart fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AuditSpecificationPart)) { throw new NotImplementedException("Unexpected subtype of AuditSpecificationPart not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AuditSpecificationPart(
+                isDrop: fragment.IsDrop,
+                details: ImmutableDom.AuditSpecificationDetail.FromMutable(fragment.Details)
+            );
+        }
     
     }
 

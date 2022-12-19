@@ -121,7 +121,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MergeSpecification)that;
             compare = Comparer.DefaultInvariant.Compare(this.tableAlias, othr.tableAlias);
             if (compare != 0) { return compare; }
@@ -141,10 +141,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (MergeSpecification left, MergeSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(MergeSpecification left, MergeSpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (MergeSpecification left, MergeSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MergeSpecification left, MergeSpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static MergeSpecification FromMutable(ScriptDom.MergeSpecification fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MergeSpecification)) { throw new NotImplementedException("Unexpected subtype of MergeSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new MergeSpecification(
+                tableAlias: ImmutableDom.Identifier.FromMutable(fragment.TableAlias),
+                tableReference: ImmutableDom.TableReference.FromMutable(fragment.TableReference),
+                searchCondition: ImmutableDom.BooleanExpression.FromMutable(fragment.SearchCondition),
+                actionClauses: fragment.ActionClauses.SelectList(ImmutableDom.MergeActionClause.FromMutable),
+                target: ImmutableDom.TableReference.FromMutable(fragment.Target),
+                topRowFilter: ImmutableDom.TopRowFilter.FromMutable(fragment.TopRowFilter),
+                outputIntoClause: ImmutableDom.OutputIntoClause.FromMutable(fragment.OutputIntoClause),
+                outputClause: ImmutableDom.OutputClause.FromMutable(fragment.OutputClause)
+            );
+        }
     
     }
 

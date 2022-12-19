@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WorkloadClassifierOptionType OptionType => optionType;
     
+        public static WorkloadClassifierOption FromMutable(ScriptDom.WorkloadClassifierOption fragment) => (WorkloadClassifierOption)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

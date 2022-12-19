@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DatabaseConfigurationClearOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DatabaseConfigurationClearOption left, DatabaseConfigurationClearOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DatabaseConfigurationClearOption FromMutable(ScriptDom.DatabaseConfigurationClearOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DatabaseConfigurationClearOption)) { throw new NotImplementedException("Unexpected subtype of DatabaseConfigurationClearOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DatabaseConfigurationClearOption(
+                optionKind: fragment.OptionKind,
+                planHandle: ImmutableDom.BinaryLiteral.FromMutable(fragment.PlanHandle)
+            );
+        }
     
     }
 

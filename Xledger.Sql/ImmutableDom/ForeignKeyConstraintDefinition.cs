@@ -109,7 +109,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ForeignKeyConstraintDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
@@ -127,10 +127,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ForeignKeyConstraintDefinition left, ForeignKeyConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ForeignKeyConstraintDefinition FromMutable(ScriptDom.ForeignKeyConstraintDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ForeignKeyConstraintDefinition)) { throw new NotImplementedException("Unexpected subtype of ForeignKeyConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ForeignKeyConstraintDefinition(
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                referenceTableName: ImmutableDom.SchemaObjectName.FromMutable(fragment.ReferenceTableName),
+                referencedTableColumns: fragment.ReferencedTableColumns.SelectList(ImmutableDom.Identifier.FromMutable),
+                deleteAction: fragment.DeleteAction,
+                updateAction: fragment.UpdateAction,
+                notForReplication: fragment.NotForReplication,
+                constraintIdentifier: ImmutableDom.Identifier.FromMutable(fragment.ConstraintIdentifier)
+            );
+        }
     
     }
 

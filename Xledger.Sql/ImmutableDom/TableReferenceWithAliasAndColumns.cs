@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public IReadOnlyList<Identifier> Columns => columns;
     
+        public static TableReferenceWithAliasAndColumns FromMutable(ScriptDom.TableReferenceWithAliasAndColumns fragment) => (TableReferenceWithAliasAndColumns)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

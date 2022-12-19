@@ -161,7 +161,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateTableStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
@@ -189,10 +189,30 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateTableStatement left, CreateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateTableStatement left, CreateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateTableStatement left, CreateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateTableStatement left, CreateTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateTableStatement FromMutable(ScriptDom.CreateTableStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateTableStatement)) { throw new NotImplementedException("Unexpected subtype of CreateTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateTableStatement(
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
+                asEdge: fragment.AsEdge,
+                asFileTable: fragment.AsFileTable,
+                asNode: fragment.AsNode,
+                definition: ImmutableDom.TableDefinition.FromMutable(fragment.Definition),
+                onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                federationScheme: ImmutableDom.FederationScheme.FromMutable(fragment.FederationScheme),
+                textImageOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.TextImageOn),
+                options: fragment.Options.SelectList(ImmutableDom.TableOption.FromMutable),
+                selectStatement: ImmutableDom.SelectStatement.FromMutable(fragment.SelectStatement),
+                ctasColumns: fragment.CtasColumns.SelectList(ImmutableDom.Identifier.FromMutable),
+                fileStreamOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.FileStreamOn)
+            );
+        }
     
     }
 

@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MirrorToClause)that;
             compare = Comparer.DefaultInvariant.Compare(this.devices, othr.devices);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (MirrorToClause left, MirrorToClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(MirrorToClause left, MirrorToClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (MirrorToClause left, MirrorToClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MirrorToClause left, MirrorToClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static MirrorToClause FromMutable(ScriptDom.MirrorToClause fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MirrorToClause)) { throw new NotImplementedException("Unexpected subtype of MirrorToClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new MirrorToClause(
+                devices: fragment.Devices.SelectList(ImmutableDom.DeviceInfo.FromMutable)
+            );
+        }
     
     }
 

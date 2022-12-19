@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.resultSetType = resultSetType;
         }
     
-        public ScriptDom.InlineResultSetDefinition ToMutableConcrete() {
+        public new ScriptDom.InlineResultSetDefinition ToMutableConcrete() {
             var ret = new ScriptDom.InlineResultSetDefinition();
             ret.ResultColumnDefinitions.AddRange(resultColumnDefinitions.SelectList(c => (ScriptDom.ResultColumnDefinition)c?.ToMutable()));
             ret.ResultSetType = resultSetType;
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (InlineResultSetDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.resultColumnDefinitions, othr.resultColumnDefinitions);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (InlineResultSetDefinition left, InlineResultSetDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(InlineResultSetDefinition left, InlineResultSetDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (InlineResultSetDefinition left, InlineResultSetDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(InlineResultSetDefinition left, InlineResultSetDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static InlineResultSetDefinition FromMutable(ScriptDom.InlineResultSetDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.InlineResultSetDefinition)) { throw new NotImplementedException("Unexpected subtype of InlineResultSetDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new InlineResultSetDefinition(
+                resultColumnDefinitions: fragment.ResultColumnDefinitions.SelectList(ImmutableDom.ResultColumnDefinition.FromMutable),
+                resultSetType: fragment.ResultSetType
+            );
+        }
     
     }
 

@@ -50,14 +50,23 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExternalTableReplicatedDistributionPolicy)that;
             return compare;
         } 
+        
         public static bool operator < (ExternalTableReplicatedDistributionPolicy left, ExternalTableReplicatedDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ExternalTableReplicatedDistributionPolicy left, ExternalTableReplicatedDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ExternalTableReplicatedDistributionPolicy left, ExternalTableReplicatedDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExternalTableReplicatedDistributionPolicy left, ExternalTableReplicatedDistributionPolicy right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ExternalTableReplicatedDistributionPolicy FromMutable(ScriptDom.ExternalTableReplicatedDistributionPolicy fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExternalTableReplicatedDistributionPolicy)) { throw new NotImplementedException("Unexpected subtype of ExternalTableReplicatedDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ExternalTableReplicatedDistributionPolicy(
+                
+            );
+        }
     
     }
 

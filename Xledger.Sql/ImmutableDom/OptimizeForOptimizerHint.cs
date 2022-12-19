@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.hintKind = hintKind;
         }
     
-        public ScriptDom.OptimizeForOptimizerHint ToMutableConcrete() {
+        public new ScriptDom.OptimizeForOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.OptimizeForOptimizerHint();
             ret.Pairs.AddRange(pairs.SelectList(c => (ScriptDom.VariableValuePair)c?.ToMutable()));
             ret.IsForUnknown = isForUnknown;
@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OptimizeForOptimizerHint)that;
             compare = Comparer.DefaultInvariant.Compare(this.pairs, othr.pairs);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OptimizeForOptimizerHint left, OptimizeForOptimizerHint right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OptimizeForOptimizerHint FromMutable(ScriptDom.OptimizeForOptimizerHint fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OptimizeForOptimizerHint)) { throw new NotImplementedException("Unexpected subtype of OptimizeForOptimizerHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OptimizeForOptimizerHint(
+                pairs: fragment.Pairs.SelectList(ImmutableDom.VariableValuePair.FromMutable),
+                isForUnknown: fragment.IsForUnknown,
+                hintKind: fragment.HintKind
+            );
+        }
     
     }
 

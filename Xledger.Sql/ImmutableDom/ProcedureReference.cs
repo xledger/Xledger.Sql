@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ProcedureReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ProcedureReference left, ProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ProcedureReference left, ProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ProcedureReference left, ProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ProcedureReference left, ProcedureReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ProcedureReference FromMutable(ScriptDom.ProcedureReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ProcedureReference)) { throw new NotImplementedException("Unexpected subtype of ProcedureReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ProcedureReference(
+                name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
+                number: ImmutableDom.Literal.FromMutable(fragment.Number)
+            );
+        }
     
     }
 

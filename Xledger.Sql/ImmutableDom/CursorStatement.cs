@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CursorId Cursor => cursor;
     
+        public static CursorStatement FromMutable(ScriptDom.CursorStatement fragment) => (CursorStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

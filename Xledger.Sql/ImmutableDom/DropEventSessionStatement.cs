@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropEventSessionStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.sessionScope, othr.sessionScope);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DropEventSessionStatement left, DropEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DropEventSessionStatement left, DropEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DropEventSessionStatement left, DropEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropEventSessionStatement left, DropEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DropEventSessionStatement FromMutable(ScriptDom.DropEventSessionStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DropEventSessionStatement)) { throw new NotImplementedException("Unexpected subtype of DropEventSessionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DropEventSessionStatement(
+                sessionScope: fragment.SessionScope,
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                isIfExists: fragment.IsIfExists
+            );
+        }
     
     }
 

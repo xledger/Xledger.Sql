@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.PartnerDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.PartnerDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.PartnerDatabaseOption();
             ret.PartnerServer = (ScriptDom.Literal)partnerServer?.ToMutable();
             ret.PartnerOption = partnerOption;
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PartnerDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.partnerServer, othr.partnerServer);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (PartnerDatabaseOption left, PartnerDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(PartnerDatabaseOption left, PartnerDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (PartnerDatabaseOption left, PartnerDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PartnerDatabaseOption left, PartnerDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static PartnerDatabaseOption FromMutable(ScriptDom.PartnerDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.PartnerDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of PartnerDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new PartnerDatabaseOption(
+                partnerServer: ImmutableDom.Literal.FromMutable(fragment.PartnerServer),
+                partnerOption: fragment.PartnerOption,
+                timeout: ImmutableDom.Literal.FromMutable(fragment.Timeout),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

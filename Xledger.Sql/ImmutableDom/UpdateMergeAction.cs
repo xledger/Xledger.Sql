@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UpdateMergeAction)that;
             compare = Comparer.DefaultInvariant.Compare(this.setClauses, othr.setClauses);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (UpdateMergeAction left, UpdateMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(UpdateMergeAction left, UpdateMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (UpdateMergeAction left, UpdateMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UpdateMergeAction left, UpdateMergeAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static UpdateMergeAction FromMutable(ScriptDom.UpdateMergeAction fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.UpdateMergeAction)) { throw new NotImplementedException("Unexpected subtype of UpdateMergeAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new UpdateMergeAction(
+                setClauses: fragment.SetClauses.SelectList(ImmutableDom.SetClause.FromMutable)
+            );
+        }
     
     }
 

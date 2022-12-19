@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.SizeFileDeclarationOption ToMutableConcrete() {
+        public new ScriptDom.SizeFileDeclarationOption ToMutableConcrete() {
             var ret = new ScriptDom.SizeFileDeclarationOption();
             ret.Size = (ScriptDom.Literal)size?.ToMutable();
             ret.Units = units;
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SizeFileDeclarationOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.size, othr.size);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SizeFileDeclarationOption left, SizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SizeFileDeclarationOption left, SizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SizeFileDeclarationOption left, SizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SizeFileDeclarationOption left, SizeFileDeclarationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SizeFileDeclarationOption FromMutable(ScriptDom.SizeFileDeclarationOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SizeFileDeclarationOption)) { throw new NotImplementedException("Unexpected subtype of SizeFileDeclarationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SizeFileDeclarationOption(
+                size: ImmutableDom.Literal.FromMutable(fragment.Size),
+                units: fragment.Units,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

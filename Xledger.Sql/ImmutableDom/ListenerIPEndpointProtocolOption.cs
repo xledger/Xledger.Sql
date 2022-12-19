@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ListenerIPEndpointProtocolOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.isAll, othr.isAll);
             if (compare != 0) { return compare; }
@@ -109,10 +109,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ListenerIPEndpointProtocolOption left, ListenerIPEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ListenerIPEndpointProtocolOption left, ListenerIPEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ListenerIPEndpointProtocolOption left, ListenerIPEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ListenerIPEndpointProtocolOption left, ListenerIPEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ListenerIPEndpointProtocolOption FromMutable(ScriptDom.ListenerIPEndpointProtocolOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ListenerIPEndpointProtocolOption)) { throw new NotImplementedException("Unexpected subtype of ListenerIPEndpointProtocolOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ListenerIPEndpointProtocolOption(
+                isAll: fragment.IsAll,
+                iPv6: ImmutableDom.Literal.FromMutable(fragment.IPv6),
+                iPv4PartOne: ImmutableDom.IPv4.FromMutable(fragment.IPv4PartOne),
+                iPv4PartTwo: ImmutableDom.IPv4.FromMutable(fragment.IPv4PartTwo),
+                kind: fragment.Kind
+            );
+        }
     
     }
 

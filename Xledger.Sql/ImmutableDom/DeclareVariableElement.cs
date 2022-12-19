@@ -91,7 +91,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DeclareVariableElement)that;
             compare = Comparer.DefaultInvariant.Compare(this.variableName, othr.variableName);
             if (compare != 0) { return compare; }
@@ -103,10 +103,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DeclareVariableElement left, DeclareVariableElement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DeclareVariableElement left, DeclareVariableElement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DeclareVariableElement left, DeclareVariableElement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DeclareVariableElement left, DeclareVariableElement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DeclareVariableElement FromMutable(ScriptDom.DeclareVariableElement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DeclareVariableElement)) { return TSqlFragment.FromMutable(fragment) as DeclareVariableElement; }
+            return new DeclareVariableElement(
+                variableName: ImmutableDom.Identifier.FromMutable(fragment.VariableName),
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
+                nullable: ImmutableDom.NullableConstraintDefinition.FromMutable(fragment.Nullable),
+                @value: ImmutableDom.ScalarExpression.FromMutable(fragment.Value)
+            );
+        }
     
     }
 

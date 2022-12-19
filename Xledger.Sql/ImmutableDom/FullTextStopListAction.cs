@@ -87,7 +87,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FullTextStopListAction)that;
             compare = Comparer.DefaultInvariant.Compare(this.isAdd, othr.isAdd);
             if (compare != 0) { return compare; }
@@ -99,10 +99,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (FullTextStopListAction left, FullTextStopListAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(FullTextStopListAction left, FullTextStopListAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (FullTextStopListAction left, FullTextStopListAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FullTextStopListAction left, FullTextStopListAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static FullTextStopListAction FromMutable(ScriptDom.FullTextStopListAction fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FullTextStopListAction)) { throw new NotImplementedException("Unexpected subtype of FullTextStopListAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new FullTextStopListAction(
+                isAdd: fragment.IsAdd,
+                isAll: fragment.IsAll,
+                stopWord: ImmutableDom.Literal.FromMutable(fragment.StopWord),
+                languageTerm: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.LanguageTerm)
+            );
+        }
     
     }
 

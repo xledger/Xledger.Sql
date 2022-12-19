@@ -81,7 +81,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DataModificationTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.dataModificationSpecification, othr.dataModificationSpecification);
             if (compare != 0) { return compare; }
@@ -93,10 +93,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DataModificationTableReference left, DataModificationTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DataModificationTableReference FromMutable(ScriptDom.DataModificationTableReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DataModificationTableReference)) { throw new NotImplementedException("Unexpected subtype of DataModificationTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DataModificationTableReference(
+                dataModificationSpecification: ImmutableDom.DataModificationSpecification.FromMutable(fragment.DataModificationSpecification),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

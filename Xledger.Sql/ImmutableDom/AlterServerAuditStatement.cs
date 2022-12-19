@@ -99,7 +99,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerAuditStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.newName, othr.newName);
             if (compare != 0) { return compare; }
@@ -115,10 +115,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterServerAuditStatement left, AlterServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterServerAuditStatement left, AlterServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterServerAuditStatement left, AlterServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerAuditStatement left, AlterServerAuditStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterServerAuditStatement FromMutable(ScriptDom.AlterServerAuditStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerAuditStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerAuditStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterServerAuditStatement(
+                newName: ImmutableDom.Identifier.FromMutable(fragment.NewName),
+                removeWhere: fragment.RemoveWhere,
+                auditName: ImmutableDom.Identifier.FromMutable(fragment.AuditName),
+                auditTarget: ImmutableDom.AuditTarget.FromMutable(fragment.AuditTarget),
+                options: fragment.Options.SelectList(ImmutableDom.AuditOption.FromMutable),
+                predicateExpression: ImmutableDom.BooleanExpression.FromMutable(fragment.PredicateExpression)
+            );
+        }
     
     }
 

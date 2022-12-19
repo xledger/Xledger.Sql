@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<ExternalLanguageFileOption> ExternalLanguageFiles => externalLanguageFiles;
     
+        public static ExternalLanguageStatement FromMutable(ScriptDom.ExternalLanguageStatement fragment) => (ExternalLanguageStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

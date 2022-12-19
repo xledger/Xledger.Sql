@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.sessionOptions = ImmList<SessionOption>.FromList(sessionOptions);
         }
     
-        public ScriptDom.CreateEventSessionStatement ToMutableConcrete() {
+        public new ScriptDom.CreateEventSessionStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateEventSessionStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.SessionScope = sessionScope;
@@ -81,7 +81,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateEventSessionStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -95,10 +95,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateEventSessionStatement left, CreateEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateEventSessionStatement left, CreateEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateEventSessionStatement left, CreateEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateEventSessionStatement left, CreateEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateEventSessionStatement FromMutable(ScriptDom.CreateEventSessionStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateEventSessionStatement)) { throw new NotImplementedException("Unexpected subtype of CreateEventSessionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateEventSessionStatement(
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                sessionScope: fragment.SessionScope,
+                eventDeclarations: fragment.EventDeclarations.SelectList(ImmutableDom.EventDeclaration.FromMutable),
+                targetDeclarations: fragment.TargetDeclarations.SelectList(ImmutableDom.TargetDeclaration.FromMutable),
+                sessionOptions: fragment.SessionOptions.SelectList(ImmutableDom.SessionOption.FromMutable)
+            );
+        }
     
     }
 

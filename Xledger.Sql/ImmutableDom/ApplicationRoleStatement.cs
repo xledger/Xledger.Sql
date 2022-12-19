@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public IReadOnlyList<ApplicationRoleOption> ApplicationRoleOptions => applicationRoleOptions;
     
+        public static ApplicationRoleStatement FromMutable(ScriptDom.ApplicationRoleStatement fragment) => (ApplicationRoleStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

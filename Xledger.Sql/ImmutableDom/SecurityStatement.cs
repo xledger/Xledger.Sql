@@ -18,6 +18,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SecurityPrincipal> Principals => principals;
         public Identifier AsClause => asClause;
     
+        public static SecurityStatement FromMutable(ScriptDom.SecurityStatement fragment) => (SecurityStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

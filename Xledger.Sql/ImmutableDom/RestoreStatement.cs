@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (RestoreStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
@@ -107,10 +107,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (RestoreStatement left, RestoreStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(RestoreStatement left, RestoreStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (RestoreStatement left, RestoreStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(RestoreStatement left, RestoreStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static RestoreStatement FromMutable(ScriptDom.RestoreStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.RestoreStatement)) { throw new NotImplementedException("Unexpected subtype of RestoreStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new RestoreStatement(
+                databaseName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.DatabaseName),
+                devices: fragment.Devices.SelectList(ImmutableDom.DeviceInfo.FromMutable),
+                files: fragment.Files.SelectList(ImmutableDom.BackupRestoreFileInfo.FromMutable),
+                options: fragment.Options.SelectList(ImmutableDom.RestoreOption.FromMutable),
+                kind: fragment.Kind
+            );
+        }
     
     }
 

@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DeclareVariableStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.declarations, othr.declarations);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DeclareVariableStatement left, DeclareVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DeclareVariableStatement left, DeclareVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DeclareVariableStatement left, DeclareVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DeclareVariableStatement left, DeclareVariableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DeclareVariableStatement FromMutable(ScriptDom.DeclareVariableStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DeclareVariableStatement)) { throw new NotImplementedException("Unexpected subtype of DeclareVariableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DeclareVariableStatement(
+                declarations: fragment.Declarations.SelectList(ImmutableDom.DeclareVariableElement.FromMutable)
+            );
+        }
     
     }
 

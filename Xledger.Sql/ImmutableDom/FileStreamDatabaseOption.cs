@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.FileStreamDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.FileStreamDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.FileStreamDatabaseOption();
             ret.NonTransactedAccess = nonTransactedAccess;
             ret.DirectoryName = (ScriptDom.Literal)directoryName?.ToMutable();
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FileStreamDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.nonTransactedAccess, othr.nonTransactedAccess);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (FileStreamDatabaseOption left, FileStreamDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(FileStreamDatabaseOption left, FileStreamDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (FileStreamDatabaseOption left, FileStreamDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FileStreamDatabaseOption left, FileStreamDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static FileStreamDatabaseOption FromMutable(ScriptDom.FileStreamDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FileStreamDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of FileStreamDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new FileStreamDatabaseOption(
+                nonTransactedAccess: fragment.NonTransactedAccess,
+                directoryName: ImmutableDom.Literal.FromMutable(fragment.DirectoryName),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

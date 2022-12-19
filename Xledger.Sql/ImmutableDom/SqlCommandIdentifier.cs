@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.quoteType = quoteType;
         }
     
-        public ScriptDom.SqlCommandIdentifier ToMutableConcrete() {
+        public new ScriptDom.SqlCommandIdentifier ToMutableConcrete() {
             var ret = new ScriptDom.SqlCommandIdentifier();
             ret.Value = @value;
             ret.QuoteType = quoteType;
@@ -63,7 +63,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SqlCommandIdentifier)that;
             compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -71,10 +71,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SqlCommandIdentifier left, SqlCommandIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SqlCommandIdentifier left, SqlCommandIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SqlCommandIdentifier left, SqlCommandIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SqlCommandIdentifier left, SqlCommandIdentifier right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SqlCommandIdentifier FromMutable(ScriptDom.SqlCommandIdentifier fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SqlCommandIdentifier)) { throw new NotImplementedException("Unexpected subtype of SqlCommandIdentifier not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SqlCommandIdentifier(
+                @value: fragment.Value,
+                quoteType: fragment.QuoteType
+            );
+        }
     
     }
 

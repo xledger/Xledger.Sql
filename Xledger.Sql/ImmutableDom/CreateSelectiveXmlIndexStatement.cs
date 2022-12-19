@@ -129,7 +129,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateSelectiveXmlIndexStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.isSecondary, othr.isSecondary);
             if (compare != 0) { return compare; }
@@ -151,10 +151,27 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateSelectiveXmlIndexStatement left, CreateSelectiveXmlIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateSelectiveXmlIndexStatement left, CreateSelectiveXmlIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateSelectiveXmlIndexStatement left, CreateSelectiveXmlIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateSelectiveXmlIndexStatement left, CreateSelectiveXmlIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateSelectiveXmlIndexStatement FromMutable(ScriptDom.CreateSelectiveXmlIndexStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateSelectiveXmlIndexStatement)) { throw new NotImplementedException("Unexpected subtype of CreateSelectiveXmlIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateSelectiveXmlIndexStatement(
+                isSecondary: fragment.IsSecondary,
+                xmlColumn: ImmutableDom.Identifier.FromMutable(fragment.XmlColumn),
+                promotedPaths: fragment.PromotedPaths.SelectList(ImmutableDom.SelectiveXmlIndexPromotedPath.FromMutable),
+                xmlNamespaces: ImmutableDom.XmlNamespaces.FromMutable(fragment.XmlNamespaces),
+                usingXmlIndexName: ImmutableDom.Identifier.FromMutable(fragment.UsingXmlIndexName),
+                pathName: ImmutableDom.Identifier.FromMutable(fragment.PathName),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                onName: ImmutableDom.SchemaObjectName.FromMutable(fragment.OnName),
+                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable)
+            );
+        }
     
     }
 

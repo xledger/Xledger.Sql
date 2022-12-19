@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerConfigurationDiagnosticsLogOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterServerConfigurationDiagnosticsLogOption left, AlterServerConfigurationDiagnosticsLogOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterServerConfigurationDiagnosticsLogOption left, AlterServerConfigurationDiagnosticsLogOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterServerConfigurationDiagnosticsLogOption left, AlterServerConfigurationDiagnosticsLogOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationDiagnosticsLogOption left, AlterServerConfigurationDiagnosticsLogOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterServerConfigurationDiagnosticsLogOption FromMutable(ScriptDom.AlterServerConfigurationDiagnosticsLogOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationDiagnosticsLogOption)) { return TSqlFragment.FromMutable(fragment) as AlterServerConfigurationDiagnosticsLogOption; }
+            return new AlterServerConfigurationDiagnosticsLogOption(
+                optionKind: fragment.OptionKind,
+                optionValue: ImmutableDom.OptionValue.FromMutable(fragment.OptionValue)
+            );
+        }
     
     }
 

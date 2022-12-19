@@ -91,7 +91,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterTableConstraintModificationStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.existingRowsCheckEnforcement, othr.existingRowsCheckEnforcement);
             if (compare != 0) { return compare; }
@@ -105,10 +105,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterTableConstraintModificationStatement left, AlterTableConstraintModificationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterTableConstraintModificationStatement FromMutable(ScriptDom.AlterTableConstraintModificationStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterTableConstraintModificationStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableConstraintModificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterTableConstraintModificationStatement(
+                existingRowsCheckEnforcement: fragment.ExistingRowsCheckEnforcement,
+                constraintEnforcement: fragment.ConstraintEnforcement,
+                all: fragment.All,
+                constraintNames: fragment.ConstraintNames.SelectList(ImmutableDom.Identifier.FromMutable),
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
+            );
+        }
     
     }
 

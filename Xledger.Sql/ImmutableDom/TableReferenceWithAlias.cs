@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Alias => alias;
         public bool ForPath => forPath;
     
+        public static TableReferenceWithAlias FromMutable(ScriptDom.TableReferenceWithAlias fragment) => (TableReferenceWithAlias)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

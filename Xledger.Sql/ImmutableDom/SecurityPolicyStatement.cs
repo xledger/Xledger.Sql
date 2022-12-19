@@ -20,6 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SecurityPredicateAction> SecurityPredicateActions => securityPredicateActions;
         public ScriptDom.SecurityPolicyActionType ActionType => actionType;
     
+        public static SecurityPolicyStatement FromMutable(ScriptDom.SecurityPolicyStatement fragment) => (SecurityPolicyStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

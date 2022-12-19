@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WhereClause)that;
             compare = Comparer.DefaultInvariant.Compare(this.searchCondition, othr.searchCondition);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (WhereClause left, WhereClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(WhereClause left, WhereClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (WhereClause left, WhereClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WhereClause left, WhereClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static WhereClause FromMutable(ScriptDom.WhereClause fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.WhereClause)) { throw new NotImplementedException("Unexpected subtype of WhereClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new WhereClause(
+                searchCondition: ImmutableDom.BooleanExpression.FromMutable(fragment.SearchCondition),
+                cursor: ImmutableDom.CursorId.FromMutable(fragment.Cursor)
+            );
+        }
     
     }
 

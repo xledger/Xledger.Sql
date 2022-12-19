@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ResourcePoolAffinitySpecification)that;
             compare = Comparer.DefaultInvariant.Compare(this.affinityType, othr.affinityType);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ResourcePoolAffinitySpecification left, ResourcePoolAffinitySpecification right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ResourcePoolAffinitySpecification left, ResourcePoolAffinitySpecification right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ResourcePoolAffinitySpecification left, ResourcePoolAffinitySpecification right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ResourcePoolAffinitySpecification left, ResourcePoolAffinitySpecification right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ResourcePoolAffinitySpecification FromMutable(ScriptDom.ResourcePoolAffinitySpecification fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ResourcePoolAffinitySpecification)) { throw new NotImplementedException("Unexpected subtype of ResourcePoolAffinitySpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ResourcePoolAffinitySpecification(
+                affinityType: fragment.AffinityType,
+                parameterValue: ImmutableDom.Literal.FromMutable(fragment.ParameterValue),
+                isAuto: fragment.IsAuto,
+                poolAffinityRanges: fragment.PoolAffinityRanges.SelectList(ImmutableDom.LiteralRange.FromMutable)
+            );
+        }
     
     }
 

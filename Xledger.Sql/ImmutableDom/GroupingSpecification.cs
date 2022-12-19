@@ -8,6 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class GroupingSpecification : TSqlFragment {
+        public static GroupingSpecification FromMutable(ScriptDom.GroupingSpecification fragment) => (GroupingSpecification)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

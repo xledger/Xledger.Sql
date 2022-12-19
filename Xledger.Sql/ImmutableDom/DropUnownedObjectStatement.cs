@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Name => name;
         public bool IsIfExists => isIfExists;
     
+        public static DropUnownedObjectStatement FromMutable(ScriptDom.DropUnownedObjectStatement fragment) => (DropUnownedObjectStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

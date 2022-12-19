@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AvailabilityReplica)that;
             compare = Comparer.DefaultInvariant.Compare(this.serverName, othr.serverName);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AvailabilityReplica left, AvailabilityReplica right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AvailabilityReplica left, AvailabilityReplica right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AvailabilityReplica left, AvailabilityReplica right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AvailabilityReplica left, AvailabilityReplica right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AvailabilityReplica FromMutable(ScriptDom.AvailabilityReplica fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AvailabilityReplica)) { throw new NotImplementedException("Unexpected subtype of AvailabilityReplica not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AvailabilityReplica(
+                serverName: ImmutableDom.StringLiteral.FromMutable(fragment.ServerName),
+                options: fragment.Options.SelectList(ImmutableDom.AvailabilityReplicaOption.FromMutable)
+            );
+        }
     
     }
 

@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QueryStoreTimeCleanupPolicyOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.staleQueryThreshold, othr.staleQueryThreshold);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (QueryStoreTimeCleanupPolicyOption left, QueryStoreTimeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(QueryStoreTimeCleanupPolicyOption left, QueryStoreTimeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (QueryStoreTimeCleanupPolicyOption left, QueryStoreTimeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryStoreTimeCleanupPolicyOption left, QueryStoreTimeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static QueryStoreTimeCleanupPolicyOption FromMutable(ScriptDom.QueryStoreTimeCleanupPolicyOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QueryStoreTimeCleanupPolicyOption)) { throw new NotImplementedException("Unexpected subtype of QueryStoreTimeCleanupPolicyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new QueryStoreTimeCleanupPolicyOption(
+                staleQueryThreshold: ImmutableDom.Literal.FromMutable(fragment.StaleQueryThreshold),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

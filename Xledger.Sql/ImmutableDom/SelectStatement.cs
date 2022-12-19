@@ -103,7 +103,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SelectStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.queryExpression, othr.queryExpression);
             if (compare != 0) { return compare; }
@@ -119,10 +119,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SelectStatement left, SelectStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SelectStatement left, SelectStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SelectStatement left, SelectStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SelectStatement left, SelectStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SelectStatement FromMutable(ScriptDom.SelectStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SelectStatement)) { return TSqlFragment.FromMutable(fragment) as SelectStatement; }
+            return new SelectStatement(
+                queryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.QueryExpression),
+                into: ImmutableDom.SchemaObjectName.FromMutable(fragment.Into),
+                on: ImmutableDom.Identifier.FromMutable(fragment.On),
+                computeClauses: fragment.ComputeClauses.SelectList(ImmutableDom.ComputeClause.FromMutable),
+                withCtesAndXmlNamespaces: ImmutableDom.WithCtesAndXmlNamespaces.FromMutable(fragment.WithCtesAndXmlNamespaces),
+                optimizerHints: fragment.OptimizerHints.SelectList(ImmutableDom.OptimizerHint.FromMutable)
+            );
+        }
     
     }
 

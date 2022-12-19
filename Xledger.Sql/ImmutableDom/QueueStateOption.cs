@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.QueueStateOption ToMutableConcrete() {
+        public new ScriptDom.QueueStateOption ToMutableConcrete() {
             var ret = new ScriptDom.QueueStateOption();
             ret.OptionState = optionState;
             ret.OptionKind = optionKind;
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QueueStateOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionState, othr.optionState);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (QueueStateOption left, QueueStateOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(QueueStateOption left, QueueStateOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (QueueStateOption left, QueueStateOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueueStateOption left, QueueStateOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static QueueStateOption FromMutable(ScriptDom.QueueStateOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QueueStateOption)) { throw new NotImplementedException("Unexpected subtype of QueueStateOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new QueueStateOption(
+                optionState: fragment.OptionState,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

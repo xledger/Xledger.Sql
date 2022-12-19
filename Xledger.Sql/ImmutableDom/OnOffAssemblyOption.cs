@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.OnOffAssemblyOption ToMutableConcrete() {
+        public new ScriptDom.OnOffAssemblyOption ToMutableConcrete() {
             var ret = new ScriptDom.OnOffAssemblyOption();
             ret.OptionState = optionState;
             ret.OptionKind = optionKind;
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OnOffAssemblyOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionState, othr.optionState);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OnOffAssemblyOption left, OnOffAssemblyOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OnOffAssemblyOption left, OnOffAssemblyOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OnOffAssemblyOption left, OnOffAssemblyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OnOffAssemblyOption left, OnOffAssemblyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OnOffAssemblyOption FromMutable(ScriptDom.OnOffAssemblyOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OnOffAssemblyOption)) { throw new NotImplementedException("Unexpected subtype of OnOffAssemblyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OnOffAssemblyOption(
+                optionState: fragment.OptionState,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FunctionCallSetClause)that;
             compare = Comparer.DefaultInvariant.Compare(this.mutatorFunction, othr.mutatorFunction);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (FunctionCallSetClause left, FunctionCallSetClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(FunctionCallSetClause left, FunctionCallSetClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (FunctionCallSetClause left, FunctionCallSetClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FunctionCallSetClause left, FunctionCallSetClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static FunctionCallSetClause FromMutable(ScriptDom.FunctionCallSetClause fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FunctionCallSetClause)) { throw new NotImplementedException("Unexpected subtype of FunctionCallSetClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new FunctionCallSetClause(
+                mutatorFunction: ImmutableDom.FunctionCall.FromMutable(fragment.MutatorFunction)
+            );
+        }
     
     }
 

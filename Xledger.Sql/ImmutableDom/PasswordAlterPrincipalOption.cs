@@ -29,7 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.PasswordAlterPrincipalOption ToMutableConcrete() {
+        public new ScriptDom.PasswordAlterPrincipalOption ToMutableConcrete() {
             var ret = new ScriptDom.PasswordAlterPrincipalOption();
             ret.Password = (ScriptDom.Literal)password?.ToMutable();
             ret.OldPassword = (ScriptDom.Literal)oldPassword?.ToMutable();
@@ -101,7 +101,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PasswordAlterPrincipalOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.password, othr.password);
             if (compare != 0) { return compare; }
@@ -117,10 +117,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PasswordAlterPrincipalOption left, PasswordAlterPrincipalOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static PasswordAlterPrincipalOption FromMutable(ScriptDom.PasswordAlterPrincipalOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.PasswordAlterPrincipalOption)) { throw new NotImplementedException("Unexpected subtype of PasswordAlterPrincipalOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new PasswordAlterPrincipalOption(
+                password: ImmutableDom.Literal.FromMutable(fragment.Password),
+                oldPassword: ImmutableDom.Literal.FromMutable(fragment.OldPassword),
+                mustChange: fragment.MustChange,
+                unlock: fragment.Unlock,
+                hashed: fragment.Hashed,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

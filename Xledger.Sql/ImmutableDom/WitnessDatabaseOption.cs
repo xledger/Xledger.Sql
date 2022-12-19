@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.WitnessDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.WitnessDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.WitnessDatabaseOption();
             ret.WitnessServer = (ScriptDom.Literal)witnessServer?.ToMutable();
             ret.IsOff = isOff;
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WitnessDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.witnessServer, othr.witnessServer);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (WitnessDatabaseOption left, WitnessDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(WitnessDatabaseOption left, WitnessDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (WitnessDatabaseOption left, WitnessDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WitnessDatabaseOption left, WitnessDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static WitnessDatabaseOption FromMutable(ScriptDom.WitnessDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.WitnessDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of WitnessDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new WitnessDatabaseOption(
+                witnessServer: ImmutableDom.Literal.FromMutable(fragment.WitnessServer),
+                isOff: fragment.IsOff,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

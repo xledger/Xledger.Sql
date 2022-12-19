@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SecurityUserClause80)that;
             compare = Comparer.DefaultInvariant.Compare(this.users, othr.users);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SecurityUserClause80 left, SecurityUserClause80 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SecurityUserClause80 left, SecurityUserClause80 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SecurityUserClause80 left, SecurityUserClause80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SecurityUserClause80 left, SecurityUserClause80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SecurityUserClause80 FromMutable(ScriptDom.SecurityUserClause80 fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SecurityUserClause80)) { throw new NotImplementedException("Unexpected subtype of SecurityUserClause80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SecurityUserClause80(
+                users: fragment.Users.SelectList(ImmutableDom.Identifier.FromMutable),
+                userType80: fragment.UserType80
+            );
+        }
     
     }
 

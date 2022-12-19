@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterExternalLanguageStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.platform, othr.platform);
             if (compare != 0) { return compare; }
@@ -109,10 +109,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterExternalLanguageStatement left, AlterExternalLanguageStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterExternalLanguageStatement FromMutable(ScriptDom.AlterExternalLanguageStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterExternalLanguageStatement)) { throw new NotImplementedException("Unexpected subtype of AlterExternalLanguageStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterExternalLanguageStatement(
+                platform: ImmutableDom.Identifier.FromMutable(fragment.Platform),
+                operation: ImmutableDom.Identifier.FromMutable(fragment.Operation),
+                owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                externalLanguageFiles: fragment.ExternalLanguageFiles.SelectList(ImmutableDom.ExternalLanguageFileOption.FromMutable)
+            );
+        }
     
     }
 

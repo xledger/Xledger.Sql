@@ -8,6 +8,8 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace Xledger.Sql.ImmutableDom {
     public abstract class ForClause : TSqlFragment {
+        public static ForClause FromMutable(ScriptDom.ForClause fragment) => (ForClause)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

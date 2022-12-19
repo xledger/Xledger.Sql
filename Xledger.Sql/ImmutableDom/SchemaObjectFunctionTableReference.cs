@@ -89,7 +89,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SchemaObjectFunctionTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.schemaObject, othr.schemaObject);
             if (compare != 0) { return compare; }
@@ -103,10 +103,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SchemaObjectFunctionTableReference left, SchemaObjectFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SchemaObjectFunctionTableReference left, SchemaObjectFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SchemaObjectFunctionTableReference left, SchemaObjectFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SchemaObjectFunctionTableReference left, SchemaObjectFunctionTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SchemaObjectFunctionTableReference FromMutable(ScriptDom.SchemaObjectFunctionTableReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SchemaObjectFunctionTableReference)) { throw new NotImplementedException("Unexpected subtype of SchemaObjectFunctionTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SchemaObjectFunctionTableReference(
+                schemaObject: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObject),
+                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

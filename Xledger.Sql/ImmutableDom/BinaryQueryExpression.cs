@@ -111,7 +111,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BinaryQueryExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.binaryQueryExpressionType, othr.binaryQueryExpressionType);
             if (compare != 0) { return compare; }
@@ -129,10 +129,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BinaryQueryExpression left, BinaryQueryExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static BinaryQueryExpression FromMutable(ScriptDom.BinaryQueryExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BinaryQueryExpression)) { throw new NotImplementedException("Unexpected subtype of BinaryQueryExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new BinaryQueryExpression(
+                binaryQueryExpressionType: fragment.BinaryQueryExpressionType,
+                all: fragment.All,
+                firstQueryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.FirstQueryExpression),
+                secondQueryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.SecondQueryExpression),
+                orderByClause: ImmutableDom.OrderByClause.FromMutable(fragment.OrderByClause),
+                offsetClause: ImmutableDom.OffsetClause.FromMutable(fragment.OffsetClause),
+                forClause: ImmutableDom.ForClause.FromMutable(fragment.ForClause)
+            );
+        }
     
     }
 

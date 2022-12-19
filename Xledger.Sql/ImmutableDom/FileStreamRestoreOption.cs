@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.FileStreamRestoreOption ToMutableConcrete() {
+        public new ScriptDom.FileStreamRestoreOption ToMutableConcrete() {
             var ret = new ScriptDom.FileStreamRestoreOption();
             ret.FileStreamOption = (ScriptDom.FileStreamDatabaseOption)fileStreamOption?.ToMutable();
             ret.OptionKind = optionKind;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (FileStreamRestoreOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.fileStreamOption, othr.fileStreamOption);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (FileStreamRestoreOption left, FileStreamRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(FileStreamRestoreOption left, FileStreamRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (FileStreamRestoreOption left, FileStreamRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(FileStreamRestoreOption left, FileStreamRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static FileStreamRestoreOption FromMutable(ScriptDom.FileStreamRestoreOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.FileStreamRestoreOption)) { throw new NotImplementedException("Unexpected subtype of FileStreamRestoreOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new FileStreamRestoreOption(
+                fileStreamOption: ImmutableDom.FileStreamDatabaseOption.FromMutable(fragment.FileStreamOption),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

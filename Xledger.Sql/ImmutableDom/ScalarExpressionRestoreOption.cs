@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.ScalarExpressionRestoreOption ToMutableConcrete() {
+        public new ScriptDom.ScalarExpressionRestoreOption ToMutableConcrete() {
             var ret = new ScriptDom.ScalarExpressionRestoreOption();
             ret.Value = (ScriptDom.ScalarExpression)@value?.ToMutable();
             ret.OptionKind = optionKind;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ScalarExpressionRestoreOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ScalarExpressionRestoreOption left, ScalarExpressionRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ScalarExpressionRestoreOption left, ScalarExpressionRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ScalarExpressionRestoreOption left, ScalarExpressionRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ScalarExpressionRestoreOption left, ScalarExpressionRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ScalarExpressionRestoreOption FromMutable(ScriptDom.ScalarExpressionRestoreOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ScalarExpressionRestoreOption)) { throw new NotImplementedException("Unexpected subtype of ScalarExpressionRestoreOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ScalarExpressionRestoreOption(
+                @value: ImmutableDom.ScalarExpression.FromMutable(fragment.Value),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

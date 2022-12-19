@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier DatabaseName => databaseName;
         public bool UseCurrent => useCurrent;
     
+        public static AlterDatabaseStatement FromMutable(ScriptDom.AlterDatabaseStatement fragment) => (AlterDatabaseStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ProviderKeyNameKeyOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.keyName, othr.keyName);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ProviderKeyNameKeyOption left, ProviderKeyNameKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ProviderKeyNameKeyOption left, ProviderKeyNameKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ProviderKeyNameKeyOption left, ProviderKeyNameKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ProviderKeyNameKeyOption left, ProviderKeyNameKeyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ProviderKeyNameKeyOption FromMutable(ScriptDom.ProviderKeyNameKeyOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ProviderKeyNameKeyOption)) { throw new NotImplementedException("Unexpected subtype of ProviderKeyNameKeyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ProviderKeyNameKeyOption(
+                keyName: ImmutableDom.Literal.FromMutable(fragment.KeyName),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

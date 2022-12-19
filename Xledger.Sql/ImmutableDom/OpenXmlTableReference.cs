@@ -113,7 +113,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OpenXmlTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
@@ -131,10 +131,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OpenXmlTableReference left, OpenXmlTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OpenXmlTableReference FromMutable(ScriptDom.OpenXmlTableReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OpenXmlTableReference)) { throw new NotImplementedException("Unexpected subtype of OpenXmlTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OpenXmlTableReference(
+                variable: ImmutableDom.VariableReference.FromMutable(fragment.Variable),
+                rowPattern: ImmutableDom.ValueExpression.FromMutable(fragment.RowPattern),
+                flags: ImmutableDom.ValueExpression.FromMutable(fragment.Flags),
+                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(ImmutableDom.SchemaDeclarationItem.FromMutable),
+                tableName: ImmutableDom.SchemaObjectName.FromMutable(fragment.TableName),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

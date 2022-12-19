@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerConfigurationStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.processAffinity, othr.processAffinity);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationStatement left, AlterServerConfigurationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterServerConfigurationStatement FromMutable(ScriptDom.AlterServerConfigurationStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterServerConfigurationStatement(
+                processAffinity: fragment.ProcessAffinity,
+                processAffinityRanges: fragment.ProcessAffinityRanges.SelectList(ImmutableDom.ProcessAffinityRange.FromMutable)
+            );
+        }
     
     }
 

@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UpdateStatisticsStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (UpdateStatisticsStatement left, UpdateStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(UpdateStatisticsStatement left, UpdateStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (UpdateStatisticsStatement left, UpdateStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UpdateStatisticsStatement left, UpdateStatisticsStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static UpdateStatisticsStatement FromMutable(ScriptDom.UpdateStatisticsStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.UpdateStatisticsStatement)) { throw new NotImplementedException("Unexpected subtype of UpdateStatisticsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new UpdateStatisticsStatement(
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
+                subElements: fragment.SubElements.SelectList(ImmutableDom.Identifier.FromMutable),
+                statisticsOptions: fragment.StatisticsOptions.SelectList(ImmutableDom.StatisticsOption.FromMutable)
+            );
+        }
     
     }
 

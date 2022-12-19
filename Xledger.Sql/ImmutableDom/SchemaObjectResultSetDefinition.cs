@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.resultSetType = resultSetType;
         }
     
-        public ScriptDom.SchemaObjectResultSetDefinition ToMutableConcrete() {
+        public new ScriptDom.SchemaObjectResultSetDefinition ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectResultSetDefinition();
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.ResultSetType = resultSetType;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SchemaObjectResultSetDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SchemaObjectResultSetDefinition left, SchemaObjectResultSetDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SchemaObjectResultSetDefinition left, SchemaObjectResultSetDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SchemaObjectResultSetDefinition left, SchemaObjectResultSetDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SchemaObjectResultSetDefinition left, SchemaObjectResultSetDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SchemaObjectResultSetDefinition FromMutable(ScriptDom.SchemaObjectResultSetDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SchemaObjectResultSetDefinition)) { throw new NotImplementedException("Unexpected subtype of SchemaObjectResultSetDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SchemaObjectResultSetDefinition(
+                name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
+                resultSetType: fragment.ResultSetType
+            );
+        }
     
     }
 

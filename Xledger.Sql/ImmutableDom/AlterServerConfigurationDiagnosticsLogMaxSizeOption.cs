@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionValue = optionValue;
         }
     
-        public ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption ToMutableConcrete() {
+        public new ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption();
             ret.SizeUnit = sizeUnit;
             ret.OptionKind = optionKind;
@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterServerConfigurationDiagnosticsLogMaxSizeOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.sizeUnit, othr.sizeUnit);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterServerConfigurationDiagnosticsLogMaxSizeOption left, AlterServerConfigurationDiagnosticsLogMaxSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterServerConfigurationDiagnosticsLogMaxSizeOption left, AlterServerConfigurationDiagnosticsLogMaxSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterServerConfigurationDiagnosticsLogMaxSizeOption left, AlterServerConfigurationDiagnosticsLogMaxSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterServerConfigurationDiagnosticsLogMaxSizeOption left, AlterServerConfigurationDiagnosticsLogMaxSizeOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterServerConfigurationDiagnosticsLogMaxSizeOption FromMutable(ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationDiagnosticsLogMaxSizeOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterServerConfigurationDiagnosticsLogMaxSizeOption(
+                sizeUnit: fragment.SizeUnit,
+                optionKind: fragment.OptionKind,
+                optionValue: ImmutableDom.OptionValue.FromMutable(fragment.OptionValue)
+            );
+        }
     
     }
 

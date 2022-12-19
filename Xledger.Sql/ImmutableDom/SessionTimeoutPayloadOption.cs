@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SessionTimeoutPayloadOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.isNever, othr.isNever);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SessionTimeoutPayloadOption left, SessionTimeoutPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SessionTimeoutPayloadOption FromMutable(ScriptDom.SessionTimeoutPayloadOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SessionTimeoutPayloadOption)) { throw new NotImplementedException("Unexpected subtype of SessionTimeoutPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SessionTimeoutPayloadOption(
+                isNever: fragment.IsNever,
+                timeout: ImmutableDom.Literal.FromMutable(fragment.Timeout),
+                kind: fragment.Kind
+            );
+        }
     
     }
 

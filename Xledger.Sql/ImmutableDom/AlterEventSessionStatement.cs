@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.sessionOptions = ImmList<SessionOption>.FromList(sessionOptions);
         }
     
-        public ScriptDom.AlterEventSessionStatement ToMutableConcrete() {
+        public new ScriptDom.AlterEventSessionStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterEventSessionStatement();
             ret.StatementType = statementType;
             ret.DropEventDeclarations.AddRange(dropEventDeclarations.SelectList(c => (ScriptDom.EventSessionObjectName)c?.ToMutable()));
@@ -107,7 +107,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterEventSessionStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.statementType, othr.statementType);
             if (compare != 0) { return compare; }
@@ -127,10 +127,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterEventSessionStatement left, AlterEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterEventSessionStatement left, AlterEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterEventSessionStatement left, AlterEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterEventSessionStatement left, AlterEventSessionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterEventSessionStatement FromMutable(ScriptDom.AlterEventSessionStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterEventSessionStatement)) { throw new NotImplementedException("Unexpected subtype of AlterEventSessionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterEventSessionStatement(
+                statementType: fragment.StatementType,
+                dropEventDeclarations: fragment.DropEventDeclarations.SelectList(ImmutableDom.EventSessionObjectName.FromMutable),
+                dropTargetDeclarations: fragment.DropTargetDeclarations.SelectList(ImmutableDom.EventSessionObjectName.FromMutable),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                sessionScope: fragment.SessionScope,
+                eventDeclarations: fragment.EventDeclarations.SelectList(ImmutableDom.EventDeclaration.FromMutable),
+                targetDeclarations: fragment.TargetDeclarations.SelectList(ImmutableDom.TargetDeclaration.FromMutable),
+                sessionOptions: fragment.SessionOptions.SelectList(ImmutableDom.SessionOption.FromMutable)
+            );
+        }
     
     }
 

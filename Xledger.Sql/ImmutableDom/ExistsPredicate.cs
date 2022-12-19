@@ -61,16 +61,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExistsPredicate)that;
             compare = Comparer.DefaultInvariant.Compare(this.subquery, othr.subquery);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ExistsPredicate left, ExistsPredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ExistsPredicate left, ExistsPredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ExistsPredicate left, ExistsPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExistsPredicate left, ExistsPredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ExistsPredicate FromMutable(ScriptDom.ExistsPredicate fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExistsPredicate)) { throw new NotImplementedException("Unexpected subtype of ExistsPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ExistsPredicate(
+                subquery: ImmutableDom.ScalarSubquery.FromMutable(fragment.Subquery)
+            );
+        }
     
     }
 

@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.WorkloadGroupParameterType ParameterType => parameterType;
     
+        public static WorkloadGroupParameter FromMutable(ScriptDom.WorkloadGroupParameter fragment) => (WorkloadGroupParameter)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

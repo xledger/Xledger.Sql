@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.genericOptionKind = genericOptionKind;
         }
     
-        public ScriptDom.OnOffPrimaryConfigurationOption ToMutableConcrete() {
+        public new ScriptDom.OnOffPrimaryConfigurationOption ToMutableConcrete() {
             var ret = new ScriptDom.OnOffPrimaryConfigurationOption();
             ret.OptionState = optionState;
             ret.OptionKind = optionKind;
@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OnOffPrimaryConfigurationOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionState, othr.optionState);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OnOffPrimaryConfigurationOption left, OnOffPrimaryConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OnOffPrimaryConfigurationOption left, OnOffPrimaryConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OnOffPrimaryConfigurationOption left, OnOffPrimaryConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OnOffPrimaryConfigurationOption left, OnOffPrimaryConfigurationOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OnOffPrimaryConfigurationOption FromMutable(ScriptDom.OnOffPrimaryConfigurationOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OnOffPrimaryConfigurationOption)) { throw new NotImplementedException("Unexpected subtype of OnOffPrimaryConfigurationOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OnOffPrimaryConfigurationOption(
+                optionState: fragment.OptionState,
+                optionKind: fragment.OptionKind,
+                genericOptionKind: ImmutableDom.Identifier.FromMutable(fragment.GenericOptionKind)
+            );
+        }
     
     }
 

@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateExternalTableStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.schemaObjectName, othr.schemaObjectName);
             if (compare != 0) { return compare; }
@@ -99,10 +99,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateExternalTableStatement left, CreateExternalTableStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateExternalTableStatement FromMutable(ScriptDom.CreateExternalTableStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateExternalTableStatement)) { throw new NotImplementedException("Unexpected subtype of CreateExternalTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateExternalTableStatement(
+                schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
+                columnDefinitions: fragment.ColumnDefinitions.SelectList(ImmutableDom.ExternalTableColumnDefinition.FromMutable),
+                dataSource: ImmutableDom.Identifier.FromMutable(fragment.DataSource),
+                externalTableOptions: fragment.ExternalTableOptions.SelectList(ImmutableDom.ExternalTableOption.FromMutable),
+                selectStatement: ImmutableDom.SelectStatement.FromMutable(fragment.SelectStatement)
+            );
+        }
     
     }
 

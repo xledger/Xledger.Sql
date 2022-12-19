@@ -101,7 +101,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterFunctionStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.name, othr.name);
             if (compare != 0) { return compare; }
@@ -119,10 +119,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterFunctionStatement left, AlterFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterFunctionStatement left, AlterFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterFunctionStatement left, AlterFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterFunctionStatement left, AlterFunctionStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterFunctionStatement FromMutable(ScriptDom.AlterFunctionStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterFunctionStatement)) { throw new NotImplementedException("Unexpected subtype of AlterFunctionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterFunctionStatement(
+                name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
+                returnType: ImmutableDom.FunctionReturnType.FromMutable(fragment.ReturnType),
+                options: fragment.Options.SelectList(ImmutableDom.FunctionOption.FromMutable),
+                orderHint: ImmutableDom.OrderBulkInsertOption.FromMutable(fragment.OrderHint),
+                parameters: fragment.Parameters.SelectList(ImmutableDom.ProcedureParameter.FromMutable),
+                statementList: ImmutableDom.StatementList.FromMutable(fragment.StatementList),
+                methodSpecifier: ImmutableDom.MethodSpecifier.FromMutable(fragment.MethodSpecifier)
+            );
+        }
     
     }
 

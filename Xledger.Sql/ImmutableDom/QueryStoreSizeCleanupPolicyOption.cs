@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QueryStoreSizeCleanupPolicyOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.@value, othr.@value);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (QueryStoreSizeCleanupPolicyOption left, QueryStoreSizeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(QueryStoreSizeCleanupPolicyOption left, QueryStoreSizeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (QueryStoreSizeCleanupPolicyOption left, QueryStoreSizeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueryStoreSizeCleanupPolicyOption left, QueryStoreSizeCleanupPolicyOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static QueryStoreSizeCleanupPolicyOption FromMutable(ScriptDom.QueryStoreSizeCleanupPolicyOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QueryStoreSizeCleanupPolicyOption)) { throw new NotImplementedException("Unexpected subtype of QueryStoreSizeCleanupPolicyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new QueryStoreSizeCleanupPolicyOption(
+                @value: fragment.Value,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

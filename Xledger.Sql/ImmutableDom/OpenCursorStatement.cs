@@ -57,16 +57,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OpenCursorStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.cursor, othr.cursor);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OpenCursorStatement left, OpenCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OpenCursorStatement left, OpenCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OpenCursorStatement left, OpenCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OpenCursorStatement left, OpenCursorStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OpenCursorStatement FromMutable(ScriptDom.OpenCursorStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OpenCursorStatement)) { throw new NotImplementedException("Unexpected subtype of OpenCursorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OpenCursorStatement(
+                cursor: ImmutableDom.CursorId.FromMutable(fragment.Cursor)
+            );
+        }
     
     }
 

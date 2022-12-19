@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (MoveConversationStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.conversation, othr.conversation);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (MoveConversationStatement left, MoveConversationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(MoveConversationStatement left, MoveConversationStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (MoveConversationStatement left, MoveConversationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(MoveConversationStatement left, MoveConversationStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static MoveConversationStatement FromMutable(ScriptDom.MoveConversationStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.MoveConversationStatement)) { throw new NotImplementedException("Unexpected subtype of MoveConversationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new MoveConversationStatement(
+                conversation: ImmutableDom.ScalarExpression.FromMutable(fragment.Conversation),
+                group: ImmutableDom.ScalarExpression.FromMutable(fragment.Group)
+            );
+        }
     
     }
 

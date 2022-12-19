@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterFullTextCatalogStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.action, othr.action);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterFullTextCatalogStatement left, AlterFullTextCatalogStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterFullTextCatalogStatement left, AlterFullTextCatalogStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterFullTextCatalogStatement left, AlterFullTextCatalogStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterFullTextCatalogStatement left, AlterFullTextCatalogStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterFullTextCatalogStatement FromMutable(ScriptDom.AlterFullTextCatalogStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterFullTextCatalogStatement)) { throw new NotImplementedException("Unexpected subtype of AlterFullTextCatalogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterFullTextCatalogStatement(
+                action: fragment.Action,
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                options: fragment.Options.SelectList(ImmutableDom.FullTextCatalogOption.FromMutable)
+            );
+        }
     
     }
 

@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CharacterSetPayloadOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.isSql, othr.isSql);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CharacterSetPayloadOption left, CharacterSetPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CharacterSetPayloadOption left, CharacterSetPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CharacterSetPayloadOption left, CharacterSetPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CharacterSetPayloadOption left, CharacterSetPayloadOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CharacterSetPayloadOption FromMutable(ScriptDom.CharacterSetPayloadOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CharacterSetPayloadOption)) { throw new NotImplementedException("Unexpected subtype of CharacterSetPayloadOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CharacterSetPayloadOption(
+                isSql: fragment.IsSql,
+                kind: fragment.Kind
+            );
+        }
     
     }
 

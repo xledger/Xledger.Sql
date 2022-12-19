@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.quoteType = quoteType;
         }
     
-        public ScriptDom.IdentifierSnippet ToMutableConcrete() {
+        public new ScriptDom.IdentifierSnippet ToMutableConcrete() {
             var ret = new ScriptDom.IdentifierSnippet();
             ret.Script = script;
             ret.Value = @value;
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IdentifierSnippet)that;
             compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.script, othr.script);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (IdentifierSnippet left, IdentifierSnippet right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(IdentifierSnippet left, IdentifierSnippet right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (IdentifierSnippet left, IdentifierSnippet right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(IdentifierSnippet left, IdentifierSnippet right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static IdentifierSnippet FromMutable(ScriptDom.IdentifierSnippet fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.IdentifierSnippet)) { throw new NotImplementedException("Unexpected subtype of IdentifierSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new IdentifierSnippet(
+                script: fragment.Script,
+                @value: fragment.Value,
+                quoteType: fragment.QuoteType
+            );
+        }
     
     }
 

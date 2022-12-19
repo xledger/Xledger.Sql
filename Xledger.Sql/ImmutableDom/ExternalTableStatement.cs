@@ -20,6 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ExternalTableOption> ExternalTableOptions => externalTableOptions;
         public SelectStatement SelectStatement => selectStatement;
     
+        public static ExternalTableStatement FromMutable(ScriptDom.ExternalTableStatement fragment) => (ExternalTableStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

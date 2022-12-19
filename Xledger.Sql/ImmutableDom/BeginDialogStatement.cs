@@ -117,7 +117,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BeginDialogStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.isConversation, othr.isConversation);
             if (compare != 0) { return compare; }
@@ -135,10 +135,25 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (BeginDialogStatement left, BeginDialogStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(BeginDialogStatement left, BeginDialogStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (BeginDialogStatement left, BeginDialogStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BeginDialogStatement left, BeginDialogStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static BeginDialogStatement FromMutable(ScriptDom.BeginDialogStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BeginDialogStatement)) { throw new NotImplementedException("Unexpected subtype of BeginDialogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new BeginDialogStatement(
+                isConversation: fragment.IsConversation,
+                handle: ImmutableDom.VariableReference.FromMutable(fragment.Handle),
+                initiatorServiceName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.InitiatorServiceName),
+                targetServiceName: ImmutableDom.ValueExpression.FromMutable(fragment.TargetServiceName),
+                instanceSpec: ImmutableDom.ValueExpression.FromMutable(fragment.InstanceSpec),
+                contractName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.ContractName),
+                options: fragment.Options.SelectList(ImmutableDom.DialogOption.FromMutable)
+            );
+        }
     
     }
 

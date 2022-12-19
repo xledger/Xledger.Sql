@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TSqlScript)that;
             compare = Comparer.DefaultInvariant.Compare(this.batches, othr.batches);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (TSqlScript left, TSqlScript right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(TSqlScript left, TSqlScript right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (TSqlScript left, TSqlScript right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TSqlScript left, TSqlScript right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static TSqlScript FromMutable(ScriptDom.TSqlScript fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TSqlScript)) { throw new NotImplementedException("Unexpected subtype of TSqlScript not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new TSqlScript(
+                batches: fragment.Batches.SelectList(ImmutableDom.TSqlBatch.FromMutable)
+            );
+        }
     
     }
 

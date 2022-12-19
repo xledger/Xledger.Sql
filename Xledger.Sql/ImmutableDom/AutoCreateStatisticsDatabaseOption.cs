@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.AutoCreateStatisticsDatabaseOption ToMutableConcrete() {
+        public new ScriptDom.AutoCreateStatisticsDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.AutoCreateStatisticsDatabaseOption();
             ret.HasIncremental = hasIncremental;
             ret.IncrementalState = incrementalState;
@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AutoCreateStatisticsDatabaseOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.hasIncremental, othr.hasIncremental);
             if (compare != 0) { return compare; }
@@ -91,10 +91,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AutoCreateStatisticsDatabaseOption left, AutoCreateStatisticsDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AutoCreateStatisticsDatabaseOption left, AutoCreateStatisticsDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AutoCreateStatisticsDatabaseOption left, AutoCreateStatisticsDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AutoCreateStatisticsDatabaseOption left, AutoCreateStatisticsDatabaseOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AutoCreateStatisticsDatabaseOption FromMutable(ScriptDom.AutoCreateStatisticsDatabaseOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AutoCreateStatisticsDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of AutoCreateStatisticsDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AutoCreateStatisticsDatabaseOption(
+                hasIncremental: fragment.HasIncremental,
+                incrementalState: fragment.IncrementalState,
+                optionState: fragment.OptionState,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

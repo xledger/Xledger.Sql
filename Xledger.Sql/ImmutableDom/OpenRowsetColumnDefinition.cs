@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.collation = collation;
         }
     
-        public ScriptDom.OpenRowsetColumnDefinition ToMutableConcrete() {
+        public new ScriptDom.OpenRowsetColumnDefinition ToMutableConcrete() {
             var ret = new ScriptDom.OpenRowsetColumnDefinition();
             ret.ColumnOrdinal = (ScriptDom.IntegerLiteral)columnOrdinal?.ToMutable();
             ret.JsonPath = (ScriptDom.StringLiteral)jsonPath?.ToMutable();
@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (OpenRowsetColumnDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.columnOrdinal, othr.columnOrdinal);
             if (compare != 0) { return compare; }
@@ -109,10 +109,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (OpenRowsetColumnDefinition left, OpenRowsetColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(OpenRowsetColumnDefinition left, OpenRowsetColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (OpenRowsetColumnDefinition left, OpenRowsetColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(OpenRowsetColumnDefinition left, OpenRowsetColumnDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static OpenRowsetColumnDefinition FromMutable(ScriptDom.OpenRowsetColumnDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.OpenRowsetColumnDefinition)) { throw new NotImplementedException("Unexpected subtype of OpenRowsetColumnDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new OpenRowsetColumnDefinition(
+                columnOrdinal: ImmutableDom.IntegerLiteral.FromMutable(fragment.ColumnOrdinal),
+                jsonPath: ImmutableDom.StringLiteral.FromMutable(fragment.JsonPath),
+                columnIdentifier: ImmutableDom.Identifier.FromMutable(fragment.ColumnIdentifier),
+                dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

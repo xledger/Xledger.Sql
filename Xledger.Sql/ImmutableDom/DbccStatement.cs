@@ -101,7 +101,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DbccStatement)that;
             compare = CaseInsensitiveComparer.DefaultInvariant.Compare(this.dllName, othr.dllName);
             if (compare != 0) { return compare; }
@@ -117,10 +117,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DbccStatement left, DbccStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DbccStatement left, DbccStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DbccStatement left, DbccStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DbccStatement left, DbccStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DbccStatement FromMutable(ScriptDom.DbccStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DbccStatement)) { throw new NotImplementedException("Unexpected subtype of DbccStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DbccStatement(
+                dllName: fragment.DllName,
+                command: fragment.Command,
+                parenthesisRequired: fragment.ParenthesisRequired,
+                literals: fragment.Literals.SelectList(ImmutableDom.DbccNamedLiteral.FromMutable),
+                options: fragment.Options.SelectList(ImmutableDom.DbccOption.FromMutable),
+                optionsUseJoin: fragment.OptionsUseJoin
+            );
+        }
     
     }
 

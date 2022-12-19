@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropSymmetricKeyStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.removeProviderKey, othr.removeProviderKey);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DropSymmetricKeyStatement left, DropSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DropSymmetricKeyStatement left, DropSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DropSymmetricKeyStatement left, DropSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropSymmetricKeyStatement left, DropSymmetricKeyStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DropSymmetricKeyStatement FromMutable(ScriptDom.DropSymmetricKeyStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DropSymmetricKeyStatement)) { throw new NotImplementedException("Unexpected subtype of DropSymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DropSymmetricKeyStatement(
+                removeProviderKey: fragment.RemoveProviderKey,
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                isIfExists: fragment.IsIfExists
+            );
+        }
     
     }
 

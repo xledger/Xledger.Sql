@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScalarExpression ElseExpression => elseExpression;
     
+        public static CaseExpression FromMutable(ScriptDom.CaseExpression fragment) => (CaseExpression)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

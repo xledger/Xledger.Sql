@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.IgnoreDupKeyIndexOption ToMutableConcrete() {
+        public new ScriptDom.IgnoreDupKeyIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.IgnoreDupKeyIndexOption();
             ret.SuppressMessagesOption = suppressMessagesOption;
             ret.OptionState = optionState;
@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IgnoreDupKeyIndexOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.suppressMessagesOption, othr.suppressMessagesOption);
             if (compare != 0) { return compare; }
@@ -81,10 +81,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(IgnoreDupKeyIndexOption left, IgnoreDupKeyIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static IgnoreDupKeyIndexOption FromMutable(ScriptDom.IgnoreDupKeyIndexOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.IgnoreDupKeyIndexOption)) { throw new NotImplementedException("Unexpected subtype of IgnoreDupKeyIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new IgnoreDupKeyIndexOption(
+                suppressMessagesOption: fragment.SuppressMessagesOption,
+                optionState: fragment.OptionState,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

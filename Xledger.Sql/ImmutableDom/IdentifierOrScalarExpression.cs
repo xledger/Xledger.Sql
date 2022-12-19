@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (IdentifierOrScalarExpression)that;
             compare = Comparer.DefaultInvariant.Compare(this.identifier, othr.identifier);
             if (compare != 0) { return compare; }
@@ -79,10 +79,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (IdentifierOrScalarExpression left, IdentifierOrScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(IdentifierOrScalarExpression left, IdentifierOrScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (IdentifierOrScalarExpression left, IdentifierOrScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(IdentifierOrScalarExpression left, IdentifierOrScalarExpression right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static IdentifierOrScalarExpression FromMutable(ScriptDom.IdentifierOrScalarExpression fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.IdentifierOrScalarExpression)) { throw new NotImplementedException("Unexpected subtype of IdentifierOrScalarExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new IdentifierOrScalarExpression(
+                identifier: ImmutableDom.Identifier.FromMutable(fragment.Identifier),
+                scalarExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.ScalarExpression)
+            );
+        }
     
     }
 

@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CompressionEndpointProtocolOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.isEnabled, othr.isEnabled);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CompressionEndpointProtocolOption left, CompressionEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CompressionEndpointProtocolOption left, CompressionEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CompressionEndpointProtocolOption left, CompressionEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CompressionEndpointProtocolOption left, CompressionEndpointProtocolOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CompressionEndpointProtocolOption FromMutable(ScriptDom.CompressionEndpointProtocolOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CompressionEndpointProtocolOption)) { throw new NotImplementedException("Unexpected subtype of CompressionEndpointProtocolOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CompressionEndpointProtocolOption(
+                isEnabled: fragment.IsEnabled,
+                kind: fragment.Kind
+            );
+        }
     
     }
 

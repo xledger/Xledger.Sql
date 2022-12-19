@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CommandSecurityElement80)that;
             compare = Comparer.DefaultInvariant.Compare(this.all, othr.all);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CommandSecurityElement80 left, CommandSecurityElement80 right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CommandSecurityElement80 left, CommandSecurityElement80 right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CommandSecurityElement80 left, CommandSecurityElement80 right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CommandSecurityElement80 left, CommandSecurityElement80 right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CommandSecurityElement80 FromMutable(ScriptDom.CommandSecurityElement80 fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CommandSecurityElement80)) { throw new NotImplementedException("Unexpected subtype of CommandSecurityElement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CommandSecurityElement80(
+                all: fragment.All,
+                commandOptions: fragment.CommandOptions
+            );
+        }
     
     }
 

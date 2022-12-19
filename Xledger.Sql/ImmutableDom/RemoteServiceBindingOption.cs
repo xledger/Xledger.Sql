@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.RemoteServiceBindingOptionKind OptionKind => optionKind;
     
+        public static RemoteServiceBindingOption FromMutable(ScriptDom.RemoteServiceBindingOption fragment) => (RemoteServiceBindingOption)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

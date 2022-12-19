@@ -14,6 +14,8 @@ namespace Xledger.Sql.ImmutableDom {
         public TableReference FirstTableReference => firstTableReference;
         public TableReference SecondTableReference => secondTableReference;
     
+        public static JoinTableReference FromMutable(ScriptDom.JoinTableReference fragment) => (JoinTableReference)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

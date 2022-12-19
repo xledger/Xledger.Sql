@@ -129,7 +129,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (UniqueConstraintDefinition)that;
             compare = Comparer.DefaultInvariant.Compare(this.clustered, othr.clustered);
             if (compare != 0) { return compare; }
@@ -151,10 +151,27 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (UniqueConstraintDefinition left, UniqueConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(UniqueConstraintDefinition left, UniqueConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (UniqueConstraintDefinition left, UniqueConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(UniqueConstraintDefinition left, UniqueConstraintDefinition right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static UniqueConstraintDefinition FromMutable(ScriptDom.UniqueConstraintDefinition fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.UniqueConstraintDefinition)) { throw new NotImplementedException("Unexpected subtype of UniqueConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new UniqueConstraintDefinition(
+                clustered: fragment.Clustered,
+                isPrimaryKey: fragment.IsPrimaryKey,
+                isEnforced: fragment.IsEnforced,
+                columns: fragment.Columns.SelectList(ImmutableDom.ColumnWithSortOrder.FromMutable),
+                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable),
+                onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                indexType: ImmutableDom.IndexType.FromMutable(fragment.IndexType),
+                fileStreamOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.FileStreamOn),
+                constraintIdentifier: ImmutableDom.Identifier.FromMutable(fragment.ConstraintIdentifier)
+            );
+        }
     
     }
 

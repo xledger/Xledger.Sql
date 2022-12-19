@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (StopListFullTextIndexOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.isOff, othr.isOff);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (StopListFullTextIndexOption left, StopListFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(StopListFullTextIndexOption left, StopListFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (StopListFullTextIndexOption left, StopListFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(StopListFullTextIndexOption left, StopListFullTextIndexOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static StopListFullTextIndexOption FromMutable(ScriptDom.StopListFullTextIndexOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.StopListFullTextIndexOption)) { throw new NotImplementedException("Unexpected subtype of StopListFullTextIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new StopListFullTextIndexOption(
+                isOff: fragment.IsOff,
+                stopListName: ImmutableDom.Identifier.FromMutable(fragment.StopListName),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

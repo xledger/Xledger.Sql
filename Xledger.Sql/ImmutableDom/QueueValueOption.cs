@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.QueueValueOption ToMutableConcrete() {
+        public new ScriptDom.QueueValueOption ToMutableConcrete() {
             var ret = new ScriptDom.QueueValueOption();
             ret.OptionValue = (ScriptDom.ValueExpression)optionValue?.ToMutable();
             ret.OptionKind = optionKind;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (QueueValueOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionValue, othr.optionValue);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (QueueValueOption left, QueueValueOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(QueueValueOption left, QueueValueOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (QueueValueOption left, QueueValueOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(QueueValueOption left, QueueValueOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static QueueValueOption FromMutable(ScriptDom.QueueValueOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.QueueValueOption)) { throw new NotImplementedException("Unexpected subtype of QueueValueOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new QueueValueOption(
+                optionValue: ImmutableDom.ValueExpression.FromMutable(fragment.OptionValue),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public IReadOnlyList<ChildObjectName> Objects => objects;
     
+        public static DropChildObjectsStatement FromMutable(ScriptDom.DropChildObjectsStatement fragment) => (DropChildObjectsStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

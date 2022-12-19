@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.noValue = noValue;
         }
     
-        public ScriptDom.ScalarExpressionSequenceOption ToMutableConcrete() {
+        public new ScriptDom.ScalarExpressionSequenceOption ToMutableConcrete() {
             var ret = new ScriptDom.ScalarExpressionSequenceOption();
             ret.OptionValue = (ScriptDom.ScalarExpression)optionValue?.ToMutable();
             ret.OptionKind = optionKind;
@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ScalarExpressionSequenceOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionValue, othr.optionValue);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ScalarExpressionSequenceOption left, ScalarExpressionSequenceOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ScalarExpressionSequenceOption left, ScalarExpressionSequenceOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ScalarExpressionSequenceOption left, ScalarExpressionSequenceOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ScalarExpressionSequenceOption left, ScalarExpressionSequenceOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ScalarExpressionSequenceOption FromMutable(ScriptDom.ScalarExpressionSequenceOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ScalarExpressionSequenceOption)) { throw new NotImplementedException("Unexpected subtype of ScalarExpressionSequenceOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ScalarExpressionSequenceOption(
+                optionValue: ImmutableDom.ScalarExpression.FromMutable(fragment.OptionValue),
+                optionKind: fragment.OptionKind,
+                noValue: fragment.NoValue
+            );
+        }
     
     }
 

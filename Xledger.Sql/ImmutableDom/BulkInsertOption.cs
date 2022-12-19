@@ -59,16 +59,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (BulkInsertOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.optionKind, othr.optionKind);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (BulkInsertOption left, BulkInsertOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(BulkInsertOption left, BulkInsertOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (BulkInsertOption left, BulkInsertOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(BulkInsertOption left, BulkInsertOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static BulkInsertOption FromMutable(ScriptDom.BulkInsertOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.BulkInsertOption)) { return TSqlFragment.FromMutable(fragment) as BulkInsertOption; }
+            return new BulkInsertOption(
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

@@ -12,6 +12,8 @@ namespace Xledger.Sql.ImmutableDom {
     
         public bool IsOn => isOn;
     
+        public static SetOnOffStatement FromMutable(ScriptDom.SetOnOffStatement fragment) => (SetOnOffStatement)TSqlFragment.FromMutable(fragment);
+    
     }
 
 }

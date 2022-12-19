@@ -77,7 +77,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterLoginAddDropCredentialStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.isAdd, othr.isAdd);
             if (compare != 0) { return compare; }
@@ -87,10 +87,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterLoginAddDropCredentialStatement left, AlterLoginAddDropCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterLoginAddDropCredentialStatement left, AlterLoginAddDropCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterLoginAddDropCredentialStatement left, AlterLoginAddDropCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterLoginAddDropCredentialStatement left, AlterLoginAddDropCredentialStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterLoginAddDropCredentialStatement FromMutable(ScriptDom.AlterLoginAddDropCredentialStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterLoginAddDropCredentialStatement)) { throw new NotImplementedException("Unexpected subtype of AlterLoginAddDropCredentialStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterLoginAddDropCredentialStatement(
+                isAdd: fragment.IsAdd,
+                credentialName: ImmutableDom.Identifier.FromMutable(fragment.CredentialName),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name)
+            );
+        }
     
     }
 

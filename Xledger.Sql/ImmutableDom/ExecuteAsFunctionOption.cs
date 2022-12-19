@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.ExecuteAsFunctionOption ToMutableConcrete() {
+        public new ScriptDom.ExecuteAsFunctionOption ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteAsFunctionOption();
             ret.ExecuteAs = (ScriptDom.ExecuteAsClause)executeAs?.ToMutable();
             ret.OptionKind = optionKind;
@@ -67,7 +67,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ExecuteAsFunctionOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.executeAs, othr.executeAs);
             if (compare != 0) { return compare; }
@@ -75,10 +75,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ExecuteAsFunctionOption left, ExecuteAsFunctionOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ExecuteAsFunctionOption left, ExecuteAsFunctionOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ExecuteAsFunctionOption left, ExecuteAsFunctionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ExecuteAsFunctionOption left, ExecuteAsFunctionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ExecuteAsFunctionOption FromMutable(ScriptDom.ExecuteAsFunctionOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ExecuteAsFunctionOption)) { throw new NotImplementedException("Unexpected subtype of ExecuteAsFunctionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ExecuteAsFunctionOption(
+                executeAs: ImmutableDom.ExecuteAsClause.FromMutable(fragment.ExecuteAs),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

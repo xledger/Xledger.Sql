@@ -87,7 +87,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (PartitionFunctionCall)that;
             compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
@@ -99,10 +99,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(PartitionFunctionCall left, PartitionFunctionCall right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static PartitionFunctionCall FromMutable(ScriptDom.PartitionFunctionCall fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.PartitionFunctionCall)) { throw new NotImplementedException("Unexpected subtype of PartitionFunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new PartitionFunctionCall(
+                databaseName: ImmutableDom.Identifier.FromMutable(fragment.DatabaseName),
+                functionName: ImmutableDom.Identifier.FromMutable(fragment.FunctionName),
+                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
+            );
+        }
     
     }
 

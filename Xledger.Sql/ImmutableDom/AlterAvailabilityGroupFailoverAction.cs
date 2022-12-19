@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.actionType = actionType;
         }
     
-        public ScriptDom.AlterAvailabilityGroupFailoverAction ToMutableConcrete() {
+        public new ScriptDom.AlterAvailabilityGroupFailoverAction ToMutableConcrete() {
             var ret = new ScriptDom.AlterAvailabilityGroupFailoverAction();
             ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterAvailabilityGroupFailoverOption)c?.ToMutable()));
             ret.ActionType = actionType;
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (AlterAvailabilityGroupFailoverAction)that;
             compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (AlterAvailabilityGroupFailoverAction left, AlterAvailabilityGroupFailoverAction right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(AlterAvailabilityGroupFailoverAction left, AlterAvailabilityGroupFailoverAction right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (AlterAvailabilityGroupFailoverAction left, AlterAvailabilityGroupFailoverAction right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(AlterAvailabilityGroupFailoverAction left, AlterAvailabilityGroupFailoverAction right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static AlterAvailabilityGroupFailoverAction FromMutable(ScriptDom.AlterAvailabilityGroupFailoverAction fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.AlterAvailabilityGroupFailoverAction)) { throw new NotImplementedException("Unexpected subtype of AlterAvailabilityGroupFailoverAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new AlterAvailabilityGroupFailoverAction(
+                options: fragment.Options.SelectList(ImmutableDom.AlterAvailabilityGroupFailoverOption.FromMutable),
+                actionType: fragment.ActionType
+            );
+        }
     
     }
 

@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (LikePredicate)that;
             compare = Comparer.DefaultInvariant.Compare(this.firstExpression, othr.firstExpression);
             if (compare != 0) { return compare; }
@@ -111,10 +111,23 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(LikePredicate left, LikePredicate right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static LikePredicate FromMutable(ScriptDom.LikePredicate fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.LikePredicate)) { throw new NotImplementedException("Unexpected subtype of LikePredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new LikePredicate(
+                firstExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.FirstExpression),
+                secondExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.SecondExpression),
+                notDefined: fragment.NotDefined,
+                odbcEscape: fragment.OdbcEscape,
+                escapeExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.EscapeExpression)
+            );
+        }
     
     }
 

@@ -89,7 +89,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WaitForStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.waitForOption, othr.waitForOption);
             if (compare != 0) { return compare; }
@@ -101,10 +101,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (WaitForStatement left, WaitForStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(WaitForStatement left, WaitForStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (WaitForStatement left, WaitForStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WaitForStatement left, WaitForStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static WaitForStatement FromMutable(ScriptDom.WaitForStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.WaitForStatement)) { throw new NotImplementedException("Unexpected subtype of WaitForStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new WaitForStatement(
+                waitForOption: fragment.WaitForOption,
+                parameter: ImmutableDom.ValueExpression.FromMutable(fragment.Parameter),
+                timeout: ImmutableDom.ScalarExpression.FromMutable(fragment.Timeout),
+                statement: ImmutableDom.WaitForSupportedStatement.FromMutable(fragment.Statement)
+            );
+        }
     
     }
 

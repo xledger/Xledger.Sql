@@ -12,7 +12,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.identifiers = ImmList<Identifier>.FromList(identifiers);
         }
     
-        public ScriptDom.SchemaObjectName ToMutableConcrete() {
+        public new ScriptDom.SchemaObjectName ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectName();
             ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
@@ -55,16 +55,25 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SchemaObjectName)that;
             compare = Comparer.DefaultInvariant.Compare(this.identifiers, othr.identifiers);
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SchemaObjectName left, SchemaObjectName right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SchemaObjectName left, SchemaObjectName right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SchemaObjectName left, SchemaObjectName right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SchemaObjectName left, SchemaObjectName right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SchemaObjectName FromMutable(ScriptDom.SchemaObjectName fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SchemaObjectName)) { return TSqlFragment.FromMutable(fragment) as SchemaObjectName; }
+            return new SchemaObjectName(
+                identifiers: fragment.Identifiers.SelectList(ImmutableDom.Identifier.FromMutable)
+            );
+        }
     
     }
 

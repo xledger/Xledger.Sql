@@ -119,7 +119,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (CreateXmlIndexStatement)that;
             compare = Comparer.DefaultInvariant.Compare(this.primary, othr.primary);
             if (compare != 0) { return compare; }
@@ -139,10 +139,26 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (CreateXmlIndexStatement left, CreateXmlIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(CreateXmlIndexStatement left, CreateXmlIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (CreateXmlIndexStatement left, CreateXmlIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(CreateXmlIndexStatement left, CreateXmlIndexStatement right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static CreateXmlIndexStatement FromMutable(ScriptDom.CreateXmlIndexStatement fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.CreateXmlIndexStatement)) { throw new NotImplementedException("Unexpected subtype of CreateXmlIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new CreateXmlIndexStatement(
+                primary: fragment.Primary,
+                xmlColumn: ImmutableDom.Identifier.FromMutable(fragment.XmlColumn),
+                secondaryXmlIndexName: ImmutableDom.Identifier.FromMutable(fragment.SecondaryXmlIndexName),
+                secondaryXmlIndexType: fragment.SecondaryXmlIndexType,
+                onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
+                name: ImmutableDom.Identifier.FromMutable(fragment.Name),
+                onName: ImmutableDom.SchemaObjectName.FromMutable(fragment.OnName),
+                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable)
+            );
+        }
     
     }
 

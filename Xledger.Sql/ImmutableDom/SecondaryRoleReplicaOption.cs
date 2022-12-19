@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (SecondaryRoleReplicaOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.allowConnections, othr.allowConnections);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (SecondaryRoleReplicaOption left, SecondaryRoleReplicaOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(SecondaryRoleReplicaOption left, SecondaryRoleReplicaOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (SecondaryRoleReplicaOption left, SecondaryRoleReplicaOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(SecondaryRoleReplicaOption left, SecondaryRoleReplicaOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static SecondaryRoleReplicaOption FromMutable(ScriptDom.SecondaryRoleReplicaOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.SecondaryRoleReplicaOption)) { throw new NotImplementedException("Unexpected subtype of SecondaryRoleReplicaOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new SecondaryRoleReplicaOption(
+                allowConnections: fragment.AllowConnections,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

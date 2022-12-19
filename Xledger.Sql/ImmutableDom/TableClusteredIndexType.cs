@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (TableClusteredIndexType)that;
             compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(TableClusteredIndexType left, TableClusteredIndexType right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static TableClusteredIndexType FromMutable(ScriptDom.TableClusteredIndexType fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.TableClusteredIndexType)) { throw new NotImplementedException("Unexpected subtype of TableClusteredIndexType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new TableClusteredIndexType(
+                columns: fragment.Columns.SelectList(ImmutableDom.ColumnWithSortOrder.FromMutable),
+                columnStore: fragment.ColumnStore,
+                orderedColumns: fragment.OrderedColumns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable)
+            );
+        }
     
     }
 

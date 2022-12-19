@@ -73,7 +73,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DataCompressionOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.compressionLevel, othr.compressionLevel);
             if (compare != 0) { return compare; }
@@ -83,10 +83,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DataCompressionOption left, DataCompressionOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DataCompressionOption FromMutable(ScriptDom.DataCompressionOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DataCompressionOption)) { throw new NotImplementedException("Unexpected subtype of DataCompressionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DataCompressionOption(
+                compressionLevel: fragment.CompressionLevel,
+                partitionRanges: fragment.PartitionRanges.SelectList(ImmutableDom.CompressionPartitionRange.FromMutable),
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

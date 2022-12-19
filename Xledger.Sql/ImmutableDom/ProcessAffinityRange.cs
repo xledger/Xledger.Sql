@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.to = to;
         }
     
-        public ScriptDom.ProcessAffinityRange ToMutableConcrete() {
+        public new ScriptDom.ProcessAffinityRange ToMutableConcrete() {
             var ret = new ScriptDom.ProcessAffinityRange();
             ret.From = (ScriptDom.Literal)from?.ToMutable();
             ret.To = (ScriptDom.Literal)to?.ToMutable();
@@ -65,7 +65,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (ProcessAffinityRange)that;
             compare = Comparer.DefaultInvariant.Compare(this.from, othr.from);
             if (compare != 0) { return compare; }
@@ -73,10 +73,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (ProcessAffinityRange left, ProcessAffinityRange right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(ProcessAffinityRange left, ProcessAffinityRange right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (ProcessAffinityRange left, ProcessAffinityRange right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(ProcessAffinityRange left, ProcessAffinityRange right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static ProcessAffinityRange FromMutable(ScriptDom.ProcessAffinityRange fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.ProcessAffinityRange)) { throw new NotImplementedException("Unexpected subtype of ProcessAffinityRange not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new ProcessAffinityRange(
+                from: ImmutableDom.Literal.FromMutable(fragment.From),
+                to: ImmutableDom.Literal.FromMutable(fragment.To)
+            );
+        }
     
     }
 

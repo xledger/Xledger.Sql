@@ -99,7 +99,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (VariableMethodCallTableReference)that;
             compare = Comparer.DefaultInvariant.Compare(this.variable, othr.variable);
             if (compare != 0) { return compare; }
@@ -115,10 +115,24 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (VariableMethodCallTableReference left, VariableMethodCallTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(VariableMethodCallTableReference left, VariableMethodCallTableReference right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (VariableMethodCallTableReference left, VariableMethodCallTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(VariableMethodCallTableReference left, VariableMethodCallTableReference right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static VariableMethodCallTableReference FromMutable(ScriptDom.VariableMethodCallTableReference fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.VariableMethodCallTableReference)) { throw new NotImplementedException("Unexpected subtype of VariableMethodCallTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new VariableMethodCallTableReference(
+                variable: ImmutableDom.VariableReference.FromMutable(fragment.Variable),
+                methodName: ImmutableDom.Identifier.FromMutable(fragment.MethodName),
+                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
+                forPath: fragment.ForPath
+            );
+        }
     
     }
 

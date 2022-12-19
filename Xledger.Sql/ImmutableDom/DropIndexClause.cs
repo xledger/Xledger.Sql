@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (DropIndexClause)that;
             compare = Comparer.DefaultInvariant.Compare(this.index, othr.index);
             if (compare != 0) { return compare; }
@@ -89,10 +89,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (DropIndexClause left, DropIndexClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(DropIndexClause left, DropIndexClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (DropIndexClause left, DropIndexClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(DropIndexClause left, DropIndexClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static DropIndexClause FromMutable(ScriptDom.DropIndexClause fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.DropIndexClause)) { throw new NotImplementedException("Unexpected subtype of DropIndexClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new DropIndexClause(
+                index: ImmutableDom.Identifier.FromMutable(fragment.Index),
+                @object: ImmutableDom.SchemaObjectName.FromMutable(fragment.Object),
+                options: fragment.Options.SelectList(ImmutableDom.IndexOption.FromMutable)
+            );
+        }
     
     }
 

@@ -69,7 +69,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (WithinGroupClause)that;
             compare = Comparer.DefaultInvariant.Compare(this.orderByClause, othr.orderByClause);
             if (compare != 0) { return compare; }
@@ -77,10 +77,20 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (WithinGroupClause left, WithinGroupClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(WithinGroupClause left, WithinGroupClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (WithinGroupClause left, WithinGroupClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(WithinGroupClause left, WithinGroupClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static WithinGroupClause FromMutable(ScriptDom.WithinGroupClause fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.WithinGroupClause)) { throw new NotImplementedException("Unexpected subtype of WithinGroupClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new WithinGroupClause(
+                orderByClause: ImmutableDom.OrderByClause.FromMutable(fragment.OrderByClause),
+                hasGraphPath: fragment.HasGraphPath
+            );
+        }
     
     }
 

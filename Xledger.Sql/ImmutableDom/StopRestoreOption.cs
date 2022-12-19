@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.optionKind = optionKind;
         }
     
-        public ScriptDom.StopRestoreOption ToMutableConcrete() {
+        public new ScriptDom.StopRestoreOption ToMutableConcrete() {
             var ret = new ScriptDom.StopRestoreOption();
             ret.Mark = (ScriptDom.ValueExpression)mark?.ToMutable();
             ret.After = (ScriptDom.ValueExpression)after?.ToMutable();
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (StopRestoreOption)that;
             compare = Comparer.DefaultInvariant.Compare(this.mark, othr.mark);
             if (compare != 0) { return compare; }
@@ -97,10 +97,22 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (StopRestoreOption left, StopRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(StopRestoreOption left, StopRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (StopRestoreOption left, StopRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(StopRestoreOption left, StopRestoreOption right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static StopRestoreOption FromMutable(ScriptDom.StopRestoreOption fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.StopRestoreOption)) { throw new NotImplementedException("Unexpected subtype of StopRestoreOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new StopRestoreOption(
+                mark: ImmutableDom.ValueExpression.FromMutable(fragment.Mark),
+                after: ImmutableDom.ValueExpression.FromMutable(fragment.After),
+                isStopAt: fragment.IsStopAt,
+                optionKind: fragment.OptionKind
+            );
+        }
     
     }
 

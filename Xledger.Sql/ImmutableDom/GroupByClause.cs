@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int CompareTo(TSqlFragment that) {
             var compare = 1;
             if (that == null) { return compare; }
-            if (!object.ReferenceEquals(this.GetType(), that.GetType())) { return this.GetType().Name.CompareTo(that.GetType().Name); }
+            if (this.GetType() != that.GetType()) { return this.GetType().Name.CompareTo(that.GetType().Name); }
             var othr = (GroupByClause)that;
             compare = Comparer.DefaultInvariant.Compare(this.groupByOption, othr.groupByOption);
             if (compare != 0) { return compare; }
@@ -85,10 +85,21 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             return compare;
         } 
+        
         public static bool operator < (GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) <  0;
         public static bool operator <=(GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) <= 0;
         public static bool operator > (GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) >  0;
         public static bool operator >=(GroupByClause left, GroupByClause right) => Comparer.DefaultInvariant.Compare(left, right) >= 0;
+    
+        public static GroupByClause FromMutable(ScriptDom.GroupByClause fragment) {
+            if (fragment is null) { return null; }
+            if (fragment.GetType() != typeof(ScriptDom.GroupByClause)) { throw new NotImplementedException("Unexpected subtype of GroupByClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
+            return new GroupByClause(
+                groupByOption: fragment.GroupByOption,
+                all: fragment.All,
+                groupingSpecifications: fragment.GroupingSpecifications.SelectList(ImmutableDom.GroupingSpecification.FromMutable)
+            );
+        }
     
     }
 
