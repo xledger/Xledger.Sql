@@ -1,5 +1,7 @@
 # Xledger.Sql
 
+[![NuGet version (Xledger.Sql)](https://img.shields.io/nuget/v/Xledger.sql.svg?style=flat-square)](https://www.nuget.org/packages/Xledger.Sql/)
+
 Xledger.Sql provides tools for analyzing and transforming Transact SQL queries. This is provide in 3 main pieces:
 
 1. [`Xledger.Sql.ScopedFragmentTransformer`](./Xledger.Sql/ScopedFragmentTransformer.cs): a `TSqlFragment` visitor that tracks the scope of visits to ease context-aware rewrites.
