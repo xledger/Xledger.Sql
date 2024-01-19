@@ -14,6 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
         protected ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified;
         protected ScriptDom.DeleteUpdateAction updateAction = ScriptDom.DeleteUpdateAction.NotSpecified;
         protected bool notForReplication = false;
+        protected bool? isEnforced;
     
         public IReadOnlyList<Identifier> Columns => columns;
         public SchemaObjectName ReferenceTableName => referenceTableName;
@@ -21,14 +22,16 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DeleteUpdateAction DeleteAction => deleteAction;
         public ScriptDom.DeleteUpdateAction UpdateAction => updateAction;
         public bool NotForReplication => notForReplication;
+        public bool? IsEnforced => isEnforced;
     
-        public ForeignKeyConstraintDefinition(IReadOnlyList<Identifier> columns = null, SchemaObjectName referenceTableName = null, IReadOnlyList<Identifier> referencedTableColumns = null, ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified, ScriptDom.DeleteUpdateAction updateAction = ScriptDom.DeleteUpdateAction.NotSpecified, bool notForReplication = false, Identifier constraintIdentifier = null) {
+        public ForeignKeyConstraintDefinition(IReadOnlyList<Identifier> columns = null, SchemaObjectName referenceTableName = null, IReadOnlyList<Identifier> referencedTableColumns = null, ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified, ScriptDom.DeleteUpdateAction updateAction = ScriptDom.DeleteUpdateAction.NotSpecified, bool notForReplication = false, bool? isEnforced = null, Identifier constraintIdentifier = null) {
             this.columns = ImmList<Identifier>.FromList(columns);
             this.referenceTableName = referenceTableName;
             this.referencedTableColumns = ImmList<Identifier>.FromList(referencedTableColumns);
             this.deleteAction = deleteAction;
             this.updateAction = updateAction;
             this.notForReplication = notForReplication;
+            this.isEnforced = isEnforced;
             this.constraintIdentifier = constraintIdentifier;
         }
     
@@ -40,6 +43,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DeleteAction = deleteAction;
             ret.UpdateAction = updateAction;
             ret.NotForReplication = notForReplication;
+            ret.IsEnforced = isEnforced;
             ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier?.ToMutable();
             return ret;
         }
@@ -58,6 +62,7 @@ namespace Xledger.Sql.ImmutableDom {
             h = h * 23 + deleteAction.GetHashCode();
             h = h * 23 + updateAction.GetHashCode();
             h = h * 23 + notForReplication.GetHashCode();
+            h = h * 23 + isEnforced.GetHashCode();
             if (!(constraintIdentifier is null)) {
                 h = h * 23 + constraintIdentifier.GetHashCode();
             }
@@ -86,6 +91,9 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<bool>.Default.Equals(other.NotForReplication, notForReplication)) {
+                return false;
+            }
+            if (!EqualityComparer<bool?>.Default.Equals(other.IsEnforced, isEnforced)) {
                 return false;
             }
             if (!EqualityComparer<Identifier>.Default.Equals(other.ConstraintIdentifier, constraintIdentifier)) {
@@ -123,6 +131,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.notForReplication, othr.notForReplication);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.isEnforced, othr.isEnforced);
+            if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.constraintIdentifier, othr.constraintIdentifier);
             if (compare != 0) { return compare; }
             return compare;
@@ -143,6 +153,7 @@ namespace Xledger.Sql.ImmutableDom {
                 deleteAction: fragment.DeleteAction,
                 updateAction: fragment.UpdateAction,
                 notForReplication: fragment.NotForReplication,
+                isEnforced: fragment.IsEnforced,
                 constraintIdentifier: ImmutableDom.Identifier.FromMutable(fragment.ConstraintIdentifier)
             );
         }

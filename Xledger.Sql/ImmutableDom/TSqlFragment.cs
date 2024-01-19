@@ -427,497 +427,499 @@ namespace Xledger.Sql.ImmutableDom {
             ["DropWorkloadGroupStatement"] = 407,
             ["DropXmlSchemaCollectionStatement"] = 408,
             ["DurabilityTableOption"] = 409,
-            ["EnabledDisabledPayloadOption"] = 410,
-            ["EnableDisableTriggerStatement"] = 411,
-            ["EncryptedValueParameter"] = 412,
-            ["EncryptionPayloadOption"] = 413,
-            ["EndConversationStatement"] = 414,
-            ["EndpointAffinity"] = 415,
-            ["EventDeclaration"] = 416,
-            ["EventDeclarationCompareFunctionParameter"] = 417,
-            ["EventDeclarationSetParameter"] = 418,
-            ["EventGroupContainer"] = 419,
-            ["EventNotificationObjectScope"] = 420,
-            ["EventRetentionSessionOption"] = 421,
-            ["EventSessionObjectName"] = 422,
-            ["EventSessionStatement"] = 423,
-            ["EventTypeContainer"] = 424,
-            ["ExecutableProcedureReference"] = 425,
-            ["ExecutableStringList"] = 426,
-            ["ExecuteAsClause"] = 427,
-            ["ExecuteAsFunctionOption"] = 428,
-            ["ExecuteAsProcedureOption"] = 429,
-            ["ExecuteAsStatement"] = 430,
-            ["ExecuteAsTriggerOption"] = 431,
-            ["ExecuteContext"] = 432,
-            ["ExecuteInsertSource"] = 433,
-            ["ExecuteOption"] = 434,
-            ["ExecuteParameter"] = 435,
-            ["ExecuteSpecification"] = 436,
-            ["ExecuteStatement"] = 437,
-            ["ExistsPredicate"] = 438,
-            ["ExpressionCallTarget"] = 439,
-            ["ExpressionGroupingSpecification"] = 440,
-            ["ExpressionWithSortOrder"] = 441,
-            ["ExternalCreateLoginSource"] = 442,
-            ["ExternalDataSourceLiteralOrIdentifierOption"] = 443,
-            ["ExternalFileFormatContainerOption"] = 444,
-            ["ExternalFileFormatLiteralOption"] = 445,
-            ["ExternalFileFormatUseDefaultTypeOption"] = 446,
-            ["ExternalLanguageFileOption"] = 447,
-            ["ExternalLibraryFileOption"] = 448,
-            ["ExternalResourcePoolAffinitySpecification"] = 449,
-            ["ExternalResourcePoolParameter"] = 450,
-            ["ExternalResourcePoolStatement"] = 451,
-            ["ExternalStreamLiteralOrIdentifierOption"] = 452,
-            ["ExternalTableColumnDefinition"] = 453,
-            ["ExternalTableDistributionOption"] = 454,
-            ["ExternalTableLiteralOrIdentifierOption"] = 455,
-            ["ExternalTableRejectTypeOption"] = 456,
-            ["ExternalTableReplicatedDistributionPolicy"] = 457,
-            ["ExternalTableRoundRobinDistributionPolicy"] = 458,
-            ["ExternalTableShardedDistributionPolicy"] = 459,
-            ["ExtractFromExpression"] = 460,
-            ["FailoverModeReplicaOption"] = 461,
-            ["FederationScheme"] = 462,
-            ["FetchCursorStatement"] = 463,
-            ["FetchType"] = 464,
-            ["FileDeclaration"] = 465,
-            ["FileDeclarationOption"] = 466,
-            ["FileEncryptionSource"] = 467,
-            ["FileGroupDefinition"] = 468,
-            ["FileGroupOrPartitionScheme"] = 469,
-            ["FileGrowthFileDeclarationOption"] = 470,
-            ["FileNameFileDeclarationOption"] = 471,
-            ["FileStreamDatabaseOption"] = 472,
-            ["FileStreamOnDropIndexOption"] = 473,
-            ["FileStreamOnTableOption"] = 474,
-            ["FileStreamRestoreOption"] = 475,
-            ["FileTableCollateFileNameTableOption"] = 476,
-            ["FileTableConstraintNameTableOption"] = 477,
-            ["FileTableDirectoryTableOption"] = 478,
-            ["ForceSeekTableHint"] = 479,
-            ["ForeignKeyConstraintDefinition"] = 480,
-            ["FromClause"] = 481,
-            ["FullTextCatalogAndFileGroup"] = 482,
-            ["FullTextIndexColumn"] = 483,
-            ["FullTextPredicate"] = 484,
-            ["FullTextStopListAction"] = 485,
-            ["FullTextTableReference"] = 486,
-            ["FunctionCall"] = 487,
-            ["FunctionCallSetClause"] = 488,
-            ["FunctionOption"] = 489,
-            ["GeneralSetCommand"] = 490,
-            ["GenericConfigurationOption"] = 491,
-            ["GetConversationGroupStatement"] = 492,
-            ["GlobalFunctionTableReference"] = 493,
-            ["GlobalVariableExpression"] = 494,
-            ["GoToStatement"] = 495,
-            ["GrandTotalGroupingSpecification"] = 496,
-            ["GrantStatement"] = 497,
-            ["GrantStatement80"] = 498,
-            ["GraphConnectionBetweenNodes"] = 499,
-            ["GraphConnectionConstraintDefinition"] = 500,
-            ["GraphMatchCompositeExpression"] = 501,
-            ["GraphMatchExpression"] = 502,
-            ["GraphMatchLastNodePredicate"] = 503,
-            ["GraphMatchNodeExpression"] = 504,
-            ["GraphMatchPredicate"] = 505,
-            ["GraphMatchRecursivePredicate"] = 506,
-            ["GraphRecursiveMatchQuantifier"] = 507,
-            ["GridParameter"] = 508,
-            ["GridsSpatialIndexOption"] = 509,
-            ["GroupByClause"] = 510,
-            ["GroupingSetsGroupingSpecification"] = 511,
-            ["HadrAvailabilityGroupDatabaseOption"] = 512,
-            ["HadrDatabaseOption"] = 513,
-            ["HavingClause"] = 514,
-            ["Identifier"] = 515,
-            ["IdentifierAtomicBlockOption"] = 516,
-            ["IdentifierDatabaseOption"] = 517,
-            ["IdentifierLiteral"] = 518,
-            ["IdentifierOrScalarExpression"] = 519,
-            ["IdentifierOrValueExpression"] = 520,
-            ["IdentifierPrincipalOption"] = 521,
-            ["IdentifierSnippet"] = 522,
-            ["IdentityFunctionCall"] = 523,
-            ["IdentityOptions"] = 524,
-            ["IdentityValueKeyOption"] = 525,
-            ["IfStatement"] = 526,
-            ["IgnoreDupKeyIndexOption"] = 527,
-            ["IIfCall"] = 528,
-            ["IndexDefinition"] = 529,
-            ["IndexExpressionOption"] = 530,
-            ["IndexStateOption"] = 531,
-            ["IndexTableHint"] = 532,
-            ["IndexType"] = 533,
-            ["InlineDerivedTable"] = 534,
-            ["InlineFunctionOption"] = 535,
-            ["InlineResultSetDefinition"] = 536,
-            ["InPredicate"] = 537,
-            ["InsertBulkColumnDefinition"] = 538,
-            ["InsertBulkStatement"] = 539,
-            ["InsertMergeAction"] = 540,
-            ["InsertSpecification"] = 541,
-            ["InsertStatement"] = 542,
-            ["IntegerLiteral"] = 543,
-            ["InternalOpenRowset"] = 544,
-            ["IPv4"] = 545,
-            ["JoinParenthesisTableReference"] = 546,
-            ["JsonForClause"] = 547,
-            ["JsonForClauseOption"] = 548,
-            ["JsonKeyValue"] = 549,
-            ["KeySourceKeyOption"] = 550,
-            ["KillQueryNotificationSubscriptionStatement"] = 551,
-            ["KillStatement"] = 552,
-            ["KillStatsJobStatement"] = 553,
-            ["LabelStatement"] = 554,
-            ["LedgerOption"] = 555,
-            ["LedgerTableOption"] = 556,
-            ["LedgerViewOption"] = 557,
-            ["LeftFunctionCall"] = 558,
-            ["LikePredicate"] = 559,
-            ["LineNoStatement"] = 560,
-            ["ListenerIPEndpointProtocolOption"] = 561,
-            ["ListTypeCopyOption"] = 562,
-            ["LiteralAtomicBlockOption"] = 563,
-            ["LiteralAuditTargetOption"] = 564,
-            ["LiteralAvailabilityGroupOption"] = 565,
-            ["LiteralBulkInsertOption"] = 566,
-            ["LiteralDatabaseOption"] = 567,
-            ["LiteralEndpointProtocolOption"] = 568,
-            ["LiteralOpenRowsetCosmosOption"] = 569,
-            ["LiteralOptimizerHint"] = 570,
-            ["LiteralOptionValue"] = 571,
-            ["LiteralPayloadOption"] = 572,
-            ["LiteralPrincipalOption"] = 573,
-            ["LiteralRange"] = 574,
-            ["LiteralReplicaOption"] = 575,
-            ["LiteralSessionOption"] = 576,
-            ["LiteralStatisticsOption"] = 577,
-            ["LiteralTableHint"] = 578,
-            ["LocationOption"] = 579,
-            ["LockEscalationTableOption"] = 580,
-            ["LoginTypePayloadOption"] = 581,
-            ["LowPriorityLockWaitAbortAfterWaitOption"] = 582,
-            ["LowPriorityLockWaitMaxDurationOption"] = 583,
-            ["LowPriorityLockWaitTableSwitchOption"] = 584,
-            ["MaxDispatchLatencySessionOption"] = 585,
-            ["MaxDopConfigurationOption"] = 586,
-            ["MaxDurationOption"] = 587,
-            ["MaxLiteral"] = 588,
-            ["MaxRolloverFilesAuditTargetOption"] = 589,
-            ["MaxSizeAuditTargetOption"] = 590,
-            ["MaxSizeDatabaseOption"] = 591,
-            ["MaxSizeFileDeclarationOption"] = 592,
-            ["MemoryOptimizedTableOption"] = 593,
-            ["MemoryPartitionSessionOption"] = 594,
-            ["MergeActionClause"] = 595,
-            ["MergeSpecification"] = 596,
-            ["MergeStatement"] = 597,
-            ["MethodSpecifier"] = 598,
-            ["MirrorToClause"] = 599,
-            ["MoneyLiteral"] = 600,
-            ["MoveConversationStatement"] = 601,
-            ["MoveRestoreOption"] = 602,
-            ["MoveToDropIndexOption"] = 603,
-            ["MultiPartIdentifier"] = 604,
-            ["MultiPartIdentifierCallTarget"] = 605,
-            ["NamedTableReference"] = 606,
-            ["NameFileDeclarationOption"] = 607,
-            ["NextValueForExpression"] = 608,
-            ["NullableConstraintDefinition"] = 609,
-            ["NullIfExpression"] = 610,
-            ["NullLiteral"] = 611,
-            ["NumericLiteral"] = 612,
-            ["OdbcConvertSpecification"] = 613,
-            ["OdbcFunctionCall"] = 614,
-            ["OdbcLiteral"] = 615,
-            ["OdbcQualifiedJoinTableReference"] = 616,
-            ["OffsetClause"] = 617,
-            ["OnFailureAuditOption"] = 618,
-            ["OnlineIndexLowPriorityLockWaitOption"] = 619,
-            ["OnlineIndexOption"] = 620,
-            ["OnOffAssemblyOption"] = 621,
-            ["OnOffAtomicBlockOption"] = 622,
-            ["OnOffAuditTargetOption"] = 623,
-            ["OnOffDatabaseOption"] = 624,
-            ["OnOffDialogOption"] = 625,
-            ["OnOffFullTextCatalogOption"] = 626,
-            ["OnOffOptionValue"] = 627,
-            ["OnOffPrimaryConfigurationOption"] = 628,
-            ["OnOffPrincipalOption"] = 629,
-            ["OnOffRemoteServiceBindingOption"] = 630,
-            ["OnOffSessionOption"] = 631,
-            ["OnOffStatisticsOption"] = 632,
-            ["OpenCursorStatement"] = 633,
-            ["OpenJsonTableReference"] = 634,
-            ["OpenMasterKeyStatement"] = 635,
-            ["OpenQueryTableReference"] = 636,
-            ["OpenRowsetColumnDefinition"] = 637,
-            ["OpenRowsetCosmos"] = 638,
-            ["OpenRowsetCosmosOption"] = 639,
-            ["OpenRowsetTableReference"] = 640,
-            ["OpenSymmetricKeyStatement"] = 641,
-            ["OpenXmlTableReference"] = 642,
-            ["OperatorAuditOption"] = 643,
-            ["OptimizeForOptimizerHint"] = 644,
-            ["OptimizerHint"] = 645,
-            ["OrderBulkInsertOption"] = 646,
-            ["OrderByClause"] = 647,
-            ["OrderIndexOption"] = 648,
-            ["OutputClause"] = 649,
-            ["OutputIntoClause"] = 650,
-            ["OverClause"] = 651,
-            ["PageVerifyDatabaseOption"] = 652,
-            ["ParameterizationDatabaseOption"] = 653,
-            ["ParameterlessCall"] = 654,
-            ["ParenthesisExpression"] = 655,
-            ["ParseCall"] = 656,
-            ["PartitionFunctionCall"] = 657,
-            ["PartitionParameterType"] = 658,
-            ["PartitionSpecifier"] = 659,
-            ["PartnerDatabaseOption"] = 660,
-            ["PasswordAlterPrincipalOption"] = 661,
-            ["PasswordCreateLoginSource"] = 662,
-            ["Permission"] = 663,
-            ["PermissionSetAssemblyOption"] = 664,
-            ["PivotedTableReference"] = 665,
-            ["PortsEndpointProtocolOption"] = 666,
-            ["PredicateSetStatement"] = 667,
-            ["PredictTableReference"] = 668,
-            ["PrimaryRoleReplicaOption"] = 669,
-            ["PrincipalOption"] = 670,
-            ["PrintStatement"] = 671,
-            ["Privilege80"] = 672,
-            ["PrivilegeSecurityElement80"] = 673,
-            ["ProcedureOption"] = 674,
-            ["ProcedureParameter"] = 675,
-            ["ProcedureReference"] = 676,
-            ["ProcedureReferenceName"] = 677,
-            ["ProcessAffinityRange"] = 678,
-            ["ProviderEncryptionSource"] = 679,
-            ["ProviderKeyNameKeyOption"] = 680,
-            ["QualifiedJoin"] = 681,
-            ["QueryDerivedTable"] = 682,
-            ["QueryParenthesisExpression"] = 683,
-            ["QuerySpecification"] = 684,
-            ["QueryStoreCapturePolicyOption"] = 685,
-            ["QueryStoreDatabaseOption"] = 686,
-            ["QueryStoreDataFlushIntervalOption"] = 687,
-            ["QueryStoreDesiredStateOption"] = 688,
-            ["QueryStoreIntervalLengthOption"] = 689,
-            ["QueryStoreMaxPlansPerQueryOption"] = 690,
-            ["QueryStoreMaxStorageSizeOption"] = 691,
-            ["QueryStoreSizeCleanupPolicyOption"] = 692,
-            ["QueryStoreTimeCleanupPolicyOption"] = 693,
-            ["QueueDelayAuditOption"] = 694,
-            ["QueueExecuteAsOption"] = 695,
-            ["QueueOption"] = 696,
-            ["QueueProcedureOption"] = 697,
-            ["QueueStateOption"] = 698,
-            ["QueueValueOption"] = 699,
-            ["RaiseErrorLegacyStatement"] = 700,
-            ["RaiseErrorStatement"] = 701,
-            ["ReadOnlyForClause"] = 702,
-            ["ReadTextStatement"] = 703,
-            ["RealLiteral"] = 704,
-            ["ReceiveStatement"] = 705,
-            ["ReconfigureStatement"] = 706,
-            ["RecoveryDatabaseOption"] = 707,
-            ["RemoteDataArchiveAlterTableOption"] = 708,
-            ["RemoteDataArchiveDatabaseOption"] = 709,
-            ["RemoteDataArchiveDbCredentialSetting"] = 710,
-            ["RemoteDataArchiveDbFederatedServiceAccountSetting"] = 711,
-            ["RemoteDataArchiveDbServerSetting"] = 712,
-            ["RemoteDataArchiveTableOption"] = 713,
-            ["RenameAlterRoleAction"] = 714,
-            ["RenameEntityStatement"] = 715,
-            ["ResampleStatisticsOption"] = 716,
-            ["ResourcePoolAffinitySpecification"] = 717,
-            ["ResourcePoolParameter"] = 718,
-            ["ResourcePoolStatement"] = 719,
-            ["RestoreMasterKeyStatement"] = 720,
-            ["RestoreOption"] = 721,
-            ["RestoreServiceMasterKeyStatement"] = 722,
-            ["RestoreStatement"] = 723,
-            ["ResultColumnDefinition"] = 724,
-            ["ResultSetDefinition"] = 725,
-            ["ResultSetsExecuteOption"] = 726,
-            ["RetentionDaysAuditTargetOption"] = 727,
-            ["RetentionPeriodDefinition"] = 728,
-            ["ReturnStatement"] = 729,
-            ["RevertStatement"] = 730,
-            ["RevokeStatement"] = 731,
-            ["RevokeStatement80"] = 732,
-            ["RightFunctionCall"] = 733,
-            ["RolePayloadOption"] = 734,
-            ["RollbackTransactionStatement"] = 735,
-            ["RollupGroupingSpecification"] = 736,
-            ["RouteOption"] = 737,
-            ["RowValue"] = 738,
-            ["SaveTransactionStatement"] = 739,
-            ["ScalarExpressionDialogOption"] = 740,
-            ["ScalarExpressionRestoreOption"] = 741,
-            ["ScalarExpressionSequenceOption"] = 742,
-            ["ScalarExpressionSnippet"] = 743,
-            ["ScalarFunctionReturnType"] = 744,
-            ["ScalarSubquery"] = 745,
-            ["SchemaDeclarationItem"] = 746,
-            ["SchemaDeclarationItemOpenjson"] = 747,
-            ["SchemaObjectFunctionTableReference"] = 748,
-            ["SchemaObjectName"] = 749,
-            ["SchemaObjectNameOrValueExpression"] = 750,
-            ["SchemaObjectNameSnippet"] = 751,
-            ["SchemaObjectResultSetDefinition"] = 752,
-            ["SchemaPayloadOption"] = 753,
-            ["SearchedCaseExpression"] = 754,
-            ["SearchedWhenClause"] = 755,
-            ["SearchPropertyListFullTextIndexOption"] = 756,
-            ["SecondaryRoleReplicaOption"] = 757,
-            ["SecurityPolicyOption"] = 758,
-            ["SecurityPredicateAction"] = 759,
-            ["SecurityPrincipal"] = 760,
-            ["SecurityTargetObject"] = 761,
-            ["SecurityTargetObjectName"] = 762,
-            ["SecurityUserClause80"] = 763,
-            ["SelectFunctionReturnType"] = 764,
-            ["SelectInsertSource"] = 765,
-            ["SelectiveXmlIndexPromotedPath"] = 766,
-            ["SelectScalarExpression"] = 767,
-            ["SelectSetVariable"] = 768,
-            ["SelectStarExpression"] = 769,
-            ["SelectStatement"] = 770,
-            ["SelectStatementSnippet"] = 771,
-            ["SemanticTableReference"] = 772,
-            ["SendStatement"] = 773,
-            ["SensitivityClassificationOption"] = 774,
-            ["SequenceOption"] = 775,
-            ["ServiceContract"] = 776,
-            ["SessionTimeoutPayloadOption"] = 777,
-            ["SetCommandStatement"] = 778,
-            ["SetErrorLevelStatement"] = 779,
-            ["SetFipsFlaggerCommand"] = 780,
-            ["SetIdentityInsertStatement"] = 781,
-            ["SetOffsetsStatement"] = 782,
-            ["SetRowCountStatement"] = 783,
-            ["SetSearchPropertyListAlterFullTextIndexAction"] = 784,
-            ["SetStatisticsStatement"] = 785,
-            ["SetStopListAlterFullTextIndexAction"] = 786,
-            ["SetTextSizeStatement"] = 787,
-            ["SetTransactionIsolationLevelStatement"] = 788,
-            ["SetUserStatement"] = 789,
-            ["SetVariableStatement"] = 790,
-            ["ShutdownStatement"] = 791,
-            ["SimpleAlterFullTextIndexAction"] = 792,
-            ["SimpleCaseExpression"] = 793,
-            ["SimpleWhenClause"] = 794,
-            ["SingleValueTypeCopyOption"] = 795,
-            ["SizeFileDeclarationOption"] = 796,
-            ["SoapMethod"] = 797,
-            ["SourceDeclaration"] = 798,
-            ["SpatialIndexRegularOption"] = 799,
-            ["SqlCommandIdentifier"] = 800,
-            ["SqlDataTypeReference"] = 801,
-            ["StateAuditOption"] = 802,
-            ["StatementList"] = 803,
-            ["StatementListSnippet"] = 804,
-            ["StatisticsOption"] = 805,
-            ["StatisticsPartitionRange"] = 806,
-            ["StopListFullTextIndexOption"] = 807,
-            ["StopRestoreOption"] = 808,
-            ["StringLiteral"] = 809,
-            ["SubqueryComparisonPredicate"] = 810,
-            ["SystemTimePeriodDefinition"] = 811,
-            ["SystemVersioningTableOption"] = 812,
-            ["TableClusteredIndexType"] = 813,
-            ["TableDataCompressionOption"] = 814,
-            ["TableDefinition"] = 815,
-            ["TableDistributionOption"] = 816,
-            ["TableHashDistributionPolicy"] = 817,
-            ["TableHint"] = 818,
-            ["TableHintsOptimizerHint"] = 819,
-            ["TableIndexOption"] = 820,
-            ["TableNonClusteredIndexType"] = 821,
-            ["TablePartitionOption"] = 822,
-            ["TablePartitionOptionSpecifications"] = 823,
-            ["TableReplicateDistributionPolicy"] = 824,
-            ["TableRoundRobinDistributionPolicy"] = 825,
-            ["TableSampleClause"] = 826,
-            ["TableValuedFunctionReturnType"] = 827,
-            ["TableXmlCompressionOption"] = 828,
-            ["TargetDeclaration"] = 829,
-            ["TargetRecoveryTimeDatabaseOption"] = 830,
-            ["TemporalClause"] = 831,
-            ["ThrowStatement"] = 832,
-            ["TopRowFilter"] = 833,
-            ["TriggerAction"] = 834,
-            ["TriggerObject"] = 835,
-            ["TriggerOption"] = 836,
-            ["TruncateTableStatement"] = 837,
-            ["TruncateTargetTableSwitchOption"] = 838,
-            ["TryCastCall"] = 839,
-            ["TryCatchStatement"] = 840,
-            ["TryConvertCall"] = 841,
-            ["TryParseCall"] = 842,
-            ["TSEqualCall"] = 843,
-            ["TSqlBatch"] = 844,
-            ["TSqlFragmentSnippet"] = 845,
-            ["TSqlScript"] = 846,
-            ["TSqlStatementSnippet"] = 847,
-            ["UnaryExpression"] = 848,
-            ["UniqueConstraintDefinition"] = 849,
-            ["UnpivotedTableReference"] = 850,
-            ["UnqualifiedJoin"] = 851,
-            ["UpdateCall"] = 852,
-            ["UpdateForClause"] = 853,
-            ["UpdateMergeAction"] = 854,
-            ["UpdateSpecification"] = 855,
-            ["UpdateStatement"] = 856,
-            ["UpdateStatisticsStatement"] = 857,
-            ["UpdateTextStatement"] = 858,
-            ["UseFederationStatement"] = 859,
-            ["UseHintList"] = 860,
-            ["UserDataTypeReference"] = 861,
-            ["UserDefinedTypeCallTarget"] = 862,
-            ["UserDefinedTypePropertyAccess"] = 863,
-            ["UserLoginOption"] = 864,
-            ["UserRemoteServiceBindingOption"] = 865,
-            ["UseStatement"] = 866,
-            ["ValuesInsertSource"] = 867,
-            ["VariableMethodCallTableReference"] = 868,
-            ["VariableReference"] = 869,
-            ["VariableTableReference"] = 870,
-            ["VariableValuePair"] = 871,
-            ["ViewDistributionOption"] = 872,
-            ["ViewForAppendOption"] = 873,
-            ["ViewHashDistributionPolicy"] = 874,
-            ["ViewOption"] = 875,
-            ["ViewRoundRobinDistributionPolicy"] = 876,
-            ["WaitAtLowPriorityOption"] = 877,
-            ["WaitForStatement"] = 878,
-            ["WhereClause"] = 879,
-            ["WhileStatement"] = 880,
-            ["WindowClause"] = 881,
-            ["WindowDefinition"] = 882,
-            ["WindowDelimiter"] = 883,
-            ["WindowFrameClause"] = 884,
-            ["WindowsCreateLoginSource"] = 885,
-            ["WithCtesAndXmlNamespaces"] = 886,
-            ["WithinGroupClause"] = 887,
-            ["WitnessDatabaseOption"] = 888,
-            ["WlmTimeLiteral"] = 889,
-            ["WorkloadGroupImportanceParameter"] = 890,
-            ["WorkloadGroupResourceParameter"] = 891,
-            ["WriteTextStatement"] = 892,
-            ["WsdlPayloadOption"] = 893,
-            ["XmlCompressionOption"] = 894,
-            ["XmlDataTypeReference"] = 895,
-            ["XmlForClause"] = 896,
-            ["XmlForClauseOption"] = 897,
-            ["XmlNamespaces"] = 898,
-            ["XmlNamespacesAliasElement"] = 899,
-            ["XmlNamespacesDefaultElement"] = 900,
+            ["DWCompatibilityLevelConfigurationOption"] = 410,
+            ["ElasticPoolSpecification"] = 411,
+            ["EnabledDisabledPayloadOption"] = 412,
+            ["EnableDisableTriggerStatement"] = 413,
+            ["EncryptedValueParameter"] = 414,
+            ["EncryptionPayloadOption"] = 415,
+            ["EndConversationStatement"] = 416,
+            ["EndpointAffinity"] = 417,
+            ["EventDeclaration"] = 418,
+            ["EventDeclarationCompareFunctionParameter"] = 419,
+            ["EventDeclarationSetParameter"] = 420,
+            ["EventGroupContainer"] = 421,
+            ["EventNotificationObjectScope"] = 422,
+            ["EventRetentionSessionOption"] = 423,
+            ["EventSessionObjectName"] = 424,
+            ["EventSessionStatement"] = 425,
+            ["EventTypeContainer"] = 426,
+            ["ExecutableProcedureReference"] = 427,
+            ["ExecutableStringList"] = 428,
+            ["ExecuteAsClause"] = 429,
+            ["ExecuteAsFunctionOption"] = 430,
+            ["ExecuteAsProcedureOption"] = 431,
+            ["ExecuteAsStatement"] = 432,
+            ["ExecuteAsTriggerOption"] = 433,
+            ["ExecuteContext"] = 434,
+            ["ExecuteInsertSource"] = 435,
+            ["ExecuteOption"] = 436,
+            ["ExecuteParameter"] = 437,
+            ["ExecuteSpecification"] = 438,
+            ["ExecuteStatement"] = 439,
+            ["ExistsPredicate"] = 440,
+            ["ExpressionCallTarget"] = 441,
+            ["ExpressionGroupingSpecification"] = 442,
+            ["ExpressionWithSortOrder"] = 443,
+            ["ExternalCreateLoginSource"] = 444,
+            ["ExternalDataSourceLiteralOrIdentifierOption"] = 445,
+            ["ExternalFileFormatContainerOption"] = 446,
+            ["ExternalFileFormatLiteralOption"] = 447,
+            ["ExternalFileFormatUseDefaultTypeOption"] = 448,
+            ["ExternalLanguageFileOption"] = 449,
+            ["ExternalLibraryFileOption"] = 450,
+            ["ExternalResourcePoolAffinitySpecification"] = 451,
+            ["ExternalResourcePoolParameter"] = 452,
+            ["ExternalResourcePoolStatement"] = 453,
+            ["ExternalStreamLiteralOrIdentifierOption"] = 454,
+            ["ExternalTableColumnDefinition"] = 455,
+            ["ExternalTableDistributionOption"] = 456,
+            ["ExternalTableLiteralOrIdentifierOption"] = 457,
+            ["ExternalTableRejectTypeOption"] = 458,
+            ["ExternalTableReplicatedDistributionPolicy"] = 459,
+            ["ExternalTableRoundRobinDistributionPolicy"] = 460,
+            ["ExternalTableShardedDistributionPolicy"] = 461,
+            ["ExtractFromExpression"] = 462,
+            ["FailoverModeReplicaOption"] = 463,
+            ["FederationScheme"] = 464,
+            ["FetchCursorStatement"] = 465,
+            ["FetchType"] = 466,
+            ["FileDeclaration"] = 467,
+            ["FileDeclarationOption"] = 468,
+            ["FileEncryptionSource"] = 469,
+            ["FileGroupDefinition"] = 470,
+            ["FileGroupOrPartitionScheme"] = 471,
+            ["FileGrowthFileDeclarationOption"] = 472,
+            ["FileNameFileDeclarationOption"] = 473,
+            ["FileStreamDatabaseOption"] = 474,
+            ["FileStreamOnDropIndexOption"] = 475,
+            ["FileStreamOnTableOption"] = 476,
+            ["FileStreamRestoreOption"] = 477,
+            ["FileTableCollateFileNameTableOption"] = 478,
+            ["FileTableConstraintNameTableOption"] = 479,
+            ["FileTableDirectoryTableOption"] = 480,
+            ["ForceSeekTableHint"] = 481,
+            ["ForeignKeyConstraintDefinition"] = 482,
+            ["FromClause"] = 483,
+            ["FullTextCatalogAndFileGroup"] = 484,
+            ["FullTextIndexColumn"] = 485,
+            ["FullTextPredicate"] = 486,
+            ["FullTextStopListAction"] = 487,
+            ["FullTextTableReference"] = 488,
+            ["FunctionCall"] = 489,
+            ["FunctionCallSetClause"] = 490,
+            ["FunctionOption"] = 491,
+            ["GeneralSetCommand"] = 492,
+            ["GenericConfigurationOption"] = 493,
+            ["GetConversationGroupStatement"] = 494,
+            ["GlobalFunctionTableReference"] = 495,
+            ["GlobalVariableExpression"] = 496,
+            ["GoToStatement"] = 497,
+            ["GrandTotalGroupingSpecification"] = 498,
+            ["GrantStatement"] = 499,
+            ["GrantStatement80"] = 500,
+            ["GraphConnectionBetweenNodes"] = 501,
+            ["GraphConnectionConstraintDefinition"] = 502,
+            ["GraphMatchCompositeExpression"] = 503,
+            ["GraphMatchExpression"] = 504,
+            ["GraphMatchLastNodePredicate"] = 505,
+            ["GraphMatchNodeExpression"] = 506,
+            ["GraphMatchPredicate"] = 507,
+            ["GraphMatchRecursivePredicate"] = 508,
+            ["GraphRecursiveMatchQuantifier"] = 509,
+            ["GridParameter"] = 510,
+            ["GridsSpatialIndexOption"] = 511,
+            ["GroupByClause"] = 512,
+            ["GroupingSetsGroupingSpecification"] = 513,
+            ["HadrAvailabilityGroupDatabaseOption"] = 514,
+            ["HadrDatabaseOption"] = 515,
+            ["HavingClause"] = 516,
+            ["Identifier"] = 517,
+            ["IdentifierAtomicBlockOption"] = 518,
+            ["IdentifierDatabaseOption"] = 519,
+            ["IdentifierLiteral"] = 520,
+            ["IdentifierOrScalarExpression"] = 521,
+            ["IdentifierOrValueExpression"] = 522,
+            ["IdentifierPrincipalOption"] = 523,
+            ["IdentifierSnippet"] = 524,
+            ["IdentityFunctionCall"] = 525,
+            ["IdentityOptions"] = 526,
+            ["IdentityValueKeyOption"] = 527,
+            ["IfStatement"] = 528,
+            ["IgnoreDupKeyIndexOption"] = 529,
+            ["IIfCall"] = 530,
+            ["IndexDefinition"] = 531,
+            ["IndexExpressionOption"] = 532,
+            ["IndexStateOption"] = 533,
+            ["IndexTableHint"] = 534,
+            ["IndexType"] = 535,
+            ["InlineDerivedTable"] = 536,
+            ["InlineFunctionOption"] = 537,
+            ["InlineResultSetDefinition"] = 538,
+            ["InPredicate"] = 539,
+            ["InsertBulkColumnDefinition"] = 540,
+            ["InsertBulkStatement"] = 541,
+            ["InsertMergeAction"] = 542,
+            ["InsertSpecification"] = 543,
+            ["InsertStatement"] = 544,
+            ["IntegerLiteral"] = 545,
+            ["InternalOpenRowset"] = 546,
+            ["IPv4"] = 547,
+            ["JoinParenthesisTableReference"] = 548,
+            ["JsonForClause"] = 549,
+            ["JsonForClauseOption"] = 550,
+            ["JsonKeyValue"] = 551,
+            ["KeySourceKeyOption"] = 552,
+            ["KillQueryNotificationSubscriptionStatement"] = 553,
+            ["KillStatement"] = 554,
+            ["KillStatsJobStatement"] = 555,
+            ["LabelStatement"] = 556,
+            ["LedgerOption"] = 557,
+            ["LedgerTableOption"] = 558,
+            ["LedgerViewOption"] = 559,
+            ["LeftFunctionCall"] = 560,
+            ["LikePredicate"] = 561,
+            ["LineNoStatement"] = 562,
+            ["ListenerIPEndpointProtocolOption"] = 563,
+            ["ListTypeCopyOption"] = 564,
+            ["LiteralAtomicBlockOption"] = 565,
+            ["LiteralAuditTargetOption"] = 566,
+            ["LiteralAvailabilityGroupOption"] = 567,
+            ["LiteralBulkInsertOption"] = 568,
+            ["LiteralDatabaseOption"] = 569,
+            ["LiteralEndpointProtocolOption"] = 570,
+            ["LiteralOpenRowsetCosmosOption"] = 571,
+            ["LiteralOptimizerHint"] = 572,
+            ["LiteralOptionValue"] = 573,
+            ["LiteralPayloadOption"] = 574,
+            ["LiteralPrincipalOption"] = 575,
+            ["LiteralRange"] = 576,
+            ["LiteralReplicaOption"] = 577,
+            ["LiteralSessionOption"] = 578,
+            ["LiteralStatisticsOption"] = 579,
+            ["LiteralTableHint"] = 580,
+            ["LocationOption"] = 581,
+            ["LockEscalationTableOption"] = 582,
+            ["LoginTypePayloadOption"] = 583,
+            ["LowPriorityLockWaitAbortAfterWaitOption"] = 584,
+            ["LowPriorityLockWaitMaxDurationOption"] = 585,
+            ["LowPriorityLockWaitTableSwitchOption"] = 586,
+            ["MaxDispatchLatencySessionOption"] = 587,
+            ["MaxDopConfigurationOption"] = 588,
+            ["MaxDurationOption"] = 589,
+            ["MaxLiteral"] = 590,
+            ["MaxRolloverFilesAuditTargetOption"] = 591,
+            ["MaxSizeAuditTargetOption"] = 592,
+            ["MaxSizeDatabaseOption"] = 593,
+            ["MaxSizeFileDeclarationOption"] = 594,
+            ["MemoryOptimizedTableOption"] = 595,
+            ["MemoryPartitionSessionOption"] = 596,
+            ["MergeActionClause"] = 597,
+            ["MergeSpecification"] = 598,
+            ["MergeStatement"] = 599,
+            ["MethodSpecifier"] = 600,
+            ["MirrorToClause"] = 601,
+            ["MoneyLiteral"] = 602,
+            ["MoveConversationStatement"] = 603,
+            ["MoveRestoreOption"] = 604,
+            ["MoveToDropIndexOption"] = 605,
+            ["MultiPartIdentifier"] = 606,
+            ["MultiPartIdentifierCallTarget"] = 607,
+            ["NamedTableReference"] = 608,
+            ["NameFileDeclarationOption"] = 609,
+            ["NextValueForExpression"] = 610,
+            ["NullableConstraintDefinition"] = 611,
+            ["NullIfExpression"] = 612,
+            ["NullLiteral"] = 613,
+            ["NumericLiteral"] = 614,
+            ["OdbcConvertSpecification"] = 615,
+            ["OdbcFunctionCall"] = 616,
+            ["OdbcLiteral"] = 617,
+            ["OdbcQualifiedJoinTableReference"] = 618,
+            ["OffsetClause"] = 619,
+            ["OnFailureAuditOption"] = 620,
+            ["OnlineIndexLowPriorityLockWaitOption"] = 621,
+            ["OnlineIndexOption"] = 622,
+            ["OnOffAssemblyOption"] = 623,
+            ["OnOffAtomicBlockOption"] = 624,
+            ["OnOffAuditTargetOption"] = 625,
+            ["OnOffDatabaseOption"] = 626,
+            ["OnOffDialogOption"] = 627,
+            ["OnOffFullTextCatalogOption"] = 628,
+            ["OnOffOptionValue"] = 629,
+            ["OnOffPrimaryConfigurationOption"] = 630,
+            ["OnOffPrincipalOption"] = 631,
+            ["OnOffRemoteServiceBindingOption"] = 632,
+            ["OnOffSessionOption"] = 633,
+            ["OnOffStatisticsOption"] = 634,
+            ["OpenCursorStatement"] = 635,
+            ["OpenJsonTableReference"] = 636,
+            ["OpenMasterKeyStatement"] = 637,
+            ["OpenQueryTableReference"] = 638,
+            ["OpenRowsetColumnDefinition"] = 639,
+            ["OpenRowsetCosmos"] = 640,
+            ["OpenRowsetCosmosOption"] = 641,
+            ["OpenRowsetTableReference"] = 642,
+            ["OpenSymmetricKeyStatement"] = 643,
+            ["OpenXmlTableReference"] = 644,
+            ["OperatorAuditOption"] = 645,
+            ["OptimizeForOptimizerHint"] = 646,
+            ["OptimizerHint"] = 647,
+            ["OrderBulkInsertOption"] = 648,
+            ["OrderByClause"] = 649,
+            ["OrderIndexOption"] = 650,
+            ["OutputClause"] = 651,
+            ["OutputIntoClause"] = 652,
+            ["OverClause"] = 653,
+            ["PageVerifyDatabaseOption"] = 654,
+            ["ParameterizationDatabaseOption"] = 655,
+            ["ParameterlessCall"] = 656,
+            ["ParenthesisExpression"] = 657,
+            ["ParseCall"] = 658,
+            ["PartitionFunctionCall"] = 659,
+            ["PartitionParameterType"] = 660,
+            ["PartitionSpecifier"] = 661,
+            ["PartnerDatabaseOption"] = 662,
+            ["PasswordAlterPrincipalOption"] = 663,
+            ["PasswordCreateLoginSource"] = 664,
+            ["Permission"] = 665,
+            ["PermissionSetAssemblyOption"] = 666,
+            ["PivotedTableReference"] = 667,
+            ["PortsEndpointProtocolOption"] = 668,
+            ["PredicateSetStatement"] = 669,
+            ["PredictTableReference"] = 670,
+            ["PrimaryRoleReplicaOption"] = 671,
+            ["PrincipalOption"] = 672,
+            ["PrintStatement"] = 673,
+            ["Privilege80"] = 674,
+            ["PrivilegeSecurityElement80"] = 675,
+            ["ProcedureOption"] = 676,
+            ["ProcedureParameter"] = 677,
+            ["ProcedureReference"] = 678,
+            ["ProcedureReferenceName"] = 679,
+            ["ProcessAffinityRange"] = 680,
+            ["ProviderEncryptionSource"] = 681,
+            ["ProviderKeyNameKeyOption"] = 682,
+            ["QualifiedJoin"] = 683,
+            ["QueryDerivedTable"] = 684,
+            ["QueryParenthesisExpression"] = 685,
+            ["QuerySpecification"] = 686,
+            ["QueryStoreCapturePolicyOption"] = 687,
+            ["QueryStoreDatabaseOption"] = 688,
+            ["QueryStoreDataFlushIntervalOption"] = 689,
+            ["QueryStoreDesiredStateOption"] = 690,
+            ["QueryStoreIntervalLengthOption"] = 691,
+            ["QueryStoreMaxPlansPerQueryOption"] = 692,
+            ["QueryStoreMaxStorageSizeOption"] = 693,
+            ["QueryStoreSizeCleanupPolicyOption"] = 694,
+            ["QueryStoreTimeCleanupPolicyOption"] = 695,
+            ["QueueDelayAuditOption"] = 696,
+            ["QueueExecuteAsOption"] = 697,
+            ["QueueOption"] = 698,
+            ["QueueProcedureOption"] = 699,
+            ["QueueStateOption"] = 700,
+            ["QueueValueOption"] = 701,
+            ["RaiseErrorLegacyStatement"] = 702,
+            ["RaiseErrorStatement"] = 703,
+            ["ReadOnlyForClause"] = 704,
+            ["ReadTextStatement"] = 705,
+            ["RealLiteral"] = 706,
+            ["ReceiveStatement"] = 707,
+            ["ReconfigureStatement"] = 708,
+            ["RecoveryDatabaseOption"] = 709,
+            ["RemoteDataArchiveAlterTableOption"] = 710,
+            ["RemoteDataArchiveDatabaseOption"] = 711,
+            ["RemoteDataArchiveDbCredentialSetting"] = 712,
+            ["RemoteDataArchiveDbFederatedServiceAccountSetting"] = 713,
+            ["RemoteDataArchiveDbServerSetting"] = 714,
+            ["RemoteDataArchiveTableOption"] = 715,
+            ["RenameAlterRoleAction"] = 716,
+            ["RenameEntityStatement"] = 717,
+            ["ResampleStatisticsOption"] = 718,
+            ["ResourcePoolAffinitySpecification"] = 719,
+            ["ResourcePoolParameter"] = 720,
+            ["ResourcePoolStatement"] = 721,
+            ["RestoreMasterKeyStatement"] = 722,
+            ["RestoreOption"] = 723,
+            ["RestoreServiceMasterKeyStatement"] = 724,
+            ["RestoreStatement"] = 725,
+            ["ResultColumnDefinition"] = 726,
+            ["ResultSetDefinition"] = 727,
+            ["ResultSetsExecuteOption"] = 728,
+            ["RetentionDaysAuditTargetOption"] = 729,
+            ["RetentionPeriodDefinition"] = 730,
+            ["ReturnStatement"] = 731,
+            ["RevertStatement"] = 732,
+            ["RevokeStatement"] = 733,
+            ["RevokeStatement80"] = 734,
+            ["RightFunctionCall"] = 735,
+            ["RolePayloadOption"] = 736,
+            ["RollbackTransactionStatement"] = 737,
+            ["RollupGroupingSpecification"] = 738,
+            ["RouteOption"] = 739,
+            ["RowValue"] = 740,
+            ["SaveTransactionStatement"] = 741,
+            ["ScalarExpressionDialogOption"] = 742,
+            ["ScalarExpressionRestoreOption"] = 743,
+            ["ScalarExpressionSequenceOption"] = 744,
+            ["ScalarExpressionSnippet"] = 745,
+            ["ScalarFunctionReturnType"] = 746,
+            ["ScalarSubquery"] = 747,
+            ["SchemaDeclarationItem"] = 748,
+            ["SchemaDeclarationItemOpenjson"] = 749,
+            ["SchemaObjectFunctionTableReference"] = 750,
+            ["SchemaObjectName"] = 751,
+            ["SchemaObjectNameOrValueExpression"] = 752,
+            ["SchemaObjectNameSnippet"] = 753,
+            ["SchemaObjectResultSetDefinition"] = 754,
+            ["SchemaPayloadOption"] = 755,
+            ["SearchedCaseExpression"] = 756,
+            ["SearchedWhenClause"] = 757,
+            ["SearchPropertyListFullTextIndexOption"] = 758,
+            ["SecondaryRoleReplicaOption"] = 759,
+            ["SecurityPolicyOption"] = 760,
+            ["SecurityPredicateAction"] = 761,
+            ["SecurityPrincipal"] = 762,
+            ["SecurityTargetObject"] = 763,
+            ["SecurityTargetObjectName"] = 764,
+            ["SecurityUserClause80"] = 765,
+            ["SelectFunctionReturnType"] = 766,
+            ["SelectInsertSource"] = 767,
+            ["SelectiveXmlIndexPromotedPath"] = 768,
+            ["SelectScalarExpression"] = 769,
+            ["SelectSetVariable"] = 770,
+            ["SelectStarExpression"] = 771,
+            ["SelectStatement"] = 772,
+            ["SelectStatementSnippet"] = 773,
+            ["SemanticTableReference"] = 774,
+            ["SendStatement"] = 775,
+            ["SensitivityClassificationOption"] = 776,
+            ["SequenceOption"] = 777,
+            ["ServiceContract"] = 778,
+            ["SessionTimeoutPayloadOption"] = 779,
+            ["SetCommandStatement"] = 780,
+            ["SetErrorLevelStatement"] = 781,
+            ["SetFipsFlaggerCommand"] = 782,
+            ["SetIdentityInsertStatement"] = 783,
+            ["SetOffsetsStatement"] = 784,
+            ["SetRowCountStatement"] = 785,
+            ["SetSearchPropertyListAlterFullTextIndexAction"] = 786,
+            ["SetStatisticsStatement"] = 787,
+            ["SetStopListAlterFullTextIndexAction"] = 788,
+            ["SetTextSizeStatement"] = 789,
+            ["SetTransactionIsolationLevelStatement"] = 790,
+            ["SetUserStatement"] = 791,
+            ["SetVariableStatement"] = 792,
+            ["ShutdownStatement"] = 793,
+            ["SimpleAlterFullTextIndexAction"] = 794,
+            ["SimpleCaseExpression"] = 795,
+            ["SimpleWhenClause"] = 796,
+            ["SingleValueTypeCopyOption"] = 797,
+            ["SizeFileDeclarationOption"] = 798,
+            ["SoapMethod"] = 799,
+            ["SourceDeclaration"] = 800,
+            ["SpatialIndexRegularOption"] = 801,
+            ["SqlCommandIdentifier"] = 802,
+            ["SqlDataTypeReference"] = 803,
+            ["StateAuditOption"] = 804,
+            ["StatementList"] = 805,
+            ["StatementListSnippet"] = 806,
+            ["StatisticsOption"] = 807,
+            ["StatisticsPartitionRange"] = 808,
+            ["StopListFullTextIndexOption"] = 809,
+            ["StopRestoreOption"] = 810,
+            ["StringLiteral"] = 811,
+            ["SubqueryComparisonPredicate"] = 812,
+            ["SystemTimePeriodDefinition"] = 813,
+            ["SystemVersioningTableOption"] = 814,
+            ["TableClusteredIndexType"] = 815,
+            ["TableDataCompressionOption"] = 816,
+            ["TableDefinition"] = 817,
+            ["TableDistributionOption"] = 818,
+            ["TableHashDistributionPolicy"] = 819,
+            ["TableHint"] = 820,
+            ["TableHintsOptimizerHint"] = 821,
+            ["TableIndexOption"] = 822,
+            ["TableNonClusteredIndexType"] = 823,
+            ["TablePartitionOption"] = 824,
+            ["TablePartitionOptionSpecifications"] = 825,
+            ["TableReplicateDistributionPolicy"] = 826,
+            ["TableRoundRobinDistributionPolicy"] = 827,
+            ["TableSampleClause"] = 828,
+            ["TableValuedFunctionReturnType"] = 829,
+            ["TableXmlCompressionOption"] = 830,
+            ["TargetDeclaration"] = 831,
+            ["TargetRecoveryTimeDatabaseOption"] = 832,
+            ["TemporalClause"] = 833,
+            ["ThrowStatement"] = 834,
+            ["TopRowFilter"] = 835,
+            ["TriggerAction"] = 836,
+            ["TriggerObject"] = 837,
+            ["TriggerOption"] = 838,
+            ["TruncateTableStatement"] = 839,
+            ["TruncateTargetTableSwitchOption"] = 840,
+            ["TryCastCall"] = 841,
+            ["TryCatchStatement"] = 842,
+            ["TryConvertCall"] = 843,
+            ["TryParseCall"] = 844,
+            ["TSEqualCall"] = 845,
+            ["TSqlBatch"] = 846,
+            ["TSqlFragmentSnippet"] = 847,
+            ["TSqlScript"] = 848,
+            ["TSqlStatementSnippet"] = 849,
+            ["UnaryExpression"] = 850,
+            ["UniqueConstraintDefinition"] = 851,
+            ["UnpivotedTableReference"] = 852,
+            ["UnqualifiedJoin"] = 853,
+            ["UpdateCall"] = 854,
+            ["UpdateForClause"] = 855,
+            ["UpdateMergeAction"] = 856,
+            ["UpdateSpecification"] = 857,
+            ["UpdateStatement"] = 858,
+            ["UpdateStatisticsStatement"] = 859,
+            ["UpdateTextStatement"] = 860,
+            ["UseFederationStatement"] = 861,
+            ["UseHintList"] = 862,
+            ["UserDataTypeReference"] = 863,
+            ["UserDefinedTypeCallTarget"] = 864,
+            ["UserDefinedTypePropertyAccess"] = 865,
+            ["UserLoginOption"] = 866,
+            ["UserRemoteServiceBindingOption"] = 867,
+            ["UseStatement"] = 868,
+            ["ValuesInsertSource"] = 869,
+            ["VariableMethodCallTableReference"] = 870,
+            ["VariableReference"] = 871,
+            ["VariableTableReference"] = 872,
+            ["VariableValuePair"] = 873,
+            ["ViewDistributionOption"] = 874,
+            ["ViewForAppendOption"] = 875,
+            ["ViewHashDistributionPolicy"] = 876,
+            ["ViewOption"] = 877,
+            ["ViewRoundRobinDistributionPolicy"] = 878,
+            ["WaitAtLowPriorityOption"] = 879,
+            ["WaitForStatement"] = 880,
+            ["WhereClause"] = 881,
+            ["WhileStatement"] = 882,
+            ["WindowClause"] = 883,
+            ["WindowDefinition"] = 884,
+            ["WindowDelimiter"] = 885,
+            ["WindowFrameClause"] = 886,
+            ["WindowsCreateLoginSource"] = 887,
+            ["WithCtesAndXmlNamespaces"] = 888,
+            ["WithinGroupClause"] = 889,
+            ["WitnessDatabaseOption"] = 890,
+            ["WlmTimeLiteral"] = 891,
+            ["WorkloadGroupImportanceParameter"] = 892,
+            ["WorkloadGroupResourceParameter"] = 893,
+            ["WriteTextStatement"] = 894,
+            ["WsdlPayloadOption"] = 895,
+            ["XmlCompressionOption"] = 896,
+            ["XmlDataTypeReference"] = 897,
+            ["XmlForClause"] = 898,
+            ["XmlForClauseOption"] = 899,
+            ["XmlNamespaces"] = 900,
+            ["XmlNamespacesAliasElement"] = 901,
+            ["XmlNamespacesDefaultElement"] = 902,
         };
     
         public static TSqlFragment FromMutable(ScriptDom.TSqlFragment fragment) {
@@ -1336,497 +1338,499 @@ namespace Xledger.Sql.ImmutableDom {
                 case 407: return DropWorkloadGroupStatement.FromMutable(fragment as ScriptDom.DropWorkloadGroupStatement);
                 case 408: return DropXmlSchemaCollectionStatement.FromMutable(fragment as ScriptDom.DropXmlSchemaCollectionStatement);
                 case 409: return DurabilityTableOption.FromMutable(fragment as ScriptDom.DurabilityTableOption);
-                case 410: return EnabledDisabledPayloadOption.FromMutable(fragment as ScriptDom.EnabledDisabledPayloadOption);
-                case 411: return EnableDisableTriggerStatement.FromMutable(fragment as ScriptDom.EnableDisableTriggerStatement);
-                case 412: return EncryptedValueParameter.FromMutable(fragment as ScriptDom.EncryptedValueParameter);
-                case 413: return EncryptionPayloadOption.FromMutable(fragment as ScriptDom.EncryptionPayloadOption);
-                case 414: return EndConversationStatement.FromMutable(fragment as ScriptDom.EndConversationStatement);
-                case 415: return EndpointAffinity.FromMutable(fragment as ScriptDom.EndpointAffinity);
-                case 416: return EventDeclaration.FromMutable(fragment as ScriptDom.EventDeclaration);
-                case 417: return EventDeclarationCompareFunctionParameter.FromMutable(fragment as ScriptDom.EventDeclarationCompareFunctionParameter);
-                case 418: return EventDeclarationSetParameter.FromMutable(fragment as ScriptDom.EventDeclarationSetParameter);
-                case 419: return EventGroupContainer.FromMutable(fragment as ScriptDom.EventGroupContainer);
-                case 420: return EventNotificationObjectScope.FromMutable(fragment as ScriptDom.EventNotificationObjectScope);
-                case 421: return EventRetentionSessionOption.FromMutable(fragment as ScriptDom.EventRetentionSessionOption);
-                case 422: return EventSessionObjectName.FromMutable(fragment as ScriptDom.EventSessionObjectName);
-                case 423: return EventSessionStatement.FromMutable(fragment as ScriptDom.EventSessionStatement);
-                case 424: return EventTypeContainer.FromMutable(fragment as ScriptDom.EventTypeContainer);
-                case 425: return ExecutableProcedureReference.FromMutable(fragment as ScriptDom.ExecutableProcedureReference);
-                case 426: return ExecutableStringList.FromMutable(fragment as ScriptDom.ExecutableStringList);
-                case 427: return ExecuteAsClause.FromMutable(fragment as ScriptDom.ExecuteAsClause);
-                case 428: return ExecuteAsFunctionOption.FromMutable(fragment as ScriptDom.ExecuteAsFunctionOption);
-                case 429: return ExecuteAsProcedureOption.FromMutable(fragment as ScriptDom.ExecuteAsProcedureOption);
-                case 430: return ExecuteAsStatement.FromMutable(fragment as ScriptDom.ExecuteAsStatement);
-                case 431: return ExecuteAsTriggerOption.FromMutable(fragment as ScriptDom.ExecuteAsTriggerOption);
-                case 432: return ExecuteContext.FromMutable(fragment as ScriptDom.ExecuteContext);
-                case 433: return ExecuteInsertSource.FromMutable(fragment as ScriptDom.ExecuteInsertSource);
-                case 434: return ExecuteOption.FromMutable(fragment as ScriptDom.ExecuteOption);
-                case 435: return ExecuteParameter.FromMutable(fragment as ScriptDom.ExecuteParameter);
-                case 436: return ExecuteSpecification.FromMutable(fragment as ScriptDom.ExecuteSpecification);
-                case 437: return ExecuteStatement.FromMutable(fragment as ScriptDom.ExecuteStatement);
-                case 438: return ExistsPredicate.FromMutable(fragment as ScriptDom.ExistsPredicate);
-                case 439: return ExpressionCallTarget.FromMutable(fragment as ScriptDom.ExpressionCallTarget);
-                case 440: return ExpressionGroupingSpecification.FromMutable(fragment as ScriptDom.ExpressionGroupingSpecification);
-                case 441: return ExpressionWithSortOrder.FromMutable(fragment as ScriptDom.ExpressionWithSortOrder);
-                case 442: return ExternalCreateLoginSource.FromMutable(fragment as ScriptDom.ExternalCreateLoginSource);
-                case 443: return ExternalDataSourceLiteralOrIdentifierOption.FromMutable(fragment as ScriptDom.ExternalDataSourceLiteralOrIdentifierOption);
-                case 444: return ExternalFileFormatContainerOption.FromMutable(fragment as ScriptDom.ExternalFileFormatContainerOption);
-                case 445: return ExternalFileFormatLiteralOption.FromMutable(fragment as ScriptDom.ExternalFileFormatLiteralOption);
-                case 446: return ExternalFileFormatUseDefaultTypeOption.FromMutable(fragment as ScriptDom.ExternalFileFormatUseDefaultTypeOption);
-                case 447: return ExternalLanguageFileOption.FromMutable(fragment as ScriptDom.ExternalLanguageFileOption);
-                case 448: return ExternalLibraryFileOption.FromMutable(fragment as ScriptDom.ExternalLibraryFileOption);
-                case 449: return ExternalResourcePoolAffinitySpecification.FromMutable(fragment as ScriptDom.ExternalResourcePoolAffinitySpecification);
-                case 450: return ExternalResourcePoolParameter.FromMutable(fragment as ScriptDom.ExternalResourcePoolParameter);
-                case 451: return ExternalResourcePoolStatement.FromMutable(fragment as ScriptDom.ExternalResourcePoolStatement);
-                case 452: return ExternalStreamLiteralOrIdentifierOption.FromMutable(fragment as ScriptDom.ExternalStreamLiteralOrIdentifierOption);
-                case 453: return ExternalTableColumnDefinition.FromMutable(fragment as ScriptDom.ExternalTableColumnDefinition);
-                case 454: return ExternalTableDistributionOption.FromMutable(fragment as ScriptDom.ExternalTableDistributionOption);
-                case 455: return ExternalTableLiteralOrIdentifierOption.FromMutable(fragment as ScriptDom.ExternalTableLiteralOrIdentifierOption);
-                case 456: return ExternalTableRejectTypeOption.FromMutable(fragment as ScriptDom.ExternalTableRejectTypeOption);
-                case 457: return ExternalTableReplicatedDistributionPolicy.FromMutable(fragment as ScriptDom.ExternalTableReplicatedDistributionPolicy);
-                case 458: return ExternalTableRoundRobinDistributionPolicy.FromMutable(fragment as ScriptDom.ExternalTableRoundRobinDistributionPolicy);
-                case 459: return ExternalTableShardedDistributionPolicy.FromMutable(fragment as ScriptDom.ExternalTableShardedDistributionPolicy);
-                case 460: return ExtractFromExpression.FromMutable(fragment as ScriptDom.ExtractFromExpression);
-                case 461: return FailoverModeReplicaOption.FromMutable(fragment as ScriptDom.FailoverModeReplicaOption);
-                case 462: return FederationScheme.FromMutable(fragment as ScriptDom.FederationScheme);
-                case 463: return FetchCursorStatement.FromMutable(fragment as ScriptDom.FetchCursorStatement);
-                case 464: return FetchType.FromMutable(fragment as ScriptDom.FetchType);
-                case 465: return FileDeclaration.FromMutable(fragment as ScriptDom.FileDeclaration);
-                case 466: return FileDeclarationOption.FromMutable(fragment as ScriptDom.FileDeclarationOption);
-                case 467: return FileEncryptionSource.FromMutable(fragment as ScriptDom.FileEncryptionSource);
-                case 468: return FileGroupDefinition.FromMutable(fragment as ScriptDom.FileGroupDefinition);
-                case 469: return FileGroupOrPartitionScheme.FromMutable(fragment as ScriptDom.FileGroupOrPartitionScheme);
-                case 470: return FileGrowthFileDeclarationOption.FromMutable(fragment as ScriptDom.FileGrowthFileDeclarationOption);
-                case 471: return FileNameFileDeclarationOption.FromMutable(fragment as ScriptDom.FileNameFileDeclarationOption);
-                case 472: return FileStreamDatabaseOption.FromMutable(fragment as ScriptDom.FileStreamDatabaseOption);
-                case 473: return FileStreamOnDropIndexOption.FromMutable(fragment as ScriptDom.FileStreamOnDropIndexOption);
-                case 474: return FileStreamOnTableOption.FromMutable(fragment as ScriptDom.FileStreamOnTableOption);
-                case 475: return FileStreamRestoreOption.FromMutable(fragment as ScriptDom.FileStreamRestoreOption);
-                case 476: return FileTableCollateFileNameTableOption.FromMutable(fragment as ScriptDom.FileTableCollateFileNameTableOption);
-                case 477: return FileTableConstraintNameTableOption.FromMutable(fragment as ScriptDom.FileTableConstraintNameTableOption);
-                case 478: return FileTableDirectoryTableOption.FromMutable(fragment as ScriptDom.FileTableDirectoryTableOption);
-                case 479: return ForceSeekTableHint.FromMutable(fragment as ScriptDom.ForceSeekTableHint);
-                case 480: return ForeignKeyConstraintDefinition.FromMutable(fragment as ScriptDom.ForeignKeyConstraintDefinition);
-                case 481: return FromClause.FromMutable(fragment as ScriptDom.FromClause);
-                case 482: return FullTextCatalogAndFileGroup.FromMutable(fragment as ScriptDom.FullTextCatalogAndFileGroup);
-                case 483: return FullTextIndexColumn.FromMutable(fragment as ScriptDom.FullTextIndexColumn);
-                case 484: return FullTextPredicate.FromMutable(fragment as ScriptDom.FullTextPredicate);
-                case 485: return FullTextStopListAction.FromMutable(fragment as ScriptDom.FullTextStopListAction);
-                case 486: return FullTextTableReference.FromMutable(fragment as ScriptDom.FullTextTableReference);
-                case 487: return FunctionCall.FromMutable(fragment as ScriptDom.FunctionCall);
-                case 488: return FunctionCallSetClause.FromMutable(fragment as ScriptDom.FunctionCallSetClause);
-                case 489: return FunctionOption.FromMutable(fragment as ScriptDom.FunctionOption);
-                case 490: return GeneralSetCommand.FromMutable(fragment as ScriptDom.GeneralSetCommand);
-                case 491: return GenericConfigurationOption.FromMutable(fragment as ScriptDom.GenericConfigurationOption);
-                case 492: return GetConversationGroupStatement.FromMutable(fragment as ScriptDom.GetConversationGroupStatement);
-                case 493: return GlobalFunctionTableReference.FromMutable(fragment as ScriptDom.GlobalFunctionTableReference);
-                case 494: return GlobalVariableExpression.FromMutable(fragment as ScriptDom.GlobalVariableExpression);
-                case 495: return GoToStatement.FromMutable(fragment as ScriptDom.GoToStatement);
-                case 496: return GrandTotalGroupingSpecification.FromMutable(fragment as ScriptDom.GrandTotalGroupingSpecification);
-                case 497: return GrantStatement.FromMutable(fragment as ScriptDom.GrantStatement);
-                case 498: return GrantStatement80.FromMutable(fragment as ScriptDom.GrantStatement80);
-                case 499: return GraphConnectionBetweenNodes.FromMutable(fragment as ScriptDom.GraphConnectionBetweenNodes);
-                case 500: return GraphConnectionConstraintDefinition.FromMutable(fragment as ScriptDom.GraphConnectionConstraintDefinition);
-                case 501: return GraphMatchCompositeExpression.FromMutable(fragment as ScriptDom.GraphMatchCompositeExpression);
-                case 502: return GraphMatchExpression.FromMutable(fragment as ScriptDom.GraphMatchExpression);
-                case 503: return GraphMatchLastNodePredicate.FromMutable(fragment as ScriptDom.GraphMatchLastNodePredicate);
-                case 504: return GraphMatchNodeExpression.FromMutable(fragment as ScriptDom.GraphMatchNodeExpression);
-                case 505: return GraphMatchPredicate.FromMutable(fragment as ScriptDom.GraphMatchPredicate);
-                case 506: return GraphMatchRecursivePredicate.FromMutable(fragment as ScriptDom.GraphMatchRecursivePredicate);
-                case 507: return GraphRecursiveMatchQuantifier.FromMutable(fragment as ScriptDom.GraphRecursiveMatchQuantifier);
-                case 508: return GridParameter.FromMutable(fragment as ScriptDom.GridParameter);
-                case 509: return GridsSpatialIndexOption.FromMutable(fragment as ScriptDom.GridsSpatialIndexOption);
-                case 510: return GroupByClause.FromMutable(fragment as ScriptDom.GroupByClause);
-                case 511: return GroupingSetsGroupingSpecification.FromMutable(fragment as ScriptDom.GroupingSetsGroupingSpecification);
-                case 512: return HadrAvailabilityGroupDatabaseOption.FromMutable(fragment as ScriptDom.HadrAvailabilityGroupDatabaseOption);
-                case 513: return HadrDatabaseOption.FromMutable(fragment as ScriptDom.HadrDatabaseOption);
-                case 514: return HavingClause.FromMutable(fragment as ScriptDom.HavingClause);
-                case 515: return Identifier.FromMutable(fragment as ScriptDom.Identifier);
-                case 516: return IdentifierAtomicBlockOption.FromMutable(fragment as ScriptDom.IdentifierAtomicBlockOption);
-                case 517: return IdentifierDatabaseOption.FromMutable(fragment as ScriptDom.IdentifierDatabaseOption);
-                case 518: return IdentifierLiteral.FromMutable(fragment as ScriptDom.IdentifierLiteral);
-                case 519: return IdentifierOrScalarExpression.FromMutable(fragment as ScriptDom.IdentifierOrScalarExpression);
-                case 520: return IdentifierOrValueExpression.FromMutable(fragment as ScriptDom.IdentifierOrValueExpression);
-                case 521: return IdentifierPrincipalOption.FromMutable(fragment as ScriptDom.IdentifierPrincipalOption);
-                case 522: return IdentifierSnippet.FromMutable(fragment as ScriptDom.IdentifierSnippet);
-                case 523: return IdentityFunctionCall.FromMutable(fragment as ScriptDom.IdentityFunctionCall);
-                case 524: return IdentityOptions.FromMutable(fragment as ScriptDom.IdentityOptions);
-                case 525: return IdentityValueKeyOption.FromMutable(fragment as ScriptDom.IdentityValueKeyOption);
-                case 526: return IfStatement.FromMutable(fragment as ScriptDom.IfStatement);
-                case 527: return IgnoreDupKeyIndexOption.FromMutable(fragment as ScriptDom.IgnoreDupKeyIndexOption);
-                case 528: return IIfCall.FromMutable(fragment as ScriptDom.IIfCall);
-                case 529: return IndexDefinition.FromMutable(fragment as ScriptDom.IndexDefinition);
-                case 530: return IndexExpressionOption.FromMutable(fragment as ScriptDom.IndexExpressionOption);
-                case 531: return IndexStateOption.FromMutable(fragment as ScriptDom.IndexStateOption);
-                case 532: return IndexTableHint.FromMutable(fragment as ScriptDom.IndexTableHint);
-                case 533: return IndexType.FromMutable(fragment as ScriptDom.IndexType);
-                case 534: return InlineDerivedTable.FromMutable(fragment as ScriptDom.InlineDerivedTable);
-                case 535: return InlineFunctionOption.FromMutable(fragment as ScriptDom.InlineFunctionOption);
-                case 536: return InlineResultSetDefinition.FromMutable(fragment as ScriptDom.InlineResultSetDefinition);
-                case 537: return InPredicate.FromMutable(fragment as ScriptDom.InPredicate);
-                case 538: return InsertBulkColumnDefinition.FromMutable(fragment as ScriptDom.InsertBulkColumnDefinition);
-                case 539: return InsertBulkStatement.FromMutable(fragment as ScriptDom.InsertBulkStatement);
-                case 540: return InsertMergeAction.FromMutable(fragment as ScriptDom.InsertMergeAction);
-                case 541: return InsertSpecification.FromMutable(fragment as ScriptDom.InsertSpecification);
-                case 542: return InsertStatement.FromMutable(fragment as ScriptDom.InsertStatement);
-                case 543: return IntegerLiteral.FromMutable(fragment as ScriptDom.IntegerLiteral);
-                case 544: return InternalOpenRowset.FromMutable(fragment as ScriptDom.InternalOpenRowset);
-                case 545: return IPv4.FromMutable(fragment as ScriptDom.IPv4);
-                case 546: return JoinParenthesisTableReference.FromMutable(fragment as ScriptDom.JoinParenthesisTableReference);
-                case 547: return JsonForClause.FromMutable(fragment as ScriptDom.JsonForClause);
-                case 548: return JsonForClauseOption.FromMutable(fragment as ScriptDom.JsonForClauseOption);
-                case 549: return JsonKeyValue.FromMutable(fragment as ScriptDom.JsonKeyValue);
-                case 550: return KeySourceKeyOption.FromMutable(fragment as ScriptDom.KeySourceKeyOption);
-                case 551: return KillQueryNotificationSubscriptionStatement.FromMutable(fragment as ScriptDom.KillQueryNotificationSubscriptionStatement);
-                case 552: return KillStatement.FromMutable(fragment as ScriptDom.KillStatement);
-                case 553: return KillStatsJobStatement.FromMutable(fragment as ScriptDom.KillStatsJobStatement);
-                case 554: return LabelStatement.FromMutable(fragment as ScriptDom.LabelStatement);
-                case 555: return LedgerOption.FromMutable(fragment as ScriptDom.LedgerOption);
-                case 556: return LedgerTableOption.FromMutable(fragment as ScriptDom.LedgerTableOption);
-                case 557: return LedgerViewOption.FromMutable(fragment as ScriptDom.LedgerViewOption);
-                case 558: return LeftFunctionCall.FromMutable(fragment as ScriptDom.LeftFunctionCall);
-                case 559: return LikePredicate.FromMutable(fragment as ScriptDom.LikePredicate);
-                case 560: return LineNoStatement.FromMutable(fragment as ScriptDom.LineNoStatement);
-                case 561: return ListenerIPEndpointProtocolOption.FromMutable(fragment as ScriptDom.ListenerIPEndpointProtocolOption);
-                case 562: return ListTypeCopyOption.FromMutable(fragment as ScriptDom.ListTypeCopyOption);
-                case 563: return LiteralAtomicBlockOption.FromMutable(fragment as ScriptDom.LiteralAtomicBlockOption);
-                case 564: return LiteralAuditTargetOption.FromMutable(fragment as ScriptDom.LiteralAuditTargetOption);
-                case 565: return LiteralAvailabilityGroupOption.FromMutable(fragment as ScriptDom.LiteralAvailabilityGroupOption);
-                case 566: return LiteralBulkInsertOption.FromMutable(fragment as ScriptDom.LiteralBulkInsertOption);
-                case 567: return LiteralDatabaseOption.FromMutable(fragment as ScriptDom.LiteralDatabaseOption);
-                case 568: return LiteralEndpointProtocolOption.FromMutable(fragment as ScriptDom.LiteralEndpointProtocolOption);
-                case 569: return LiteralOpenRowsetCosmosOption.FromMutable(fragment as ScriptDom.LiteralOpenRowsetCosmosOption);
-                case 570: return LiteralOptimizerHint.FromMutable(fragment as ScriptDom.LiteralOptimizerHint);
-                case 571: return LiteralOptionValue.FromMutable(fragment as ScriptDom.LiteralOptionValue);
-                case 572: return LiteralPayloadOption.FromMutable(fragment as ScriptDom.LiteralPayloadOption);
-                case 573: return LiteralPrincipalOption.FromMutable(fragment as ScriptDom.LiteralPrincipalOption);
-                case 574: return LiteralRange.FromMutable(fragment as ScriptDom.LiteralRange);
-                case 575: return LiteralReplicaOption.FromMutable(fragment as ScriptDom.LiteralReplicaOption);
-                case 576: return LiteralSessionOption.FromMutable(fragment as ScriptDom.LiteralSessionOption);
-                case 577: return LiteralStatisticsOption.FromMutable(fragment as ScriptDom.LiteralStatisticsOption);
-                case 578: return LiteralTableHint.FromMutable(fragment as ScriptDom.LiteralTableHint);
-                case 579: return LocationOption.FromMutable(fragment as ScriptDom.LocationOption);
-                case 580: return LockEscalationTableOption.FromMutable(fragment as ScriptDom.LockEscalationTableOption);
-                case 581: return LoginTypePayloadOption.FromMutable(fragment as ScriptDom.LoginTypePayloadOption);
-                case 582: return LowPriorityLockWaitAbortAfterWaitOption.FromMutable(fragment as ScriptDom.LowPriorityLockWaitAbortAfterWaitOption);
-                case 583: return LowPriorityLockWaitMaxDurationOption.FromMutable(fragment as ScriptDom.LowPriorityLockWaitMaxDurationOption);
-                case 584: return LowPriorityLockWaitTableSwitchOption.FromMutable(fragment as ScriptDom.LowPriorityLockWaitTableSwitchOption);
-                case 585: return MaxDispatchLatencySessionOption.FromMutable(fragment as ScriptDom.MaxDispatchLatencySessionOption);
-                case 586: return MaxDopConfigurationOption.FromMutable(fragment as ScriptDom.MaxDopConfigurationOption);
-                case 587: return MaxDurationOption.FromMutable(fragment as ScriptDom.MaxDurationOption);
-                case 588: return MaxLiteral.FromMutable(fragment as ScriptDom.MaxLiteral);
-                case 589: return MaxRolloverFilesAuditTargetOption.FromMutable(fragment as ScriptDom.MaxRolloverFilesAuditTargetOption);
-                case 590: return MaxSizeAuditTargetOption.FromMutable(fragment as ScriptDom.MaxSizeAuditTargetOption);
-                case 591: return MaxSizeDatabaseOption.FromMutable(fragment as ScriptDom.MaxSizeDatabaseOption);
-                case 592: return MaxSizeFileDeclarationOption.FromMutable(fragment as ScriptDom.MaxSizeFileDeclarationOption);
-                case 593: return MemoryOptimizedTableOption.FromMutable(fragment as ScriptDom.MemoryOptimizedTableOption);
-                case 594: return MemoryPartitionSessionOption.FromMutable(fragment as ScriptDom.MemoryPartitionSessionOption);
-                case 595: return MergeActionClause.FromMutable(fragment as ScriptDom.MergeActionClause);
-                case 596: return MergeSpecification.FromMutable(fragment as ScriptDom.MergeSpecification);
-                case 597: return MergeStatement.FromMutable(fragment as ScriptDom.MergeStatement);
-                case 598: return MethodSpecifier.FromMutable(fragment as ScriptDom.MethodSpecifier);
-                case 599: return MirrorToClause.FromMutable(fragment as ScriptDom.MirrorToClause);
-                case 600: return MoneyLiteral.FromMutable(fragment as ScriptDom.MoneyLiteral);
-                case 601: return MoveConversationStatement.FromMutable(fragment as ScriptDom.MoveConversationStatement);
-                case 602: return MoveRestoreOption.FromMutable(fragment as ScriptDom.MoveRestoreOption);
-                case 603: return MoveToDropIndexOption.FromMutable(fragment as ScriptDom.MoveToDropIndexOption);
-                case 604: return MultiPartIdentifier.FromMutable(fragment as ScriptDom.MultiPartIdentifier);
-                case 605: return MultiPartIdentifierCallTarget.FromMutable(fragment as ScriptDom.MultiPartIdentifierCallTarget);
-                case 606: return NamedTableReference.FromMutable(fragment as ScriptDom.NamedTableReference);
-                case 607: return NameFileDeclarationOption.FromMutable(fragment as ScriptDom.NameFileDeclarationOption);
-                case 608: return NextValueForExpression.FromMutable(fragment as ScriptDom.NextValueForExpression);
-                case 609: return NullableConstraintDefinition.FromMutable(fragment as ScriptDom.NullableConstraintDefinition);
-                case 610: return NullIfExpression.FromMutable(fragment as ScriptDom.NullIfExpression);
-                case 611: return NullLiteral.FromMutable(fragment as ScriptDom.NullLiteral);
-                case 612: return NumericLiteral.FromMutable(fragment as ScriptDom.NumericLiteral);
-                case 613: return OdbcConvertSpecification.FromMutable(fragment as ScriptDom.OdbcConvertSpecification);
-                case 614: return OdbcFunctionCall.FromMutable(fragment as ScriptDom.OdbcFunctionCall);
-                case 615: return OdbcLiteral.FromMutable(fragment as ScriptDom.OdbcLiteral);
-                case 616: return OdbcQualifiedJoinTableReference.FromMutable(fragment as ScriptDom.OdbcQualifiedJoinTableReference);
-                case 617: return OffsetClause.FromMutable(fragment as ScriptDom.OffsetClause);
-                case 618: return OnFailureAuditOption.FromMutable(fragment as ScriptDom.OnFailureAuditOption);
-                case 619: return OnlineIndexLowPriorityLockWaitOption.FromMutable(fragment as ScriptDom.OnlineIndexLowPriorityLockWaitOption);
-                case 620: return OnlineIndexOption.FromMutable(fragment as ScriptDom.OnlineIndexOption);
-                case 621: return OnOffAssemblyOption.FromMutable(fragment as ScriptDom.OnOffAssemblyOption);
-                case 622: return OnOffAtomicBlockOption.FromMutable(fragment as ScriptDom.OnOffAtomicBlockOption);
-                case 623: return OnOffAuditTargetOption.FromMutable(fragment as ScriptDom.OnOffAuditTargetOption);
-                case 624: return OnOffDatabaseOption.FromMutable(fragment as ScriptDom.OnOffDatabaseOption);
-                case 625: return OnOffDialogOption.FromMutable(fragment as ScriptDom.OnOffDialogOption);
-                case 626: return OnOffFullTextCatalogOption.FromMutable(fragment as ScriptDom.OnOffFullTextCatalogOption);
-                case 627: return OnOffOptionValue.FromMutable(fragment as ScriptDom.OnOffOptionValue);
-                case 628: return OnOffPrimaryConfigurationOption.FromMutable(fragment as ScriptDom.OnOffPrimaryConfigurationOption);
-                case 629: return OnOffPrincipalOption.FromMutable(fragment as ScriptDom.OnOffPrincipalOption);
-                case 630: return OnOffRemoteServiceBindingOption.FromMutable(fragment as ScriptDom.OnOffRemoteServiceBindingOption);
-                case 631: return OnOffSessionOption.FromMutable(fragment as ScriptDom.OnOffSessionOption);
-                case 632: return OnOffStatisticsOption.FromMutable(fragment as ScriptDom.OnOffStatisticsOption);
-                case 633: return OpenCursorStatement.FromMutable(fragment as ScriptDom.OpenCursorStatement);
-                case 634: return OpenJsonTableReference.FromMutable(fragment as ScriptDom.OpenJsonTableReference);
-                case 635: return OpenMasterKeyStatement.FromMutable(fragment as ScriptDom.OpenMasterKeyStatement);
-                case 636: return OpenQueryTableReference.FromMutable(fragment as ScriptDom.OpenQueryTableReference);
-                case 637: return OpenRowsetColumnDefinition.FromMutable(fragment as ScriptDom.OpenRowsetColumnDefinition);
-                case 638: return OpenRowsetCosmos.FromMutable(fragment as ScriptDom.OpenRowsetCosmos);
-                case 639: return OpenRowsetCosmosOption.FromMutable(fragment as ScriptDom.OpenRowsetCosmosOption);
-                case 640: return OpenRowsetTableReference.FromMutable(fragment as ScriptDom.OpenRowsetTableReference);
-                case 641: return OpenSymmetricKeyStatement.FromMutable(fragment as ScriptDom.OpenSymmetricKeyStatement);
-                case 642: return OpenXmlTableReference.FromMutable(fragment as ScriptDom.OpenXmlTableReference);
-                case 643: return OperatorAuditOption.FromMutable(fragment as ScriptDom.OperatorAuditOption);
-                case 644: return OptimizeForOptimizerHint.FromMutable(fragment as ScriptDom.OptimizeForOptimizerHint);
-                case 645: return OptimizerHint.FromMutable(fragment as ScriptDom.OptimizerHint);
-                case 646: return OrderBulkInsertOption.FromMutable(fragment as ScriptDom.OrderBulkInsertOption);
-                case 647: return OrderByClause.FromMutable(fragment as ScriptDom.OrderByClause);
-                case 648: return OrderIndexOption.FromMutable(fragment as ScriptDom.OrderIndexOption);
-                case 649: return OutputClause.FromMutable(fragment as ScriptDom.OutputClause);
-                case 650: return OutputIntoClause.FromMutable(fragment as ScriptDom.OutputIntoClause);
-                case 651: return OverClause.FromMutable(fragment as ScriptDom.OverClause);
-                case 652: return PageVerifyDatabaseOption.FromMutable(fragment as ScriptDom.PageVerifyDatabaseOption);
-                case 653: return ParameterizationDatabaseOption.FromMutable(fragment as ScriptDom.ParameterizationDatabaseOption);
-                case 654: return ParameterlessCall.FromMutable(fragment as ScriptDom.ParameterlessCall);
-                case 655: return ParenthesisExpression.FromMutable(fragment as ScriptDom.ParenthesisExpression);
-                case 656: return ParseCall.FromMutable(fragment as ScriptDom.ParseCall);
-                case 657: return PartitionFunctionCall.FromMutable(fragment as ScriptDom.PartitionFunctionCall);
-                case 658: return PartitionParameterType.FromMutable(fragment as ScriptDom.PartitionParameterType);
-                case 659: return PartitionSpecifier.FromMutable(fragment as ScriptDom.PartitionSpecifier);
-                case 660: return PartnerDatabaseOption.FromMutable(fragment as ScriptDom.PartnerDatabaseOption);
-                case 661: return PasswordAlterPrincipalOption.FromMutable(fragment as ScriptDom.PasswordAlterPrincipalOption);
-                case 662: return PasswordCreateLoginSource.FromMutable(fragment as ScriptDom.PasswordCreateLoginSource);
-                case 663: return Permission.FromMutable(fragment as ScriptDom.Permission);
-                case 664: return PermissionSetAssemblyOption.FromMutable(fragment as ScriptDom.PermissionSetAssemblyOption);
-                case 665: return PivotedTableReference.FromMutable(fragment as ScriptDom.PivotedTableReference);
-                case 666: return PortsEndpointProtocolOption.FromMutable(fragment as ScriptDom.PortsEndpointProtocolOption);
-                case 667: return PredicateSetStatement.FromMutable(fragment as ScriptDom.PredicateSetStatement);
-                case 668: return PredictTableReference.FromMutable(fragment as ScriptDom.PredictTableReference);
-                case 669: return PrimaryRoleReplicaOption.FromMutable(fragment as ScriptDom.PrimaryRoleReplicaOption);
-                case 670: return PrincipalOption.FromMutable(fragment as ScriptDom.PrincipalOption);
-                case 671: return PrintStatement.FromMutable(fragment as ScriptDom.PrintStatement);
-                case 672: return Privilege80.FromMutable(fragment as ScriptDom.Privilege80);
-                case 673: return PrivilegeSecurityElement80.FromMutable(fragment as ScriptDom.PrivilegeSecurityElement80);
-                case 674: return ProcedureOption.FromMutable(fragment as ScriptDom.ProcedureOption);
-                case 675: return ProcedureParameter.FromMutable(fragment as ScriptDom.ProcedureParameter);
-                case 676: return ProcedureReference.FromMutable(fragment as ScriptDom.ProcedureReference);
-                case 677: return ProcedureReferenceName.FromMutable(fragment as ScriptDom.ProcedureReferenceName);
-                case 678: return ProcessAffinityRange.FromMutable(fragment as ScriptDom.ProcessAffinityRange);
-                case 679: return ProviderEncryptionSource.FromMutable(fragment as ScriptDom.ProviderEncryptionSource);
-                case 680: return ProviderKeyNameKeyOption.FromMutable(fragment as ScriptDom.ProviderKeyNameKeyOption);
-                case 681: return QualifiedJoin.FromMutable(fragment as ScriptDom.QualifiedJoin);
-                case 682: return QueryDerivedTable.FromMutable(fragment as ScriptDom.QueryDerivedTable);
-                case 683: return QueryParenthesisExpression.FromMutable(fragment as ScriptDom.QueryParenthesisExpression);
-                case 684: return QuerySpecification.FromMutable(fragment as ScriptDom.QuerySpecification);
-                case 685: return QueryStoreCapturePolicyOption.FromMutable(fragment as ScriptDom.QueryStoreCapturePolicyOption);
-                case 686: return QueryStoreDatabaseOption.FromMutable(fragment as ScriptDom.QueryStoreDatabaseOption);
-                case 687: return QueryStoreDataFlushIntervalOption.FromMutable(fragment as ScriptDom.QueryStoreDataFlushIntervalOption);
-                case 688: return QueryStoreDesiredStateOption.FromMutable(fragment as ScriptDom.QueryStoreDesiredStateOption);
-                case 689: return QueryStoreIntervalLengthOption.FromMutable(fragment as ScriptDom.QueryStoreIntervalLengthOption);
-                case 690: return QueryStoreMaxPlansPerQueryOption.FromMutable(fragment as ScriptDom.QueryStoreMaxPlansPerQueryOption);
-                case 691: return QueryStoreMaxStorageSizeOption.FromMutable(fragment as ScriptDom.QueryStoreMaxStorageSizeOption);
-                case 692: return QueryStoreSizeCleanupPolicyOption.FromMutable(fragment as ScriptDom.QueryStoreSizeCleanupPolicyOption);
-                case 693: return QueryStoreTimeCleanupPolicyOption.FromMutable(fragment as ScriptDom.QueryStoreTimeCleanupPolicyOption);
-                case 694: return QueueDelayAuditOption.FromMutable(fragment as ScriptDom.QueueDelayAuditOption);
-                case 695: return QueueExecuteAsOption.FromMutable(fragment as ScriptDom.QueueExecuteAsOption);
-                case 696: return QueueOption.FromMutable(fragment as ScriptDom.QueueOption);
-                case 697: return QueueProcedureOption.FromMutable(fragment as ScriptDom.QueueProcedureOption);
-                case 698: return QueueStateOption.FromMutable(fragment as ScriptDom.QueueStateOption);
-                case 699: return QueueValueOption.FromMutable(fragment as ScriptDom.QueueValueOption);
-                case 700: return RaiseErrorLegacyStatement.FromMutable(fragment as ScriptDom.RaiseErrorLegacyStatement);
-                case 701: return RaiseErrorStatement.FromMutable(fragment as ScriptDom.RaiseErrorStatement);
-                case 702: return ReadOnlyForClause.FromMutable(fragment as ScriptDom.ReadOnlyForClause);
-                case 703: return ReadTextStatement.FromMutable(fragment as ScriptDom.ReadTextStatement);
-                case 704: return RealLiteral.FromMutable(fragment as ScriptDom.RealLiteral);
-                case 705: return ReceiveStatement.FromMutable(fragment as ScriptDom.ReceiveStatement);
-                case 706: return ReconfigureStatement.FromMutable(fragment as ScriptDom.ReconfigureStatement);
-                case 707: return RecoveryDatabaseOption.FromMutable(fragment as ScriptDom.RecoveryDatabaseOption);
-                case 708: return RemoteDataArchiveAlterTableOption.FromMutable(fragment as ScriptDom.RemoteDataArchiveAlterTableOption);
-                case 709: return RemoteDataArchiveDatabaseOption.FromMutable(fragment as ScriptDom.RemoteDataArchiveDatabaseOption);
-                case 710: return RemoteDataArchiveDbCredentialSetting.FromMutable(fragment as ScriptDom.RemoteDataArchiveDbCredentialSetting);
-                case 711: return RemoteDataArchiveDbFederatedServiceAccountSetting.FromMutable(fragment as ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting);
-                case 712: return RemoteDataArchiveDbServerSetting.FromMutable(fragment as ScriptDom.RemoteDataArchiveDbServerSetting);
-                case 713: return RemoteDataArchiveTableOption.FromMutable(fragment as ScriptDom.RemoteDataArchiveTableOption);
-                case 714: return RenameAlterRoleAction.FromMutable(fragment as ScriptDom.RenameAlterRoleAction);
-                case 715: return RenameEntityStatement.FromMutable(fragment as ScriptDom.RenameEntityStatement);
-                case 716: return ResampleStatisticsOption.FromMutable(fragment as ScriptDom.ResampleStatisticsOption);
-                case 717: return ResourcePoolAffinitySpecification.FromMutable(fragment as ScriptDom.ResourcePoolAffinitySpecification);
-                case 718: return ResourcePoolParameter.FromMutable(fragment as ScriptDom.ResourcePoolParameter);
-                case 719: return ResourcePoolStatement.FromMutable(fragment as ScriptDom.ResourcePoolStatement);
-                case 720: return RestoreMasterKeyStatement.FromMutable(fragment as ScriptDom.RestoreMasterKeyStatement);
-                case 721: return RestoreOption.FromMutable(fragment as ScriptDom.RestoreOption);
-                case 722: return RestoreServiceMasterKeyStatement.FromMutable(fragment as ScriptDom.RestoreServiceMasterKeyStatement);
-                case 723: return RestoreStatement.FromMutable(fragment as ScriptDom.RestoreStatement);
-                case 724: return ResultColumnDefinition.FromMutable(fragment as ScriptDom.ResultColumnDefinition);
-                case 725: return ResultSetDefinition.FromMutable(fragment as ScriptDom.ResultSetDefinition);
-                case 726: return ResultSetsExecuteOption.FromMutable(fragment as ScriptDom.ResultSetsExecuteOption);
-                case 727: return RetentionDaysAuditTargetOption.FromMutable(fragment as ScriptDom.RetentionDaysAuditTargetOption);
-                case 728: return RetentionPeriodDefinition.FromMutable(fragment as ScriptDom.RetentionPeriodDefinition);
-                case 729: return ReturnStatement.FromMutable(fragment as ScriptDom.ReturnStatement);
-                case 730: return RevertStatement.FromMutable(fragment as ScriptDom.RevertStatement);
-                case 731: return RevokeStatement.FromMutable(fragment as ScriptDom.RevokeStatement);
-                case 732: return RevokeStatement80.FromMutable(fragment as ScriptDom.RevokeStatement80);
-                case 733: return RightFunctionCall.FromMutable(fragment as ScriptDom.RightFunctionCall);
-                case 734: return RolePayloadOption.FromMutable(fragment as ScriptDom.RolePayloadOption);
-                case 735: return RollbackTransactionStatement.FromMutable(fragment as ScriptDom.RollbackTransactionStatement);
-                case 736: return RollupGroupingSpecification.FromMutable(fragment as ScriptDom.RollupGroupingSpecification);
-                case 737: return RouteOption.FromMutable(fragment as ScriptDom.RouteOption);
-                case 738: return RowValue.FromMutable(fragment as ScriptDom.RowValue);
-                case 739: return SaveTransactionStatement.FromMutable(fragment as ScriptDom.SaveTransactionStatement);
-                case 740: return ScalarExpressionDialogOption.FromMutable(fragment as ScriptDom.ScalarExpressionDialogOption);
-                case 741: return ScalarExpressionRestoreOption.FromMutable(fragment as ScriptDom.ScalarExpressionRestoreOption);
-                case 742: return ScalarExpressionSequenceOption.FromMutable(fragment as ScriptDom.ScalarExpressionSequenceOption);
-                case 743: return ScalarExpressionSnippet.FromMutable(fragment as ScriptDom.ScalarExpressionSnippet);
-                case 744: return ScalarFunctionReturnType.FromMutable(fragment as ScriptDom.ScalarFunctionReturnType);
-                case 745: return ScalarSubquery.FromMutable(fragment as ScriptDom.ScalarSubquery);
-                case 746: return SchemaDeclarationItem.FromMutable(fragment as ScriptDom.SchemaDeclarationItem);
-                case 747: return SchemaDeclarationItemOpenjson.FromMutable(fragment as ScriptDom.SchemaDeclarationItemOpenjson);
-                case 748: return SchemaObjectFunctionTableReference.FromMutable(fragment as ScriptDom.SchemaObjectFunctionTableReference);
-                case 749: return SchemaObjectName.FromMutable(fragment as ScriptDom.SchemaObjectName);
-                case 750: return SchemaObjectNameOrValueExpression.FromMutable(fragment as ScriptDom.SchemaObjectNameOrValueExpression);
-                case 751: return SchemaObjectNameSnippet.FromMutable(fragment as ScriptDom.SchemaObjectNameSnippet);
-                case 752: return SchemaObjectResultSetDefinition.FromMutable(fragment as ScriptDom.SchemaObjectResultSetDefinition);
-                case 753: return SchemaPayloadOption.FromMutable(fragment as ScriptDom.SchemaPayloadOption);
-                case 754: return SearchedCaseExpression.FromMutable(fragment as ScriptDom.SearchedCaseExpression);
-                case 755: return SearchedWhenClause.FromMutable(fragment as ScriptDom.SearchedWhenClause);
-                case 756: return SearchPropertyListFullTextIndexOption.FromMutable(fragment as ScriptDom.SearchPropertyListFullTextIndexOption);
-                case 757: return SecondaryRoleReplicaOption.FromMutable(fragment as ScriptDom.SecondaryRoleReplicaOption);
-                case 758: return SecurityPolicyOption.FromMutable(fragment as ScriptDom.SecurityPolicyOption);
-                case 759: return SecurityPredicateAction.FromMutable(fragment as ScriptDom.SecurityPredicateAction);
-                case 760: return SecurityPrincipal.FromMutable(fragment as ScriptDom.SecurityPrincipal);
-                case 761: return SecurityTargetObject.FromMutable(fragment as ScriptDom.SecurityTargetObject);
-                case 762: return SecurityTargetObjectName.FromMutable(fragment as ScriptDom.SecurityTargetObjectName);
-                case 763: return SecurityUserClause80.FromMutable(fragment as ScriptDom.SecurityUserClause80);
-                case 764: return SelectFunctionReturnType.FromMutable(fragment as ScriptDom.SelectFunctionReturnType);
-                case 765: return SelectInsertSource.FromMutable(fragment as ScriptDom.SelectInsertSource);
-                case 766: return SelectiveXmlIndexPromotedPath.FromMutable(fragment as ScriptDom.SelectiveXmlIndexPromotedPath);
-                case 767: return SelectScalarExpression.FromMutable(fragment as ScriptDom.SelectScalarExpression);
-                case 768: return SelectSetVariable.FromMutable(fragment as ScriptDom.SelectSetVariable);
-                case 769: return SelectStarExpression.FromMutable(fragment as ScriptDom.SelectStarExpression);
-                case 770: return SelectStatement.FromMutable(fragment as ScriptDom.SelectStatement);
-                case 771: return SelectStatementSnippet.FromMutable(fragment as ScriptDom.SelectStatementSnippet);
-                case 772: return SemanticTableReference.FromMutable(fragment as ScriptDom.SemanticTableReference);
-                case 773: return SendStatement.FromMutable(fragment as ScriptDom.SendStatement);
-                case 774: return SensitivityClassificationOption.FromMutable(fragment as ScriptDom.SensitivityClassificationOption);
-                case 775: return SequenceOption.FromMutable(fragment as ScriptDom.SequenceOption);
-                case 776: return ServiceContract.FromMutable(fragment as ScriptDom.ServiceContract);
-                case 777: return SessionTimeoutPayloadOption.FromMutable(fragment as ScriptDom.SessionTimeoutPayloadOption);
-                case 778: return SetCommandStatement.FromMutable(fragment as ScriptDom.SetCommandStatement);
-                case 779: return SetErrorLevelStatement.FromMutable(fragment as ScriptDom.SetErrorLevelStatement);
-                case 780: return SetFipsFlaggerCommand.FromMutable(fragment as ScriptDom.SetFipsFlaggerCommand);
-                case 781: return SetIdentityInsertStatement.FromMutable(fragment as ScriptDom.SetIdentityInsertStatement);
-                case 782: return SetOffsetsStatement.FromMutable(fragment as ScriptDom.SetOffsetsStatement);
-                case 783: return SetRowCountStatement.FromMutable(fragment as ScriptDom.SetRowCountStatement);
-                case 784: return SetSearchPropertyListAlterFullTextIndexAction.FromMutable(fragment as ScriptDom.SetSearchPropertyListAlterFullTextIndexAction);
-                case 785: return SetStatisticsStatement.FromMutable(fragment as ScriptDom.SetStatisticsStatement);
-                case 786: return SetStopListAlterFullTextIndexAction.FromMutable(fragment as ScriptDom.SetStopListAlterFullTextIndexAction);
-                case 787: return SetTextSizeStatement.FromMutable(fragment as ScriptDom.SetTextSizeStatement);
-                case 788: return SetTransactionIsolationLevelStatement.FromMutable(fragment as ScriptDom.SetTransactionIsolationLevelStatement);
-                case 789: return SetUserStatement.FromMutable(fragment as ScriptDom.SetUserStatement);
-                case 790: return SetVariableStatement.FromMutable(fragment as ScriptDom.SetVariableStatement);
-                case 791: return ShutdownStatement.FromMutable(fragment as ScriptDom.ShutdownStatement);
-                case 792: return SimpleAlterFullTextIndexAction.FromMutable(fragment as ScriptDom.SimpleAlterFullTextIndexAction);
-                case 793: return SimpleCaseExpression.FromMutable(fragment as ScriptDom.SimpleCaseExpression);
-                case 794: return SimpleWhenClause.FromMutable(fragment as ScriptDom.SimpleWhenClause);
-                case 795: return SingleValueTypeCopyOption.FromMutable(fragment as ScriptDom.SingleValueTypeCopyOption);
-                case 796: return SizeFileDeclarationOption.FromMutable(fragment as ScriptDom.SizeFileDeclarationOption);
-                case 797: return SoapMethod.FromMutable(fragment as ScriptDom.SoapMethod);
-                case 798: return SourceDeclaration.FromMutable(fragment as ScriptDom.SourceDeclaration);
-                case 799: return SpatialIndexRegularOption.FromMutable(fragment as ScriptDom.SpatialIndexRegularOption);
-                case 800: return SqlCommandIdentifier.FromMutable(fragment as ScriptDom.SqlCommandIdentifier);
-                case 801: return SqlDataTypeReference.FromMutable(fragment as ScriptDom.SqlDataTypeReference);
-                case 802: return StateAuditOption.FromMutable(fragment as ScriptDom.StateAuditOption);
-                case 803: return StatementList.FromMutable(fragment as ScriptDom.StatementList);
-                case 804: return StatementListSnippet.FromMutable(fragment as ScriptDom.StatementListSnippet);
-                case 805: return StatisticsOption.FromMutable(fragment as ScriptDom.StatisticsOption);
-                case 806: return StatisticsPartitionRange.FromMutable(fragment as ScriptDom.StatisticsPartitionRange);
-                case 807: return StopListFullTextIndexOption.FromMutable(fragment as ScriptDom.StopListFullTextIndexOption);
-                case 808: return StopRestoreOption.FromMutable(fragment as ScriptDom.StopRestoreOption);
-                case 809: return StringLiteral.FromMutable(fragment as ScriptDom.StringLiteral);
-                case 810: return SubqueryComparisonPredicate.FromMutable(fragment as ScriptDom.SubqueryComparisonPredicate);
-                case 811: return SystemTimePeriodDefinition.FromMutable(fragment as ScriptDom.SystemTimePeriodDefinition);
-                case 812: return SystemVersioningTableOption.FromMutable(fragment as ScriptDom.SystemVersioningTableOption);
-                case 813: return TableClusteredIndexType.FromMutable(fragment as ScriptDom.TableClusteredIndexType);
-                case 814: return TableDataCompressionOption.FromMutable(fragment as ScriptDom.TableDataCompressionOption);
-                case 815: return TableDefinition.FromMutable(fragment as ScriptDom.TableDefinition);
-                case 816: return TableDistributionOption.FromMutable(fragment as ScriptDom.TableDistributionOption);
-                case 817: return TableHashDistributionPolicy.FromMutable(fragment as ScriptDom.TableHashDistributionPolicy);
-                case 818: return TableHint.FromMutable(fragment as ScriptDom.TableHint);
-                case 819: return TableHintsOptimizerHint.FromMutable(fragment as ScriptDom.TableHintsOptimizerHint);
-                case 820: return TableIndexOption.FromMutable(fragment as ScriptDom.TableIndexOption);
-                case 821: return TableNonClusteredIndexType.FromMutable(fragment as ScriptDom.TableNonClusteredIndexType);
-                case 822: return TablePartitionOption.FromMutable(fragment as ScriptDom.TablePartitionOption);
-                case 823: return TablePartitionOptionSpecifications.FromMutable(fragment as ScriptDom.TablePartitionOptionSpecifications);
-                case 824: return TableReplicateDistributionPolicy.FromMutable(fragment as ScriptDom.TableReplicateDistributionPolicy);
-                case 825: return TableRoundRobinDistributionPolicy.FromMutable(fragment as ScriptDom.TableRoundRobinDistributionPolicy);
-                case 826: return TableSampleClause.FromMutable(fragment as ScriptDom.TableSampleClause);
-                case 827: return TableValuedFunctionReturnType.FromMutable(fragment as ScriptDom.TableValuedFunctionReturnType);
-                case 828: return TableXmlCompressionOption.FromMutable(fragment as ScriptDom.TableXmlCompressionOption);
-                case 829: return TargetDeclaration.FromMutable(fragment as ScriptDom.TargetDeclaration);
-                case 830: return TargetRecoveryTimeDatabaseOption.FromMutable(fragment as ScriptDom.TargetRecoveryTimeDatabaseOption);
-                case 831: return TemporalClause.FromMutable(fragment as ScriptDom.TemporalClause);
-                case 832: return ThrowStatement.FromMutable(fragment as ScriptDom.ThrowStatement);
-                case 833: return TopRowFilter.FromMutable(fragment as ScriptDom.TopRowFilter);
-                case 834: return TriggerAction.FromMutable(fragment as ScriptDom.TriggerAction);
-                case 835: return TriggerObject.FromMutable(fragment as ScriptDom.TriggerObject);
-                case 836: return TriggerOption.FromMutable(fragment as ScriptDom.TriggerOption);
-                case 837: return TruncateTableStatement.FromMutable(fragment as ScriptDom.TruncateTableStatement);
-                case 838: return TruncateTargetTableSwitchOption.FromMutable(fragment as ScriptDom.TruncateTargetTableSwitchOption);
-                case 839: return TryCastCall.FromMutable(fragment as ScriptDom.TryCastCall);
-                case 840: return TryCatchStatement.FromMutable(fragment as ScriptDom.TryCatchStatement);
-                case 841: return TryConvertCall.FromMutable(fragment as ScriptDom.TryConvertCall);
-                case 842: return TryParseCall.FromMutable(fragment as ScriptDom.TryParseCall);
-                case 843: return TSEqualCall.FromMutable(fragment as ScriptDom.TSEqualCall);
-                case 844: return TSqlBatch.FromMutable(fragment as ScriptDom.TSqlBatch);
-                case 845: return TSqlFragmentSnippet.FromMutable(fragment as ScriptDom.TSqlFragmentSnippet);
-                case 846: return TSqlScript.FromMutable(fragment as ScriptDom.TSqlScript);
-                case 847: return TSqlStatementSnippet.FromMutable(fragment as ScriptDom.TSqlStatementSnippet);
-                case 848: return UnaryExpression.FromMutable(fragment as ScriptDom.UnaryExpression);
-                case 849: return UniqueConstraintDefinition.FromMutable(fragment as ScriptDom.UniqueConstraintDefinition);
-                case 850: return UnpivotedTableReference.FromMutable(fragment as ScriptDom.UnpivotedTableReference);
-                case 851: return UnqualifiedJoin.FromMutable(fragment as ScriptDom.UnqualifiedJoin);
-                case 852: return UpdateCall.FromMutable(fragment as ScriptDom.UpdateCall);
-                case 853: return UpdateForClause.FromMutable(fragment as ScriptDom.UpdateForClause);
-                case 854: return UpdateMergeAction.FromMutable(fragment as ScriptDom.UpdateMergeAction);
-                case 855: return UpdateSpecification.FromMutable(fragment as ScriptDom.UpdateSpecification);
-                case 856: return UpdateStatement.FromMutable(fragment as ScriptDom.UpdateStatement);
-                case 857: return UpdateStatisticsStatement.FromMutable(fragment as ScriptDom.UpdateStatisticsStatement);
-                case 858: return UpdateTextStatement.FromMutable(fragment as ScriptDom.UpdateTextStatement);
-                case 859: return UseFederationStatement.FromMutable(fragment as ScriptDom.UseFederationStatement);
-                case 860: return UseHintList.FromMutable(fragment as ScriptDom.UseHintList);
-                case 861: return UserDataTypeReference.FromMutable(fragment as ScriptDom.UserDataTypeReference);
-                case 862: return UserDefinedTypeCallTarget.FromMutable(fragment as ScriptDom.UserDefinedTypeCallTarget);
-                case 863: return UserDefinedTypePropertyAccess.FromMutable(fragment as ScriptDom.UserDefinedTypePropertyAccess);
-                case 864: return UserLoginOption.FromMutable(fragment as ScriptDom.UserLoginOption);
-                case 865: return UserRemoteServiceBindingOption.FromMutable(fragment as ScriptDom.UserRemoteServiceBindingOption);
-                case 866: return UseStatement.FromMutable(fragment as ScriptDom.UseStatement);
-                case 867: return ValuesInsertSource.FromMutable(fragment as ScriptDom.ValuesInsertSource);
-                case 868: return VariableMethodCallTableReference.FromMutable(fragment as ScriptDom.VariableMethodCallTableReference);
-                case 869: return VariableReference.FromMutable(fragment as ScriptDom.VariableReference);
-                case 870: return VariableTableReference.FromMutable(fragment as ScriptDom.VariableTableReference);
-                case 871: return VariableValuePair.FromMutable(fragment as ScriptDom.VariableValuePair);
-                case 872: return ViewDistributionOption.FromMutable(fragment as ScriptDom.ViewDistributionOption);
-                case 873: return ViewForAppendOption.FromMutable(fragment as ScriptDom.ViewForAppendOption);
-                case 874: return ViewHashDistributionPolicy.FromMutable(fragment as ScriptDom.ViewHashDistributionPolicy);
-                case 875: return ViewOption.FromMutable(fragment as ScriptDom.ViewOption);
-                case 876: return ViewRoundRobinDistributionPolicy.FromMutable(fragment as ScriptDom.ViewRoundRobinDistributionPolicy);
-                case 877: return WaitAtLowPriorityOption.FromMutable(fragment as ScriptDom.WaitAtLowPriorityOption);
-                case 878: return WaitForStatement.FromMutable(fragment as ScriptDom.WaitForStatement);
-                case 879: return WhereClause.FromMutable(fragment as ScriptDom.WhereClause);
-                case 880: return WhileStatement.FromMutable(fragment as ScriptDom.WhileStatement);
-                case 881: return WindowClause.FromMutable(fragment as ScriptDom.WindowClause);
-                case 882: return WindowDefinition.FromMutable(fragment as ScriptDom.WindowDefinition);
-                case 883: return WindowDelimiter.FromMutable(fragment as ScriptDom.WindowDelimiter);
-                case 884: return WindowFrameClause.FromMutable(fragment as ScriptDom.WindowFrameClause);
-                case 885: return WindowsCreateLoginSource.FromMutable(fragment as ScriptDom.WindowsCreateLoginSource);
-                case 886: return WithCtesAndXmlNamespaces.FromMutable(fragment as ScriptDom.WithCtesAndXmlNamespaces);
-                case 887: return WithinGroupClause.FromMutable(fragment as ScriptDom.WithinGroupClause);
-                case 888: return WitnessDatabaseOption.FromMutable(fragment as ScriptDom.WitnessDatabaseOption);
-                case 889: return WlmTimeLiteral.FromMutable(fragment as ScriptDom.WlmTimeLiteral);
-                case 890: return WorkloadGroupImportanceParameter.FromMutable(fragment as ScriptDom.WorkloadGroupImportanceParameter);
-                case 891: return WorkloadGroupResourceParameter.FromMutable(fragment as ScriptDom.WorkloadGroupResourceParameter);
-                case 892: return WriteTextStatement.FromMutable(fragment as ScriptDom.WriteTextStatement);
-                case 893: return WsdlPayloadOption.FromMutable(fragment as ScriptDom.WsdlPayloadOption);
-                case 894: return XmlCompressionOption.FromMutable(fragment as ScriptDom.XmlCompressionOption);
-                case 895: return XmlDataTypeReference.FromMutable(fragment as ScriptDom.XmlDataTypeReference);
-                case 896: return XmlForClause.FromMutable(fragment as ScriptDom.XmlForClause);
-                case 897: return XmlForClauseOption.FromMutable(fragment as ScriptDom.XmlForClauseOption);
-                case 898: return XmlNamespaces.FromMutable(fragment as ScriptDom.XmlNamespaces);
-                case 899: return XmlNamespacesAliasElement.FromMutable(fragment as ScriptDom.XmlNamespacesAliasElement);
-                case 900: return XmlNamespacesDefaultElement.FromMutable(fragment as ScriptDom.XmlNamespacesDefaultElement);
+                case 410: return DWCompatibilityLevelConfigurationOption.FromMutable(fragment as ScriptDom.DWCompatibilityLevelConfigurationOption);
+                case 411: return ElasticPoolSpecification.FromMutable(fragment as ScriptDom.ElasticPoolSpecification);
+                case 412: return EnabledDisabledPayloadOption.FromMutable(fragment as ScriptDom.EnabledDisabledPayloadOption);
+                case 413: return EnableDisableTriggerStatement.FromMutable(fragment as ScriptDom.EnableDisableTriggerStatement);
+                case 414: return EncryptedValueParameter.FromMutable(fragment as ScriptDom.EncryptedValueParameter);
+                case 415: return EncryptionPayloadOption.FromMutable(fragment as ScriptDom.EncryptionPayloadOption);
+                case 416: return EndConversationStatement.FromMutable(fragment as ScriptDom.EndConversationStatement);
+                case 417: return EndpointAffinity.FromMutable(fragment as ScriptDom.EndpointAffinity);
+                case 418: return EventDeclaration.FromMutable(fragment as ScriptDom.EventDeclaration);
+                case 419: return EventDeclarationCompareFunctionParameter.FromMutable(fragment as ScriptDom.EventDeclarationCompareFunctionParameter);
+                case 420: return EventDeclarationSetParameter.FromMutable(fragment as ScriptDom.EventDeclarationSetParameter);
+                case 421: return EventGroupContainer.FromMutable(fragment as ScriptDom.EventGroupContainer);
+                case 422: return EventNotificationObjectScope.FromMutable(fragment as ScriptDom.EventNotificationObjectScope);
+                case 423: return EventRetentionSessionOption.FromMutable(fragment as ScriptDom.EventRetentionSessionOption);
+                case 424: return EventSessionObjectName.FromMutable(fragment as ScriptDom.EventSessionObjectName);
+                case 425: return EventSessionStatement.FromMutable(fragment as ScriptDom.EventSessionStatement);
+                case 426: return EventTypeContainer.FromMutable(fragment as ScriptDom.EventTypeContainer);
+                case 427: return ExecutableProcedureReference.FromMutable(fragment as ScriptDom.ExecutableProcedureReference);
+                case 428: return ExecutableStringList.FromMutable(fragment as ScriptDom.ExecutableStringList);
+                case 429: return ExecuteAsClause.FromMutable(fragment as ScriptDom.ExecuteAsClause);
+                case 430: return ExecuteAsFunctionOption.FromMutable(fragment as ScriptDom.ExecuteAsFunctionOption);
+                case 431: return ExecuteAsProcedureOption.FromMutable(fragment as ScriptDom.ExecuteAsProcedureOption);
+                case 432: return ExecuteAsStatement.FromMutable(fragment as ScriptDom.ExecuteAsStatement);
+                case 433: return ExecuteAsTriggerOption.FromMutable(fragment as ScriptDom.ExecuteAsTriggerOption);
+                case 434: return ExecuteContext.FromMutable(fragment as ScriptDom.ExecuteContext);
+                case 435: return ExecuteInsertSource.FromMutable(fragment as ScriptDom.ExecuteInsertSource);
+                case 436: return ExecuteOption.FromMutable(fragment as ScriptDom.ExecuteOption);
+                case 437: return ExecuteParameter.FromMutable(fragment as ScriptDom.ExecuteParameter);
+                case 438: return ExecuteSpecification.FromMutable(fragment as ScriptDom.ExecuteSpecification);
+                case 439: return ExecuteStatement.FromMutable(fragment as ScriptDom.ExecuteStatement);
+                case 440: return ExistsPredicate.FromMutable(fragment as ScriptDom.ExistsPredicate);
+                case 441: return ExpressionCallTarget.FromMutable(fragment as ScriptDom.ExpressionCallTarget);
+                case 442: return ExpressionGroupingSpecification.FromMutable(fragment as ScriptDom.ExpressionGroupingSpecification);
+                case 443: return ExpressionWithSortOrder.FromMutable(fragment as ScriptDom.ExpressionWithSortOrder);
+                case 444: return ExternalCreateLoginSource.FromMutable(fragment as ScriptDom.ExternalCreateLoginSource);
+                case 445: return ExternalDataSourceLiteralOrIdentifierOption.FromMutable(fragment as ScriptDom.ExternalDataSourceLiteralOrIdentifierOption);
+                case 446: return ExternalFileFormatContainerOption.FromMutable(fragment as ScriptDom.ExternalFileFormatContainerOption);
+                case 447: return ExternalFileFormatLiteralOption.FromMutable(fragment as ScriptDom.ExternalFileFormatLiteralOption);
+                case 448: return ExternalFileFormatUseDefaultTypeOption.FromMutable(fragment as ScriptDom.ExternalFileFormatUseDefaultTypeOption);
+                case 449: return ExternalLanguageFileOption.FromMutable(fragment as ScriptDom.ExternalLanguageFileOption);
+                case 450: return ExternalLibraryFileOption.FromMutable(fragment as ScriptDom.ExternalLibraryFileOption);
+                case 451: return ExternalResourcePoolAffinitySpecification.FromMutable(fragment as ScriptDom.ExternalResourcePoolAffinitySpecification);
+                case 452: return ExternalResourcePoolParameter.FromMutable(fragment as ScriptDom.ExternalResourcePoolParameter);
+                case 453: return ExternalResourcePoolStatement.FromMutable(fragment as ScriptDom.ExternalResourcePoolStatement);
+                case 454: return ExternalStreamLiteralOrIdentifierOption.FromMutable(fragment as ScriptDom.ExternalStreamLiteralOrIdentifierOption);
+                case 455: return ExternalTableColumnDefinition.FromMutable(fragment as ScriptDom.ExternalTableColumnDefinition);
+                case 456: return ExternalTableDistributionOption.FromMutable(fragment as ScriptDom.ExternalTableDistributionOption);
+                case 457: return ExternalTableLiteralOrIdentifierOption.FromMutable(fragment as ScriptDom.ExternalTableLiteralOrIdentifierOption);
+                case 458: return ExternalTableRejectTypeOption.FromMutable(fragment as ScriptDom.ExternalTableRejectTypeOption);
+                case 459: return ExternalTableReplicatedDistributionPolicy.FromMutable(fragment as ScriptDom.ExternalTableReplicatedDistributionPolicy);
+                case 460: return ExternalTableRoundRobinDistributionPolicy.FromMutable(fragment as ScriptDom.ExternalTableRoundRobinDistributionPolicy);
+                case 461: return ExternalTableShardedDistributionPolicy.FromMutable(fragment as ScriptDom.ExternalTableShardedDistributionPolicy);
+                case 462: return ExtractFromExpression.FromMutable(fragment as ScriptDom.ExtractFromExpression);
+                case 463: return FailoverModeReplicaOption.FromMutable(fragment as ScriptDom.FailoverModeReplicaOption);
+                case 464: return FederationScheme.FromMutable(fragment as ScriptDom.FederationScheme);
+                case 465: return FetchCursorStatement.FromMutable(fragment as ScriptDom.FetchCursorStatement);
+                case 466: return FetchType.FromMutable(fragment as ScriptDom.FetchType);
+                case 467: return FileDeclaration.FromMutable(fragment as ScriptDom.FileDeclaration);
+                case 468: return FileDeclarationOption.FromMutable(fragment as ScriptDom.FileDeclarationOption);
+                case 469: return FileEncryptionSource.FromMutable(fragment as ScriptDom.FileEncryptionSource);
+                case 470: return FileGroupDefinition.FromMutable(fragment as ScriptDom.FileGroupDefinition);
+                case 471: return FileGroupOrPartitionScheme.FromMutable(fragment as ScriptDom.FileGroupOrPartitionScheme);
+                case 472: return FileGrowthFileDeclarationOption.FromMutable(fragment as ScriptDom.FileGrowthFileDeclarationOption);
+                case 473: return FileNameFileDeclarationOption.FromMutable(fragment as ScriptDom.FileNameFileDeclarationOption);
+                case 474: return FileStreamDatabaseOption.FromMutable(fragment as ScriptDom.FileStreamDatabaseOption);
+                case 475: return FileStreamOnDropIndexOption.FromMutable(fragment as ScriptDom.FileStreamOnDropIndexOption);
+                case 476: return FileStreamOnTableOption.FromMutable(fragment as ScriptDom.FileStreamOnTableOption);
+                case 477: return FileStreamRestoreOption.FromMutable(fragment as ScriptDom.FileStreamRestoreOption);
+                case 478: return FileTableCollateFileNameTableOption.FromMutable(fragment as ScriptDom.FileTableCollateFileNameTableOption);
+                case 479: return FileTableConstraintNameTableOption.FromMutable(fragment as ScriptDom.FileTableConstraintNameTableOption);
+                case 480: return FileTableDirectoryTableOption.FromMutable(fragment as ScriptDom.FileTableDirectoryTableOption);
+                case 481: return ForceSeekTableHint.FromMutable(fragment as ScriptDom.ForceSeekTableHint);
+                case 482: return ForeignKeyConstraintDefinition.FromMutable(fragment as ScriptDom.ForeignKeyConstraintDefinition);
+                case 483: return FromClause.FromMutable(fragment as ScriptDom.FromClause);
+                case 484: return FullTextCatalogAndFileGroup.FromMutable(fragment as ScriptDom.FullTextCatalogAndFileGroup);
+                case 485: return FullTextIndexColumn.FromMutable(fragment as ScriptDom.FullTextIndexColumn);
+                case 486: return FullTextPredicate.FromMutable(fragment as ScriptDom.FullTextPredicate);
+                case 487: return FullTextStopListAction.FromMutable(fragment as ScriptDom.FullTextStopListAction);
+                case 488: return FullTextTableReference.FromMutable(fragment as ScriptDom.FullTextTableReference);
+                case 489: return FunctionCall.FromMutable(fragment as ScriptDom.FunctionCall);
+                case 490: return FunctionCallSetClause.FromMutable(fragment as ScriptDom.FunctionCallSetClause);
+                case 491: return FunctionOption.FromMutable(fragment as ScriptDom.FunctionOption);
+                case 492: return GeneralSetCommand.FromMutable(fragment as ScriptDom.GeneralSetCommand);
+                case 493: return GenericConfigurationOption.FromMutable(fragment as ScriptDom.GenericConfigurationOption);
+                case 494: return GetConversationGroupStatement.FromMutable(fragment as ScriptDom.GetConversationGroupStatement);
+                case 495: return GlobalFunctionTableReference.FromMutable(fragment as ScriptDom.GlobalFunctionTableReference);
+                case 496: return GlobalVariableExpression.FromMutable(fragment as ScriptDom.GlobalVariableExpression);
+                case 497: return GoToStatement.FromMutable(fragment as ScriptDom.GoToStatement);
+                case 498: return GrandTotalGroupingSpecification.FromMutable(fragment as ScriptDom.GrandTotalGroupingSpecification);
+                case 499: return GrantStatement.FromMutable(fragment as ScriptDom.GrantStatement);
+                case 500: return GrantStatement80.FromMutable(fragment as ScriptDom.GrantStatement80);
+                case 501: return GraphConnectionBetweenNodes.FromMutable(fragment as ScriptDom.GraphConnectionBetweenNodes);
+                case 502: return GraphConnectionConstraintDefinition.FromMutable(fragment as ScriptDom.GraphConnectionConstraintDefinition);
+                case 503: return GraphMatchCompositeExpression.FromMutable(fragment as ScriptDom.GraphMatchCompositeExpression);
+                case 504: return GraphMatchExpression.FromMutable(fragment as ScriptDom.GraphMatchExpression);
+                case 505: return GraphMatchLastNodePredicate.FromMutable(fragment as ScriptDom.GraphMatchLastNodePredicate);
+                case 506: return GraphMatchNodeExpression.FromMutable(fragment as ScriptDom.GraphMatchNodeExpression);
+                case 507: return GraphMatchPredicate.FromMutable(fragment as ScriptDom.GraphMatchPredicate);
+                case 508: return GraphMatchRecursivePredicate.FromMutable(fragment as ScriptDom.GraphMatchRecursivePredicate);
+                case 509: return GraphRecursiveMatchQuantifier.FromMutable(fragment as ScriptDom.GraphRecursiveMatchQuantifier);
+                case 510: return GridParameter.FromMutable(fragment as ScriptDom.GridParameter);
+                case 511: return GridsSpatialIndexOption.FromMutable(fragment as ScriptDom.GridsSpatialIndexOption);
+                case 512: return GroupByClause.FromMutable(fragment as ScriptDom.GroupByClause);
+                case 513: return GroupingSetsGroupingSpecification.FromMutable(fragment as ScriptDom.GroupingSetsGroupingSpecification);
+                case 514: return HadrAvailabilityGroupDatabaseOption.FromMutable(fragment as ScriptDom.HadrAvailabilityGroupDatabaseOption);
+                case 515: return HadrDatabaseOption.FromMutable(fragment as ScriptDom.HadrDatabaseOption);
+                case 516: return HavingClause.FromMutable(fragment as ScriptDom.HavingClause);
+                case 517: return Identifier.FromMutable(fragment as ScriptDom.Identifier);
+                case 518: return IdentifierAtomicBlockOption.FromMutable(fragment as ScriptDom.IdentifierAtomicBlockOption);
+                case 519: return IdentifierDatabaseOption.FromMutable(fragment as ScriptDom.IdentifierDatabaseOption);
+                case 520: return IdentifierLiteral.FromMutable(fragment as ScriptDom.IdentifierLiteral);
+                case 521: return IdentifierOrScalarExpression.FromMutable(fragment as ScriptDom.IdentifierOrScalarExpression);
+                case 522: return IdentifierOrValueExpression.FromMutable(fragment as ScriptDom.IdentifierOrValueExpression);
+                case 523: return IdentifierPrincipalOption.FromMutable(fragment as ScriptDom.IdentifierPrincipalOption);
+                case 524: return IdentifierSnippet.FromMutable(fragment as ScriptDom.IdentifierSnippet);
+                case 525: return IdentityFunctionCall.FromMutable(fragment as ScriptDom.IdentityFunctionCall);
+                case 526: return IdentityOptions.FromMutable(fragment as ScriptDom.IdentityOptions);
+                case 527: return IdentityValueKeyOption.FromMutable(fragment as ScriptDom.IdentityValueKeyOption);
+                case 528: return IfStatement.FromMutable(fragment as ScriptDom.IfStatement);
+                case 529: return IgnoreDupKeyIndexOption.FromMutable(fragment as ScriptDom.IgnoreDupKeyIndexOption);
+                case 530: return IIfCall.FromMutable(fragment as ScriptDom.IIfCall);
+                case 531: return IndexDefinition.FromMutable(fragment as ScriptDom.IndexDefinition);
+                case 532: return IndexExpressionOption.FromMutable(fragment as ScriptDom.IndexExpressionOption);
+                case 533: return IndexStateOption.FromMutable(fragment as ScriptDom.IndexStateOption);
+                case 534: return IndexTableHint.FromMutable(fragment as ScriptDom.IndexTableHint);
+                case 535: return IndexType.FromMutable(fragment as ScriptDom.IndexType);
+                case 536: return InlineDerivedTable.FromMutable(fragment as ScriptDom.InlineDerivedTable);
+                case 537: return InlineFunctionOption.FromMutable(fragment as ScriptDom.InlineFunctionOption);
+                case 538: return InlineResultSetDefinition.FromMutable(fragment as ScriptDom.InlineResultSetDefinition);
+                case 539: return InPredicate.FromMutable(fragment as ScriptDom.InPredicate);
+                case 540: return InsertBulkColumnDefinition.FromMutable(fragment as ScriptDom.InsertBulkColumnDefinition);
+                case 541: return InsertBulkStatement.FromMutable(fragment as ScriptDom.InsertBulkStatement);
+                case 542: return InsertMergeAction.FromMutable(fragment as ScriptDom.InsertMergeAction);
+                case 543: return InsertSpecification.FromMutable(fragment as ScriptDom.InsertSpecification);
+                case 544: return InsertStatement.FromMutable(fragment as ScriptDom.InsertStatement);
+                case 545: return IntegerLiteral.FromMutable(fragment as ScriptDom.IntegerLiteral);
+                case 546: return InternalOpenRowset.FromMutable(fragment as ScriptDom.InternalOpenRowset);
+                case 547: return IPv4.FromMutable(fragment as ScriptDom.IPv4);
+                case 548: return JoinParenthesisTableReference.FromMutable(fragment as ScriptDom.JoinParenthesisTableReference);
+                case 549: return JsonForClause.FromMutable(fragment as ScriptDom.JsonForClause);
+                case 550: return JsonForClauseOption.FromMutable(fragment as ScriptDom.JsonForClauseOption);
+                case 551: return JsonKeyValue.FromMutable(fragment as ScriptDom.JsonKeyValue);
+                case 552: return KeySourceKeyOption.FromMutable(fragment as ScriptDom.KeySourceKeyOption);
+                case 553: return KillQueryNotificationSubscriptionStatement.FromMutable(fragment as ScriptDom.KillQueryNotificationSubscriptionStatement);
+                case 554: return KillStatement.FromMutable(fragment as ScriptDom.KillStatement);
+                case 555: return KillStatsJobStatement.FromMutable(fragment as ScriptDom.KillStatsJobStatement);
+                case 556: return LabelStatement.FromMutable(fragment as ScriptDom.LabelStatement);
+                case 557: return LedgerOption.FromMutable(fragment as ScriptDom.LedgerOption);
+                case 558: return LedgerTableOption.FromMutable(fragment as ScriptDom.LedgerTableOption);
+                case 559: return LedgerViewOption.FromMutable(fragment as ScriptDom.LedgerViewOption);
+                case 560: return LeftFunctionCall.FromMutable(fragment as ScriptDom.LeftFunctionCall);
+                case 561: return LikePredicate.FromMutable(fragment as ScriptDom.LikePredicate);
+                case 562: return LineNoStatement.FromMutable(fragment as ScriptDom.LineNoStatement);
+                case 563: return ListenerIPEndpointProtocolOption.FromMutable(fragment as ScriptDom.ListenerIPEndpointProtocolOption);
+                case 564: return ListTypeCopyOption.FromMutable(fragment as ScriptDom.ListTypeCopyOption);
+                case 565: return LiteralAtomicBlockOption.FromMutable(fragment as ScriptDom.LiteralAtomicBlockOption);
+                case 566: return LiteralAuditTargetOption.FromMutable(fragment as ScriptDom.LiteralAuditTargetOption);
+                case 567: return LiteralAvailabilityGroupOption.FromMutable(fragment as ScriptDom.LiteralAvailabilityGroupOption);
+                case 568: return LiteralBulkInsertOption.FromMutable(fragment as ScriptDom.LiteralBulkInsertOption);
+                case 569: return LiteralDatabaseOption.FromMutable(fragment as ScriptDom.LiteralDatabaseOption);
+                case 570: return LiteralEndpointProtocolOption.FromMutable(fragment as ScriptDom.LiteralEndpointProtocolOption);
+                case 571: return LiteralOpenRowsetCosmosOption.FromMutable(fragment as ScriptDom.LiteralOpenRowsetCosmosOption);
+                case 572: return LiteralOptimizerHint.FromMutable(fragment as ScriptDom.LiteralOptimizerHint);
+                case 573: return LiteralOptionValue.FromMutable(fragment as ScriptDom.LiteralOptionValue);
+                case 574: return LiteralPayloadOption.FromMutable(fragment as ScriptDom.LiteralPayloadOption);
+                case 575: return LiteralPrincipalOption.FromMutable(fragment as ScriptDom.LiteralPrincipalOption);
+                case 576: return LiteralRange.FromMutable(fragment as ScriptDom.LiteralRange);
+                case 577: return LiteralReplicaOption.FromMutable(fragment as ScriptDom.LiteralReplicaOption);
+                case 578: return LiteralSessionOption.FromMutable(fragment as ScriptDom.LiteralSessionOption);
+                case 579: return LiteralStatisticsOption.FromMutable(fragment as ScriptDom.LiteralStatisticsOption);
+                case 580: return LiteralTableHint.FromMutable(fragment as ScriptDom.LiteralTableHint);
+                case 581: return LocationOption.FromMutable(fragment as ScriptDom.LocationOption);
+                case 582: return LockEscalationTableOption.FromMutable(fragment as ScriptDom.LockEscalationTableOption);
+                case 583: return LoginTypePayloadOption.FromMutable(fragment as ScriptDom.LoginTypePayloadOption);
+                case 584: return LowPriorityLockWaitAbortAfterWaitOption.FromMutable(fragment as ScriptDom.LowPriorityLockWaitAbortAfterWaitOption);
+                case 585: return LowPriorityLockWaitMaxDurationOption.FromMutable(fragment as ScriptDom.LowPriorityLockWaitMaxDurationOption);
+                case 586: return LowPriorityLockWaitTableSwitchOption.FromMutable(fragment as ScriptDom.LowPriorityLockWaitTableSwitchOption);
+                case 587: return MaxDispatchLatencySessionOption.FromMutable(fragment as ScriptDom.MaxDispatchLatencySessionOption);
+                case 588: return MaxDopConfigurationOption.FromMutable(fragment as ScriptDom.MaxDopConfigurationOption);
+                case 589: return MaxDurationOption.FromMutable(fragment as ScriptDom.MaxDurationOption);
+                case 590: return MaxLiteral.FromMutable(fragment as ScriptDom.MaxLiteral);
+                case 591: return MaxRolloverFilesAuditTargetOption.FromMutable(fragment as ScriptDom.MaxRolloverFilesAuditTargetOption);
+                case 592: return MaxSizeAuditTargetOption.FromMutable(fragment as ScriptDom.MaxSizeAuditTargetOption);
+                case 593: return MaxSizeDatabaseOption.FromMutable(fragment as ScriptDom.MaxSizeDatabaseOption);
+                case 594: return MaxSizeFileDeclarationOption.FromMutable(fragment as ScriptDom.MaxSizeFileDeclarationOption);
+                case 595: return MemoryOptimizedTableOption.FromMutable(fragment as ScriptDom.MemoryOptimizedTableOption);
+                case 596: return MemoryPartitionSessionOption.FromMutable(fragment as ScriptDom.MemoryPartitionSessionOption);
+                case 597: return MergeActionClause.FromMutable(fragment as ScriptDom.MergeActionClause);
+                case 598: return MergeSpecification.FromMutable(fragment as ScriptDom.MergeSpecification);
+                case 599: return MergeStatement.FromMutable(fragment as ScriptDom.MergeStatement);
+                case 600: return MethodSpecifier.FromMutable(fragment as ScriptDom.MethodSpecifier);
+                case 601: return MirrorToClause.FromMutable(fragment as ScriptDom.MirrorToClause);
+                case 602: return MoneyLiteral.FromMutable(fragment as ScriptDom.MoneyLiteral);
+                case 603: return MoveConversationStatement.FromMutable(fragment as ScriptDom.MoveConversationStatement);
+                case 604: return MoveRestoreOption.FromMutable(fragment as ScriptDom.MoveRestoreOption);
+                case 605: return MoveToDropIndexOption.FromMutable(fragment as ScriptDom.MoveToDropIndexOption);
+                case 606: return MultiPartIdentifier.FromMutable(fragment as ScriptDom.MultiPartIdentifier);
+                case 607: return MultiPartIdentifierCallTarget.FromMutable(fragment as ScriptDom.MultiPartIdentifierCallTarget);
+                case 608: return NamedTableReference.FromMutable(fragment as ScriptDom.NamedTableReference);
+                case 609: return NameFileDeclarationOption.FromMutable(fragment as ScriptDom.NameFileDeclarationOption);
+                case 610: return NextValueForExpression.FromMutable(fragment as ScriptDom.NextValueForExpression);
+                case 611: return NullableConstraintDefinition.FromMutable(fragment as ScriptDom.NullableConstraintDefinition);
+                case 612: return NullIfExpression.FromMutable(fragment as ScriptDom.NullIfExpression);
+                case 613: return NullLiteral.FromMutable(fragment as ScriptDom.NullLiteral);
+                case 614: return NumericLiteral.FromMutable(fragment as ScriptDom.NumericLiteral);
+                case 615: return OdbcConvertSpecification.FromMutable(fragment as ScriptDom.OdbcConvertSpecification);
+                case 616: return OdbcFunctionCall.FromMutable(fragment as ScriptDom.OdbcFunctionCall);
+                case 617: return OdbcLiteral.FromMutable(fragment as ScriptDom.OdbcLiteral);
+                case 618: return OdbcQualifiedJoinTableReference.FromMutable(fragment as ScriptDom.OdbcQualifiedJoinTableReference);
+                case 619: return OffsetClause.FromMutable(fragment as ScriptDom.OffsetClause);
+                case 620: return OnFailureAuditOption.FromMutable(fragment as ScriptDom.OnFailureAuditOption);
+                case 621: return OnlineIndexLowPriorityLockWaitOption.FromMutable(fragment as ScriptDom.OnlineIndexLowPriorityLockWaitOption);
+                case 622: return OnlineIndexOption.FromMutable(fragment as ScriptDom.OnlineIndexOption);
+                case 623: return OnOffAssemblyOption.FromMutable(fragment as ScriptDom.OnOffAssemblyOption);
+                case 624: return OnOffAtomicBlockOption.FromMutable(fragment as ScriptDom.OnOffAtomicBlockOption);
+                case 625: return OnOffAuditTargetOption.FromMutable(fragment as ScriptDom.OnOffAuditTargetOption);
+                case 626: return OnOffDatabaseOption.FromMutable(fragment as ScriptDom.OnOffDatabaseOption);
+                case 627: return OnOffDialogOption.FromMutable(fragment as ScriptDom.OnOffDialogOption);
+                case 628: return OnOffFullTextCatalogOption.FromMutable(fragment as ScriptDom.OnOffFullTextCatalogOption);
+                case 629: return OnOffOptionValue.FromMutable(fragment as ScriptDom.OnOffOptionValue);
+                case 630: return OnOffPrimaryConfigurationOption.FromMutable(fragment as ScriptDom.OnOffPrimaryConfigurationOption);
+                case 631: return OnOffPrincipalOption.FromMutable(fragment as ScriptDom.OnOffPrincipalOption);
+                case 632: return OnOffRemoteServiceBindingOption.FromMutable(fragment as ScriptDom.OnOffRemoteServiceBindingOption);
+                case 633: return OnOffSessionOption.FromMutable(fragment as ScriptDom.OnOffSessionOption);
+                case 634: return OnOffStatisticsOption.FromMutable(fragment as ScriptDom.OnOffStatisticsOption);
+                case 635: return OpenCursorStatement.FromMutable(fragment as ScriptDom.OpenCursorStatement);
+                case 636: return OpenJsonTableReference.FromMutable(fragment as ScriptDom.OpenJsonTableReference);
+                case 637: return OpenMasterKeyStatement.FromMutable(fragment as ScriptDom.OpenMasterKeyStatement);
+                case 638: return OpenQueryTableReference.FromMutable(fragment as ScriptDom.OpenQueryTableReference);
+                case 639: return OpenRowsetColumnDefinition.FromMutable(fragment as ScriptDom.OpenRowsetColumnDefinition);
+                case 640: return OpenRowsetCosmos.FromMutable(fragment as ScriptDom.OpenRowsetCosmos);
+                case 641: return OpenRowsetCosmosOption.FromMutable(fragment as ScriptDom.OpenRowsetCosmosOption);
+                case 642: return OpenRowsetTableReference.FromMutable(fragment as ScriptDom.OpenRowsetTableReference);
+                case 643: return OpenSymmetricKeyStatement.FromMutable(fragment as ScriptDom.OpenSymmetricKeyStatement);
+                case 644: return OpenXmlTableReference.FromMutable(fragment as ScriptDom.OpenXmlTableReference);
+                case 645: return OperatorAuditOption.FromMutable(fragment as ScriptDom.OperatorAuditOption);
+                case 646: return OptimizeForOptimizerHint.FromMutable(fragment as ScriptDom.OptimizeForOptimizerHint);
+                case 647: return OptimizerHint.FromMutable(fragment as ScriptDom.OptimizerHint);
+                case 648: return OrderBulkInsertOption.FromMutable(fragment as ScriptDom.OrderBulkInsertOption);
+                case 649: return OrderByClause.FromMutable(fragment as ScriptDom.OrderByClause);
+                case 650: return OrderIndexOption.FromMutable(fragment as ScriptDom.OrderIndexOption);
+                case 651: return OutputClause.FromMutable(fragment as ScriptDom.OutputClause);
+                case 652: return OutputIntoClause.FromMutable(fragment as ScriptDom.OutputIntoClause);
+                case 653: return OverClause.FromMutable(fragment as ScriptDom.OverClause);
+                case 654: return PageVerifyDatabaseOption.FromMutable(fragment as ScriptDom.PageVerifyDatabaseOption);
+                case 655: return ParameterizationDatabaseOption.FromMutable(fragment as ScriptDom.ParameterizationDatabaseOption);
+                case 656: return ParameterlessCall.FromMutable(fragment as ScriptDom.ParameterlessCall);
+                case 657: return ParenthesisExpression.FromMutable(fragment as ScriptDom.ParenthesisExpression);
+                case 658: return ParseCall.FromMutable(fragment as ScriptDom.ParseCall);
+                case 659: return PartitionFunctionCall.FromMutable(fragment as ScriptDom.PartitionFunctionCall);
+                case 660: return PartitionParameterType.FromMutable(fragment as ScriptDom.PartitionParameterType);
+                case 661: return PartitionSpecifier.FromMutable(fragment as ScriptDom.PartitionSpecifier);
+                case 662: return PartnerDatabaseOption.FromMutable(fragment as ScriptDom.PartnerDatabaseOption);
+                case 663: return PasswordAlterPrincipalOption.FromMutable(fragment as ScriptDom.PasswordAlterPrincipalOption);
+                case 664: return PasswordCreateLoginSource.FromMutable(fragment as ScriptDom.PasswordCreateLoginSource);
+                case 665: return Permission.FromMutable(fragment as ScriptDom.Permission);
+                case 666: return PermissionSetAssemblyOption.FromMutable(fragment as ScriptDom.PermissionSetAssemblyOption);
+                case 667: return PivotedTableReference.FromMutable(fragment as ScriptDom.PivotedTableReference);
+                case 668: return PortsEndpointProtocolOption.FromMutable(fragment as ScriptDom.PortsEndpointProtocolOption);
+                case 669: return PredicateSetStatement.FromMutable(fragment as ScriptDom.PredicateSetStatement);
+                case 670: return PredictTableReference.FromMutable(fragment as ScriptDom.PredictTableReference);
+                case 671: return PrimaryRoleReplicaOption.FromMutable(fragment as ScriptDom.PrimaryRoleReplicaOption);
+                case 672: return PrincipalOption.FromMutable(fragment as ScriptDom.PrincipalOption);
+                case 673: return PrintStatement.FromMutable(fragment as ScriptDom.PrintStatement);
+                case 674: return Privilege80.FromMutable(fragment as ScriptDom.Privilege80);
+                case 675: return PrivilegeSecurityElement80.FromMutable(fragment as ScriptDom.PrivilegeSecurityElement80);
+                case 676: return ProcedureOption.FromMutable(fragment as ScriptDom.ProcedureOption);
+                case 677: return ProcedureParameter.FromMutable(fragment as ScriptDom.ProcedureParameter);
+                case 678: return ProcedureReference.FromMutable(fragment as ScriptDom.ProcedureReference);
+                case 679: return ProcedureReferenceName.FromMutable(fragment as ScriptDom.ProcedureReferenceName);
+                case 680: return ProcessAffinityRange.FromMutable(fragment as ScriptDom.ProcessAffinityRange);
+                case 681: return ProviderEncryptionSource.FromMutable(fragment as ScriptDom.ProviderEncryptionSource);
+                case 682: return ProviderKeyNameKeyOption.FromMutable(fragment as ScriptDom.ProviderKeyNameKeyOption);
+                case 683: return QualifiedJoin.FromMutable(fragment as ScriptDom.QualifiedJoin);
+                case 684: return QueryDerivedTable.FromMutable(fragment as ScriptDom.QueryDerivedTable);
+                case 685: return QueryParenthesisExpression.FromMutable(fragment as ScriptDom.QueryParenthesisExpression);
+                case 686: return QuerySpecification.FromMutable(fragment as ScriptDom.QuerySpecification);
+                case 687: return QueryStoreCapturePolicyOption.FromMutable(fragment as ScriptDom.QueryStoreCapturePolicyOption);
+                case 688: return QueryStoreDatabaseOption.FromMutable(fragment as ScriptDom.QueryStoreDatabaseOption);
+                case 689: return QueryStoreDataFlushIntervalOption.FromMutable(fragment as ScriptDom.QueryStoreDataFlushIntervalOption);
+                case 690: return QueryStoreDesiredStateOption.FromMutable(fragment as ScriptDom.QueryStoreDesiredStateOption);
+                case 691: return QueryStoreIntervalLengthOption.FromMutable(fragment as ScriptDom.QueryStoreIntervalLengthOption);
+                case 692: return QueryStoreMaxPlansPerQueryOption.FromMutable(fragment as ScriptDom.QueryStoreMaxPlansPerQueryOption);
+                case 693: return QueryStoreMaxStorageSizeOption.FromMutable(fragment as ScriptDom.QueryStoreMaxStorageSizeOption);
+                case 694: return QueryStoreSizeCleanupPolicyOption.FromMutable(fragment as ScriptDom.QueryStoreSizeCleanupPolicyOption);
+                case 695: return QueryStoreTimeCleanupPolicyOption.FromMutable(fragment as ScriptDom.QueryStoreTimeCleanupPolicyOption);
+                case 696: return QueueDelayAuditOption.FromMutable(fragment as ScriptDom.QueueDelayAuditOption);
+                case 697: return QueueExecuteAsOption.FromMutable(fragment as ScriptDom.QueueExecuteAsOption);
+                case 698: return QueueOption.FromMutable(fragment as ScriptDom.QueueOption);
+                case 699: return QueueProcedureOption.FromMutable(fragment as ScriptDom.QueueProcedureOption);
+                case 700: return QueueStateOption.FromMutable(fragment as ScriptDom.QueueStateOption);
+                case 701: return QueueValueOption.FromMutable(fragment as ScriptDom.QueueValueOption);
+                case 702: return RaiseErrorLegacyStatement.FromMutable(fragment as ScriptDom.RaiseErrorLegacyStatement);
+                case 703: return RaiseErrorStatement.FromMutable(fragment as ScriptDom.RaiseErrorStatement);
+                case 704: return ReadOnlyForClause.FromMutable(fragment as ScriptDom.ReadOnlyForClause);
+                case 705: return ReadTextStatement.FromMutable(fragment as ScriptDom.ReadTextStatement);
+                case 706: return RealLiteral.FromMutable(fragment as ScriptDom.RealLiteral);
+                case 707: return ReceiveStatement.FromMutable(fragment as ScriptDom.ReceiveStatement);
+                case 708: return ReconfigureStatement.FromMutable(fragment as ScriptDom.ReconfigureStatement);
+                case 709: return RecoveryDatabaseOption.FromMutable(fragment as ScriptDom.RecoveryDatabaseOption);
+                case 710: return RemoteDataArchiveAlterTableOption.FromMutable(fragment as ScriptDom.RemoteDataArchiveAlterTableOption);
+                case 711: return RemoteDataArchiveDatabaseOption.FromMutable(fragment as ScriptDom.RemoteDataArchiveDatabaseOption);
+                case 712: return RemoteDataArchiveDbCredentialSetting.FromMutable(fragment as ScriptDom.RemoteDataArchiveDbCredentialSetting);
+                case 713: return RemoteDataArchiveDbFederatedServiceAccountSetting.FromMutable(fragment as ScriptDom.RemoteDataArchiveDbFederatedServiceAccountSetting);
+                case 714: return RemoteDataArchiveDbServerSetting.FromMutable(fragment as ScriptDom.RemoteDataArchiveDbServerSetting);
+                case 715: return RemoteDataArchiveTableOption.FromMutable(fragment as ScriptDom.RemoteDataArchiveTableOption);
+                case 716: return RenameAlterRoleAction.FromMutable(fragment as ScriptDom.RenameAlterRoleAction);
+                case 717: return RenameEntityStatement.FromMutable(fragment as ScriptDom.RenameEntityStatement);
+                case 718: return ResampleStatisticsOption.FromMutable(fragment as ScriptDom.ResampleStatisticsOption);
+                case 719: return ResourcePoolAffinitySpecification.FromMutable(fragment as ScriptDom.ResourcePoolAffinitySpecification);
+                case 720: return ResourcePoolParameter.FromMutable(fragment as ScriptDom.ResourcePoolParameter);
+                case 721: return ResourcePoolStatement.FromMutable(fragment as ScriptDom.ResourcePoolStatement);
+                case 722: return RestoreMasterKeyStatement.FromMutable(fragment as ScriptDom.RestoreMasterKeyStatement);
+                case 723: return RestoreOption.FromMutable(fragment as ScriptDom.RestoreOption);
+                case 724: return RestoreServiceMasterKeyStatement.FromMutable(fragment as ScriptDom.RestoreServiceMasterKeyStatement);
+                case 725: return RestoreStatement.FromMutable(fragment as ScriptDom.RestoreStatement);
+                case 726: return ResultColumnDefinition.FromMutable(fragment as ScriptDom.ResultColumnDefinition);
+                case 727: return ResultSetDefinition.FromMutable(fragment as ScriptDom.ResultSetDefinition);
+                case 728: return ResultSetsExecuteOption.FromMutable(fragment as ScriptDom.ResultSetsExecuteOption);
+                case 729: return RetentionDaysAuditTargetOption.FromMutable(fragment as ScriptDom.RetentionDaysAuditTargetOption);
+                case 730: return RetentionPeriodDefinition.FromMutable(fragment as ScriptDom.RetentionPeriodDefinition);
+                case 731: return ReturnStatement.FromMutable(fragment as ScriptDom.ReturnStatement);
+                case 732: return RevertStatement.FromMutable(fragment as ScriptDom.RevertStatement);
+                case 733: return RevokeStatement.FromMutable(fragment as ScriptDom.RevokeStatement);
+                case 734: return RevokeStatement80.FromMutable(fragment as ScriptDom.RevokeStatement80);
+                case 735: return RightFunctionCall.FromMutable(fragment as ScriptDom.RightFunctionCall);
+                case 736: return RolePayloadOption.FromMutable(fragment as ScriptDom.RolePayloadOption);
+                case 737: return RollbackTransactionStatement.FromMutable(fragment as ScriptDom.RollbackTransactionStatement);
+                case 738: return RollupGroupingSpecification.FromMutable(fragment as ScriptDom.RollupGroupingSpecification);
+                case 739: return RouteOption.FromMutable(fragment as ScriptDom.RouteOption);
+                case 740: return RowValue.FromMutable(fragment as ScriptDom.RowValue);
+                case 741: return SaveTransactionStatement.FromMutable(fragment as ScriptDom.SaveTransactionStatement);
+                case 742: return ScalarExpressionDialogOption.FromMutable(fragment as ScriptDom.ScalarExpressionDialogOption);
+                case 743: return ScalarExpressionRestoreOption.FromMutable(fragment as ScriptDom.ScalarExpressionRestoreOption);
+                case 744: return ScalarExpressionSequenceOption.FromMutable(fragment as ScriptDom.ScalarExpressionSequenceOption);
+                case 745: return ScalarExpressionSnippet.FromMutable(fragment as ScriptDom.ScalarExpressionSnippet);
+                case 746: return ScalarFunctionReturnType.FromMutable(fragment as ScriptDom.ScalarFunctionReturnType);
+                case 747: return ScalarSubquery.FromMutable(fragment as ScriptDom.ScalarSubquery);
+                case 748: return SchemaDeclarationItem.FromMutable(fragment as ScriptDom.SchemaDeclarationItem);
+                case 749: return SchemaDeclarationItemOpenjson.FromMutable(fragment as ScriptDom.SchemaDeclarationItemOpenjson);
+                case 750: return SchemaObjectFunctionTableReference.FromMutable(fragment as ScriptDom.SchemaObjectFunctionTableReference);
+                case 751: return SchemaObjectName.FromMutable(fragment as ScriptDom.SchemaObjectName);
+                case 752: return SchemaObjectNameOrValueExpression.FromMutable(fragment as ScriptDom.SchemaObjectNameOrValueExpression);
+                case 753: return SchemaObjectNameSnippet.FromMutable(fragment as ScriptDom.SchemaObjectNameSnippet);
+                case 754: return SchemaObjectResultSetDefinition.FromMutable(fragment as ScriptDom.SchemaObjectResultSetDefinition);
+                case 755: return SchemaPayloadOption.FromMutable(fragment as ScriptDom.SchemaPayloadOption);
+                case 756: return SearchedCaseExpression.FromMutable(fragment as ScriptDom.SearchedCaseExpression);
+                case 757: return SearchedWhenClause.FromMutable(fragment as ScriptDom.SearchedWhenClause);
+                case 758: return SearchPropertyListFullTextIndexOption.FromMutable(fragment as ScriptDom.SearchPropertyListFullTextIndexOption);
+                case 759: return SecondaryRoleReplicaOption.FromMutable(fragment as ScriptDom.SecondaryRoleReplicaOption);
+                case 760: return SecurityPolicyOption.FromMutable(fragment as ScriptDom.SecurityPolicyOption);
+                case 761: return SecurityPredicateAction.FromMutable(fragment as ScriptDom.SecurityPredicateAction);
+                case 762: return SecurityPrincipal.FromMutable(fragment as ScriptDom.SecurityPrincipal);
+                case 763: return SecurityTargetObject.FromMutable(fragment as ScriptDom.SecurityTargetObject);
+                case 764: return SecurityTargetObjectName.FromMutable(fragment as ScriptDom.SecurityTargetObjectName);
+                case 765: return SecurityUserClause80.FromMutable(fragment as ScriptDom.SecurityUserClause80);
+                case 766: return SelectFunctionReturnType.FromMutable(fragment as ScriptDom.SelectFunctionReturnType);
+                case 767: return SelectInsertSource.FromMutable(fragment as ScriptDom.SelectInsertSource);
+                case 768: return SelectiveXmlIndexPromotedPath.FromMutable(fragment as ScriptDom.SelectiveXmlIndexPromotedPath);
+                case 769: return SelectScalarExpression.FromMutable(fragment as ScriptDom.SelectScalarExpression);
+                case 770: return SelectSetVariable.FromMutable(fragment as ScriptDom.SelectSetVariable);
+                case 771: return SelectStarExpression.FromMutable(fragment as ScriptDom.SelectStarExpression);
+                case 772: return SelectStatement.FromMutable(fragment as ScriptDom.SelectStatement);
+                case 773: return SelectStatementSnippet.FromMutable(fragment as ScriptDom.SelectStatementSnippet);
+                case 774: return SemanticTableReference.FromMutable(fragment as ScriptDom.SemanticTableReference);
+                case 775: return SendStatement.FromMutable(fragment as ScriptDom.SendStatement);
+                case 776: return SensitivityClassificationOption.FromMutable(fragment as ScriptDom.SensitivityClassificationOption);
+                case 777: return SequenceOption.FromMutable(fragment as ScriptDom.SequenceOption);
+                case 778: return ServiceContract.FromMutable(fragment as ScriptDom.ServiceContract);
+                case 779: return SessionTimeoutPayloadOption.FromMutable(fragment as ScriptDom.SessionTimeoutPayloadOption);
+                case 780: return SetCommandStatement.FromMutable(fragment as ScriptDom.SetCommandStatement);
+                case 781: return SetErrorLevelStatement.FromMutable(fragment as ScriptDom.SetErrorLevelStatement);
+                case 782: return SetFipsFlaggerCommand.FromMutable(fragment as ScriptDom.SetFipsFlaggerCommand);
+                case 783: return SetIdentityInsertStatement.FromMutable(fragment as ScriptDom.SetIdentityInsertStatement);
+                case 784: return SetOffsetsStatement.FromMutable(fragment as ScriptDom.SetOffsetsStatement);
+                case 785: return SetRowCountStatement.FromMutable(fragment as ScriptDom.SetRowCountStatement);
+                case 786: return SetSearchPropertyListAlterFullTextIndexAction.FromMutable(fragment as ScriptDom.SetSearchPropertyListAlterFullTextIndexAction);
+                case 787: return SetStatisticsStatement.FromMutable(fragment as ScriptDom.SetStatisticsStatement);
+                case 788: return SetStopListAlterFullTextIndexAction.FromMutable(fragment as ScriptDom.SetStopListAlterFullTextIndexAction);
+                case 789: return SetTextSizeStatement.FromMutable(fragment as ScriptDom.SetTextSizeStatement);
+                case 790: return SetTransactionIsolationLevelStatement.FromMutable(fragment as ScriptDom.SetTransactionIsolationLevelStatement);
+                case 791: return SetUserStatement.FromMutable(fragment as ScriptDom.SetUserStatement);
+                case 792: return SetVariableStatement.FromMutable(fragment as ScriptDom.SetVariableStatement);
+                case 793: return ShutdownStatement.FromMutable(fragment as ScriptDom.ShutdownStatement);
+                case 794: return SimpleAlterFullTextIndexAction.FromMutable(fragment as ScriptDom.SimpleAlterFullTextIndexAction);
+                case 795: return SimpleCaseExpression.FromMutable(fragment as ScriptDom.SimpleCaseExpression);
+                case 796: return SimpleWhenClause.FromMutable(fragment as ScriptDom.SimpleWhenClause);
+                case 797: return SingleValueTypeCopyOption.FromMutable(fragment as ScriptDom.SingleValueTypeCopyOption);
+                case 798: return SizeFileDeclarationOption.FromMutable(fragment as ScriptDom.SizeFileDeclarationOption);
+                case 799: return SoapMethod.FromMutable(fragment as ScriptDom.SoapMethod);
+                case 800: return SourceDeclaration.FromMutable(fragment as ScriptDom.SourceDeclaration);
+                case 801: return SpatialIndexRegularOption.FromMutable(fragment as ScriptDom.SpatialIndexRegularOption);
+                case 802: return SqlCommandIdentifier.FromMutable(fragment as ScriptDom.SqlCommandIdentifier);
+                case 803: return SqlDataTypeReference.FromMutable(fragment as ScriptDom.SqlDataTypeReference);
+                case 804: return StateAuditOption.FromMutable(fragment as ScriptDom.StateAuditOption);
+                case 805: return StatementList.FromMutable(fragment as ScriptDom.StatementList);
+                case 806: return StatementListSnippet.FromMutable(fragment as ScriptDom.StatementListSnippet);
+                case 807: return StatisticsOption.FromMutable(fragment as ScriptDom.StatisticsOption);
+                case 808: return StatisticsPartitionRange.FromMutable(fragment as ScriptDom.StatisticsPartitionRange);
+                case 809: return StopListFullTextIndexOption.FromMutable(fragment as ScriptDom.StopListFullTextIndexOption);
+                case 810: return StopRestoreOption.FromMutable(fragment as ScriptDom.StopRestoreOption);
+                case 811: return StringLiteral.FromMutable(fragment as ScriptDom.StringLiteral);
+                case 812: return SubqueryComparisonPredicate.FromMutable(fragment as ScriptDom.SubqueryComparisonPredicate);
+                case 813: return SystemTimePeriodDefinition.FromMutable(fragment as ScriptDom.SystemTimePeriodDefinition);
+                case 814: return SystemVersioningTableOption.FromMutable(fragment as ScriptDom.SystemVersioningTableOption);
+                case 815: return TableClusteredIndexType.FromMutable(fragment as ScriptDom.TableClusteredIndexType);
+                case 816: return TableDataCompressionOption.FromMutable(fragment as ScriptDom.TableDataCompressionOption);
+                case 817: return TableDefinition.FromMutable(fragment as ScriptDom.TableDefinition);
+                case 818: return TableDistributionOption.FromMutable(fragment as ScriptDom.TableDistributionOption);
+                case 819: return TableHashDistributionPolicy.FromMutable(fragment as ScriptDom.TableHashDistributionPolicy);
+                case 820: return TableHint.FromMutable(fragment as ScriptDom.TableHint);
+                case 821: return TableHintsOptimizerHint.FromMutable(fragment as ScriptDom.TableHintsOptimizerHint);
+                case 822: return TableIndexOption.FromMutable(fragment as ScriptDom.TableIndexOption);
+                case 823: return TableNonClusteredIndexType.FromMutable(fragment as ScriptDom.TableNonClusteredIndexType);
+                case 824: return TablePartitionOption.FromMutable(fragment as ScriptDom.TablePartitionOption);
+                case 825: return TablePartitionOptionSpecifications.FromMutable(fragment as ScriptDom.TablePartitionOptionSpecifications);
+                case 826: return TableReplicateDistributionPolicy.FromMutable(fragment as ScriptDom.TableReplicateDistributionPolicy);
+                case 827: return TableRoundRobinDistributionPolicy.FromMutable(fragment as ScriptDom.TableRoundRobinDistributionPolicy);
+                case 828: return TableSampleClause.FromMutable(fragment as ScriptDom.TableSampleClause);
+                case 829: return TableValuedFunctionReturnType.FromMutable(fragment as ScriptDom.TableValuedFunctionReturnType);
+                case 830: return TableXmlCompressionOption.FromMutable(fragment as ScriptDom.TableXmlCompressionOption);
+                case 831: return TargetDeclaration.FromMutable(fragment as ScriptDom.TargetDeclaration);
+                case 832: return TargetRecoveryTimeDatabaseOption.FromMutable(fragment as ScriptDom.TargetRecoveryTimeDatabaseOption);
+                case 833: return TemporalClause.FromMutable(fragment as ScriptDom.TemporalClause);
+                case 834: return ThrowStatement.FromMutable(fragment as ScriptDom.ThrowStatement);
+                case 835: return TopRowFilter.FromMutable(fragment as ScriptDom.TopRowFilter);
+                case 836: return TriggerAction.FromMutable(fragment as ScriptDom.TriggerAction);
+                case 837: return TriggerObject.FromMutable(fragment as ScriptDom.TriggerObject);
+                case 838: return TriggerOption.FromMutable(fragment as ScriptDom.TriggerOption);
+                case 839: return TruncateTableStatement.FromMutable(fragment as ScriptDom.TruncateTableStatement);
+                case 840: return TruncateTargetTableSwitchOption.FromMutable(fragment as ScriptDom.TruncateTargetTableSwitchOption);
+                case 841: return TryCastCall.FromMutable(fragment as ScriptDom.TryCastCall);
+                case 842: return TryCatchStatement.FromMutable(fragment as ScriptDom.TryCatchStatement);
+                case 843: return TryConvertCall.FromMutable(fragment as ScriptDom.TryConvertCall);
+                case 844: return TryParseCall.FromMutable(fragment as ScriptDom.TryParseCall);
+                case 845: return TSEqualCall.FromMutable(fragment as ScriptDom.TSEqualCall);
+                case 846: return TSqlBatch.FromMutable(fragment as ScriptDom.TSqlBatch);
+                case 847: return TSqlFragmentSnippet.FromMutable(fragment as ScriptDom.TSqlFragmentSnippet);
+                case 848: return TSqlScript.FromMutable(fragment as ScriptDom.TSqlScript);
+                case 849: return TSqlStatementSnippet.FromMutable(fragment as ScriptDom.TSqlStatementSnippet);
+                case 850: return UnaryExpression.FromMutable(fragment as ScriptDom.UnaryExpression);
+                case 851: return UniqueConstraintDefinition.FromMutable(fragment as ScriptDom.UniqueConstraintDefinition);
+                case 852: return UnpivotedTableReference.FromMutable(fragment as ScriptDom.UnpivotedTableReference);
+                case 853: return UnqualifiedJoin.FromMutable(fragment as ScriptDom.UnqualifiedJoin);
+                case 854: return UpdateCall.FromMutable(fragment as ScriptDom.UpdateCall);
+                case 855: return UpdateForClause.FromMutable(fragment as ScriptDom.UpdateForClause);
+                case 856: return UpdateMergeAction.FromMutable(fragment as ScriptDom.UpdateMergeAction);
+                case 857: return UpdateSpecification.FromMutable(fragment as ScriptDom.UpdateSpecification);
+                case 858: return UpdateStatement.FromMutable(fragment as ScriptDom.UpdateStatement);
+                case 859: return UpdateStatisticsStatement.FromMutable(fragment as ScriptDom.UpdateStatisticsStatement);
+                case 860: return UpdateTextStatement.FromMutable(fragment as ScriptDom.UpdateTextStatement);
+                case 861: return UseFederationStatement.FromMutable(fragment as ScriptDom.UseFederationStatement);
+                case 862: return UseHintList.FromMutable(fragment as ScriptDom.UseHintList);
+                case 863: return UserDataTypeReference.FromMutable(fragment as ScriptDom.UserDataTypeReference);
+                case 864: return UserDefinedTypeCallTarget.FromMutable(fragment as ScriptDom.UserDefinedTypeCallTarget);
+                case 865: return UserDefinedTypePropertyAccess.FromMutable(fragment as ScriptDom.UserDefinedTypePropertyAccess);
+                case 866: return UserLoginOption.FromMutable(fragment as ScriptDom.UserLoginOption);
+                case 867: return UserRemoteServiceBindingOption.FromMutable(fragment as ScriptDom.UserRemoteServiceBindingOption);
+                case 868: return UseStatement.FromMutable(fragment as ScriptDom.UseStatement);
+                case 869: return ValuesInsertSource.FromMutable(fragment as ScriptDom.ValuesInsertSource);
+                case 870: return VariableMethodCallTableReference.FromMutable(fragment as ScriptDom.VariableMethodCallTableReference);
+                case 871: return VariableReference.FromMutable(fragment as ScriptDom.VariableReference);
+                case 872: return VariableTableReference.FromMutable(fragment as ScriptDom.VariableTableReference);
+                case 873: return VariableValuePair.FromMutable(fragment as ScriptDom.VariableValuePair);
+                case 874: return ViewDistributionOption.FromMutable(fragment as ScriptDom.ViewDistributionOption);
+                case 875: return ViewForAppendOption.FromMutable(fragment as ScriptDom.ViewForAppendOption);
+                case 876: return ViewHashDistributionPolicy.FromMutable(fragment as ScriptDom.ViewHashDistributionPolicy);
+                case 877: return ViewOption.FromMutable(fragment as ScriptDom.ViewOption);
+                case 878: return ViewRoundRobinDistributionPolicy.FromMutable(fragment as ScriptDom.ViewRoundRobinDistributionPolicy);
+                case 879: return WaitAtLowPriorityOption.FromMutable(fragment as ScriptDom.WaitAtLowPriorityOption);
+                case 880: return WaitForStatement.FromMutable(fragment as ScriptDom.WaitForStatement);
+                case 881: return WhereClause.FromMutable(fragment as ScriptDom.WhereClause);
+                case 882: return WhileStatement.FromMutable(fragment as ScriptDom.WhileStatement);
+                case 883: return WindowClause.FromMutable(fragment as ScriptDom.WindowClause);
+                case 884: return WindowDefinition.FromMutable(fragment as ScriptDom.WindowDefinition);
+                case 885: return WindowDelimiter.FromMutable(fragment as ScriptDom.WindowDelimiter);
+                case 886: return WindowFrameClause.FromMutable(fragment as ScriptDom.WindowFrameClause);
+                case 887: return WindowsCreateLoginSource.FromMutable(fragment as ScriptDom.WindowsCreateLoginSource);
+                case 888: return WithCtesAndXmlNamespaces.FromMutable(fragment as ScriptDom.WithCtesAndXmlNamespaces);
+                case 889: return WithinGroupClause.FromMutable(fragment as ScriptDom.WithinGroupClause);
+                case 890: return WitnessDatabaseOption.FromMutable(fragment as ScriptDom.WitnessDatabaseOption);
+                case 891: return WlmTimeLiteral.FromMutable(fragment as ScriptDom.WlmTimeLiteral);
+                case 892: return WorkloadGroupImportanceParameter.FromMutable(fragment as ScriptDom.WorkloadGroupImportanceParameter);
+                case 893: return WorkloadGroupResourceParameter.FromMutable(fragment as ScriptDom.WorkloadGroupResourceParameter);
+                case 894: return WriteTextStatement.FromMutable(fragment as ScriptDom.WriteTextStatement);
+                case 895: return WsdlPayloadOption.FromMutable(fragment as ScriptDom.WsdlPayloadOption);
+                case 896: return XmlCompressionOption.FromMutable(fragment as ScriptDom.XmlCompressionOption);
+                case 897: return XmlDataTypeReference.FromMutable(fragment as ScriptDom.XmlDataTypeReference);
+                case 898: return XmlForClause.FromMutable(fragment as ScriptDom.XmlForClause);
+                case 899: return XmlForClauseOption.FromMutable(fragment as ScriptDom.XmlForClauseOption);
+                case 900: return XmlNamespaces.FromMutable(fragment as ScriptDom.XmlNamespaces);
+                case 901: return XmlNamespacesAliasElement.FromMutable(fragment as ScriptDom.XmlNamespacesAliasElement);
+                case 902: return XmlNamespacesDefaultElement.FromMutable(fragment as ScriptDom.XmlNamespacesDefaultElement);
                 default: throw new NotImplementedException("Type not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library.");
             }
         }

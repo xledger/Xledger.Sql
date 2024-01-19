@@ -9,16 +9,20 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 namespace Xledger.Sql.ImmutableDom {
     public class TableHashDistributionPolicy : TableDistributionPolicy, IEquatable<TableHashDistributionPolicy> {
         protected Identifier distributionColumn;
+        protected IReadOnlyList<Identifier> distributionColumns;
     
         public Identifier DistributionColumn => distributionColumn;
+        public IReadOnlyList<Identifier> DistributionColumns => distributionColumns;
     
-        public TableHashDistributionPolicy(Identifier distributionColumn = null) {
+        public TableHashDistributionPolicy(Identifier distributionColumn = null, IReadOnlyList<Identifier> distributionColumns = null) {
             this.distributionColumn = distributionColumn;
+            this.distributionColumns = ImmList<Identifier>.FromList(distributionColumns);
         }
     
         public ScriptDom.TableHashDistributionPolicy ToMutableConcrete() {
             var ret = new ScriptDom.TableHashDistributionPolicy();
             ret.DistributionColumn = (ScriptDom.Identifier)distributionColumn?.ToMutable();
+            ret.DistributionColumns.AddRange(distributionColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -31,6 +35,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (!(distributionColumn is null)) {
                 h = h * 23 + distributionColumn.GetHashCode();
             }
+            h = h * 23 + distributionColumns.GetHashCode();
             return h;
         }
     
@@ -41,6 +46,9 @@ namespace Xledger.Sql.ImmutableDom {
         public bool Equals(TableHashDistributionPolicy other) {
             if (other is null) { return false; }
             if (!EqualityComparer<Identifier>.Default.Equals(other.DistributionColumn, distributionColumn)) {
+                return false;
+            }
+            if (!EqualityComparer<IReadOnlyList<Identifier>>.Default.Equals(other.DistributionColumns, distributionColumns)) {
                 return false;
             }
             return true;
@@ -65,6 +73,8 @@ namespace Xledger.Sql.ImmutableDom {
             var othr = (TableHashDistributionPolicy)that;
             compare = Comparer.DefaultInvariant.Compare(this.distributionColumn, othr.distributionColumn);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.distributionColumns, othr.distributionColumns);
+            if (compare != 0) { return compare; }
             return compare;
         } 
         
@@ -77,7 +87,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.TableHashDistributionPolicy)) { throw new NotImplementedException("Unexpected subtype of TableHashDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableHashDistributionPolicy(
-                distributionColumn: ImmutableDom.Identifier.FromMutable(fragment.DistributionColumn)
+                distributionColumn: ImmutableDom.Identifier.FromMutable(fragment.DistributionColumn),
+                distributionColumns: fragment.DistributionColumns.SelectList(ImmutableDom.Identifier.FromMutable)
             );
         }
     

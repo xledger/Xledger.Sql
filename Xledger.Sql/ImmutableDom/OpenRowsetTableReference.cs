@@ -7,7 +7,7 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
 namespace Xledger.Sql.ImmutableDom {
-    public class OpenRowsetTableReference : TableReferenceWithAlias, IEquatable<OpenRowsetTableReference> {
+    public class OpenRowsetTableReference : TableReferenceWithAliasAndColumns, IEquatable<OpenRowsetTableReference> {
         protected StringLiteral providerName;
         protected StringLiteral dataSource;
         protected StringLiteral userId;
@@ -15,6 +15,7 @@ namespace Xledger.Sql.ImmutableDom {
         protected StringLiteral providerString;
         protected StringLiteral query;
         protected SchemaObjectName @object;
+        protected IReadOnlyList<OpenRowsetColumnDefinition> withColumns;
     
         public StringLiteral ProviderName => providerName;
         public StringLiteral DataSource => dataSource;
@@ -23,8 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
         public StringLiteral ProviderString => providerString;
         public StringLiteral Query => query;
         public SchemaObjectName Object => @object;
+        public IReadOnlyList<OpenRowsetColumnDefinition> WithColumns => withColumns;
     
-        public OpenRowsetTableReference(StringLiteral providerName = null, StringLiteral dataSource = null, StringLiteral userId = null, StringLiteral password = null, StringLiteral providerString = null, StringLiteral query = null, SchemaObjectName @object = null, Identifier alias = null, bool forPath = false) {
+        public OpenRowsetTableReference(StringLiteral providerName = null, StringLiteral dataSource = null, StringLiteral userId = null, StringLiteral password = null, StringLiteral providerString = null, StringLiteral query = null, SchemaObjectName @object = null, IReadOnlyList<OpenRowsetColumnDefinition> withColumns = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
             this.providerName = providerName;
             this.dataSource = dataSource;
             this.userId = userId;
@@ -32,6 +34,8 @@ namespace Xledger.Sql.ImmutableDom {
             this.providerString = providerString;
             this.query = query;
             this.@object = @object;
+            this.withColumns = ImmList<OpenRowsetColumnDefinition>.FromList(withColumns);
+            this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -45,6 +49,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.ProviderString = (ScriptDom.StringLiteral)providerString?.ToMutable();
             ret.Query = (ScriptDom.StringLiteral)query?.ToMutable();
             ret.Object = (ScriptDom.SchemaObjectName)@object?.ToMutable();
+            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c?.ToMutable()));
+            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -77,6 +83,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (!(@object is null)) {
                 h = h * 23 + @object.GetHashCode();
             }
+            h = h * 23 + withColumns.GetHashCode();
+            h = h * 23 + columns.GetHashCode();
             if (!(alias is null)) {
                 h = h * 23 + alias.GetHashCode();
             }
@@ -109,6 +117,12 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<SchemaObjectName>.Default.Equals(other.Object, @object)) {
+                return false;
+            }
+            if (!EqualityComparer<IReadOnlyList<OpenRowsetColumnDefinition>>.Default.Equals(other.WithColumns, withColumns)) {
+                return false;
+            }
+            if (!EqualityComparer<IReadOnlyList<Identifier>>.Default.Equals(other.Columns, columns)) {
                 return false;
             }
             if (!EqualityComparer<Identifier>.Default.Equals(other.Alias, alias)) {
@@ -151,6 +165,10 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.@object, othr.@object);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.withColumns, othr.withColumns);
+            if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
+            if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.forPath, othr.forPath);
@@ -174,6 +192,8 @@ namespace Xledger.Sql.ImmutableDom {
                 providerString: ImmutableDom.StringLiteral.FromMutable(fragment.ProviderString),
                 query: ImmutableDom.StringLiteral.FromMutable(fragment.Query),
                 @object: ImmutableDom.SchemaObjectName.FromMutable(fragment.Object),
+                withColumns: fragment.WithColumns.SelectList(ImmutableDom.OpenRowsetColumnDefinition.FromMutable),
+                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

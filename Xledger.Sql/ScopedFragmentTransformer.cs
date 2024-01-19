@@ -420,6 +420,8 @@ namespace Xledger.Sql {
         public Action<ScopedFragmentTransformer, DropWorkloadGroupStatement> VisForDropWorkloadGroupStatement;
         public Action<ScopedFragmentTransformer, DropXmlSchemaCollectionStatement> VisForDropXmlSchemaCollectionStatement;
         public Action<ScopedFragmentTransformer, DurabilityTableOption> VisForDurabilityTableOption;
+        public Action<ScopedFragmentTransformer, DWCompatibilityLevelConfigurationOption> VisForDWCompatibilityLevelConfigurationOption;
+        public Action<ScopedFragmentTransformer, ElasticPoolSpecification> VisForElasticPoolSpecification;
         public Action<ScopedFragmentTransformer, EnabledDisabledPayloadOption> VisForEnabledDisabledPayloadOption;
         public Action<ScopedFragmentTransformer, EnableDisableTriggerStatement> VisForEnableDisableTriggerStatement;
         public Action<ScopedFragmentTransformer, EncryptedValueParameter> VisForEncryptedValueParameter;
@@ -6248,6 +6250,32 @@ namespace Xledger.Sql {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
             VisForDurabilityTableOption?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(DWCompatibilityLevelConfigurationOption node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForDWCompatibilityLevelConfigurationOption?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            PushContext(node);
+            base.ExplicitVisit(node);
+            PopContext();
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(ElasticPoolSpecification node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            VisForElasticPoolSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             PushContext(node);
