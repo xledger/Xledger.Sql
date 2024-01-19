@@ -1,5 +1,5 @@
 <Query Kind="Program">
-  <NuGetReference>Microsoft.SqlServer.DacFx</NuGetReference>
+  <NuGetReference>Microsoft.SqlServer.TransactSql.ScriptDom</NuGetReference>
   <Namespace>Microsoft.SqlServer.TransactSql.ScriptDom</Namespace>
 </Query>
 
