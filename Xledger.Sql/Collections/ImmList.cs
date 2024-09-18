@@ -88,15 +88,9 @@ namespace Xledger.Sql.Collections {
 
         public int Count => data.Length;
 
-        public IEnumerator<T> GetEnumerator() {
-            foreach (var e in data) {
-                yield return e;
-            }
-        }
+        public IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)data).GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() {
-            return data.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => data.GetEnumerator();
 
         public override bool Equals(object obj) {
             return Equals(obj as ImmList<T>);
@@ -119,10 +113,8 @@ namespace Xledger.Sql.Collections {
 
         public override int GetHashCode() {
             var h = 17;
-            foreach (var e in data) {
-                if (e == null) {
-                    h = h * 23 + e.GetHashCode();
-                }
+            for (int i = 0; i < data.Length; i++) {
+                h = h * 23 + (data[i]?.GetHashCode() ?? 0);
             }
             return h;
         }

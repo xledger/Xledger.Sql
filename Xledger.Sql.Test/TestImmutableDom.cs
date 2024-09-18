@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xledger.Sql.ImmutableDom;
@@ -119,6 +120,29 @@ namespace Xledger.Sql.Test {
             Assert.Equal(ScriptDom.OptimizerHintKind.Unspecified, immUseHintList.HintKind);
             Assert.Single(immUseHintList.Hints);
             Assert.Equal("DISABLE_TSQL_SCALAR_UDF_INLINING", immUseHintList.Hints[0].Value);
+        }
+
+        [Fact]
+        public void TestDomEquality() {
+            var sql = @"select 1 as foo, 'hah' as foo 
+from bar a, baz f";
+            var fragments = new HashSet<TSqlFragment> {
+                TSqlFragment.FromMutable(Parse(sql))
+            };
+
+            Assert.False(fragments.Add(TSqlFragment.FromMutable(Parse(sql))), "Equal fragment added to set twice");
+        }
+
+        [Fact]
+        public void TestDomHashCode() {
+            var sql = @"select 1 as foo, 'hah' as foo 
+from bar a, baz f";
+            var first = TSqlFragment.FromMutable(Parse(sql));
+            var second = TSqlFragment.FromMutable(Parse(sql));
+            Assert.Equal(first.GetHashCode(), second.GetHashCode());
+
+            var third = TSqlFragment.FromMutable(Parse("select 2 as foo from bar a, baz f"));
+            Assert.NotEqual(first.GetHashCode(), third.GetHashCode());
         }
 
         [Fact]
