@@ -16,6 +16,20 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
+  <!-- Extract Git commit hash so it will be added to InformationalVersion. -->
+  <!-- https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props -->
+  <Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
+    <Exec Command="git describe --long --always --dirty --exclude='*' --abbrev=40" ConsoleToMSBuild="True" StandardOutputImportance="Low" IgnoreExitCode="False">
+      <Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput" />
+    </Exec>
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+        <_Parameter1>SourceRevisionId</_Parameter1>
+        <_Parameter2>$(SourceRevisionId)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
+
   <ItemGroup>
     <None Include="../LICENSE" Pack="true" PackagePath="/" />
     <None Include="../README.md" Pack="true" PackagePath="/" />
