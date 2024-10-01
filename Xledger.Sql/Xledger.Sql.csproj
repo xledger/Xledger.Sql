@@ -6,8 +6,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RootNamespace>Xledger.Sql</RootNamespace>
     <AssemblyName>Xledger.Sql</AssemblyName>
-    <VersionPrefix>1.0.1</VersionPrefix>
-    <!-- <VersionSuffix>rc0</VersionSuffix> -->
     <Authors>Isak Sky, Matthew O'Connor</Authors>
     <Company>Xledger</Company>
     <Description>Utilities to aid in the analysis, generation, and transformation of Transact SQL.</Description>

@@ -10,7 +10,7 @@ Xledger.Sql provides tools for analyzing and transforming Transact SQL queries. 
 
 The tests in [Xledger.Sql.Test](./Xledger.Sql.Test) demonstrate how to use this library.
 
-## Testing Locally
+<!-- ## Testing Locally
 
 To generate a new NuGet package to verify that the package is sane.
 
@@ -29,7 +29,7 @@ nuget init Xledger.Sql\bin\Debug c:\packages;
 3. Update the project that depends on Xledger.Sql.
 ```powershell
 dotnet add package Xledger.Sql --source c:\packages --prerelease
-```
+``` -->
 
 ## Running the Tests
 
