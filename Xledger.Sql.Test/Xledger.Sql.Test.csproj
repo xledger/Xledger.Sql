@@ -20,6 +20,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)'=='net48'">
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.11.1" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Xledger.Sql\Xledger.Sql.csproj" />
   </ItemGroup>
