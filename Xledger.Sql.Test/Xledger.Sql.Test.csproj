@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>Xledger.Sql.Test</PackageId>
-    <TargetFrameworks>net48;net6.0</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
