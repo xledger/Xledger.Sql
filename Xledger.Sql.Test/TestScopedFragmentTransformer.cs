@@ -103,5 +103,18 @@ SELECT a.foo, a.bar, a.baz, b.cow, b.bull, chicken, barn, (SELECT TOP 1 dog FROM
 
             Assert.Empty(columnNames);
         }
+
+        [Fact]
+        public void TestVisitParentTypes() {
+            var frag = Parse("select getdate() where 1 = 5");
+            var numScalarExprs = 0;
+            frag.Accept(new ScopedFragmentTransformer {
+                VisitParentTypes = true,
+                VisForScalarExpression = (transformer, scalar) => {
+                    numScalarExprs += 1;
+                }
+            });
+            Assert.Equal(3, numScalarExprs);
+        }
     }
 }
