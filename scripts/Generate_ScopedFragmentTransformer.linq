@@ -4,14 +4,15 @@
 </Query>
 
 void Main() {
-	//////////////////////////////////////////////////////////////////////
-	// Generate ScopedFragmentTransformer class
-	//////////////////////////////////////////////////////////////////////
-	var className = "ScopedFragmentTransformer";
-	var sb = new StringBuilder();
-	sb.AppendLine($"// GENERATED via script ({Path.GetFileName(Util.CurrentQueryPath)})");
+    //////////////////////////////////////////////////////////////////////
+    // Generate ScopedFragmentTransformer class
+    //////////////////////////////////////////////////////////////////////
+    var className = "ScopedFragmentTransformer";
+    var sb = new StringBuilder();
+    sb.AppendLine($"// GENERATED via script ({Path.GetFileName(Util.CurrentQueryPath)})");
     sb.AppendLine("// DO NOT EDIT DIRECTLY.");
     sb.AppendLine($"public class {className} : TSqlConcreteFragmentVisitor {{");
+    sb.AppendLine("    public bool VisitParentTypes { get; set; }");
     sb.AppendLine("    public bool ShouldStop { get; set; }");
     sb.AppendLine("    public Stack<TSqlFragment> Parents { get; set; } = new Stack<TSqlFragment>(30);");
     sb.AppendLine("    public HashSet<TSqlFragment> SkipList { get; } = new HashSet<TSqlFragment>();");
@@ -20,16 +21,17 @@ void Main() {
 
     var varNameByType = new Dictionary<Type, string>();
     sb.AppendLine();
-    foreach (var t in VisitableTypes().OrderBy(t => t.Name)) {
-        var varName = VisitFnName(t);
-        varNameByType[t] = varName;
-        sb.AppendLine($"    public Action<{className}, {t.Name}> {varName};");
+    foreach (var t in VisitableTypes().OrderBy(t => t.Type.Name)) {
+        var varName = VisitFnName(t.Type);
+        varNameByType[t.Type] = varName;
+        sb.AppendLine($"    public Action<{className}, {t.Type.Name}> {varName};");
     }
     sb.AppendLine();
 
-	sb.AppendLine($"    public {className}() : base() {{}}");
+    sb.AppendLine($"    public {className}() : base() {{}}");
+
     sb.AppendLine("");
-    
+
     sb.AppendLine("    void PushContext(TSqlFragment node) {");
     sb.AppendLine("        Parents.Push(node);");
     sb.AppendLine("    }");
@@ -61,25 +63,51 @@ void Main() {
     sb.AppendLine("");
 
     var first = true;
-    foreach (var t in VisitableTypes().OrderBy(t => t.Name)) {
+    var visitableTypes = VisitableTypes().OrderBy(t => t.Type.Name).ToArray();
+    foreach (var t in visitableTypes.Where(t => t.HasExplicitVisitMethod).Select(t => t.Type)) {
         if (!first) {
             sb.AppendLine($"\n");
         }
         sb.AppendLine($"    public override void ExplicitVisit({t.Name} node) {{");
         sb.AppendLine($"        if (SkipList.Contains(node)) {{ return; }}");
         sb.AppendLine($"        if (ShouldStop) {{ return; }}");
+        if (t.BaseType is Type parentType
+            && parentType != typeof(object)) {
+            sb.AppendLine($"        if (VisitParentTypes) {{");
+            sb.AppendLine($"            this.ExplicitBaseVisit(({parentType.Name})node);");
+            sb.AppendLine($"            if (ShouldStop) {{ return; }}");
+            sb.AppendLine($"        }}");
+        }
         sb.AppendLine($"        {VisitFnName(t)}?.Invoke(this, node);");
         sb.AppendLine($"        if (ShouldStop) {{ return; }}");
         sb.AppendLine($"");
         sb.AppendLine($"        PushContext(node);");
         sb.AppendLine($"        base.ExplicitVisit(node);");
+
         sb.AppendLine($"        PopContext();");
         sb.AppendLine($"");
         sb.AppendLine($"        HandleOnLeave(node);");
+
+
+
         sb.AppendLine($"    }}");
         first = false;
     }
-   	sb.AppendLine("}");
+
+    foreach (var t in visitableTypes.Where(t => !t.HasExplicitVisitMethod).Select(t => t.Type)) {
+        sb.AppendLine($"\n");
+        sb.AppendLine($"    public void ExplicitBaseVisit({t.Name} node) {{");
+        sb.AppendLine($"        if (ShouldStop) {{ return; }}");
+        if (t.BaseType is Type parentType
+            && parentType != typeof(object)) {
+            sb.AppendLine($"        if (VisitParentTypes) {{ this.ExplicitBaseVisit(({parentType.Name})node); }}");
+        }
+        sb.AppendLine($"        {VisitFnName(t)}?.Invoke(this, node);");
+
+        sb.AppendLine($"    }}");
+        first = false;
+    }
+    sb.AppendLine("}");
 
     var txt = sb.ToString();
     txt = txt.IndentLines(4);
@@ -87,26 +115,49 @@ void Main() {
 using System.Collections.Generic;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 namespace Xledger.Sql {" + "\n" + txt + "\n}";
-	var outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.Sql/{className}.cs";
-	File.WriteAllText(outputFile, txt, new System.Text.UTF8Encoding(false));
-	Console.WriteLine($"Wrote {className} to {outputFile}.\n");
+    var outputFile = Path.GetDirectoryName(Util.CurrentQueryPath) + $"/../Xledger.Sql/{className}.cs";
+    File.WriteAllText(outputFile, txt, new System.Text.UTF8Encoding(false));
+    Console.WriteLine($"Wrote {className} to {outputFile}.\n");
 }
 
 string VisitFnName(Type t) => $"VisFor{t.Name}";
 
-IEnumerable<Type> VisitableTypes() {
+record TypeInfo(Type Type, bool HasExplicitVisitMethod);
+
+
+List<TypeInfo> VisitableTypes() {
+    var types = new HashSet<Type>();
+    var ret = new List<TypeInfo>();
     var t = typeof(TSqlConcreteFragmentVisitor);
     foreach (var x in t.GetMethods(BindingFlags.Instance | BindingFlags.Public)) {
         if (x.Name != "ExplicitVisit" || x.IsFinal) {
             continue;
         }
-        yield return x.GetParameters().Single().ParameterType;
+        var typ = x.GetParameters().Single().ParameterType;
+        if (types.Add(typ)) {
+            ret.Add(new TypeInfo(typ, true));
+        }
     }
+    
+    foreach (var typInfo in ret.ToArray()) {
+        var parent = typInfo.Type.BaseType;
+        while (parent != typeof(object)) {
+            if (types.Add(parent)) {
+                ret.Add(new TypeInfo(parent, false));
+            } else {
+                break;
+            }
+            parent = parent.BaseType;
+        }
+    }
+    
+    
+    return ret;
 }
 
 public static class Exts {
     public static string IndentLines(this string txt, int indent) {
-        var lines = txt.Split(new char[] { '\n'}, StringSplitOptions.RemoveEmptyEntries);
+        var lines = txt.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
         var indentStr = new String(' ', indent);
         for (int i = 0; i < lines.Length; i++) {
             lines[i] = (indentStr + lines[i]).TrimEnd();
