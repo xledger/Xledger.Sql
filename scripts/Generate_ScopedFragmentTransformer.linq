@@ -14,6 +14,7 @@ void Main() {
     sb.AppendLine($"public class {className} : TSqlConcreteFragmentVisitor {{");
     sb.AppendLine("    public bool VisitParentTypes { get; set; }");
     sb.AppendLine("    public bool ShouldStop { get; set; }");
+    sb.AppendLine("    int skipRequests;");
     sb.AppendLine("    public Stack<TSqlFragment> Parents { get; set; } = new Stack<TSqlFragment>(30);");
     sb.AppendLine("    public HashSet<TSqlFragment> SkipList { get; } = new HashSet<TSqlFragment>();");
     sb.AppendLine("    ///<summary>Actions to perform when leaving a node.</summary>");
@@ -71,6 +72,7 @@ void Main() {
         sb.AppendLine($"    public override void ExplicitVisit({t.Name} node) {{");
         sb.AppendLine($"        if (SkipList.Contains(node)) {{ return; }}");
         sb.AppendLine($"        if (ShouldStop) {{ return; }}");
+        sb.AppendLine($"        var skipRequests = this.skipRequests;");
         if (t.BaseType is Type parentType
             && parentType != typeof(object)) {
             sb.AppendLine($"        if (VisitParentTypes) {{");
@@ -81,11 +83,14 @@ void Main() {
         sb.AppendLine($"        {VisitFnName(t)}?.Invoke(this, node);");
         sb.AppendLine($"        if (ShouldStop) {{ return; }}");
         sb.AppendLine($"");
-        sb.AppendLine($"        PushContext(node);");
-        sb.AppendLine($"        base.ExplicitVisit(node);");
-
-        sb.AppendLine($"        PopContext();");
+        
+        sb.AppendLine($"        if (skipRequests == this.skipRequests) {{");
+        sb.AppendLine($"            PushContext(node);");
+        sb.AppendLine($"            base.ExplicitVisit(node);");
+        sb.AppendLine($"            PopContext();");
+        sb.AppendLine($"        }}");
         sb.AppendLine($"");
+        
         sb.AppendLine($"        HandleOnLeave(node);");
 
 
@@ -107,6 +112,11 @@ void Main() {
         sb.AppendLine($"    }}");
         first = false;
     }
+    
+    sb.AppendLine($"    public void SkipChildrenForCurrentNode() {{");
+    sb.AppendLine($"        this.skipRequests += 1;");
+    sb.AppendLine($"    }}");
+    
     sb.AppendLine("}");
 
     var txt = sb.ToString();

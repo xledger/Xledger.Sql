@@ -116,5 +116,24 @@ SELECT a.foo, a.bar, a.baz, b.cow, b.bull, chicken, barn, (SELECT TOP 1 dog FROM
             });
             Assert.Equal(3, numScalarExprs);
         }
+
+        [Fact]
+        public void TestSkip() {
+            var frag = Parse("select getdate() where 1 = 5");
+            var numScalarExprs = 0;
+            var numSelects = 0;
+            frag.Accept(new ScopedFragmentTransformer {
+                VisitParentTypes = true,
+                VisForSelectStatement = (transformer, stmt) => {
+                    transformer.SkipChildrenForCurrentNode();
+                    numSelects += 1;
+                },
+                VisForScalarExpression = (transformer, scalar) => {
+                    numScalarExprs += 1;
+                }
+            });
+            Assert.Equal(1, numSelects);
+            Assert.Equal(0, numScalarExprs);
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace Xledger.Sql {
     public class ScopedFragmentTransformer : TSqlConcreteFragmentVisitor {
         public bool VisitParentTypes { get; set; }
         public bool ShouldStop { get; set; }
+        int skipRequests;
         public Stack<TSqlFragment> Parents { get; set; } = new Stack<TSqlFragment>(30);
         public HashSet<TSqlFragment> SkipList { get; } = new HashSet<TSqlFragment>();
         ///<summary>Actions to perform when leaving a node.</summary>
@@ -1083,6 +1084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AcceleratedDatabaseRecoveryDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -1090,9 +1092,11 @@ namespace Xledger.Sql {
             VisForAcceleratedDatabaseRecoveryDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1100,6 +1104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AddAlterFullTextIndexAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterFullTextIndexAction)node);
                 if (ShouldStop) { return; }
@@ -1107,9 +1112,11 @@ namespace Xledger.Sql {
             VisForAddAlterFullTextIndexAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1117,6 +1124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AddFileSpec node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -1124,9 +1132,11 @@ namespace Xledger.Sql {
             VisForAddFileSpec?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1134,6 +1144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AddMemberAlterRoleAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterRoleAction)node);
                 if (ShouldStop) { return; }
@@ -1141,9 +1152,11 @@ namespace Xledger.Sql {
             VisForAddMemberAlterRoleAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1151,6 +1164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AddSearchPropertyListAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SearchPropertyListAction)node);
                 if (ShouldStop) { return; }
@@ -1158,9 +1172,11 @@ namespace Xledger.Sql {
             VisForAddSearchPropertyListAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1168,6 +1184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AddSensitivityClassificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SensitivityClassificationStatement)node);
                 if (ShouldStop) { return; }
@@ -1175,9 +1192,11 @@ namespace Xledger.Sql {
             VisForAddSensitivityClassificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1185,6 +1204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AddSignatureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SignatureStatementBase)node);
                 if (ShouldStop) { return; }
@@ -1192,9 +1212,11 @@ namespace Xledger.Sql {
             VisForAddSignatureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1202,6 +1224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AdHocDataSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -1209,9 +1232,11 @@ namespace Xledger.Sql {
             VisForAdHocDataSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1219,6 +1244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AdHocTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -1226,9 +1252,11 @@ namespace Xledger.Sql {
             VisForAdHocTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1236,6 +1264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlgorithmKeyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((KeyOption)node);
                 if (ShouldStop) { return; }
@@ -1243,9 +1272,11 @@ namespace Xledger.Sql {
             VisForAlgorithmKeyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1253,6 +1284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterApplicationRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ApplicationRoleStatement)node);
                 if (ShouldStop) { return; }
@@ -1260,9 +1292,11 @@ namespace Xledger.Sql {
             VisForAlterApplicationRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1270,6 +1304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterAssemblyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AssemblyStatement)node);
                 if (ShouldStop) { return; }
@@ -1277,9 +1312,11 @@ namespace Xledger.Sql {
             VisForAlterAssemblyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1287,6 +1324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterAsymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -1294,9 +1332,11 @@ namespace Xledger.Sql {
             VisForAlterAsymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1304,6 +1344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterAuthorizationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -1311,9 +1352,11 @@ namespace Xledger.Sql {
             VisForAlterAuthorizationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1321,6 +1364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterAvailabilityGroupAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -1328,9 +1372,11 @@ namespace Xledger.Sql {
             VisForAlterAvailabilityGroupAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1338,6 +1384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterAvailabilityGroupFailoverAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterAvailabilityGroupAction)node);
                 if (ShouldStop) { return; }
@@ -1345,9 +1392,11 @@ namespace Xledger.Sql {
             VisForAlterAvailabilityGroupFailoverAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1355,6 +1404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterAvailabilityGroupFailoverOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -1362,9 +1412,11 @@ namespace Xledger.Sql {
             VisForAlterAvailabilityGroupFailoverOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1372,6 +1424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterAvailabilityGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AvailabilityGroupStatement)node);
                 if (ShouldStop) { return; }
@@ -1379,9 +1432,11 @@ namespace Xledger.Sql {
             VisForAlterAvailabilityGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1389,6 +1444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterBrokerPriorityStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BrokerPriorityStatement)node);
                 if (ShouldStop) { return; }
@@ -1396,9 +1452,11 @@ namespace Xledger.Sql {
             VisForAlterBrokerPriorityStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1406,6 +1464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterCertificateStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CertificateStatementBase)node);
                 if (ShouldStop) { return; }
@@ -1413,9 +1472,11 @@ namespace Xledger.Sql {
             VisForAlterCertificateStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1423,6 +1484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterColumnAlterFullTextIndexAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterFullTextIndexAction)node);
                 if (ShouldStop) { return; }
@@ -1430,9 +1492,11 @@ namespace Xledger.Sql {
             VisForAlterColumnAlterFullTextIndexAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1440,6 +1504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterColumnEncryptionKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnEncryptionKeyStatement)node);
                 if (ShouldStop) { return; }
@@ -1447,9 +1512,11 @@ namespace Xledger.Sql {
             VisForAlterColumnEncryptionKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1457,6 +1524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterCredentialStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CredentialStatement)node);
                 if (ShouldStop) { return; }
@@ -1464,9 +1532,11 @@ namespace Xledger.Sql {
             VisForAlterCredentialStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1474,6 +1544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterCryptographicProviderStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -1481,9 +1552,11 @@ namespace Xledger.Sql {
             VisForAlterCryptographicProviderStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1491,6 +1564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseAddFileGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1498,9 +1572,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseAddFileGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1508,6 +1584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseAddFileStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1515,9 +1592,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseAddFileStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1525,6 +1604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseAuditSpecificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditSpecificationStatement)node);
                 if (ShouldStop) { return; }
@@ -1532,9 +1612,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseAuditSpecificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1542,6 +1624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseCollateStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1549,9 +1632,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseCollateStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1559,6 +1644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseEncryptionKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseEncryptionKeyStatement)node);
                 if (ShouldStop) { return; }
@@ -1566,9 +1652,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseEncryptionKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1576,6 +1664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseModifyFileGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1583,9 +1672,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseModifyFileGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1593,6 +1684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseModifyFileStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1600,9 +1692,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseModifyFileStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1610,6 +1704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseModifyNameStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1617,9 +1712,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseModifyNameStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1627,6 +1724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseRebuildLogStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1634,9 +1732,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseRebuildLogStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1644,6 +1744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseRemoveFileGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1651,9 +1752,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseRemoveFileGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1661,6 +1764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseRemoveFileStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1668,9 +1772,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseRemoveFileStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1678,6 +1784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseScopedConfigurationClearStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseScopedConfigurationStatement)node);
                 if (ShouldStop) { return; }
@@ -1685,9 +1792,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseScopedConfigurationClearStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1695,6 +1804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseScopedConfigurationSetStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseScopedConfigurationStatement)node);
                 if (ShouldStop) { return; }
@@ -1702,9 +1812,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseScopedConfigurationSetStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1712,6 +1824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseSetStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterDatabaseStatement)node);
                 if (ShouldStop) { return; }
@@ -1719,9 +1832,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseSetStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1729,6 +1844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterDatabaseTermination node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -1736,9 +1852,11 @@ namespace Xledger.Sql {
             VisForAlterDatabaseTermination?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1746,6 +1864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterEndpointStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterCreateEndpointStatementBase)node);
                 if (ShouldStop) { return; }
@@ -1753,9 +1872,11 @@ namespace Xledger.Sql {
             VisForAlterEndpointStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1763,6 +1884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterEventSessionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EventSessionStatement)node);
                 if (ShouldStop) { return; }
@@ -1770,9 +1892,11 @@ namespace Xledger.Sql {
             VisForAlterEventSessionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1780,6 +1904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterExternalDataSourceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalDataSourceStatement)node);
                 if (ShouldStop) { return; }
@@ -1787,9 +1912,11 @@ namespace Xledger.Sql {
             VisForAlterExternalDataSourceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1797,6 +1924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterExternalLanguageStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalLanguageStatement)node);
                 if (ShouldStop) { return; }
@@ -1804,9 +1932,11 @@ namespace Xledger.Sql {
             VisForAlterExternalLanguageStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1814,6 +1944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterExternalLibraryStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalLibraryStatement)node);
                 if (ShouldStop) { return; }
@@ -1821,9 +1952,11 @@ namespace Xledger.Sql {
             VisForAlterExternalLibraryStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1831,6 +1964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterExternalResourcePoolStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalResourcePoolStatement)node);
                 if (ShouldStop) { return; }
@@ -1838,9 +1972,11 @@ namespace Xledger.Sql {
             VisForAlterExternalResourcePoolStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1848,6 +1984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterFederationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -1855,9 +1992,11 @@ namespace Xledger.Sql {
             VisForAlterFederationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1865,6 +2004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterFullTextCatalogStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FullTextCatalogStatement)node);
                 if (ShouldStop) { return; }
@@ -1872,9 +2012,11 @@ namespace Xledger.Sql {
             VisForAlterFullTextCatalogStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1882,6 +2024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterFullTextIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -1889,9 +2032,11 @@ namespace Xledger.Sql {
             VisForAlterFullTextIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1899,6 +2044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterFullTextStopListStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -1906,9 +2052,11 @@ namespace Xledger.Sql {
             VisForAlterFullTextStopListStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1916,6 +2064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterFunctionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FunctionStatementBody)node);
                 if (ShouldStop) { return; }
@@ -1923,9 +2072,11 @@ namespace Xledger.Sql {
             VisForAlterFunctionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1933,6 +2084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexStatement)node);
                 if (ShouldStop) { return; }
@@ -1940,9 +2092,11 @@ namespace Xledger.Sql {
             VisForAlterIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1950,6 +2104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterLoginAddDropCredentialStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterLoginStatement)node);
                 if (ShouldStop) { return; }
@@ -1957,9 +2112,11 @@ namespace Xledger.Sql {
             VisForAlterLoginAddDropCredentialStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1967,6 +2124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterLoginEnableDisableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterLoginStatement)node);
                 if (ShouldStop) { return; }
@@ -1974,9 +2132,11 @@ namespace Xledger.Sql {
             VisForAlterLoginEnableDisableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -1984,6 +2144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterLoginOptionsStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterLoginStatement)node);
                 if (ShouldStop) { return; }
@@ -1991,9 +2152,11 @@ namespace Xledger.Sql {
             VisForAlterLoginOptionsStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2001,6 +2164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((MasterKeyStatement)node);
                 if (ShouldStop) { return; }
@@ -2008,9 +2172,11 @@ namespace Xledger.Sql {
             VisForAlterMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2018,6 +2184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterMessageTypeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((MessageTypeStatementBase)node);
                 if (ShouldStop) { return; }
@@ -2025,9 +2192,11 @@ namespace Xledger.Sql {
             VisForAlterMessageTypeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2035,6 +2204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterPartitionFunctionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2042,9 +2212,11 @@ namespace Xledger.Sql {
             VisForAlterPartitionFunctionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2052,6 +2224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterPartitionSchemeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2059,9 +2232,11 @@ namespace Xledger.Sql {
             VisForAlterPartitionSchemeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2069,6 +2244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterProcedureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ProcedureStatementBody)node);
                 if (ShouldStop) { return; }
@@ -2076,9 +2252,11 @@ namespace Xledger.Sql {
             VisForAlterProcedureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2086,6 +2264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterQueueStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueueStatement)node);
                 if (ShouldStop) { return; }
@@ -2093,9 +2272,11 @@ namespace Xledger.Sql {
             VisForAlterQueueStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2103,6 +2284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterRemoteServiceBindingStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RemoteServiceBindingStatementBase)node);
                 if (ShouldStop) { return; }
@@ -2110,9 +2292,11 @@ namespace Xledger.Sql {
             VisForAlterRemoteServiceBindingStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2120,6 +2304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterResourceGovernorStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2127,9 +2312,11 @@ namespace Xledger.Sql {
             VisForAlterResourceGovernorStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2137,6 +2324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterResourcePoolStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ResourcePoolStatement)node);
                 if (ShouldStop) { return; }
@@ -2144,9 +2332,11 @@ namespace Xledger.Sql {
             VisForAlterResourcePoolStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2154,6 +2344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RoleStatement)node);
                 if (ShouldStop) { return; }
@@ -2161,9 +2352,11 @@ namespace Xledger.Sql {
             VisForAlterRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2171,6 +2364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterRouteStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RouteStatement)node);
                 if (ShouldStop) { return; }
@@ -2178,9 +2372,11 @@ namespace Xledger.Sql {
             VisForAlterRouteStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2188,6 +2384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterSchemaStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2195,9 +2392,11 @@ namespace Xledger.Sql {
             VisForAlterSchemaStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2205,6 +2404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterSearchPropertyListStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2212,9 +2412,11 @@ namespace Xledger.Sql {
             VisForAlterSearchPropertyListStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2222,6 +2424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterSecurityPolicyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityPolicyStatement)node);
                 if (ShouldStop) { return; }
@@ -2229,9 +2432,11 @@ namespace Xledger.Sql {
             VisForAlterSecurityPolicyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2239,6 +2444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterSequenceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SequenceStatement)node);
                 if (ShouldStop) { return; }
@@ -2246,9 +2452,11 @@ namespace Xledger.Sql {
             VisForAlterSequenceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2256,6 +2464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerAuditSpecificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditSpecificationStatement)node);
                 if (ShouldStop) { return; }
@@ -2263,9 +2472,11 @@ namespace Xledger.Sql {
             VisForAlterServerAuditSpecificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2273,6 +2484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerAuditStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ServerAuditStatement)node);
                 if (ShouldStop) { return; }
@@ -2280,9 +2492,11 @@ namespace Xledger.Sql {
             VisForAlterServerAuditStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2290,6 +2504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationBufferPoolExtensionContainerOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterServerConfigurationBufferPoolExtensionOption)node);
                 if (ShouldStop) { return; }
@@ -2297,9 +2512,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationBufferPoolExtensionContainerOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2307,6 +2524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationBufferPoolExtensionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2314,9 +2532,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationBufferPoolExtensionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2324,6 +2544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationBufferPoolExtensionSizeOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterServerConfigurationBufferPoolExtensionOption)node);
                 if (ShouldStop) { return; }
@@ -2331,9 +2552,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationBufferPoolExtensionSizeOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2341,6 +2564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationDiagnosticsLogMaxSizeOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterServerConfigurationDiagnosticsLogOption)node);
                 if (ShouldStop) { return; }
@@ -2348,9 +2572,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationDiagnosticsLogMaxSizeOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2358,6 +2584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationDiagnosticsLogOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2365,9 +2592,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationDiagnosticsLogOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2375,6 +2604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationExternalAuthenticationContainerOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterServerConfigurationExternalAuthenticationOption)node);
                 if (ShouldStop) { return; }
@@ -2382,9 +2612,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationExternalAuthenticationContainerOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2392,6 +2624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationExternalAuthenticationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2399,9 +2632,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationExternalAuthenticationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2409,6 +2644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationFailoverClusterPropertyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2416,9 +2652,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationFailoverClusterPropertyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2426,6 +2664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationHadrClusterOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2433,9 +2672,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationHadrClusterOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2443,6 +2684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationSetBufferPoolExtensionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2450,9 +2692,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationSetBufferPoolExtensionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2460,6 +2704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationSetDiagnosticsLogStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2467,9 +2712,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationSetDiagnosticsLogStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2477,6 +2724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationSetExternalAuthenticationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2484,9 +2732,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationSetExternalAuthenticationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2494,6 +2744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationSetFailoverClusterPropertyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2501,9 +2752,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationSetFailoverClusterPropertyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2511,6 +2764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationSetHadrClusterStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2518,9 +2772,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationSetHadrClusterStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2528,6 +2784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationSetSoftNumaStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2535,9 +2792,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationSetSoftNumaStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2545,6 +2804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationSoftNumaOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2552,9 +2812,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationSoftNumaOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2562,6 +2824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerConfigurationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2569,9 +2832,11 @@ namespace Xledger.Sql {
             VisForAlterServerConfigurationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2579,6 +2844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServerRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterRoleStatement)node);
                 if (ShouldStop) { return; }
@@ -2586,9 +2852,11 @@ namespace Xledger.Sql {
             VisForAlterServerRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2596,6 +2864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServiceMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2603,9 +2872,11 @@ namespace Xledger.Sql {
             VisForAlterServiceMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2613,6 +2884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterServiceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterCreateServiceStatementBase)node);
                 if (ShouldStop) { return; }
@@ -2620,9 +2892,11 @@ namespace Xledger.Sql {
             VisForAlterServiceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2630,6 +2904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterSymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SymmetricKeyStatement)node);
                 if (ShouldStop) { return; }
@@ -2637,9 +2912,11 @@ namespace Xledger.Sql {
             VisForAlterSymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2647,6 +2924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableAddTableElementStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2654,9 +2932,11 @@ namespace Xledger.Sql {
             VisForAlterTableAddTableElementStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2664,6 +2944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableAlterColumnStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2671,9 +2952,11 @@ namespace Xledger.Sql {
             VisForAlterTableAlterColumnStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2681,6 +2964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableAlterIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2688,9 +2972,11 @@ namespace Xledger.Sql {
             VisForAlterTableAlterIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2698,6 +2984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableAlterPartitionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2705,9 +2992,11 @@ namespace Xledger.Sql {
             VisForAlterTableAlterPartitionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2715,6 +3004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableChangeTrackingModificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2722,9 +3012,11 @@ namespace Xledger.Sql {
             VisForAlterTableChangeTrackingModificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2732,6 +3024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableConstraintModificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2739,9 +3032,11 @@ namespace Xledger.Sql {
             VisForAlterTableConstraintModificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2749,6 +3044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableDropTableElement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2756,9 +3052,11 @@ namespace Xledger.Sql {
             VisForAlterTableDropTableElement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2766,6 +3064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableDropTableElementStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2773,9 +3072,11 @@ namespace Xledger.Sql {
             VisForAlterTableDropTableElementStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2783,6 +3084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableFileTableNamespaceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2790,9 +3092,11 @@ namespace Xledger.Sql {
             VisForAlterTableFileTableNamespaceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2800,6 +3104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableRebuildStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2807,9 +3112,11 @@ namespace Xledger.Sql {
             VisForAlterTableRebuildStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2817,6 +3124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableSetStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2824,9 +3132,11 @@ namespace Xledger.Sql {
             VisForAlterTableSetStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2834,6 +3144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableSwitchStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2841,9 +3152,11 @@ namespace Xledger.Sql {
             VisForAlterTableSwitchStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2851,6 +3164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTableTriggerModificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterTableStatement)node);
                 if (ShouldStop) { return; }
@@ -2858,9 +3172,11 @@ namespace Xledger.Sql {
             VisForAlterTableTriggerModificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2868,6 +3184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterTriggerStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TriggerStatementBody)node);
                 if (ShouldStop) { return; }
@@ -2875,9 +3192,11 @@ namespace Xledger.Sql {
             VisForAlterTriggerStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2885,6 +3204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterUserStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((UserStatement)node);
                 if (ShouldStop) { return; }
@@ -2892,9 +3212,11 @@ namespace Xledger.Sql {
             VisForAlterUserStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2902,6 +3224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterViewStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ViewStatementBody)node);
                 if (ShouldStop) { return; }
@@ -2909,9 +3232,11 @@ namespace Xledger.Sql {
             VisForAlterViewStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2919,6 +3244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterWorkloadGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadGroupStatement)node);
                 if (ShouldStop) { return; }
@@ -2926,9 +3252,11 @@ namespace Xledger.Sql {
             VisForAlterWorkloadGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2936,6 +3264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AlterXmlSchemaCollectionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -2943,9 +3272,11 @@ namespace Xledger.Sql {
             VisForAlterXmlSchemaCollectionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2953,6 +3284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ApplicationRoleOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2960,9 +3292,11 @@ namespace Xledger.Sql {
             VisForApplicationRoleOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2970,6 +3304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AssemblyEncryptionSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EncryptionSource)node);
                 if (ShouldStop) { return; }
@@ -2977,9 +3312,11 @@ namespace Xledger.Sql {
             VisForAssemblyEncryptionSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -2987,6 +3324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AssemblyName node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -2994,9 +3332,11 @@ namespace Xledger.Sql {
             VisForAssemblyName?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3004,6 +3344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AssemblyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3011,9 +3352,11 @@ namespace Xledger.Sql {
             VisForAssemblyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3021,6 +3364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AssignmentSetClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SetClause)node);
                 if (ShouldStop) { return; }
@@ -3028,9 +3372,11 @@ namespace Xledger.Sql {
             VisForAssignmentSetClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3038,6 +3384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AsymmetricKeyCreateLoginSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateLoginSource)node);
                 if (ShouldStop) { return; }
@@ -3045,9 +3392,11 @@ namespace Xledger.Sql {
             VisForAsymmetricKeyCreateLoginSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3055,6 +3404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AtTimeZoneCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -3062,9 +3412,11 @@ namespace Xledger.Sql {
             VisForAtTimeZoneCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3072,6 +3424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AuditActionGroupReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditSpecificationDetail)node);
                 if (ShouldStop) { return; }
@@ -3079,9 +3432,11 @@ namespace Xledger.Sql {
             VisForAuditActionGroupReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3089,6 +3444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AuditActionSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditSpecificationDetail)node);
                 if (ShouldStop) { return; }
@@ -3096,9 +3452,11 @@ namespace Xledger.Sql {
             VisForAuditActionSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3106,6 +3464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AuditGuidAuditOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditOption)node);
                 if (ShouldStop) { return; }
@@ -3113,9 +3472,11 @@ namespace Xledger.Sql {
             VisForAuditGuidAuditOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3123,6 +3484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AuditSpecificationPart node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3130,9 +3492,11 @@ namespace Xledger.Sql {
             VisForAuditSpecificationPart?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3140,6 +3504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AuditTarget node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3147,9 +3512,11 @@ namespace Xledger.Sql {
             VisForAuditTarget?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3157,6 +3524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AuthenticationEndpointProtocolOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EndpointProtocolOption)node);
                 if (ShouldStop) { return; }
@@ -3164,9 +3532,11 @@ namespace Xledger.Sql {
             VisForAuthenticationEndpointProtocolOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3174,6 +3544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AuthenticationPayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -3181,9 +3552,11 @@ namespace Xledger.Sql {
             VisForAuthenticationPayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3191,6 +3564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AutoCleanupChangeTrackingOptionDetail node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ChangeTrackingOptionDetail)node);
                 if (ShouldStop) { return; }
@@ -3198,9 +3572,11 @@ namespace Xledger.Sql {
             VisForAutoCleanupChangeTrackingOptionDetail?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3208,6 +3584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AutoCreateStatisticsDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((OnOffDatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -3215,9 +3592,11 @@ namespace Xledger.Sql {
             VisForAutoCreateStatisticsDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3225,6 +3604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AutomaticTuningCreateIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AutomaticTuningOption)node);
                 if (ShouldStop) { return; }
@@ -3232,9 +3612,11 @@ namespace Xledger.Sql {
             VisForAutomaticTuningCreateIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3242,6 +3624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AutomaticTuningDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -3249,9 +3632,11 @@ namespace Xledger.Sql {
             VisForAutomaticTuningDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3259,6 +3644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AutomaticTuningDropIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AutomaticTuningOption)node);
                 if (ShouldStop) { return; }
@@ -3266,9 +3652,11 @@ namespace Xledger.Sql {
             VisForAutomaticTuningDropIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3276,6 +3664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AutomaticTuningForceLastGoodPlanOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AutomaticTuningOption)node);
                 if (ShouldStop) { return; }
@@ -3283,9 +3672,11 @@ namespace Xledger.Sql {
             VisForAutomaticTuningForceLastGoodPlanOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3293,6 +3684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AutomaticTuningMaintainIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AutomaticTuningOption)node);
                 if (ShouldStop) { return; }
@@ -3300,9 +3692,11 @@ namespace Xledger.Sql {
             VisForAutomaticTuningMaintainIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3310,6 +3704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AutomaticTuningOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3317,9 +3712,11 @@ namespace Xledger.Sql {
             VisForAutomaticTuningOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3327,6 +3724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AvailabilityModeReplicaOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AvailabilityReplicaOption)node);
                 if (ShouldStop) { return; }
@@ -3334,9 +3732,11 @@ namespace Xledger.Sql {
             VisForAvailabilityModeReplicaOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3344,6 +3744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(AvailabilityReplica node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3351,9 +3752,11 @@ namespace Xledger.Sql {
             VisForAvailabilityReplica?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3361,6 +3764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackupCertificateStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CertificateStatementBase)node);
                 if (ShouldStop) { return; }
@@ -3368,9 +3772,11 @@ namespace Xledger.Sql {
             VisForBackupCertificateStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3378,6 +3784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackupDatabaseStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BackupStatement)node);
                 if (ShouldStop) { return; }
@@ -3385,9 +3792,11 @@ namespace Xledger.Sql {
             VisForBackupDatabaseStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3395,6 +3804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackupEncryptionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BackupOption)node);
                 if (ShouldStop) { return; }
@@ -3402,9 +3812,11 @@ namespace Xledger.Sql {
             VisForBackupEncryptionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3412,6 +3824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackupMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BackupRestoreMasterKeyStatementBase)node);
                 if (ShouldStop) { return; }
@@ -3419,9 +3832,11 @@ namespace Xledger.Sql {
             VisForBackupMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3429,6 +3844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackupOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3436,9 +3852,11 @@ namespace Xledger.Sql {
             VisForBackupOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3446,6 +3864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackupRestoreFileInfo node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3453,9 +3872,11 @@ namespace Xledger.Sql {
             VisForBackupRestoreFileInfo?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3463,6 +3884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackupServiceMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BackupRestoreMasterKeyStatementBase)node);
                 if (ShouldStop) { return; }
@@ -3470,9 +3892,11 @@ namespace Xledger.Sql {
             VisForBackupServiceMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3480,6 +3904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackupTransactionLogStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BackupStatement)node);
                 if (ShouldStop) { return; }
@@ -3487,9 +3912,11 @@ namespace Xledger.Sql {
             VisForBackupTransactionLogStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3497,6 +3924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BackwardsCompatibleDropIndexClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropIndexClauseBase)node);
                 if (ShouldStop) { return; }
@@ -3504,9 +3932,11 @@ namespace Xledger.Sql {
             VisForBackwardsCompatibleDropIndexClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3514,6 +3944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BeginConversationTimerStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -3521,9 +3952,11 @@ namespace Xledger.Sql {
             VisForBeginConversationTimerStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3531,6 +3964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BeginDialogStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -3538,9 +3972,11 @@ namespace Xledger.Sql {
             VisForBeginDialogStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3548,6 +3984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BeginEndAtomicBlockStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BeginEndBlockStatement)node);
                 if (ShouldStop) { return; }
@@ -3555,9 +3992,11 @@ namespace Xledger.Sql {
             VisForBeginEndAtomicBlockStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3565,6 +4004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BeginEndBlockStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -3572,9 +4012,11 @@ namespace Xledger.Sql {
             VisForBeginEndBlockStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3582,6 +4024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BeginTransactionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TransactionStatement)node);
                 if (ShouldStop) { return; }
@@ -3589,9 +4032,11 @@ namespace Xledger.Sql {
             VisForBeginTransactionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3599,6 +4044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BinaryExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ScalarExpression)node);
                 if (ShouldStop) { return; }
@@ -3606,9 +4052,11 @@ namespace Xledger.Sql {
             VisForBinaryExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3616,6 +4064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BinaryLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -3623,9 +4072,11 @@ namespace Xledger.Sql {
             VisForBinaryLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3633,6 +4084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BinaryQueryExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryExpression)node);
                 if (ShouldStop) { return; }
@@ -3640,9 +4092,11 @@ namespace Xledger.Sql {
             VisForBinaryQueryExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3650,6 +4104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BooleanBinaryExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -3657,9 +4112,11 @@ namespace Xledger.Sql {
             VisForBooleanBinaryExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3667,6 +4124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BooleanComparisonExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -3674,9 +4132,11 @@ namespace Xledger.Sql {
             VisForBooleanComparisonExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3684,6 +4144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BooleanExpressionSnippet node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -3691,9 +4152,11 @@ namespace Xledger.Sql {
             VisForBooleanExpressionSnippet?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3701,6 +4164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BooleanIsNullExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -3708,9 +4172,11 @@ namespace Xledger.Sql {
             VisForBooleanIsNullExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3718,6 +4184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BooleanNotExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -3725,9 +4192,11 @@ namespace Xledger.Sql {
             VisForBooleanNotExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3735,6 +4204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BooleanParenthesisExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -3742,9 +4212,11 @@ namespace Xledger.Sql {
             VisForBooleanParenthesisExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3752,6 +4224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BooleanTernaryExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -3759,9 +4232,11 @@ namespace Xledger.Sql {
             VisForBooleanTernaryExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3769,6 +4244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BoundingBoxParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3776,9 +4252,11 @@ namespace Xledger.Sql {
             VisForBoundingBoxParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3786,6 +4264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BoundingBoxSpatialIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SpatialIndexOption)node);
                 if (ShouldStop) { return; }
@@ -3793,9 +4272,11 @@ namespace Xledger.Sql {
             VisForBoundingBoxSpatialIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3803,6 +4284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BreakStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -3810,9 +4292,11 @@ namespace Xledger.Sql {
             VisForBreakStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3820,6 +4304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BrokerPriorityParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3827,9 +4312,11 @@ namespace Xledger.Sql {
             VisForBrokerPriorityParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3837,6 +4324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BrowseForClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ForClause)node);
                 if (ShouldStop) { return; }
@@ -3844,9 +4332,11 @@ namespace Xledger.Sql {
             VisForBrowseForClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3854,6 +4344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BuiltInFunctionTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -3861,9 +4352,11 @@ namespace Xledger.Sql {
             VisForBuiltInFunctionTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3871,6 +4364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BulkInsertOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3878,9 +4372,11 @@ namespace Xledger.Sql {
             VisForBulkInsertOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3888,6 +4384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BulkInsertStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BulkInsertBase)node);
                 if (ShouldStop) { return; }
@@ -3895,9 +4392,11 @@ namespace Xledger.Sql {
             VisForBulkInsertStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3905,6 +4404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(BulkOpenRowset node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -3912,9 +4412,11 @@ namespace Xledger.Sql {
             VisForBulkOpenRowset?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3922,6 +4424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CastCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -3929,9 +4432,11 @@ namespace Xledger.Sql {
             VisForCastCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3939,6 +4444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CatalogCollationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -3946,9 +4452,11 @@ namespace Xledger.Sql {
             VisForCatalogCollationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3956,6 +4464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CellsPerObjectSpatialIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SpatialIndexOption)node);
                 if (ShouldStop) { return; }
@@ -3963,9 +4472,11 @@ namespace Xledger.Sql {
             VisForCellsPerObjectSpatialIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3973,6 +4484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CertificateCreateLoginSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateLoginSource)node);
                 if (ShouldStop) { return; }
@@ -3980,9 +4492,11 @@ namespace Xledger.Sql {
             VisForCertificateCreateLoginSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -3990,6 +4504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CertificateOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -3997,9 +4512,11 @@ namespace Xledger.Sql {
             VisForCertificateOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4007,6 +4524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ChangeRetentionChangeTrackingOptionDetail node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ChangeTrackingOptionDetail)node);
                 if (ShouldStop) { return; }
@@ -4014,9 +4532,11 @@ namespace Xledger.Sql {
             VisForChangeRetentionChangeTrackingOptionDetail?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4024,6 +4544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ChangeTableChangesTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -4031,9 +4552,11 @@ namespace Xledger.Sql {
             VisForChangeTableChangesTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4041,6 +4564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ChangeTableVersionTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -4048,9 +4572,11 @@ namespace Xledger.Sql {
             VisForChangeTableVersionTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4058,6 +4584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ChangeTrackingDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -4065,9 +4592,11 @@ namespace Xledger.Sql {
             VisForChangeTrackingDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4075,6 +4604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ChangeTrackingFullTextIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FullTextIndexOption)node);
                 if (ShouldStop) { return; }
@@ -4082,9 +4612,11 @@ namespace Xledger.Sql {
             VisForChangeTrackingFullTextIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4092,6 +4624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CharacterSetPayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -4099,9 +4632,11 @@ namespace Xledger.Sql {
             VisForCharacterSetPayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4109,6 +4644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CheckConstraintDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ConstraintDefinition)node);
                 if (ShouldStop) { return; }
@@ -4116,9 +4652,11 @@ namespace Xledger.Sql {
             VisForCheckConstraintDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4126,6 +4664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CheckpointStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -4133,9 +4672,11 @@ namespace Xledger.Sql {
             VisForCheckpointStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4143,6 +4684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ChildObjectName node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SchemaObjectName)node);
                 if (ShouldStop) { return; }
@@ -4150,9 +4692,11 @@ namespace Xledger.Sql {
             VisForChildObjectName?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4160,6 +4704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ClassifierEndTimeOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadClassifierOption)node);
                 if (ShouldStop) { return; }
@@ -4167,9 +4712,11 @@ namespace Xledger.Sql {
             VisForClassifierEndTimeOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4177,6 +4724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ClassifierImportanceOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadClassifierOption)node);
                 if (ShouldStop) { return; }
@@ -4184,9 +4732,11 @@ namespace Xledger.Sql {
             VisForClassifierImportanceOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4194,6 +4744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ClassifierMemberNameOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadClassifierOption)node);
                 if (ShouldStop) { return; }
@@ -4201,9 +4752,11 @@ namespace Xledger.Sql {
             VisForClassifierMemberNameOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4211,6 +4764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ClassifierStartTimeOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadClassifierOption)node);
                 if (ShouldStop) { return; }
@@ -4218,9 +4772,11 @@ namespace Xledger.Sql {
             VisForClassifierStartTimeOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4228,6 +4784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ClassifierWlmContextOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadClassifierOption)node);
                 if (ShouldStop) { return; }
@@ -4235,9 +4792,11 @@ namespace Xledger.Sql {
             VisForClassifierWlmContextOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4245,6 +4804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ClassifierWlmLabelOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadClassifierOption)node);
                 if (ShouldStop) { return; }
@@ -4252,9 +4812,11 @@ namespace Xledger.Sql {
             VisForClassifierWlmLabelOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4262,6 +4824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ClassifierWorkloadGroupOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadClassifierOption)node);
                 if (ShouldStop) { return; }
@@ -4269,9 +4832,11 @@ namespace Xledger.Sql {
             VisForClassifierWorkloadGroupOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4279,6 +4844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CloseCursorStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CursorStatement)node);
                 if (ShouldStop) { return; }
@@ -4286,9 +4852,11 @@ namespace Xledger.Sql {
             VisForCloseCursorStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4296,6 +4864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CloseMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -4303,9 +4872,11 @@ namespace Xledger.Sql {
             VisForCloseMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4313,6 +4884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CloseSymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -4320,9 +4892,11 @@ namespace Xledger.Sql {
             VisForCloseSymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4330,6 +4904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CoalesceExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -4337,9 +4912,11 @@ namespace Xledger.Sql {
             VisForCoalesceExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4347,6 +4924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnDefinitionBase)node);
                 if (ShouldStop) { return; }
@@ -4354,9 +4932,11 @@ namespace Xledger.Sql {
             VisForColumnDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4364,6 +4944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnDefinitionBase node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4371,9 +4952,11 @@ namespace Xledger.Sql {
             VisForColumnDefinitionBase?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4381,6 +4964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnEncryptionAlgorithmNameParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnEncryptionKeyValueParameter)node);
                 if (ShouldStop) { return; }
@@ -4388,9 +4972,11 @@ namespace Xledger.Sql {
             VisForColumnEncryptionAlgorithmNameParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4398,6 +4984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnEncryptionAlgorithmParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnEncryptionDefinitionParameter)node);
                 if (ShouldStop) { return; }
@@ -4405,9 +4992,11 @@ namespace Xledger.Sql {
             VisForColumnEncryptionAlgorithmParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4415,6 +5004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnEncryptionDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4422,9 +5012,11 @@ namespace Xledger.Sql {
             VisForColumnEncryptionDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4432,6 +5024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnEncryptionKeyNameParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnEncryptionDefinitionParameter)node);
                 if (ShouldStop) { return; }
@@ -4439,9 +5032,11 @@ namespace Xledger.Sql {
             VisForColumnEncryptionKeyNameParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4449,6 +5044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnEncryptionKeyValue node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4456,9 +5052,11 @@ namespace Xledger.Sql {
             VisForColumnEncryptionKeyValue?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4466,6 +5064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnEncryptionTypeParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnEncryptionDefinitionParameter)node);
                 if (ShouldStop) { return; }
@@ -4473,9 +5072,11 @@ namespace Xledger.Sql {
             VisForColumnEncryptionTypeParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4483,6 +5084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnMasterKeyEnclaveComputationsParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnMasterKeyParameter)node);
                 if (ShouldStop) { return; }
@@ -4490,9 +5092,11 @@ namespace Xledger.Sql {
             VisForColumnMasterKeyEnclaveComputationsParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4500,6 +5104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnMasterKeyNameParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnEncryptionKeyValueParameter)node);
                 if (ShouldStop) { return; }
@@ -4507,9 +5112,11 @@ namespace Xledger.Sql {
             VisForColumnMasterKeyNameParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4517,6 +5124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnMasterKeyPathParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnMasterKeyParameter)node);
                 if (ShouldStop) { return; }
@@ -4524,9 +5132,11 @@ namespace Xledger.Sql {
             VisForColumnMasterKeyPathParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4534,6 +5144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnMasterKeyStoreProviderNameParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnMasterKeyParameter)node);
                 if (ShouldStop) { return; }
@@ -4541,9 +5152,11 @@ namespace Xledger.Sql {
             VisForColumnMasterKeyStoreProviderNameParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4551,6 +5164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnReferenceExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -4558,9 +5172,11 @@ namespace Xledger.Sql {
             VisForColumnReferenceExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4568,6 +5184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnStorageOptions node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4575,9 +5192,11 @@ namespace Xledger.Sql {
             VisForColumnStorageOptions?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4585,6 +5204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ColumnWithSortOrder node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4592,9 +5212,11 @@ namespace Xledger.Sql {
             VisForColumnWithSortOrder?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4602,6 +5224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CommandSecurityElement80 node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityElement80)node);
                 if (ShouldStop) { return; }
@@ -4609,9 +5232,11 @@ namespace Xledger.Sql {
             VisForCommandSecurityElement80?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4619,6 +5244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CommitTransactionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TransactionStatement)node);
                 if (ShouldStop) { return; }
@@ -4626,9 +5252,11 @@ namespace Xledger.Sql {
             VisForCommitTransactionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4636,6 +5264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CommonTableExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4643,9 +5272,11 @@ namespace Xledger.Sql {
             VisForCommonTableExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4653,6 +5284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CompositeGroupingSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((GroupingSpecification)node);
                 if (ShouldStop) { return; }
@@ -4660,9 +5292,11 @@ namespace Xledger.Sql {
             VisForCompositeGroupingSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4670,6 +5304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CompressionDelayIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -4677,9 +5312,11 @@ namespace Xledger.Sql {
             VisForCompressionDelayIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4687,6 +5324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CompressionEndpointProtocolOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EndpointProtocolOption)node);
                 if (ShouldStop) { return; }
@@ -4694,9 +5332,11 @@ namespace Xledger.Sql {
             VisForCompressionEndpointProtocolOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4704,6 +5344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CompressionPartitionRange node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4711,9 +5352,11 @@ namespace Xledger.Sql {
             VisForCompressionPartitionRange?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4721,6 +5364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ComputeClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4728,9 +5372,11 @@ namespace Xledger.Sql {
             VisForComputeClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4738,6 +5384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ComputeFunction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4745,9 +5392,11 @@ namespace Xledger.Sql {
             VisForComputeFunction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4755,6 +5404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ContainmentDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -4762,9 +5412,11 @@ namespace Xledger.Sql {
             VisForContainmentDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4772,6 +5424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ContinueStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -4779,9 +5432,11 @@ namespace Xledger.Sql {
             VisForContinueStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4789,6 +5444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ContractMessage node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4796,9 +5452,11 @@ namespace Xledger.Sql {
             VisForContractMessage?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4806,6 +5464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ConvertCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -4813,9 +5472,11 @@ namespace Xledger.Sql {
             VisForConvertCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4823,6 +5484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CopyColumnOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CopyStatementOptionBase)node);
                 if (ShouldStop) { return; }
@@ -4830,9 +5492,11 @@ namespace Xledger.Sql {
             VisForCopyColumnOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4840,6 +5504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CopyCredentialOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CopyStatementOptionBase)node);
                 if (ShouldStop) { return; }
@@ -4847,9 +5512,11 @@ namespace Xledger.Sql {
             VisForCopyCredentialOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4857,6 +5524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CopyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -4864,9 +5532,11 @@ namespace Xledger.Sql {
             VisForCopyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4874,6 +5544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CopyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -4881,9 +5552,11 @@ namespace Xledger.Sql {
             VisForCopyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4891,6 +5564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateAggregateStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -4898,9 +5572,11 @@ namespace Xledger.Sql {
             VisForCreateAggregateStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4908,6 +5584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateApplicationRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ApplicationRoleStatement)node);
                 if (ShouldStop) { return; }
@@ -4915,9 +5592,11 @@ namespace Xledger.Sql {
             VisForCreateApplicationRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4925,6 +5604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateAssemblyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AssemblyStatement)node);
                 if (ShouldStop) { return; }
@@ -4932,9 +5612,11 @@ namespace Xledger.Sql {
             VisForCreateAssemblyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4942,6 +5624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateAsymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -4949,9 +5632,11 @@ namespace Xledger.Sql {
             VisForCreateAsymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4959,6 +5644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateAvailabilityGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AvailabilityGroupStatement)node);
                 if (ShouldStop) { return; }
@@ -4966,9 +5652,11 @@ namespace Xledger.Sql {
             VisForCreateAvailabilityGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4976,6 +5664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateBrokerPriorityStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BrokerPriorityStatement)node);
                 if (ShouldStop) { return; }
@@ -4983,9 +5672,11 @@ namespace Xledger.Sql {
             VisForCreateBrokerPriorityStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -4993,6 +5684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateCertificateStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CertificateStatementBase)node);
                 if (ShouldStop) { return; }
@@ -5000,9 +5692,11 @@ namespace Xledger.Sql {
             VisForCreateCertificateStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5010,6 +5704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateColumnEncryptionKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnEncryptionKeyStatement)node);
                 if (ShouldStop) { return; }
@@ -5017,9 +5712,11 @@ namespace Xledger.Sql {
             VisForCreateColumnEncryptionKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5027,6 +5724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateColumnMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5034,9 +5732,11 @@ namespace Xledger.Sql {
             VisForCreateColumnMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5044,6 +5744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateColumnStoreIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5051,9 +5752,11 @@ namespace Xledger.Sql {
             VisForCreateColumnStoreIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5061,6 +5764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateContractStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5068,9 +5772,11 @@ namespace Xledger.Sql {
             VisForCreateContractStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5078,6 +5784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateCredentialStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CredentialStatement)node);
                 if (ShouldStop) { return; }
@@ -5085,9 +5792,11 @@ namespace Xledger.Sql {
             VisForCreateCredentialStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5095,6 +5804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateCryptographicProviderStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5102,9 +5812,11 @@ namespace Xledger.Sql {
             VisForCreateCryptographicProviderStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5112,6 +5824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateDatabaseAuditSpecificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditSpecificationStatement)node);
                 if (ShouldStop) { return; }
@@ -5119,9 +5832,11 @@ namespace Xledger.Sql {
             VisForCreateDatabaseAuditSpecificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5129,6 +5844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateDatabaseEncryptionKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseEncryptionKeyStatement)node);
                 if (ShouldStop) { return; }
@@ -5136,9 +5852,11 @@ namespace Xledger.Sql {
             VisForCreateDatabaseEncryptionKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5146,6 +5864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateDatabaseStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5153,9 +5872,11 @@ namespace Xledger.Sql {
             VisForCreateDatabaseStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5163,6 +5884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateDefaultStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5170,9 +5892,11 @@ namespace Xledger.Sql {
             VisForCreateDefaultStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5180,6 +5904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateEndpointStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterCreateEndpointStatementBase)node);
                 if (ShouldStop) { return; }
@@ -5187,9 +5912,11 @@ namespace Xledger.Sql {
             VisForCreateEndpointStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5197,6 +5924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateEventNotificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5204,9 +5932,11 @@ namespace Xledger.Sql {
             VisForCreateEventNotificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5214,6 +5944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateEventSessionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EventSessionStatement)node);
                 if (ShouldStop) { return; }
@@ -5221,9 +5952,11 @@ namespace Xledger.Sql {
             VisForCreateEventSessionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5231,6 +5964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateExternalDataSourceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalDataSourceStatement)node);
                 if (ShouldStop) { return; }
@@ -5238,9 +5972,11 @@ namespace Xledger.Sql {
             VisForCreateExternalDataSourceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5248,6 +5984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateExternalFileFormatStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalFileFormatStatement)node);
                 if (ShouldStop) { return; }
@@ -5255,9 +5992,11 @@ namespace Xledger.Sql {
             VisForCreateExternalFileFormatStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5265,6 +6004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateExternalLanguageStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalLanguageStatement)node);
                 if (ShouldStop) { return; }
@@ -5272,9 +6012,11 @@ namespace Xledger.Sql {
             VisForCreateExternalLanguageStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5282,6 +6024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateExternalLibraryStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalLibraryStatement)node);
                 if (ShouldStop) { return; }
@@ -5289,9 +6032,11 @@ namespace Xledger.Sql {
             VisForCreateExternalLibraryStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5299,6 +6044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateExternalResourcePoolStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalResourcePoolStatement)node);
                 if (ShouldStop) { return; }
@@ -5306,9 +6052,11 @@ namespace Xledger.Sql {
             VisForCreateExternalResourcePoolStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5316,6 +6064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateExternalStreamingJobStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalStreamingJobStatement)node);
                 if (ShouldStop) { return; }
@@ -5323,9 +6072,11 @@ namespace Xledger.Sql {
             VisForCreateExternalStreamingJobStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5333,6 +6084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateExternalStreamStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalStreamStatement)node);
                 if (ShouldStop) { return; }
@@ -5340,9 +6092,11 @@ namespace Xledger.Sql {
             VisForCreateExternalStreamStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5350,6 +6104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateExternalTableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalTableStatement)node);
                 if (ShouldStop) { return; }
@@ -5357,9 +6112,11 @@ namespace Xledger.Sql {
             VisForCreateExternalTableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5367,6 +6124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateFederationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5374,9 +6132,11 @@ namespace Xledger.Sql {
             VisForCreateFederationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5384,6 +6144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateFullTextCatalogStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FullTextCatalogStatement)node);
                 if (ShouldStop) { return; }
@@ -5391,9 +6152,11 @@ namespace Xledger.Sql {
             VisForCreateFullTextCatalogStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5401,6 +6164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateFullTextIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5408,9 +6172,11 @@ namespace Xledger.Sql {
             VisForCreateFullTextIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5418,6 +6184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateFullTextStopListStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5425,9 +6192,11 @@ namespace Xledger.Sql {
             VisForCreateFullTextStopListStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5435,6 +6204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateFunctionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FunctionStatementBody)node);
                 if (ShouldStop) { return; }
@@ -5442,9 +6212,11 @@ namespace Xledger.Sql {
             VisForCreateFunctionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5452,6 +6224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexStatement)node);
                 if (ShouldStop) { return; }
@@ -5459,9 +6232,11 @@ namespace Xledger.Sql {
             VisForCreateIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5469,6 +6244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateLoginStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5476,9 +6252,11 @@ namespace Xledger.Sql {
             VisForCreateLoginStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5486,6 +6264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((MasterKeyStatement)node);
                 if (ShouldStop) { return; }
@@ -5493,9 +6272,11 @@ namespace Xledger.Sql {
             VisForCreateMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5503,6 +6284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateMessageTypeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((MessageTypeStatementBase)node);
                 if (ShouldStop) { return; }
@@ -5510,9 +6292,11 @@ namespace Xledger.Sql {
             VisForCreateMessageTypeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5520,6 +6304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateOrAlterFunctionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FunctionStatementBody)node);
                 if (ShouldStop) { return; }
@@ -5527,9 +6312,11 @@ namespace Xledger.Sql {
             VisForCreateOrAlterFunctionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5537,6 +6324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateOrAlterProcedureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ProcedureStatementBody)node);
                 if (ShouldStop) { return; }
@@ -5544,9 +6332,11 @@ namespace Xledger.Sql {
             VisForCreateOrAlterProcedureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5554,6 +6344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateOrAlterTriggerStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TriggerStatementBody)node);
                 if (ShouldStop) { return; }
@@ -5561,9 +6352,11 @@ namespace Xledger.Sql {
             VisForCreateOrAlterTriggerStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5571,6 +6364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateOrAlterViewStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ViewStatementBody)node);
                 if (ShouldStop) { return; }
@@ -5578,9 +6372,11 @@ namespace Xledger.Sql {
             VisForCreateOrAlterViewStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5588,6 +6384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreatePartitionFunctionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5595,9 +6392,11 @@ namespace Xledger.Sql {
             VisForCreatePartitionFunctionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5605,6 +6404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreatePartitionSchemeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5612,9 +6412,11 @@ namespace Xledger.Sql {
             VisForCreatePartitionSchemeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5622,6 +6424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateProcedureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ProcedureStatementBody)node);
                 if (ShouldStop) { return; }
@@ -5629,9 +6432,11 @@ namespace Xledger.Sql {
             VisForCreateProcedureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5639,6 +6444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateQueueStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueueStatement)node);
                 if (ShouldStop) { return; }
@@ -5646,9 +6452,11 @@ namespace Xledger.Sql {
             VisForCreateQueueStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5656,6 +6464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateRemoteServiceBindingStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RemoteServiceBindingStatementBase)node);
                 if (ShouldStop) { return; }
@@ -5663,9 +6472,11 @@ namespace Xledger.Sql {
             VisForCreateRemoteServiceBindingStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5673,6 +6484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateResourcePoolStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ResourcePoolStatement)node);
                 if (ShouldStop) { return; }
@@ -5680,9 +6492,11 @@ namespace Xledger.Sql {
             VisForCreateResourcePoolStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5690,6 +6504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RoleStatement)node);
                 if (ShouldStop) { return; }
@@ -5697,9 +6512,11 @@ namespace Xledger.Sql {
             VisForCreateRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5707,6 +6524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateRouteStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RouteStatement)node);
                 if (ShouldStop) { return; }
@@ -5714,9 +6532,11 @@ namespace Xledger.Sql {
             VisForCreateRouteStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5724,6 +6544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateRuleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5731,9 +6552,11 @@ namespace Xledger.Sql {
             VisForCreateRuleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5741,6 +6564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateSchemaStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5748,9 +6572,11 @@ namespace Xledger.Sql {
             VisForCreateSchemaStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5758,6 +6584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateSearchPropertyListStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5765,9 +6592,11 @@ namespace Xledger.Sql {
             VisForCreateSearchPropertyListStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5775,6 +6604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateSecurityPolicyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityPolicyStatement)node);
                 if (ShouldStop) { return; }
@@ -5782,9 +6612,11 @@ namespace Xledger.Sql {
             VisForCreateSecurityPolicyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5792,6 +6624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateSelectiveXmlIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexStatement)node);
                 if (ShouldStop) { return; }
@@ -5799,9 +6632,11 @@ namespace Xledger.Sql {
             VisForCreateSelectiveXmlIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5809,6 +6644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateSequenceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SequenceStatement)node);
                 if (ShouldStop) { return; }
@@ -5816,9 +6652,11 @@ namespace Xledger.Sql {
             VisForCreateSequenceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5826,6 +6664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateServerAuditSpecificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditSpecificationStatement)node);
                 if (ShouldStop) { return; }
@@ -5833,9 +6672,11 @@ namespace Xledger.Sql {
             VisForCreateServerAuditSpecificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5843,6 +6684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateServerAuditStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ServerAuditStatement)node);
                 if (ShouldStop) { return; }
@@ -5850,9 +6692,11 @@ namespace Xledger.Sql {
             VisForCreateServerAuditStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5860,6 +6704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateServerRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateRoleStatement)node);
                 if (ShouldStop) { return; }
@@ -5867,9 +6712,11 @@ namespace Xledger.Sql {
             VisForCreateServerRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5877,6 +6724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateServiceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterCreateServiceStatementBase)node);
                 if (ShouldStop) { return; }
@@ -5884,9 +6732,11 @@ namespace Xledger.Sql {
             VisForCreateServiceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5894,6 +6744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateSpatialIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5901,9 +6752,11 @@ namespace Xledger.Sql {
             VisForCreateSpatialIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5911,6 +6764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateStatisticsStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5918,9 +6772,11 @@ namespace Xledger.Sql {
             VisForCreateStatisticsStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5928,6 +6784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateSymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SymmetricKeyStatement)node);
                 if (ShouldStop) { return; }
@@ -5935,9 +6792,11 @@ namespace Xledger.Sql {
             VisForCreateSymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5945,6 +6804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateSynonymStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5952,9 +6812,11 @@ namespace Xledger.Sql {
             VisForCreateSynonymStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5962,6 +6824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateTableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -5969,9 +6832,11 @@ namespace Xledger.Sql {
             VisForCreateTableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5979,6 +6844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateTriggerStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TriggerStatementBody)node);
                 if (ShouldStop) { return; }
@@ -5986,9 +6852,11 @@ namespace Xledger.Sql {
             VisForCreateTriggerStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -5996,6 +6864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateTypeTableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateTypeStatement)node);
                 if (ShouldStop) { return; }
@@ -6003,9 +6872,11 @@ namespace Xledger.Sql {
             VisForCreateTypeTableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6013,6 +6884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateTypeUddtStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateTypeStatement)node);
                 if (ShouldStop) { return; }
@@ -6020,9 +6892,11 @@ namespace Xledger.Sql {
             VisForCreateTypeUddtStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6030,6 +6904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateTypeUdtStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateTypeStatement)node);
                 if (ShouldStop) { return; }
@@ -6037,9 +6912,11 @@ namespace Xledger.Sql {
             VisForCreateTypeUdtStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6047,6 +6924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateUserStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((UserStatement)node);
                 if (ShouldStop) { return; }
@@ -6054,9 +6932,11 @@ namespace Xledger.Sql {
             VisForCreateUserStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6064,6 +6944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateViewStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ViewStatementBody)node);
                 if (ShouldStop) { return; }
@@ -6071,9 +6952,11 @@ namespace Xledger.Sql {
             VisForCreateViewStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6081,6 +6964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateWorkloadClassifierStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadClassifierStatement)node);
                 if (ShouldStop) { return; }
@@ -6088,9 +6972,11 @@ namespace Xledger.Sql {
             VisForCreateWorkloadClassifierStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6098,6 +6984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateWorkloadGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadGroupStatement)node);
                 if (ShouldStop) { return; }
@@ -6105,9 +6992,11 @@ namespace Xledger.Sql {
             VisForCreateWorkloadGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6115,6 +7004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateXmlIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexStatement)node);
                 if (ShouldStop) { return; }
@@ -6122,9 +7012,11 @@ namespace Xledger.Sql {
             VisForCreateXmlIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6132,6 +7024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreateXmlSchemaCollectionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -6139,9 +7032,11 @@ namespace Xledger.Sql {
             VisForCreateXmlSchemaCollectionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6149,6 +7044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CreationDispositionKeyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((KeyOption)node);
                 if (ShouldStop) { return; }
@@ -6156,9 +7052,11 @@ namespace Xledger.Sql {
             VisForCreationDispositionKeyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6166,6 +7064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CryptoMechanism node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6173,9 +7072,11 @@ namespace Xledger.Sql {
             VisForCryptoMechanism?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6183,6 +7084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CubeGroupingSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((GroupingSpecification)node);
                 if (ShouldStop) { return; }
@@ -6190,9 +7092,11 @@ namespace Xledger.Sql {
             VisForCubeGroupingSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6200,6 +7104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CursorDefaultDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -6207,9 +7112,11 @@ namespace Xledger.Sql {
             VisForCursorDefaultDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6217,6 +7124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CursorDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6224,9 +7132,11 @@ namespace Xledger.Sql {
             VisForCursorDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6234,6 +7144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CursorId node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6241,9 +7152,11 @@ namespace Xledger.Sql {
             VisForCursorId?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6251,6 +7164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(CursorOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6258,9 +7172,11 @@ namespace Xledger.Sql {
             VisForCursorOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6268,6 +7184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DatabaseAuditAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6275,9 +7192,11 @@ namespace Xledger.Sql {
             VisForDatabaseAuditAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6285,6 +7204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DatabaseConfigurationClearOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6292,9 +7212,11 @@ namespace Xledger.Sql {
             VisForDatabaseConfigurationClearOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6302,6 +7224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DatabaseConfigurationSetOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6309,9 +7232,11 @@ namespace Xledger.Sql {
             VisForDatabaseConfigurationSetOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6319,6 +7244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6326,9 +7252,11 @@ namespace Xledger.Sql {
             VisForDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6336,6 +7264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DataCompressionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -6343,9 +7272,11 @@ namespace Xledger.Sql {
             VisForDataCompressionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6353,6 +7284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DataModificationTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -6360,9 +7292,11 @@ namespace Xledger.Sql {
             VisForDataModificationTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6370,6 +7304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DataRetentionTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -6377,9 +7312,11 @@ namespace Xledger.Sql {
             VisForDataRetentionTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6387,6 +7324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DataTypeSequenceOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SequenceOption)node);
                 if (ShouldStop) { return; }
@@ -6394,9 +7332,11 @@ namespace Xledger.Sql {
             VisForDataTypeSequenceOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6404,6 +7344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DbccNamedLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6411,9 +7352,11 @@ namespace Xledger.Sql {
             VisForDbccNamedLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6421,6 +7364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DbccOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6428,9 +7372,11 @@ namespace Xledger.Sql {
             VisForDbccOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6438,6 +7384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DbccStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -6445,9 +7392,11 @@ namespace Xledger.Sql {
             VisForDbccStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6455,6 +7404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeallocateCursorStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CursorStatement)node);
                 if (ShouldStop) { return; }
@@ -6462,9 +7412,11 @@ namespace Xledger.Sql {
             VisForDeallocateCursorStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6472,6 +7424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeclareCursorStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -6479,9 +7432,11 @@ namespace Xledger.Sql {
             VisForDeclareCursorStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6489,6 +7444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeclareTableVariableBody node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6496,9 +7452,11 @@ namespace Xledger.Sql {
             VisForDeclareTableVariableBody?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6506,6 +7464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeclareTableVariableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -6513,9 +7472,11 @@ namespace Xledger.Sql {
             VisForDeclareTableVariableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6523,6 +7484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeclareVariableElement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6530,9 +7492,11 @@ namespace Xledger.Sql {
             VisForDeclareVariableElement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6540,6 +7504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeclareVariableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -6547,9 +7512,11 @@ namespace Xledger.Sql {
             VisForDeclareVariableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6557,6 +7524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DefaultConstraintDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ConstraintDefinition)node);
                 if (ShouldStop) { return; }
@@ -6564,9 +7532,11 @@ namespace Xledger.Sql {
             VisForDefaultConstraintDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6574,6 +7544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DefaultLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -6581,9 +7552,11 @@ namespace Xledger.Sql {
             VisForDefaultLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6591,6 +7564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DelayedDurabilityDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -6598,9 +7572,11 @@ namespace Xledger.Sql {
             VisForDelayedDurabilityDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6608,6 +7584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeleteMergeAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((MergeAction)node);
                 if (ShouldStop) { return; }
@@ -6615,9 +7592,11 @@ namespace Xledger.Sql {
             VisForDeleteMergeAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6625,6 +7604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeleteSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((UpdateDeleteSpecificationBase)node);
                 if (ShouldStop) { return; }
@@ -6632,9 +7612,11 @@ namespace Xledger.Sql {
             VisForDeleteSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6642,6 +7624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeleteStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DataModificationStatement)node);
                 if (ShouldStop) { return; }
@@ -6649,9 +7632,11 @@ namespace Xledger.Sql {
             VisForDeleteStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6659,6 +7644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DenyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityStatement)node);
                 if (ShouldStop) { return; }
@@ -6666,9 +7652,11 @@ namespace Xledger.Sql {
             VisForDenyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6676,6 +7664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DenyStatement80 node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityStatementBody80)node);
                 if (ShouldStop) { return; }
@@ -6683,9 +7672,11 @@ namespace Xledger.Sql {
             VisForDenyStatement80?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6693,6 +7684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DeviceInfo node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6700,9 +7692,11 @@ namespace Xledger.Sql {
             VisForDeviceInfo?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6710,6 +7704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DiskStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -6717,9 +7712,11 @@ namespace Xledger.Sql {
             VisForDiskStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6727,6 +7724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DiskStatementOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -6734,9 +7732,11 @@ namespace Xledger.Sql {
             VisForDiskStatementOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6744,6 +7744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DistinctPredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -6751,9 +7752,11 @@ namespace Xledger.Sql {
             VisForDistinctPredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6761,6 +7764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropAggregateStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -6768,9 +7772,11 @@ namespace Xledger.Sql {
             VisForDropAggregateStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6778,6 +7784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropAlterFullTextIndexAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterFullTextIndexAction)node);
                 if (ShouldStop) { return; }
@@ -6785,9 +7792,11 @@ namespace Xledger.Sql {
             VisForDropAlterFullTextIndexAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6795,6 +7804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropApplicationRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -6802,9 +7812,11 @@ namespace Xledger.Sql {
             VisForDropApplicationRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6812,6 +7824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropAssemblyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -6819,9 +7832,11 @@ namespace Xledger.Sql {
             VisForDropAssemblyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6829,6 +7844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropAsymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -6836,9 +7852,11 @@ namespace Xledger.Sql {
             VisForDropAsymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6846,6 +7864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropAvailabilityGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -6853,9 +7872,11 @@ namespace Xledger.Sql {
             VisForDropAvailabilityGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6863,6 +7884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropBrokerPriorityStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -6870,9 +7892,11 @@ namespace Xledger.Sql {
             VisForDropBrokerPriorityStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6880,6 +7904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropCertificateStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -6887,9 +7912,11 @@ namespace Xledger.Sql {
             VisForDropCertificateStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6897,6 +7924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropClusteredConstraintMoveOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropClusteredConstraintOption)node);
                 if (ShouldStop) { return; }
@@ -6904,9 +7932,11 @@ namespace Xledger.Sql {
             VisForDropClusteredConstraintMoveOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6914,6 +7944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropClusteredConstraintStateOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropClusteredConstraintOption)node);
                 if (ShouldStop) { return; }
@@ -6921,9 +7952,11 @@ namespace Xledger.Sql {
             VisForDropClusteredConstraintStateOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6931,6 +7964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropClusteredConstraintValueOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropClusteredConstraintOption)node);
                 if (ShouldStop) { return; }
@@ -6938,9 +7972,11 @@ namespace Xledger.Sql {
             VisForDropClusteredConstraintValueOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6948,6 +7984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropClusteredConstraintWaitAtLowPriorityLockOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropClusteredConstraintOption)node);
                 if (ShouldStop) { return; }
@@ -6955,9 +7992,11 @@ namespace Xledger.Sql {
             VisForDropClusteredConstraintWaitAtLowPriorityLockOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6965,6 +8004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropColumnEncryptionKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -6972,9 +8012,11 @@ namespace Xledger.Sql {
             VisForDropColumnEncryptionKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6982,6 +8024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropColumnMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -6989,9 +8032,11 @@ namespace Xledger.Sql {
             VisForDropColumnMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -6999,6 +8044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropContractStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7006,9 +8052,11 @@ namespace Xledger.Sql {
             VisForDropContractStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7016,6 +8064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropCredentialStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7023,9 +8072,11 @@ namespace Xledger.Sql {
             VisForDropCredentialStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7033,6 +8084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropCryptographicProviderStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7040,9 +8092,11 @@ namespace Xledger.Sql {
             VisForDropCryptographicProviderStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7050,6 +8104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropDatabaseAuditSpecificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7057,9 +8112,11 @@ namespace Xledger.Sql {
             VisForDropDatabaseAuditSpecificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7067,6 +8124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropDatabaseEncryptionKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7074,9 +8132,11 @@ namespace Xledger.Sql {
             VisForDropDatabaseEncryptionKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7084,6 +8144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropDatabaseStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7091,9 +8152,11 @@ namespace Xledger.Sql {
             VisForDropDatabaseStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7101,6 +8164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropDefaultStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7108,9 +8172,11 @@ namespace Xledger.Sql {
             VisForDropDefaultStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7118,6 +8184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropEndpointStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7125,9 +8192,11 @@ namespace Xledger.Sql {
             VisForDropEndpointStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7135,6 +8204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropEventNotificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7142,9 +8212,11 @@ namespace Xledger.Sql {
             VisForDropEventNotificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7152,6 +8224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropEventSessionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7159,9 +8232,11 @@ namespace Xledger.Sql {
             VisForDropEventSessionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7169,6 +8244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropExternalDataSourceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7176,9 +8252,11 @@ namespace Xledger.Sql {
             VisForDropExternalDataSourceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7186,6 +8264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropExternalFileFormatStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7193,9 +8272,11 @@ namespace Xledger.Sql {
             VisForDropExternalFileFormatStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7203,6 +8284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropExternalLanguageStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7210,9 +8292,11 @@ namespace Xledger.Sql {
             VisForDropExternalLanguageStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7220,6 +8304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropExternalLibraryStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7227,9 +8312,11 @@ namespace Xledger.Sql {
             VisForDropExternalLibraryStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7237,6 +8324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropExternalResourcePoolStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7244,9 +8332,11 @@ namespace Xledger.Sql {
             VisForDropExternalResourcePoolStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7254,6 +8344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropExternalStreamingJobStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7261,9 +8352,11 @@ namespace Xledger.Sql {
             VisForDropExternalStreamingJobStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7271,6 +8364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropExternalStreamStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7278,9 +8372,11 @@ namespace Xledger.Sql {
             VisForDropExternalStreamStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7288,6 +8384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropExternalTableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7295,9 +8392,11 @@ namespace Xledger.Sql {
             VisForDropExternalTableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7305,6 +8404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropFederationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7312,9 +8412,11 @@ namespace Xledger.Sql {
             VisForDropFederationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7322,6 +8424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropFullTextCatalogStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7329,9 +8432,11 @@ namespace Xledger.Sql {
             VisForDropFullTextCatalogStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7339,6 +8444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropFullTextIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7346,9 +8452,11 @@ namespace Xledger.Sql {
             VisForDropFullTextIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7356,6 +8464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropFullTextStopListStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7363,9 +8472,11 @@ namespace Xledger.Sql {
             VisForDropFullTextStopListStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7373,6 +8484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropFunctionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7380,9 +8492,11 @@ namespace Xledger.Sql {
             VisForDropFunctionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7390,6 +8504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropIndexClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropIndexClauseBase)node);
                 if (ShouldStop) { return; }
@@ -7397,9 +8512,11 @@ namespace Xledger.Sql {
             VisForDropIndexClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7407,6 +8524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropIndexStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7414,9 +8532,11 @@ namespace Xledger.Sql {
             VisForDropIndexStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7424,6 +8544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropLoginStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7431,9 +8552,11 @@ namespace Xledger.Sql {
             VisForDropLoginStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7441,6 +8564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7448,9 +8572,11 @@ namespace Xledger.Sql {
             VisForDropMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7458,6 +8584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropMemberAlterRoleAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterRoleAction)node);
                 if (ShouldStop) { return; }
@@ -7465,9 +8592,11 @@ namespace Xledger.Sql {
             VisForDropMemberAlterRoleAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7475,6 +8604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropMessageTypeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7482,9 +8612,11 @@ namespace Xledger.Sql {
             VisForDropMessageTypeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7492,6 +8624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropPartitionFunctionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7499,9 +8632,11 @@ namespace Xledger.Sql {
             VisForDropPartitionFunctionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7509,6 +8644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropPartitionSchemeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7516,9 +8652,11 @@ namespace Xledger.Sql {
             VisForDropPartitionSchemeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7526,6 +8664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropProcedureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7533,9 +8672,11 @@ namespace Xledger.Sql {
             VisForDropProcedureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7543,6 +8684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropQueueStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7550,9 +8692,11 @@ namespace Xledger.Sql {
             VisForDropQueueStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7560,6 +8704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropRemoteServiceBindingStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7567,9 +8712,11 @@ namespace Xledger.Sql {
             VisForDropRemoteServiceBindingStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7577,6 +8724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropResourcePoolStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7584,9 +8732,11 @@ namespace Xledger.Sql {
             VisForDropResourcePoolStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7594,6 +8744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7601,9 +8752,11 @@ namespace Xledger.Sql {
             VisForDropRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7611,6 +8764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropRouteStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7618,9 +8772,11 @@ namespace Xledger.Sql {
             VisForDropRouteStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7628,6 +8784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropRuleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7635,9 +8792,11 @@ namespace Xledger.Sql {
             VisForDropRuleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7645,6 +8804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSchemaStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7652,9 +8812,11 @@ namespace Xledger.Sql {
             VisForDropSchemaStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7662,6 +8824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSearchPropertyListAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SearchPropertyListAction)node);
                 if (ShouldStop) { return; }
@@ -7669,9 +8832,11 @@ namespace Xledger.Sql {
             VisForDropSearchPropertyListAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7679,6 +8844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSearchPropertyListStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7686,9 +8852,11 @@ namespace Xledger.Sql {
             VisForDropSearchPropertyListStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7696,6 +8864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSecurityPolicyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7703,9 +8872,11 @@ namespace Xledger.Sql {
             VisForDropSecurityPolicyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7713,6 +8884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSensitivityClassificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SensitivityClassificationStatement)node);
                 if (ShouldStop) { return; }
@@ -7720,9 +8892,11 @@ namespace Xledger.Sql {
             VisForDropSensitivityClassificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7730,6 +8904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSequenceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7737,9 +8912,11 @@ namespace Xledger.Sql {
             VisForDropSequenceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7747,6 +8924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropServerAuditSpecificationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7754,9 +8932,11 @@ namespace Xledger.Sql {
             VisForDropServerAuditSpecificationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7764,6 +8944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropServerAuditStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7771,9 +8952,11 @@ namespace Xledger.Sql {
             VisForDropServerAuditStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7781,6 +8964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropServerRoleStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7788,9 +8972,11 @@ namespace Xledger.Sql {
             VisForDropServerRoleStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7798,6 +8984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropServiceStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7805,9 +8992,11 @@ namespace Xledger.Sql {
             VisForDropServiceStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7815,6 +9004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSignatureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SignatureStatementBase)node);
                 if (ShouldStop) { return; }
@@ -7822,9 +9012,11 @@ namespace Xledger.Sql {
             VisForDropSignatureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7832,6 +9024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropStatisticsStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropChildObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7839,9 +9032,11 @@ namespace Xledger.Sql {
             VisForDropStatisticsStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7849,6 +9044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7856,9 +9052,11 @@ namespace Xledger.Sql {
             VisForDropSymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7866,6 +9064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropSynonymStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7873,9 +9072,11 @@ namespace Xledger.Sql {
             VisForDropSynonymStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7883,6 +9084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropTableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7890,9 +9092,11 @@ namespace Xledger.Sql {
             VisForDropTableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7900,6 +9104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropTriggerStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7907,9 +9112,11 @@ namespace Xledger.Sql {
             VisForDropTriggerStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7917,6 +9124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropTypeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -7924,9 +9132,11 @@ namespace Xledger.Sql {
             VisForDropTypeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7934,6 +9144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropUserStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7941,9 +9152,11 @@ namespace Xledger.Sql {
             VisForDropUserStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7951,6 +9164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropViewStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropObjectsStatement)node);
                 if (ShouldStop) { return; }
@@ -7958,9 +9172,11 @@ namespace Xledger.Sql {
             VisForDropViewStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7968,6 +9184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropWorkloadClassifierStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7975,9 +9192,11 @@ namespace Xledger.Sql {
             VisForDropWorkloadClassifierStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -7985,6 +9204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropWorkloadGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DropUnownedObjectStatement)node);
                 if (ShouldStop) { return; }
@@ -7992,9 +9212,11 @@ namespace Xledger.Sql {
             VisForDropWorkloadGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8002,6 +9224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DropXmlSchemaCollectionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -8009,9 +9232,11 @@ namespace Xledger.Sql {
             VisForDropXmlSchemaCollectionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8019,6 +9244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DurabilityTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -8026,9 +9252,11 @@ namespace Xledger.Sql {
             VisForDurabilityTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8036,6 +9264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(DWCompatibilityLevelConfigurationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseConfigurationSetOption)node);
                 if (ShouldStop) { return; }
@@ -8043,9 +9272,11 @@ namespace Xledger.Sql {
             VisForDWCompatibilityLevelConfigurationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8053,6 +9284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ElasticPoolSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -8060,9 +9292,11 @@ namespace Xledger.Sql {
             VisForElasticPoolSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8070,6 +9304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EnabledDisabledPayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -8077,9 +9312,11 @@ namespace Xledger.Sql {
             VisForEnabledDisabledPayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8087,6 +9324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EnableDisableTriggerStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -8094,9 +9332,11 @@ namespace Xledger.Sql {
             VisForEnableDisableTriggerStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8104,6 +9344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EncryptedValueParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnEncryptionKeyValueParameter)node);
                 if (ShouldStop) { return; }
@@ -8111,9 +9352,11 @@ namespace Xledger.Sql {
             VisForEncryptedValueParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8121,6 +9364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EncryptionPayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -8128,9 +9372,11 @@ namespace Xledger.Sql {
             VisForEncryptionPayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8138,6 +9384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EndConversationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -8145,9 +9392,11 @@ namespace Xledger.Sql {
             VisForEndConversationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8155,6 +9404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EndpointAffinity node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8162,9 +9412,11 @@ namespace Xledger.Sql {
             VisForEndpointAffinity?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8172,6 +9424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventDeclaration node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8179,9 +9432,11 @@ namespace Xledger.Sql {
             VisForEventDeclaration?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8189,6 +9444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventDeclarationCompareFunctionParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -8196,9 +9452,11 @@ namespace Xledger.Sql {
             VisForEventDeclarationCompareFunctionParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8206,6 +9464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventDeclarationSetParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8213,9 +9472,11 @@ namespace Xledger.Sql {
             VisForEventDeclarationSetParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8223,6 +9484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventGroupContainer node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EventTypeGroupContainer)node);
                 if (ShouldStop) { return; }
@@ -8230,9 +9492,11 @@ namespace Xledger.Sql {
             VisForEventGroupContainer?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8240,6 +9504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventNotificationObjectScope node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8247,9 +9512,11 @@ namespace Xledger.Sql {
             VisForEventNotificationObjectScope?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8257,6 +9524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventRetentionSessionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SessionOption)node);
                 if (ShouldStop) { return; }
@@ -8264,9 +9532,11 @@ namespace Xledger.Sql {
             VisForEventRetentionSessionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8274,6 +9544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventSessionObjectName node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8281,9 +9552,11 @@ namespace Xledger.Sql {
             VisForEventSessionObjectName?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8291,6 +9564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventSessionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -8298,9 +9572,11 @@ namespace Xledger.Sql {
             VisForEventSessionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8308,6 +9584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(EventTypeContainer node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EventTypeGroupContainer)node);
                 if (ShouldStop) { return; }
@@ -8315,9 +9592,11 @@ namespace Xledger.Sql {
             VisForEventTypeContainer?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8325,6 +9604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecutableProcedureReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExecutableEntity)node);
                 if (ShouldStop) { return; }
@@ -8332,9 +9612,11 @@ namespace Xledger.Sql {
             VisForExecutableProcedureReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8342,6 +9624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecutableStringList node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExecutableEntity)node);
                 if (ShouldStop) { return; }
@@ -8349,9 +9632,11 @@ namespace Xledger.Sql {
             VisForExecutableStringList?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8359,6 +9644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteAsClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8366,9 +9652,11 @@ namespace Xledger.Sql {
             VisForExecuteAsClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8376,6 +9664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteAsFunctionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FunctionOption)node);
                 if (ShouldStop) { return; }
@@ -8383,9 +9672,11 @@ namespace Xledger.Sql {
             VisForExecuteAsFunctionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8393,6 +9684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteAsProcedureOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ProcedureOption)node);
                 if (ShouldStop) { return; }
@@ -8400,9 +9692,11 @@ namespace Xledger.Sql {
             VisForExecuteAsProcedureOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8410,6 +9704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteAsStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -8417,9 +9712,11 @@ namespace Xledger.Sql {
             VisForExecuteAsStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8427,6 +9724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteAsTriggerOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TriggerOption)node);
                 if (ShouldStop) { return; }
@@ -8434,9 +9732,11 @@ namespace Xledger.Sql {
             VisForExecuteAsTriggerOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8444,6 +9744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteContext node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8451,9 +9752,11 @@ namespace Xledger.Sql {
             VisForExecuteContext?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8461,6 +9764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteInsertSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((InsertSource)node);
                 if (ShouldStop) { return; }
@@ -8468,9 +9772,11 @@ namespace Xledger.Sql {
             VisForExecuteInsertSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8478,6 +9784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8485,9 +9792,11 @@ namespace Xledger.Sql {
             VisForExecuteOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8495,6 +9804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8502,9 +9812,11 @@ namespace Xledger.Sql {
             VisForExecuteParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8512,6 +9824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8519,9 +9832,11 @@ namespace Xledger.Sql {
             VisForExecuteSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8529,6 +9844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExecuteStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -8536,9 +9852,11 @@ namespace Xledger.Sql {
             VisForExecuteStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8546,6 +9864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExistsPredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -8553,9 +9872,11 @@ namespace Xledger.Sql {
             VisForExistsPredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8563,6 +9884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExpressionCallTarget node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CallTarget)node);
                 if (ShouldStop) { return; }
@@ -8570,9 +9892,11 @@ namespace Xledger.Sql {
             VisForExpressionCallTarget?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8580,6 +9904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExpressionGroupingSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((GroupingSpecification)node);
                 if (ShouldStop) { return; }
@@ -8587,9 +9912,11 @@ namespace Xledger.Sql {
             VisForExpressionGroupingSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8597,6 +9924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExpressionWithSortOrder node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8604,9 +9932,11 @@ namespace Xledger.Sql {
             VisForExpressionWithSortOrder?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8614,6 +9944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalCreateLoginSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateLoginSource)node);
                 if (ShouldStop) { return; }
@@ -8621,9 +9952,11 @@ namespace Xledger.Sql {
             VisForExternalCreateLoginSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8631,6 +9964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalDataSourceLiteralOrIdentifierOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalDataSourceOption)node);
                 if (ShouldStop) { return; }
@@ -8638,9 +9972,11 @@ namespace Xledger.Sql {
             VisForExternalDataSourceLiteralOrIdentifierOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8648,6 +9984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalFileFormatContainerOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalFileFormatOption)node);
                 if (ShouldStop) { return; }
@@ -8655,9 +9992,11 @@ namespace Xledger.Sql {
             VisForExternalFileFormatContainerOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8665,6 +10004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalFileFormatLiteralOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalFileFormatOption)node);
                 if (ShouldStop) { return; }
@@ -8672,9 +10012,11 @@ namespace Xledger.Sql {
             VisForExternalFileFormatLiteralOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8682,6 +10024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalFileFormatUseDefaultTypeOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalFileFormatOption)node);
                 if (ShouldStop) { return; }
@@ -8689,9 +10032,11 @@ namespace Xledger.Sql {
             VisForExternalFileFormatUseDefaultTypeOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8699,6 +10044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalLanguageFileOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8706,9 +10052,11 @@ namespace Xledger.Sql {
             VisForExternalLanguageFileOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8716,6 +10064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalLibraryFileOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8723,9 +10072,11 @@ namespace Xledger.Sql {
             VisForExternalLibraryFileOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8733,6 +10084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalResourcePoolAffinitySpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8740,9 +10092,11 @@ namespace Xledger.Sql {
             VisForExternalResourcePoolAffinitySpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8750,6 +10104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalResourcePoolParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8757,9 +10112,11 @@ namespace Xledger.Sql {
             VisForExternalResourcePoolParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8767,6 +10124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalResourcePoolStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -8774,9 +10132,11 @@ namespace Xledger.Sql {
             VisForExternalResourcePoolStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8784,6 +10144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalStreamLiteralOrIdentifierOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalStreamOption)node);
                 if (ShouldStop) { return; }
@@ -8791,9 +10152,11 @@ namespace Xledger.Sql {
             VisForExternalStreamLiteralOrIdentifierOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8801,6 +10164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalTableColumnDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8808,9 +10172,11 @@ namespace Xledger.Sql {
             VisForExternalTableColumnDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8818,6 +10184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalTableDistributionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalTableOption)node);
                 if (ShouldStop) { return; }
@@ -8825,9 +10192,11 @@ namespace Xledger.Sql {
             VisForExternalTableDistributionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8835,6 +10204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalTableLiteralOrIdentifierOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalTableOption)node);
                 if (ShouldStop) { return; }
@@ -8842,9 +10212,11 @@ namespace Xledger.Sql {
             VisForExternalTableLiteralOrIdentifierOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8852,6 +10224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalTableRejectTypeOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalTableOption)node);
                 if (ShouldStop) { return; }
@@ -8859,9 +10232,11 @@ namespace Xledger.Sql {
             VisForExternalTableRejectTypeOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8869,6 +10244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalTableReplicatedDistributionPolicy node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalTableDistributionPolicy)node);
                 if (ShouldStop) { return; }
@@ -8876,9 +10252,11 @@ namespace Xledger.Sql {
             VisForExternalTableReplicatedDistributionPolicy?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8886,6 +10264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalTableRoundRobinDistributionPolicy node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalTableDistributionPolicy)node);
                 if (ShouldStop) { return; }
@@ -8893,9 +10272,11 @@ namespace Xledger.Sql {
             VisForExternalTableRoundRobinDistributionPolicy?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8903,6 +10284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExternalTableShardedDistributionPolicy node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExternalTableDistributionPolicy)node);
                 if (ShouldStop) { return; }
@@ -8910,9 +10292,11 @@ namespace Xledger.Sql {
             VisForExternalTableShardedDistributionPolicy?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8920,6 +10304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ExtractFromExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ScalarExpression)node);
                 if (ShouldStop) { return; }
@@ -8927,9 +10312,11 @@ namespace Xledger.Sql {
             VisForExtractFromExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8937,6 +10324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FailoverModeReplicaOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AvailabilityReplicaOption)node);
                 if (ShouldStop) { return; }
@@ -8944,9 +10332,11 @@ namespace Xledger.Sql {
             VisForFailoverModeReplicaOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8954,6 +10344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FederationScheme node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8961,9 +10352,11 @@ namespace Xledger.Sql {
             VisForFederationScheme?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8971,6 +10364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FetchCursorStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CursorStatement)node);
                 if (ShouldStop) { return; }
@@ -8978,9 +10372,11 @@ namespace Xledger.Sql {
             VisForFetchCursorStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -8988,6 +10384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FetchType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -8995,9 +10392,11 @@ namespace Xledger.Sql {
             VisForFetchType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9005,6 +10404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileDeclaration node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9012,9 +10412,11 @@ namespace Xledger.Sql {
             VisForFileDeclaration?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9022,6 +10424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileDeclarationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9029,9 +10432,11 @@ namespace Xledger.Sql {
             VisForFileDeclarationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9039,6 +10444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileEncryptionSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EncryptionSource)node);
                 if (ShouldStop) { return; }
@@ -9046,9 +10452,11 @@ namespace Xledger.Sql {
             VisForFileEncryptionSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9056,6 +10464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileGroupDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9063,9 +10472,11 @@ namespace Xledger.Sql {
             VisForFileGroupDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9073,6 +10484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileGroupOrPartitionScheme node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9080,9 +10492,11 @@ namespace Xledger.Sql {
             VisForFileGroupOrPartitionScheme?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9090,6 +10504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileGrowthFileDeclarationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FileDeclarationOption)node);
                 if (ShouldStop) { return; }
@@ -9097,9 +10512,11 @@ namespace Xledger.Sql {
             VisForFileGrowthFileDeclarationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9107,6 +10524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileNameFileDeclarationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FileDeclarationOption)node);
                 if (ShouldStop) { return; }
@@ -9114,9 +10532,11 @@ namespace Xledger.Sql {
             VisForFileNameFileDeclarationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9124,6 +10544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileStreamDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -9131,9 +10552,11 @@ namespace Xledger.Sql {
             VisForFileStreamDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9141,6 +10564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileStreamOnDropIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -9148,9 +10572,11 @@ namespace Xledger.Sql {
             VisForFileStreamOnDropIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9158,6 +10584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileStreamOnTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -9165,9 +10592,11 @@ namespace Xledger.Sql {
             VisForFileStreamOnTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9175,6 +10604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileStreamRestoreOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RestoreOption)node);
                 if (ShouldStop) { return; }
@@ -9182,9 +10612,11 @@ namespace Xledger.Sql {
             VisForFileStreamRestoreOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9192,6 +10624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileTableCollateFileNameTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -9199,9 +10632,11 @@ namespace Xledger.Sql {
             VisForFileTableCollateFileNameTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9209,6 +10644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileTableConstraintNameTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -9216,9 +10652,11 @@ namespace Xledger.Sql {
             VisForFileTableConstraintNameTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9226,6 +10664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FileTableDirectoryTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -9233,9 +10672,11 @@ namespace Xledger.Sql {
             VisForFileTableDirectoryTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9243,6 +10684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ForceSeekTableHint node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableHint)node);
                 if (ShouldStop) { return; }
@@ -9250,9 +10692,11 @@ namespace Xledger.Sql {
             VisForForceSeekTableHint?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9260,6 +10704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ForeignKeyConstraintDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ConstraintDefinition)node);
                 if (ShouldStop) { return; }
@@ -9267,9 +10712,11 @@ namespace Xledger.Sql {
             VisForForeignKeyConstraintDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9277,6 +10724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FromClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9284,9 +10732,11 @@ namespace Xledger.Sql {
             VisForFromClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9294,6 +10744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FullTextCatalogAndFileGroup node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9301,9 +10752,11 @@ namespace Xledger.Sql {
             VisForFullTextCatalogAndFileGroup?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9311,6 +10764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FullTextIndexColumn node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9318,9 +10772,11 @@ namespace Xledger.Sql {
             VisForFullTextIndexColumn?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9328,6 +10784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FullTextPredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -9335,9 +10792,11 @@ namespace Xledger.Sql {
             VisForFullTextPredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9345,6 +10804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FullTextStopListAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9352,9 +10812,11 @@ namespace Xledger.Sql {
             VisForFullTextStopListAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9362,6 +10824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FullTextTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -9369,9 +10832,11 @@ namespace Xledger.Sql {
             VisForFullTextTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9379,6 +10844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FunctionCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -9386,9 +10852,11 @@ namespace Xledger.Sql {
             VisForFunctionCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9396,6 +10864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FunctionCallSetClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SetClause)node);
                 if (ShouldStop) { return; }
@@ -9403,9 +10872,11 @@ namespace Xledger.Sql {
             VisForFunctionCallSetClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9413,6 +10884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(FunctionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9420,9 +10892,11 @@ namespace Xledger.Sql {
             VisForFunctionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9430,6 +10904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GeneralSetCommand node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SetCommand)node);
                 if (ShouldStop) { return; }
@@ -9437,9 +10912,11 @@ namespace Xledger.Sql {
             VisForGeneralSetCommand?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9447,6 +10924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GenericConfigurationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseConfigurationSetOption)node);
                 if (ShouldStop) { return; }
@@ -9454,9 +10932,11 @@ namespace Xledger.Sql {
             VisForGenericConfigurationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9464,6 +10944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GetConversationGroupStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WaitForSupportedStatement)node);
                 if (ShouldStop) { return; }
@@ -9471,9 +10952,11 @@ namespace Xledger.Sql {
             VisForGetConversationGroupStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9481,6 +10964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GlobalFunctionTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -9488,9 +10972,11 @@ namespace Xledger.Sql {
             VisForGlobalFunctionTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9498,6 +10984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GlobalVariableExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ValueExpression)node);
                 if (ShouldStop) { return; }
@@ -9505,9 +10992,11 @@ namespace Xledger.Sql {
             VisForGlobalVariableExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9515,6 +11004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GoToStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -9522,9 +11012,11 @@ namespace Xledger.Sql {
             VisForGoToStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9532,6 +11024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GrandTotalGroupingSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((GroupingSpecification)node);
                 if (ShouldStop) { return; }
@@ -9539,9 +11032,11 @@ namespace Xledger.Sql {
             VisForGrandTotalGroupingSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9549,6 +11044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GrantStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityStatement)node);
                 if (ShouldStop) { return; }
@@ -9556,9 +11052,11 @@ namespace Xledger.Sql {
             VisForGrantStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9566,6 +11064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GrantStatement80 node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityStatementBody80)node);
                 if (ShouldStop) { return; }
@@ -9573,9 +11072,11 @@ namespace Xledger.Sql {
             VisForGrantStatement80?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9583,6 +11084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphConnectionBetweenNodes node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9590,9 +11092,11 @@ namespace Xledger.Sql {
             VisForGraphConnectionBetweenNodes?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9600,6 +11104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphConnectionConstraintDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ConstraintDefinition)node);
                 if (ShouldStop) { return; }
@@ -9607,9 +11112,11 @@ namespace Xledger.Sql {
             VisForGraphConnectionConstraintDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9617,6 +11124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphMatchCompositeExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -9624,9 +11132,11 @@ namespace Xledger.Sql {
             VisForGraphMatchCompositeExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9634,6 +11144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphMatchExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -9641,9 +11152,11 @@ namespace Xledger.Sql {
             VisForGraphMatchExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9651,6 +11164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphMatchLastNodePredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -9658,9 +11172,11 @@ namespace Xledger.Sql {
             VisForGraphMatchLastNodePredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9668,6 +11184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphMatchNodeExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -9675,9 +11192,11 @@ namespace Xledger.Sql {
             VisForGraphMatchNodeExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9685,6 +11204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphMatchPredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -9692,9 +11212,11 @@ namespace Xledger.Sql {
             VisForGraphMatchPredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9702,6 +11224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphMatchRecursivePredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -9709,9 +11232,11 @@ namespace Xledger.Sql {
             VisForGraphMatchRecursivePredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9719,6 +11244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GraphRecursiveMatchQuantifier node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -9726,9 +11252,11 @@ namespace Xledger.Sql {
             VisForGraphRecursiveMatchQuantifier?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9736,6 +11264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GridParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9743,9 +11272,11 @@ namespace Xledger.Sql {
             VisForGridParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9753,6 +11284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GridsSpatialIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SpatialIndexOption)node);
                 if (ShouldStop) { return; }
@@ -9760,9 +11292,11 @@ namespace Xledger.Sql {
             VisForGridsSpatialIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9770,6 +11304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GroupByClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9777,9 +11312,11 @@ namespace Xledger.Sql {
             VisForGroupByClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9787,6 +11324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(GroupingSetsGroupingSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((GroupingSpecification)node);
                 if (ShouldStop) { return; }
@@ -9794,9 +11332,11 @@ namespace Xledger.Sql {
             VisForGroupingSetsGroupingSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9804,6 +11344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(HadrAvailabilityGroupDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((HadrDatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -9811,9 +11352,11 @@ namespace Xledger.Sql {
             VisForHadrAvailabilityGroupDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9821,6 +11364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(HadrDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -9828,9 +11372,11 @@ namespace Xledger.Sql {
             VisForHadrDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9838,6 +11384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(HavingClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9845,9 +11392,11 @@ namespace Xledger.Sql {
             VisForHavingClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9855,6 +11404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(Identifier node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9862,9 +11412,11 @@ namespace Xledger.Sql {
             VisForIdentifier?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9872,6 +11424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentifierAtomicBlockOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AtomicBlockOption)node);
                 if (ShouldStop) { return; }
@@ -9879,9 +11432,11 @@ namespace Xledger.Sql {
             VisForIdentifierAtomicBlockOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9889,6 +11444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentifierDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -9896,9 +11452,11 @@ namespace Xledger.Sql {
             VisForIdentifierDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9906,6 +11464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentifierLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -9913,9 +11472,11 @@ namespace Xledger.Sql {
             VisForIdentifierLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9923,6 +11484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentifierOrScalarExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9930,9 +11492,11 @@ namespace Xledger.Sql {
             VisForIdentifierOrScalarExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9940,6 +11504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentifierOrValueExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -9947,9 +11512,11 @@ namespace Xledger.Sql {
             VisForIdentifierOrValueExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9957,6 +11524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentifierPrincipalOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrincipalOption)node);
                 if (ShouldStop) { return; }
@@ -9964,9 +11532,11 @@ namespace Xledger.Sql {
             VisForIdentifierPrincipalOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9974,6 +11544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentifierSnippet node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Identifier)node);
                 if (ShouldStop) { return; }
@@ -9981,9 +11552,11 @@ namespace Xledger.Sql {
             VisForIdentifierSnippet?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -9991,6 +11564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentityFunctionCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ScalarExpression)node);
                 if (ShouldStop) { return; }
@@ -9998,9 +11572,11 @@ namespace Xledger.Sql {
             VisForIdentityFunctionCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10008,6 +11584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentityOptions node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -10015,9 +11592,11 @@ namespace Xledger.Sql {
             VisForIdentityOptions?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10025,6 +11604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IdentityValueKeyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((KeyOption)node);
                 if (ShouldStop) { return; }
@@ -10032,9 +11612,11 @@ namespace Xledger.Sql {
             VisForIdentityValueKeyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10042,6 +11624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IfStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -10049,9 +11632,11 @@ namespace Xledger.Sql {
             VisForIfStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10059,6 +11644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IgnoreDupKeyIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexStateOption)node);
                 if (ShouldStop) { return; }
@@ -10066,9 +11652,11 @@ namespace Xledger.Sql {
             VisForIgnoreDupKeyIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10076,6 +11664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IIfCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -10083,9 +11672,11 @@ namespace Xledger.Sql {
             VisForIIfCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10093,6 +11684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IndexDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -10100,9 +11692,11 @@ namespace Xledger.Sql {
             VisForIndexDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10110,6 +11704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IndexExpressionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -10117,9 +11712,11 @@ namespace Xledger.Sql {
             VisForIndexExpressionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10127,6 +11724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IndexStateOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -10134,9 +11732,11 @@ namespace Xledger.Sql {
             VisForIndexStateOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10144,6 +11744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IndexTableHint node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableHint)node);
                 if (ShouldStop) { return; }
@@ -10151,9 +11752,11 @@ namespace Xledger.Sql {
             VisForIndexTableHint?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10161,6 +11764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IndexType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -10168,9 +11772,11 @@ namespace Xledger.Sql {
             VisForIndexType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10178,6 +11784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InlineDerivedTable node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -10185,9 +11792,11 @@ namespace Xledger.Sql {
             VisForInlineDerivedTable?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10195,6 +11804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InlineFunctionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FunctionOption)node);
                 if (ShouldStop) { return; }
@@ -10202,9 +11812,11 @@ namespace Xledger.Sql {
             VisForInlineFunctionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10212,6 +11824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InlineResultSetDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ResultSetDefinition)node);
                 if (ShouldStop) { return; }
@@ -10219,9 +11832,11 @@ namespace Xledger.Sql {
             VisForInlineResultSetDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10229,6 +11844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InPredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -10236,9 +11852,11 @@ namespace Xledger.Sql {
             VisForInPredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10246,6 +11864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InsertBulkColumnDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -10253,9 +11872,11 @@ namespace Xledger.Sql {
             VisForInsertBulkColumnDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10263,6 +11884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InsertBulkStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BulkInsertBase)node);
                 if (ShouldStop) { return; }
@@ -10270,9 +11892,11 @@ namespace Xledger.Sql {
             VisForInsertBulkStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10280,6 +11904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InsertMergeAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((MergeAction)node);
                 if (ShouldStop) { return; }
@@ -10287,9 +11912,11 @@ namespace Xledger.Sql {
             VisForInsertMergeAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10297,6 +11924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InsertSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DataModificationSpecification)node);
                 if (ShouldStop) { return; }
@@ -10304,9 +11932,11 @@ namespace Xledger.Sql {
             VisForInsertSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10314,6 +11944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InsertStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DataModificationStatement)node);
                 if (ShouldStop) { return; }
@@ -10321,9 +11952,11 @@ namespace Xledger.Sql {
             VisForInsertStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10331,6 +11964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IntegerLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -10338,9 +11972,11 @@ namespace Xledger.Sql {
             VisForIntegerLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10348,6 +11984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(InternalOpenRowset node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -10355,9 +11992,11 @@ namespace Xledger.Sql {
             VisForInternalOpenRowset?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10365,6 +12004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(IPv4 node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -10372,9 +12012,11 @@ namespace Xledger.Sql {
             VisForIPv4?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10382,6 +12024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(JoinParenthesisTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReference)node);
                 if (ShouldStop) { return; }
@@ -10389,9 +12032,11 @@ namespace Xledger.Sql {
             VisForJoinParenthesisTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10399,6 +12044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(JsonForClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ForClause)node);
                 if (ShouldStop) { return; }
@@ -10406,9 +12052,11 @@ namespace Xledger.Sql {
             VisForJsonForClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10416,6 +12064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(JsonForClauseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ForClause)node);
                 if (ShouldStop) { return; }
@@ -10423,9 +12072,11 @@ namespace Xledger.Sql {
             VisForJsonForClauseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10433,6 +12084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(JsonKeyValue node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ScalarExpression)node);
                 if (ShouldStop) { return; }
@@ -10440,9 +12092,11 @@ namespace Xledger.Sql {
             VisForJsonKeyValue?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10450,6 +12104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(KeySourceKeyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((KeyOption)node);
                 if (ShouldStop) { return; }
@@ -10457,9 +12112,11 @@ namespace Xledger.Sql {
             VisForKeySourceKeyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10467,6 +12124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(KillQueryNotificationSubscriptionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -10474,9 +12132,11 @@ namespace Xledger.Sql {
             VisForKillQueryNotificationSubscriptionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10484,6 +12144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(KillStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -10491,9 +12152,11 @@ namespace Xledger.Sql {
             VisForKillStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10501,6 +12164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(KillStatsJobStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -10508,9 +12172,11 @@ namespace Xledger.Sql {
             VisForKillStatsJobStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10518,6 +12184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LabelStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -10525,9 +12192,11 @@ namespace Xledger.Sql {
             VisForLabelStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10535,6 +12204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LedgerOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -10542,9 +12212,11 @@ namespace Xledger.Sql {
             VisForLedgerOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10552,6 +12224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LedgerTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -10559,9 +12232,11 @@ namespace Xledger.Sql {
             VisForLedgerTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10569,6 +12244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LedgerViewOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -10576,9 +12252,11 @@ namespace Xledger.Sql {
             VisForLedgerViewOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10586,6 +12264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LeftFunctionCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -10593,9 +12272,11 @@ namespace Xledger.Sql {
             VisForLeftFunctionCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10603,6 +12284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LikePredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -10610,9 +12292,11 @@ namespace Xledger.Sql {
             VisForLikePredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10620,6 +12304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LineNoStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -10627,9 +12312,11 @@ namespace Xledger.Sql {
             VisForLineNoStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10637,6 +12324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ListenerIPEndpointProtocolOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EndpointProtocolOption)node);
                 if (ShouldStop) { return; }
@@ -10644,9 +12332,11 @@ namespace Xledger.Sql {
             VisForListenerIPEndpointProtocolOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10654,6 +12344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ListTypeCopyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CopyStatementOptionBase)node);
                 if (ShouldStop) { return; }
@@ -10661,9 +12352,11 @@ namespace Xledger.Sql {
             VisForListTypeCopyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10671,6 +12364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralAtomicBlockOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AtomicBlockOption)node);
                 if (ShouldStop) { return; }
@@ -10678,9 +12372,11 @@ namespace Xledger.Sql {
             VisForLiteralAtomicBlockOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10688,6 +12384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralAuditTargetOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditTargetOption)node);
                 if (ShouldStop) { return; }
@@ -10695,9 +12392,11 @@ namespace Xledger.Sql {
             VisForLiteralAuditTargetOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10705,6 +12404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralAvailabilityGroupOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AvailabilityGroupOption)node);
                 if (ShouldStop) { return; }
@@ -10712,9 +12412,11 @@ namespace Xledger.Sql {
             VisForLiteralAvailabilityGroupOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10722,6 +12424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralBulkInsertOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BulkInsertOption)node);
                 if (ShouldStop) { return; }
@@ -10729,9 +12432,11 @@ namespace Xledger.Sql {
             VisForLiteralBulkInsertOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10739,6 +12444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -10746,9 +12452,11 @@ namespace Xledger.Sql {
             VisForLiteralDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10756,6 +12464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralEndpointProtocolOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EndpointProtocolOption)node);
                 if (ShouldStop) { return; }
@@ -10763,9 +12472,11 @@ namespace Xledger.Sql {
             VisForLiteralEndpointProtocolOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10773,6 +12484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralOpenRowsetCosmosOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((OpenRowsetCosmosOption)node);
                 if (ShouldStop) { return; }
@@ -10780,9 +12492,11 @@ namespace Xledger.Sql {
             VisForLiteralOpenRowsetCosmosOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10790,6 +12504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralOptimizerHint node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((OptimizerHint)node);
                 if (ShouldStop) { return; }
@@ -10797,9 +12512,11 @@ namespace Xledger.Sql {
             VisForLiteralOptimizerHint?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10807,6 +12524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralOptionValue node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((OptionValue)node);
                 if (ShouldStop) { return; }
@@ -10814,9 +12532,11 @@ namespace Xledger.Sql {
             VisForLiteralOptionValue?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10824,6 +12544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralPayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -10831,9 +12552,11 @@ namespace Xledger.Sql {
             VisForLiteralPayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10841,6 +12564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralPrincipalOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrincipalOption)node);
                 if (ShouldStop) { return; }
@@ -10848,9 +12572,11 @@ namespace Xledger.Sql {
             VisForLiteralPrincipalOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10858,6 +12584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralRange node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -10865,9 +12592,11 @@ namespace Xledger.Sql {
             VisForLiteralRange?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10875,6 +12604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralReplicaOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AvailabilityReplicaOption)node);
                 if (ShouldStop) { return; }
@@ -10882,9 +12612,11 @@ namespace Xledger.Sql {
             VisForLiteralReplicaOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10892,6 +12624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralSessionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SessionOption)node);
                 if (ShouldStop) { return; }
@@ -10899,9 +12632,11 @@ namespace Xledger.Sql {
             VisForLiteralSessionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10909,6 +12644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralStatisticsOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((StatisticsOption)node);
                 if (ShouldStop) { return; }
@@ -10916,9 +12652,11 @@ namespace Xledger.Sql {
             VisForLiteralStatisticsOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10926,6 +12664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LiteralTableHint node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableHint)node);
                 if (ShouldStop) { return; }
@@ -10933,9 +12672,11 @@ namespace Xledger.Sql {
             VisForLiteralTableHint?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10943,6 +12684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LocationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -10950,9 +12692,11 @@ namespace Xledger.Sql {
             VisForLocationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10960,6 +12704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LockEscalationTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -10967,9 +12712,11 @@ namespace Xledger.Sql {
             VisForLockEscalationTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10977,6 +12724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LoginTypePayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -10984,9 +12732,11 @@ namespace Xledger.Sql {
             VisForLoginTypePayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -10994,6 +12744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LowPriorityLockWaitAbortAfterWaitOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((LowPriorityLockWaitOption)node);
                 if (ShouldStop) { return; }
@@ -11001,9 +12752,11 @@ namespace Xledger.Sql {
             VisForLowPriorityLockWaitAbortAfterWaitOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11011,6 +12764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LowPriorityLockWaitMaxDurationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((LowPriorityLockWaitOption)node);
                 if (ShouldStop) { return; }
@@ -11018,9 +12772,11 @@ namespace Xledger.Sql {
             VisForLowPriorityLockWaitMaxDurationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11028,6 +12784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(LowPriorityLockWaitTableSwitchOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableSwitchOption)node);
                 if (ShouldStop) { return; }
@@ -11035,9 +12792,11 @@ namespace Xledger.Sql {
             VisForLowPriorityLockWaitTableSwitchOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11045,6 +12804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MaxDispatchLatencySessionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SessionOption)node);
                 if (ShouldStop) { return; }
@@ -11052,9 +12812,11 @@ namespace Xledger.Sql {
             VisForMaxDispatchLatencySessionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11062,6 +12824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MaxDopConfigurationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseConfigurationSetOption)node);
                 if (ShouldStop) { return; }
@@ -11069,9 +12832,11 @@ namespace Xledger.Sql {
             VisForMaxDopConfigurationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11079,6 +12844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MaxDurationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -11086,9 +12852,11 @@ namespace Xledger.Sql {
             VisForMaxDurationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11096,6 +12864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MaxLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -11103,9 +12872,11 @@ namespace Xledger.Sql {
             VisForMaxLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11113,6 +12884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MaxRolloverFilesAuditTargetOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditTargetOption)node);
                 if (ShouldStop) { return; }
@@ -11120,9 +12892,11 @@ namespace Xledger.Sql {
             VisForMaxRolloverFilesAuditTargetOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11130,6 +12904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MaxSizeAuditTargetOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditTargetOption)node);
                 if (ShouldStop) { return; }
@@ -11137,9 +12912,11 @@ namespace Xledger.Sql {
             VisForMaxSizeAuditTargetOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11147,6 +12924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MaxSizeDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -11154,9 +12932,11 @@ namespace Xledger.Sql {
             VisForMaxSizeDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11164,6 +12944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MaxSizeFileDeclarationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FileDeclarationOption)node);
                 if (ShouldStop) { return; }
@@ -11171,9 +12952,11 @@ namespace Xledger.Sql {
             VisForMaxSizeFileDeclarationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11181,6 +12964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MemoryOptimizedTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -11188,9 +12972,11 @@ namespace Xledger.Sql {
             VisForMemoryOptimizedTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11198,6 +12984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MemoryPartitionSessionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SessionOption)node);
                 if (ShouldStop) { return; }
@@ -11205,9 +12992,11 @@ namespace Xledger.Sql {
             VisForMemoryPartitionSessionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11215,6 +13004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MergeActionClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -11222,9 +13012,11 @@ namespace Xledger.Sql {
             VisForMergeActionClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11232,6 +13024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MergeSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DataModificationSpecification)node);
                 if (ShouldStop) { return; }
@@ -11239,9 +13032,11 @@ namespace Xledger.Sql {
             VisForMergeSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11249,6 +13044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MergeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DataModificationStatement)node);
                 if (ShouldStop) { return; }
@@ -11256,9 +13052,11 @@ namespace Xledger.Sql {
             VisForMergeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11266,6 +13064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MethodSpecifier node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -11273,9 +13072,11 @@ namespace Xledger.Sql {
             VisForMethodSpecifier?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11283,6 +13084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MirrorToClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -11290,9 +13092,11 @@ namespace Xledger.Sql {
             VisForMirrorToClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11300,6 +13104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MoneyLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -11307,9 +13112,11 @@ namespace Xledger.Sql {
             VisForMoneyLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11317,6 +13124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MoveConversationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -11324,9 +13132,11 @@ namespace Xledger.Sql {
             VisForMoveConversationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11334,6 +13144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MoveRestoreOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RestoreOption)node);
                 if (ShouldStop) { return; }
@@ -11341,9 +13152,11 @@ namespace Xledger.Sql {
             VisForMoveRestoreOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11351,6 +13164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MoveToDropIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -11358,9 +13172,11 @@ namespace Xledger.Sql {
             VisForMoveToDropIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11368,6 +13184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MultiPartIdentifier node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -11375,9 +13192,11 @@ namespace Xledger.Sql {
             VisForMultiPartIdentifier?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11385,6 +13204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(MultiPartIdentifierCallTarget node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CallTarget)node);
                 if (ShouldStop) { return; }
@@ -11392,9 +13212,11 @@ namespace Xledger.Sql {
             VisForMultiPartIdentifierCallTarget?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11402,6 +13224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(NamedTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -11409,9 +13232,11 @@ namespace Xledger.Sql {
             VisForNamedTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11419,6 +13244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(NameFileDeclarationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FileDeclarationOption)node);
                 if (ShouldStop) { return; }
@@ -11426,9 +13252,11 @@ namespace Xledger.Sql {
             VisForNameFileDeclarationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11436,6 +13264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(NextValueForExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -11443,9 +13272,11 @@ namespace Xledger.Sql {
             VisForNextValueForExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11453,6 +13284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(NullableConstraintDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ConstraintDefinition)node);
                 if (ShouldStop) { return; }
@@ -11460,9 +13292,11 @@ namespace Xledger.Sql {
             VisForNullableConstraintDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11470,6 +13304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(NullIfExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -11477,9 +13312,11 @@ namespace Xledger.Sql {
             VisForNullIfExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11487,6 +13324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(NullLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -11494,9 +13332,11 @@ namespace Xledger.Sql {
             VisForNullLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11504,6 +13344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(NumericLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -11511,9 +13352,11 @@ namespace Xledger.Sql {
             VisForNumericLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11521,6 +13364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OdbcConvertSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ScalarExpression)node);
                 if (ShouldStop) { return; }
@@ -11528,9 +13372,11 @@ namespace Xledger.Sql {
             VisForOdbcConvertSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11538,6 +13384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OdbcFunctionCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -11545,9 +13392,11 @@ namespace Xledger.Sql {
             VisForOdbcFunctionCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11555,6 +13404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OdbcLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -11562,9 +13412,11 @@ namespace Xledger.Sql {
             VisForOdbcLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11572,6 +13424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OdbcQualifiedJoinTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReference)node);
                 if (ShouldStop) { return; }
@@ -11579,9 +13432,11 @@ namespace Xledger.Sql {
             VisForOdbcQualifiedJoinTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11589,6 +13444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OffsetClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -11596,9 +13452,11 @@ namespace Xledger.Sql {
             VisForOffsetClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11606,6 +13464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnFailureAuditOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditOption)node);
                 if (ShouldStop) { return; }
@@ -11613,9 +13472,11 @@ namespace Xledger.Sql {
             VisForOnFailureAuditOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11623,6 +13484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnlineIndexLowPriorityLockWaitOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -11630,9 +13492,11 @@ namespace Xledger.Sql {
             VisForOnlineIndexLowPriorityLockWaitOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11640,6 +13504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnlineIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexStateOption)node);
                 if (ShouldStop) { return; }
@@ -11647,9 +13512,11 @@ namespace Xledger.Sql {
             VisForOnlineIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11657,6 +13524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffAssemblyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AssemblyOption)node);
                 if (ShouldStop) { return; }
@@ -11664,9 +13532,11 @@ namespace Xledger.Sql {
             VisForOnOffAssemblyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11674,6 +13544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffAtomicBlockOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AtomicBlockOption)node);
                 if (ShouldStop) { return; }
@@ -11681,9 +13552,11 @@ namespace Xledger.Sql {
             VisForOnOffAtomicBlockOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11691,6 +13564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffAuditTargetOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditTargetOption)node);
                 if (ShouldStop) { return; }
@@ -11698,9 +13572,11 @@ namespace Xledger.Sql {
             VisForOnOffAuditTargetOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11708,6 +13584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -11715,9 +13592,11 @@ namespace Xledger.Sql {
             VisForOnOffDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11725,6 +13604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffDialogOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DialogOption)node);
                 if (ShouldStop) { return; }
@@ -11732,9 +13612,11 @@ namespace Xledger.Sql {
             VisForOnOffDialogOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11742,6 +13624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffFullTextCatalogOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FullTextCatalogOption)node);
                 if (ShouldStop) { return; }
@@ -11749,9 +13632,11 @@ namespace Xledger.Sql {
             VisForOnOffFullTextCatalogOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11759,6 +13644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffOptionValue node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((OptionValue)node);
                 if (ShouldStop) { return; }
@@ -11766,9 +13652,11 @@ namespace Xledger.Sql {
             VisForOnOffOptionValue?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11776,6 +13664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffPrimaryConfigurationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseConfigurationSetOption)node);
                 if (ShouldStop) { return; }
@@ -11783,9 +13672,11 @@ namespace Xledger.Sql {
             VisForOnOffPrimaryConfigurationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11793,6 +13684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffPrincipalOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrincipalOption)node);
                 if (ShouldStop) { return; }
@@ -11800,9 +13692,11 @@ namespace Xledger.Sql {
             VisForOnOffPrincipalOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11810,6 +13704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffRemoteServiceBindingOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RemoteServiceBindingOption)node);
                 if (ShouldStop) { return; }
@@ -11817,9 +13712,11 @@ namespace Xledger.Sql {
             VisForOnOffRemoteServiceBindingOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11827,6 +13724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffSessionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SessionOption)node);
                 if (ShouldStop) { return; }
@@ -11834,9 +13732,11 @@ namespace Xledger.Sql {
             VisForOnOffSessionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11844,6 +13744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OnOffStatisticsOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((StatisticsOption)node);
                 if (ShouldStop) { return; }
@@ -11851,9 +13752,11 @@ namespace Xledger.Sql {
             VisForOnOffStatisticsOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11861,6 +13764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenCursorStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CursorStatement)node);
                 if (ShouldStop) { return; }
@@ -11868,9 +13772,11 @@ namespace Xledger.Sql {
             VisForOpenCursorStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11878,6 +13784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenJsonTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -11885,9 +13792,11 @@ namespace Xledger.Sql {
             VisForOpenJsonTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11895,6 +13804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -11902,9 +13812,11 @@ namespace Xledger.Sql {
             VisForOpenMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11912,6 +13824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenQueryTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -11919,9 +13832,11 @@ namespace Xledger.Sql {
             VisForOpenQueryTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11929,6 +13844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenRowsetColumnDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ColumnDefinitionBase)node);
                 if (ShouldStop) { return; }
@@ -11936,9 +13852,11 @@ namespace Xledger.Sql {
             VisForOpenRowsetColumnDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11946,6 +13864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenRowsetCosmos node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -11953,9 +13872,11 @@ namespace Xledger.Sql {
             VisForOpenRowsetCosmos?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11963,6 +13884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenRowsetCosmosOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -11970,9 +13892,11 @@ namespace Xledger.Sql {
             VisForOpenRowsetCosmosOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11980,6 +13904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenRowsetTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -11987,9 +13912,11 @@ namespace Xledger.Sql {
             VisForOpenRowsetTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -11997,6 +13924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenSymmetricKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -12004,9 +13932,11 @@ namespace Xledger.Sql {
             VisForOpenSymmetricKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12014,6 +13944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OpenXmlTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -12021,9 +13952,11 @@ namespace Xledger.Sql {
             VisForOpenXmlTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12031,6 +13964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OperatorAuditOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditOption)node);
                 if (ShouldStop) { return; }
@@ -12038,9 +13972,11 @@ namespace Xledger.Sql {
             VisForOperatorAuditOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12048,6 +13984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OptimizeForOptimizerHint node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((OptimizerHint)node);
                 if (ShouldStop) { return; }
@@ -12055,9 +13992,11 @@ namespace Xledger.Sql {
             VisForOptimizeForOptimizerHint?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12065,6 +14004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OptimizerHint node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12072,9 +14012,11 @@ namespace Xledger.Sql {
             VisForOptimizerHint?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12082,6 +14024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OrderBulkInsertOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BulkInsertOption)node);
                 if (ShouldStop) { return; }
@@ -12089,9 +14032,11 @@ namespace Xledger.Sql {
             VisForOrderBulkInsertOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12099,6 +14044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OrderByClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12106,9 +14052,11 @@ namespace Xledger.Sql {
             VisForOrderByClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12116,6 +14064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OrderIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -12123,9 +14072,11 @@ namespace Xledger.Sql {
             VisForOrderIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12133,6 +14084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OutputClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12140,9 +14092,11 @@ namespace Xledger.Sql {
             VisForOutputClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12150,6 +14104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OutputIntoClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12157,9 +14112,11 @@ namespace Xledger.Sql {
             VisForOutputIntoClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12167,6 +14124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(OverClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12174,9 +14132,11 @@ namespace Xledger.Sql {
             VisForOverClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12184,6 +14144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PageVerifyDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -12191,9 +14152,11 @@ namespace Xledger.Sql {
             VisForPageVerifyDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12201,6 +14164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ParameterizationDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -12208,9 +14172,11 @@ namespace Xledger.Sql {
             VisForParameterizationDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12218,6 +14184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ParameterlessCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -12225,9 +14192,11 @@ namespace Xledger.Sql {
             VisForParameterlessCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12235,6 +14204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ParenthesisExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -12242,9 +14212,11 @@ namespace Xledger.Sql {
             VisForParenthesisExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12252,6 +14224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ParseCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -12259,9 +14232,11 @@ namespace Xledger.Sql {
             VisForParseCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12269,6 +14244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PartitionFunctionCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -12276,9 +14252,11 @@ namespace Xledger.Sql {
             VisForPartitionFunctionCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12286,6 +14264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PartitionParameterType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12293,9 +14272,11 @@ namespace Xledger.Sql {
             VisForPartitionParameterType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12303,6 +14284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PartitionSpecifier node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12310,9 +14292,11 @@ namespace Xledger.Sql {
             VisForPartitionSpecifier?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12320,6 +14304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PartnerDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -12327,9 +14312,11 @@ namespace Xledger.Sql {
             VisForPartnerDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12337,6 +14324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PasswordAlterPrincipalOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrincipalOption)node);
                 if (ShouldStop) { return; }
@@ -12344,9 +14332,11 @@ namespace Xledger.Sql {
             VisForPasswordAlterPrincipalOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12354,6 +14344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PasswordCreateLoginSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateLoginSource)node);
                 if (ShouldStop) { return; }
@@ -12361,9 +14352,11 @@ namespace Xledger.Sql {
             VisForPasswordCreateLoginSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12371,6 +14364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(Permission node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12378,9 +14372,11 @@ namespace Xledger.Sql {
             VisForPermission?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12388,6 +14384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PermissionSetAssemblyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AssemblyOption)node);
                 if (ShouldStop) { return; }
@@ -12395,9 +14392,11 @@ namespace Xledger.Sql {
             VisForPermissionSetAssemblyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12405,6 +14404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PivotedTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -12412,9 +14412,11 @@ namespace Xledger.Sql {
             VisForPivotedTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12422,6 +14424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PortsEndpointProtocolOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EndpointProtocolOption)node);
                 if (ShouldStop) { return; }
@@ -12429,9 +14432,11 @@ namespace Xledger.Sql {
             VisForPortsEndpointProtocolOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12439,6 +14444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PredicateSetStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SetOnOffStatement)node);
                 if (ShouldStop) { return; }
@@ -12446,9 +14452,11 @@ namespace Xledger.Sql {
             VisForPredicateSetStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12456,6 +14464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PredictTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -12463,9 +14472,11 @@ namespace Xledger.Sql {
             VisForPredictTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12473,6 +14484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PrimaryRoleReplicaOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AvailabilityReplicaOption)node);
                 if (ShouldStop) { return; }
@@ -12480,9 +14492,11 @@ namespace Xledger.Sql {
             VisForPrimaryRoleReplicaOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12490,6 +14504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PrincipalOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12497,9 +14512,11 @@ namespace Xledger.Sql {
             VisForPrincipalOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12507,6 +14524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PrintStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -12514,9 +14532,11 @@ namespace Xledger.Sql {
             VisForPrintStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12524,6 +14544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(Privilege80 node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12531,9 +14552,11 @@ namespace Xledger.Sql {
             VisForPrivilege80?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12541,6 +14564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(PrivilegeSecurityElement80 node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityElement80)node);
                 if (ShouldStop) { return; }
@@ -12548,9 +14572,11 @@ namespace Xledger.Sql {
             VisForPrivilegeSecurityElement80?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12558,6 +14584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ProcedureOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12565,9 +14592,11 @@ namespace Xledger.Sql {
             VisForProcedureOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12575,6 +14604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ProcedureParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DeclareVariableElement)node);
                 if (ShouldStop) { return; }
@@ -12582,9 +14612,11 @@ namespace Xledger.Sql {
             VisForProcedureParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12592,6 +14624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ProcedureReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12599,9 +14632,11 @@ namespace Xledger.Sql {
             VisForProcedureReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12609,6 +14644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ProcedureReferenceName node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12616,9 +14652,11 @@ namespace Xledger.Sql {
             VisForProcedureReferenceName?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12626,6 +14664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ProcessAffinityRange node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((LiteralRange)node);
                 if (ShouldStop) { return; }
@@ -12633,9 +14672,11 @@ namespace Xledger.Sql {
             VisForProcessAffinityRange?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12643,6 +14684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ProviderEncryptionSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((EncryptionSource)node);
                 if (ShouldStop) { return; }
@@ -12650,9 +14692,11 @@ namespace Xledger.Sql {
             VisForProviderEncryptionSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12660,6 +14704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ProviderKeyNameKeyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((KeyOption)node);
                 if (ShouldStop) { return; }
@@ -12667,9 +14712,11 @@ namespace Xledger.Sql {
             VisForProviderKeyNameKeyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12677,6 +14724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QualifiedJoin node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((JoinTableReference)node);
                 if (ShouldStop) { return; }
@@ -12684,9 +14732,11 @@ namespace Xledger.Sql {
             VisForQualifiedJoin?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12694,6 +14744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryDerivedTable node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -12701,9 +14752,11 @@ namespace Xledger.Sql {
             VisForQueryDerivedTable?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12711,6 +14764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryParenthesisExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryExpression)node);
                 if (ShouldStop) { return; }
@@ -12718,9 +14772,11 @@ namespace Xledger.Sql {
             VisForQueryParenthesisExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12728,6 +14784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QuerySpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryExpression)node);
                 if (ShouldStop) { return; }
@@ -12735,9 +14792,11 @@ namespace Xledger.Sql {
             VisForQuerySpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12745,6 +14804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreCapturePolicyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryStoreOption)node);
                 if (ShouldStop) { return; }
@@ -12752,9 +14812,11 @@ namespace Xledger.Sql {
             VisForQueryStoreCapturePolicyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12762,6 +14824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -12769,9 +14832,11 @@ namespace Xledger.Sql {
             VisForQueryStoreDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12779,6 +14844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreDataFlushIntervalOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryStoreOption)node);
                 if (ShouldStop) { return; }
@@ -12786,9 +14852,11 @@ namespace Xledger.Sql {
             VisForQueryStoreDataFlushIntervalOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12796,6 +14864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreDesiredStateOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryStoreOption)node);
                 if (ShouldStop) { return; }
@@ -12803,9 +14872,11 @@ namespace Xledger.Sql {
             VisForQueryStoreDesiredStateOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12813,6 +14884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreIntervalLengthOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryStoreOption)node);
                 if (ShouldStop) { return; }
@@ -12820,9 +14892,11 @@ namespace Xledger.Sql {
             VisForQueryStoreIntervalLengthOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12830,6 +14904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreMaxPlansPerQueryOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryStoreOption)node);
                 if (ShouldStop) { return; }
@@ -12837,9 +14912,11 @@ namespace Xledger.Sql {
             VisForQueryStoreMaxPlansPerQueryOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12847,6 +14924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreMaxStorageSizeOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryStoreOption)node);
                 if (ShouldStop) { return; }
@@ -12854,9 +14932,11 @@ namespace Xledger.Sql {
             VisForQueryStoreMaxStorageSizeOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12864,6 +14944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreSizeCleanupPolicyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryStoreOption)node);
                 if (ShouldStop) { return; }
@@ -12871,9 +14952,11 @@ namespace Xledger.Sql {
             VisForQueryStoreSizeCleanupPolicyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12881,6 +14964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueryStoreTimeCleanupPolicyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueryStoreOption)node);
                 if (ShouldStop) { return; }
@@ -12888,9 +14972,11 @@ namespace Xledger.Sql {
             VisForQueryStoreTimeCleanupPolicyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12898,6 +14984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueueDelayAuditOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditOption)node);
                 if (ShouldStop) { return; }
@@ -12905,9 +14992,11 @@ namespace Xledger.Sql {
             VisForQueueDelayAuditOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12915,6 +15004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueueExecuteAsOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueueOption)node);
                 if (ShouldStop) { return; }
@@ -12922,9 +15012,11 @@ namespace Xledger.Sql {
             VisForQueueExecuteAsOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12932,6 +15024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueueOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -12939,9 +15032,11 @@ namespace Xledger.Sql {
             VisForQueueOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12949,6 +15044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueueProcedureOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueueOption)node);
                 if (ShouldStop) { return; }
@@ -12956,9 +15052,11 @@ namespace Xledger.Sql {
             VisForQueueProcedureOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12966,6 +15064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueueStateOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueueOption)node);
                 if (ShouldStop) { return; }
@@ -12973,9 +15072,11 @@ namespace Xledger.Sql {
             VisForQueueStateOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -12983,6 +15084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(QueueValueOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((QueueOption)node);
                 if (ShouldStop) { return; }
@@ -12990,9 +15092,11 @@ namespace Xledger.Sql {
             VisForQueueValueOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13000,6 +15104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RaiseErrorLegacyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13007,9 +15112,11 @@ namespace Xledger.Sql {
             VisForRaiseErrorLegacyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13017,6 +15124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RaiseErrorStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13024,9 +15132,11 @@ namespace Xledger.Sql {
             VisForRaiseErrorStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13034,6 +15144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ReadOnlyForClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ForClause)node);
                 if (ShouldStop) { return; }
@@ -13041,9 +15152,11 @@ namespace Xledger.Sql {
             VisForReadOnlyForClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13051,6 +15164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ReadTextStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13058,9 +15172,11 @@ namespace Xledger.Sql {
             VisForReadTextStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13068,6 +15184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RealLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -13075,9 +15192,11 @@ namespace Xledger.Sql {
             VisForRealLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13085,6 +15204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ReceiveStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WaitForSupportedStatement)node);
                 if (ShouldStop) { return; }
@@ -13092,9 +15212,11 @@ namespace Xledger.Sql {
             VisForReceiveStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13102,6 +15224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ReconfigureStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13109,9 +15232,11 @@ namespace Xledger.Sql {
             VisForReconfigureStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13119,6 +15244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RecoveryDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -13126,9 +15252,11 @@ namespace Xledger.Sql {
             VisForRecoveryDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13136,6 +15264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RemoteDataArchiveAlterTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -13143,9 +15272,11 @@ namespace Xledger.Sql {
             VisForRemoteDataArchiveAlterTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13153,6 +15284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RemoteDataArchiveDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -13160,9 +15292,11 @@ namespace Xledger.Sql {
             VisForRemoteDataArchiveDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13170,6 +15304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RemoteDataArchiveDbCredentialSetting node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RemoteDataArchiveDatabaseSetting)node);
                 if (ShouldStop) { return; }
@@ -13177,9 +15312,11 @@ namespace Xledger.Sql {
             VisForRemoteDataArchiveDbCredentialSetting?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13187,6 +15324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RemoteDataArchiveDbFederatedServiceAccountSetting node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RemoteDataArchiveDatabaseSetting)node);
                 if (ShouldStop) { return; }
@@ -13194,9 +15332,11 @@ namespace Xledger.Sql {
             VisForRemoteDataArchiveDbFederatedServiceAccountSetting?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13204,6 +15344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RemoteDataArchiveDbServerSetting node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RemoteDataArchiveDatabaseSetting)node);
                 if (ShouldStop) { return; }
@@ -13211,9 +15352,11 @@ namespace Xledger.Sql {
             VisForRemoteDataArchiveDbServerSetting?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13221,6 +15364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RemoteDataArchiveTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -13228,9 +15372,11 @@ namespace Xledger.Sql {
             VisForRemoteDataArchiveTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13238,6 +15384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RenameAlterRoleAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterRoleAction)node);
                 if (ShouldStop) { return; }
@@ -13245,9 +15392,11 @@ namespace Xledger.Sql {
             VisForRenameAlterRoleAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13255,6 +15404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RenameEntityStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13262,9 +15412,11 @@ namespace Xledger.Sql {
             VisForRenameEntityStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13272,6 +15424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ResampleStatisticsOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((StatisticsOption)node);
                 if (ShouldStop) { return; }
@@ -13279,9 +15432,11 @@ namespace Xledger.Sql {
             VisForResampleStatisticsOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13289,6 +15444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ResourcePoolAffinitySpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13296,9 +15452,11 @@ namespace Xledger.Sql {
             VisForResourcePoolAffinitySpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13306,6 +15464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ResourcePoolParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13313,9 +15472,11 @@ namespace Xledger.Sql {
             VisForResourcePoolParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13323,6 +15484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ResourcePoolStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13330,9 +15492,11 @@ namespace Xledger.Sql {
             VisForResourcePoolStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13340,6 +15504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RestoreMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BackupRestoreMasterKeyStatementBase)node);
                 if (ShouldStop) { return; }
@@ -13347,9 +15512,11 @@ namespace Xledger.Sql {
             VisForRestoreMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13357,6 +15524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RestoreOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13364,9 +15532,11 @@ namespace Xledger.Sql {
             VisForRestoreOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13374,6 +15544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RestoreServiceMasterKeyStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BackupRestoreMasterKeyStatementBase)node);
                 if (ShouldStop) { return; }
@@ -13381,9 +15552,11 @@ namespace Xledger.Sql {
             VisForRestoreServiceMasterKeyStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13391,6 +15564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RestoreStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13398,9 +15572,11 @@ namespace Xledger.Sql {
             VisForRestoreStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13408,6 +15584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ResultColumnDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13415,9 +15592,11 @@ namespace Xledger.Sql {
             VisForResultColumnDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13425,6 +15604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ResultSetDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13432,9 +15612,11 @@ namespace Xledger.Sql {
             VisForResultSetDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13442,6 +15624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ResultSetsExecuteOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ExecuteOption)node);
                 if (ShouldStop) { return; }
@@ -13449,9 +15632,11 @@ namespace Xledger.Sql {
             VisForResultSetsExecuteOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13459,6 +15644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RetentionDaysAuditTargetOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditTargetOption)node);
                 if (ShouldStop) { return; }
@@ -13466,9 +15652,11 @@ namespace Xledger.Sql {
             VisForRetentionDaysAuditTargetOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13476,6 +15664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RetentionPeriodDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13483,9 +15672,11 @@ namespace Xledger.Sql {
             VisForRetentionPeriodDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13493,6 +15684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ReturnStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13500,9 +15692,11 @@ namespace Xledger.Sql {
             VisForReturnStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13510,6 +15704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RevertStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -13517,9 +15712,11 @@ namespace Xledger.Sql {
             VisForRevertStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13527,6 +15724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RevokeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityStatement)node);
                 if (ShouldStop) { return; }
@@ -13534,9 +15732,11 @@ namespace Xledger.Sql {
             VisForRevokeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13544,6 +15744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RevokeStatement80 node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SecurityStatementBody80)node);
                 if (ShouldStop) { return; }
@@ -13551,9 +15752,11 @@ namespace Xledger.Sql {
             VisForRevokeStatement80?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13561,6 +15764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RightFunctionCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -13568,9 +15772,11 @@ namespace Xledger.Sql {
             VisForRightFunctionCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13578,6 +15784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RolePayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -13585,9 +15792,11 @@ namespace Xledger.Sql {
             VisForRolePayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13595,6 +15804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RollbackTransactionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TransactionStatement)node);
                 if (ShouldStop) { return; }
@@ -13602,9 +15812,11 @@ namespace Xledger.Sql {
             VisForRollbackTransactionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13612,6 +15824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RollupGroupingSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((GroupingSpecification)node);
                 if (ShouldStop) { return; }
@@ -13619,9 +15832,11 @@ namespace Xledger.Sql {
             VisForRollupGroupingSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13629,6 +15844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RouteOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13636,9 +15852,11 @@ namespace Xledger.Sql {
             VisForRouteOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13646,6 +15864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(RowValue node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13653,9 +15872,11 @@ namespace Xledger.Sql {
             VisForRowValue?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13663,6 +15884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SaveTransactionStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TransactionStatement)node);
                 if (ShouldStop) { return; }
@@ -13670,9 +15892,11 @@ namespace Xledger.Sql {
             VisForSaveTransactionStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13680,6 +15904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ScalarExpressionDialogOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DialogOption)node);
                 if (ShouldStop) { return; }
@@ -13687,9 +15912,11 @@ namespace Xledger.Sql {
             VisForScalarExpressionDialogOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13697,6 +15924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ScalarExpressionRestoreOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RestoreOption)node);
                 if (ShouldStop) { return; }
@@ -13704,9 +15932,11 @@ namespace Xledger.Sql {
             VisForScalarExpressionRestoreOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13714,6 +15944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ScalarExpressionSequenceOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SequenceOption)node);
                 if (ShouldStop) { return; }
@@ -13721,9 +15952,11 @@ namespace Xledger.Sql {
             VisForScalarExpressionSequenceOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13731,6 +15964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ScalarExpressionSnippet node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ScalarExpression)node);
                 if (ShouldStop) { return; }
@@ -13738,9 +15972,11 @@ namespace Xledger.Sql {
             VisForScalarExpressionSnippet?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13748,6 +15984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ScalarFunctionReturnType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FunctionReturnType)node);
                 if (ShouldStop) { return; }
@@ -13755,9 +15992,11 @@ namespace Xledger.Sql {
             VisForScalarFunctionReturnType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13765,6 +16004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ScalarSubquery node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -13772,9 +16012,11 @@ namespace Xledger.Sql {
             VisForScalarSubquery?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13782,6 +16024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SchemaDeclarationItem node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13789,9 +16032,11 @@ namespace Xledger.Sql {
             VisForSchemaDeclarationItem?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13799,6 +16044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SchemaDeclarationItemOpenjson node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SchemaDeclarationItem)node);
                 if (ShouldStop) { return; }
@@ -13806,9 +16052,11 @@ namespace Xledger.Sql {
             VisForSchemaDeclarationItemOpenjson?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13816,6 +16064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SchemaObjectFunctionTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -13823,9 +16072,11 @@ namespace Xledger.Sql {
             VisForSchemaObjectFunctionTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13833,6 +16084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SchemaObjectName node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((MultiPartIdentifier)node);
                 if (ShouldStop) { return; }
@@ -13840,9 +16092,11 @@ namespace Xledger.Sql {
             VisForSchemaObjectName?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13850,6 +16104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SchemaObjectNameOrValueExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13857,9 +16112,11 @@ namespace Xledger.Sql {
             VisForSchemaObjectNameOrValueExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13867,6 +16124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SchemaObjectNameSnippet node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SchemaObjectName)node);
                 if (ShouldStop) { return; }
@@ -13874,9 +16132,11 @@ namespace Xledger.Sql {
             VisForSchemaObjectNameSnippet?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13884,6 +16144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SchemaObjectResultSetDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ResultSetDefinition)node);
                 if (ShouldStop) { return; }
@@ -13891,9 +16152,11 @@ namespace Xledger.Sql {
             VisForSchemaObjectResultSetDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13901,6 +16164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SchemaPayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -13908,9 +16172,11 @@ namespace Xledger.Sql {
             VisForSchemaPayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13918,6 +16184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SearchedCaseExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CaseExpression)node);
                 if (ShouldStop) { return; }
@@ -13925,9 +16192,11 @@ namespace Xledger.Sql {
             VisForSearchedCaseExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13935,6 +16204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SearchedWhenClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WhenClause)node);
                 if (ShouldStop) { return; }
@@ -13942,9 +16212,11 @@ namespace Xledger.Sql {
             VisForSearchedWhenClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13952,6 +16224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SearchPropertyListFullTextIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FullTextIndexOption)node);
                 if (ShouldStop) { return; }
@@ -13959,9 +16232,11 @@ namespace Xledger.Sql {
             VisForSearchPropertyListFullTextIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13969,6 +16244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SecondaryRoleReplicaOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AvailabilityReplicaOption)node);
                 if (ShouldStop) { return; }
@@ -13976,9 +16252,11 @@ namespace Xledger.Sql {
             VisForSecondaryRoleReplicaOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -13986,6 +16264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SecurityPolicyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -13993,9 +16272,11 @@ namespace Xledger.Sql {
             VisForSecurityPolicyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14003,6 +16284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SecurityPredicateAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14010,9 +16292,11 @@ namespace Xledger.Sql {
             VisForSecurityPredicateAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14020,6 +16304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SecurityPrincipal node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14027,9 +16312,11 @@ namespace Xledger.Sql {
             VisForSecurityPrincipal?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14037,6 +16324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SecurityTargetObject node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14044,9 +16332,11 @@ namespace Xledger.Sql {
             VisForSecurityTargetObject?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14054,6 +16344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SecurityTargetObjectName node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14061,9 +16352,11 @@ namespace Xledger.Sql {
             VisForSecurityTargetObjectName?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14071,6 +16364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SecurityUserClause80 node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14078,9 +16372,11 @@ namespace Xledger.Sql {
             VisForSecurityUserClause80?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14088,6 +16384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SelectFunctionReturnType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FunctionReturnType)node);
                 if (ShouldStop) { return; }
@@ -14095,9 +16392,11 @@ namespace Xledger.Sql {
             VisForSelectFunctionReturnType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14105,6 +16404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SelectInsertSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((InsertSource)node);
                 if (ShouldStop) { return; }
@@ -14112,9 +16412,11 @@ namespace Xledger.Sql {
             VisForSelectInsertSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14122,6 +16424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SelectiveXmlIndexPromotedPath node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14129,9 +16432,11 @@ namespace Xledger.Sql {
             VisForSelectiveXmlIndexPromotedPath?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14139,6 +16444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SelectScalarExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SelectElement)node);
                 if (ShouldStop) { return; }
@@ -14146,9 +16452,11 @@ namespace Xledger.Sql {
             VisForSelectScalarExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14156,6 +16464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SelectSetVariable node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SelectElement)node);
                 if (ShouldStop) { return; }
@@ -14163,9 +16472,11 @@ namespace Xledger.Sql {
             VisForSelectSetVariable?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14173,6 +16484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SelectStarExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SelectElement)node);
                 if (ShouldStop) { return; }
@@ -14180,9 +16492,11 @@ namespace Xledger.Sql {
             VisForSelectStarExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14190,6 +16504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SelectStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((StatementWithCtesAndXmlNamespaces)node);
                 if (ShouldStop) { return; }
@@ -14197,9 +16512,11 @@ namespace Xledger.Sql {
             VisForSelectStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14207,6 +16524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SelectStatementSnippet node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SelectStatement)node);
                 if (ShouldStop) { return; }
@@ -14214,9 +16532,11 @@ namespace Xledger.Sql {
             VisForSelectStatementSnippet?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14224,6 +16544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SemanticTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -14231,9 +16552,11 @@ namespace Xledger.Sql {
             VisForSemanticTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14241,6 +16564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SendStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14248,9 +16572,11 @@ namespace Xledger.Sql {
             VisForSendStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14258,6 +16584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SensitivityClassificationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14265,9 +16592,11 @@ namespace Xledger.Sql {
             VisForSensitivityClassificationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14275,6 +16604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SequenceOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14282,9 +16612,11 @@ namespace Xledger.Sql {
             VisForSequenceOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14292,6 +16624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ServiceContract node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14299,9 +16632,11 @@ namespace Xledger.Sql {
             VisForServiceContract?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14309,6 +16644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SessionTimeoutPayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -14316,9 +16652,11 @@ namespace Xledger.Sql {
             VisForSessionTimeoutPayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14326,6 +16664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetCommandStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14333,9 +16672,11 @@ namespace Xledger.Sql {
             VisForSetCommandStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14343,6 +16684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetErrorLevelStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14350,9 +16692,11 @@ namespace Xledger.Sql {
             VisForSetErrorLevelStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14360,6 +16704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetFipsFlaggerCommand node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SetCommand)node);
                 if (ShouldStop) { return; }
@@ -14367,9 +16712,11 @@ namespace Xledger.Sql {
             VisForSetFipsFlaggerCommand?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14377,6 +16724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetIdentityInsertStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SetOnOffStatement)node);
                 if (ShouldStop) { return; }
@@ -14384,9 +16732,11 @@ namespace Xledger.Sql {
             VisForSetIdentityInsertStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14394,6 +16744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetOffsetsStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SetOnOffStatement)node);
                 if (ShouldStop) { return; }
@@ -14401,9 +16752,11 @@ namespace Xledger.Sql {
             VisForSetOffsetsStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14411,6 +16764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetRowCountStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14418,9 +16772,11 @@ namespace Xledger.Sql {
             VisForSetRowCountStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14428,6 +16784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetSearchPropertyListAlterFullTextIndexAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterFullTextIndexAction)node);
                 if (ShouldStop) { return; }
@@ -14435,9 +16792,11 @@ namespace Xledger.Sql {
             VisForSetSearchPropertyListAlterFullTextIndexAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14445,6 +16804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetStatisticsStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SetOnOffStatement)node);
                 if (ShouldStop) { return; }
@@ -14452,9 +16812,11 @@ namespace Xledger.Sql {
             VisForSetStatisticsStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14462,6 +16824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetStopListAlterFullTextIndexAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterFullTextIndexAction)node);
                 if (ShouldStop) { return; }
@@ -14469,9 +16832,11 @@ namespace Xledger.Sql {
             VisForSetStopListAlterFullTextIndexAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14479,6 +16844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetTextSizeStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14486,9 +16852,11 @@ namespace Xledger.Sql {
             VisForSetTextSizeStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14496,6 +16864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetTransactionIsolationLevelStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14503,9 +16872,11 @@ namespace Xledger.Sql {
             VisForSetTransactionIsolationLevelStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14513,6 +16884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetUserStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14520,9 +16892,11 @@ namespace Xledger.Sql {
             VisForSetUserStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14530,6 +16904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SetVariableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14537,9 +16912,11 @@ namespace Xledger.Sql {
             VisForSetVariableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14547,6 +16924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ShutdownStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -14554,9 +16932,11 @@ namespace Xledger.Sql {
             VisForShutdownStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14564,6 +16944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SimpleAlterFullTextIndexAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AlterFullTextIndexAction)node);
                 if (ShouldStop) { return; }
@@ -14571,9 +16952,11 @@ namespace Xledger.Sql {
             VisForSimpleAlterFullTextIndexAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14581,6 +16964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SimpleCaseExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CaseExpression)node);
                 if (ShouldStop) { return; }
@@ -14588,9 +16972,11 @@ namespace Xledger.Sql {
             VisForSimpleCaseExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14598,6 +16984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SimpleWhenClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WhenClause)node);
                 if (ShouldStop) { return; }
@@ -14605,9 +16992,11 @@ namespace Xledger.Sql {
             VisForSimpleWhenClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14615,6 +17004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SingleValueTypeCopyOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CopyStatementOptionBase)node);
                 if (ShouldStop) { return; }
@@ -14622,9 +17012,11 @@ namespace Xledger.Sql {
             VisForSingleValueTypeCopyOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14632,6 +17024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SizeFileDeclarationOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FileDeclarationOption)node);
                 if (ShouldStop) { return; }
@@ -14639,9 +17032,11 @@ namespace Xledger.Sql {
             VisForSizeFileDeclarationOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14649,6 +17044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SoapMethod node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -14656,9 +17052,11 @@ namespace Xledger.Sql {
             VisForSoapMethod?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14666,6 +17064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SourceDeclaration node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ScalarExpression)node);
                 if (ShouldStop) { return; }
@@ -14673,9 +17072,11 @@ namespace Xledger.Sql {
             VisForSourceDeclaration?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14683,6 +17084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SpatialIndexRegularOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((SpatialIndexOption)node);
                 if (ShouldStop) { return; }
@@ -14690,9 +17092,11 @@ namespace Xledger.Sql {
             VisForSpatialIndexRegularOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14700,6 +17104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SqlCommandIdentifier node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Identifier)node);
                 if (ShouldStop) { return; }
@@ -14707,9 +17112,11 @@ namespace Xledger.Sql {
             VisForSqlCommandIdentifier?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14717,6 +17124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SqlDataTypeReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ParameterizedDataTypeReference)node);
                 if (ShouldStop) { return; }
@@ -14724,9 +17132,11 @@ namespace Xledger.Sql {
             VisForSqlDataTypeReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14734,6 +17144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(StateAuditOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((AuditOption)node);
                 if (ShouldStop) { return; }
@@ -14741,9 +17152,11 @@ namespace Xledger.Sql {
             VisForStateAuditOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14751,6 +17164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(StatementList node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14758,9 +17172,11 @@ namespace Xledger.Sql {
             VisForStatementList?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14768,6 +17184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(StatementListSnippet node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((StatementList)node);
                 if (ShouldStop) { return; }
@@ -14775,9 +17192,11 @@ namespace Xledger.Sql {
             VisForStatementListSnippet?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14785,6 +17204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(StatisticsOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14792,9 +17212,11 @@ namespace Xledger.Sql {
             VisForStatisticsOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14802,6 +17224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(StatisticsPartitionRange node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14809,9 +17232,11 @@ namespace Xledger.Sql {
             VisForStatisticsPartitionRange?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14819,6 +17244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(StopListFullTextIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FullTextIndexOption)node);
                 if (ShouldStop) { return; }
@@ -14826,9 +17252,11 @@ namespace Xledger.Sql {
             VisForStopListFullTextIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14836,6 +17264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(StopRestoreOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RestoreOption)node);
                 if (ShouldStop) { return; }
@@ -14843,9 +17272,11 @@ namespace Xledger.Sql {
             VisForStopRestoreOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14853,6 +17284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(StringLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((Literal)node);
                 if (ShouldStop) { return; }
@@ -14860,9 +17292,11 @@ namespace Xledger.Sql {
             VisForStringLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14870,6 +17304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SubqueryComparisonPredicate node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -14877,9 +17312,11 @@ namespace Xledger.Sql {
             VisForSubqueryComparisonPredicate?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14887,6 +17324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SystemTimePeriodDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14894,9 +17332,11 @@ namespace Xledger.Sql {
             VisForSystemTimePeriodDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14904,6 +17344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(SystemVersioningTableOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -14911,9 +17352,11 @@ namespace Xledger.Sql {
             VisForSystemVersioningTableOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14921,6 +17364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableClusteredIndexType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableIndexType)node);
                 if (ShouldStop) { return; }
@@ -14928,9 +17372,11 @@ namespace Xledger.Sql {
             VisForTableClusteredIndexType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14938,6 +17384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableDataCompressionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -14945,9 +17392,11 @@ namespace Xledger.Sql {
             VisForTableDataCompressionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14955,6 +17404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -14962,9 +17412,11 @@ namespace Xledger.Sql {
             VisForTableDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14972,6 +17424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableDistributionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -14979,9 +17432,11 @@ namespace Xledger.Sql {
             VisForTableDistributionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -14989,6 +17444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableHashDistributionPolicy node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableDistributionPolicy)node);
                 if (ShouldStop) { return; }
@@ -14996,9 +17452,11 @@ namespace Xledger.Sql {
             VisForTableHashDistributionPolicy?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15006,6 +17464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableHint node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15013,9 +17472,11 @@ namespace Xledger.Sql {
             VisForTableHint?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15023,6 +17484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableHintsOptimizerHint node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((OptimizerHint)node);
                 if (ShouldStop) { return; }
@@ -15030,9 +17492,11 @@ namespace Xledger.Sql {
             VisForTableHintsOptimizerHint?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15040,6 +17504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableIndexOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -15047,9 +17512,11 @@ namespace Xledger.Sql {
             VisForTableIndexOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15057,6 +17524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableNonClusteredIndexType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableIndexType)node);
                 if (ShouldStop) { return; }
@@ -15064,9 +17532,11 @@ namespace Xledger.Sql {
             VisForTableNonClusteredIndexType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15074,6 +17544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TablePartitionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -15081,9 +17552,11 @@ namespace Xledger.Sql {
             VisForTablePartitionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15091,6 +17564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TablePartitionOptionSpecifications node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PartitionSpecifications)node);
                 if (ShouldStop) { return; }
@@ -15098,9 +17572,11 @@ namespace Xledger.Sql {
             VisForTablePartitionOptionSpecifications?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15108,6 +17584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableReplicateDistributionPolicy node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableDistributionPolicy)node);
                 if (ShouldStop) { return; }
@@ -15115,9 +17592,11 @@ namespace Xledger.Sql {
             VisForTableReplicateDistributionPolicy?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15125,6 +17604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableRoundRobinDistributionPolicy node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableDistributionPolicy)node);
                 if (ShouldStop) { return; }
@@ -15132,9 +17612,11 @@ namespace Xledger.Sql {
             VisForTableRoundRobinDistributionPolicy?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15142,6 +17624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableSampleClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15149,9 +17632,11 @@ namespace Xledger.Sql {
             VisForTableSampleClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15159,6 +17644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableValuedFunctionReturnType node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((FunctionReturnType)node);
                 if (ShouldStop) { return; }
@@ -15166,9 +17652,11 @@ namespace Xledger.Sql {
             VisForTableValuedFunctionReturnType?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15176,6 +17664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TableXmlCompressionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableOption)node);
                 if (ShouldStop) { return; }
@@ -15183,9 +17672,11 @@ namespace Xledger.Sql {
             VisForTableXmlCompressionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15193,6 +17684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TargetDeclaration node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15200,9 +17692,11 @@ namespace Xledger.Sql {
             VisForTargetDeclaration?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15210,6 +17704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TargetRecoveryTimeDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -15217,9 +17712,11 @@ namespace Xledger.Sql {
             VisForTargetRecoveryTimeDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15227,6 +17724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TemporalClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15234,9 +17732,11 @@ namespace Xledger.Sql {
             VisForTemporalClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15244,6 +17744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ThrowStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -15251,9 +17752,11 @@ namespace Xledger.Sql {
             VisForThrowStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15261,6 +17764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TopRowFilter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15268,9 +17772,11 @@ namespace Xledger.Sql {
             VisForTopRowFilter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15278,6 +17784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TriggerAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15285,9 +17792,11 @@ namespace Xledger.Sql {
             VisForTriggerAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15295,6 +17804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TriggerObject node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15302,9 +17812,11 @@ namespace Xledger.Sql {
             VisForTriggerObject?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15312,6 +17824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TriggerOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15319,9 +17832,11 @@ namespace Xledger.Sql {
             VisForTriggerOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15329,6 +17844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TruncateTableStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -15336,9 +17852,11 @@ namespace Xledger.Sql {
             VisForTruncateTableStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15346,6 +17864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TruncateTargetTableSwitchOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableSwitchOption)node);
                 if (ShouldStop) { return; }
@@ -15353,9 +17872,11 @@ namespace Xledger.Sql {
             VisForTruncateTargetTableSwitchOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15363,6 +17884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TryCastCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -15370,9 +17892,11 @@ namespace Xledger.Sql {
             VisForTryCastCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15380,6 +17904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TryCatchStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -15387,9 +17912,11 @@ namespace Xledger.Sql {
             VisForTryCatchStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15397,6 +17924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TryConvertCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -15404,9 +17932,11 @@ namespace Xledger.Sql {
             VisForTryConvertCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15414,6 +17944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TryParseCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -15421,9 +17952,11 @@ namespace Xledger.Sql {
             VisForTryParseCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15431,6 +17964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TSEqualCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -15438,9 +17972,11 @@ namespace Xledger.Sql {
             VisForTSEqualCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15448,6 +17984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TSqlBatch node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15455,9 +17992,11 @@ namespace Xledger.Sql {
             VisForTSqlBatch?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15465,6 +18004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TSqlFragmentSnippet node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15472,9 +18012,11 @@ namespace Xledger.Sql {
             VisForTSqlFragmentSnippet?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15482,6 +18024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TSqlScript node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15489,9 +18032,11 @@ namespace Xledger.Sql {
             VisForTSqlScript?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15499,6 +18044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(TSqlStatementSnippet node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -15506,9 +18052,11 @@ namespace Xledger.Sql {
             VisForTSqlStatementSnippet?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15516,6 +18064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UnaryExpression node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ScalarExpression)node);
                 if (ShouldStop) { return; }
@@ -15523,9 +18072,11 @@ namespace Xledger.Sql {
             VisForUnaryExpression?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15533,6 +18084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UniqueConstraintDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ConstraintDefinition)node);
                 if (ShouldStop) { return; }
@@ -15540,9 +18092,11 @@ namespace Xledger.Sql {
             VisForUniqueConstraintDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15550,6 +18104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UnpivotedTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -15557,9 +18112,11 @@ namespace Xledger.Sql {
             VisForUnpivotedTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15567,6 +18124,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UnqualifiedJoin node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((JoinTableReference)node);
                 if (ShouldStop) { return; }
@@ -15574,9 +18132,11 @@ namespace Xledger.Sql {
             VisForUnqualifiedJoin?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15584,6 +18144,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UpdateCall node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((BooleanExpression)node);
                 if (ShouldStop) { return; }
@@ -15591,9 +18152,11 @@ namespace Xledger.Sql {
             VisForUpdateCall?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15601,6 +18164,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UpdateForClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ForClause)node);
                 if (ShouldStop) { return; }
@@ -15608,9 +18172,11 @@ namespace Xledger.Sql {
             VisForUpdateForClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15618,6 +18184,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UpdateMergeAction node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((MergeAction)node);
                 if (ShouldStop) { return; }
@@ -15625,9 +18192,11 @@ namespace Xledger.Sql {
             VisForUpdateMergeAction?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15635,6 +18204,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UpdateSpecification node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((UpdateDeleteSpecificationBase)node);
                 if (ShouldStop) { return; }
@@ -15642,9 +18212,11 @@ namespace Xledger.Sql {
             VisForUpdateSpecification?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15652,6 +18224,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UpdateStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DataModificationStatement)node);
                 if (ShouldStop) { return; }
@@ -15659,9 +18232,11 @@ namespace Xledger.Sql {
             VisForUpdateStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15669,6 +18244,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UpdateStatisticsStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -15676,9 +18252,11 @@ namespace Xledger.Sql {
             VisForUpdateStatisticsStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15686,6 +18264,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UpdateTextStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TextModificationStatement)node);
                 if (ShouldStop) { return; }
@@ -15693,9 +18272,11 @@ namespace Xledger.Sql {
             VisForUpdateTextStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15703,6 +18284,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UseFederationStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -15710,9 +18292,11 @@ namespace Xledger.Sql {
             VisForUseFederationStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15720,6 +18304,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UseHintList node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((OptimizerHint)node);
                 if (ShouldStop) { return; }
@@ -15727,9 +18312,11 @@ namespace Xledger.Sql {
             VisForUseHintList?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15737,6 +18324,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UserDataTypeReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ParameterizedDataTypeReference)node);
                 if (ShouldStop) { return; }
@@ -15744,9 +18332,11 @@ namespace Xledger.Sql {
             VisForUserDataTypeReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15754,6 +18344,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UserDefinedTypeCallTarget node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CallTarget)node);
                 if (ShouldStop) { return; }
@@ -15761,9 +18352,11 @@ namespace Xledger.Sql {
             VisForUserDefinedTypeCallTarget?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15771,6 +18364,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UserDefinedTypePropertyAccess node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PrimaryExpression)node);
                 if (ShouldStop) { return; }
@@ -15778,9 +18372,11 @@ namespace Xledger.Sql {
             VisForUserDefinedTypePropertyAccess?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15788,6 +18384,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UserLoginOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15795,9 +18392,11 @@ namespace Xledger.Sql {
             VisForUserLoginOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15805,6 +18404,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UserRemoteServiceBindingOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((RemoteServiceBindingOption)node);
                 if (ShouldStop) { return; }
@@ -15812,9 +18412,11 @@ namespace Xledger.Sql {
             VisForUserRemoteServiceBindingOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15822,6 +18424,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(UseStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -15829,9 +18432,11 @@ namespace Xledger.Sql {
             VisForUseStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15839,6 +18444,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ValuesInsertSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((InsertSource)node);
                 if (ShouldStop) { return; }
@@ -15846,9 +18452,11 @@ namespace Xledger.Sql {
             VisForValuesInsertSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15856,6 +18464,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(VariableMethodCallTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAliasAndColumns)node);
                 if (ShouldStop) { return; }
@@ -15863,9 +18472,11 @@ namespace Xledger.Sql {
             VisForVariableMethodCallTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15873,6 +18484,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(VariableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ValueExpression)node);
                 if (ShouldStop) { return; }
@@ -15880,9 +18492,11 @@ namespace Xledger.Sql {
             VisForVariableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15890,6 +18504,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(VariableTableReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TableReferenceWithAlias)node);
                 if (ShouldStop) { return; }
@@ -15897,9 +18512,11 @@ namespace Xledger.Sql {
             VisForVariableTableReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15907,6 +18524,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(VariableValuePair node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15914,9 +18532,11 @@ namespace Xledger.Sql {
             VisForVariableValuePair?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15924,6 +18544,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ViewDistributionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ViewOption)node);
                 if (ShouldStop) { return; }
@@ -15931,9 +18552,11 @@ namespace Xledger.Sql {
             VisForViewDistributionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15941,6 +18564,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ViewForAppendOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ViewOption)node);
                 if (ShouldStop) { return; }
@@ -15948,9 +18572,11 @@ namespace Xledger.Sql {
             VisForViewForAppendOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15958,6 +18584,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ViewHashDistributionPolicy node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ViewDistributionPolicy)node);
                 if (ShouldStop) { return; }
@@ -15965,9 +18592,11 @@ namespace Xledger.Sql {
             VisForViewHashDistributionPolicy?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15975,6 +18604,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ViewOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -15982,9 +18612,11 @@ namespace Xledger.Sql {
             VisForViewOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -15992,6 +18624,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(ViewRoundRobinDistributionPolicy node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ViewDistributionPolicy)node);
                 if (ShouldStop) { return; }
@@ -15999,9 +18632,11 @@ namespace Xledger.Sql {
             VisForViewRoundRobinDistributionPolicy?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16009,6 +18644,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WaitAtLowPriorityOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -16016,9 +18652,11 @@ namespace Xledger.Sql {
             VisForWaitAtLowPriorityOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16026,6 +18664,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WaitForStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -16033,9 +18672,11 @@ namespace Xledger.Sql {
             VisForWaitForStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16043,6 +18684,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WhereClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16050,9 +18692,11 @@ namespace Xledger.Sql {
             VisForWhereClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16060,6 +18704,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WhileStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlStatement)node);
                 if (ShouldStop) { return; }
@@ -16067,9 +18712,11 @@ namespace Xledger.Sql {
             VisForWhileStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16077,6 +18724,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WindowClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16084,9 +18732,11 @@ namespace Xledger.Sql {
             VisForWindowClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16094,6 +18744,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WindowDefinition node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16101,9 +18752,11 @@ namespace Xledger.Sql {
             VisForWindowDefinition?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16111,6 +18764,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WindowDelimiter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16118,9 +18772,11 @@ namespace Xledger.Sql {
             VisForWindowDelimiter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16128,6 +18784,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WindowFrameClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16135,9 +18792,11 @@ namespace Xledger.Sql {
             VisForWindowFrameClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16145,6 +18804,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WindowsCreateLoginSource node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((CreateLoginSource)node);
                 if (ShouldStop) { return; }
@@ -16152,9 +18812,11 @@ namespace Xledger.Sql {
             VisForWindowsCreateLoginSource?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16162,6 +18824,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WithCtesAndXmlNamespaces node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16169,9 +18832,11 @@ namespace Xledger.Sql {
             VisForWithCtesAndXmlNamespaces?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16179,6 +18844,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WithinGroupClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16186,9 +18852,11 @@ namespace Xledger.Sql {
             VisForWithinGroupClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16196,6 +18864,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WitnessDatabaseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DatabaseOption)node);
                 if (ShouldStop) { return; }
@@ -16203,9 +18872,11 @@ namespace Xledger.Sql {
             VisForWitnessDatabaseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16213,6 +18884,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WlmTimeLiteral node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16220,9 +18892,11 @@ namespace Xledger.Sql {
             VisForWlmTimeLiteral?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16230,6 +18904,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WorkloadGroupImportanceParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadGroupParameter)node);
                 if (ShouldStop) { return; }
@@ -16237,9 +18912,11 @@ namespace Xledger.Sql {
             VisForWorkloadGroupImportanceParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16247,6 +18924,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WorkloadGroupResourceParameter node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((WorkloadGroupParameter)node);
                 if (ShouldStop) { return; }
@@ -16254,9 +18932,11 @@ namespace Xledger.Sql {
             VisForWorkloadGroupResourceParameter?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16264,6 +18944,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WriteTextStatement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TextModificationStatement)node);
                 if (ShouldStop) { return; }
@@ -16271,9 +18952,11 @@ namespace Xledger.Sql {
             VisForWriteTextStatement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16281,6 +18964,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(WsdlPayloadOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((PayloadOption)node);
                 if (ShouldStop) { return; }
@@ -16288,9 +18972,11 @@ namespace Xledger.Sql {
             VisForWsdlPayloadOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16298,6 +18984,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(XmlCompressionOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((IndexOption)node);
                 if (ShouldStop) { return; }
@@ -16305,9 +18992,11 @@ namespace Xledger.Sql {
             VisForXmlCompressionOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16315,6 +19004,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(XmlDataTypeReference node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((DataTypeReference)node);
                 if (ShouldStop) { return; }
@@ -16322,9 +19012,11 @@ namespace Xledger.Sql {
             VisForXmlDataTypeReference?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16332,6 +19024,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(XmlForClause node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ForClause)node);
                 if (ShouldStop) { return; }
@@ -16339,9 +19032,11 @@ namespace Xledger.Sql {
             VisForXmlForClause?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16349,6 +19044,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(XmlForClauseOption node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((ForClause)node);
                 if (ShouldStop) { return; }
@@ -16356,9 +19052,11 @@ namespace Xledger.Sql {
             VisForXmlForClauseOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16366,6 +19064,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(XmlNamespaces node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((TSqlFragment)node);
                 if (ShouldStop) { return; }
@@ -16373,9 +19072,11 @@ namespace Xledger.Sql {
             VisForXmlNamespaces?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16383,6 +19084,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(XmlNamespacesAliasElement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((XmlNamespacesElement)node);
                 if (ShouldStop) { return; }
@@ -16390,9 +19092,11 @@ namespace Xledger.Sql {
             VisForXmlNamespacesAliasElement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -16400,6 +19104,7 @@ namespace Xledger.Sql {
         public override void ExplicitVisit(XmlNamespacesDefaultElement node) {
             if (SkipList.Contains(node)) { return; }
             if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
             if (VisitParentTypes) {
                 this.ExplicitBaseVisit((XmlNamespacesElement)node);
                 if (ShouldStop) { return; }
@@ -16407,9 +19112,11 @@ namespace Xledger.Sql {
             VisForXmlNamespacesDefaultElement?.Invoke(this, node);
             if (ShouldStop) { return; }
 
-            PushContext(node);
-            base.ExplicitVisit(node);
-            PopContext();
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
 
             HandleOnLeave(node);
         }
@@ -17233,6 +19940,9 @@ namespace Xledger.Sql {
             if (ShouldStop) { return; }
             if (VisitParentTypes) { this.ExplicitBaseVisit((TSqlFragment)node); }
             VisForXmlNamespacesElement?.Invoke(this, node);
+        }
+        public void SkipChildrenForCurrentNode() {
+            this.skipRequests += 1;
         }
     }
 }
