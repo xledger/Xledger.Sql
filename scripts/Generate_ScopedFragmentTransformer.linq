@@ -19,13 +19,17 @@ void Main() {
     sb.AppendLine("    public HashSet<TSqlFragment> SkipList { get; } = new HashSet<TSqlFragment>();");
     sb.AppendLine("    ///<summary>Actions to perform when leaving a node.</summary>");
     sb.AppendLine("    public Dictionary<TSqlFragment, Queue<Action<TSqlFragment>>> PendingOnLeaveActionsByFragment { get; set; } = new Dictionary<TSqlFragment, Queue<Action<TSqlFragment>>>();");
+    sb.AppendLine("    Dictionary<int, object> visitorByTypeTag = new Dictionary<int, object>();");
 
     var varNameByType = new Dictionary<Type, string>();
     sb.AppendLine();
     foreach (var t in VisitableTypes().OrderBy(t => t.Type.Name)) {
         var varName = VisitFnName(t.Type);
         varNameByType[t.Type] = varName;
-        sb.AppendLine($"    public Action<{className}, {t.Type.Name}> {varName};");
+        sb.AppendLine($"    public Action<{className}, {t.Type.Name}> {varName} {{");
+        sb.AppendLine($"        get => this.visitorByTypeTag.TryGetValue({t.tag}, out object v) ? (Action<{className}, {t.Type.Name}>)v : default;");
+        sb.AppendLine($"        set => this.visitorByTypeTag[{t.tag}] = value;");
+        sb.AppendLine($"    }}");
     }
     sb.AppendLine();
 
@@ -132,7 +136,7 @@ namespace Xledger.Sql {" + "\n" + txt + "\n}";
 
 string VisitFnName(Type t) => $"VisFor{t.Name}";
 
-record TypeInfo(Type Type, bool HasExplicitVisitMethod);
+record TypeInfo(Type Type, bool HasExplicitVisitMethod, ushort tag);
 
 
 List<TypeInfo> VisitableTypes() {
@@ -145,7 +149,7 @@ List<TypeInfo> VisitableTypes() {
         }
         var typ = x.GetParameters().Single().ParameterType;
         if (types.Add(typ)) {
-            ret.Add(new TypeInfo(typ, true));
+            ret.Add(new TypeInfo(typ, true, (ushort)ret.Count));
         }
     }
     
@@ -153,7 +157,7 @@ List<TypeInfo> VisitableTypes() {
         var parent = typInfo.Type.BaseType;
         while (parent != typeof(object)) {
             if (types.Add(parent)) {
-                ret.Add(new TypeInfo(parent, false));
+                ret.Add(new TypeInfo(parent, false, (ushort)ret.Count));
             } else {
                 break;
             }

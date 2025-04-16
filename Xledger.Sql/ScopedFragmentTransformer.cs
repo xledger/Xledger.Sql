@@ -12,1046 +12,4168 @@ namespace Xledger.Sql {
         public HashSet<TSqlFragment> SkipList { get; } = new HashSet<TSqlFragment>();
         ///<summary>Actions to perform when leaving a node.</summary>
         public Dictionary<TSqlFragment, Queue<Action<TSqlFragment>>> PendingOnLeaveActionsByFragment { get; set; } = new Dictionary<TSqlFragment, Queue<Action<TSqlFragment>>>();
+        Dictionary<ushort, object> visitorByTypeTag = new Dictionary<ushort, object>();
 
-        public Action<ScopedFragmentTransformer, AcceleratedDatabaseRecoveryDatabaseOption> VisForAcceleratedDatabaseRecoveryDatabaseOption;
-        public Action<ScopedFragmentTransformer, AddAlterFullTextIndexAction> VisForAddAlterFullTextIndexAction;
-        public Action<ScopedFragmentTransformer, AddFileSpec> VisForAddFileSpec;
-        public Action<ScopedFragmentTransformer, AddMemberAlterRoleAction> VisForAddMemberAlterRoleAction;
-        public Action<ScopedFragmentTransformer, AddSearchPropertyListAction> VisForAddSearchPropertyListAction;
-        public Action<ScopedFragmentTransformer, AddSensitivityClassificationStatement> VisForAddSensitivityClassificationStatement;
-        public Action<ScopedFragmentTransformer, AddSignatureStatement> VisForAddSignatureStatement;
-        public Action<ScopedFragmentTransformer, AdHocDataSource> VisForAdHocDataSource;
-        public Action<ScopedFragmentTransformer, AdHocTableReference> VisForAdHocTableReference;
-        public Action<ScopedFragmentTransformer, AlgorithmKeyOption> VisForAlgorithmKeyOption;
-        public Action<ScopedFragmentTransformer, AlterApplicationRoleStatement> VisForAlterApplicationRoleStatement;
-        public Action<ScopedFragmentTransformer, AlterAssemblyStatement> VisForAlterAssemblyStatement;
-        public Action<ScopedFragmentTransformer, AlterAsymmetricKeyStatement> VisForAlterAsymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, AlterAuthorizationStatement> VisForAlterAuthorizationStatement;
-        public Action<ScopedFragmentTransformer, AlterAvailabilityGroupAction> VisForAlterAvailabilityGroupAction;
-        public Action<ScopedFragmentTransformer, AlterAvailabilityGroupFailoverAction> VisForAlterAvailabilityGroupFailoverAction;
-        public Action<ScopedFragmentTransformer, AlterAvailabilityGroupFailoverOption> VisForAlterAvailabilityGroupFailoverOption;
-        public Action<ScopedFragmentTransformer, AlterAvailabilityGroupStatement> VisForAlterAvailabilityGroupStatement;
-        public Action<ScopedFragmentTransformer, AlterBrokerPriorityStatement> VisForAlterBrokerPriorityStatement;
-        public Action<ScopedFragmentTransformer, AlterCertificateStatement> VisForAlterCertificateStatement;
-        public Action<ScopedFragmentTransformer, AlterColumnAlterFullTextIndexAction> VisForAlterColumnAlterFullTextIndexAction;
-        public Action<ScopedFragmentTransformer, AlterColumnEncryptionKeyStatement> VisForAlterColumnEncryptionKeyStatement;
-        public Action<ScopedFragmentTransformer, AlterCreateEndpointStatementBase> VisForAlterCreateEndpointStatementBase;
-        public Action<ScopedFragmentTransformer, AlterCreateServiceStatementBase> VisForAlterCreateServiceStatementBase;
-        public Action<ScopedFragmentTransformer, AlterCredentialStatement> VisForAlterCredentialStatement;
-        public Action<ScopedFragmentTransformer, AlterCryptographicProviderStatement> VisForAlterCryptographicProviderStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseAddFileGroupStatement> VisForAlterDatabaseAddFileGroupStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseAddFileStatement> VisForAlterDatabaseAddFileStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseAuditSpecificationStatement> VisForAlterDatabaseAuditSpecificationStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseCollateStatement> VisForAlterDatabaseCollateStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseEncryptionKeyStatement> VisForAlterDatabaseEncryptionKeyStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseModifyFileGroupStatement> VisForAlterDatabaseModifyFileGroupStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseModifyFileStatement> VisForAlterDatabaseModifyFileStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseModifyNameStatement> VisForAlterDatabaseModifyNameStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseRebuildLogStatement> VisForAlterDatabaseRebuildLogStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseRemoveFileGroupStatement> VisForAlterDatabaseRemoveFileGroupStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseRemoveFileStatement> VisForAlterDatabaseRemoveFileStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationClearStatement> VisForAlterDatabaseScopedConfigurationClearStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationSetStatement> VisForAlterDatabaseScopedConfigurationSetStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationStatement> VisForAlterDatabaseScopedConfigurationStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseSetStatement> VisForAlterDatabaseSetStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseStatement> VisForAlterDatabaseStatement;
-        public Action<ScopedFragmentTransformer, AlterDatabaseTermination> VisForAlterDatabaseTermination;
-        public Action<ScopedFragmentTransformer, AlterEndpointStatement> VisForAlterEndpointStatement;
-        public Action<ScopedFragmentTransformer, AlterEventSessionStatement> VisForAlterEventSessionStatement;
-        public Action<ScopedFragmentTransformer, AlterExternalDataSourceStatement> VisForAlterExternalDataSourceStatement;
-        public Action<ScopedFragmentTransformer, AlterExternalLanguageStatement> VisForAlterExternalLanguageStatement;
-        public Action<ScopedFragmentTransformer, AlterExternalLibraryStatement> VisForAlterExternalLibraryStatement;
-        public Action<ScopedFragmentTransformer, AlterExternalResourcePoolStatement> VisForAlterExternalResourcePoolStatement;
-        public Action<ScopedFragmentTransformer, AlterFederationStatement> VisForAlterFederationStatement;
-        public Action<ScopedFragmentTransformer, AlterFullTextCatalogStatement> VisForAlterFullTextCatalogStatement;
-        public Action<ScopedFragmentTransformer, AlterFullTextIndexAction> VisForAlterFullTextIndexAction;
-        public Action<ScopedFragmentTransformer, AlterFullTextIndexStatement> VisForAlterFullTextIndexStatement;
-        public Action<ScopedFragmentTransformer, AlterFullTextStopListStatement> VisForAlterFullTextStopListStatement;
-        public Action<ScopedFragmentTransformer, AlterFunctionStatement> VisForAlterFunctionStatement;
-        public Action<ScopedFragmentTransformer, AlterIndexStatement> VisForAlterIndexStatement;
-        public Action<ScopedFragmentTransformer, AlterLoginAddDropCredentialStatement> VisForAlterLoginAddDropCredentialStatement;
-        public Action<ScopedFragmentTransformer, AlterLoginEnableDisableStatement> VisForAlterLoginEnableDisableStatement;
-        public Action<ScopedFragmentTransformer, AlterLoginOptionsStatement> VisForAlterLoginOptionsStatement;
-        public Action<ScopedFragmentTransformer, AlterLoginStatement> VisForAlterLoginStatement;
-        public Action<ScopedFragmentTransformer, AlterMasterKeyStatement> VisForAlterMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, AlterMessageTypeStatement> VisForAlterMessageTypeStatement;
-        public Action<ScopedFragmentTransformer, AlterPartitionFunctionStatement> VisForAlterPartitionFunctionStatement;
-        public Action<ScopedFragmentTransformer, AlterPartitionSchemeStatement> VisForAlterPartitionSchemeStatement;
-        public Action<ScopedFragmentTransformer, AlterProcedureStatement> VisForAlterProcedureStatement;
-        public Action<ScopedFragmentTransformer, AlterQueueStatement> VisForAlterQueueStatement;
-        public Action<ScopedFragmentTransformer, AlterRemoteServiceBindingStatement> VisForAlterRemoteServiceBindingStatement;
-        public Action<ScopedFragmentTransformer, AlterResourceGovernorStatement> VisForAlterResourceGovernorStatement;
-        public Action<ScopedFragmentTransformer, AlterResourcePoolStatement> VisForAlterResourcePoolStatement;
-        public Action<ScopedFragmentTransformer, AlterRoleAction> VisForAlterRoleAction;
-        public Action<ScopedFragmentTransformer, AlterRoleStatement> VisForAlterRoleStatement;
-        public Action<ScopedFragmentTransformer, AlterRouteStatement> VisForAlterRouteStatement;
-        public Action<ScopedFragmentTransformer, AlterSchemaStatement> VisForAlterSchemaStatement;
-        public Action<ScopedFragmentTransformer, AlterSearchPropertyListStatement> VisForAlterSearchPropertyListStatement;
-        public Action<ScopedFragmentTransformer, AlterSecurityPolicyStatement> VisForAlterSecurityPolicyStatement;
-        public Action<ScopedFragmentTransformer, AlterSequenceStatement> VisForAlterSequenceStatement;
-        public Action<ScopedFragmentTransformer, AlterServerAuditSpecificationStatement> VisForAlterServerAuditSpecificationStatement;
-        public Action<ScopedFragmentTransformer, AlterServerAuditStatement> VisForAlterServerAuditStatement;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionContainerOption> VisForAlterServerConfigurationBufferPoolExtensionContainerOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionOption> VisForAlterServerConfigurationBufferPoolExtensionOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionSizeOption> VisForAlterServerConfigurationBufferPoolExtensionSizeOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationDiagnosticsLogMaxSizeOption> VisForAlterServerConfigurationDiagnosticsLogMaxSizeOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationDiagnosticsLogOption> VisForAlterServerConfigurationDiagnosticsLogOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationExternalAuthenticationContainerOption> VisForAlterServerConfigurationExternalAuthenticationContainerOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationExternalAuthenticationOption> VisForAlterServerConfigurationExternalAuthenticationOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationFailoverClusterPropertyOption> VisForAlterServerConfigurationFailoverClusterPropertyOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationHadrClusterOption> VisForAlterServerConfigurationHadrClusterOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetBufferPoolExtensionStatement> VisForAlterServerConfigurationSetBufferPoolExtensionStatement;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetDiagnosticsLogStatement> VisForAlterServerConfigurationSetDiagnosticsLogStatement;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetExternalAuthenticationStatement> VisForAlterServerConfigurationSetExternalAuthenticationStatement;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetFailoverClusterPropertyStatement> VisForAlterServerConfigurationSetFailoverClusterPropertyStatement;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetHadrClusterStatement> VisForAlterServerConfigurationSetHadrClusterStatement;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetSoftNumaStatement> VisForAlterServerConfigurationSetSoftNumaStatement;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationSoftNumaOption> VisForAlterServerConfigurationSoftNumaOption;
-        public Action<ScopedFragmentTransformer, AlterServerConfigurationStatement> VisForAlterServerConfigurationStatement;
-        public Action<ScopedFragmentTransformer, AlterServerRoleStatement> VisForAlterServerRoleStatement;
-        public Action<ScopedFragmentTransformer, AlterServiceMasterKeyStatement> VisForAlterServiceMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, AlterServiceStatement> VisForAlterServiceStatement;
-        public Action<ScopedFragmentTransformer, AlterSymmetricKeyStatement> VisForAlterSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, AlterTableAddTableElementStatement> VisForAlterTableAddTableElementStatement;
-        public Action<ScopedFragmentTransformer, AlterTableAlterColumnStatement> VisForAlterTableAlterColumnStatement;
-        public Action<ScopedFragmentTransformer, AlterTableAlterIndexStatement> VisForAlterTableAlterIndexStatement;
-        public Action<ScopedFragmentTransformer, AlterTableAlterPartitionStatement> VisForAlterTableAlterPartitionStatement;
-        public Action<ScopedFragmentTransformer, AlterTableChangeTrackingModificationStatement> VisForAlterTableChangeTrackingModificationStatement;
-        public Action<ScopedFragmentTransformer, AlterTableConstraintModificationStatement> VisForAlterTableConstraintModificationStatement;
-        public Action<ScopedFragmentTransformer, AlterTableDropTableElement> VisForAlterTableDropTableElement;
-        public Action<ScopedFragmentTransformer, AlterTableDropTableElementStatement> VisForAlterTableDropTableElementStatement;
-        public Action<ScopedFragmentTransformer, AlterTableFileTableNamespaceStatement> VisForAlterTableFileTableNamespaceStatement;
-        public Action<ScopedFragmentTransformer, AlterTableRebuildStatement> VisForAlterTableRebuildStatement;
-        public Action<ScopedFragmentTransformer, AlterTableSetStatement> VisForAlterTableSetStatement;
-        public Action<ScopedFragmentTransformer, AlterTableStatement> VisForAlterTableStatement;
-        public Action<ScopedFragmentTransformer, AlterTableSwitchStatement> VisForAlterTableSwitchStatement;
-        public Action<ScopedFragmentTransformer, AlterTableTriggerModificationStatement> VisForAlterTableTriggerModificationStatement;
-        public Action<ScopedFragmentTransformer, AlterTriggerStatement> VisForAlterTriggerStatement;
-        public Action<ScopedFragmentTransformer, AlterUserStatement> VisForAlterUserStatement;
-        public Action<ScopedFragmentTransformer, AlterViewStatement> VisForAlterViewStatement;
-        public Action<ScopedFragmentTransformer, AlterWorkloadGroupStatement> VisForAlterWorkloadGroupStatement;
-        public Action<ScopedFragmentTransformer, AlterXmlSchemaCollectionStatement> VisForAlterXmlSchemaCollectionStatement;
-        public Action<ScopedFragmentTransformer, ApplicationRoleOption> VisForApplicationRoleOption;
-        public Action<ScopedFragmentTransformer, ApplicationRoleStatement> VisForApplicationRoleStatement;
-        public Action<ScopedFragmentTransformer, AssemblyEncryptionSource> VisForAssemblyEncryptionSource;
-        public Action<ScopedFragmentTransformer, AssemblyName> VisForAssemblyName;
-        public Action<ScopedFragmentTransformer, AssemblyOption> VisForAssemblyOption;
-        public Action<ScopedFragmentTransformer, AssemblyStatement> VisForAssemblyStatement;
-        public Action<ScopedFragmentTransformer, AssignmentSetClause> VisForAssignmentSetClause;
-        public Action<ScopedFragmentTransformer, AsymmetricKeyCreateLoginSource> VisForAsymmetricKeyCreateLoginSource;
-        public Action<ScopedFragmentTransformer, AtomicBlockOption> VisForAtomicBlockOption;
-        public Action<ScopedFragmentTransformer, AtTimeZoneCall> VisForAtTimeZoneCall;
-        public Action<ScopedFragmentTransformer, AuditActionGroupReference> VisForAuditActionGroupReference;
-        public Action<ScopedFragmentTransformer, AuditActionSpecification> VisForAuditActionSpecification;
-        public Action<ScopedFragmentTransformer, AuditGuidAuditOption> VisForAuditGuidAuditOption;
-        public Action<ScopedFragmentTransformer, AuditOption> VisForAuditOption;
-        public Action<ScopedFragmentTransformer, AuditSpecificationDetail> VisForAuditSpecificationDetail;
-        public Action<ScopedFragmentTransformer, AuditSpecificationPart> VisForAuditSpecificationPart;
-        public Action<ScopedFragmentTransformer, AuditSpecificationStatement> VisForAuditSpecificationStatement;
-        public Action<ScopedFragmentTransformer, AuditTarget> VisForAuditTarget;
-        public Action<ScopedFragmentTransformer, AuditTargetOption> VisForAuditTargetOption;
-        public Action<ScopedFragmentTransformer, AuthenticationEndpointProtocolOption> VisForAuthenticationEndpointProtocolOption;
-        public Action<ScopedFragmentTransformer, AuthenticationPayloadOption> VisForAuthenticationPayloadOption;
-        public Action<ScopedFragmentTransformer, AutoCleanupChangeTrackingOptionDetail> VisForAutoCleanupChangeTrackingOptionDetail;
-        public Action<ScopedFragmentTransformer, AutoCreateStatisticsDatabaseOption> VisForAutoCreateStatisticsDatabaseOption;
-        public Action<ScopedFragmentTransformer, AutomaticTuningCreateIndexOption> VisForAutomaticTuningCreateIndexOption;
-        public Action<ScopedFragmentTransformer, AutomaticTuningDatabaseOption> VisForAutomaticTuningDatabaseOption;
-        public Action<ScopedFragmentTransformer, AutomaticTuningDropIndexOption> VisForAutomaticTuningDropIndexOption;
-        public Action<ScopedFragmentTransformer, AutomaticTuningForceLastGoodPlanOption> VisForAutomaticTuningForceLastGoodPlanOption;
-        public Action<ScopedFragmentTransformer, AutomaticTuningMaintainIndexOption> VisForAutomaticTuningMaintainIndexOption;
-        public Action<ScopedFragmentTransformer, AutomaticTuningOption> VisForAutomaticTuningOption;
-        public Action<ScopedFragmentTransformer, AvailabilityGroupOption> VisForAvailabilityGroupOption;
-        public Action<ScopedFragmentTransformer, AvailabilityGroupStatement> VisForAvailabilityGroupStatement;
-        public Action<ScopedFragmentTransformer, AvailabilityModeReplicaOption> VisForAvailabilityModeReplicaOption;
-        public Action<ScopedFragmentTransformer, AvailabilityReplica> VisForAvailabilityReplica;
-        public Action<ScopedFragmentTransformer, AvailabilityReplicaOption> VisForAvailabilityReplicaOption;
-        public Action<ScopedFragmentTransformer, BackupCertificateStatement> VisForBackupCertificateStatement;
-        public Action<ScopedFragmentTransformer, BackupDatabaseStatement> VisForBackupDatabaseStatement;
-        public Action<ScopedFragmentTransformer, BackupEncryptionOption> VisForBackupEncryptionOption;
-        public Action<ScopedFragmentTransformer, BackupMasterKeyStatement> VisForBackupMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, BackupOption> VisForBackupOption;
-        public Action<ScopedFragmentTransformer, BackupRestoreFileInfo> VisForBackupRestoreFileInfo;
-        public Action<ScopedFragmentTransformer, BackupRestoreMasterKeyStatementBase> VisForBackupRestoreMasterKeyStatementBase;
-        public Action<ScopedFragmentTransformer, BackupServiceMasterKeyStatement> VisForBackupServiceMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, BackupStatement> VisForBackupStatement;
-        public Action<ScopedFragmentTransformer, BackupTransactionLogStatement> VisForBackupTransactionLogStatement;
-        public Action<ScopedFragmentTransformer, BackwardsCompatibleDropIndexClause> VisForBackwardsCompatibleDropIndexClause;
-        public Action<ScopedFragmentTransformer, BeginConversationTimerStatement> VisForBeginConversationTimerStatement;
-        public Action<ScopedFragmentTransformer, BeginDialogStatement> VisForBeginDialogStatement;
-        public Action<ScopedFragmentTransformer, BeginEndAtomicBlockStatement> VisForBeginEndAtomicBlockStatement;
-        public Action<ScopedFragmentTransformer, BeginEndBlockStatement> VisForBeginEndBlockStatement;
-        public Action<ScopedFragmentTransformer, BeginTransactionStatement> VisForBeginTransactionStatement;
-        public Action<ScopedFragmentTransformer, BinaryExpression> VisForBinaryExpression;
-        public Action<ScopedFragmentTransformer, BinaryLiteral> VisForBinaryLiteral;
-        public Action<ScopedFragmentTransformer, BinaryQueryExpression> VisForBinaryQueryExpression;
-        public Action<ScopedFragmentTransformer, BooleanBinaryExpression> VisForBooleanBinaryExpression;
-        public Action<ScopedFragmentTransformer, BooleanComparisonExpression> VisForBooleanComparisonExpression;
-        public Action<ScopedFragmentTransformer, BooleanExpression> VisForBooleanExpression;
-        public Action<ScopedFragmentTransformer, BooleanExpressionSnippet> VisForBooleanExpressionSnippet;
-        public Action<ScopedFragmentTransformer, BooleanIsNullExpression> VisForBooleanIsNullExpression;
-        public Action<ScopedFragmentTransformer, BooleanNotExpression> VisForBooleanNotExpression;
-        public Action<ScopedFragmentTransformer, BooleanParenthesisExpression> VisForBooleanParenthesisExpression;
-        public Action<ScopedFragmentTransformer, BooleanTernaryExpression> VisForBooleanTernaryExpression;
-        public Action<ScopedFragmentTransformer, BoundingBoxParameter> VisForBoundingBoxParameter;
-        public Action<ScopedFragmentTransformer, BoundingBoxSpatialIndexOption> VisForBoundingBoxSpatialIndexOption;
-        public Action<ScopedFragmentTransformer, BreakStatement> VisForBreakStatement;
-        public Action<ScopedFragmentTransformer, BrokerPriorityParameter> VisForBrokerPriorityParameter;
-        public Action<ScopedFragmentTransformer, BrokerPriorityStatement> VisForBrokerPriorityStatement;
-        public Action<ScopedFragmentTransformer, BrowseForClause> VisForBrowseForClause;
-        public Action<ScopedFragmentTransformer, BuiltInFunctionTableReference> VisForBuiltInFunctionTableReference;
-        public Action<ScopedFragmentTransformer, BulkInsertBase> VisForBulkInsertBase;
-        public Action<ScopedFragmentTransformer, BulkInsertOption> VisForBulkInsertOption;
-        public Action<ScopedFragmentTransformer, BulkInsertStatement> VisForBulkInsertStatement;
-        public Action<ScopedFragmentTransformer, BulkOpenRowset> VisForBulkOpenRowset;
-        public Action<ScopedFragmentTransformer, CallTarget> VisForCallTarget;
-        public Action<ScopedFragmentTransformer, CaseExpression> VisForCaseExpression;
-        public Action<ScopedFragmentTransformer, CastCall> VisForCastCall;
-        public Action<ScopedFragmentTransformer, CatalogCollationOption> VisForCatalogCollationOption;
-        public Action<ScopedFragmentTransformer, CellsPerObjectSpatialIndexOption> VisForCellsPerObjectSpatialIndexOption;
-        public Action<ScopedFragmentTransformer, CertificateCreateLoginSource> VisForCertificateCreateLoginSource;
-        public Action<ScopedFragmentTransformer, CertificateOption> VisForCertificateOption;
-        public Action<ScopedFragmentTransformer, CertificateStatementBase> VisForCertificateStatementBase;
-        public Action<ScopedFragmentTransformer, ChangeRetentionChangeTrackingOptionDetail> VisForChangeRetentionChangeTrackingOptionDetail;
-        public Action<ScopedFragmentTransformer, ChangeTableChangesTableReference> VisForChangeTableChangesTableReference;
-        public Action<ScopedFragmentTransformer, ChangeTableVersionTableReference> VisForChangeTableVersionTableReference;
-        public Action<ScopedFragmentTransformer, ChangeTrackingDatabaseOption> VisForChangeTrackingDatabaseOption;
-        public Action<ScopedFragmentTransformer, ChangeTrackingFullTextIndexOption> VisForChangeTrackingFullTextIndexOption;
-        public Action<ScopedFragmentTransformer, ChangeTrackingOptionDetail> VisForChangeTrackingOptionDetail;
-        public Action<ScopedFragmentTransformer, CharacterSetPayloadOption> VisForCharacterSetPayloadOption;
-        public Action<ScopedFragmentTransformer, CheckConstraintDefinition> VisForCheckConstraintDefinition;
-        public Action<ScopedFragmentTransformer, CheckpointStatement> VisForCheckpointStatement;
-        public Action<ScopedFragmentTransformer, ChildObjectName> VisForChildObjectName;
-        public Action<ScopedFragmentTransformer, ClassifierEndTimeOption> VisForClassifierEndTimeOption;
-        public Action<ScopedFragmentTransformer, ClassifierImportanceOption> VisForClassifierImportanceOption;
-        public Action<ScopedFragmentTransformer, ClassifierMemberNameOption> VisForClassifierMemberNameOption;
-        public Action<ScopedFragmentTransformer, ClassifierStartTimeOption> VisForClassifierStartTimeOption;
-        public Action<ScopedFragmentTransformer, ClassifierWlmContextOption> VisForClassifierWlmContextOption;
-        public Action<ScopedFragmentTransformer, ClassifierWlmLabelOption> VisForClassifierWlmLabelOption;
-        public Action<ScopedFragmentTransformer, ClassifierWorkloadGroupOption> VisForClassifierWorkloadGroupOption;
-        public Action<ScopedFragmentTransformer, CloseCursorStatement> VisForCloseCursorStatement;
-        public Action<ScopedFragmentTransformer, CloseMasterKeyStatement> VisForCloseMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, CloseSymmetricKeyStatement> VisForCloseSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, CoalesceExpression> VisForCoalesceExpression;
-        public Action<ScopedFragmentTransformer, ColumnDefinition> VisForColumnDefinition;
-        public Action<ScopedFragmentTransformer, ColumnDefinitionBase> VisForColumnDefinitionBase;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionAlgorithmNameParameter> VisForColumnEncryptionAlgorithmNameParameter;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionAlgorithmParameter> VisForColumnEncryptionAlgorithmParameter;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionDefinition> VisForColumnEncryptionDefinition;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionDefinitionParameter> VisForColumnEncryptionDefinitionParameter;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionKeyNameParameter> VisForColumnEncryptionKeyNameParameter;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionKeyStatement> VisForColumnEncryptionKeyStatement;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionKeyValue> VisForColumnEncryptionKeyValue;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionKeyValueParameter> VisForColumnEncryptionKeyValueParameter;
-        public Action<ScopedFragmentTransformer, ColumnEncryptionTypeParameter> VisForColumnEncryptionTypeParameter;
-        public Action<ScopedFragmentTransformer, ColumnMasterKeyEnclaveComputationsParameter> VisForColumnMasterKeyEnclaveComputationsParameter;
-        public Action<ScopedFragmentTransformer, ColumnMasterKeyNameParameter> VisForColumnMasterKeyNameParameter;
-        public Action<ScopedFragmentTransformer, ColumnMasterKeyParameter> VisForColumnMasterKeyParameter;
-        public Action<ScopedFragmentTransformer, ColumnMasterKeyPathParameter> VisForColumnMasterKeyPathParameter;
-        public Action<ScopedFragmentTransformer, ColumnMasterKeyStoreProviderNameParameter> VisForColumnMasterKeyStoreProviderNameParameter;
-        public Action<ScopedFragmentTransformer, ColumnReferenceExpression> VisForColumnReferenceExpression;
-        public Action<ScopedFragmentTransformer, ColumnStorageOptions> VisForColumnStorageOptions;
-        public Action<ScopedFragmentTransformer, ColumnWithSortOrder> VisForColumnWithSortOrder;
-        public Action<ScopedFragmentTransformer, CommandSecurityElement80> VisForCommandSecurityElement80;
-        public Action<ScopedFragmentTransformer, CommitTransactionStatement> VisForCommitTransactionStatement;
-        public Action<ScopedFragmentTransformer, CommonTableExpression> VisForCommonTableExpression;
-        public Action<ScopedFragmentTransformer, CompositeGroupingSpecification> VisForCompositeGroupingSpecification;
-        public Action<ScopedFragmentTransformer, CompressionDelayIndexOption> VisForCompressionDelayIndexOption;
-        public Action<ScopedFragmentTransformer, CompressionEndpointProtocolOption> VisForCompressionEndpointProtocolOption;
-        public Action<ScopedFragmentTransformer, CompressionPartitionRange> VisForCompressionPartitionRange;
-        public Action<ScopedFragmentTransformer, ComputeClause> VisForComputeClause;
-        public Action<ScopedFragmentTransformer, ComputeFunction> VisForComputeFunction;
-        public Action<ScopedFragmentTransformer, ConstraintDefinition> VisForConstraintDefinition;
-        public Action<ScopedFragmentTransformer, ContainmentDatabaseOption> VisForContainmentDatabaseOption;
-        public Action<ScopedFragmentTransformer, ContinueStatement> VisForContinueStatement;
-        public Action<ScopedFragmentTransformer, ContractMessage> VisForContractMessage;
-        public Action<ScopedFragmentTransformer, ConvertCall> VisForConvertCall;
-        public Action<ScopedFragmentTransformer, CopyColumnOption> VisForCopyColumnOption;
-        public Action<ScopedFragmentTransformer, CopyCredentialOption> VisForCopyCredentialOption;
-        public Action<ScopedFragmentTransformer, CopyOption> VisForCopyOption;
-        public Action<ScopedFragmentTransformer, CopyStatement> VisForCopyStatement;
-        public Action<ScopedFragmentTransformer, CopyStatementOptionBase> VisForCopyStatementOptionBase;
-        public Action<ScopedFragmentTransformer, CreateAggregateStatement> VisForCreateAggregateStatement;
-        public Action<ScopedFragmentTransformer, CreateApplicationRoleStatement> VisForCreateApplicationRoleStatement;
-        public Action<ScopedFragmentTransformer, CreateAssemblyStatement> VisForCreateAssemblyStatement;
-        public Action<ScopedFragmentTransformer, CreateAsymmetricKeyStatement> VisForCreateAsymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, CreateAvailabilityGroupStatement> VisForCreateAvailabilityGroupStatement;
-        public Action<ScopedFragmentTransformer, CreateBrokerPriorityStatement> VisForCreateBrokerPriorityStatement;
-        public Action<ScopedFragmentTransformer, CreateCertificateStatement> VisForCreateCertificateStatement;
-        public Action<ScopedFragmentTransformer, CreateColumnEncryptionKeyStatement> VisForCreateColumnEncryptionKeyStatement;
-        public Action<ScopedFragmentTransformer, CreateColumnMasterKeyStatement> VisForCreateColumnMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, CreateColumnStoreIndexStatement> VisForCreateColumnStoreIndexStatement;
-        public Action<ScopedFragmentTransformer, CreateContractStatement> VisForCreateContractStatement;
-        public Action<ScopedFragmentTransformer, CreateCredentialStatement> VisForCreateCredentialStatement;
-        public Action<ScopedFragmentTransformer, CreateCryptographicProviderStatement> VisForCreateCryptographicProviderStatement;
-        public Action<ScopedFragmentTransformer, CreateDatabaseAuditSpecificationStatement> VisForCreateDatabaseAuditSpecificationStatement;
-        public Action<ScopedFragmentTransformer, CreateDatabaseEncryptionKeyStatement> VisForCreateDatabaseEncryptionKeyStatement;
-        public Action<ScopedFragmentTransformer, CreateDatabaseStatement> VisForCreateDatabaseStatement;
-        public Action<ScopedFragmentTransformer, CreateDefaultStatement> VisForCreateDefaultStatement;
-        public Action<ScopedFragmentTransformer, CreateEndpointStatement> VisForCreateEndpointStatement;
-        public Action<ScopedFragmentTransformer, CreateEventNotificationStatement> VisForCreateEventNotificationStatement;
-        public Action<ScopedFragmentTransformer, CreateEventSessionStatement> VisForCreateEventSessionStatement;
-        public Action<ScopedFragmentTransformer, CreateExternalDataSourceStatement> VisForCreateExternalDataSourceStatement;
-        public Action<ScopedFragmentTransformer, CreateExternalFileFormatStatement> VisForCreateExternalFileFormatStatement;
-        public Action<ScopedFragmentTransformer, CreateExternalLanguageStatement> VisForCreateExternalLanguageStatement;
-        public Action<ScopedFragmentTransformer, CreateExternalLibraryStatement> VisForCreateExternalLibraryStatement;
-        public Action<ScopedFragmentTransformer, CreateExternalResourcePoolStatement> VisForCreateExternalResourcePoolStatement;
-        public Action<ScopedFragmentTransformer, CreateExternalStreamingJobStatement> VisForCreateExternalStreamingJobStatement;
-        public Action<ScopedFragmentTransformer, CreateExternalStreamStatement> VisForCreateExternalStreamStatement;
-        public Action<ScopedFragmentTransformer, CreateExternalTableStatement> VisForCreateExternalTableStatement;
-        public Action<ScopedFragmentTransformer, CreateFederationStatement> VisForCreateFederationStatement;
-        public Action<ScopedFragmentTransformer, CreateFullTextCatalogStatement> VisForCreateFullTextCatalogStatement;
-        public Action<ScopedFragmentTransformer, CreateFullTextIndexStatement> VisForCreateFullTextIndexStatement;
-        public Action<ScopedFragmentTransformer, CreateFullTextStopListStatement> VisForCreateFullTextStopListStatement;
-        public Action<ScopedFragmentTransformer, CreateFunctionStatement> VisForCreateFunctionStatement;
-        public Action<ScopedFragmentTransformer, CreateIndexStatement> VisForCreateIndexStatement;
-        public Action<ScopedFragmentTransformer, CreateLoginSource> VisForCreateLoginSource;
-        public Action<ScopedFragmentTransformer, CreateLoginStatement> VisForCreateLoginStatement;
-        public Action<ScopedFragmentTransformer, CreateMasterKeyStatement> VisForCreateMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, CreateMessageTypeStatement> VisForCreateMessageTypeStatement;
-        public Action<ScopedFragmentTransformer, CreateOrAlterFunctionStatement> VisForCreateOrAlterFunctionStatement;
-        public Action<ScopedFragmentTransformer, CreateOrAlterProcedureStatement> VisForCreateOrAlterProcedureStatement;
-        public Action<ScopedFragmentTransformer, CreateOrAlterTriggerStatement> VisForCreateOrAlterTriggerStatement;
-        public Action<ScopedFragmentTransformer, CreateOrAlterViewStatement> VisForCreateOrAlterViewStatement;
-        public Action<ScopedFragmentTransformer, CreatePartitionFunctionStatement> VisForCreatePartitionFunctionStatement;
-        public Action<ScopedFragmentTransformer, CreatePartitionSchemeStatement> VisForCreatePartitionSchemeStatement;
-        public Action<ScopedFragmentTransformer, CreateProcedureStatement> VisForCreateProcedureStatement;
-        public Action<ScopedFragmentTransformer, CreateQueueStatement> VisForCreateQueueStatement;
-        public Action<ScopedFragmentTransformer, CreateRemoteServiceBindingStatement> VisForCreateRemoteServiceBindingStatement;
-        public Action<ScopedFragmentTransformer, CreateResourcePoolStatement> VisForCreateResourcePoolStatement;
-        public Action<ScopedFragmentTransformer, CreateRoleStatement> VisForCreateRoleStatement;
-        public Action<ScopedFragmentTransformer, CreateRouteStatement> VisForCreateRouteStatement;
-        public Action<ScopedFragmentTransformer, CreateRuleStatement> VisForCreateRuleStatement;
-        public Action<ScopedFragmentTransformer, CreateSchemaStatement> VisForCreateSchemaStatement;
-        public Action<ScopedFragmentTransformer, CreateSearchPropertyListStatement> VisForCreateSearchPropertyListStatement;
-        public Action<ScopedFragmentTransformer, CreateSecurityPolicyStatement> VisForCreateSecurityPolicyStatement;
-        public Action<ScopedFragmentTransformer, CreateSelectiveXmlIndexStatement> VisForCreateSelectiveXmlIndexStatement;
-        public Action<ScopedFragmentTransformer, CreateSequenceStatement> VisForCreateSequenceStatement;
-        public Action<ScopedFragmentTransformer, CreateServerAuditSpecificationStatement> VisForCreateServerAuditSpecificationStatement;
-        public Action<ScopedFragmentTransformer, CreateServerAuditStatement> VisForCreateServerAuditStatement;
-        public Action<ScopedFragmentTransformer, CreateServerRoleStatement> VisForCreateServerRoleStatement;
-        public Action<ScopedFragmentTransformer, CreateServiceStatement> VisForCreateServiceStatement;
-        public Action<ScopedFragmentTransformer, CreateSpatialIndexStatement> VisForCreateSpatialIndexStatement;
-        public Action<ScopedFragmentTransformer, CreateStatisticsStatement> VisForCreateStatisticsStatement;
-        public Action<ScopedFragmentTransformer, CreateSymmetricKeyStatement> VisForCreateSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, CreateSynonymStatement> VisForCreateSynonymStatement;
-        public Action<ScopedFragmentTransformer, CreateTableStatement> VisForCreateTableStatement;
-        public Action<ScopedFragmentTransformer, CreateTriggerStatement> VisForCreateTriggerStatement;
-        public Action<ScopedFragmentTransformer, CreateTypeStatement> VisForCreateTypeStatement;
-        public Action<ScopedFragmentTransformer, CreateTypeTableStatement> VisForCreateTypeTableStatement;
-        public Action<ScopedFragmentTransformer, CreateTypeUddtStatement> VisForCreateTypeUddtStatement;
-        public Action<ScopedFragmentTransformer, CreateTypeUdtStatement> VisForCreateTypeUdtStatement;
-        public Action<ScopedFragmentTransformer, CreateUserStatement> VisForCreateUserStatement;
-        public Action<ScopedFragmentTransformer, CreateViewStatement> VisForCreateViewStatement;
-        public Action<ScopedFragmentTransformer, CreateWorkloadClassifierStatement> VisForCreateWorkloadClassifierStatement;
-        public Action<ScopedFragmentTransformer, CreateWorkloadGroupStatement> VisForCreateWorkloadGroupStatement;
-        public Action<ScopedFragmentTransformer, CreateXmlIndexStatement> VisForCreateXmlIndexStatement;
-        public Action<ScopedFragmentTransformer, CreateXmlSchemaCollectionStatement> VisForCreateXmlSchemaCollectionStatement;
-        public Action<ScopedFragmentTransformer, CreationDispositionKeyOption> VisForCreationDispositionKeyOption;
-        public Action<ScopedFragmentTransformer, CredentialStatement> VisForCredentialStatement;
-        public Action<ScopedFragmentTransformer, CryptoMechanism> VisForCryptoMechanism;
-        public Action<ScopedFragmentTransformer, CubeGroupingSpecification> VisForCubeGroupingSpecification;
-        public Action<ScopedFragmentTransformer, CursorDefaultDatabaseOption> VisForCursorDefaultDatabaseOption;
-        public Action<ScopedFragmentTransformer, CursorDefinition> VisForCursorDefinition;
-        public Action<ScopedFragmentTransformer, CursorId> VisForCursorId;
-        public Action<ScopedFragmentTransformer, CursorOption> VisForCursorOption;
-        public Action<ScopedFragmentTransformer, CursorStatement> VisForCursorStatement;
-        public Action<ScopedFragmentTransformer, DatabaseAuditAction> VisForDatabaseAuditAction;
-        public Action<ScopedFragmentTransformer, DatabaseConfigurationClearOption> VisForDatabaseConfigurationClearOption;
-        public Action<ScopedFragmentTransformer, DatabaseConfigurationSetOption> VisForDatabaseConfigurationSetOption;
-        public Action<ScopedFragmentTransformer, DatabaseEncryptionKeyStatement> VisForDatabaseEncryptionKeyStatement;
-        public Action<ScopedFragmentTransformer, DatabaseOption> VisForDatabaseOption;
-        public Action<ScopedFragmentTransformer, DataCompressionOption> VisForDataCompressionOption;
-        public Action<ScopedFragmentTransformer, DataModificationSpecification> VisForDataModificationSpecification;
-        public Action<ScopedFragmentTransformer, DataModificationStatement> VisForDataModificationStatement;
-        public Action<ScopedFragmentTransformer, DataModificationTableReference> VisForDataModificationTableReference;
-        public Action<ScopedFragmentTransformer, DataRetentionTableOption> VisForDataRetentionTableOption;
-        public Action<ScopedFragmentTransformer, DataTypeReference> VisForDataTypeReference;
-        public Action<ScopedFragmentTransformer, DataTypeSequenceOption> VisForDataTypeSequenceOption;
-        public Action<ScopedFragmentTransformer, DbccNamedLiteral> VisForDbccNamedLiteral;
-        public Action<ScopedFragmentTransformer, DbccOption> VisForDbccOption;
-        public Action<ScopedFragmentTransformer, DbccStatement> VisForDbccStatement;
-        public Action<ScopedFragmentTransformer, DeallocateCursorStatement> VisForDeallocateCursorStatement;
-        public Action<ScopedFragmentTransformer, DeclareCursorStatement> VisForDeclareCursorStatement;
-        public Action<ScopedFragmentTransformer, DeclareTableVariableBody> VisForDeclareTableVariableBody;
-        public Action<ScopedFragmentTransformer, DeclareTableVariableStatement> VisForDeclareTableVariableStatement;
-        public Action<ScopedFragmentTransformer, DeclareVariableElement> VisForDeclareVariableElement;
-        public Action<ScopedFragmentTransformer, DeclareVariableStatement> VisForDeclareVariableStatement;
-        public Action<ScopedFragmentTransformer, DefaultConstraintDefinition> VisForDefaultConstraintDefinition;
-        public Action<ScopedFragmentTransformer, DefaultLiteral> VisForDefaultLiteral;
-        public Action<ScopedFragmentTransformer, DelayedDurabilityDatabaseOption> VisForDelayedDurabilityDatabaseOption;
-        public Action<ScopedFragmentTransformer, DeleteMergeAction> VisForDeleteMergeAction;
-        public Action<ScopedFragmentTransformer, DeleteSpecification> VisForDeleteSpecification;
-        public Action<ScopedFragmentTransformer, DeleteStatement> VisForDeleteStatement;
-        public Action<ScopedFragmentTransformer, DenyStatement> VisForDenyStatement;
-        public Action<ScopedFragmentTransformer, DenyStatement80> VisForDenyStatement80;
-        public Action<ScopedFragmentTransformer, DeviceInfo> VisForDeviceInfo;
-        public Action<ScopedFragmentTransformer, DialogOption> VisForDialogOption;
-        public Action<ScopedFragmentTransformer, DiskStatement> VisForDiskStatement;
-        public Action<ScopedFragmentTransformer, DiskStatementOption> VisForDiskStatementOption;
-        public Action<ScopedFragmentTransformer, DistinctPredicate> VisForDistinctPredicate;
-        public Action<ScopedFragmentTransformer, DropAggregateStatement> VisForDropAggregateStatement;
-        public Action<ScopedFragmentTransformer, DropAlterFullTextIndexAction> VisForDropAlterFullTextIndexAction;
-        public Action<ScopedFragmentTransformer, DropApplicationRoleStatement> VisForDropApplicationRoleStatement;
-        public Action<ScopedFragmentTransformer, DropAssemblyStatement> VisForDropAssemblyStatement;
-        public Action<ScopedFragmentTransformer, DropAsymmetricKeyStatement> VisForDropAsymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, DropAvailabilityGroupStatement> VisForDropAvailabilityGroupStatement;
-        public Action<ScopedFragmentTransformer, DropBrokerPriorityStatement> VisForDropBrokerPriorityStatement;
-        public Action<ScopedFragmentTransformer, DropCertificateStatement> VisForDropCertificateStatement;
-        public Action<ScopedFragmentTransformer, DropChildObjectsStatement> VisForDropChildObjectsStatement;
-        public Action<ScopedFragmentTransformer, DropClusteredConstraintMoveOption> VisForDropClusteredConstraintMoveOption;
-        public Action<ScopedFragmentTransformer, DropClusteredConstraintOption> VisForDropClusteredConstraintOption;
-        public Action<ScopedFragmentTransformer, DropClusteredConstraintStateOption> VisForDropClusteredConstraintStateOption;
-        public Action<ScopedFragmentTransformer, DropClusteredConstraintValueOption> VisForDropClusteredConstraintValueOption;
-        public Action<ScopedFragmentTransformer, DropClusteredConstraintWaitAtLowPriorityLockOption> VisForDropClusteredConstraintWaitAtLowPriorityLockOption;
-        public Action<ScopedFragmentTransformer, DropColumnEncryptionKeyStatement> VisForDropColumnEncryptionKeyStatement;
-        public Action<ScopedFragmentTransformer, DropColumnMasterKeyStatement> VisForDropColumnMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, DropContractStatement> VisForDropContractStatement;
-        public Action<ScopedFragmentTransformer, DropCredentialStatement> VisForDropCredentialStatement;
-        public Action<ScopedFragmentTransformer, DropCryptographicProviderStatement> VisForDropCryptographicProviderStatement;
-        public Action<ScopedFragmentTransformer, DropDatabaseAuditSpecificationStatement> VisForDropDatabaseAuditSpecificationStatement;
-        public Action<ScopedFragmentTransformer, DropDatabaseEncryptionKeyStatement> VisForDropDatabaseEncryptionKeyStatement;
-        public Action<ScopedFragmentTransformer, DropDatabaseStatement> VisForDropDatabaseStatement;
-        public Action<ScopedFragmentTransformer, DropDefaultStatement> VisForDropDefaultStatement;
-        public Action<ScopedFragmentTransformer, DropEndpointStatement> VisForDropEndpointStatement;
-        public Action<ScopedFragmentTransformer, DropEventNotificationStatement> VisForDropEventNotificationStatement;
-        public Action<ScopedFragmentTransformer, DropEventSessionStatement> VisForDropEventSessionStatement;
-        public Action<ScopedFragmentTransformer, DropExternalDataSourceStatement> VisForDropExternalDataSourceStatement;
-        public Action<ScopedFragmentTransformer, DropExternalFileFormatStatement> VisForDropExternalFileFormatStatement;
-        public Action<ScopedFragmentTransformer, DropExternalLanguageStatement> VisForDropExternalLanguageStatement;
-        public Action<ScopedFragmentTransformer, DropExternalLibraryStatement> VisForDropExternalLibraryStatement;
-        public Action<ScopedFragmentTransformer, DropExternalResourcePoolStatement> VisForDropExternalResourcePoolStatement;
-        public Action<ScopedFragmentTransformer, DropExternalStreamingJobStatement> VisForDropExternalStreamingJobStatement;
-        public Action<ScopedFragmentTransformer, DropExternalStreamStatement> VisForDropExternalStreamStatement;
-        public Action<ScopedFragmentTransformer, DropExternalTableStatement> VisForDropExternalTableStatement;
-        public Action<ScopedFragmentTransformer, DropFederationStatement> VisForDropFederationStatement;
-        public Action<ScopedFragmentTransformer, DropFullTextCatalogStatement> VisForDropFullTextCatalogStatement;
-        public Action<ScopedFragmentTransformer, DropFullTextIndexStatement> VisForDropFullTextIndexStatement;
-        public Action<ScopedFragmentTransformer, DropFullTextStopListStatement> VisForDropFullTextStopListStatement;
-        public Action<ScopedFragmentTransformer, DropFunctionStatement> VisForDropFunctionStatement;
-        public Action<ScopedFragmentTransformer, DropIndexClause> VisForDropIndexClause;
-        public Action<ScopedFragmentTransformer, DropIndexClauseBase> VisForDropIndexClauseBase;
-        public Action<ScopedFragmentTransformer, DropIndexStatement> VisForDropIndexStatement;
-        public Action<ScopedFragmentTransformer, DropLoginStatement> VisForDropLoginStatement;
-        public Action<ScopedFragmentTransformer, DropMasterKeyStatement> VisForDropMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, DropMemberAlterRoleAction> VisForDropMemberAlterRoleAction;
-        public Action<ScopedFragmentTransformer, DropMessageTypeStatement> VisForDropMessageTypeStatement;
-        public Action<ScopedFragmentTransformer, DropObjectsStatement> VisForDropObjectsStatement;
-        public Action<ScopedFragmentTransformer, DropPartitionFunctionStatement> VisForDropPartitionFunctionStatement;
-        public Action<ScopedFragmentTransformer, DropPartitionSchemeStatement> VisForDropPartitionSchemeStatement;
-        public Action<ScopedFragmentTransformer, DropProcedureStatement> VisForDropProcedureStatement;
-        public Action<ScopedFragmentTransformer, DropQueueStatement> VisForDropQueueStatement;
-        public Action<ScopedFragmentTransformer, DropRemoteServiceBindingStatement> VisForDropRemoteServiceBindingStatement;
-        public Action<ScopedFragmentTransformer, DropResourcePoolStatement> VisForDropResourcePoolStatement;
-        public Action<ScopedFragmentTransformer, DropRoleStatement> VisForDropRoleStatement;
-        public Action<ScopedFragmentTransformer, DropRouteStatement> VisForDropRouteStatement;
-        public Action<ScopedFragmentTransformer, DropRuleStatement> VisForDropRuleStatement;
-        public Action<ScopedFragmentTransformer, DropSchemaStatement> VisForDropSchemaStatement;
-        public Action<ScopedFragmentTransformer, DropSearchPropertyListAction> VisForDropSearchPropertyListAction;
-        public Action<ScopedFragmentTransformer, DropSearchPropertyListStatement> VisForDropSearchPropertyListStatement;
-        public Action<ScopedFragmentTransformer, DropSecurityPolicyStatement> VisForDropSecurityPolicyStatement;
-        public Action<ScopedFragmentTransformer, DropSensitivityClassificationStatement> VisForDropSensitivityClassificationStatement;
-        public Action<ScopedFragmentTransformer, DropSequenceStatement> VisForDropSequenceStatement;
-        public Action<ScopedFragmentTransformer, DropServerAuditSpecificationStatement> VisForDropServerAuditSpecificationStatement;
-        public Action<ScopedFragmentTransformer, DropServerAuditStatement> VisForDropServerAuditStatement;
-        public Action<ScopedFragmentTransformer, DropServerRoleStatement> VisForDropServerRoleStatement;
-        public Action<ScopedFragmentTransformer, DropServiceStatement> VisForDropServiceStatement;
-        public Action<ScopedFragmentTransformer, DropSignatureStatement> VisForDropSignatureStatement;
-        public Action<ScopedFragmentTransformer, DropStatisticsStatement> VisForDropStatisticsStatement;
-        public Action<ScopedFragmentTransformer, DropSymmetricKeyStatement> VisForDropSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, DropSynonymStatement> VisForDropSynonymStatement;
-        public Action<ScopedFragmentTransformer, DropTableStatement> VisForDropTableStatement;
-        public Action<ScopedFragmentTransformer, DropTriggerStatement> VisForDropTriggerStatement;
-        public Action<ScopedFragmentTransformer, DropTypeStatement> VisForDropTypeStatement;
-        public Action<ScopedFragmentTransformer, DropUnownedObjectStatement> VisForDropUnownedObjectStatement;
-        public Action<ScopedFragmentTransformer, DropUserStatement> VisForDropUserStatement;
-        public Action<ScopedFragmentTransformer, DropViewStatement> VisForDropViewStatement;
-        public Action<ScopedFragmentTransformer, DropWorkloadClassifierStatement> VisForDropWorkloadClassifierStatement;
-        public Action<ScopedFragmentTransformer, DropWorkloadGroupStatement> VisForDropWorkloadGroupStatement;
-        public Action<ScopedFragmentTransformer, DropXmlSchemaCollectionStatement> VisForDropXmlSchemaCollectionStatement;
-        public Action<ScopedFragmentTransformer, DurabilityTableOption> VisForDurabilityTableOption;
-        public Action<ScopedFragmentTransformer, DWCompatibilityLevelConfigurationOption> VisForDWCompatibilityLevelConfigurationOption;
-        public Action<ScopedFragmentTransformer, ElasticPoolSpecification> VisForElasticPoolSpecification;
-        public Action<ScopedFragmentTransformer, EnabledDisabledPayloadOption> VisForEnabledDisabledPayloadOption;
-        public Action<ScopedFragmentTransformer, EnableDisableTriggerStatement> VisForEnableDisableTriggerStatement;
-        public Action<ScopedFragmentTransformer, EncryptedValueParameter> VisForEncryptedValueParameter;
-        public Action<ScopedFragmentTransformer, EncryptionPayloadOption> VisForEncryptionPayloadOption;
-        public Action<ScopedFragmentTransformer, EncryptionSource> VisForEncryptionSource;
-        public Action<ScopedFragmentTransformer, EndConversationStatement> VisForEndConversationStatement;
-        public Action<ScopedFragmentTransformer, EndpointAffinity> VisForEndpointAffinity;
-        public Action<ScopedFragmentTransformer, EndpointProtocolOption> VisForEndpointProtocolOption;
-        public Action<ScopedFragmentTransformer, EventDeclaration> VisForEventDeclaration;
-        public Action<ScopedFragmentTransformer, EventDeclarationCompareFunctionParameter> VisForEventDeclarationCompareFunctionParameter;
-        public Action<ScopedFragmentTransformer, EventDeclarationSetParameter> VisForEventDeclarationSetParameter;
-        public Action<ScopedFragmentTransformer, EventGroupContainer> VisForEventGroupContainer;
-        public Action<ScopedFragmentTransformer, EventNotificationObjectScope> VisForEventNotificationObjectScope;
-        public Action<ScopedFragmentTransformer, EventRetentionSessionOption> VisForEventRetentionSessionOption;
-        public Action<ScopedFragmentTransformer, EventSessionObjectName> VisForEventSessionObjectName;
-        public Action<ScopedFragmentTransformer, EventSessionStatement> VisForEventSessionStatement;
-        public Action<ScopedFragmentTransformer, EventTypeContainer> VisForEventTypeContainer;
-        public Action<ScopedFragmentTransformer, EventTypeGroupContainer> VisForEventTypeGroupContainer;
-        public Action<ScopedFragmentTransformer, ExecutableEntity> VisForExecutableEntity;
-        public Action<ScopedFragmentTransformer, ExecutableProcedureReference> VisForExecutableProcedureReference;
-        public Action<ScopedFragmentTransformer, ExecutableStringList> VisForExecutableStringList;
-        public Action<ScopedFragmentTransformer, ExecuteAsClause> VisForExecuteAsClause;
-        public Action<ScopedFragmentTransformer, ExecuteAsFunctionOption> VisForExecuteAsFunctionOption;
-        public Action<ScopedFragmentTransformer, ExecuteAsProcedureOption> VisForExecuteAsProcedureOption;
-        public Action<ScopedFragmentTransformer, ExecuteAsStatement> VisForExecuteAsStatement;
-        public Action<ScopedFragmentTransformer, ExecuteAsTriggerOption> VisForExecuteAsTriggerOption;
-        public Action<ScopedFragmentTransformer, ExecuteContext> VisForExecuteContext;
-        public Action<ScopedFragmentTransformer, ExecuteInsertSource> VisForExecuteInsertSource;
-        public Action<ScopedFragmentTransformer, ExecuteOption> VisForExecuteOption;
-        public Action<ScopedFragmentTransformer, ExecuteParameter> VisForExecuteParameter;
-        public Action<ScopedFragmentTransformer, ExecuteSpecification> VisForExecuteSpecification;
-        public Action<ScopedFragmentTransformer, ExecuteStatement> VisForExecuteStatement;
-        public Action<ScopedFragmentTransformer, ExistsPredicate> VisForExistsPredicate;
-        public Action<ScopedFragmentTransformer, ExpressionCallTarget> VisForExpressionCallTarget;
-        public Action<ScopedFragmentTransformer, ExpressionGroupingSpecification> VisForExpressionGroupingSpecification;
-        public Action<ScopedFragmentTransformer, ExpressionWithSortOrder> VisForExpressionWithSortOrder;
-        public Action<ScopedFragmentTransformer, ExternalCreateLoginSource> VisForExternalCreateLoginSource;
-        public Action<ScopedFragmentTransformer, ExternalDataSourceLiteralOrIdentifierOption> VisForExternalDataSourceLiteralOrIdentifierOption;
-        public Action<ScopedFragmentTransformer, ExternalDataSourceOption> VisForExternalDataSourceOption;
-        public Action<ScopedFragmentTransformer, ExternalDataSourceStatement> VisForExternalDataSourceStatement;
-        public Action<ScopedFragmentTransformer, ExternalFileFormatContainerOption> VisForExternalFileFormatContainerOption;
-        public Action<ScopedFragmentTransformer, ExternalFileFormatLiteralOption> VisForExternalFileFormatLiteralOption;
-        public Action<ScopedFragmentTransformer, ExternalFileFormatOption> VisForExternalFileFormatOption;
-        public Action<ScopedFragmentTransformer, ExternalFileFormatStatement> VisForExternalFileFormatStatement;
-        public Action<ScopedFragmentTransformer, ExternalFileFormatUseDefaultTypeOption> VisForExternalFileFormatUseDefaultTypeOption;
-        public Action<ScopedFragmentTransformer, ExternalLanguageFileOption> VisForExternalLanguageFileOption;
-        public Action<ScopedFragmentTransformer, ExternalLanguageStatement> VisForExternalLanguageStatement;
-        public Action<ScopedFragmentTransformer, ExternalLibraryFileOption> VisForExternalLibraryFileOption;
-        public Action<ScopedFragmentTransformer, ExternalLibraryStatement> VisForExternalLibraryStatement;
-        public Action<ScopedFragmentTransformer, ExternalResourcePoolAffinitySpecification> VisForExternalResourcePoolAffinitySpecification;
-        public Action<ScopedFragmentTransformer, ExternalResourcePoolParameter> VisForExternalResourcePoolParameter;
-        public Action<ScopedFragmentTransformer, ExternalResourcePoolStatement> VisForExternalResourcePoolStatement;
-        public Action<ScopedFragmentTransformer, ExternalStreamingJobStatement> VisForExternalStreamingJobStatement;
-        public Action<ScopedFragmentTransformer, ExternalStreamLiteralOrIdentifierOption> VisForExternalStreamLiteralOrIdentifierOption;
-        public Action<ScopedFragmentTransformer, ExternalStreamOption> VisForExternalStreamOption;
-        public Action<ScopedFragmentTransformer, ExternalStreamStatement> VisForExternalStreamStatement;
-        public Action<ScopedFragmentTransformer, ExternalTableColumnDefinition> VisForExternalTableColumnDefinition;
-        public Action<ScopedFragmentTransformer, ExternalTableDistributionOption> VisForExternalTableDistributionOption;
-        public Action<ScopedFragmentTransformer, ExternalTableDistributionPolicy> VisForExternalTableDistributionPolicy;
-        public Action<ScopedFragmentTransformer, ExternalTableLiteralOrIdentifierOption> VisForExternalTableLiteralOrIdentifierOption;
-        public Action<ScopedFragmentTransformer, ExternalTableOption> VisForExternalTableOption;
-        public Action<ScopedFragmentTransformer, ExternalTableRejectTypeOption> VisForExternalTableRejectTypeOption;
-        public Action<ScopedFragmentTransformer, ExternalTableReplicatedDistributionPolicy> VisForExternalTableReplicatedDistributionPolicy;
-        public Action<ScopedFragmentTransformer, ExternalTableRoundRobinDistributionPolicy> VisForExternalTableRoundRobinDistributionPolicy;
-        public Action<ScopedFragmentTransformer, ExternalTableShardedDistributionPolicy> VisForExternalTableShardedDistributionPolicy;
-        public Action<ScopedFragmentTransformer, ExternalTableStatement> VisForExternalTableStatement;
-        public Action<ScopedFragmentTransformer, ExtractFromExpression> VisForExtractFromExpression;
-        public Action<ScopedFragmentTransformer, FailoverModeReplicaOption> VisForFailoverModeReplicaOption;
-        public Action<ScopedFragmentTransformer, FederationScheme> VisForFederationScheme;
-        public Action<ScopedFragmentTransformer, FetchCursorStatement> VisForFetchCursorStatement;
-        public Action<ScopedFragmentTransformer, FetchType> VisForFetchType;
-        public Action<ScopedFragmentTransformer, FileDeclaration> VisForFileDeclaration;
-        public Action<ScopedFragmentTransformer, FileDeclarationOption> VisForFileDeclarationOption;
-        public Action<ScopedFragmentTransformer, FileEncryptionSource> VisForFileEncryptionSource;
-        public Action<ScopedFragmentTransformer, FileGroupDefinition> VisForFileGroupDefinition;
-        public Action<ScopedFragmentTransformer, FileGroupOrPartitionScheme> VisForFileGroupOrPartitionScheme;
-        public Action<ScopedFragmentTransformer, FileGrowthFileDeclarationOption> VisForFileGrowthFileDeclarationOption;
-        public Action<ScopedFragmentTransformer, FileNameFileDeclarationOption> VisForFileNameFileDeclarationOption;
-        public Action<ScopedFragmentTransformer, FileStreamDatabaseOption> VisForFileStreamDatabaseOption;
-        public Action<ScopedFragmentTransformer, FileStreamOnDropIndexOption> VisForFileStreamOnDropIndexOption;
-        public Action<ScopedFragmentTransformer, FileStreamOnTableOption> VisForFileStreamOnTableOption;
-        public Action<ScopedFragmentTransformer, FileStreamRestoreOption> VisForFileStreamRestoreOption;
-        public Action<ScopedFragmentTransformer, FileTableCollateFileNameTableOption> VisForFileTableCollateFileNameTableOption;
-        public Action<ScopedFragmentTransformer, FileTableConstraintNameTableOption> VisForFileTableConstraintNameTableOption;
-        public Action<ScopedFragmentTransformer, FileTableDirectoryTableOption> VisForFileTableDirectoryTableOption;
-        public Action<ScopedFragmentTransformer, ForceSeekTableHint> VisForForceSeekTableHint;
-        public Action<ScopedFragmentTransformer, ForClause> VisForForClause;
-        public Action<ScopedFragmentTransformer, ForeignKeyConstraintDefinition> VisForForeignKeyConstraintDefinition;
-        public Action<ScopedFragmentTransformer, FromClause> VisForFromClause;
-        public Action<ScopedFragmentTransformer, FullTextCatalogAndFileGroup> VisForFullTextCatalogAndFileGroup;
-        public Action<ScopedFragmentTransformer, FullTextCatalogOption> VisForFullTextCatalogOption;
-        public Action<ScopedFragmentTransformer, FullTextCatalogStatement> VisForFullTextCatalogStatement;
-        public Action<ScopedFragmentTransformer, FullTextIndexColumn> VisForFullTextIndexColumn;
-        public Action<ScopedFragmentTransformer, FullTextIndexOption> VisForFullTextIndexOption;
-        public Action<ScopedFragmentTransformer, FullTextPredicate> VisForFullTextPredicate;
-        public Action<ScopedFragmentTransformer, FullTextStopListAction> VisForFullTextStopListAction;
-        public Action<ScopedFragmentTransformer, FullTextTableReference> VisForFullTextTableReference;
-        public Action<ScopedFragmentTransformer, FunctionCall> VisForFunctionCall;
-        public Action<ScopedFragmentTransformer, FunctionCallSetClause> VisForFunctionCallSetClause;
-        public Action<ScopedFragmentTransformer, FunctionOption> VisForFunctionOption;
-        public Action<ScopedFragmentTransformer, FunctionReturnType> VisForFunctionReturnType;
-        public Action<ScopedFragmentTransformer, FunctionStatementBody> VisForFunctionStatementBody;
-        public Action<ScopedFragmentTransformer, GeneralSetCommand> VisForGeneralSetCommand;
-        public Action<ScopedFragmentTransformer, GenericConfigurationOption> VisForGenericConfigurationOption;
-        public Action<ScopedFragmentTransformer, GetConversationGroupStatement> VisForGetConversationGroupStatement;
-        public Action<ScopedFragmentTransformer, GlobalFunctionTableReference> VisForGlobalFunctionTableReference;
-        public Action<ScopedFragmentTransformer, GlobalVariableExpression> VisForGlobalVariableExpression;
-        public Action<ScopedFragmentTransformer, GoToStatement> VisForGoToStatement;
-        public Action<ScopedFragmentTransformer, GrandTotalGroupingSpecification> VisForGrandTotalGroupingSpecification;
-        public Action<ScopedFragmentTransformer, GrantStatement> VisForGrantStatement;
-        public Action<ScopedFragmentTransformer, GrantStatement80> VisForGrantStatement80;
-        public Action<ScopedFragmentTransformer, GraphConnectionBetweenNodes> VisForGraphConnectionBetweenNodes;
-        public Action<ScopedFragmentTransformer, GraphConnectionConstraintDefinition> VisForGraphConnectionConstraintDefinition;
-        public Action<ScopedFragmentTransformer, GraphMatchCompositeExpression> VisForGraphMatchCompositeExpression;
-        public Action<ScopedFragmentTransformer, GraphMatchExpression> VisForGraphMatchExpression;
-        public Action<ScopedFragmentTransformer, GraphMatchLastNodePredicate> VisForGraphMatchLastNodePredicate;
-        public Action<ScopedFragmentTransformer, GraphMatchNodeExpression> VisForGraphMatchNodeExpression;
-        public Action<ScopedFragmentTransformer, GraphMatchPredicate> VisForGraphMatchPredicate;
-        public Action<ScopedFragmentTransformer, GraphMatchRecursivePredicate> VisForGraphMatchRecursivePredicate;
-        public Action<ScopedFragmentTransformer, GraphRecursiveMatchQuantifier> VisForGraphRecursiveMatchQuantifier;
-        public Action<ScopedFragmentTransformer, GridParameter> VisForGridParameter;
-        public Action<ScopedFragmentTransformer, GridsSpatialIndexOption> VisForGridsSpatialIndexOption;
-        public Action<ScopedFragmentTransformer, GroupByClause> VisForGroupByClause;
-        public Action<ScopedFragmentTransformer, GroupingSetsGroupingSpecification> VisForGroupingSetsGroupingSpecification;
-        public Action<ScopedFragmentTransformer, GroupingSpecification> VisForGroupingSpecification;
-        public Action<ScopedFragmentTransformer, HadrAvailabilityGroupDatabaseOption> VisForHadrAvailabilityGroupDatabaseOption;
-        public Action<ScopedFragmentTransformer, HadrDatabaseOption> VisForHadrDatabaseOption;
-        public Action<ScopedFragmentTransformer, HavingClause> VisForHavingClause;
-        public Action<ScopedFragmentTransformer, Identifier> VisForIdentifier;
-        public Action<ScopedFragmentTransformer, IdentifierAtomicBlockOption> VisForIdentifierAtomicBlockOption;
-        public Action<ScopedFragmentTransformer, IdentifierDatabaseOption> VisForIdentifierDatabaseOption;
-        public Action<ScopedFragmentTransformer, IdentifierLiteral> VisForIdentifierLiteral;
-        public Action<ScopedFragmentTransformer, IdentifierOrScalarExpression> VisForIdentifierOrScalarExpression;
-        public Action<ScopedFragmentTransformer, IdentifierOrValueExpression> VisForIdentifierOrValueExpression;
-        public Action<ScopedFragmentTransformer, IdentifierPrincipalOption> VisForIdentifierPrincipalOption;
-        public Action<ScopedFragmentTransformer, IdentifierSnippet> VisForIdentifierSnippet;
-        public Action<ScopedFragmentTransformer, IdentityFunctionCall> VisForIdentityFunctionCall;
-        public Action<ScopedFragmentTransformer, IdentityOptions> VisForIdentityOptions;
-        public Action<ScopedFragmentTransformer, IdentityValueKeyOption> VisForIdentityValueKeyOption;
-        public Action<ScopedFragmentTransformer, IfStatement> VisForIfStatement;
-        public Action<ScopedFragmentTransformer, IgnoreDupKeyIndexOption> VisForIgnoreDupKeyIndexOption;
-        public Action<ScopedFragmentTransformer, IIfCall> VisForIIfCall;
-        public Action<ScopedFragmentTransformer, IndexDefinition> VisForIndexDefinition;
-        public Action<ScopedFragmentTransformer, IndexExpressionOption> VisForIndexExpressionOption;
-        public Action<ScopedFragmentTransformer, IndexOption> VisForIndexOption;
-        public Action<ScopedFragmentTransformer, IndexStatement> VisForIndexStatement;
-        public Action<ScopedFragmentTransformer, IndexStateOption> VisForIndexStateOption;
-        public Action<ScopedFragmentTransformer, IndexTableHint> VisForIndexTableHint;
-        public Action<ScopedFragmentTransformer, IndexType> VisForIndexType;
-        public Action<ScopedFragmentTransformer, InlineDerivedTable> VisForInlineDerivedTable;
-        public Action<ScopedFragmentTransformer, InlineFunctionOption> VisForInlineFunctionOption;
-        public Action<ScopedFragmentTransformer, InlineResultSetDefinition> VisForInlineResultSetDefinition;
-        public Action<ScopedFragmentTransformer, InPredicate> VisForInPredicate;
-        public Action<ScopedFragmentTransformer, InsertBulkColumnDefinition> VisForInsertBulkColumnDefinition;
-        public Action<ScopedFragmentTransformer, InsertBulkStatement> VisForInsertBulkStatement;
-        public Action<ScopedFragmentTransformer, InsertMergeAction> VisForInsertMergeAction;
-        public Action<ScopedFragmentTransformer, InsertSource> VisForInsertSource;
-        public Action<ScopedFragmentTransformer, InsertSpecification> VisForInsertSpecification;
-        public Action<ScopedFragmentTransformer, InsertStatement> VisForInsertStatement;
-        public Action<ScopedFragmentTransformer, IntegerLiteral> VisForIntegerLiteral;
-        public Action<ScopedFragmentTransformer, InternalOpenRowset> VisForInternalOpenRowset;
-        public Action<ScopedFragmentTransformer, IPv4> VisForIPv4;
-        public Action<ScopedFragmentTransformer, JoinParenthesisTableReference> VisForJoinParenthesisTableReference;
-        public Action<ScopedFragmentTransformer, JoinTableReference> VisForJoinTableReference;
-        public Action<ScopedFragmentTransformer, JsonForClause> VisForJsonForClause;
-        public Action<ScopedFragmentTransformer, JsonForClauseOption> VisForJsonForClauseOption;
-        public Action<ScopedFragmentTransformer, JsonKeyValue> VisForJsonKeyValue;
-        public Action<ScopedFragmentTransformer, KeyOption> VisForKeyOption;
-        public Action<ScopedFragmentTransformer, KeySourceKeyOption> VisForKeySourceKeyOption;
-        public Action<ScopedFragmentTransformer, KillQueryNotificationSubscriptionStatement> VisForKillQueryNotificationSubscriptionStatement;
-        public Action<ScopedFragmentTransformer, KillStatement> VisForKillStatement;
-        public Action<ScopedFragmentTransformer, KillStatsJobStatement> VisForKillStatsJobStatement;
-        public Action<ScopedFragmentTransformer, LabelStatement> VisForLabelStatement;
-        public Action<ScopedFragmentTransformer, LedgerOption> VisForLedgerOption;
-        public Action<ScopedFragmentTransformer, LedgerTableOption> VisForLedgerTableOption;
-        public Action<ScopedFragmentTransformer, LedgerViewOption> VisForLedgerViewOption;
-        public Action<ScopedFragmentTransformer, LeftFunctionCall> VisForLeftFunctionCall;
-        public Action<ScopedFragmentTransformer, LikePredicate> VisForLikePredicate;
-        public Action<ScopedFragmentTransformer, LineNoStatement> VisForLineNoStatement;
-        public Action<ScopedFragmentTransformer, ListenerIPEndpointProtocolOption> VisForListenerIPEndpointProtocolOption;
-        public Action<ScopedFragmentTransformer, ListTypeCopyOption> VisForListTypeCopyOption;
-        public Action<ScopedFragmentTransformer, Literal> VisForLiteral;
-        public Action<ScopedFragmentTransformer, LiteralAtomicBlockOption> VisForLiteralAtomicBlockOption;
-        public Action<ScopedFragmentTransformer, LiteralAuditTargetOption> VisForLiteralAuditTargetOption;
-        public Action<ScopedFragmentTransformer, LiteralAvailabilityGroupOption> VisForLiteralAvailabilityGroupOption;
-        public Action<ScopedFragmentTransformer, LiteralBulkInsertOption> VisForLiteralBulkInsertOption;
-        public Action<ScopedFragmentTransformer, LiteralDatabaseOption> VisForLiteralDatabaseOption;
-        public Action<ScopedFragmentTransformer, LiteralEndpointProtocolOption> VisForLiteralEndpointProtocolOption;
-        public Action<ScopedFragmentTransformer, LiteralOpenRowsetCosmosOption> VisForLiteralOpenRowsetCosmosOption;
-        public Action<ScopedFragmentTransformer, LiteralOptimizerHint> VisForLiteralOptimizerHint;
-        public Action<ScopedFragmentTransformer, LiteralOptionValue> VisForLiteralOptionValue;
-        public Action<ScopedFragmentTransformer, LiteralPayloadOption> VisForLiteralPayloadOption;
-        public Action<ScopedFragmentTransformer, LiteralPrincipalOption> VisForLiteralPrincipalOption;
-        public Action<ScopedFragmentTransformer, LiteralRange> VisForLiteralRange;
-        public Action<ScopedFragmentTransformer, LiteralReplicaOption> VisForLiteralReplicaOption;
-        public Action<ScopedFragmentTransformer, LiteralSessionOption> VisForLiteralSessionOption;
-        public Action<ScopedFragmentTransformer, LiteralStatisticsOption> VisForLiteralStatisticsOption;
-        public Action<ScopedFragmentTransformer, LiteralTableHint> VisForLiteralTableHint;
-        public Action<ScopedFragmentTransformer, LocationOption> VisForLocationOption;
-        public Action<ScopedFragmentTransformer, LockEscalationTableOption> VisForLockEscalationTableOption;
-        public Action<ScopedFragmentTransformer, LoginTypePayloadOption> VisForLoginTypePayloadOption;
-        public Action<ScopedFragmentTransformer, LowPriorityLockWaitAbortAfterWaitOption> VisForLowPriorityLockWaitAbortAfterWaitOption;
-        public Action<ScopedFragmentTransformer, LowPriorityLockWaitMaxDurationOption> VisForLowPriorityLockWaitMaxDurationOption;
-        public Action<ScopedFragmentTransformer, LowPriorityLockWaitOption> VisForLowPriorityLockWaitOption;
-        public Action<ScopedFragmentTransformer, LowPriorityLockWaitTableSwitchOption> VisForLowPriorityLockWaitTableSwitchOption;
-        public Action<ScopedFragmentTransformer, MasterKeyStatement> VisForMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, MaxDispatchLatencySessionOption> VisForMaxDispatchLatencySessionOption;
-        public Action<ScopedFragmentTransformer, MaxDopConfigurationOption> VisForMaxDopConfigurationOption;
-        public Action<ScopedFragmentTransformer, MaxDurationOption> VisForMaxDurationOption;
-        public Action<ScopedFragmentTransformer, MaxLiteral> VisForMaxLiteral;
-        public Action<ScopedFragmentTransformer, MaxRolloverFilesAuditTargetOption> VisForMaxRolloverFilesAuditTargetOption;
-        public Action<ScopedFragmentTransformer, MaxSizeAuditTargetOption> VisForMaxSizeAuditTargetOption;
-        public Action<ScopedFragmentTransformer, MaxSizeDatabaseOption> VisForMaxSizeDatabaseOption;
-        public Action<ScopedFragmentTransformer, MaxSizeFileDeclarationOption> VisForMaxSizeFileDeclarationOption;
-        public Action<ScopedFragmentTransformer, MemoryOptimizedTableOption> VisForMemoryOptimizedTableOption;
-        public Action<ScopedFragmentTransformer, MemoryPartitionSessionOption> VisForMemoryPartitionSessionOption;
-        public Action<ScopedFragmentTransformer, MergeAction> VisForMergeAction;
-        public Action<ScopedFragmentTransformer, MergeActionClause> VisForMergeActionClause;
-        public Action<ScopedFragmentTransformer, MergeSpecification> VisForMergeSpecification;
-        public Action<ScopedFragmentTransformer, MergeStatement> VisForMergeStatement;
-        public Action<ScopedFragmentTransformer, MessageTypeStatementBase> VisForMessageTypeStatementBase;
-        public Action<ScopedFragmentTransformer, MethodSpecifier> VisForMethodSpecifier;
-        public Action<ScopedFragmentTransformer, MirrorToClause> VisForMirrorToClause;
-        public Action<ScopedFragmentTransformer, MoneyLiteral> VisForMoneyLiteral;
-        public Action<ScopedFragmentTransformer, MoveConversationStatement> VisForMoveConversationStatement;
-        public Action<ScopedFragmentTransformer, MoveRestoreOption> VisForMoveRestoreOption;
-        public Action<ScopedFragmentTransformer, MoveToDropIndexOption> VisForMoveToDropIndexOption;
-        public Action<ScopedFragmentTransformer, MultiPartIdentifier> VisForMultiPartIdentifier;
-        public Action<ScopedFragmentTransformer, MultiPartIdentifierCallTarget> VisForMultiPartIdentifierCallTarget;
-        public Action<ScopedFragmentTransformer, NamedTableReference> VisForNamedTableReference;
-        public Action<ScopedFragmentTransformer, NameFileDeclarationOption> VisForNameFileDeclarationOption;
-        public Action<ScopedFragmentTransformer, NextValueForExpression> VisForNextValueForExpression;
-        public Action<ScopedFragmentTransformer, NullableConstraintDefinition> VisForNullableConstraintDefinition;
-        public Action<ScopedFragmentTransformer, NullIfExpression> VisForNullIfExpression;
-        public Action<ScopedFragmentTransformer, NullLiteral> VisForNullLiteral;
-        public Action<ScopedFragmentTransformer, NumericLiteral> VisForNumericLiteral;
-        public Action<ScopedFragmentTransformer, OdbcConvertSpecification> VisForOdbcConvertSpecification;
-        public Action<ScopedFragmentTransformer, OdbcFunctionCall> VisForOdbcFunctionCall;
-        public Action<ScopedFragmentTransformer, OdbcLiteral> VisForOdbcLiteral;
-        public Action<ScopedFragmentTransformer, OdbcQualifiedJoinTableReference> VisForOdbcQualifiedJoinTableReference;
-        public Action<ScopedFragmentTransformer, OffsetClause> VisForOffsetClause;
-        public Action<ScopedFragmentTransformer, OnFailureAuditOption> VisForOnFailureAuditOption;
-        public Action<ScopedFragmentTransformer, OnlineIndexLowPriorityLockWaitOption> VisForOnlineIndexLowPriorityLockWaitOption;
-        public Action<ScopedFragmentTransformer, OnlineIndexOption> VisForOnlineIndexOption;
-        public Action<ScopedFragmentTransformer, OnOffAssemblyOption> VisForOnOffAssemblyOption;
-        public Action<ScopedFragmentTransformer, OnOffAtomicBlockOption> VisForOnOffAtomicBlockOption;
-        public Action<ScopedFragmentTransformer, OnOffAuditTargetOption> VisForOnOffAuditTargetOption;
-        public Action<ScopedFragmentTransformer, OnOffDatabaseOption> VisForOnOffDatabaseOption;
-        public Action<ScopedFragmentTransformer, OnOffDialogOption> VisForOnOffDialogOption;
-        public Action<ScopedFragmentTransformer, OnOffFullTextCatalogOption> VisForOnOffFullTextCatalogOption;
-        public Action<ScopedFragmentTransformer, OnOffOptionValue> VisForOnOffOptionValue;
-        public Action<ScopedFragmentTransformer, OnOffPrimaryConfigurationOption> VisForOnOffPrimaryConfigurationOption;
-        public Action<ScopedFragmentTransformer, OnOffPrincipalOption> VisForOnOffPrincipalOption;
-        public Action<ScopedFragmentTransformer, OnOffRemoteServiceBindingOption> VisForOnOffRemoteServiceBindingOption;
-        public Action<ScopedFragmentTransformer, OnOffSessionOption> VisForOnOffSessionOption;
-        public Action<ScopedFragmentTransformer, OnOffStatisticsOption> VisForOnOffStatisticsOption;
-        public Action<ScopedFragmentTransformer, OpenCursorStatement> VisForOpenCursorStatement;
-        public Action<ScopedFragmentTransformer, OpenJsonTableReference> VisForOpenJsonTableReference;
-        public Action<ScopedFragmentTransformer, OpenMasterKeyStatement> VisForOpenMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, OpenQueryTableReference> VisForOpenQueryTableReference;
-        public Action<ScopedFragmentTransformer, OpenRowsetColumnDefinition> VisForOpenRowsetColumnDefinition;
-        public Action<ScopedFragmentTransformer, OpenRowsetCosmos> VisForOpenRowsetCosmos;
-        public Action<ScopedFragmentTransformer, OpenRowsetCosmosOption> VisForOpenRowsetCosmosOption;
-        public Action<ScopedFragmentTransformer, OpenRowsetTableReference> VisForOpenRowsetTableReference;
-        public Action<ScopedFragmentTransformer, OpenSymmetricKeyStatement> VisForOpenSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, OpenXmlTableReference> VisForOpenXmlTableReference;
-        public Action<ScopedFragmentTransformer, OperatorAuditOption> VisForOperatorAuditOption;
-        public Action<ScopedFragmentTransformer, OptimizeForOptimizerHint> VisForOptimizeForOptimizerHint;
-        public Action<ScopedFragmentTransformer, OptimizerHint> VisForOptimizerHint;
-        public Action<ScopedFragmentTransformer, OptionValue> VisForOptionValue;
-        public Action<ScopedFragmentTransformer, OrderBulkInsertOption> VisForOrderBulkInsertOption;
-        public Action<ScopedFragmentTransformer, OrderByClause> VisForOrderByClause;
-        public Action<ScopedFragmentTransformer, OrderIndexOption> VisForOrderIndexOption;
-        public Action<ScopedFragmentTransformer, OutputClause> VisForOutputClause;
-        public Action<ScopedFragmentTransformer, OutputIntoClause> VisForOutputIntoClause;
-        public Action<ScopedFragmentTransformer, OverClause> VisForOverClause;
-        public Action<ScopedFragmentTransformer, PageVerifyDatabaseOption> VisForPageVerifyDatabaseOption;
-        public Action<ScopedFragmentTransformer, ParameterizationDatabaseOption> VisForParameterizationDatabaseOption;
-        public Action<ScopedFragmentTransformer, ParameterizedDataTypeReference> VisForParameterizedDataTypeReference;
-        public Action<ScopedFragmentTransformer, ParameterlessCall> VisForParameterlessCall;
-        public Action<ScopedFragmentTransformer, ParenthesisExpression> VisForParenthesisExpression;
-        public Action<ScopedFragmentTransformer, ParseCall> VisForParseCall;
-        public Action<ScopedFragmentTransformer, PartitionFunctionCall> VisForPartitionFunctionCall;
-        public Action<ScopedFragmentTransformer, PartitionParameterType> VisForPartitionParameterType;
-        public Action<ScopedFragmentTransformer, PartitionSpecifications> VisForPartitionSpecifications;
-        public Action<ScopedFragmentTransformer, PartitionSpecifier> VisForPartitionSpecifier;
-        public Action<ScopedFragmentTransformer, PartnerDatabaseOption> VisForPartnerDatabaseOption;
-        public Action<ScopedFragmentTransformer, PasswordAlterPrincipalOption> VisForPasswordAlterPrincipalOption;
-        public Action<ScopedFragmentTransformer, PasswordCreateLoginSource> VisForPasswordCreateLoginSource;
-        public Action<ScopedFragmentTransformer, PayloadOption> VisForPayloadOption;
-        public Action<ScopedFragmentTransformer, Permission> VisForPermission;
-        public Action<ScopedFragmentTransformer, PermissionSetAssemblyOption> VisForPermissionSetAssemblyOption;
-        public Action<ScopedFragmentTransformer, PivotedTableReference> VisForPivotedTableReference;
-        public Action<ScopedFragmentTransformer, PortsEndpointProtocolOption> VisForPortsEndpointProtocolOption;
-        public Action<ScopedFragmentTransformer, PredicateSetStatement> VisForPredicateSetStatement;
-        public Action<ScopedFragmentTransformer, PredictTableReference> VisForPredictTableReference;
-        public Action<ScopedFragmentTransformer, PrimaryExpression> VisForPrimaryExpression;
-        public Action<ScopedFragmentTransformer, PrimaryRoleReplicaOption> VisForPrimaryRoleReplicaOption;
-        public Action<ScopedFragmentTransformer, PrincipalOption> VisForPrincipalOption;
-        public Action<ScopedFragmentTransformer, PrintStatement> VisForPrintStatement;
-        public Action<ScopedFragmentTransformer, Privilege80> VisForPrivilege80;
-        public Action<ScopedFragmentTransformer, PrivilegeSecurityElement80> VisForPrivilegeSecurityElement80;
-        public Action<ScopedFragmentTransformer, ProcedureOption> VisForProcedureOption;
-        public Action<ScopedFragmentTransformer, ProcedureParameter> VisForProcedureParameter;
-        public Action<ScopedFragmentTransformer, ProcedureReference> VisForProcedureReference;
-        public Action<ScopedFragmentTransformer, ProcedureReferenceName> VisForProcedureReferenceName;
-        public Action<ScopedFragmentTransformer, ProcedureStatementBody> VisForProcedureStatementBody;
-        public Action<ScopedFragmentTransformer, ProcedureStatementBodyBase> VisForProcedureStatementBodyBase;
-        public Action<ScopedFragmentTransformer, ProcessAffinityRange> VisForProcessAffinityRange;
-        public Action<ScopedFragmentTransformer, ProviderEncryptionSource> VisForProviderEncryptionSource;
-        public Action<ScopedFragmentTransformer, ProviderKeyNameKeyOption> VisForProviderKeyNameKeyOption;
-        public Action<ScopedFragmentTransformer, QualifiedJoin> VisForQualifiedJoin;
-        public Action<ScopedFragmentTransformer, QueryDerivedTable> VisForQueryDerivedTable;
-        public Action<ScopedFragmentTransformer, QueryExpression> VisForQueryExpression;
-        public Action<ScopedFragmentTransformer, QueryParenthesisExpression> VisForQueryParenthesisExpression;
-        public Action<ScopedFragmentTransformer, QuerySpecification> VisForQuerySpecification;
-        public Action<ScopedFragmentTransformer, QueryStoreCapturePolicyOption> VisForQueryStoreCapturePolicyOption;
-        public Action<ScopedFragmentTransformer, QueryStoreDatabaseOption> VisForQueryStoreDatabaseOption;
-        public Action<ScopedFragmentTransformer, QueryStoreDataFlushIntervalOption> VisForQueryStoreDataFlushIntervalOption;
-        public Action<ScopedFragmentTransformer, QueryStoreDesiredStateOption> VisForQueryStoreDesiredStateOption;
-        public Action<ScopedFragmentTransformer, QueryStoreIntervalLengthOption> VisForQueryStoreIntervalLengthOption;
-        public Action<ScopedFragmentTransformer, QueryStoreMaxPlansPerQueryOption> VisForQueryStoreMaxPlansPerQueryOption;
-        public Action<ScopedFragmentTransformer, QueryStoreMaxStorageSizeOption> VisForQueryStoreMaxStorageSizeOption;
-        public Action<ScopedFragmentTransformer, QueryStoreOption> VisForQueryStoreOption;
-        public Action<ScopedFragmentTransformer, QueryStoreSizeCleanupPolicyOption> VisForQueryStoreSizeCleanupPolicyOption;
-        public Action<ScopedFragmentTransformer, QueryStoreTimeCleanupPolicyOption> VisForQueryStoreTimeCleanupPolicyOption;
-        public Action<ScopedFragmentTransformer, QueueDelayAuditOption> VisForQueueDelayAuditOption;
-        public Action<ScopedFragmentTransformer, QueueExecuteAsOption> VisForQueueExecuteAsOption;
-        public Action<ScopedFragmentTransformer, QueueOption> VisForQueueOption;
-        public Action<ScopedFragmentTransformer, QueueProcedureOption> VisForQueueProcedureOption;
-        public Action<ScopedFragmentTransformer, QueueStatement> VisForQueueStatement;
-        public Action<ScopedFragmentTransformer, QueueStateOption> VisForQueueStateOption;
-        public Action<ScopedFragmentTransformer, QueueValueOption> VisForQueueValueOption;
-        public Action<ScopedFragmentTransformer, RaiseErrorLegacyStatement> VisForRaiseErrorLegacyStatement;
-        public Action<ScopedFragmentTransformer, RaiseErrorStatement> VisForRaiseErrorStatement;
-        public Action<ScopedFragmentTransformer, ReadOnlyForClause> VisForReadOnlyForClause;
-        public Action<ScopedFragmentTransformer, ReadTextStatement> VisForReadTextStatement;
-        public Action<ScopedFragmentTransformer, RealLiteral> VisForRealLiteral;
-        public Action<ScopedFragmentTransformer, ReceiveStatement> VisForReceiveStatement;
-        public Action<ScopedFragmentTransformer, ReconfigureStatement> VisForReconfigureStatement;
-        public Action<ScopedFragmentTransformer, RecoveryDatabaseOption> VisForRecoveryDatabaseOption;
-        public Action<ScopedFragmentTransformer, RemoteDataArchiveAlterTableOption> VisForRemoteDataArchiveAlterTableOption;
-        public Action<ScopedFragmentTransformer, RemoteDataArchiveDatabaseOption> VisForRemoteDataArchiveDatabaseOption;
-        public Action<ScopedFragmentTransformer, RemoteDataArchiveDatabaseSetting> VisForRemoteDataArchiveDatabaseSetting;
-        public Action<ScopedFragmentTransformer, RemoteDataArchiveDbCredentialSetting> VisForRemoteDataArchiveDbCredentialSetting;
-        public Action<ScopedFragmentTransformer, RemoteDataArchiveDbFederatedServiceAccountSetting> VisForRemoteDataArchiveDbFederatedServiceAccountSetting;
-        public Action<ScopedFragmentTransformer, RemoteDataArchiveDbServerSetting> VisForRemoteDataArchiveDbServerSetting;
-        public Action<ScopedFragmentTransformer, RemoteDataArchiveTableOption> VisForRemoteDataArchiveTableOption;
-        public Action<ScopedFragmentTransformer, RemoteServiceBindingOption> VisForRemoteServiceBindingOption;
-        public Action<ScopedFragmentTransformer, RemoteServiceBindingStatementBase> VisForRemoteServiceBindingStatementBase;
-        public Action<ScopedFragmentTransformer, RenameAlterRoleAction> VisForRenameAlterRoleAction;
-        public Action<ScopedFragmentTransformer, RenameEntityStatement> VisForRenameEntityStatement;
-        public Action<ScopedFragmentTransformer, ResampleStatisticsOption> VisForResampleStatisticsOption;
-        public Action<ScopedFragmentTransformer, ResourcePoolAffinitySpecification> VisForResourcePoolAffinitySpecification;
-        public Action<ScopedFragmentTransformer, ResourcePoolParameter> VisForResourcePoolParameter;
-        public Action<ScopedFragmentTransformer, ResourcePoolStatement> VisForResourcePoolStatement;
-        public Action<ScopedFragmentTransformer, RestoreMasterKeyStatement> VisForRestoreMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, RestoreOption> VisForRestoreOption;
-        public Action<ScopedFragmentTransformer, RestoreServiceMasterKeyStatement> VisForRestoreServiceMasterKeyStatement;
-        public Action<ScopedFragmentTransformer, RestoreStatement> VisForRestoreStatement;
-        public Action<ScopedFragmentTransformer, ResultColumnDefinition> VisForResultColumnDefinition;
-        public Action<ScopedFragmentTransformer, ResultSetDefinition> VisForResultSetDefinition;
-        public Action<ScopedFragmentTransformer, ResultSetsExecuteOption> VisForResultSetsExecuteOption;
-        public Action<ScopedFragmentTransformer, RetentionDaysAuditTargetOption> VisForRetentionDaysAuditTargetOption;
-        public Action<ScopedFragmentTransformer, RetentionPeriodDefinition> VisForRetentionPeriodDefinition;
-        public Action<ScopedFragmentTransformer, ReturnStatement> VisForReturnStatement;
-        public Action<ScopedFragmentTransformer, RevertStatement> VisForRevertStatement;
-        public Action<ScopedFragmentTransformer, RevokeStatement> VisForRevokeStatement;
-        public Action<ScopedFragmentTransformer, RevokeStatement80> VisForRevokeStatement80;
-        public Action<ScopedFragmentTransformer, RightFunctionCall> VisForRightFunctionCall;
-        public Action<ScopedFragmentTransformer, RolePayloadOption> VisForRolePayloadOption;
-        public Action<ScopedFragmentTransformer, RoleStatement> VisForRoleStatement;
-        public Action<ScopedFragmentTransformer, RollbackTransactionStatement> VisForRollbackTransactionStatement;
-        public Action<ScopedFragmentTransformer, RollupGroupingSpecification> VisForRollupGroupingSpecification;
-        public Action<ScopedFragmentTransformer, RouteOption> VisForRouteOption;
-        public Action<ScopedFragmentTransformer, RouteStatement> VisForRouteStatement;
-        public Action<ScopedFragmentTransformer, RowValue> VisForRowValue;
-        public Action<ScopedFragmentTransformer, SaveTransactionStatement> VisForSaveTransactionStatement;
-        public Action<ScopedFragmentTransformer, ScalarExpression> VisForScalarExpression;
-        public Action<ScopedFragmentTransformer, ScalarExpressionDialogOption> VisForScalarExpressionDialogOption;
-        public Action<ScopedFragmentTransformer, ScalarExpressionRestoreOption> VisForScalarExpressionRestoreOption;
-        public Action<ScopedFragmentTransformer, ScalarExpressionSequenceOption> VisForScalarExpressionSequenceOption;
-        public Action<ScopedFragmentTransformer, ScalarExpressionSnippet> VisForScalarExpressionSnippet;
-        public Action<ScopedFragmentTransformer, ScalarFunctionReturnType> VisForScalarFunctionReturnType;
-        public Action<ScopedFragmentTransformer, ScalarSubquery> VisForScalarSubquery;
-        public Action<ScopedFragmentTransformer, SchemaDeclarationItem> VisForSchemaDeclarationItem;
-        public Action<ScopedFragmentTransformer, SchemaDeclarationItemOpenjson> VisForSchemaDeclarationItemOpenjson;
-        public Action<ScopedFragmentTransformer, SchemaObjectFunctionTableReference> VisForSchemaObjectFunctionTableReference;
-        public Action<ScopedFragmentTransformer, SchemaObjectName> VisForSchemaObjectName;
-        public Action<ScopedFragmentTransformer, SchemaObjectNameOrValueExpression> VisForSchemaObjectNameOrValueExpression;
-        public Action<ScopedFragmentTransformer, SchemaObjectNameSnippet> VisForSchemaObjectNameSnippet;
-        public Action<ScopedFragmentTransformer, SchemaObjectResultSetDefinition> VisForSchemaObjectResultSetDefinition;
-        public Action<ScopedFragmentTransformer, SchemaPayloadOption> VisForSchemaPayloadOption;
-        public Action<ScopedFragmentTransformer, SearchedCaseExpression> VisForSearchedCaseExpression;
-        public Action<ScopedFragmentTransformer, SearchedWhenClause> VisForSearchedWhenClause;
-        public Action<ScopedFragmentTransformer, SearchPropertyListAction> VisForSearchPropertyListAction;
-        public Action<ScopedFragmentTransformer, SearchPropertyListFullTextIndexOption> VisForSearchPropertyListFullTextIndexOption;
-        public Action<ScopedFragmentTransformer, SecondaryRoleReplicaOption> VisForSecondaryRoleReplicaOption;
-        public Action<ScopedFragmentTransformer, SecurityElement80> VisForSecurityElement80;
-        public Action<ScopedFragmentTransformer, SecurityPolicyOption> VisForSecurityPolicyOption;
-        public Action<ScopedFragmentTransformer, SecurityPolicyStatement> VisForSecurityPolicyStatement;
-        public Action<ScopedFragmentTransformer, SecurityPredicateAction> VisForSecurityPredicateAction;
-        public Action<ScopedFragmentTransformer, SecurityPrincipal> VisForSecurityPrincipal;
-        public Action<ScopedFragmentTransformer, SecurityStatement> VisForSecurityStatement;
-        public Action<ScopedFragmentTransformer, SecurityStatementBody80> VisForSecurityStatementBody80;
-        public Action<ScopedFragmentTransformer, SecurityTargetObject> VisForSecurityTargetObject;
-        public Action<ScopedFragmentTransformer, SecurityTargetObjectName> VisForSecurityTargetObjectName;
-        public Action<ScopedFragmentTransformer, SecurityUserClause80> VisForSecurityUserClause80;
-        public Action<ScopedFragmentTransformer, SelectElement> VisForSelectElement;
-        public Action<ScopedFragmentTransformer, SelectFunctionReturnType> VisForSelectFunctionReturnType;
-        public Action<ScopedFragmentTransformer, SelectInsertSource> VisForSelectInsertSource;
-        public Action<ScopedFragmentTransformer, SelectiveXmlIndexPromotedPath> VisForSelectiveXmlIndexPromotedPath;
-        public Action<ScopedFragmentTransformer, SelectScalarExpression> VisForSelectScalarExpression;
-        public Action<ScopedFragmentTransformer, SelectSetVariable> VisForSelectSetVariable;
-        public Action<ScopedFragmentTransformer, SelectStarExpression> VisForSelectStarExpression;
-        public Action<ScopedFragmentTransformer, SelectStatement> VisForSelectStatement;
-        public Action<ScopedFragmentTransformer, SelectStatementSnippet> VisForSelectStatementSnippet;
-        public Action<ScopedFragmentTransformer, SemanticTableReference> VisForSemanticTableReference;
-        public Action<ScopedFragmentTransformer, SendStatement> VisForSendStatement;
-        public Action<ScopedFragmentTransformer, SensitivityClassificationOption> VisForSensitivityClassificationOption;
-        public Action<ScopedFragmentTransformer, SensitivityClassificationStatement> VisForSensitivityClassificationStatement;
-        public Action<ScopedFragmentTransformer, SequenceOption> VisForSequenceOption;
-        public Action<ScopedFragmentTransformer, SequenceStatement> VisForSequenceStatement;
-        public Action<ScopedFragmentTransformer, ServerAuditStatement> VisForServerAuditStatement;
-        public Action<ScopedFragmentTransformer, ServiceContract> VisForServiceContract;
-        public Action<ScopedFragmentTransformer, SessionOption> VisForSessionOption;
-        public Action<ScopedFragmentTransformer, SessionTimeoutPayloadOption> VisForSessionTimeoutPayloadOption;
-        public Action<ScopedFragmentTransformer, SetClause> VisForSetClause;
-        public Action<ScopedFragmentTransformer, SetCommand> VisForSetCommand;
-        public Action<ScopedFragmentTransformer, SetCommandStatement> VisForSetCommandStatement;
-        public Action<ScopedFragmentTransformer, SetErrorLevelStatement> VisForSetErrorLevelStatement;
-        public Action<ScopedFragmentTransformer, SetFipsFlaggerCommand> VisForSetFipsFlaggerCommand;
-        public Action<ScopedFragmentTransformer, SetIdentityInsertStatement> VisForSetIdentityInsertStatement;
-        public Action<ScopedFragmentTransformer, SetOffsetsStatement> VisForSetOffsetsStatement;
-        public Action<ScopedFragmentTransformer, SetOnOffStatement> VisForSetOnOffStatement;
-        public Action<ScopedFragmentTransformer, SetRowCountStatement> VisForSetRowCountStatement;
-        public Action<ScopedFragmentTransformer, SetSearchPropertyListAlterFullTextIndexAction> VisForSetSearchPropertyListAlterFullTextIndexAction;
-        public Action<ScopedFragmentTransformer, SetStatisticsStatement> VisForSetStatisticsStatement;
-        public Action<ScopedFragmentTransformer, SetStopListAlterFullTextIndexAction> VisForSetStopListAlterFullTextIndexAction;
-        public Action<ScopedFragmentTransformer, SetTextSizeStatement> VisForSetTextSizeStatement;
-        public Action<ScopedFragmentTransformer, SetTransactionIsolationLevelStatement> VisForSetTransactionIsolationLevelStatement;
-        public Action<ScopedFragmentTransformer, SetUserStatement> VisForSetUserStatement;
-        public Action<ScopedFragmentTransformer, SetVariableStatement> VisForSetVariableStatement;
-        public Action<ScopedFragmentTransformer, ShutdownStatement> VisForShutdownStatement;
-        public Action<ScopedFragmentTransformer, SignatureStatementBase> VisForSignatureStatementBase;
-        public Action<ScopedFragmentTransformer, SimpleAlterFullTextIndexAction> VisForSimpleAlterFullTextIndexAction;
-        public Action<ScopedFragmentTransformer, SimpleCaseExpression> VisForSimpleCaseExpression;
-        public Action<ScopedFragmentTransformer, SimpleWhenClause> VisForSimpleWhenClause;
-        public Action<ScopedFragmentTransformer, SingleValueTypeCopyOption> VisForSingleValueTypeCopyOption;
-        public Action<ScopedFragmentTransformer, SizeFileDeclarationOption> VisForSizeFileDeclarationOption;
-        public Action<ScopedFragmentTransformer, SoapMethod> VisForSoapMethod;
-        public Action<ScopedFragmentTransformer, SourceDeclaration> VisForSourceDeclaration;
-        public Action<ScopedFragmentTransformer, SpatialIndexOption> VisForSpatialIndexOption;
-        public Action<ScopedFragmentTransformer, SpatialIndexRegularOption> VisForSpatialIndexRegularOption;
-        public Action<ScopedFragmentTransformer, SqlCommandIdentifier> VisForSqlCommandIdentifier;
-        public Action<ScopedFragmentTransformer, SqlDataTypeReference> VisForSqlDataTypeReference;
-        public Action<ScopedFragmentTransformer, StateAuditOption> VisForStateAuditOption;
-        public Action<ScopedFragmentTransformer, StatementList> VisForStatementList;
-        public Action<ScopedFragmentTransformer, StatementListSnippet> VisForStatementListSnippet;
-        public Action<ScopedFragmentTransformer, StatementWithCtesAndXmlNamespaces> VisForStatementWithCtesAndXmlNamespaces;
-        public Action<ScopedFragmentTransformer, StatisticsOption> VisForStatisticsOption;
-        public Action<ScopedFragmentTransformer, StatisticsPartitionRange> VisForStatisticsPartitionRange;
-        public Action<ScopedFragmentTransformer, StopListFullTextIndexOption> VisForStopListFullTextIndexOption;
-        public Action<ScopedFragmentTransformer, StopRestoreOption> VisForStopRestoreOption;
-        public Action<ScopedFragmentTransformer, StringLiteral> VisForStringLiteral;
-        public Action<ScopedFragmentTransformer, SubqueryComparisonPredicate> VisForSubqueryComparisonPredicate;
-        public Action<ScopedFragmentTransformer, SymmetricKeyStatement> VisForSymmetricKeyStatement;
-        public Action<ScopedFragmentTransformer, SystemTimePeriodDefinition> VisForSystemTimePeriodDefinition;
-        public Action<ScopedFragmentTransformer, SystemVersioningTableOption> VisForSystemVersioningTableOption;
-        public Action<ScopedFragmentTransformer, TableClusteredIndexType> VisForTableClusteredIndexType;
-        public Action<ScopedFragmentTransformer, TableDataCompressionOption> VisForTableDataCompressionOption;
-        public Action<ScopedFragmentTransformer, TableDefinition> VisForTableDefinition;
-        public Action<ScopedFragmentTransformer, TableDistributionOption> VisForTableDistributionOption;
-        public Action<ScopedFragmentTransformer, TableDistributionPolicy> VisForTableDistributionPolicy;
-        public Action<ScopedFragmentTransformer, TableHashDistributionPolicy> VisForTableHashDistributionPolicy;
-        public Action<ScopedFragmentTransformer, TableHint> VisForTableHint;
-        public Action<ScopedFragmentTransformer, TableHintsOptimizerHint> VisForTableHintsOptimizerHint;
-        public Action<ScopedFragmentTransformer, TableIndexOption> VisForTableIndexOption;
-        public Action<ScopedFragmentTransformer, TableIndexType> VisForTableIndexType;
-        public Action<ScopedFragmentTransformer, TableNonClusteredIndexType> VisForTableNonClusteredIndexType;
-        public Action<ScopedFragmentTransformer, TableOption> VisForTableOption;
-        public Action<ScopedFragmentTransformer, TablePartitionOption> VisForTablePartitionOption;
-        public Action<ScopedFragmentTransformer, TablePartitionOptionSpecifications> VisForTablePartitionOptionSpecifications;
-        public Action<ScopedFragmentTransformer, TableReference> VisForTableReference;
-        public Action<ScopedFragmentTransformer, TableReferenceWithAlias> VisForTableReferenceWithAlias;
-        public Action<ScopedFragmentTransformer, TableReferenceWithAliasAndColumns> VisForTableReferenceWithAliasAndColumns;
-        public Action<ScopedFragmentTransformer, TableReplicateDistributionPolicy> VisForTableReplicateDistributionPolicy;
-        public Action<ScopedFragmentTransformer, TableRoundRobinDistributionPolicy> VisForTableRoundRobinDistributionPolicy;
-        public Action<ScopedFragmentTransformer, TableSampleClause> VisForTableSampleClause;
-        public Action<ScopedFragmentTransformer, TableSwitchOption> VisForTableSwitchOption;
-        public Action<ScopedFragmentTransformer, TableValuedFunctionReturnType> VisForTableValuedFunctionReturnType;
-        public Action<ScopedFragmentTransformer, TableXmlCompressionOption> VisForTableXmlCompressionOption;
-        public Action<ScopedFragmentTransformer, TargetDeclaration> VisForTargetDeclaration;
-        public Action<ScopedFragmentTransformer, TargetRecoveryTimeDatabaseOption> VisForTargetRecoveryTimeDatabaseOption;
-        public Action<ScopedFragmentTransformer, TemporalClause> VisForTemporalClause;
-        public Action<ScopedFragmentTransformer, TextModificationStatement> VisForTextModificationStatement;
-        public Action<ScopedFragmentTransformer, ThrowStatement> VisForThrowStatement;
-        public Action<ScopedFragmentTransformer, TopRowFilter> VisForTopRowFilter;
-        public Action<ScopedFragmentTransformer, TransactionStatement> VisForTransactionStatement;
-        public Action<ScopedFragmentTransformer, TriggerAction> VisForTriggerAction;
-        public Action<ScopedFragmentTransformer, TriggerObject> VisForTriggerObject;
-        public Action<ScopedFragmentTransformer, TriggerOption> VisForTriggerOption;
-        public Action<ScopedFragmentTransformer, TriggerStatementBody> VisForTriggerStatementBody;
-        public Action<ScopedFragmentTransformer, TruncateTableStatement> VisForTruncateTableStatement;
-        public Action<ScopedFragmentTransformer, TruncateTargetTableSwitchOption> VisForTruncateTargetTableSwitchOption;
-        public Action<ScopedFragmentTransformer, TryCastCall> VisForTryCastCall;
-        public Action<ScopedFragmentTransformer, TryCatchStatement> VisForTryCatchStatement;
-        public Action<ScopedFragmentTransformer, TryConvertCall> VisForTryConvertCall;
-        public Action<ScopedFragmentTransformer, TryParseCall> VisForTryParseCall;
-        public Action<ScopedFragmentTransformer, TSEqualCall> VisForTSEqualCall;
-        public Action<ScopedFragmentTransformer, TSqlBatch> VisForTSqlBatch;
-        public Action<ScopedFragmentTransformer, TSqlFragment> VisForTSqlFragment;
-        public Action<ScopedFragmentTransformer, TSqlFragmentSnippet> VisForTSqlFragmentSnippet;
-        public Action<ScopedFragmentTransformer, TSqlScript> VisForTSqlScript;
-        public Action<ScopedFragmentTransformer, TSqlStatement> VisForTSqlStatement;
-        public Action<ScopedFragmentTransformer, TSqlStatementSnippet> VisForTSqlStatementSnippet;
-        public Action<ScopedFragmentTransformer, UnaryExpression> VisForUnaryExpression;
-        public Action<ScopedFragmentTransformer, UniqueConstraintDefinition> VisForUniqueConstraintDefinition;
-        public Action<ScopedFragmentTransformer, UnpivotedTableReference> VisForUnpivotedTableReference;
-        public Action<ScopedFragmentTransformer, UnqualifiedJoin> VisForUnqualifiedJoin;
-        public Action<ScopedFragmentTransformer, UpdateCall> VisForUpdateCall;
-        public Action<ScopedFragmentTransformer, UpdateDeleteSpecificationBase> VisForUpdateDeleteSpecificationBase;
-        public Action<ScopedFragmentTransformer, UpdateForClause> VisForUpdateForClause;
-        public Action<ScopedFragmentTransformer, UpdateMergeAction> VisForUpdateMergeAction;
-        public Action<ScopedFragmentTransformer, UpdateSpecification> VisForUpdateSpecification;
-        public Action<ScopedFragmentTransformer, UpdateStatement> VisForUpdateStatement;
-        public Action<ScopedFragmentTransformer, UpdateStatisticsStatement> VisForUpdateStatisticsStatement;
-        public Action<ScopedFragmentTransformer, UpdateTextStatement> VisForUpdateTextStatement;
-        public Action<ScopedFragmentTransformer, UseFederationStatement> VisForUseFederationStatement;
-        public Action<ScopedFragmentTransformer, UseHintList> VisForUseHintList;
-        public Action<ScopedFragmentTransformer, UserDataTypeReference> VisForUserDataTypeReference;
-        public Action<ScopedFragmentTransformer, UserDefinedTypeCallTarget> VisForUserDefinedTypeCallTarget;
-        public Action<ScopedFragmentTransformer, UserDefinedTypePropertyAccess> VisForUserDefinedTypePropertyAccess;
-        public Action<ScopedFragmentTransformer, UserLoginOption> VisForUserLoginOption;
-        public Action<ScopedFragmentTransformer, UserRemoteServiceBindingOption> VisForUserRemoteServiceBindingOption;
-        public Action<ScopedFragmentTransformer, UserStatement> VisForUserStatement;
-        public Action<ScopedFragmentTransformer, UseStatement> VisForUseStatement;
-        public Action<ScopedFragmentTransformer, ValueExpression> VisForValueExpression;
-        public Action<ScopedFragmentTransformer, ValuesInsertSource> VisForValuesInsertSource;
-        public Action<ScopedFragmentTransformer, VariableMethodCallTableReference> VisForVariableMethodCallTableReference;
-        public Action<ScopedFragmentTransformer, VariableReference> VisForVariableReference;
-        public Action<ScopedFragmentTransformer, VariableTableReference> VisForVariableTableReference;
-        public Action<ScopedFragmentTransformer, VariableValuePair> VisForVariableValuePair;
-        public Action<ScopedFragmentTransformer, ViewDistributionOption> VisForViewDistributionOption;
-        public Action<ScopedFragmentTransformer, ViewDistributionPolicy> VisForViewDistributionPolicy;
-        public Action<ScopedFragmentTransformer, ViewForAppendOption> VisForViewForAppendOption;
-        public Action<ScopedFragmentTransformer, ViewHashDistributionPolicy> VisForViewHashDistributionPolicy;
-        public Action<ScopedFragmentTransformer, ViewOption> VisForViewOption;
-        public Action<ScopedFragmentTransformer, ViewRoundRobinDistributionPolicy> VisForViewRoundRobinDistributionPolicy;
-        public Action<ScopedFragmentTransformer, ViewStatementBody> VisForViewStatementBody;
-        public Action<ScopedFragmentTransformer, WaitAtLowPriorityOption> VisForWaitAtLowPriorityOption;
-        public Action<ScopedFragmentTransformer, WaitForStatement> VisForWaitForStatement;
-        public Action<ScopedFragmentTransformer, WaitForSupportedStatement> VisForWaitForSupportedStatement;
-        public Action<ScopedFragmentTransformer, WhenClause> VisForWhenClause;
-        public Action<ScopedFragmentTransformer, WhereClause> VisForWhereClause;
-        public Action<ScopedFragmentTransformer, WhileStatement> VisForWhileStatement;
-        public Action<ScopedFragmentTransformer, WindowClause> VisForWindowClause;
-        public Action<ScopedFragmentTransformer, WindowDefinition> VisForWindowDefinition;
-        public Action<ScopedFragmentTransformer, WindowDelimiter> VisForWindowDelimiter;
-        public Action<ScopedFragmentTransformer, WindowFrameClause> VisForWindowFrameClause;
-        public Action<ScopedFragmentTransformer, WindowsCreateLoginSource> VisForWindowsCreateLoginSource;
-        public Action<ScopedFragmentTransformer, WithCtesAndXmlNamespaces> VisForWithCtesAndXmlNamespaces;
-        public Action<ScopedFragmentTransformer, WithinGroupClause> VisForWithinGroupClause;
-        public Action<ScopedFragmentTransformer, WitnessDatabaseOption> VisForWitnessDatabaseOption;
-        public Action<ScopedFragmentTransformer, WlmTimeLiteral> VisForWlmTimeLiteral;
-        public Action<ScopedFragmentTransformer, WorkloadClassifierOption> VisForWorkloadClassifierOption;
-        public Action<ScopedFragmentTransformer, WorkloadClassifierStatement> VisForWorkloadClassifierStatement;
-        public Action<ScopedFragmentTransformer, WorkloadGroupImportanceParameter> VisForWorkloadGroupImportanceParameter;
-        public Action<ScopedFragmentTransformer, WorkloadGroupParameter> VisForWorkloadGroupParameter;
-        public Action<ScopedFragmentTransformer, WorkloadGroupResourceParameter> VisForWorkloadGroupResourceParameter;
-        public Action<ScopedFragmentTransformer, WorkloadGroupStatement> VisForWorkloadGroupStatement;
-        public Action<ScopedFragmentTransformer, WriteTextStatement> VisForWriteTextStatement;
-        public Action<ScopedFragmentTransformer, WsdlPayloadOption> VisForWsdlPayloadOption;
-        public Action<ScopedFragmentTransformer, XmlCompressionOption> VisForXmlCompressionOption;
-        public Action<ScopedFragmentTransformer, XmlDataTypeReference> VisForXmlDataTypeReference;
-        public Action<ScopedFragmentTransformer, XmlForClause> VisForXmlForClause;
-        public Action<ScopedFragmentTransformer, XmlForClauseOption> VisForXmlForClauseOption;
-        public Action<ScopedFragmentTransformer, XmlNamespaces> VisForXmlNamespaces;
-        public Action<ScopedFragmentTransformer, XmlNamespacesAliasElement> VisForXmlNamespacesAliasElement;
-        public Action<ScopedFragmentTransformer, XmlNamespacesDefaultElement> VisForXmlNamespacesDefaultElement;
-        public Action<ScopedFragmentTransformer, XmlNamespacesElement> VisForXmlNamespacesElement;
+        public Action<ScopedFragmentTransformer, AcceleratedDatabaseRecoveryDatabaseOption> VisForAcceleratedDatabaseRecoveryDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(473, out object v) ? (Action<ScopedFragmentTransformer, AcceleratedDatabaseRecoveryDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[473] = value;
+        }
+        public Action<ScopedFragmentTransformer, AddAlterFullTextIndexAction> VisForAddAlterFullTextIndexAction {
+            get => this.visitorByTypeTag.TryGetValue(692, out object v) ? (Action<ScopedFragmentTransformer, AddAlterFullTextIndexAction>)v : default;
+            set => this.visitorByTypeTag[692] = value;
+        }
+        public Action<ScopedFragmentTransformer, AddFileSpec> VisForAddFileSpec {
+            get => this.visitorByTypeTag.TryGetValue(263, out object v) ? (Action<ScopedFragmentTransformer, AddFileSpec>)v : default;
+            set => this.visitorByTypeTag[263] = value;
+        }
+        public Action<ScopedFragmentTransformer, AddMemberAlterRoleAction> VisForAddMemberAlterRoleAction {
+            get => this.visitorByTypeTag.TryGetValue(356, out object v) ? (Action<ScopedFragmentTransformer, AddMemberAlterRoleAction>)v : default;
+            set => this.visitorByTypeTag[356] = value;
+        }
+        public Action<ScopedFragmentTransformer, AddSearchPropertyListAction> VisForAddSearchPropertyListAction {
+            get => this.visitorByTypeTag.TryGetValue(696, out object v) ? (Action<ScopedFragmentTransformer, AddSearchPropertyListAction>)v : default;
+            set => this.visitorByTypeTag[696] = value;
+        }
+        public Action<ScopedFragmentTransformer, AddSensitivityClassificationStatement> VisForAddSensitivityClassificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(760, out object v) ? (Action<ScopedFragmentTransformer, AddSensitivityClassificationStatement>)v : default;
+            set => this.visitorByTypeTag[760] = value;
+        }
+        public Action<ScopedFragmentTransformer, AddSignatureStatement> VisForAddSignatureStatement {
+            get => this.visitorByTypeTag.TryGetValue(721, out object v) ? (Action<ScopedFragmentTransformer, AddSignatureStatement>)v : default;
+            set => this.visitorByTypeTag[721] = value;
+        }
+        public Action<ScopedFragmentTransformer, AdHocDataSource> VisForAdHocDataSource {
+            get => this.visitorByTypeTag.TryGetValue(14, out object v) ? (Action<ScopedFragmentTransformer, AdHocDataSource>)v : default;
+            set => this.visitorByTypeTag[14] = value;
+        }
+        public Action<ScopedFragmentTransformer, AdHocTableReference> VisForAdHocTableReference {
+            get => this.visitorByTypeTag.TryGetValue(102, out object v) ? (Action<ScopedFragmentTransformer, AdHocTableReference>)v : default;
+            set => this.visitorByTypeTag[102] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlgorithmKeyOption> VisForAlgorithmKeyOption {
+            get => this.visitorByTypeTag.TryGetValue(603, out object v) ? (Action<ScopedFragmentTransformer, AlgorithmKeyOption>)v : default;
+            set => this.visitorByTypeTag[603] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterApplicationRoleStatement> VisForAlterApplicationRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(352, out object v) ? (Action<ScopedFragmentTransformer, AlterApplicationRoleStatement>)v : default;
+            set => this.visitorByTypeTag[352] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterAssemblyStatement> VisForAlterAssemblyStatement {
+            get => this.visitorByTypeTag.TryGetValue(259, out object v) ? (Action<ScopedFragmentTransformer, AlterAssemblyStatement>)v : default;
+            set => this.visitorByTypeTag[259] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterAsymmetricKeyStatement> VisForAlterAsymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(731, out object v) ? (Action<ScopedFragmentTransformer, AlterAsymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[731] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterAuthorizationStatement> VisForAlterAuthorizationStatement {
+            get => this.visitorByTypeTag.TryGetValue(169, out object v) ? (Action<ScopedFragmentTransformer, AlterAuthorizationStatement>)v : default;
+            set => this.visitorByTypeTag[169] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterAvailabilityGroupAction> VisForAlterAvailabilityGroupAction {
+            get => this.visitorByTypeTag.TryGetValue(877, out object v) ? (Action<ScopedFragmentTransformer, AlterAvailabilityGroupAction>)v : default;
+            set => this.visitorByTypeTag[877] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterAvailabilityGroupFailoverAction> VisForAlterAvailabilityGroupFailoverAction {
+            get => this.visitorByTypeTag.TryGetValue(878, out object v) ? (Action<ScopedFragmentTransformer, AlterAvailabilityGroupFailoverAction>)v : default;
+            set => this.visitorByTypeTag[878] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterAvailabilityGroupFailoverOption> VisForAlterAvailabilityGroupFailoverOption {
+            get => this.visitorByTypeTag.TryGetValue(879, out object v) ? (Action<ScopedFragmentTransformer, AlterAvailabilityGroupFailoverOption>)v : default;
+            set => this.visitorByTypeTag[879] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterAvailabilityGroupStatement> VisForAlterAvailabilityGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(869, out object v) ? (Action<ScopedFragmentTransformer, AlterAvailabilityGroupStatement>)v : default;
+            set => this.visitorByTypeTag[869] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterBrokerPriorityStatement> VisForAlterBrokerPriorityStatement {
+            get => this.visitorByTypeTag.TryGetValue(818, out object v) ? (Action<ScopedFragmentTransformer, AlterBrokerPriorityStatement>)v : default;
+            set => this.visitorByTypeTag[818] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterCertificateStatement> VisForAlterCertificateStatement {
+            get => this.visitorByTypeTag.TryGetValue(571, out object v) ? (Action<ScopedFragmentTransformer, AlterCertificateStatement>)v : default;
+            set => this.visitorByTypeTag[571] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterColumnAlterFullTextIndexAction> VisForAlterColumnAlterFullTextIndexAction {
+            get => this.visitorByTypeTag.TryGetValue(693, out object v) ? (Action<ScopedFragmentTransformer, AlterColumnAlterFullTextIndexAction>)v : default;
+            set => this.visitorByTypeTag[693] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterColumnEncryptionKeyStatement> VisForAlterColumnEncryptionKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(230, out object v) ? (Action<ScopedFragmentTransformer, AlterColumnEncryptionKeyStatement>)v : default;
+            set => this.visitorByTypeTag[230] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterCreateEndpointStatementBase> VisForAlterCreateEndpointStatementBase {
+            get => this.visitorByTypeTag.TryGetValue(1000, out object v) ? (Action<ScopedFragmentTransformer, AlterCreateEndpointStatementBase>)v : default;
+            set => this.visitorByTypeTag[1000] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterCreateServiceStatementBase> VisForAlterCreateServiceStatementBase {
+            get => this.visitorByTypeTag.TryGetValue(1007, out object v) ? (Action<ScopedFragmentTransformer, AlterCreateServiceStatementBase>)v : default;
+            set => this.visitorByTypeTag[1007] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterCredentialStatement> VisForAlterCredentialStatement {
+            get => this.visitorByTypeTag.TryGetValue(577, out object v) ? (Action<ScopedFragmentTransformer, AlterCredentialStatement>)v : default;
+            set => this.visitorByTypeTag[577] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterCryptographicProviderStatement> VisForAlterCryptographicProviderStatement {
+            get => this.visitorByTypeTag.TryGetValue(825, out object v) ? (Action<ScopedFragmentTransformer, AlterCryptographicProviderStatement>)v : default;
+            set => this.visitorByTypeTag[825] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseAddFileGroupStatement> VisForAlterDatabaseAddFileGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(446, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseAddFileGroupStatement>)v : default;
+            set => this.visitorByTypeTag[446] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseAddFileStatement> VisForAlterDatabaseAddFileStatement {
+            get => this.visitorByTypeTag.TryGetValue(445, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseAddFileStatement>)v : default;
+            set => this.visitorByTypeTag[445] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseAuditSpecificationStatement> VisForAlterDatabaseAuditSpecificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(767, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseAuditSpecificationStatement>)v : default;
+            set => this.visitorByTypeTag[767] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseCollateStatement> VisForAlterDatabaseCollateStatement {
+            get => this.visitorByTypeTag.TryGetValue(443, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseCollateStatement>)v : default;
+            set => this.visitorByTypeTag[443] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseEncryptionKeyStatement> VisForAlterDatabaseEncryptionKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(787, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseEncryptionKeyStatement>)v : default;
+            set => this.visitorByTypeTag[787] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseModifyFileGroupStatement> VisForAlterDatabaseModifyFileGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(451, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseModifyFileGroupStatement>)v : default;
+            set => this.visitorByTypeTag[451] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseModifyFileStatement> VisForAlterDatabaseModifyFileStatement {
+            get => this.visitorByTypeTag.TryGetValue(450, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseModifyFileStatement>)v : default;
+            set => this.visitorByTypeTag[450] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseModifyNameStatement> VisForAlterDatabaseModifyNameStatement {
+            get => this.visitorByTypeTag.TryGetValue(449, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseModifyNameStatement>)v : default;
+            set => this.visitorByTypeTag[449] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseRebuildLogStatement> VisForAlterDatabaseRebuildLogStatement {
+            get => this.visitorByTypeTag.TryGetValue(444, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseRebuildLogStatement>)v : default;
+            set => this.visitorByTypeTag[444] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseRemoveFileGroupStatement> VisForAlterDatabaseRemoveFileGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(447, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseRemoveFileGroupStatement>)v : default;
+            set => this.visitorByTypeTag[447] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseRemoveFileStatement> VisForAlterDatabaseRemoveFileStatement {
+            get => this.visitorByTypeTag.TryGetValue(448, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseRemoveFileStatement>)v : default;
+            set => this.visitorByTypeTag[448] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationClearStatement> VisForAlterDatabaseScopedConfigurationClearStatement {
+            get => this.visitorByTypeTag.TryGetValue(436, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationClearStatement>)v : default;
+            set => this.visitorByTypeTag[436] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationSetStatement> VisForAlterDatabaseScopedConfigurationSetStatement {
+            get => this.visitorByTypeTag.TryGetValue(435, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationSetStatement>)v : default;
+            set => this.visitorByTypeTag[435] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationStatement> VisForAlterDatabaseScopedConfigurationStatement {
+            get => this.visitorByTypeTag.TryGetValue(982, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseScopedConfigurationStatement>)v : default;
+            set => this.visitorByTypeTag[982] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseSetStatement> VisForAlterDatabaseSetStatement {
+            get => this.visitorByTypeTag.TryGetValue(453, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseSetStatement>)v : default;
+            set => this.visitorByTypeTag[453] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseStatement> VisForAlterDatabaseStatement {
+            get => this.visitorByTypeTag.TryGetValue(983, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseStatement>)v : default;
+            set => this.visitorByTypeTag[983] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterDatabaseTermination> VisForAlterDatabaseTermination {
+            get => this.visitorByTypeTag.TryGetValue(452, out object v) ? (Action<ScopedFragmentTransformer, AlterDatabaseTermination>)v : default;
+            set => this.visitorByTypeTag[452] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterEndpointStatement> VisForAlterEndpointStatement {
+            get => this.visitorByTypeTag.TryGetValue(582, out object v) ? (Action<ScopedFragmentTransformer, AlterEndpointStatement>)v : default;
+            set => this.visitorByTypeTag[582] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterEventSessionStatement> VisForAlterEventSessionStatement {
+            get => this.visitorByTypeTag.TryGetValue(840, out object v) ? (Action<ScopedFragmentTransformer, AlterEventSessionStatement>)v : default;
+            set => this.visitorByTypeTag[840] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterExternalDataSourceStatement> VisForAlterExternalDataSourceStatement {
+            get => this.visitorByTypeTag.TryGetValue(246, out object v) ? (Action<ScopedFragmentTransformer, AlterExternalDataSourceStatement>)v : default;
+            set => this.visitorByTypeTag[246] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterExternalLanguageStatement> VisForAlterExternalLanguageStatement {
+            get => this.visitorByTypeTag.TryGetValue(899, out object v) ? (Action<ScopedFragmentTransformer, AlterExternalLanguageStatement>)v : default;
+            set => this.visitorByTypeTag[899] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterExternalLibraryStatement> VisForAlterExternalLibraryStatement {
+            get => this.visitorByTypeTag.TryGetValue(895, out object v) ? (Action<ScopedFragmentTransformer, AlterExternalLibraryStatement>)v : default;
+            set => this.visitorByTypeTag[895] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterExternalResourcePoolStatement> VisForAlterExternalResourcePoolStatement {
+            get => this.visitorByTypeTag.TryGetValue(799, out object v) ? (Action<ScopedFragmentTransformer, AlterExternalResourcePoolStatement>)v : default;
+            set => this.visitorByTypeTag[799] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterFederationStatement> VisForAlterFederationStatement {
+            get => this.visitorByTypeTag.TryGetValue(882, out object v) ? (Action<ScopedFragmentTransformer, AlterFederationStatement>)v : default;
+            set => this.visitorByTypeTag[882] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterFullTextCatalogStatement> VisForAlterFullTextCatalogStatement {
+            get => this.visitorByTypeTag.TryGetValue(610, out object v) ? (Action<ScopedFragmentTransformer, AlterFullTextCatalogStatement>)v : default;
+            set => this.visitorByTypeTag[610] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterFullTextIndexAction> VisForAlterFullTextIndexAction {
+            get => this.visitorByTypeTag.TryGetValue(1012, out object v) ? (Action<ScopedFragmentTransformer, AlterFullTextIndexAction>)v : default;
+            set => this.visitorByTypeTag[1012] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterFullTextIndexStatement> VisForAlterFullTextIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(687, out object v) ? (Action<ScopedFragmentTransformer, AlterFullTextIndexStatement>)v : default;
+            set => this.visitorByTypeTag[687] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterFullTextStopListStatement> VisForAlterFullTextStopListStatement {
+            get => this.visitorByTypeTag.TryGetValue(821, out object v) ? (Action<ScopedFragmentTransformer, AlterFullTextStopListStatement>)v : default;
+            set => this.visitorByTypeTag[821] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterFunctionStatement> VisForAlterFunctionStatement {
+            get => this.visitorByTypeTag.TryGetValue(127, out object v) ? (Action<ScopedFragmentTransformer, AlterFunctionStatement>)v : default;
+            set => this.visitorByTypeTag[127] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterIndexStatement> VisForAlterIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(323, out object v) ? (Action<ScopedFragmentTransformer, AlterIndexStatement>)v : default;
+            set => this.visitorByTypeTag[323] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterLoginAddDropCredentialStatement> VisForAlterLoginAddDropCredentialStatement {
+            get => this.visitorByTypeTag.TryGetValue(712, out object v) ? (Action<ScopedFragmentTransformer, AlterLoginAddDropCredentialStatement>)v : default;
+            set => this.visitorByTypeTag[712] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterLoginEnableDisableStatement> VisForAlterLoginEnableDisableStatement {
+            get => this.visitorByTypeTag.TryGetValue(711, out object v) ? (Action<ScopedFragmentTransformer, AlterLoginEnableDisableStatement>)v : default;
+            set => this.visitorByTypeTag[711] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterLoginOptionsStatement> VisForAlterLoginOptionsStatement {
+            get => this.visitorByTypeTag.TryGetValue(710, out object v) ? (Action<ScopedFragmentTransformer, AlterLoginOptionsStatement>)v : default;
+            set => this.visitorByTypeTag[710] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterLoginStatement> VisForAlterLoginStatement {
+            get => this.visitorByTypeTag.TryGetValue(1015, out object v) ? (Action<ScopedFragmentTransformer, AlterLoginStatement>)v : default;
+            set => this.visitorByTypeTag[1015] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterMasterKeyStatement> VisForAlterMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(349, out object v) ? (Action<ScopedFragmentTransformer, AlterMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[349] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterMessageTypeStatement> VisForAlterMessageTypeStatement {
+            get => this.visitorByTypeTag.TryGetValue(579, out object v) ? (Action<ScopedFragmentTransformer, AlterMessageTypeStatement>)v : default;
+            set => this.visitorByTypeTag[579] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterPartitionFunctionStatement> VisForAlterPartitionFunctionStatement {
+            get => this.visitorByTypeTag.TryGetValue(685, out object v) ? (Action<ScopedFragmentTransformer, AlterPartitionFunctionStatement>)v : default;
+            set => this.visitorByTypeTag[685] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterPartitionSchemeStatement> VisForAlterPartitionSchemeStatement {
+            get => this.visitorByTypeTag.TryGetValue(686, out object v) ? (Action<ScopedFragmentTransformer, AlterPartitionSchemeStatement>)v : default;
+            set => this.visitorByTypeTag[686] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterProcedureStatement> VisForAlterProcedureStatement {
+            get => this.visitorByTypeTag.TryGetValue(31, out object v) ? (Action<ScopedFragmentTransformer, AlterProcedureStatement>)v : default;
+            set => this.visitorByTypeTag[31] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterQueueStatement> VisForAlterQueueStatement {
+            get => this.visitorByTypeTag.TryGetValue(317, out object v) ? (Action<ScopedFragmentTransformer, AlterQueueStatement>)v : default;
+            set => this.visitorByTypeTag[317] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterRemoteServiceBindingStatement> VisForAlterRemoteServiceBindingStatement {
+            get => this.visitorByTypeTag.TryGetValue(567, out object v) ? (Action<ScopedFragmentTransformer, AlterRemoteServiceBindingStatement>)v : default;
+            set => this.visitorByTypeTag[567] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterResourceGovernorStatement> VisForAlterResourceGovernorStatement {
+            get => this.visitorByTypeTag.TryGetValue(842, out object v) ? (Action<ScopedFragmentTransformer, AlterResourceGovernorStatement>)v : default;
+            set => this.visitorByTypeTag[842] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterResourcePoolStatement> VisForAlterResourcePoolStatement {
+            get => this.visitorByTypeTag.TryGetValue(793, out object v) ? (Action<ScopedFragmentTransformer, AlterResourcePoolStatement>)v : default;
+            set => this.visitorByTypeTag[793] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterRoleAction> VisForAlterRoleAction {
+            get => this.visitorByTypeTag.TryGetValue(975, out object v) ? (Action<ScopedFragmentTransformer, AlterRoleAction>)v : default;
+            set => this.visitorByTypeTag[975] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterRoleStatement> VisForAlterRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(354, out object v) ? (Action<ScopedFragmentTransformer, AlterRoleStatement>)v : default;
+            set => this.visitorByTypeTag[354] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterRouteStatement> VisForAlterRouteStatement {
+            get => this.visitorByTypeTag.TryGetValue(315, out object v) ? (Action<ScopedFragmentTransformer, AlterRouteStatement>)v : default;
+            set => this.visitorByTypeTag[315] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterSchemaStatement> VisForAlterSchemaStatement {
+            get => this.visitorByTypeTag.TryGetValue(730, out object v) ? (Action<ScopedFragmentTransformer, AlterSchemaStatement>)v : default;
+            set => this.visitorByTypeTag[730] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterSearchPropertyListStatement> VisForAlterSearchPropertyListStatement {
+            get => this.visitorByTypeTag.TryGetValue(695, out object v) ? (Action<ScopedFragmentTransformer, AlterSearchPropertyListStatement>)v : default;
+            set => this.visitorByTypeTag[695] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterSecurityPolicyStatement> VisForAlterSecurityPolicyStatement {
+            get => this.visitorByTypeTag.TryGetValue(222, out object v) ? (Action<ScopedFragmentTransformer, AlterSecurityPolicyStatement>)v : default;
+            set => this.visitorByTypeTag[222] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterSequenceStatement> VisForAlterSequenceStatement {
+            get => this.visitorByTypeTag.TryGetValue(217, out object v) ? (Action<ScopedFragmentTransformer, AlterSequenceStatement>)v : default;
+            set => this.visitorByTypeTag[217] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerAuditSpecificationStatement> VisForAlterServerAuditSpecificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(770, out object v) ? (Action<ScopedFragmentTransformer, AlterServerAuditSpecificationStatement>)v : default;
+            set => this.visitorByTypeTag[770] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerAuditStatement> VisForAlterServerAuditStatement {
+            get => this.visitorByTypeTag.TryGetValue(773, out object v) ? (Action<ScopedFragmentTransformer, AlterServerAuditStatement>)v : default;
+            set => this.visitorByTypeTag[773] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionContainerOption> VisForAlterServerConfigurationBufferPoolExtensionContainerOption {
+            get => this.visitorByTypeTag.TryGetValue(857, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionContainerOption>)v : default;
+            set => this.visitorByTypeTag[857] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionOption> VisForAlterServerConfigurationBufferPoolExtensionOption {
+            get => this.visitorByTypeTag.TryGetValue(856, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionOption>)v : default;
+            set => this.visitorByTypeTag[856] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionSizeOption> VisForAlterServerConfigurationBufferPoolExtensionSizeOption {
+            get => this.visitorByTypeTag.TryGetValue(858, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationBufferPoolExtensionSizeOption>)v : default;
+            set => this.visitorByTypeTag[858] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationDiagnosticsLogMaxSizeOption> VisForAlterServerConfigurationDiagnosticsLogMaxSizeOption {
+            get => this.visitorByTypeTag.TryGetValue(861, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationDiagnosticsLogMaxSizeOption>)v : default;
+            set => this.visitorByTypeTag[861] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationDiagnosticsLogOption> VisForAlterServerConfigurationDiagnosticsLogOption {
+            get => this.visitorByTypeTag.TryGetValue(860, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationDiagnosticsLogOption>)v : default;
+            set => this.visitorByTypeTag[860] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationExternalAuthenticationContainerOption> VisForAlterServerConfigurationExternalAuthenticationContainerOption {
+            get => this.visitorByTypeTag.TryGetValue(854, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationExternalAuthenticationContainerOption>)v : default;
+            set => this.visitorByTypeTag[854] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationExternalAuthenticationOption> VisForAlterServerConfigurationExternalAuthenticationOption {
+            get => this.visitorByTypeTag.TryGetValue(853, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationExternalAuthenticationOption>)v : default;
+            set => this.visitorByTypeTag[853] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationFailoverClusterPropertyOption> VisForAlterServerConfigurationFailoverClusterPropertyOption {
+            get => this.visitorByTypeTag.TryGetValue(863, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationFailoverClusterPropertyOption>)v : default;
+            set => this.visitorByTypeTag[863] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationHadrClusterOption> VisForAlterServerConfigurationHadrClusterOption {
+            get => this.visitorByTypeTag.TryGetValue(865, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationHadrClusterOption>)v : default;
+            set => this.visitorByTypeTag[865] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetBufferPoolExtensionStatement> VisForAlterServerConfigurationSetBufferPoolExtensionStatement {
+            get => this.visitorByTypeTag.TryGetValue(855, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationSetBufferPoolExtensionStatement>)v : default;
+            set => this.visitorByTypeTag[855] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetDiagnosticsLogStatement> VisForAlterServerConfigurationSetDiagnosticsLogStatement {
+            get => this.visitorByTypeTag.TryGetValue(859, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationSetDiagnosticsLogStatement>)v : default;
+            set => this.visitorByTypeTag[859] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetExternalAuthenticationStatement> VisForAlterServerConfigurationSetExternalAuthenticationStatement {
+            get => this.visitorByTypeTag.TryGetValue(852, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationSetExternalAuthenticationStatement>)v : default;
+            set => this.visitorByTypeTag[852] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetFailoverClusterPropertyStatement> VisForAlterServerConfigurationSetFailoverClusterPropertyStatement {
+            get => this.visitorByTypeTag.TryGetValue(862, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationSetFailoverClusterPropertyStatement>)v : default;
+            set => this.visitorByTypeTag[862] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetHadrClusterStatement> VisForAlterServerConfigurationSetHadrClusterStatement {
+            get => this.visitorByTypeTag.TryGetValue(864, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationSetHadrClusterStatement>)v : default;
+            set => this.visitorByTypeTag[864] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationSetSoftNumaStatement> VisForAlterServerConfigurationSetSoftNumaStatement {
+            get => this.visitorByTypeTag.TryGetValue(866, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationSetSoftNumaStatement>)v : default;
+            set => this.visitorByTypeTag[866] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationSoftNumaOption> VisForAlterServerConfigurationSoftNumaOption {
+            get => this.visitorByTypeTag.TryGetValue(867, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationSoftNumaOption>)v : default;
+            set => this.visitorByTypeTag[867] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerConfigurationStatement> VisForAlterServerConfigurationStatement {
+            get => this.visitorByTypeTag.TryGetValue(850, out object v) ? (Action<ScopedFragmentTransformer, AlterServerConfigurationStatement>)v : default;
+            set => this.visitorByTypeTag[850] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServerRoleStatement> VisForAlterServerRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(359, out object v) ? (Action<ScopedFragmentTransformer, AlterServerRoleStatement>)v : default;
+            set => this.visitorByTypeTag[359] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServiceMasterKeyStatement> VisForAlterServiceMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(732, out object v) ? (Action<ScopedFragmentTransformer, AlterServiceMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[732] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterServiceStatement> VisForAlterServiceStatement {
+            get => this.visitorByTypeTag.TryGetValue(612, out object v) ? (Action<ScopedFragmentTransformer, AlterServiceStatement>)v : default;
+            set => this.visitorByTypeTag[612] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterSymmetricKeyStatement> VisForAlterSymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(607, out object v) ? (Action<ScopedFragmentTransformer, AlterSymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[607] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableAddTableElementStatement> VisForAlterTableAddTableElementStatement {
+            get => this.visitorByTypeTag.TryGetValue(291, out object v) ? (Action<ScopedFragmentTransformer, AlterTableAddTableElementStatement>)v : default;
+            set => this.visitorByTypeTag[291] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableAlterColumnStatement> VisForAlterTableAlterColumnStatement {
+            get => this.visitorByTypeTag.TryGetValue(495, out object v) ? (Action<ScopedFragmentTransformer, AlterTableAlterColumnStatement>)v : default;
+            set => this.visitorByTypeTag[495] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableAlterIndexStatement> VisForAlterTableAlterIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(494, out object v) ? (Action<ScopedFragmentTransformer, AlterTableAlterIndexStatement>)v : default;
+            set => this.visitorByTypeTag[494] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableAlterPartitionStatement> VisForAlterTableAlterPartitionStatement {
+            get => this.visitorByTypeTag.TryGetValue(268, out object v) ? (Action<ScopedFragmentTransformer, AlterTableAlterPartitionStatement>)v : default;
+            set => this.visitorByTypeTag[268] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableChangeTrackingModificationStatement> VisForAlterTableChangeTrackingModificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(270, out object v) ? (Action<ScopedFragmentTransformer, AlterTableChangeTrackingModificationStatement>)v : default;
+            set => this.visitorByTypeTag[270] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableConstraintModificationStatement> VisForAlterTableConstraintModificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(292, out object v) ? (Action<ScopedFragmentTransformer, AlterTableConstraintModificationStatement>)v : default;
+            set => this.visitorByTypeTag[292] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableDropTableElement> VisForAlterTableDropTableElement {
+            get => this.visitorByTypeTag.TryGetValue(300, out object v) ? (Action<ScopedFragmentTransformer, AlterTableDropTableElement>)v : default;
+            set => this.visitorByTypeTag[300] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableDropTableElementStatement> VisForAlterTableDropTableElementStatement {
+            get => this.visitorByTypeTag.TryGetValue(301, out object v) ? (Action<ScopedFragmentTransformer, AlterTableDropTableElementStatement>)v : default;
+            set => this.visitorByTypeTag[301] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableFileTableNamespaceStatement> VisForAlterTableFileTableNamespaceStatement {
+            get => this.visitorByTypeTag.TryGetValue(271, out object v) ? (Action<ScopedFragmentTransformer, AlterTableFileTableNamespaceStatement>)v : default;
+            set => this.visitorByTypeTag[271] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableRebuildStatement> VisForAlterTableRebuildStatement {
+            get => this.visitorByTypeTag.TryGetValue(269, out object v) ? (Action<ScopedFragmentTransformer, AlterTableRebuildStatement>)v : default;
+            set => this.visitorByTypeTag[269] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableSetStatement> VisForAlterTableSetStatement {
+            get => this.visitorByTypeTag.TryGetValue(272, out object v) ? (Action<ScopedFragmentTransformer, AlterTableSetStatement>)v : default;
+            set => this.visitorByTypeTag[272] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableStatement> VisForAlterTableStatement {
+            get => this.visitorByTypeTag.TryGetValue(959, out object v) ? (Action<ScopedFragmentTransformer, AlterTableStatement>)v : default;
+            set => this.visitorByTypeTag[959] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableSwitchStatement> VisForAlterTableSwitchStatement {
+            get => this.visitorByTypeTag.TryGetValue(293, out object v) ? (Action<ScopedFragmentTransformer, AlterTableSwitchStatement>)v : default;
+            set => this.visitorByTypeTag[293] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTableTriggerModificationStatement> VisForAlterTableTriggerModificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(302, out object v) ? (Action<ScopedFragmentTransformer, AlterTableTriggerModificationStatement>)v : default;
+            set => this.visitorByTypeTag[302] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterTriggerStatement> VisForAlterTriggerStatement {
+            get => this.visitorByTypeTag.TryGetValue(27, out object v) ? (Action<ScopedFragmentTransformer, AlterTriggerStatement>)v : default;
+            set => this.visitorByTypeTag[27] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterUserStatement> VisForAlterUserStatement {
+            get => this.visitorByTypeTag.TryGetValue(363, out object v) ? (Action<ScopedFragmentTransformer, AlterUserStatement>)v : default;
+            set => this.visitorByTypeTag[363] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterViewStatement> VisForAlterViewStatement {
+            get => this.visitorByTypeTag.TryGetValue(16, out object v) ? (Action<ScopedFragmentTransformer, AlterViewStatement>)v : default;
+            set => this.visitorByTypeTag[16] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterWorkloadGroupStatement> VisForAlterWorkloadGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(804, out object v) ? (Action<ScopedFragmentTransformer, AlterWorkloadGroupStatement>)v : default;
+            set => this.visitorByTypeTag[804] = value;
+        }
+        public Action<ScopedFragmentTransformer, AlterXmlSchemaCollectionStatement> VisForAlterXmlSchemaCollectionStatement {
+            get => this.visitorByTypeTag.TryGetValue(265, out object v) ? (Action<ScopedFragmentTransformer, AlterXmlSchemaCollectionStatement>)v : default;
+            set => this.visitorByTypeTag[265] = value;
+        }
+        public Action<ScopedFragmentTransformer, ApplicationRoleOption> VisForApplicationRoleOption {
+            get => this.visitorByTypeTag.TryGetValue(350, out object v) ? (Action<ScopedFragmentTransformer, ApplicationRoleOption>)v : default;
+            set => this.visitorByTypeTag[350] = value;
+        }
+        public Action<ScopedFragmentTransformer, ApplicationRoleStatement> VisForApplicationRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(973, out object v) ? (Action<ScopedFragmentTransformer, ApplicationRoleStatement>)v : default;
+            set => this.visitorByTypeTag[973] = value;
+        }
+        public Action<ScopedFragmentTransformer, AssemblyEncryptionSource> VisForAssemblyEncryptionSource {
+            get => this.visitorByTypeTag.TryGetValue(568, out object v) ? (Action<ScopedFragmentTransformer, AssemblyEncryptionSource>)v : default;
+            set => this.visitorByTypeTag[568] = value;
+        }
+        public Action<ScopedFragmentTransformer, AssemblyName> VisForAssemblyName {
+            get => this.visitorByTypeTag.TryGetValue(267, out object v) ? (Action<ScopedFragmentTransformer, AssemblyName>)v : default;
+            set => this.visitorByTypeTag[267] = value;
+        }
+        public Action<ScopedFragmentTransformer, AssemblyOption> VisForAssemblyOption {
+            get => this.visitorByTypeTag.TryGetValue(260, out object v) ? (Action<ScopedFragmentTransformer, AssemblyOption>)v : default;
+            set => this.visitorByTypeTag[260] = value;
+        }
+        public Action<ScopedFragmentTransformer, AssemblyStatement> VisForAssemblyStatement {
+            get => this.visitorByTypeTag.TryGetValue(958, out object v) ? (Action<ScopedFragmentTransformer, AssemblyStatement>)v : default;
+            set => this.visitorByTypeTag[958] = value;
+        }
+        public Action<ScopedFragmentTransformer, AssignmentSetClause> VisForAssignmentSetClause {
+            get => this.visitorByTypeTag.TryGetValue(182, out object v) ? (Action<ScopedFragmentTransformer, AssignmentSetClause>)v : default;
+            set => this.visitorByTypeTag[182] = value;
+        }
+        public Action<ScopedFragmentTransformer, AsymmetricKeyCreateLoginSource> VisForAsymmetricKeyCreateLoginSource {
+            get => this.visitorByTypeTag.TryGetValue(708, out object v) ? (Action<ScopedFragmentTransformer, AsymmetricKeyCreateLoginSource>)v : default;
+            set => this.visitorByTypeTag[708] = value;
+        }
+        public Action<ScopedFragmentTransformer, AtomicBlockOption> VisForAtomicBlockOption {
+            get => this.visitorByTypeTag.TryGetValue(927, out object v) ? (Action<ScopedFragmentTransformer, AtomicBlockOption>)v : default;
+            set => this.visitorByTypeTag[927] = value;
+        }
+        public Action<ScopedFragmentTransformer, AtTimeZoneCall> VisForAtTimeZoneCall {
+            get => this.visitorByTypeTag.TryGetValue(111, out object v) ? (Action<ScopedFragmentTransformer, AtTimeZoneCall>)v : default;
+            set => this.visitorByTypeTag[111] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditActionGroupReference> VisForAuditActionGroupReference {
+            get => this.visitorByTypeTag.TryGetValue(765, out object v) ? (Action<ScopedFragmentTransformer, AuditActionGroupReference>)v : default;
+            set => this.visitorByTypeTag[765] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditActionSpecification> VisForAuditActionSpecification {
+            get => this.visitorByTypeTag.TryGetValue(763, out object v) ? (Action<ScopedFragmentTransformer, AuditActionSpecification>)v : default;
+            set => this.visitorByTypeTag[763] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditGuidAuditOption> VisForAuditGuidAuditOption {
+            get => this.visitorByTypeTag.TryGetValue(777, out object v) ? (Action<ScopedFragmentTransformer, AuditGuidAuditOption>)v : default;
+            set => this.visitorByTypeTag[777] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditOption> VisForAuditOption {
+            get => this.visitorByTypeTag.TryGetValue(1025, out object v) ? (Action<ScopedFragmentTransformer, AuditOption>)v : default;
+            set => this.visitorByTypeTag[1025] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditSpecificationDetail> VisForAuditSpecificationDetail {
+            get => this.visitorByTypeTag.TryGetValue(1022, out object v) ? (Action<ScopedFragmentTransformer, AuditSpecificationDetail>)v : default;
+            set => this.visitorByTypeTag[1022] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditSpecificationPart> VisForAuditSpecificationPart {
+            get => this.visitorByTypeTag.TryGetValue(762, out object v) ? (Action<ScopedFragmentTransformer, AuditSpecificationPart>)v : default;
+            set => this.visitorByTypeTag[762] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditSpecificationStatement> VisForAuditSpecificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(1023, out object v) ? (Action<ScopedFragmentTransformer, AuditSpecificationStatement>)v : default;
+            set => this.visitorByTypeTag[1023] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditTarget> VisForAuditTarget {
+            get => this.visitorByTypeTag.TryGetValue(775, out object v) ? (Action<ScopedFragmentTransformer, AuditTarget>)v : default;
+            set => this.visitorByTypeTag[775] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuditTargetOption> VisForAuditTargetOption {
+            get => this.visitorByTypeTag.TryGetValue(1026, out object v) ? (Action<ScopedFragmentTransformer, AuditTargetOption>)v : default;
+            set => this.visitorByTypeTag[1026] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuthenticationEndpointProtocolOption> VisForAuthenticationEndpointProtocolOption {
+            get => this.visitorByTypeTag.TryGetValue(585, out object v) ? (Action<ScopedFragmentTransformer, AuthenticationEndpointProtocolOption>)v : default;
+            set => this.visitorByTypeTag[585] = value;
+        }
+        public Action<ScopedFragmentTransformer, AuthenticationPayloadOption> VisForAuthenticationPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(599, out object v) ? (Action<ScopedFragmentTransformer, AuthenticationPayloadOption>)v : default;
+            set => this.visitorByTypeTag[599] = value;
+        }
+        public Action<ScopedFragmentTransformer, AutoCleanupChangeTrackingOptionDetail> VisForAutoCleanupChangeTrackingOptionDetail {
+            get => this.visitorByTypeTag.TryGetValue(471, out object v) ? (Action<ScopedFragmentTransformer, AutoCleanupChangeTrackingOptionDetail>)v : default;
+            set => this.visitorByTypeTag[471] = value;
+        }
+        public Action<ScopedFragmentTransformer, AutoCreateStatisticsDatabaseOption> VisForAutoCreateStatisticsDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(456, out object v) ? (Action<ScopedFragmentTransformer, AutoCreateStatisticsDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[456] = value;
+        }
+        public Action<ScopedFragmentTransformer, AutomaticTuningCreateIndexOption> VisForAutomaticTuningCreateIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(487, out object v) ? (Action<ScopedFragmentTransformer, AutomaticTuningCreateIndexOption>)v : default;
+            set => this.visitorByTypeTag[487] = value;
+        }
+        public Action<ScopedFragmentTransformer, AutomaticTuningDatabaseOption> VisForAutomaticTuningDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(484, out object v) ? (Action<ScopedFragmentTransformer, AutomaticTuningDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[484] = value;
+        }
+        public Action<ScopedFragmentTransformer, AutomaticTuningDropIndexOption> VisForAutomaticTuningDropIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(488, out object v) ? (Action<ScopedFragmentTransformer, AutomaticTuningDropIndexOption>)v : default;
+            set => this.visitorByTypeTag[488] = value;
+        }
+        public Action<ScopedFragmentTransformer, AutomaticTuningForceLastGoodPlanOption> VisForAutomaticTuningForceLastGoodPlanOption {
+            get => this.visitorByTypeTag.TryGetValue(486, out object v) ? (Action<ScopedFragmentTransformer, AutomaticTuningForceLastGoodPlanOption>)v : default;
+            set => this.visitorByTypeTag[486] = value;
+        }
+        public Action<ScopedFragmentTransformer, AutomaticTuningMaintainIndexOption> VisForAutomaticTuningMaintainIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(489, out object v) ? (Action<ScopedFragmentTransformer, AutomaticTuningMaintainIndexOption>)v : default;
+            set => this.visitorByTypeTag[489] = value;
+        }
+        public Action<ScopedFragmentTransformer, AutomaticTuningOption> VisForAutomaticTuningOption {
+            get => this.visitorByTypeTag.TryGetValue(485, out object v) ? (Action<ScopedFragmentTransformer, AutomaticTuningOption>)v : default;
+            set => this.visitorByTypeTag[485] = value;
+        }
+        public Action<ScopedFragmentTransformer, AvailabilityGroupOption> VisForAvailabilityGroupOption {
+            get => this.visitorByTypeTag.TryGetValue(1037, out object v) ? (Action<ScopedFragmentTransformer, AvailabilityGroupOption>)v : default;
+            set => this.visitorByTypeTag[1037] = value;
+        }
+        public Action<ScopedFragmentTransformer, AvailabilityGroupStatement> VisForAvailabilityGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(1035, out object v) ? (Action<ScopedFragmentTransformer, AvailabilityGroupStatement>)v : default;
+            set => this.visitorByTypeTag[1035] = value;
+        }
+        public Action<ScopedFragmentTransformer, AvailabilityModeReplicaOption> VisForAvailabilityModeReplicaOption {
+            get => this.visitorByTypeTag.TryGetValue(872, out object v) ? (Action<ScopedFragmentTransformer, AvailabilityModeReplicaOption>)v : default;
+            set => this.visitorByTypeTag[872] = value;
+        }
+        public Action<ScopedFragmentTransformer, AvailabilityReplica> VisForAvailabilityReplica {
+            get => this.visitorByTypeTag.TryGetValue(870, out object v) ? (Action<ScopedFragmentTransformer, AvailabilityReplica>)v : default;
+            set => this.visitorByTypeTag[870] = value;
+        }
+        public Action<ScopedFragmentTransformer, AvailabilityReplicaOption> VisForAvailabilityReplicaOption {
+            get => this.visitorByTypeTag.TryGetValue(1036, out object v) ? (Action<ScopedFragmentTransformer, AvailabilityReplicaOption>)v : default;
+            set => this.visitorByTypeTag[1036] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupCertificateStatement> VisForBackupCertificateStatement {
+            get => this.visitorByTypeTag.TryGetValue(737, out object v) ? (Action<ScopedFragmentTransformer, BackupCertificateStatement>)v : default;
+            set => this.visitorByTypeTag[737] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupDatabaseStatement> VisForBackupDatabaseStatement {
+            get => this.visitorByTypeTag.TryGetValue(534, out object v) ? (Action<ScopedFragmentTransformer, BackupDatabaseStatement>)v : default;
+            set => this.visitorByTypeTag[534] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupEncryptionOption> VisForBackupEncryptionOption {
+            get => this.visitorByTypeTag.TryGetValue(543, out object v) ? (Action<ScopedFragmentTransformer, BackupEncryptionOption>)v : default;
+            set => this.visitorByTypeTag[543] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupMasterKeyStatement> VisForBackupMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(740, out object v) ? (Action<ScopedFragmentTransformer, BackupMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[740] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupOption> VisForBackupOption {
+            get => this.visitorByTypeTag.TryGetValue(542, out object v) ? (Action<ScopedFragmentTransformer, BackupOption>)v : default;
+            set => this.visitorByTypeTag[542] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupRestoreFileInfo> VisForBackupRestoreFileInfo {
+            get => this.visitorByTypeTag.TryGetValue(546, out object v) ? (Action<ScopedFragmentTransformer, BackupRestoreFileInfo>)v : default;
+            set => this.visitorByTypeTag[546] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupRestoreMasterKeyStatementBase> VisForBackupRestoreMasterKeyStatementBase {
+            get => this.visitorByTypeTag.TryGetValue(1019, out object v) ? (Action<ScopedFragmentTransformer, BackupRestoreMasterKeyStatementBase>)v : default;
+            set => this.visitorByTypeTag[1019] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupServiceMasterKeyStatement> VisForBackupServiceMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(738, out object v) ? (Action<ScopedFragmentTransformer, BackupServiceMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[738] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupStatement> VisForBackupStatement {
+            get => this.visitorByTypeTag.TryGetValue(992, out object v) ? (Action<ScopedFragmentTransformer, BackupStatement>)v : default;
+            set => this.visitorByTypeTag[992] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackupTransactionLogStatement> VisForBackupTransactionLogStatement {
+            get => this.visitorByTypeTag.TryGetValue(535, out object v) ? (Action<ScopedFragmentTransformer, BackupTransactionLogStatement>)v : default;
+            set => this.visitorByTypeTag[535] = value;
+        }
+        public Action<ScopedFragmentTransformer, BackwardsCompatibleDropIndexClause> VisForBackwardsCompatibleDropIndexClause {
+            get => this.visitorByTypeTag.TryGetValue(390, out object v) ? (Action<ScopedFragmentTransformer, BackwardsCompatibleDropIndexClause>)v : default;
+            set => this.visitorByTypeTag[390] = value;
+        }
+        public Action<ScopedFragmentTransformer, BeginConversationTimerStatement> VisForBeginConversationTimerStatement {
+            get => this.visitorByTypeTag.TryGetValue(733, out object v) ? (Action<ScopedFragmentTransformer, BeginConversationTimerStatement>)v : default;
+            set => this.visitorByTypeTag[733] = value;
+        }
+        public Action<ScopedFragmentTransformer, BeginDialogStatement> VisForBeginDialogStatement {
+            get => this.visitorByTypeTag.TryGetValue(734, out object v) ? (Action<ScopedFragmentTransformer, BeginDialogStatement>)v : default;
+            set => this.visitorByTypeTag[734] = value;
+        }
+        public Action<ScopedFragmentTransformer, BeginEndAtomicBlockStatement> VisForBeginEndAtomicBlockStatement {
+            get => this.visitorByTypeTag.TryGetValue(129, out object v) ? (Action<ScopedFragmentTransformer, BeginEndAtomicBlockStatement>)v : default;
+            set => this.visitorByTypeTag[129] = value;
+        }
+        public Action<ScopedFragmentTransformer, BeginEndBlockStatement> VisForBeginEndBlockStatement {
+            get => this.visitorByTypeTag.TryGetValue(128, out object v) ? (Action<ScopedFragmentTransformer, BeginEndBlockStatement>)v : default;
+            set => this.visitorByTypeTag[128] = value;
+        }
+        public Action<ScopedFragmentTransformer, BeginTransactionStatement> VisForBeginTransactionStatement {
+            get => this.visitorByTypeTag.TryGetValue(133, out object v) ? (Action<ScopedFragmentTransformer, BeginTransactionStatement>)v : default;
+            set => this.visitorByTypeTag[133] = value;
+        }
+        public Action<ScopedFragmentTransformer, BinaryExpression> VisForBinaryExpression {
+            get => this.visitorByTypeTag.TryGetValue(614, out object v) ? (Action<ScopedFragmentTransformer, BinaryExpression>)v : default;
+            set => this.visitorByTypeTag[614] = value;
+        }
+        public Action<ScopedFragmentTransformer, BinaryLiteral> VisForBinaryLiteral {
+            get => this.visitorByTypeTag.TryGetValue(195, out object v) ? (Action<ScopedFragmentTransformer, BinaryLiteral>)v : default;
+            set => this.visitorByTypeTag[195] = value;
+        }
+        public Action<ScopedFragmentTransformer, BinaryQueryExpression> VisForBinaryQueryExpression {
+            get => this.visitorByTypeTag.TryGetValue(665, out object v) ? (Action<ScopedFragmentTransformer, BinaryQueryExpression>)v : default;
+            set => this.visitorByTypeTag[665] = value;
+        }
+        public Action<ScopedFragmentTransformer, BooleanBinaryExpression> VisForBooleanBinaryExpression {
+            get => this.visitorByTypeTag.TryGetValue(626, out object v) ? (Action<ScopedFragmentTransformer, BooleanBinaryExpression>)v : default;
+            set => this.visitorByTypeTag[626] = value;
+        }
+        public Action<ScopedFragmentTransformer, BooleanComparisonExpression> VisForBooleanComparisonExpression {
+            get => this.visitorByTypeTag.TryGetValue(625, out object v) ? (Action<ScopedFragmentTransformer, BooleanComparisonExpression>)v : default;
+            set => this.visitorByTypeTag[625] = value;
+        }
+        public Action<ScopedFragmentTransformer, BooleanExpression> VisForBooleanExpression {
+            get => this.visitorByTypeTag.TryGetValue(918, out object v) ? (Action<ScopedFragmentTransformer, BooleanExpression>)v : default;
+            set => this.visitorByTypeTag[918] = value;
+        }
+        public Action<ScopedFragmentTransformer, BooleanExpressionSnippet> VisForBooleanExpressionSnippet {
+            get => this.visitorByTypeTag.TryGetValue(743, out object v) ? (Action<ScopedFragmentTransformer, BooleanExpressionSnippet>)v : default;
+            set => this.visitorByTypeTag[743] = value;
+        }
+        public Action<ScopedFragmentTransformer, BooleanIsNullExpression> VisForBooleanIsNullExpression {
+            get => this.visitorByTypeTag.TryGetValue(627, out object v) ? (Action<ScopedFragmentTransformer, BooleanIsNullExpression>)v : default;
+            set => this.visitorByTypeTag[627] = value;
+        }
+        public Action<ScopedFragmentTransformer, BooleanNotExpression> VisForBooleanNotExpression {
+            get => this.visitorByTypeTag.TryGetValue(623, out object v) ? (Action<ScopedFragmentTransformer, BooleanNotExpression>)v : default;
+            set => this.visitorByTypeTag[623] = value;
+        }
+        public Action<ScopedFragmentTransformer, BooleanParenthesisExpression> VisForBooleanParenthesisExpression {
+            get => this.visitorByTypeTag.TryGetValue(624, out object v) ? (Action<ScopedFragmentTransformer, BooleanParenthesisExpression>)v : default;
+            set => this.visitorByTypeTag[624] = value;
+        }
+        public Action<ScopedFragmentTransformer, BooleanTernaryExpression> VisForBooleanTernaryExpression {
+            get => this.visitorByTypeTag.TryGetValue(661, out object v) ? (Action<ScopedFragmentTransformer, BooleanTernaryExpression>)v : default;
+            set => this.visitorByTypeTag[661] = value;
+        }
+        public Action<ScopedFragmentTransformer, BoundingBoxParameter> VisForBoundingBoxParameter {
+            get => this.visitorByTypeTag.TryGetValue(846, out object v) ? (Action<ScopedFragmentTransformer, BoundingBoxParameter>)v : default;
+            set => this.visitorByTypeTag[846] = value;
+        }
+        public Action<ScopedFragmentTransformer, BoundingBoxSpatialIndexOption> VisForBoundingBoxSpatialIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(845, out object v) ? (Action<ScopedFragmentTransformer, BoundingBoxSpatialIndexOption>)v : default;
+            set => this.visitorByTypeTag[845] = value;
+        }
+        public Action<ScopedFragmentTransformer, BreakStatement> VisForBreakStatement {
+            get => this.visitorByTypeTag.TryGetValue(134, out object v) ? (Action<ScopedFragmentTransformer, BreakStatement>)v : default;
+            set => this.visitorByTypeTag[134] = value;
+        }
+        public Action<ScopedFragmentTransformer, BrokerPriorityParameter> VisForBrokerPriorityParameter {
+            get => this.visitorByTypeTag.TryGetValue(816, out object v) ? (Action<ScopedFragmentTransformer, BrokerPriorityParameter>)v : default;
+            set => this.visitorByTypeTag[816] = value;
+        }
+        public Action<ScopedFragmentTransformer, BrokerPriorityStatement> VisForBrokerPriorityStatement {
+            get => this.visitorByTypeTag.TryGetValue(1032, out object v) ? (Action<ScopedFragmentTransformer, BrokerPriorityStatement>)v : default;
+            set => this.visitorByTypeTag[1032] = value;
+        }
+        public Action<ScopedFragmentTransformer, BrowseForClause> VisForBrowseForClause {
+            get => this.visitorByTypeTag.TryGetValue(70, out object v) ? (Action<ScopedFragmentTransformer, BrowseForClause>)v : default;
+            set => this.visitorByTypeTag[70] = value;
+        }
+        public Action<ScopedFragmentTransformer, BuiltInFunctionTableReference> VisForBuiltInFunctionTableReference {
+            get => this.visitorByTypeTag.TryGetValue(615, out object v) ? (Action<ScopedFragmentTransformer, BuiltInFunctionTableReference>)v : default;
+            set => this.visitorByTypeTag[615] = value;
+        }
+        public Action<ScopedFragmentTransformer, BulkInsertBase> VisForBulkInsertBase {
+            get => this.visitorByTypeTag.TryGetValue(993, out object v) ? (Action<ScopedFragmentTransformer, BulkInsertBase>)v : default;
+            set => this.visitorByTypeTag[993] = value;
+        }
+        public Action<ScopedFragmentTransformer, BulkInsertOption> VisForBulkInsertOption {
+            get => this.visitorByTypeTag.TryGetValue(549, out object v) ? (Action<ScopedFragmentTransformer, BulkInsertOption>)v : default;
+            set => this.visitorByTypeTag[549] = value;
+        }
+        public Action<ScopedFragmentTransformer, BulkInsertStatement> VisForBulkInsertStatement {
+            get => this.visitorByTypeTag.TryGetValue(547, out object v) ? (Action<ScopedFragmentTransformer, BulkInsertStatement>)v : default;
+            set => this.visitorByTypeTag[547] = value;
+        }
+        public Action<ScopedFragmentTransformer, BulkOpenRowset> VisForBulkOpenRowset {
+            get => this.visitorByTypeTag.TryGetValue(99, out object v) ? (Action<ScopedFragmentTransformer, BulkOpenRowset>)v : default;
+            set => this.visitorByTypeTag[99] = value;
+        }
+        public Action<ScopedFragmentTransformer, CallTarget> VisForCallTarget {
+            get => this.visitorByTypeTag.TryGetValue(925, out object v) ? (Action<ScopedFragmentTransformer, CallTarget>)v : default;
+            set => this.visitorByTypeTag[925] = value;
+        }
+        public Action<ScopedFragmentTransformer, CaseExpression> VisForCaseExpression {
+            get => this.visitorByTypeTag.TryGetValue(924, out object v) ? (Action<ScopedFragmentTransformer, CaseExpression>)v : default;
+            set => this.visitorByTypeTag[924] = value;
+        }
+        public Action<ScopedFragmentTransformer, CastCall> VisForCastCall {
+            get => this.visitorByTypeTag.TryGetValue(109, out object v) ? (Action<ScopedFragmentTransformer, CastCall>)v : default;
+            set => this.visitorByTypeTag[109] = value;
+        }
+        public Action<ScopedFragmentTransformer, CatalogCollationOption> VisForCatalogCollationOption {
+            get => this.visitorByTypeTag.TryGetValue(491, out object v) ? (Action<ScopedFragmentTransformer, CatalogCollationOption>)v : default;
+            set => this.visitorByTypeTag[491] = value;
+        }
+        public Action<ScopedFragmentTransformer, CellsPerObjectSpatialIndexOption> VisForCellsPerObjectSpatialIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(849, out object v) ? (Action<ScopedFragmentTransformer, CellsPerObjectSpatialIndexOption>)v : default;
+            set => this.visitorByTypeTag[849] = value;
+        }
+        public Action<ScopedFragmentTransformer, CertificateCreateLoginSource> VisForCertificateCreateLoginSource {
+            get => this.visitorByTypeTag.TryGetValue(707, out object v) ? (Action<ScopedFragmentTransformer, CertificateCreateLoginSource>)v : default;
+            set => this.visitorByTypeTag[707] = value;
+        }
+        public Action<ScopedFragmentTransformer, CertificateOption> VisForCertificateOption {
+            get => this.visitorByTypeTag.TryGetValue(573, out object v) ? (Action<ScopedFragmentTransformer, CertificateOption>)v : default;
+            set => this.visitorByTypeTag[573] = value;
+        }
+        public Action<ScopedFragmentTransformer, CertificateStatementBase> VisForCertificateStatementBase {
+            get => this.visitorByTypeTag.TryGetValue(997, out object v) ? (Action<ScopedFragmentTransformer, CertificateStatementBase>)v : default;
+            set => this.visitorByTypeTag[997] = value;
+        }
+        public Action<ScopedFragmentTransformer, ChangeRetentionChangeTrackingOptionDetail> VisForChangeRetentionChangeTrackingOptionDetail {
+            get => this.visitorByTypeTag.TryGetValue(472, out object v) ? (Action<ScopedFragmentTransformer, ChangeRetentionChangeTrackingOptionDetail>)v : default;
+            set => this.visitorByTypeTag[472] = value;
+        }
+        public Action<ScopedFragmentTransformer, ChangeTableChangesTableReference> VisForChangeTableChangesTableReference {
+            get => this.visitorByTypeTag.TryGetValue(659, out object v) ? (Action<ScopedFragmentTransformer, ChangeTableChangesTableReference>)v : default;
+            set => this.visitorByTypeTag[659] = value;
+        }
+        public Action<ScopedFragmentTransformer, ChangeTableVersionTableReference> VisForChangeTableVersionTableReference {
+            get => this.visitorByTypeTag.TryGetValue(660, out object v) ? (Action<ScopedFragmentTransformer, ChangeTableVersionTableReference>)v : default;
+            set => this.visitorByTypeTag[660] = value;
+        }
+        public Action<ScopedFragmentTransformer, ChangeTrackingDatabaseOption> VisForChangeTrackingDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(470, out object v) ? (Action<ScopedFragmentTransformer, ChangeTrackingDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[470] = value;
+        }
+        public Action<ScopedFragmentTransformer, ChangeTrackingFullTextIndexOption> VisForChangeTrackingFullTextIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(340, out object v) ? (Action<ScopedFragmentTransformer, ChangeTrackingFullTextIndexOption>)v : default;
+            set => this.visitorByTypeTag[340] = value;
+        }
+        public Action<ScopedFragmentTransformer, ChangeTrackingOptionDetail> VisForChangeTrackingOptionDetail {
+            get => this.visitorByTypeTag.TryGetValue(984, out object v) ? (Action<ScopedFragmentTransformer, ChangeTrackingOptionDetail>)v : default;
+            set => this.visitorByTypeTag[984] = value;
+        }
+        public Action<ScopedFragmentTransformer, CharacterSetPayloadOption> VisForCharacterSetPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(597, out object v) ? (Action<ScopedFragmentTransformer, CharacterSetPayloadOption>)v : default;
+            set => this.visitorByTypeTag[597] = value;
+        }
+        public Action<ScopedFragmentTransformer, CheckConstraintDefinition> VisForCheckConstraintDefinition {
+            get => this.visitorByTypeTag.TryGetValue(527, out object v) ? (Action<ScopedFragmentTransformer, CheckConstraintDefinition>)v : default;
+            set => this.visitorByTypeTag[527] = value;
+        }
+        public Action<ScopedFragmentTransformer, CheckpointStatement> VisForCheckpointStatement {
+            get => this.visitorByTypeTag.TryGetValue(410, out object v) ? (Action<ScopedFragmentTransformer, CheckpointStatement>)v : default;
+            set => this.visitorByTypeTag[410] = value;
+        }
+        public Action<ScopedFragmentTransformer, ChildObjectName> VisForChildObjectName {
+            get => this.visitorByTypeTag.TryGetValue(151, out object v) ? (Action<ScopedFragmentTransformer, ChildObjectName>)v : default;
+            set => this.visitorByTypeTag[151] = value;
+        }
+        public Action<ScopedFragmentTransformer, ClassifierEndTimeOption> VisForClassifierEndTimeOption {
+            get => this.visitorByTypeTag.TryGetValue(812, out object v) ? (Action<ScopedFragmentTransformer, ClassifierEndTimeOption>)v : default;
+            set => this.visitorByTypeTag[812] = value;
+        }
+        public Action<ScopedFragmentTransformer, ClassifierImportanceOption> VisForClassifierImportanceOption {
+            get => this.visitorByTypeTag.TryGetValue(809, out object v) ? (Action<ScopedFragmentTransformer, ClassifierImportanceOption>)v : default;
+            set => this.visitorByTypeTag[809] = value;
+        }
+        public Action<ScopedFragmentTransformer, ClassifierMemberNameOption> VisForClassifierMemberNameOption {
+            get => this.visitorByTypeTag.TryGetValue(807, out object v) ? (Action<ScopedFragmentTransformer, ClassifierMemberNameOption>)v : default;
+            set => this.visitorByTypeTag[807] = value;
+        }
+        public Action<ScopedFragmentTransformer, ClassifierStartTimeOption> VisForClassifierStartTimeOption {
+            get => this.visitorByTypeTag.TryGetValue(811, out object v) ? (Action<ScopedFragmentTransformer, ClassifierStartTimeOption>)v : default;
+            set => this.visitorByTypeTag[811] = value;
+        }
+        public Action<ScopedFragmentTransformer, ClassifierWlmContextOption> VisForClassifierWlmContextOption {
+            get => this.visitorByTypeTag.TryGetValue(810, out object v) ? (Action<ScopedFragmentTransformer, ClassifierWlmContextOption>)v : default;
+            set => this.visitorByTypeTag[810] = value;
+        }
+        public Action<ScopedFragmentTransformer, ClassifierWlmLabelOption> VisForClassifierWlmLabelOption {
+            get => this.visitorByTypeTag.TryGetValue(808, out object v) ? (Action<ScopedFragmentTransformer, ClassifierWlmLabelOption>)v : default;
+            set => this.visitorByTypeTag[808] = value;
+        }
+        public Action<ScopedFragmentTransformer, ClassifierWorkloadGroupOption> VisForClassifierWorkloadGroupOption {
+            get => this.visitorByTypeTag.TryGetValue(806, out object v) ? (Action<ScopedFragmentTransformer, ClassifierWorkloadGroupOption>)v : default;
+            set => this.visitorByTypeTag[806] = value;
+        }
+        public Action<ScopedFragmentTransformer, CloseCursorStatement> VisForCloseCursorStatement {
+            get => this.visitorByTypeTag.TryGetValue(378, out object v) ? (Action<ScopedFragmentTransformer, CloseCursorStatement>)v : default;
+            set => this.visitorByTypeTag[378] = value;
+        }
+        public Action<ScopedFragmentTransformer, CloseMasterKeyStatement> VisForCloseMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(383, out object v) ? (Action<ScopedFragmentTransformer, CloseMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[383] = value;
+        }
+        public Action<ScopedFragmentTransformer, CloseSymmetricKeyStatement> VisForCloseSymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(381, out object v) ? (Action<ScopedFragmentTransformer, CloseSymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[381] = value;
+        }
+        public Action<ScopedFragmentTransformer, CoalesceExpression> VisForCoalesceExpression {
+            get => this.visitorByTypeTag.TryGetValue(90, out object v) ? (Action<ScopedFragmentTransformer, CoalesceExpression>)v : default;
+            set => this.visitorByTypeTag[90] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnDefinition> VisForColumnDefinition {
+            get => this.visitorByTypeTag.TryGetValue(496, out object v) ? (Action<ScopedFragmentTransformer, ColumnDefinition>)v : default;
+            set => this.visitorByTypeTag[496] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnDefinitionBase> VisForColumnDefinitionBase {
+            get => this.visitorByTypeTag.TryGetValue(554, out object v) ? (Action<ScopedFragmentTransformer, ColumnDefinitionBase>)v : default;
+            set => this.visitorByTypeTag[554] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionAlgorithmNameParameter> VisForColumnEncryptionAlgorithmNameParameter {
+            get => this.visitorByTypeTag.TryGetValue(234, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionAlgorithmNameParameter>)v : default;
+            set => this.visitorByTypeTag[234] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionAlgorithmParameter> VisForColumnEncryptionAlgorithmParameter {
+            get => this.visitorByTypeTag.TryGetValue(500, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionAlgorithmParameter>)v : default;
+            set => this.visitorByTypeTag[500] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionDefinition> VisForColumnEncryptionDefinition {
+            get => this.visitorByTypeTag.TryGetValue(497, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionDefinition>)v : default;
+            set => this.visitorByTypeTag[497] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionDefinitionParameter> VisForColumnEncryptionDefinitionParameter {
+            get => this.visitorByTypeTag.TryGetValue(986, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionDefinitionParameter>)v : default;
+            set => this.visitorByTypeTag[986] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionKeyNameParameter> VisForColumnEncryptionKeyNameParameter {
+            get => this.visitorByTypeTag.TryGetValue(498, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionKeyNameParameter>)v : default;
+            set => this.visitorByTypeTag[498] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionKeyStatement> VisForColumnEncryptionKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(946, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionKeyStatement>)v : default;
+            set => this.visitorByTypeTag[946] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionKeyValue> VisForColumnEncryptionKeyValue {
+            get => this.visitorByTypeTag.TryGetValue(232, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionKeyValue>)v : default;
+            set => this.visitorByTypeTag[232] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionKeyValueParameter> VisForColumnEncryptionKeyValueParameter {
+            get => this.visitorByTypeTag.TryGetValue(947, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionKeyValueParameter>)v : default;
+            set => this.visitorByTypeTag[947] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnEncryptionTypeParameter> VisForColumnEncryptionTypeParameter {
+            get => this.visitorByTypeTag.TryGetValue(499, out object v) ? (Action<ScopedFragmentTransformer, ColumnEncryptionTypeParameter>)v : default;
+            set => this.visitorByTypeTag[499] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnMasterKeyEnclaveComputationsParameter> VisForColumnMasterKeyEnclaveComputationsParameter {
+            get => this.visitorByTypeTag.TryGetValue(227, out object v) ? (Action<ScopedFragmentTransformer, ColumnMasterKeyEnclaveComputationsParameter>)v : default;
+            set => this.visitorByTypeTag[227] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnMasterKeyNameParameter> VisForColumnMasterKeyNameParameter {
+            get => this.visitorByTypeTag.TryGetValue(233, out object v) ? (Action<ScopedFragmentTransformer, ColumnMasterKeyNameParameter>)v : default;
+            set => this.visitorByTypeTag[233] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnMasterKeyParameter> VisForColumnMasterKeyParameter {
+            get => this.visitorByTypeTag.TryGetValue(944, out object v) ? (Action<ScopedFragmentTransformer, ColumnMasterKeyParameter>)v : default;
+            set => this.visitorByTypeTag[944] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnMasterKeyPathParameter> VisForColumnMasterKeyPathParameter {
+            get => this.visitorByTypeTag.TryGetValue(226, out object v) ? (Action<ScopedFragmentTransformer, ColumnMasterKeyPathParameter>)v : default;
+            set => this.visitorByTypeTag[226] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnMasterKeyStoreProviderNameParameter> VisForColumnMasterKeyStoreProviderNameParameter {
+            get => this.visitorByTypeTag.TryGetValue(225, out object v) ? (Action<ScopedFragmentTransformer, ColumnMasterKeyStoreProviderNameParameter>)v : default;
+            set => this.visitorByTypeTag[225] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnReferenceExpression> VisForColumnReferenceExpression {
+            get => this.visitorByTypeTag.TryGetValue(211, out object v) ? (Action<ScopedFragmentTransformer, ColumnReferenceExpression>)v : default;
+            set => this.visitorByTypeTag[211] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnStorageOptions> VisForColumnStorageOptions {
+            get => this.visitorByTypeTag.TryGetValue(502, out object v) ? (Action<ScopedFragmentTransformer, ColumnStorageOptions>)v : default;
+            set => this.visitorByTypeTag[502] = value;
+        }
+        public Action<ScopedFragmentTransformer, ColumnWithSortOrder> VisForColumnWithSortOrder {
+            get => this.visitorByTypeTag.TryGetValue(135, out object v) ? (Action<ScopedFragmentTransformer, ColumnWithSortOrder>)v : default;
+            set => this.visitorByTypeTag[135] = value;
+        }
+        public Action<ScopedFragmentTransformer, CommandSecurityElement80> VisForCommandSecurityElement80 {
+            get => this.visitorByTypeTag.TryGetValue(177, out object v) ? (Action<ScopedFragmentTransformer, CommandSecurityElement80>)v : default;
+            set => this.visitorByTypeTag[177] = value;
+        }
+        public Action<ScopedFragmentTransformer, CommitTransactionStatement> VisForCommitTransactionStatement {
+            get => this.visitorByTypeTag.TryGetValue(136, out object v) ? (Action<ScopedFragmentTransformer, CommitTransactionStatement>)v : default;
+            set => this.visitorByTypeTag[136] = value;
+        }
+        public Action<ScopedFragmentTransformer, CommonTableExpression> VisForCommonTableExpression {
+            get => this.visitorByTypeTag.TryGetValue(44, out object v) ? (Action<ScopedFragmentTransformer, CommonTableExpression>)v : default;
+            set => this.visitorByTypeTag[44] = value;
+        }
+        public Action<ScopedFragmentTransformer, CompositeGroupingSpecification> VisForCompositeGroupingSpecification {
+            get => this.visitorByTypeTag.TryGetValue(638, out object v) ? (Action<ScopedFragmentTransformer, CompositeGroupingSpecification>)v : default;
+            set => this.visitorByTypeTag[638] = value;
+        }
+        public Action<ScopedFragmentTransformer, CompressionDelayIndexOption> VisForCompressionDelayIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(893, out object v) ? (Action<ScopedFragmentTransformer, CompressionDelayIndexOption>)v : default;
+            set => this.visitorByTypeTag[893] = value;
+        }
+        public Action<ScopedFragmentTransformer, CompressionEndpointProtocolOption> VisForCompressionEndpointProtocolOption {
+            get => this.visitorByTypeTag.TryGetValue(587, out object v) ? (Action<ScopedFragmentTransformer, CompressionEndpointProtocolOption>)v : default;
+            set => this.visitorByTypeTag[587] = value;
+        }
+        public Action<ScopedFragmentTransformer, CompressionPartitionRange> VisForCompressionPartitionRange {
+            get => this.visitorByTypeTag.TryGetValue(526, out object v) ? (Action<ScopedFragmentTransformer, CompressionPartitionRange>)v : default;
+            set => this.visitorByTypeTag[526] = value;
+        }
+        public Action<ScopedFragmentTransformer, ComputeClause> VisForComputeClause {
+            get => this.visitorByTypeTag.TryGetValue(617, out object v) ? (Action<ScopedFragmentTransformer, ComputeClause>)v : default;
+            set => this.visitorByTypeTag[617] = value;
+        }
+        public Action<ScopedFragmentTransformer, ComputeFunction> VisForComputeFunction {
+            get => this.visitorByTypeTag.TryGetValue(618, out object v) ? (Action<ScopedFragmentTransformer, ComputeFunction>)v : default;
+            set => this.visitorByTypeTag[618] = value;
+        }
+        public Action<ScopedFragmentTransformer, ConstraintDefinition> VisForConstraintDefinition {
+            get => this.visitorByTypeTag.TryGetValue(991, out object v) ? (Action<ScopedFragmentTransformer, ConstraintDefinition>)v : default;
+            set => this.visitorByTypeTag[991] = value;
+        }
+        public Action<ScopedFragmentTransformer, ContainmentDatabaseOption> VisForContainmentDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(457, out object v) ? (Action<ScopedFragmentTransformer, ContainmentDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[457] = value;
+        }
+        public Action<ScopedFragmentTransformer, ContinueStatement> VisForContinueStatement {
+            get => this.visitorByTypeTag.TryGetValue(139, out object v) ? (Action<ScopedFragmentTransformer, ContinueStatement>)v : default;
+            set => this.visitorByTypeTag[139] = value;
+        }
+        public Action<ScopedFragmentTransformer, ContractMessage> VisForContractMessage {
+            get => this.visitorByTypeTag.TryGetValue(575, out object v) ? (Action<ScopedFragmentTransformer, ContractMessage>)v : default;
+            set => this.visitorByTypeTag[575] = value;
+        }
+        public Action<ScopedFragmentTransformer, ConvertCall> VisForConvertCall {
+            get => this.visitorByTypeTag.TryGetValue(105, out object v) ? (Action<ScopedFragmentTransformer, ConvertCall>)v : default;
+            set => this.visitorByTypeTag[105] = value;
+        }
+        public Action<ScopedFragmentTransformer, CopyColumnOption> VisForCopyColumnOption {
+            get => this.visitorByTypeTag.TryGetValue(523, out object v) ? (Action<ScopedFragmentTransformer, CopyColumnOption>)v : default;
+            set => this.visitorByTypeTag[523] = value;
+        }
+        public Action<ScopedFragmentTransformer, CopyCredentialOption> VisForCopyCredentialOption {
+            get => this.visitorByTypeTag.TryGetValue(520, out object v) ? (Action<ScopedFragmentTransformer, CopyCredentialOption>)v : default;
+            set => this.visitorByTypeTag[520] = value;
+        }
+        public Action<ScopedFragmentTransformer, CopyOption> VisForCopyOption {
+            get => this.visitorByTypeTag.TryGetValue(519, out object v) ? (Action<ScopedFragmentTransformer, CopyOption>)v : default;
+            set => this.visitorByTypeTag[519] = value;
+        }
+        public Action<ScopedFragmentTransformer, CopyStatement> VisForCopyStatement {
+            get => this.visitorByTypeTag.TryGetValue(518, out object v) ? (Action<ScopedFragmentTransformer, CopyStatement>)v : default;
+            set => this.visitorByTypeTag[518] = value;
+        }
+        public Action<ScopedFragmentTransformer, CopyStatementOptionBase> VisForCopyStatementOptionBase {
+            get => this.visitorByTypeTag.TryGetValue(990, out object v) ? (Action<ScopedFragmentTransformer, CopyStatementOptionBase>)v : default;
+            set => this.visitorByTypeTag[990] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateAggregateStatement> VisForCreateAggregateStatement {
+            get => this.visitorByTypeTag.TryGetValue(580, out object v) ? (Action<ScopedFragmentTransformer, CreateAggregateStatement>)v : default;
+            set => this.visitorByTypeTag[580] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateApplicationRoleStatement> VisForCreateApplicationRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(351, out object v) ? (Action<ScopedFragmentTransformer, CreateApplicationRoleStatement>)v : default;
+            set => this.visitorByTypeTag[351] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateAssemblyStatement> VisForCreateAssemblyStatement {
+            get => this.visitorByTypeTag.TryGetValue(258, out object v) ? (Action<ScopedFragmentTransformer, CreateAssemblyStatement>)v : default;
+            set => this.visitorByTypeTag[258] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateAsymmetricKeyStatement> VisForCreateAsymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(560, out object v) ? (Action<ScopedFragmentTransformer, CreateAsymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[560] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateAvailabilityGroupStatement> VisForCreateAvailabilityGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(868, out object v) ? (Action<ScopedFragmentTransformer, CreateAvailabilityGroupStatement>)v : default;
+            set => this.visitorByTypeTag[868] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateBrokerPriorityStatement> VisForCreateBrokerPriorityStatement {
+            get => this.visitorByTypeTag.TryGetValue(817, out object v) ? (Action<ScopedFragmentTransformer, CreateBrokerPriorityStatement>)v : default;
+            set => this.visitorByTypeTag[817] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateCertificateStatement> VisForCreateCertificateStatement {
+            get => this.visitorByTypeTag.TryGetValue(572, out object v) ? (Action<ScopedFragmentTransformer, CreateCertificateStatement>)v : default;
+            set => this.visitorByTypeTag[572] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateColumnEncryptionKeyStatement> VisForCreateColumnEncryptionKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(229, out object v) ? (Action<ScopedFragmentTransformer, CreateColumnEncryptionKeyStatement>)v : default;
+            set => this.visitorByTypeTag[229] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateColumnMasterKeyStatement> VisForCreateColumnMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(224, out object v) ? (Action<ScopedFragmentTransformer, CreateColumnMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[224] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateColumnStoreIndexStatement> VisForCreateColumnStoreIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(887, out object v) ? (Action<ScopedFragmentTransformer, CreateColumnStoreIndexStatement>)v : default;
+            set => this.visitorByTypeTag[887] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateContractStatement> VisForCreateContractStatement {
+            get => this.visitorByTypeTag.TryGetValue(574, out object v) ? (Action<ScopedFragmentTransformer, CreateContractStatement>)v : default;
+            set => this.visitorByTypeTag[574] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateCredentialStatement> VisForCreateCredentialStatement {
+            get => this.visitorByTypeTag.TryGetValue(576, out object v) ? (Action<ScopedFragmentTransformer, CreateCredentialStatement>)v : default;
+            set => this.visitorByTypeTag[576] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateCryptographicProviderStatement> VisForCreateCryptographicProviderStatement {
+            get => this.visitorByTypeTag.TryGetValue(824, out object v) ? (Action<ScopedFragmentTransformer, CreateCryptographicProviderStatement>)v : default;
+            set => this.visitorByTypeTag[824] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateDatabaseAuditSpecificationStatement> VisForCreateDatabaseAuditSpecificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(766, out object v) ? (Action<ScopedFragmentTransformer, CreateDatabaseAuditSpecificationStatement>)v : default;
+            set => this.visitorByTypeTag[766] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateDatabaseEncryptionKeyStatement> VisForCreateDatabaseEncryptionKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(786, out object v) ? (Action<ScopedFragmentTransformer, CreateDatabaseEncryptionKeyStatement>)v : default;
+            set => this.visitorByTypeTag[786] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateDatabaseStatement> VisForCreateDatabaseStatement {
+            get => this.visitorByTypeTag.TryGetValue(426, out object v) ? (Action<ScopedFragmentTransformer, CreateDatabaseStatement>)v : default;
+            set => this.visitorByTypeTag[426] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateDefaultStatement> VisForCreateDefaultStatement {
+            get => this.visitorByTypeTag.TryGetValue(140, out object v) ? (Action<ScopedFragmentTransformer, CreateDefaultStatement>)v : default;
+            set => this.visitorByTypeTag[140] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateEndpointStatement> VisForCreateEndpointStatement {
+            get => this.visitorByTypeTag.TryGetValue(581, out object v) ? (Action<ScopedFragmentTransformer, CreateEndpointStatement>)v : default;
+            set => this.visitorByTypeTag[581] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateEventNotificationStatement> VisForCreateEventNotificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(346, out object v) ? (Action<ScopedFragmentTransformer, CreateEventNotificationStatement>)v : default;
+            set => this.visitorByTypeTag[346] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateEventSessionStatement> VisForCreateEventSessionStatement {
+            get => this.visitorByTypeTag.TryGetValue(829, out object v) ? (Action<ScopedFragmentTransformer, CreateEventSessionStatement>)v : default;
+            set => this.visitorByTypeTag[829] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateExternalDataSourceStatement> VisForCreateExternalDataSourceStatement {
+            get => this.visitorByTypeTag.TryGetValue(245, out object v) ? (Action<ScopedFragmentTransformer, CreateExternalDataSourceStatement>)v : default;
+            set => this.visitorByTypeTag[245] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateExternalFileFormatStatement> VisForCreateExternalFileFormatStatement {
+            get => this.visitorByTypeTag.TryGetValue(254, out object v) ? (Action<ScopedFragmentTransformer, CreateExternalFileFormatStatement>)v : default;
+            set => this.visitorByTypeTag[254] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateExternalLanguageStatement> VisForCreateExternalLanguageStatement {
+            get => this.visitorByTypeTag.TryGetValue(898, out object v) ? (Action<ScopedFragmentTransformer, CreateExternalLanguageStatement>)v : default;
+            set => this.visitorByTypeTag[898] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateExternalLibraryStatement> VisForCreateExternalLibraryStatement {
+            get => this.visitorByTypeTag.TryGetValue(894, out object v) ? (Action<ScopedFragmentTransformer, CreateExternalLibraryStatement>)v : default;
+            set => this.visitorByTypeTag[894] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateExternalResourcePoolStatement> VisForCreateExternalResourcePoolStatement {
+            get => this.visitorByTypeTag.TryGetValue(798, out object v) ? (Action<ScopedFragmentTransformer, CreateExternalResourcePoolStatement>)v : default;
+            set => this.visitorByTypeTag[798] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateExternalStreamingJobStatement> VisForCreateExternalStreamingJobStatement {
+            get => this.visitorByTypeTag.TryGetValue(256, out object v) ? (Action<ScopedFragmentTransformer, CreateExternalStreamingJobStatement>)v : default;
+            set => this.visitorByTypeTag[256] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateExternalStreamStatement> VisForCreateExternalStreamStatement {
+            get => this.visitorByTypeTag.TryGetValue(249, out object v) ? (Action<ScopedFragmentTransformer, CreateExternalStreamStatement>)v : default;
+            set => this.visitorByTypeTag[249] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateExternalTableStatement> VisForCreateExternalTableStatement {
+            get => this.visitorByTypeTag.TryGetValue(242, out object v) ? (Action<ScopedFragmentTransformer, CreateExternalTableStatement>)v : default;
+            set => this.visitorByTypeTag[242] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateFederationStatement> VisForCreateFederationStatement {
+            get => this.visitorByTypeTag.TryGetValue(881, out object v) ? (Action<ScopedFragmentTransformer, CreateFederationStatement>)v : default;
+            set => this.visitorByTypeTag[881] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateFullTextCatalogStatement> VisForCreateFullTextCatalogStatement {
+            get => this.visitorByTypeTag.TryGetValue(609, out object v) ? (Action<ScopedFragmentTransformer, CreateFullTextCatalogStatement>)v : default;
+            set => this.visitorByTypeTag[609] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateFullTextIndexStatement> VisForCreateFullTextIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(339, out object v) ? (Action<ScopedFragmentTransformer, CreateFullTextIndexStatement>)v : default;
+            set => this.visitorByTypeTag[339] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateFullTextStopListStatement> VisForCreateFullTextStopListStatement {
+            get => this.visitorByTypeTag.TryGetValue(820, out object v) ? (Action<ScopedFragmentTransformer, CreateFullTextStopListStatement>)v : default;
+            set => this.visitorByTypeTag[820] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateFunctionStatement> VisForCreateFunctionStatement {
+            get => this.visitorByTypeTag.TryGetValue(141, out object v) ? (Action<ScopedFragmentTransformer, CreateFunctionStatement>)v : default;
+            set => this.visitorByTypeTag[141] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateIndexStatement> VisForCreateIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(327, out object v) ? (Action<ScopedFragmentTransformer, CreateIndexStatement>)v : default;
+            set => this.visitorByTypeTag[327] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateLoginSource> VisForCreateLoginSource {
+            get => this.visitorByTypeTag.TryGetValue(1014, out object v) ? (Action<ScopedFragmentTransformer, CreateLoginSource>)v : default;
+            set => this.visitorByTypeTag[1014] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateLoginStatement> VisForCreateLoginStatement {
+            get => this.visitorByTypeTag.TryGetValue(699, out object v) ? (Action<ScopedFragmentTransformer, CreateLoginStatement>)v : default;
+            set => this.visitorByTypeTag[699] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateMasterKeyStatement> VisForCreateMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(348, out object v) ? (Action<ScopedFragmentTransformer, CreateMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[348] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateMessageTypeStatement> VisForCreateMessageTypeStatement {
+            get => this.visitorByTypeTag.TryGetValue(578, out object v) ? (Action<ScopedFragmentTransformer, CreateMessageTypeStatement>)v : default;
+            set => this.visitorByTypeTag[578] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateOrAlterFunctionStatement> VisForCreateOrAlterFunctionStatement {
+            get => this.visitorByTypeTag.TryGetValue(142, out object v) ? (Action<ScopedFragmentTransformer, CreateOrAlterFunctionStatement>)v : default;
+            set => this.visitorByTypeTag[142] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateOrAlterProcedureStatement> VisForCreateOrAlterProcedureStatement {
+            get => this.visitorByTypeTag.TryGetValue(33, out object v) ? (Action<ScopedFragmentTransformer, CreateOrAlterProcedureStatement>)v : default;
+            set => this.visitorByTypeTag[33] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateOrAlterTriggerStatement> VisForCreateOrAlterTriggerStatement {
+            get => this.visitorByTypeTag.TryGetValue(29, out object v) ? (Action<ScopedFragmentTransformer, CreateOrAlterTriggerStatement>)v : default;
+            set => this.visitorByTypeTag[29] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateOrAlterViewStatement> VisForCreateOrAlterViewStatement {
+            get => this.visitorByTypeTag.TryGetValue(18, out object v) ? (Action<ScopedFragmentTransformer, CreateOrAlterViewStatement>)v : default;
+            set => this.visitorByTypeTag[18] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreatePartitionFunctionStatement> VisForCreatePartitionFunctionStatement {
+            get => this.visitorByTypeTag.TryGetValue(561, out object v) ? (Action<ScopedFragmentTransformer, CreatePartitionFunctionStatement>)v : default;
+            set => this.visitorByTypeTag[561] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreatePartitionSchemeStatement> VisForCreatePartitionSchemeStatement {
+            get => this.visitorByTypeTag.TryGetValue(563, out object v) ? (Action<ScopedFragmentTransformer, CreatePartitionSchemeStatement>)v : default;
+            set => this.visitorByTypeTag[563] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateProcedureStatement> VisForCreateProcedureStatement {
+            get => this.visitorByTypeTag.TryGetValue(32, out object v) ? (Action<ScopedFragmentTransformer, CreateProcedureStatement>)v : default;
+            set => this.visitorByTypeTag[32] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateQueueStatement> VisForCreateQueueStatement {
+            get => this.visitorByTypeTag.TryGetValue(318, out object v) ? (Action<ScopedFragmentTransformer, CreateQueueStatement>)v : default;
+            set => this.visitorByTypeTag[318] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateRemoteServiceBindingStatement> VisForCreateRemoteServiceBindingStatement {
+            get => this.visitorByTypeTag.TryGetValue(566, out object v) ? (Action<ScopedFragmentTransformer, CreateRemoteServiceBindingStatement>)v : default;
+            set => this.visitorByTypeTag[566] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateResourcePoolStatement> VisForCreateResourcePoolStatement {
+            get => this.visitorByTypeTag.TryGetValue(792, out object v) ? (Action<ScopedFragmentTransformer, CreateResourcePoolStatement>)v : default;
+            set => this.visitorByTypeTag[792] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateRoleStatement> VisForCreateRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(353, out object v) ? (Action<ScopedFragmentTransformer, CreateRoleStatement>)v : default;
+            set => this.visitorByTypeTag[353] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateRouteStatement> VisForCreateRouteStatement {
+            get => this.visitorByTypeTag.TryGetValue(316, out object v) ? (Action<ScopedFragmentTransformer, CreateRouteStatement>)v : default;
+            set => this.visitorByTypeTag[316] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateRuleStatement> VisForCreateRuleStatement {
+            get => this.visitorByTypeTag.TryGetValue(143, out object v) ? (Action<ScopedFragmentTransformer, CreateRuleStatement>)v : default;
+            set => this.visitorByTypeTag[143] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateSchemaStatement> VisForCreateSchemaStatement {
+            get => this.visitorByTypeTag.TryGetValue(160, out object v) ? (Action<ScopedFragmentTransformer, CreateSchemaStatement>)v : default;
+            set => this.visitorByTypeTag[160] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateSearchPropertyListStatement> VisForCreateSearchPropertyListStatement {
+            get => this.visitorByTypeTag.TryGetValue(694, out object v) ? (Action<ScopedFragmentTransformer, CreateSearchPropertyListStatement>)v : default;
+            set => this.visitorByTypeTag[694] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateSecurityPolicyStatement> VisForCreateSecurityPolicyStatement {
+            get => this.visitorByTypeTag.TryGetValue(221, out object v) ? (Action<ScopedFragmentTransformer, CreateSecurityPolicyStatement>)v : default;
+            set => this.visitorByTypeTag[221] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateSelectiveXmlIndexStatement> VisForCreateSelectiveXmlIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(325, out object v) ? (Action<ScopedFragmentTransformer, CreateSelectiveXmlIndexStatement>)v : default;
+            set => this.visitorByTypeTag[325] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateSequenceStatement> VisForCreateSequenceStatement {
+            get => this.visitorByTypeTag.TryGetValue(216, out object v) ? (Action<ScopedFragmentTransformer, CreateSequenceStatement>)v : default;
+            set => this.visitorByTypeTag[216] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateServerAuditSpecificationStatement> VisForCreateServerAuditSpecificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(769, out object v) ? (Action<ScopedFragmentTransformer, CreateServerAuditSpecificationStatement>)v : default;
+            set => this.visitorByTypeTag[769] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateServerAuditStatement> VisForCreateServerAuditStatement {
+            get => this.visitorByTypeTag.TryGetValue(772, out object v) ? (Action<ScopedFragmentTransformer, CreateServerAuditStatement>)v : default;
+            set => this.visitorByTypeTag[772] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateServerRoleStatement> VisForCreateServerRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(358, out object v) ? (Action<ScopedFragmentTransformer, CreateServerRoleStatement>)v : default;
+            set => this.visitorByTypeTag[358] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateServiceStatement> VisForCreateServiceStatement {
+            get => this.visitorByTypeTag.TryGetValue(611, out object v) ? (Action<ScopedFragmentTransformer, CreateServiceStatement>)v : default;
+            set => this.visitorByTypeTag[611] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateSpatialIndexStatement> VisForCreateSpatialIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(843, out object v) ? (Action<ScopedFragmentTransformer, CreateSpatialIndexStatement>)v : default;
+            set => this.visitorByTypeTag[843] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateStatisticsStatement> VisForCreateStatisticsStatement {
+            get => this.visitorByTypeTag.TryGetValue(369, out object v) ? (Action<ScopedFragmentTransformer, CreateStatisticsStatement>)v : default;
+            set => this.visitorByTypeTag[369] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateSymmetricKeyStatement> VisForCreateSymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(601, out object v) ? (Action<ScopedFragmentTransformer, CreateSymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[601] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateSynonymStatement> VisForCreateSynonymStatement {
+            get => this.visitorByTypeTag.TryGetValue(307, out object v) ? (Action<ScopedFragmentTransformer, CreateSynonymStatement>)v : default;
+            set => this.visitorByTypeTag[307] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateTableStatement> VisForCreateTableStatement {
+            get => this.visitorByTypeTag.TryGetValue(503, out object v) ? (Action<ScopedFragmentTransformer, CreateTableStatement>)v : default;
+            set => this.visitorByTypeTag[503] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateTriggerStatement> VisForCreateTriggerStatement {
+            get => this.visitorByTypeTag.TryGetValue(28, out object v) ? (Action<ScopedFragmentTransformer, CreateTriggerStatement>)v : default;
+            set => this.visitorByTypeTag[28] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateTypeStatement> VisForCreateTypeStatement {
+            get => this.visitorByTypeTag.TryGetValue(964, out object v) ? (Action<ScopedFragmentTransformer, CreateTypeStatement>)v : default;
+            set => this.visitorByTypeTag[964] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateTypeTableStatement> VisForCreateTypeTableStatement {
+            get => this.visitorByTypeTag.TryGetValue(758, out object v) ? (Action<ScopedFragmentTransformer, CreateTypeTableStatement>)v : default;
+            set => this.visitorByTypeTag[758] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateTypeUddtStatement> VisForCreateTypeUddtStatement {
+            get => this.visitorByTypeTag.TryGetValue(306, out object v) ? (Action<ScopedFragmentTransformer, CreateTypeUddtStatement>)v : default;
+            set => this.visitorByTypeTag[306] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateTypeUdtStatement> VisForCreateTypeUdtStatement {
+            get => this.visitorByTypeTag.TryGetValue(305, out object v) ? (Action<ScopedFragmentTransformer, CreateTypeUdtStatement>)v : default;
+            set => this.visitorByTypeTag[305] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateUserStatement> VisForCreateUserStatement {
+            get => this.visitorByTypeTag.TryGetValue(362, out object v) ? (Action<ScopedFragmentTransformer, CreateUserStatement>)v : default;
+            set => this.visitorByTypeTag[362] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateViewStatement> VisForCreateViewStatement {
+            get => this.visitorByTypeTag.TryGetValue(17, out object v) ? (Action<ScopedFragmentTransformer, CreateViewStatement>)v : default;
+            set => this.visitorByTypeTag[17] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateWorkloadClassifierStatement> VisForCreateWorkloadClassifierStatement {
+            get => this.visitorByTypeTag.TryGetValue(814, out object v) ? (Action<ScopedFragmentTransformer, CreateWorkloadClassifierStatement>)v : default;
+            set => this.visitorByTypeTag[814] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateWorkloadGroupStatement> VisForCreateWorkloadGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(803, out object v) ? (Action<ScopedFragmentTransformer, CreateWorkloadGroupStatement>)v : default;
+            set => this.visitorByTypeTag[803] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateXmlIndexStatement> VisForCreateXmlIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(324, out object v) ? (Action<ScopedFragmentTransformer, CreateXmlIndexStatement>)v : default;
+            set => this.visitorByTypeTag[324] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreateXmlSchemaCollectionStatement> VisForCreateXmlSchemaCollectionStatement {
+            get => this.visitorByTypeTag.TryGetValue(264, out object v) ? (Action<ScopedFragmentTransformer, CreateXmlSchemaCollectionStatement>)v : default;
+            set => this.visitorByTypeTag[264] = value;
+        }
+        public Action<ScopedFragmentTransformer, CreationDispositionKeyOption> VisForCreationDispositionKeyOption {
+            get => this.visitorByTypeTag.TryGetValue(606, out object v) ? (Action<ScopedFragmentTransformer, CreationDispositionKeyOption>)v : default;
+            set => this.visitorByTypeTag[606] = value;
+        }
+        public Action<ScopedFragmentTransformer, CredentialStatement> VisForCredentialStatement {
+            get => this.visitorByTypeTag.TryGetValue(998, out object v) ? (Action<ScopedFragmentTransformer, CredentialStatement>)v : default;
+            set => this.visitorByTypeTag[998] = value;
+        }
+        public Action<ScopedFragmentTransformer, CryptoMechanism> VisForCryptoMechanism {
+            get => this.visitorByTypeTag.TryGetValue(379, out object v) ? (Action<ScopedFragmentTransformer, CryptoMechanism>)v : default;
+            set => this.visitorByTypeTag[379] = value;
+        }
+        public Action<ScopedFragmentTransformer, CubeGroupingSpecification> VisForCubeGroupingSpecification {
+            get => this.visitorByTypeTag.TryGetValue(639, out object v) ? (Action<ScopedFragmentTransformer, CubeGroupingSpecification>)v : default;
+            set => this.visitorByTypeTag[639] = value;
+        }
+        public Action<ScopedFragmentTransformer, CursorDefaultDatabaseOption> VisForCursorDefaultDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(461, out object v) ? (Action<ScopedFragmentTransformer, CursorDefaultDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[461] = value;
+        }
+        public Action<ScopedFragmentTransformer, CursorDefinition> VisForCursorDefinition {
+            get => this.visitorByTypeTag.TryGetValue(373, out object v) ? (Action<ScopedFragmentTransformer, CursorDefinition>)v : default;
+            set => this.visitorByTypeTag[373] = value;
+        }
+        public Action<ScopedFragmentTransformer, CursorId> VisForCursorId {
+            get => this.visitorByTypeTag.TryGetValue(376, out object v) ? (Action<ScopedFragmentTransformer, CursorId>)v : default;
+            set => this.visitorByTypeTag[376] = value;
+        }
+        public Action<ScopedFragmentTransformer, CursorOption> VisForCursorOption {
+            get => this.visitorByTypeTag.TryGetValue(374, out object v) ? (Action<ScopedFragmentTransformer, CursorOption>)v : default;
+            set => this.visitorByTypeTag[374] = value;
+        }
+        public Action<ScopedFragmentTransformer, CursorStatement> VisForCursorStatement {
+            get => this.visitorByTypeTag.TryGetValue(977, out object v) ? (Action<ScopedFragmentTransformer, CursorStatement>)v : default;
+            set => this.visitorByTypeTag[977] = value;
+        }
+        public Action<ScopedFragmentTransformer, DatabaseAuditAction> VisForDatabaseAuditAction {
+            get => this.visitorByTypeTag.TryGetValue(764, out object v) ? (Action<ScopedFragmentTransformer, DatabaseAuditAction>)v : default;
+            set => this.visitorByTypeTag[764] = value;
+        }
+        public Action<ScopedFragmentTransformer, DatabaseConfigurationClearOption> VisForDatabaseConfigurationClearOption {
+            get => this.visitorByTypeTag.TryGetValue(437, out object v) ? (Action<ScopedFragmentTransformer, DatabaseConfigurationClearOption>)v : default;
+            set => this.visitorByTypeTag[437] = value;
+        }
+        public Action<ScopedFragmentTransformer, DatabaseConfigurationSetOption> VisForDatabaseConfigurationSetOption {
+            get => this.visitorByTypeTag.TryGetValue(438, out object v) ? (Action<ScopedFragmentTransformer, DatabaseConfigurationSetOption>)v : default;
+            set => this.visitorByTypeTag[438] = value;
+        }
+        public Action<ScopedFragmentTransformer, DatabaseEncryptionKeyStatement> VisForDatabaseEncryptionKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(1027, out object v) ? (Action<ScopedFragmentTransformer, DatabaseEncryptionKeyStatement>)v : default;
+            set => this.visitorByTypeTag[1027] = value;
+        }
+        public Action<ScopedFragmentTransformer, DatabaseOption> VisForDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(454, out object v) ? (Action<ScopedFragmentTransformer, DatabaseOption>)v : default;
+            set => this.visitorByTypeTag[454] = value;
+        }
+        public Action<ScopedFragmentTransformer, DataCompressionOption> VisForDataCompressionOption {
+            get => this.visitorByTypeTag.TryGetValue(524, out object v) ? (Action<ScopedFragmentTransformer, DataCompressionOption>)v : default;
+            set => this.visitorByTypeTag[524] = value;
+        }
+        public Action<ScopedFragmentTransformer, DataModificationSpecification> VisForDataModificationSpecification {
+            get => this.visitorByTypeTag.TryGetValue(931, out object v) ? (Action<ScopedFragmentTransformer, DataModificationSpecification>)v : default;
+            set => this.visitorByTypeTag[931] = value;
+        }
+        public Action<ScopedFragmentTransformer, DataModificationStatement> VisForDataModificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(929, out object v) ? (Action<ScopedFragmentTransformer, DataModificationStatement>)v : default;
+            set => this.visitorByTypeTag[929] = value;
+        }
+        public Action<ScopedFragmentTransformer, DataModificationTableReference> VisForDataModificationTableReference {
+            get => this.visitorByTypeTag.TryGetValue(658, out object v) ? (Action<ScopedFragmentTransformer, DataModificationTableReference>)v : default;
+            set => this.visitorByTypeTag[658] = value;
+        }
+        public Action<ScopedFragmentTransformer, DataRetentionTableOption> VisForDataRetentionTableOption {
+            get => this.visitorByTypeTag.TryGetValue(290, out object v) ? (Action<ScopedFragmentTransformer, DataRetentionTableOption>)v : default;
+            set => this.visitorByTypeTag[290] = value;
+        }
+        public Action<ScopedFragmentTransformer, DataTypeReference> VisForDataTypeReference {
+            get => this.visitorByTypeTag.TryGetValue(914, out object v) ? (Action<ScopedFragmentTransformer, DataTypeReference>)v : default;
+            set => this.visitorByTypeTag[914] = value;
+        }
+        public Action<ScopedFragmentTransformer, DataTypeSequenceOption> VisForDataTypeSequenceOption {
+            get => this.visitorByTypeTag.TryGetValue(214, out object v) ? (Action<ScopedFragmentTransformer, DataTypeSequenceOption>)v : default;
+            set => this.visitorByTypeTag[214] = value;
+        }
+        public Action<ScopedFragmentTransformer, DbccNamedLiteral> VisForDbccNamedLiteral {
+            get => this.visitorByTypeTag.TryGetValue(559, out object v) ? (Action<ScopedFragmentTransformer, DbccNamedLiteral>)v : default;
+            set => this.visitorByTypeTag[559] = value;
+        }
+        public Action<ScopedFragmentTransformer, DbccOption> VisForDbccOption {
+            get => this.visitorByTypeTag.TryGetValue(558, out object v) ? (Action<ScopedFragmentTransformer, DbccOption>)v : default;
+            set => this.visitorByTypeTag[558] = value;
+        }
+        public Action<ScopedFragmentTransformer, DbccStatement> VisForDbccStatement {
+            get => this.visitorByTypeTag.TryGetValue(557, out object v) ? (Action<ScopedFragmentTransformer, DbccStatement>)v : default;
+            set => this.visitorByTypeTag[557] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeallocateCursorStatement> VisForDeallocateCursorStatement {
+            get => this.visitorByTypeTag.TryGetValue(384, out object v) ? (Action<ScopedFragmentTransformer, DeallocateCursorStatement>)v : default;
+            set => this.visitorByTypeTag[384] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeclareCursorStatement> VisForDeclareCursorStatement {
+            get => this.visitorByTypeTag.TryGetValue(372, out object v) ? (Action<ScopedFragmentTransformer, DeclareCursorStatement>)v : default;
+            set => this.visitorByTypeTag[372] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeclareTableVariableBody> VisForDeclareTableVariableBody {
+            get => this.visitorByTypeTag.TryGetValue(53, out object v) ? (Action<ScopedFragmentTransformer, DeclareTableVariableBody>)v : default;
+            set => this.visitorByTypeTag[53] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeclareTableVariableStatement> VisForDeclareTableVariableStatement {
+            get => this.visitorByTypeTag.TryGetValue(54, out object v) ? (Action<ScopedFragmentTransformer, DeclareTableVariableStatement>)v : default;
+            set => this.visitorByTypeTag[54] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeclareVariableElement> VisForDeclareVariableElement {
+            get => this.visitorByTypeTag.TryGetValue(144, out object v) ? (Action<ScopedFragmentTransformer, DeclareVariableElement>)v : default;
+            set => this.visitorByTypeTag[144] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeclareVariableStatement> VisForDeclareVariableStatement {
+            get => this.visitorByTypeTag.TryGetValue(145, out object v) ? (Action<ScopedFragmentTransformer, DeclareVariableStatement>)v : default;
+            set => this.visitorByTypeTag[145] = value;
+        }
+        public Action<ScopedFragmentTransformer, DefaultConstraintDefinition> VisForDefaultConstraintDefinition {
+            get => this.visitorByTypeTag.TryGetValue(528, out object v) ? (Action<ScopedFragmentTransformer, DefaultConstraintDefinition>)v : default;
+            set => this.visitorByTypeTag[528] = value;
+        }
+        public Action<ScopedFragmentTransformer, DefaultLiteral> VisForDefaultLiteral {
+            get => this.visitorByTypeTag.TryGetValue(199, out object v) ? (Action<ScopedFragmentTransformer, DefaultLiteral>)v : default;
+            set => this.visitorByTypeTag[199] = value;
+        }
+        public Action<ScopedFragmentTransformer, DelayedDurabilityDatabaseOption> VisForDelayedDurabilityDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(460, out object v) ? (Action<ScopedFragmentTransformer, DelayedDurabilityDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[460] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeleteMergeAction> VisForDeleteMergeAction {
+            get => this.visitorByTypeTag.TryGetValue(756, out object v) ? (Action<ScopedFragmentTransformer, DeleteMergeAction>)v : default;
+            set => this.visitorByTypeTag[756] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeleteSpecification> VisForDeleteSpecification {
+            get => this.visitorByTypeTag.TryGetValue(155, out object v) ? (Action<ScopedFragmentTransformer, DeleteSpecification>)v : default;
+            set => this.visitorByTypeTag[155] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeleteStatement> VisForDeleteStatement {
+            get => this.visitorByTypeTag.TryGetValue(154, out object v) ? (Action<ScopedFragmentTransformer, DeleteStatement>)v : default;
+            set => this.visitorByTypeTag[154] = value;
+        }
+        public Action<ScopedFragmentTransformer, DenyStatement> VisForDenyStatement {
+            get => this.visitorByTypeTag.TryGetValue(167, out object v) ? (Action<ScopedFragmentTransformer, DenyStatement>)v : default;
+            set => this.visitorByTypeTag[167] = value;
+        }
+        public Action<ScopedFragmentTransformer, DenyStatement80> VisForDenyStatement80 {
+            get => this.visitorByTypeTag.TryGetValue(175, out object v) ? (Action<ScopedFragmentTransformer, DenyStatement80>)v : default;
+            set => this.visitorByTypeTag[175] = value;
+        }
+        public Action<ScopedFragmentTransformer, DeviceInfo> VisForDeviceInfo {
+            get => this.visitorByTypeTag.TryGetValue(544, out object v) ? (Action<ScopedFragmentTransformer, DeviceInfo>)v : default;
+            set => this.visitorByTypeTag[544] = value;
+        }
+        public Action<ScopedFragmentTransformer, DialogOption> VisForDialogOption {
+            get => this.visitorByTypeTag.TryGetValue(1018, out object v) ? (Action<ScopedFragmentTransformer, DialogOption>)v : default;
+            set => this.visitorByTypeTag[1018] = value;
+        }
+        public Action<ScopedFragmentTransformer, DiskStatement> VisForDiskStatement {
+            get => this.visitorByTypeTag.TryGetValue(885, out object v) ? (Action<ScopedFragmentTransformer, DiskStatement>)v : default;
+            set => this.visitorByTypeTag[885] = value;
+        }
+        public Action<ScopedFragmentTransformer, DiskStatementOption> VisForDiskStatementOption {
+            get => this.visitorByTypeTag.TryGetValue(886, out object v) ? (Action<ScopedFragmentTransformer, DiskStatementOption>)v : default;
+            set => this.visitorByTypeTag[886] = value;
+        }
+        public Action<ScopedFragmentTransformer, DistinctPredicate> VisForDistinctPredicate {
+            get => this.visitorByTypeTag.TryGetValue(65, out object v) ? (Action<ScopedFragmentTransformer, DistinctPredicate>)v : default;
+            set => this.visitorByTypeTag[65] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropAggregateStatement> VisForDropAggregateStatement {
+            get => this.visitorByTypeTag.TryGetValue(671, out object v) ? (Action<ScopedFragmentTransformer, DropAggregateStatement>)v : default;
+            set => this.visitorByTypeTag[671] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropAlterFullTextIndexAction> VisForDropAlterFullTextIndexAction {
+            get => this.visitorByTypeTag.TryGetValue(691, out object v) ? (Action<ScopedFragmentTransformer, DropAlterFullTextIndexAction>)v : default;
+            set => this.visitorByTypeTag[691] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropApplicationRoleStatement> VisForDropApplicationRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(673, out object v) ? (Action<ScopedFragmentTransformer, DropApplicationRoleStatement>)v : default;
+            set => this.visitorByTypeTag[673] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropAssemblyStatement> VisForDropAssemblyStatement {
+            get => this.visitorByTypeTag.TryGetValue(672, out object v) ? (Action<ScopedFragmentTransformer, DropAssemblyStatement>)v : default;
+            set => this.visitorByTypeTag[672] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropAsymmetricKeyStatement> VisForDropAsymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(682, out object v) ? (Action<ScopedFragmentTransformer, DropAsymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[682] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropAvailabilityGroupStatement> VisForDropAvailabilityGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(880, out object v) ? (Action<ScopedFragmentTransformer, DropAvailabilityGroupStatement>)v : default;
+            set => this.visitorByTypeTag[880] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropBrokerPriorityStatement> VisForDropBrokerPriorityStatement {
+            get => this.visitorByTypeTag.TryGetValue(819, out object v) ? (Action<ScopedFragmentTransformer, DropBrokerPriorityStatement>)v : default;
+            set => this.visitorByTypeTag[819] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropCertificateStatement> VisForDropCertificateStatement {
+            get => this.visitorByTypeTag.TryGetValue(683, out object v) ? (Action<ScopedFragmentTransformer, DropCertificateStatement>)v : default;
+            set => this.visitorByTypeTag[683] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropChildObjectsStatement> VisForDropChildObjectsStatement {
+            get => this.visitorByTypeTag.TryGetValue(979, out object v) ? (Action<ScopedFragmentTransformer, DropChildObjectsStatement>)v : default;
+            set => this.visitorByTypeTag[979] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropClusteredConstraintMoveOption> VisForDropClusteredConstraintMoveOption {
+            get => this.visitorByTypeTag.TryGetValue(298, out object v) ? (Action<ScopedFragmentTransformer, DropClusteredConstraintMoveOption>)v : default;
+            set => this.visitorByTypeTag[298] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropClusteredConstraintOption> VisForDropClusteredConstraintOption {
+            get => this.visitorByTypeTag.TryGetValue(963, out object v) ? (Action<ScopedFragmentTransformer, DropClusteredConstraintOption>)v : default;
+            set => this.visitorByTypeTag[963] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropClusteredConstraintStateOption> VisForDropClusteredConstraintStateOption {
+            get => this.visitorByTypeTag.TryGetValue(296, out object v) ? (Action<ScopedFragmentTransformer, DropClusteredConstraintStateOption>)v : default;
+            set => this.visitorByTypeTag[296] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropClusteredConstraintValueOption> VisForDropClusteredConstraintValueOption {
+            get => this.visitorByTypeTag.TryGetValue(297, out object v) ? (Action<ScopedFragmentTransformer, DropClusteredConstraintValueOption>)v : default;
+            set => this.visitorByTypeTag[297] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropClusteredConstraintWaitAtLowPriorityLockOption> VisForDropClusteredConstraintWaitAtLowPriorityLockOption {
+            get => this.visitorByTypeTag.TryGetValue(299, out object v) ? (Action<ScopedFragmentTransformer, DropClusteredConstraintWaitAtLowPriorityLockOption>)v : default;
+            set => this.visitorByTypeTag[299] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropColumnEncryptionKeyStatement> VisForDropColumnEncryptionKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(231, out object v) ? (Action<ScopedFragmentTransformer, DropColumnEncryptionKeyStatement>)v : default;
+            set => this.visitorByTypeTag[231] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropColumnMasterKeyStatement> VisForDropColumnMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(228, out object v) ? (Action<ScopedFragmentTransformer, DropColumnMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[228] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropContractStatement> VisForDropContractStatement {
+            get => this.visitorByTypeTag.TryGetValue(714, out object v) ? (Action<ScopedFragmentTransformer, DropContractStatement>)v : default;
+            set => this.visitorByTypeTag[714] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropCredentialStatement> VisForDropCredentialStatement {
+            get => this.visitorByTypeTag.TryGetValue(684, out object v) ? (Action<ScopedFragmentTransformer, DropCredentialStatement>)v : default;
+            set => this.visitorByTypeTag[684] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropCryptographicProviderStatement> VisForDropCryptographicProviderStatement {
+            get => this.visitorByTypeTag.TryGetValue(826, out object v) ? (Action<ScopedFragmentTransformer, DropCryptographicProviderStatement>)v : default;
+            set => this.visitorByTypeTag[826] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropDatabaseAuditSpecificationStatement> VisForDropDatabaseAuditSpecificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(768, out object v) ? (Action<ScopedFragmentTransformer, DropDatabaseAuditSpecificationStatement>)v : default;
+            set => this.visitorByTypeTag[768] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropDatabaseEncryptionKeyStatement> VisForDropDatabaseEncryptionKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(788, out object v) ? (Action<ScopedFragmentTransformer, DropDatabaseEncryptionKeyStatement>)v : default;
+            set => this.visitorByTypeTag[788] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropDatabaseStatement> VisForDropDatabaseStatement {
+            get => this.visitorByTypeTag.TryGetValue(388, out object v) ? (Action<ScopedFragmentTransformer, DropDatabaseStatement>)v : default;
+            set => this.visitorByTypeTag[388] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropDefaultStatement> VisForDropDefaultStatement {
+            get => this.visitorByTypeTag.TryGetValue(399, out object v) ? (Action<ScopedFragmentTransformer, DropDefaultStatement>)v : default;
+            set => this.visitorByTypeTag[399] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropEndpointStatement> VisForDropEndpointStatement {
+            get => this.visitorByTypeTag.TryGetValue(715, out object v) ? (Action<ScopedFragmentTransformer, DropEndpointStatement>)v : default;
+            set => this.visitorByTypeTag[715] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropEventNotificationStatement> VisForDropEventNotificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(723, out object v) ? (Action<ScopedFragmentTransformer, DropEventNotificationStatement>)v : default;
+            set => this.visitorByTypeTag[723] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropEventSessionStatement> VisForDropEventSessionStatement {
+            get => this.visitorByTypeTag.TryGetValue(841, out object v) ? (Action<ScopedFragmentTransformer, DropEventSessionStatement>)v : default;
+            set => this.visitorByTypeTag[841] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropExternalDataSourceStatement> VisForDropExternalDataSourceStatement {
+            get => this.visitorByTypeTag.TryGetValue(247, out object v) ? (Action<ScopedFragmentTransformer, DropExternalDataSourceStatement>)v : default;
+            set => this.visitorByTypeTag[247] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropExternalFileFormatStatement> VisForDropExternalFileFormatStatement {
+            get => this.visitorByTypeTag.TryGetValue(255, out object v) ? (Action<ScopedFragmentTransformer, DropExternalFileFormatStatement>)v : default;
+            set => this.visitorByTypeTag[255] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropExternalLanguageStatement> VisForDropExternalLanguageStatement {
+            get => this.visitorByTypeTag.TryGetValue(901, out object v) ? (Action<ScopedFragmentTransformer, DropExternalLanguageStatement>)v : default;
+            set => this.visitorByTypeTag[901] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropExternalLibraryStatement> VisForDropExternalLibraryStatement {
+            get => this.visitorByTypeTag.TryGetValue(897, out object v) ? (Action<ScopedFragmentTransformer, DropExternalLibraryStatement>)v : default;
+            set => this.visitorByTypeTag[897] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropExternalResourcePoolStatement> VisForDropExternalResourcePoolStatement {
+            get => this.visitorByTypeTag.TryGetValue(800, out object v) ? (Action<ScopedFragmentTransformer, DropExternalResourcePoolStatement>)v : default;
+            set => this.visitorByTypeTag[800] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropExternalStreamingJobStatement> VisForDropExternalStreamingJobStatement {
+            get => this.visitorByTypeTag.TryGetValue(257, out object v) ? (Action<ScopedFragmentTransformer, DropExternalStreamingJobStatement>)v : default;
+            set => this.visitorByTypeTag[257] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropExternalStreamStatement> VisForDropExternalStreamStatement {
+            get => this.visitorByTypeTag.TryGetValue(250, out object v) ? (Action<ScopedFragmentTransformer, DropExternalStreamStatement>)v : default;
+            set => this.visitorByTypeTag[250] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropExternalTableStatement> VisForDropExternalTableStatement {
+            get => this.visitorByTypeTag.TryGetValue(243, out object v) ? (Action<ScopedFragmentTransformer, DropExternalTableStatement>)v : default;
+            set => this.visitorByTypeTag[243] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropFederationStatement> VisForDropFederationStatement {
+            get => this.visitorByTypeTag.TryGetValue(883, out object v) ? (Action<ScopedFragmentTransformer, DropFederationStatement>)v : default;
+            set => this.visitorByTypeTag[883] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropFullTextCatalogStatement> VisForDropFullTextCatalogStatement {
+            get => this.visitorByTypeTag.TryGetValue(674, out object v) ? (Action<ScopedFragmentTransformer, DropFullTextCatalogStatement>)v : default;
+            set => this.visitorByTypeTag[674] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropFullTextIndexStatement> VisForDropFullTextIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(675, out object v) ? (Action<ScopedFragmentTransformer, DropFullTextIndexStatement>)v : default;
+            set => this.visitorByTypeTag[675] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropFullTextStopListStatement> VisForDropFullTextStopListStatement {
+            get => this.visitorByTypeTag.TryGetValue(823, out object v) ? (Action<ScopedFragmentTransformer, DropFullTextStopListStatement>)v : default;
+            set => this.visitorByTypeTag[823] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropFunctionStatement> VisForDropFunctionStatement {
+            get => this.visitorByTypeTag.TryGetValue(397, out object v) ? (Action<ScopedFragmentTransformer, DropFunctionStatement>)v : default;
+            set => this.visitorByTypeTag[397] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropIndexClause> VisForDropIndexClause {
+            get => this.visitorByTypeTag.TryGetValue(391, out object v) ? (Action<ScopedFragmentTransformer, DropIndexClause>)v : default;
+            set => this.visitorByTypeTag[391] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropIndexClauseBase> VisForDropIndexClauseBase {
+            get => this.visitorByTypeTag.TryGetValue(978, out object v) ? (Action<ScopedFragmentTransformer, DropIndexClauseBase>)v : default;
+            set => this.visitorByTypeTag[978] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropIndexStatement> VisForDropIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(389, out object v) ? (Action<ScopedFragmentTransformer, DropIndexStatement>)v : default;
+            set => this.visitorByTypeTag[389] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropLoginStatement> VisForDropLoginStatement {
+            get => this.visitorByTypeTag.TryGetValue(676, out object v) ? (Action<ScopedFragmentTransformer, DropLoginStatement>)v : default;
+            set => this.visitorByTypeTag[676] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropMasterKeyStatement> VisForDropMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(680, out object v) ? (Action<ScopedFragmentTransformer, DropMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[680] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropMemberAlterRoleAction> VisForDropMemberAlterRoleAction {
+            get => this.visitorByTypeTag.TryGetValue(357, out object v) ? (Action<ScopedFragmentTransformer, DropMemberAlterRoleAction>)v : default;
+            set => this.visitorByTypeTag[357] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropMessageTypeStatement> VisForDropMessageTypeStatement {
+            get => this.visitorByTypeTag.TryGetValue(716, out object v) ? (Action<ScopedFragmentTransformer, DropMessageTypeStatement>)v : default;
+            set => this.visitorByTypeTag[716] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropObjectsStatement> VisForDropObjectsStatement {
+            get => this.visitorByTypeTag.TryGetValue(942, out object v) ? (Action<ScopedFragmentTransformer, DropObjectsStatement>)v : default;
+            set => this.visitorByTypeTag[942] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropPartitionFunctionStatement> VisForDropPartitionFunctionStatement {
+            get => this.visitorByTypeTag.TryGetValue(668, out object v) ? (Action<ScopedFragmentTransformer, DropPartitionFunctionStatement>)v : default;
+            set => this.visitorByTypeTag[668] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropPartitionSchemeStatement> VisForDropPartitionSchemeStatement {
+            get => this.visitorByTypeTag.TryGetValue(669, out object v) ? (Action<ScopedFragmentTransformer, DropPartitionSchemeStatement>)v : default;
+            set => this.visitorByTypeTag[669] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropProcedureStatement> VisForDropProcedureStatement {
+            get => this.visitorByTypeTag.TryGetValue(396, out object v) ? (Action<ScopedFragmentTransformer, DropProcedureStatement>)v : default;
+            set => this.visitorByTypeTag[396] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropQueueStatement> VisForDropQueueStatement {
+            get => this.visitorByTypeTag.TryGetValue(717, out object v) ? (Action<ScopedFragmentTransformer, DropQueueStatement>)v : default;
+            set => this.visitorByTypeTag[717] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropRemoteServiceBindingStatement> VisForDropRemoteServiceBindingStatement {
+            get => this.visitorByTypeTag.TryGetValue(718, out object v) ? (Action<ScopedFragmentTransformer, DropRemoteServiceBindingStatement>)v : default;
+            set => this.visitorByTypeTag[718] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropResourcePoolStatement> VisForDropResourcePoolStatement {
+            get => this.visitorByTypeTag.TryGetValue(794, out object v) ? (Action<ScopedFragmentTransformer, DropResourcePoolStatement>)v : default;
+            set => this.visitorByTypeTag[794] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropRoleStatement> VisForDropRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(677, out object v) ? (Action<ScopedFragmentTransformer, DropRoleStatement>)v : default;
+            set => this.visitorByTypeTag[677] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropRouteStatement> VisForDropRouteStatement {
+            get => this.visitorByTypeTag.TryGetValue(719, out object v) ? (Action<ScopedFragmentTransformer, DropRouteStatement>)v : default;
+            set => this.visitorByTypeTag[719] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropRuleStatement> VisForDropRuleStatement {
+            get => this.visitorByTypeTag.TryGetValue(400, out object v) ? (Action<ScopedFragmentTransformer, DropRuleStatement>)v : default;
+            set => this.visitorByTypeTag[400] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSchemaStatement> VisForDropSchemaStatement {
+            get => this.visitorByTypeTag.TryGetValue(402, out object v) ? (Action<ScopedFragmentTransformer, DropSchemaStatement>)v : default;
+            set => this.visitorByTypeTag[402] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSearchPropertyListAction> VisForDropSearchPropertyListAction {
+            get => this.visitorByTypeTag.TryGetValue(697, out object v) ? (Action<ScopedFragmentTransformer, DropSearchPropertyListAction>)v : default;
+            set => this.visitorByTypeTag[697] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSearchPropertyListStatement> VisForDropSearchPropertyListStatement {
+            get => this.visitorByTypeTag.TryGetValue(698, out object v) ? (Action<ScopedFragmentTransformer, DropSearchPropertyListStatement>)v : default;
+            set => this.visitorByTypeTag[698] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSecurityPolicyStatement> VisForDropSecurityPolicyStatement {
+            get => this.visitorByTypeTag.TryGetValue(223, out object v) ? (Action<ScopedFragmentTransformer, DropSecurityPolicyStatement>)v : default;
+            set => this.visitorByTypeTag[223] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSensitivityClassificationStatement> VisForDropSensitivityClassificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(761, out object v) ? (Action<ScopedFragmentTransformer, DropSensitivityClassificationStatement>)v : default;
+            set => this.visitorByTypeTag[761] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSequenceStatement> VisForDropSequenceStatement {
+            get => this.visitorByTypeTag.TryGetValue(218, out object v) ? (Action<ScopedFragmentTransformer, DropSequenceStatement>)v : default;
+            set => this.visitorByTypeTag[218] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropServerAuditSpecificationStatement> VisForDropServerAuditSpecificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(771, out object v) ? (Action<ScopedFragmentTransformer, DropServerAuditSpecificationStatement>)v : default;
+            set => this.visitorByTypeTag[771] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropServerAuditStatement> VisForDropServerAuditStatement {
+            get => this.visitorByTypeTag.TryGetValue(774, out object v) ? (Action<ScopedFragmentTransformer, DropServerAuditStatement>)v : default;
+            set => this.visitorByTypeTag[774] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropServerRoleStatement> VisForDropServerRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(360, out object v) ? (Action<ScopedFragmentTransformer, DropServerRoleStatement>)v : default;
+            set => this.visitorByTypeTag[360] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropServiceStatement> VisForDropServiceStatement {
+            get => this.visitorByTypeTag.TryGetValue(720, out object v) ? (Action<ScopedFragmentTransformer, DropServiceStatement>)v : default;
+            set => this.visitorByTypeTag[720] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSignatureStatement> VisForDropSignatureStatement {
+            get => this.visitorByTypeTag.TryGetValue(722, out object v) ? (Action<ScopedFragmentTransformer, DropSignatureStatement>)v : default;
+            set => this.visitorByTypeTag[722] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropStatisticsStatement> VisForDropStatisticsStatement {
+            get => this.visitorByTypeTag.TryGetValue(394, out object v) ? (Action<ScopedFragmentTransformer, DropStatisticsStatement>)v : default;
+            set => this.visitorByTypeTag[394] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSymmetricKeyStatement> VisForDropSymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(681, out object v) ? (Action<ScopedFragmentTransformer, DropSymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[681] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropSynonymStatement> VisForDropSynonymStatement {
+            get => this.visitorByTypeTag.TryGetValue(670, out object v) ? (Action<ScopedFragmentTransformer, DropSynonymStatement>)v : default;
+            set => this.visitorByTypeTag[670] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropTableStatement> VisForDropTableStatement {
+            get => this.visitorByTypeTag.TryGetValue(395, out object v) ? (Action<ScopedFragmentTransformer, DropTableStatement>)v : default;
+            set => this.visitorByTypeTag[395] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropTriggerStatement> VisForDropTriggerStatement {
+            get => this.visitorByTypeTag.TryGetValue(401, out object v) ? (Action<ScopedFragmentTransformer, DropTriggerStatement>)v : default;
+            set => this.visitorByTypeTag[401] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropTypeStatement> VisForDropTypeStatement {
+            get => this.visitorByTypeTag.TryGetValue(678, out object v) ? (Action<ScopedFragmentTransformer, DropTypeStatement>)v : default;
+            set => this.visitorByTypeTag[678] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropUnownedObjectStatement> VisForDropUnownedObjectStatement {
+            get => this.visitorByTypeTag.TryGetValue(945, out object v) ? (Action<ScopedFragmentTransformer, DropUnownedObjectStatement>)v : default;
+            set => this.visitorByTypeTag[945] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropUserStatement> VisForDropUserStatement {
+            get => this.visitorByTypeTag.TryGetValue(679, out object v) ? (Action<ScopedFragmentTransformer, DropUserStatement>)v : default;
+            set => this.visitorByTypeTag[679] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropViewStatement> VisForDropViewStatement {
+            get => this.visitorByTypeTag.TryGetValue(398, out object v) ? (Action<ScopedFragmentTransformer, DropViewStatement>)v : default;
+            set => this.visitorByTypeTag[398] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropWorkloadClassifierStatement> VisForDropWorkloadClassifierStatement {
+            get => this.visitorByTypeTag.TryGetValue(815, out object v) ? (Action<ScopedFragmentTransformer, DropWorkloadClassifierStatement>)v : default;
+            set => this.visitorByTypeTag[815] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropWorkloadGroupStatement> VisForDropWorkloadGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(805, out object v) ? (Action<ScopedFragmentTransformer, DropWorkloadGroupStatement>)v : default;
+            set => this.visitorByTypeTag[805] = value;
+        }
+        public Action<ScopedFragmentTransformer, DropXmlSchemaCollectionStatement> VisForDropXmlSchemaCollectionStatement {
+            get => this.visitorByTypeTag.TryGetValue(266, out object v) ? (Action<ScopedFragmentTransformer, DropXmlSchemaCollectionStatement>)v : default;
+            set => this.visitorByTypeTag[266] = value;
+        }
+        public Action<ScopedFragmentTransformer, DurabilityTableOption> VisForDurabilityTableOption {
+            get => this.visitorByTypeTag.TryGetValue(279, out object v) ? (Action<ScopedFragmentTransformer, DurabilityTableOption>)v : default;
+            set => this.visitorByTypeTag[279] = value;
+        }
+        public Action<ScopedFragmentTransformer, DWCompatibilityLevelConfigurationOption> VisForDWCompatibilityLevelConfigurationOption {
+            get => this.visitorByTypeTag.TryGetValue(441, out object v) ? (Action<ScopedFragmentTransformer, DWCompatibilityLevelConfigurationOption>)v : default;
+            set => this.visitorByTypeTag[441] = value;
+        }
+        public Action<ScopedFragmentTransformer, ElasticPoolSpecification> VisForElasticPoolSpecification {
+            get => this.visitorByTypeTag.TryGetValue(902, out object v) ? (Action<ScopedFragmentTransformer, ElasticPoolSpecification>)v : default;
+            set => this.visitorByTypeTag[902] = value;
+        }
+        public Action<ScopedFragmentTransformer, EnabledDisabledPayloadOption> VisForEnabledDisabledPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(591, out object v) ? (Action<ScopedFragmentTransformer, EnabledDisabledPayloadOption>)v : default;
+            set => this.visitorByTypeTag[591] = value;
+        }
+        public Action<ScopedFragmentTransformer, EnableDisableTriggerStatement> VisForEnableDisableTriggerStatement {
+            get => this.visitorByTypeTag.TryGetValue(303, out object v) ? (Action<ScopedFragmentTransformer, EnableDisableTriggerStatement>)v : default;
+            set => this.visitorByTypeTag[303] = value;
+        }
+        public Action<ScopedFragmentTransformer, EncryptedValueParameter> VisForEncryptedValueParameter {
+            get => this.visitorByTypeTag.TryGetValue(235, out object v) ? (Action<ScopedFragmentTransformer, EncryptedValueParameter>)v : default;
+            set => this.visitorByTypeTag[235] = value;
+        }
+        public Action<ScopedFragmentTransformer, EncryptionPayloadOption> VisForEncryptionPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(600, out object v) ? (Action<ScopedFragmentTransformer, EncryptionPayloadOption>)v : default;
+            set => this.visitorByTypeTag[600] = value;
+        }
+        public Action<ScopedFragmentTransformer, EncryptionSource> VisForEncryptionSource {
+            get => this.visitorByTypeTag.TryGetValue(996, out object v) ? (Action<ScopedFragmentTransformer, EncryptionSource>)v : default;
+            set => this.visitorByTypeTag[996] = value;
+        }
+        public Action<ScopedFragmentTransformer, EndConversationStatement> VisForEndConversationStatement {
+            get => this.visitorByTypeTag.TryGetValue(725, out object v) ? (Action<ScopedFragmentTransformer, EndConversationStatement>)v : default;
+            set => this.visitorByTypeTag[725] = value;
+        }
+        public Action<ScopedFragmentTransformer, EndpointAffinity> VisForEndpointAffinity {
+            get => this.visitorByTypeTag.TryGetValue(583, out object v) ? (Action<ScopedFragmentTransformer, EndpointAffinity>)v : default;
+            set => this.visitorByTypeTag[583] = value;
+        }
+        public Action<ScopedFragmentTransformer, EndpointProtocolOption> VisForEndpointProtocolOption {
+            get => this.visitorByTypeTag.TryGetValue(1001, out object v) ? (Action<ScopedFragmentTransformer, EndpointProtocolOption>)v : default;
+            set => this.visitorByTypeTag[1001] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventDeclaration> VisForEventDeclaration {
+            get => this.visitorByTypeTag.TryGetValue(830, out object v) ? (Action<ScopedFragmentTransformer, EventDeclaration>)v : default;
+            set => this.visitorByTypeTag[830] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventDeclarationCompareFunctionParameter> VisForEventDeclarationCompareFunctionParameter {
+            get => this.visitorByTypeTag.TryGetValue(833, out object v) ? (Action<ScopedFragmentTransformer, EventDeclarationCompareFunctionParameter>)v : default;
+            set => this.visitorByTypeTag[833] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventDeclarationSetParameter> VisForEventDeclarationSetParameter {
+            get => this.visitorByTypeTag.TryGetValue(831, out object v) ? (Action<ScopedFragmentTransformer, EventDeclarationSetParameter>)v : default;
+            set => this.visitorByTypeTag[831] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventGroupContainer> VisForEventGroupContainer {
+            get => this.visitorByTypeTag.TryGetValue(345, out object v) ? (Action<ScopedFragmentTransformer, EventGroupContainer>)v : default;
+            set => this.visitorByTypeTag[345] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventNotificationObjectScope> VisForEventNotificationObjectScope {
+            get => this.visitorByTypeTag.TryGetValue(347, out object v) ? (Action<ScopedFragmentTransformer, EventNotificationObjectScope>)v : default;
+            set => this.visitorByTypeTag[347] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventRetentionSessionOption> VisForEventRetentionSessionOption {
+            get => this.visitorByTypeTag.TryGetValue(835, out object v) ? (Action<ScopedFragmentTransformer, EventRetentionSessionOption>)v : default;
+            set => this.visitorByTypeTag[835] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventSessionObjectName> VisForEventSessionObjectName {
+            get => this.visitorByTypeTag.TryGetValue(827, out object v) ? (Action<ScopedFragmentTransformer, EventSessionObjectName>)v : default;
+            set => this.visitorByTypeTag[827] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventSessionStatement> VisForEventSessionStatement {
+            get => this.visitorByTypeTag.TryGetValue(828, out object v) ? (Action<ScopedFragmentTransformer, EventSessionStatement>)v : default;
+            set => this.visitorByTypeTag[828] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventTypeContainer> VisForEventTypeContainer {
+            get => this.visitorByTypeTag.TryGetValue(344, out object v) ? (Action<ScopedFragmentTransformer, EventTypeContainer>)v : default;
+            set => this.visitorByTypeTag[344] = value;
+        }
+        public Action<ScopedFragmentTransformer, EventTypeGroupContainer> VisForEventTypeGroupContainer {
+            get => this.visitorByTypeTag.TryGetValue(971, out object v) ? (Action<ScopedFragmentTransformer, EventTypeGroupContainer>)v : default;
+            set => this.visitorByTypeTag[971] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecutableEntity> VisForExecutableEntity {
+            get => this.visitorByTypeTag.TryGetValue(905, out object v) ? (Action<ScopedFragmentTransformer, ExecutableEntity>)v : default;
+            set => this.visitorByTypeTag[905] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecutableProcedureReference> VisForExecutableProcedureReference {
+            get => this.visitorByTypeTag.TryGetValue(12, out object v) ? (Action<ScopedFragmentTransformer, ExecutableProcedureReference>)v : default;
+            set => this.visitorByTypeTag[12] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecutableStringList> VisForExecutableStringList {
+            get => this.visitorByTypeTag.TryGetValue(13, out object v) ? (Action<ScopedFragmentTransformer, ExecutableStringList>)v : default;
+            set => this.visitorByTypeTag[13] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteAsClause> VisForExecuteAsClause {
+            get => this.visitorByTypeTag.TryGetValue(308, out object v) ? (Action<ScopedFragmentTransformer, ExecuteAsClause>)v : default;
+            set => this.visitorByTypeTag[308] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteAsFunctionOption> VisForExecuteAsFunctionOption {
+            get => this.visitorByTypeTag.TryGetValue(40, out object v) ? (Action<ScopedFragmentTransformer, ExecuteAsFunctionOption>)v : default;
+            set => this.visitorByTypeTag[40] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteAsProcedureOption> VisForExecuteAsProcedureOption {
+            get => this.visitorByTypeTag.TryGetValue(37, out object v) ? (Action<ScopedFragmentTransformer, ExecuteAsProcedureOption>)v : default;
+            set => this.visitorByTypeTag[37] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteAsStatement> VisForExecuteAsStatement {
+            get => this.visitorByTypeTag.TryGetValue(724, out object v) ? (Action<ScopedFragmentTransformer, ExecuteAsStatement>)v : default;
+            set => this.visitorByTypeTag[724] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteAsTriggerOption> VisForExecuteAsTriggerOption {
+            get => this.visitorByTypeTag.TryGetValue(25, out object v) ? (Action<ScopedFragmentTransformer, ExecuteAsTriggerOption>)v : default;
+            set => this.visitorByTypeTag[25] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteContext> VisForExecuteContext {
+            get => this.visitorByTypeTag.TryGetValue(9, out object v) ? (Action<ScopedFragmentTransformer, ExecuteContext>)v : default;
+            set => this.visitorByTypeTag[9] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteInsertSource> VisForExecuteInsertSource {
+            get => this.visitorByTypeTag.TryGetValue(186, out object v) ? (Action<ScopedFragmentTransformer, ExecuteInsertSource>)v : default;
+            set => this.visitorByTypeTag[186] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteOption> VisForExecuteOption {
+            get => this.visitorByTypeTag.TryGetValue(2, out object v) ? (Action<ScopedFragmentTransformer, ExecuteOption>)v : default;
+            set => this.visitorByTypeTag[2] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteParameter> VisForExecuteParameter {
+            get => this.visitorByTypeTag.TryGetValue(10, out object v) ? (Action<ScopedFragmentTransformer, ExecuteParameter>)v : default;
+            set => this.visitorByTypeTag[10] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteSpecification> VisForExecuteSpecification {
+            get => this.visitorByTypeTag.TryGetValue(8, out object v) ? (Action<ScopedFragmentTransformer, ExecuteSpecification>)v : default;
+            set => this.visitorByTypeTag[8] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExecuteStatement> VisForExecuteStatement {
+            get => this.visitorByTypeTag.TryGetValue(1, out object v) ? (Action<ScopedFragmentTransformer, ExecuteStatement>)v : default;
+            set => this.visitorByTypeTag[1] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExistsPredicate> VisForExistsPredicate {
+            get => this.visitorByTypeTag.TryGetValue(63, out object v) ? (Action<ScopedFragmentTransformer, ExistsPredicate>)v : default;
+            set => this.visitorByTypeTag[63] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExpressionCallTarget> VisForExpressionCallTarget {
+            get => this.visitorByTypeTag.TryGetValue(113, out object v) ? (Action<ScopedFragmentTransformer, ExpressionCallTarget>)v : default;
+            set => this.visitorByTypeTag[113] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExpressionGroupingSpecification> VisForExpressionGroupingSpecification {
+            get => this.visitorByTypeTag.TryGetValue(637, out object v) ? (Action<ScopedFragmentTransformer, ExpressionGroupingSpecification>)v : default;
+            set => this.visitorByTypeTag[637] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExpressionWithSortOrder> VisForExpressionWithSortOrder {
+            get => this.visitorByTypeTag.TryGetValue(635, out object v) ? (Action<ScopedFragmentTransformer, ExpressionWithSortOrder>)v : default;
+            set => this.visitorByTypeTag[635] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalCreateLoginSource> VisForExternalCreateLoginSource {
+            get => this.visitorByTypeTag.TryGetValue(706, out object v) ? (Action<ScopedFragmentTransformer, ExternalCreateLoginSource>)v : default;
+            set => this.visitorByTypeTag[706] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalDataSourceLiteralOrIdentifierOption> VisForExternalDataSourceLiteralOrIdentifierOption {
+            get => this.visitorByTypeTag.TryGetValue(244, out object v) ? (Action<ScopedFragmentTransformer, ExternalDataSourceLiteralOrIdentifierOption>)v : default;
+            set => this.visitorByTypeTag[244] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalDataSourceOption> VisForExternalDataSourceOption {
+            get => this.visitorByTypeTag.TryGetValue(951, out object v) ? (Action<ScopedFragmentTransformer, ExternalDataSourceOption>)v : default;
+            set => this.visitorByTypeTag[951] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalDataSourceStatement> VisForExternalDataSourceStatement {
+            get => this.visitorByTypeTag.TryGetValue(952, out object v) ? (Action<ScopedFragmentTransformer, ExternalDataSourceStatement>)v : default;
+            set => this.visitorByTypeTag[952] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalFileFormatContainerOption> VisForExternalFileFormatContainerOption {
+            get => this.visitorByTypeTag.TryGetValue(253, out object v) ? (Action<ScopedFragmentTransformer, ExternalFileFormatContainerOption>)v : default;
+            set => this.visitorByTypeTag[253] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalFileFormatLiteralOption> VisForExternalFileFormatLiteralOption {
+            get => this.visitorByTypeTag.TryGetValue(251, out object v) ? (Action<ScopedFragmentTransformer, ExternalFileFormatLiteralOption>)v : default;
+            set => this.visitorByTypeTag[251] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalFileFormatOption> VisForExternalFileFormatOption {
+            get => this.visitorByTypeTag.TryGetValue(955, out object v) ? (Action<ScopedFragmentTransformer, ExternalFileFormatOption>)v : default;
+            set => this.visitorByTypeTag[955] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalFileFormatStatement> VisForExternalFileFormatStatement {
+            get => this.visitorByTypeTag.TryGetValue(956, out object v) ? (Action<ScopedFragmentTransformer, ExternalFileFormatStatement>)v : default;
+            set => this.visitorByTypeTag[956] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalFileFormatUseDefaultTypeOption> VisForExternalFileFormatUseDefaultTypeOption {
+            get => this.visitorByTypeTag.TryGetValue(252, out object v) ? (Action<ScopedFragmentTransformer, ExternalFileFormatUseDefaultTypeOption>)v : default;
+            set => this.visitorByTypeTag[252] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalLanguageFileOption> VisForExternalLanguageFileOption {
+            get => this.visitorByTypeTag.TryGetValue(900, out object v) ? (Action<ScopedFragmentTransformer, ExternalLanguageFileOption>)v : default;
+            set => this.visitorByTypeTag[900] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalLanguageStatement> VisForExternalLanguageStatement {
+            get => this.visitorByTypeTag.TryGetValue(1039, out object v) ? (Action<ScopedFragmentTransformer, ExternalLanguageStatement>)v : default;
+            set => this.visitorByTypeTag[1039] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalLibraryFileOption> VisForExternalLibraryFileOption {
+            get => this.visitorByTypeTag.TryGetValue(896, out object v) ? (Action<ScopedFragmentTransformer, ExternalLibraryFileOption>)v : default;
+            set => this.visitorByTypeTag[896] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalLibraryStatement> VisForExternalLibraryStatement {
+            get => this.visitorByTypeTag.TryGetValue(1038, out object v) ? (Action<ScopedFragmentTransformer, ExternalLibraryStatement>)v : default;
+            set => this.visitorByTypeTag[1038] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalResourcePoolAffinitySpecification> VisForExternalResourcePoolAffinitySpecification {
+            get => this.visitorByTypeTag.TryGetValue(797, out object v) ? (Action<ScopedFragmentTransformer, ExternalResourcePoolAffinitySpecification>)v : default;
+            set => this.visitorByTypeTag[797] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalResourcePoolParameter> VisForExternalResourcePoolParameter {
+            get => this.visitorByTypeTag.TryGetValue(796, out object v) ? (Action<ScopedFragmentTransformer, ExternalResourcePoolParameter>)v : default;
+            set => this.visitorByTypeTag[796] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalResourcePoolStatement> VisForExternalResourcePoolStatement {
+            get => this.visitorByTypeTag.TryGetValue(795, out object v) ? (Action<ScopedFragmentTransformer, ExternalResourcePoolStatement>)v : default;
+            set => this.visitorByTypeTag[795] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalStreamingJobStatement> VisForExternalStreamingJobStatement {
+            get => this.visitorByTypeTag.TryGetValue(957, out object v) ? (Action<ScopedFragmentTransformer, ExternalStreamingJobStatement>)v : default;
+            set => this.visitorByTypeTag[957] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalStreamLiteralOrIdentifierOption> VisForExternalStreamLiteralOrIdentifierOption {
+            get => this.visitorByTypeTag.TryGetValue(248, out object v) ? (Action<ScopedFragmentTransformer, ExternalStreamLiteralOrIdentifierOption>)v : default;
+            set => this.visitorByTypeTag[248] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalStreamOption> VisForExternalStreamOption {
+            get => this.visitorByTypeTag.TryGetValue(953, out object v) ? (Action<ScopedFragmentTransformer, ExternalStreamOption>)v : default;
+            set => this.visitorByTypeTag[953] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalStreamStatement> VisForExternalStreamStatement {
+            get => this.visitorByTypeTag.TryGetValue(954, out object v) ? (Action<ScopedFragmentTransformer, ExternalStreamStatement>)v : default;
+            set => this.visitorByTypeTag[954] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableColumnDefinition> VisForExternalTableColumnDefinition {
+            get => this.visitorByTypeTag.TryGetValue(555, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableColumnDefinition>)v : default;
+            set => this.visitorByTypeTag[555] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableDistributionOption> VisForExternalTableDistributionOption {
+            get => this.visitorByTypeTag.TryGetValue(237, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableDistributionOption>)v : default;
+            set => this.visitorByTypeTag[237] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableDistributionPolicy> VisForExternalTableDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(949, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[949] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableLiteralOrIdentifierOption> VisForExternalTableLiteralOrIdentifierOption {
+            get => this.visitorByTypeTag.TryGetValue(236, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableLiteralOrIdentifierOption>)v : default;
+            set => this.visitorByTypeTag[236] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableOption> VisForExternalTableOption {
+            get => this.visitorByTypeTag.TryGetValue(948, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableOption>)v : default;
+            set => this.visitorByTypeTag[948] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableRejectTypeOption> VisForExternalTableRejectTypeOption {
+            get => this.visitorByTypeTag.TryGetValue(238, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableRejectTypeOption>)v : default;
+            set => this.visitorByTypeTag[238] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableReplicatedDistributionPolicy> VisForExternalTableReplicatedDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(239, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableReplicatedDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[239] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableRoundRobinDistributionPolicy> VisForExternalTableRoundRobinDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(240, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableRoundRobinDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[240] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableShardedDistributionPolicy> VisForExternalTableShardedDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(241, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableShardedDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[241] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExternalTableStatement> VisForExternalTableStatement {
+            get => this.visitorByTypeTag.TryGetValue(950, out object v) ? (Action<ScopedFragmentTransformer, ExternalTableStatement>)v : default;
+            set => this.visitorByTypeTag[950] = value;
+        }
+        public Action<ScopedFragmentTransformer, ExtractFromExpression> VisForExtractFromExpression {
+            get => this.visitorByTypeTag.TryGetValue(125, out object v) ? (Action<ScopedFragmentTransformer, ExtractFromExpression>)v : default;
+            set => this.visitorByTypeTag[125] = value;
+        }
+        public Action<ScopedFragmentTransformer, FailoverModeReplicaOption> VisForFailoverModeReplicaOption {
+            get => this.visitorByTypeTag.TryGetValue(873, out object v) ? (Action<ScopedFragmentTransformer, FailoverModeReplicaOption>)v : default;
+            set => this.visitorByTypeTag[873] = value;
+        }
+        public Action<ScopedFragmentTransformer, FederationScheme> VisForFederationScheme {
+            get => this.visitorByTypeTag.TryGetValue(504, out object v) ? (Action<ScopedFragmentTransformer, FederationScheme>)v : default;
+            set => this.visitorByTypeTag[504] = value;
+        }
+        public Action<ScopedFragmentTransformer, FetchCursorStatement> VisForFetchCursorStatement {
+            get => this.visitorByTypeTag.TryGetValue(386, out object v) ? (Action<ScopedFragmentTransformer, FetchCursorStatement>)v : default;
+            set => this.visitorByTypeTag[386] = value;
+        }
+        public Action<ScopedFragmentTransformer, FetchType> VisForFetchType {
+            get => this.visitorByTypeTag.TryGetValue(385, out object v) ? (Action<ScopedFragmentTransformer, FetchType>)v : default;
+            set => this.visitorByTypeTag[385] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileDeclaration> VisForFileDeclaration {
+            get => this.visitorByTypeTag.TryGetValue(427, out object v) ? (Action<ScopedFragmentTransformer, FileDeclaration>)v : default;
+            set => this.visitorByTypeTag[427] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileDeclarationOption> VisForFileDeclarationOption {
+            get => this.visitorByTypeTag.TryGetValue(428, out object v) ? (Action<ScopedFragmentTransformer, FileDeclarationOption>)v : default;
+            set => this.visitorByTypeTag[428] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileEncryptionSource> VisForFileEncryptionSource {
+            get => this.visitorByTypeTag.TryGetValue(569, out object v) ? (Action<ScopedFragmentTransformer, FileEncryptionSource>)v : default;
+            set => this.visitorByTypeTag[569] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileGroupDefinition> VisForFileGroupDefinition {
+            get => this.visitorByTypeTag.TryGetValue(434, out object v) ? (Action<ScopedFragmentTransformer, FileGroupDefinition>)v : default;
+            set => this.visitorByTypeTag[434] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileGroupOrPartitionScheme> VisForFileGroupOrPartitionScheme {
+            get => this.visitorByTypeTag.TryGetValue(326, out object v) ? (Action<ScopedFragmentTransformer, FileGroupOrPartitionScheme>)v : default;
+            set => this.visitorByTypeTag[326] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileGrowthFileDeclarationOption> VisForFileGrowthFileDeclarationOption {
+            get => this.visitorByTypeTag.TryGetValue(433, out object v) ? (Action<ScopedFragmentTransformer, FileGrowthFileDeclarationOption>)v : default;
+            set => this.visitorByTypeTag[433] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileNameFileDeclarationOption> VisForFileNameFileDeclarationOption {
+            get => this.visitorByTypeTag.TryGetValue(430, out object v) ? (Action<ScopedFragmentTransformer, FileNameFileDeclarationOption>)v : default;
+            set => this.visitorByTypeTag[430] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileStreamDatabaseOption> VisForFileStreamDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(490, out object v) ? (Action<ScopedFragmentTransformer, FileStreamDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[490] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileStreamOnDropIndexOption> VisForFileStreamOnDropIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(393, out object v) ? (Action<ScopedFragmentTransformer, FileStreamOnDropIndexOption>)v : default;
+            set => this.visitorByTypeTag[393] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileStreamOnTableOption> VisForFileStreamOnTableOption {
+            get => this.visitorByTypeTag.TryGetValue(274, out object v) ? (Action<ScopedFragmentTransformer, FileStreamOnTableOption>)v : default;
+            set => this.visitorByTypeTag[274] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileStreamRestoreOption> VisForFileStreamRestoreOption {
+            get => this.visitorByTypeTag.TryGetValue(541, out object v) ? (Action<ScopedFragmentTransformer, FileStreamRestoreOption>)v : default;
+            set => this.visitorByTypeTag[541] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileTableCollateFileNameTableOption> VisForFileTableCollateFileNameTableOption {
+            get => this.visitorByTypeTag.TryGetValue(276, out object v) ? (Action<ScopedFragmentTransformer, FileTableCollateFileNameTableOption>)v : default;
+            set => this.visitorByTypeTag[276] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileTableConstraintNameTableOption> VisForFileTableConstraintNameTableOption {
+            get => this.visitorByTypeTag.TryGetValue(277, out object v) ? (Action<ScopedFragmentTransformer, FileTableConstraintNameTableOption>)v : default;
+            set => this.visitorByTypeTag[277] = value;
+        }
+        public Action<ScopedFragmentTransformer, FileTableDirectoryTableOption> VisForFileTableDirectoryTableOption {
+            get => this.visitorByTypeTag.TryGetValue(275, out object v) ? (Action<ScopedFragmentTransformer, FileTableDirectoryTableOption>)v : default;
+            set => this.visitorByTypeTag[275] = value;
+        }
+        public Action<ScopedFragmentTransformer, ForceSeekTableHint> VisForForceSeekTableHint {
+            get => this.visitorByTypeTag.TryGetValue(81, out object v) ? (Action<ScopedFragmentTransformer, ForceSeekTableHint>)v : default;
+            set => this.visitorByTypeTag[81] = value;
+        }
+        public Action<ScopedFragmentTransformer, ForClause> VisForForClause {
+            get => this.visitorByTypeTag.TryGetValue(922, out object v) ? (Action<ScopedFragmentTransformer, ForClause>)v : default;
+            set => this.visitorByTypeTag[922] = value;
+        }
+        public Action<ScopedFragmentTransformer, ForeignKeyConstraintDefinition> VisForForeignKeyConstraintDefinition {
+            get => this.visitorByTypeTag.TryGetValue(529, out object v) ? (Action<ScopedFragmentTransformer, ForeignKeyConstraintDefinition>)v : default;
+            set => this.visitorByTypeTag[529] = value;
+        }
+        public Action<ScopedFragmentTransformer, FromClause> VisForFromClause {
+            get => this.visitorByTypeTag.TryGetValue(653, out object v) ? (Action<ScopedFragmentTransformer, FromClause>)v : default;
+            set => this.visitorByTypeTag[653] = value;
+        }
+        public Action<ScopedFragmentTransformer, FullTextCatalogAndFileGroup> VisForFullTextCatalogAndFileGroup {
+            get => this.visitorByTypeTag.TryGetValue(343, out object v) ? (Action<ScopedFragmentTransformer, FullTextCatalogAndFileGroup>)v : default;
+            set => this.visitorByTypeTag[343] = value;
+        }
+        public Action<ScopedFragmentTransformer, FullTextCatalogOption> VisForFullTextCatalogOption {
+            get => this.visitorByTypeTag.TryGetValue(1005, out object v) ? (Action<ScopedFragmentTransformer, FullTextCatalogOption>)v : default;
+            set => this.visitorByTypeTag[1005] = value;
+        }
+        public Action<ScopedFragmentTransformer, FullTextCatalogStatement> VisForFullTextCatalogStatement {
+            get => this.visitorByTypeTag.TryGetValue(1006, out object v) ? (Action<ScopedFragmentTransformer, FullTextCatalogStatement>)v : default;
+            set => this.visitorByTypeTag[1006] = value;
+        }
+        public Action<ScopedFragmentTransformer, FullTextIndexColumn> VisForFullTextIndexColumn {
+            get => this.visitorByTypeTag.TryGetValue(338, out object v) ? (Action<ScopedFragmentTransformer, FullTextIndexColumn>)v : default;
+            set => this.visitorByTypeTag[338] = value;
+        }
+        public Action<ScopedFragmentTransformer, FullTextIndexOption> VisForFullTextIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(970, out object v) ? (Action<ScopedFragmentTransformer, FullTextIndexOption>)v : default;
+            set => this.visitorByTypeTag[970] = value;
+        }
+        public Action<ScopedFragmentTransformer, FullTextPredicate> VisForFullTextPredicate {
+            get => this.visitorByTypeTag.TryGetValue(67, out object v) ? (Action<ScopedFragmentTransformer, FullTextPredicate>)v : default;
+            set => this.visitorByTypeTag[67] = value;
+        }
+        public Action<ScopedFragmentTransformer, FullTextStopListAction> VisForFullTextStopListAction {
+            get => this.visitorByTypeTag.TryGetValue(822, out object v) ? (Action<ScopedFragmentTransformer, FullTextStopListAction>)v : default;
+            set => this.visitorByTypeTag[822] = value;
+        }
+        public Action<ScopedFragmentTransformer, FullTextTableReference> VisForFullTextTableReference {
+            get => this.visitorByTypeTag.TryGetValue(92, out object v) ? (Action<ScopedFragmentTransformer, FullTextTableReference>)v : default;
+            set => this.visitorByTypeTag[92] = value;
+        }
+        public Action<ScopedFragmentTransformer, FunctionCall> VisForFunctionCall {
+            get => this.visitorByTypeTag.TryGetValue(112, out object v) ? (Action<ScopedFragmentTransformer, FunctionCall>)v : default;
+            set => this.visitorByTypeTag[112] = value;
+        }
+        public Action<ScopedFragmentTransformer, FunctionCallSetClause> VisForFunctionCallSetClause {
+            get => this.visitorByTypeTag.TryGetValue(183, out object v) ? (Action<ScopedFragmentTransformer, FunctionCallSetClause>)v : default;
+            set => this.visitorByTypeTag[183] = value;
+        }
+        public Action<ScopedFragmentTransformer, FunctionOption> VisForFunctionOption {
+            get => this.visitorByTypeTag.TryGetValue(38, out object v) ? (Action<ScopedFragmentTransformer, FunctionOption>)v : default;
+            set => this.visitorByTypeTag[38] = value;
+        }
+        public Action<ScopedFragmentTransformer, FunctionReturnType> VisForFunctionReturnType {
+            get => this.visitorByTypeTag.TryGetValue(912, out object v) ? (Action<ScopedFragmentTransformer, FunctionReturnType>)v : default;
+            set => this.visitorByTypeTag[912] = value;
+        }
+        public Action<ScopedFragmentTransformer, FunctionStatementBody> VisForFunctionStatementBody {
+            get => this.visitorByTypeTag.TryGetValue(926, out object v) ? (Action<ScopedFragmentTransformer, FunctionStatementBody>)v : default;
+            set => this.visitorByTypeTag[926] = value;
+        }
+        public Action<ScopedFragmentTransformer, GeneralSetCommand> VisForGeneralSetCommand {
+            get => this.visitorByTypeTag.TryGetValue(419, out object v) ? (Action<ScopedFragmentTransformer, GeneralSetCommand>)v : default;
+            set => this.visitorByTypeTag[419] = value;
+        }
+        public Action<ScopedFragmentTransformer, GenericConfigurationOption> VisForGenericConfigurationOption {
+            get => this.visitorByTypeTag.TryGetValue(442, out object v) ? (Action<ScopedFragmentTransformer, GenericConfigurationOption>)v : default;
+            set => this.visitorByTypeTag[442] = value;
+        }
+        public Action<ScopedFragmentTransformer, GetConversationGroupStatement> VisForGetConversationGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(727, out object v) ? (Action<ScopedFragmentTransformer, GetConversationGroupStatement>)v : default;
+            set => this.visitorByTypeTag[727] = value;
+        }
+        public Action<ScopedFragmentTransformer, GlobalFunctionTableReference> VisForGlobalFunctionTableReference {
+            get => this.visitorByTypeTag.TryGetValue(616, out object v) ? (Action<ScopedFragmentTransformer, GlobalFunctionTableReference>)v : default;
+            set => this.visitorByTypeTag[616] = value;
+        }
+        public Action<ScopedFragmentTransformer, GlobalVariableExpression> VisForGlobalVariableExpression {
+            get => this.visitorByTypeTag.TryGetValue(206, out object v) ? (Action<ScopedFragmentTransformer, GlobalVariableExpression>)v : default;
+            set => this.visitorByTypeTag[206] = value;
+        }
+        public Action<ScopedFragmentTransformer, GoToStatement> VisForGoToStatement {
+            get => this.visitorByTypeTag.TryGetValue(146, out object v) ? (Action<ScopedFragmentTransformer, GoToStatement>)v : default;
+            set => this.visitorByTypeTag[146] = value;
+        }
+        public Action<ScopedFragmentTransformer, GrandTotalGroupingSpecification> VisForGrandTotalGroupingSpecification {
+            get => this.visitorByTypeTag.TryGetValue(641, out object v) ? (Action<ScopedFragmentTransformer, GrandTotalGroupingSpecification>)v : default;
+            set => this.visitorByTypeTag[641] = value;
+        }
+        public Action<ScopedFragmentTransformer, GrantStatement> VisForGrantStatement {
+            get => this.visitorByTypeTag.TryGetValue(166, out object v) ? (Action<ScopedFragmentTransformer, GrantStatement>)v : default;
+            set => this.visitorByTypeTag[166] = value;
+        }
+        public Action<ScopedFragmentTransformer, GrantStatement80> VisForGrantStatement80 {
+            get => this.visitorByTypeTag.TryGetValue(174, out object v) ? (Action<ScopedFragmentTransformer, GrantStatement80>)v : default;
+            set => this.visitorByTypeTag[174] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphConnectionBetweenNodes> VisForGraphConnectionBetweenNodes {
+            get => this.visitorByTypeTag.TryGetValue(531, out object v) ? (Action<ScopedFragmentTransformer, GraphConnectionBetweenNodes>)v : default;
+            set => this.visitorByTypeTag[531] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphConnectionConstraintDefinition> VisForGraphConnectionConstraintDefinition {
+            get => this.visitorByTypeTag.TryGetValue(532, out object v) ? (Action<ScopedFragmentTransformer, GraphConnectionConstraintDefinition>)v : default;
+            set => this.visitorByTypeTag[532] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphMatchCompositeExpression> VisForGraphMatchCompositeExpression {
+            get => this.visitorByTypeTag.TryGetValue(633, out object v) ? (Action<ScopedFragmentTransformer, GraphMatchCompositeExpression>)v : default;
+            set => this.visitorByTypeTag[633] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphMatchExpression> VisForGraphMatchExpression {
+            get => this.visitorByTypeTag.TryGetValue(632, out object v) ? (Action<ScopedFragmentTransformer, GraphMatchExpression>)v : default;
+            set => this.visitorByTypeTag[632] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphMatchLastNodePredicate> VisForGraphMatchLastNodePredicate {
+            get => this.visitorByTypeTag.TryGetValue(629, out object v) ? (Action<ScopedFragmentTransformer, GraphMatchLastNodePredicate>)v : default;
+            set => this.visitorByTypeTag[629] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphMatchNodeExpression> VisForGraphMatchNodeExpression {
+            get => this.visitorByTypeTag.TryGetValue(630, out object v) ? (Action<ScopedFragmentTransformer, GraphMatchNodeExpression>)v : default;
+            set => this.visitorByTypeTag[630] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphMatchPredicate> VisForGraphMatchPredicate {
+            get => this.visitorByTypeTag.TryGetValue(628, out object v) ? (Action<ScopedFragmentTransformer, GraphMatchPredicate>)v : default;
+            set => this.visitorByTypeTag[628] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphMatchRecursivePredicate> VisForGraphMatchRecursivePredicate {
+            get => this.visitorByTypeTag.TryGetValue(631, out object v) ? (Action<ScopedFragmentTransformer, GraphMatchRecursivePredicate>)v : default;
+            set => this.visitorByTypeTag[631] = value;
+        }
+        public Action<ScopedFragmentTransformer, GraphRecursiveMatchQuantifier> VisForGraphRecursiveMatchQuantifier {
+            get => this.visitorByTypeTag.TryGetValue(634, out object v) ? (Action<ScopedFragmentTransformer, GraphRecursiveMatchQuantifier>)v : default;
+            set => this.visitorByTypeTag[634] = value;
+        }
+        public Action<ScopedFragmentTransformer, GridParameter> VisForGridParameter {
+            get => this.visitorByTypeTag.TryGetValue(848, out object v) ? (Action<ScopedFragmentTransformer, GridParameter>)v : default;
+            set => this.visitorByTypeTag[848] = value;
+        }
+        public Action<ScopedFragmentTransformer, GridsSpatialIndexOption> VisForGridsSpatialIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(847, out object v) ? (Action<ScopedFragmentTransformer, GridsSpatialIndexOption>)v : default;
+            set => this.visitorByTypeTag[847] = value;
+        }
+        public Action<ScopedFragmentTransformer, GroupByClause> VisForGroupByClause {
+            get => this.visitorByTypeTag.TryGetValue(636, out object v) ? (Action<ScopedFragmentTransformer, GroupByClause>)v : default;
+            set => this.visitorByTypeTag[636] = value;
+        }
+        public Action<ScopedFragmentTransformer, GroupingSetsGroupingSpecification> VisForGroupingSetsGroupingSpecification {
+            get => this.visitorByTypeTag.TryGetValue(642, out object v) ? (Action<ScopedFragmentTransformer, GroupingSetsGroupingSpecification>)v : default;
+            set => this.visitorByTypeTag[642] = value;
+        }
+        public Action<ScopedFragmentTransformer, GroupingSpecification> VisForGroupingSpecification {
+            get => this.visitorByTypeTag.TryGetValue(1009, out object v) ? (Action<ScopedFragmentTransformer, GroupingSpecification>)v : default;
+            set => this.visitorByTypeTag[1009] = value;
+        }
+        public Action<ScopedFragmentTransformer, HadrAvailabilityGroupDatabaseOption> VisForHadrAvailabilityGroupDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(459, out object v) ? (Action<ScopedFragmentTransformer, HadrAvailabilityGroupDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[459] = value;
+        }
+        public Action<ScopedFragmentTransformer, HadrDatabaseOption> VisForHadrDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(458, out object v) ? (Action<ScopedFragmentTransformer, HadrDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[458] = value;
+        }
+        public Action<ScopedFragmentTransformer, HavingClause> VisForHavingClause {
+            get => this.visitorByTypeTag.TryGetValue(645, out object v) ? (Action<ScopedFragmentTransformer, HavingClause>)v : default;
+            set => this.visitorByTypeTag[645] = value;
+        }
+        public Action<ScopedFragmentTransformer, Identifier> VisForIdentifier {
+            get => this.visitorByTypeTag.TryGetValue(30, out object v) ? (Action<ScopedFragmentTransformer, Identifier>)v : default;
+            set => this.visitorByTypeTag[30] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentifierAtomicBlockOption> VisForIdentifierAtomicBlockOption {
+            get => this.visitorByTypeTag.TryGetValue(131, out object v) ? (Action<ScopedFragmentTransformer, IdentifierAtomicBlockOption>)v : default;
+            set => this.visitorByTypeTag[131] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentifierDatabaseOption> VisForIdentifierDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(469, out object v) ? (Action<ScopedFragmentTransformer, IdentifierDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[469] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentifierLiteral> VisForIdentifierLiteral {
+            get => this.visitorByTypeTag.TryGetValue(198, out object v) ? (Action<ScopedFragmentTransformer, IdentifierLiteral>)v : default;
+            set => this.visitorByTypeTag[198] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentifierOrScalarExpression> VisForIdentifierOrScalarExpression {
+            get => this.visitorByTypeTag.TryGetValue(208, out object v) ? (Action<ScopedFragmentTransformer, IdentifierOrScalarExpression>)v : default;
+            set => this.visitorByTypeTag[208] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentifierOrValueExpression> VisForIdentifierOrValueExpression {
+            get => this.visitorByTypeTag.TryGetValue(207, out object v) ? (Action<ScopedFragmentTransformer, IdentifierOrValueExpression>)v : default;
+            set => this.visitorByTypeTag[207] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentifierPrincipalOption> VisForIdentifierPrincipalOption {
+            get => this.visitorByTypeTag.TryGetValue(704, out object v) ? (Action<ScopedFragmentTransformer, IdentifierPrincipalOption>)v : default;
+            set => this.visitorByTypeTag[704] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentifierSnippet> VisForIdentifierSnippet {
+            get => this.visitorByTypeTag.TryGetValue(749, out object v) ? (Action<ScopedFragmentTransformer, IdentifierSnippet>)v : default;
+            set => this.visitorByTypeTag[749] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentityFunctionCall> VisForIdentityFunctionCall {
+            get => this.visitorByTypeTag.TryGetValue(646, out object v) ? (Action<ScopedFragmentTransformer, IdentityFunctionCall>)v : default;
+            set => this.visitorByTypeTag[646] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentityOptions> VisForIdentityOptions {
+            get => this.visitorByTypeTag.TryGetValue(501, out object v) ? (Action<ScopedFragmentTransformer, IdentityOptions>)v : default;
+            set => this.visitorByTypeTag[501] = value;
+        }
+        public Action<ScopedFragmentTransformer, IdentityValueKeyOption> VisForIdentityValueKeyOption {
+            get => this.visitorByTypeTag.TryGetValue(604, out object v) ? (Action<ScopedFragmentTransformer, IdentityValueKeyOption>)v : default;
+            set => this.visitorByTypeTag[604] = value;
+        }
+        public Action<ScopedFragmentTransformer, IfStatement> VisForIfStatement {
+            get => this.visitorByTypeTag.TryGetValue(147, out object v) ? (Action<ScopedFragmentTransformer, IfStatement>)v : default;
+            set => this.visitorByTypeTag[147] = value;
+        }
+        public Action<ScopedFragmentTransformer, IgnoreDupKeyIndexOption> VisForIgnoreDupKeyIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(333, out object v) ? (Action<ScopedFragmentTransformer, IgnoreDupKeyIndexOption>)v : default;
+            set => this.visitorByTypeTag[333] = value;
+        }
+        public Action<ScopedFragmentTransformer, IIfCall> VisForIIfCall {
+            get => this.visitorByTypeTag.TryGetValue(91, out object v) ? (Action<ScopedFragmentTransformer, IIfCall>)v : default;
+            set => this.visitorByTypeTag[91] = value;
+        }
+        public Action<ScopedFragmentTransformer, IndexDefinition> VisForIndexDefinition {
+            get => this.visitorByTypeTag.TryGetValue(319, out object v) ? (Action<ScopedFragmentTransformer, IndexDefinition>)v : default;
+            set => this.visitorByTypeTag[319] = value;
+        }
+        public Action<ScopedFragmentTransformer, IndexExpressionOption> VisForIndexExpressionOption {
+            get => this.visitorByTypeTag.TryGetValue(329, out object v) ? (Action<ScopedFragmentTransformer, IndexExpressionOption>)v : default;
+            set => this.visitorByTypeTag[329] = value;
+        }
+        public Action<ScopedFragmentTransformer, IndexOption> VisForIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(968, out object v) ? (Action<ScopedFragmentTransformer, IndexOption>)v : default;
+            set => this.visitorByTypeTag[968] = value;
+        }
+        public Action<ScopedFragmentTransformer, IndexStatement> VisForIndexStatement {
+            get => this.visitorByTypeTag.TryGetValue(967, out object v) ? (Action<ScopedFragmentTransformer, IndexStatement>)v : default;
+            set => this.visitorByTypeTag[967] = value;
+        }
+        public Action<ScopedFragmentTransformer, IndexStateOption> VisForIndexStateOption {
+            get => this.visitorByTypeTag.TryGetValue(328, out object v) ? (Action<ScopedFragmentTransformer, IndexStateOption>)v : default;
+            set => this.visitorByTypeTag[328] = value;
+        }
+        public Action<ScopedFragmentTransformer, IndexTableHint> VisForIndexTableHint {
+            get => this.visitorByTypeTag.TryGetValue(58, out object v) ? (Action<ScopedFragmentTransformer, IndexTableHint>)v : default;
+            set => this.visitorByTypeTag[58] = value;
+        }
+        public Action<ScopedFragmentTransformer, IndexType> VisForIndexType {
+            get => this.visitorByTypeTag.TryGetValue(321, out object v) ? (Action<ScopedFragmentTransformer, IndexType>)v : default;
+            set => this.visitorByTypeTag[321] = value;
+        }
+        public Action<ScopedFragmentTransformer, InlineDerivedTable> VisForInlineDerivedTable {
+            get => this.visitorByTypeTag.TryGetValue(61, out object v) ? (Action<ScopedFragmentTransformer, InlineDerivedTable>)v : default;
+            set => this.visitorByTypeTag[61] = value;
+        }
+        public Action<ScopedFragmentTransformer, InlineFunctionOption> VisForInlineFunctionOption {
+            get => this.visitorByTypeTag.TryGetValue(39, out object v) ? (Action<ScopedFragmentTransformer, InlineFunctionOption>)v : default;
+            set => this.visitorByTypeTag[39] = value;
+        }
+        public Action<ScopedFragmentTransformer, InlineResultSetDefinition> VisForInlineResultSetDefinition {
+            get => this.visitorByTypeTag.TryGetValue(5, out object v) ? (Action<ScopedFragmentTransformer, InlineResultSetDefinition>)v : default;
+            set => this.visitorByTypeTag[5] = value;
+        }
+        public Action<ScopedFragmentTransformer, InPredicate> VisForInPredicate {
+            get => this.visitorByTypeTag.TryGetValue(66, out object v) ? (Action<ScopedFragmentTransformer, InPredicate>)v : default;
+            set => this.visitorByTypeTag[66] = value;
+        }
+        public Action<ScopedFragmentTransformer, InsertBulkColumnDefinition> VisForInsertBulkColumnDefinition {
+            get => this.visitorByTypeTag.TryGetValue(556, out object v) ? (Action<ScopedFragmentTransformer, InsertBulkColumnDefinition>)v : default;
+            set => this.visitorByTypeTag[556] = value;
+        }
+        public Action<ScopedFragmentTransformer, InsertBulkStatement> VisForInsertBulkStatement {
+            get => this.visitorByTypeTag.TryGetValue(548, out object v) ? (Action<ScopedFragmentTransformer, InsertBulkStatement>)v : default;
+            set => this.visitorByTypeTag[548] = value;
+        }
+        public Action<ScopedFragmentTransformer, InsertMergeAction> VisForInsertMergeAction {
+            get => this.visitorByTypeTag.TryGetValue(757, out object v) ? (Action<ScopedFragmentTransformer, InsertMergeAction>)v : default;
+            set => this.visitorByTypeTag[757] = value;
+        }
+        public Action<ScopedFragmentTransformer, InsertSource> VisForInsertSource {
+            get => this.visitorByTypeTag.TryGetValue(937, out object v) ? (Action<ScopedFragmentTransformer, InsertSource>)v : default;
+            set => this.visitorByTypeTag[937] = value;
+        }
+        public Action<ScopedFragmentTransformer, InsertSpecification> VisForInsertSpecification {
+            get => this.visitorByTypeTag.TryGetValue(157, out object v) ? (Action<ScopedFragmentTransformer, InsertSpecification>)v : default;
+            set => this.visitorByTypeTag[157] = value;
+        }
+        public Action<ScopedFragmentTransformer, InsertStatement> VisForInsertStatement {
+            get => this.visitorByTypeTag.TryGetValue(156, out object v) ? (Action<ScopedFragmentTransformer, InsertStatement>)v : default;
+            set => this.visitorByTypeTag[156] = value;
+        }
+        public Action<ScopedFragmentTransformer, IntegerLiteral> VisForIntegerLiteral {
+            get => this.visitorByTypeTag.TryGetValue(191, out object v) ? (Action<ScopedFragmentTransformer, IntegerLiteral>)v : default;
+            set => this.visitorByTypeTag[191] = value;
+        }
+        public Action<ScopedFragmentTransformer, InternalOpenRowset> VisForInternalOpenRowset {
+            get => this.visitorByTypeTag.TryGetValue(97, out object v) ? (Action<ScopedFragmentTransformer, InternalOpenRowset>)v : default;
+            set => this.visitorByTypeTag[97] = value;
+        }
+        public Action<ScopedFragmentTransformer, IPv4> VisForIPv4 {
+            get => this.visitorByTypeTag.TryGetValue(589, out object v) ? (Action<ScopedFragmentTransformer, IPv4>)v : default;
+            set => this.visitorByTypeTag[589] = value;
+        }
+        public Action<ScopedFragmentTransformer, JoinParenthesisTableReference> VisForJoinParenthesisTableReference {
+            get => this.visitorByTypeTag.TryGetValue(647, out object v) ? (Action<ScopedFragmentTransformer, JoinParenthesisTableReference>)v : default;
+            set => this.visitorByTypeTag[647] = value;
+        }
+        public Action<ScopedFragmentTransformer, JoinTableReference> VisForJoinTableReference {
+            get => this.visitorByTypeTag.TryGetValue(1008, out object v) ? (Action<ScopedFragmentTransformer, JoinTableReference>)v : default;
+            set => this.visitorByTypeTag[1008] = value;
+        }
+        public Action<ScopedFragmentTransformer, JsonForClause> VisForJsonForClause {
+            get => this.visitorByTypeTag.TryGetValue(74, out object v) ? (Action<ScopedFragmentTransformer, JsonForClause>)v : default;
+            set => this.visitorByTypeTag[74] = value;
+        }
+        public Action<ScopedFragmentTransformer, JsonForClauseOption> VisForJsonForClauseOption {
+            get => this.visitorByTypeTag.TryGetValue(76, out object v) ? (Action<ScopedFragmentTransformer, JsonForClauseOption>)v : default;
+            set => this.visitorByTypeTag[76] = value;
+        }
+        public Action<ScopedFragmentTransformer, JsonKeyValue> VisForJsonKeyValue {
+            get => this.visitorByTypeTag.TryGetValue(75, out object v) ? (Action<ScopedFragmentTransformer, JsonKeyValue>)v : default;
+            set => this.visitorByTypeTag[75] = value;
+        }
+        public Action<ScopedFragmentTransformer, KeyOption> VisForKeyOption {
+            get => this.visitorByTypeTag.TryGetValue(1004, out object v) ? (Action<ScopedFragmentTransformer, KeyOption>)v : default;
+            set => this.visitorByTypeTag[1004] = value;
+        }
+        public Action<ScopedFragmentTransformer, KeySourceKeyOption> VisForKeySourceKeyOption {
+            get => this.visitorByTypeTag.TryGetValue(602, out object v) ? (Action<ScopedFragmentTransformer, KeySourceKeyOption>)v : default;
+            set => this.visitorByTypeTag[602] = value;
+        }
+        public Action<ScopedFragmentTransformer, KillQueryNotificationSubscriptionStatement> VisForKillQueryNotificationSubscriptionStatement {
+            get => this.visitorByTypeTag.TryGetValue(408, out object v) ? (Action<ScopedFragmentTransformer, KillQueryNotificationSubscriptionStatement>)v : default;
+            set => this.visitorByTypeTag[408] = value;
+        }
+        public Action<ScopedFragmentTransformer, KillStatement> VisForKillStatement {
+            get => this.visitorByTypeTag.TryGetValue(407, out object v) ? (Action<ScopedFragmentTransformer, KillStatement>)v : default;
+            set => this.visitorByTypeTag[407] = value;
+        }
+        public Action<ScopedFragmentTransformer, KillStatsJobStatement> VisForKillStatsJobStatement {
+            get => this.visitorByTypeTag.TryGetValue(409, out object v) ? (Action<ScopedFragmentTransformer, KillStatsJobStatement>)v : default;
+            set => this.visitorByTypeTag[409] = value;
+        }
+        public Action<ScopedFragmentTransformer, LabelStatement> VisForLabelStatement {
+            get => this.visitorByTypeTag.TryGetValue(148, out object v) ? (Action<ScopedFragmentTransformer, LabelStatement>)v : default;
+            set => this.visitorByTypeTag[148] = value;
+        }
+        public Action<ScopedFragmentTransformer, LedgerOption> VisForLedgerOption {
+            get => this.visitorByTypeTag.TryGetValue(492, out object v) ? (Action<ScopedFragmentTransformer, LedgerOption>)v : default;
+            set => this.visitorByTypeTag[492] = value;
+        }
+        public Action<ScopedFragmentTransformer, LedgerTableOption> VisForLedgerTableOption {
+            get => this.visitorByTypeTag.TryGetValue(288, out object v) ? (Action<ScopedFragmentTransformer, LedgerTableOption>)v : default;
+            set => this.visitorByTypeTag[288] = value;
+        }
+        public Action<ScopedFragmentTransformer, LedgerViewOption> VisForLedgerViewOption {
+            get => this.visitorByTypeTag.TryGetValue(289, out object v) ? (Action<ScopedFragmentTransformer, LedgerViewOption>)v : default;
+            set => this.visitorByTypeTag[289] = value;
+        }
+        public Action<ScopedFragmentTransformer, LeftFunctionCall> VisForLeftFunctionCall {
+            get => this.visitorByTypeTag.TryGetValue(116, out object v) ? (Action<ScopedFragmentTransformer, LeftFunctionCall>)v : default;
+            set => this.visitorByTypeTag[116] = value;
+        }
+        public Action<ScopedFragmentTransformer, LikePredicate> VisForLikePredicate {
+            get => this.visitorByTypeTag.TryGetValue(64, out object v) ? (Action<ScopedFragmentTransformer, LikePredicate>)v : default;
+            set => this.visitorByTypeTag[64] = value;
+        }
+        public Action<ScopedFragmentTransformer, LineNoStatement> VisForLineNoStatement {
+            get => this.visitorByTypeTag.TryGetValue(165, out object v) ? (Action<ScopedFragmentTransformer, LineNoStatement>)v : default;
+            set => this.visitorByTypeTag[165] = value;
+        }
+        public Action<ScopedFragmentTransformer, ListenerIPEndpointProtocolOption> VisForListenerIPEndpointProtocolOption {
+            get => this.visitorByTypeTag.TryGetValue(588, out object v) ? (Action<ScopedFragmentTransformer, ListenerIPEndpointProtocolOption>)v : default;
+            set => this.visitorByTypeTag[588] = value;
+        }
+        public Action<ScopedFragmentTransformer, ListTypeCopyOption> VisForListTypeCopyOption {
+            get => this.visitorByTypeTag.TryGetValue(522, out object v) ? (Action<ScopedFragmentTransformer, ListTypeCopyOption>)v : default;
+            set => this.visitorByTypeTag[522] = value;
+        }
+        public Action<ScopedFragmentTransformer, Literal> VisForLiteral {
+            get => this.visitorByTypeTag.TryGetValue(938, out object v) ? (Action<ScopedFragmentTransformer, Literal>)v : default;
+            set => this.visitorByTypeTag[938] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralAtomicBlockOption> VisForLiteralAtomicBlockOption {
+            get => this.visitorByTypeTag.TryGetValue(130, out object v) ? (Action<ScopedFragmentTransformer, LiteralAtomicBlockOption>)v : default;
+            set => this.visitorByTypeTag[130] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralAuditTargetOption> VisForLiteralAuditTargetOption {
+            get => this.visitorByTypeTag.TryGetValue(784, out object v) ? (Action<ScopedFragmentTransformer, LiteralAuditTargetOption>)v : default;
+            set => this.visitorByTypeTag[784] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralAvailabilityGroupOption> VisForLiteralAvailabilityGroupOption {
+            get => this.visitorByTypeTag.TryGetValue(876, out object v) ? (Action<ScopedFragmentTransformer, LiteralAvailabilityGroupOption>)v : default;
+            set => this.visitorByTypeTag[876] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralBulkInsertOption> VisForLiteralBulkInsertOption {
+            get => this.visitorByTypeTag.TryGetValue(552, out object v) ? (Action<ScopedFragmentTransformer, LiteralBulkInsertOption>)v : default;
+            set => this.visitorByTypeTag[552] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralDatabaseOption> VisForLiteralDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(468, out object v) ? (Action<ScopedFragmentTransformer, LiteralDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[468] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralEndpointProtocolOption> VisForLiteralEndpointProtocolOption {
+            get => this.visitorByTypeTag.TryGetValue(584, out object v) ? (Action<ScopedFragmentTransformer, LiteralEndpointProtocolOption>)v : default;
+            set => this.visitorByTypeTag[584] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralOpenRowsetCosmosOption> VisForLiteralOpenRowsetCosmosOption {
+            get => this.visitorByTypeTag.TryGetValue(551, out object v) ? (Action<ScopedFragmentTransformer, LiteralOpenRowsetCosmosOption>)v : default;
+            set => this.visitorByTypeTag[551] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralOptimizerHint> VisForLiteralOptimizerHint {
+            get => this.visitorByTypeTag.TryGetValue(79, out object v) ? (Action<ScopedFragmentTransformer, LiteralOptimizerHint>)v : default;
+            set => this.visitorByTypeTag[79] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralOptionValue> VisForLiteralOptionValue {
+            get => this.visitorByTypeTag.TryGetValue(205, out object v) ? (Action<ScopedFragmentTransformer, LiteralOptionValue>)v : default;
+            set => this.visitorByTypeTag[205] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralPayloadOption> VisForLiteralPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(594, out object v) ? (Action<ScopedFragmentTransformer, LiteralPayloadOption>)v : default;
+            set => this.visitorByTypeTag[594] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralPrincipalOption> VisForLiteralPrincipalOption {
+            get => this.visitorByTypeTag.TryGetValue(703, out object v) ? (Action<ScopedFragmentTransformer, LiteralPrincipalOption>)v : default;
+            set => this.visitorByTypeTag[703] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralRange> VisForLiteralRange {
+            get => this.visitorByTypeTag.TryGetValue(202, out object v) ? (Action<ScopedFragmentTransformer, LiteralRange>)v : default;
+            set => this.visitorByTypeTag[202] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralReplicaOption> VisForLiteralReplicaOption {
+            get => this.visitorByTypeTag.TryGetValue(871, out object v) ? (Action<ScopedFragmentTransformer, LiteralReplicaOption>)v : default;
+            set => this.visitorByTypeTag[871] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralSessionOption> VisForLiteralSessionOption {
+            get => this.visitorByTypeTag.TryGetValue(837, out object v) ? (Action<ScopedFragmentTransformer, LiteralSessionOption>)v : default;
+            set => this.visitorByTypeTag[837] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralStatisticsOption> VisForLiteralStatisticsOption {
+            get => this.visitorByTypeTag.TryGetValue(368, out object v) ? (Action<ScopedFragmentTransformer, LiteralStatisticsOption>)v : default;
+            set => this.visitorByTypeTag[368] = value;
+        }
+        public Action<ScopedFragmentTransformer, LiteralTableHint> VisForLiteralTableHint {
+            get => this.visitorByTypeTag.TryGetValue(59, out object v) ? (Action<ScopedFragmentTransformer, LiteralTableHint>)v : default;
+            set => this.visitorByTypeTag[59] = value;
+        }
+        public Action<ScopedFragmentTransformer, LocationOption> VisForLocationOption {
+            get => this.visitorByTypeTag.TryGetValue(516, out object v) ? (Action<ScopedFragmentTransformer, LocationOption>)v : default;
+            set => this.visitorByTypeTag[516] = value;
+        }
+        public Action<ScopedFragmentTransformer, LockEscalationTableOption> VisForLockEscalationTableOption {
+            get => this.visitorByTypeTag.TryGetValue(273, out object v) ? (Action<ScopedFragmentTransformer, LockEscalationTableOption>)v : default;
+            set => this.visitorByTypeTag[273] = value;
+        }
+        public Action<ScopedFragmentTransformer, LoginTypePayloadOption> VisForLoginTypePayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(593, out object v) ? (Action<ScopedFragmentTransformer, LoginTypePayloadOption>)v : default;
+            set => this.visitorByTypeTag[593] = value;
+        }
+        public Action<ScopedFragmentTransformer, LowPriorityLockWaitAbortAfterWaitOption> VisForLowPriorityLockWaitAbortAfterWaitOption {
+            get => this.visitorByTypeTag.TryGetValue(337, out object v) ? (Action<ScopedFragmentTransformer, LowPriorityLockWaitAbortAfterWaitOption>)v : default;
+            set => this.visitorByTypeTag[337] = value;
+        }
+        public Action<ScopedFragmentTransformer, LowPriorityLockWaitMaxDurationOption> VisForLowPriorityLockWaitMaxDurationOption {
+            get => this.visitorByTypeTag.TryGetValue(336, out object v) ? (Action<ScopedFragmentTransformer, LowPriorityLockWaitMaxDurationOption>)v : default;
+            set => this.visitorByTypeTag[336] = value;
+        }
+        public Action<ScopedFragmentTransformer, LowPriorityLockWaitOption> VisForLowPriorityLockWaitOption {
+            get => this.visitorByTypeTag.TryGetValue(969, out object v) ? (Action<ScopedFragmentTransformer, LowPriorityLockWaitOption>)v : default;
+            set => this.visitorByTypeTag[969] = value;
+        }
+        public Action<ScopedFragmentTransformer, LowPriorityLockWaitTableSwitchOption> VisForLowPriorityLockWaitTableSwitchOption {
+            get => this.visitorByTypeTag.TryGetValue(294, out object v) ? (Action<ScopedFragmentTransformer, LowPriorityLockWaitTableSwitchOption>)v : default;
+            set => this.visitorByTypeTag[294] = value;
+        }
+        public Action<ScopedFragmentTransformer, MasterKeyStatement> VisForMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(972, out object v) ? (Action<ScopedFragmentTransformer, MasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[972] = value;
+        }
+        public Action<ScopedFragmentTransformer, MaxDispatchLatencySessionOption> VisForMaxDispatchLatencySessionOption {
+            get => this.visitorByTypeTag.TryGetValue(838, out object v) ? (Action<ScopedFragmentTransformer, MaxDispatchLatencySessionOption>)v : default;
+            set => this.visitorByTypeTag[838] = value;
+        }
+        public Action<ScopedFragmentTransformer, MaxDopConfigurationOption> VisForMaxDopConfigurationOption {
+            get => this.visitorByTypeTag.TryGetValue(440, out object v) ? (Action<ScopedFragmentTransformer, MaxDopConfigurationOption>)v : default;
+            set => this.visitorByTypeTag[440] = value;
+        }
+        public Action<ScopedFragmentTransformer, MaxDurationOption> VisForMaxDurationOption {
+            get => this.visitorByTypeTag.TryGetValue(330, out object v) ? (Action<ScopedFragmentTransformer, MaxDurationOption>)v : default;
+            set => this.visitorByTypeTag[330] = value;
+        }
+        public Action<ScopedFragmentTransformer, MaxLiteral> VisForMaxLiteral {
+            get => this.visitorByTypeTag.TryGetValue(200, out object v) ? (Action<ScopedFragmentTransformer, MaxLiteral>)v : default;
+            set => this.visitorByTypeTag[200] = value;
+        }
+        public Action<ScopedFragmentTransformer, MaxRolloverFilesAuditTargetOption> VisForMaxRolloverFilesAuditTargetOption {
+            get => this.visitorByTypeTag.TryGetValue(783, out object v) ? (Action<ScopedFragmentTransformer, MaxRolloverFilesAuditTargetOption>)v : default;
+            set => this.visitorByTypeTag[783] = value;
+        }
+        public Action<ScopedFragmentTransformer, MaxSizeAuditTargetOption> VisForMaxSizeAuditTargetOption {
+            get => this.visitorByTypeTag.TryGetValue(781, out object v) ? (Action<ScopedFragmentTransformer, MaxSizeAuditTargetOption>)v : default;
+            set => this.visitorByTypeTag[781] = value;
+        }
+        public Action<ScopedFragmentTransformer, MaxSizeDatabaseOption> VisForMaxSizeDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(493, out object v) ? (Action<ScopedFragmentTransformer, MaxSizeDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[493] = value;
+        }
+        public Action<ScopedFragmentTransformer, MaxSizeFileDeclarationOption> VisForMaxSizeFileDeclarationOption {
+            get => this.visitorByTypeTag.TryGetValue(432, out object v) ? (Action<ScopedFragmentTransformer, MaxSizeFileDeclarationOption>)v : default;
+            set => this.visitorByTypeTag[432] = value;
+        }
+        public Action<ScopedFragmentTransformer, MemoryOptimizedTableOption> VisForMemoryOptimizedTableOption {
+            get => this.visitorByTypeTag.TryGetValue(278, out object v) ? (Action<ScopedFragmentTransformer, MemoryOptimizedTableOption>)v : default;
+            set => this.visitorByTypeTag[278] = value;
+        }
+        public Action<ScopedFragmentTransformer, MemoryPartitionSessionOption> VisForMemoryPartitionSessionOption {
+            get => this.visitorByTypeTag.TryGetValue(836, out object v) ? (Action<ScopedFragmentTransformer, MemoryPartitionSessionOption>)v : default;
+            set => this.visitorByTypeTag[836] = value;
+        }
+        public Action<ScopedFragmentTransformer, MergeAction> VisForMergeAction {
+            get => this.visitorByTypeTag.TryGetValue(1020, out object v) ? (Action<ScopedFragmentTransformer, MergeAction>)v : default;
+            set => this.visitorByTypeTag[1020] = value;
+        }
+        public Action<ScopedFragmentTransformer, MergeActionClause> VisForMergeActionClause {
+            get => this.visitorByTypeTag.TryGetValue(754, out object v) ? (Action<ScopedFragmentTransformer, MergeActionClause>)v : default;
+            set => this.visitorByTypeTag[754] = value;
+        }
+        public Action<ScopedFragmentTransformer, MergeSpecification> VisForMergeSpecification {
+            get => this.visitorByTypeTag.TryGetValue(753, out object v) ? (Action<ScopedFragmentTransformer, MergeSpecification>)v : default;
+            set => this.visitorByTypeTag[753] = value;
+        }
+        public Action<ScopedFragmentTransformer, MergeStatement> VisForMergeStatement {
+            get => this.visitorByTypeTag.TryGetValue(752, out object v) ? (Action<ScopedFragmentTransformer, MergeStatement>)v : default;
+            set => this.visitorByTypeTag[752] = value;
+        }
+        public Action<ScopedFragmentTransformer, MessageTypeStatementBase> VisForMessageTypeStatementBase {
+            get => this.visitorByTypeTag.TryGetValue(999, out object v) ? (Action<ScopedFragmentTransformer, MessageTypeStatementBase>)v : default;
+            set => this.visitorByTypeTag[999] = value;
+        }
+        public Action<ScopedFragmentTransformer, MethodSpecifier> VisForMethodSpecifier {
+            get => this.visitorByTypeTag.TryGetValue(35, out object v) ? (Action<ScopedFragmentTransformer, MethodSpecifier>)v : default;
+            set => this.visitorByTypeTag[35] = value;
+        }
+        public Action<ScopedFragmentTransformer, MirrorToClause> VisForMirrorToClause {
+            get => this.visitorByTypeTag.TryGetValue(545, out object v) ? (Action<ScopedFragmentTransformer, MirrorToClause>)v : default;
+            set => this.visitorByTypeTag[545] = value;
+        }
+        public Action<ScopedFragmentTransformer, MoneyLiteral> VisForMoneyLiteral {
+            get => this.visitorByTypeTag.TryGetValue(194, out object v) ? (Action<ScopedFragmentTransformer, MoneyLiteral>)v : default;
+            set => this.visitorByTypeTag[194] = value;
+        }
+        public Action<ScopedFragmentTransformer, MoveConversationStatement> VisForMoveConversationStatement {
+            get => this.visitorByTypeTag.TryGetValue(726, out object v) ? (Action<ScopedFragmentTransformer, MoveConversationStatement>)v : default;
+            set => this.visitorByTypeTag[726] = value;
+        }
+        public Action<ScopedFragmentTransformer, MoveRestoreOption> VisForMoveRestoreOption {
+            get => this.visitorByTypeTag.TryGetValue(539, out object v) ? (Action<ScopedFragmentTransformer, MoveRestoreOption>)v : default;
+            set => this.visitorByTypeTag[539] = value;
+        }
+        public Action<ScopedFragmentTransformer, MoveToDropIndexOption> VisForMoveToDropIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(392, out object v) ? (Action<ScopedFragmentTransformer, MoveToDropIndexOption>)v : default;
+            set => this.visitorByTypeTag[392] = value;
+        }
+        public Action<ScopedFragmentTransformer, MultiPartIdentifier> VisForMultiPartIdentifier {
+            get => this.visitorByTypeTag.TryGetValue(149, out object v) ? (Action<ScopedFragmentTransformer, MultiPartIdentifier>)v : default;
+            set => this.visitorByTypeTag[149] = value;
+        }
+        public Action<ScopedFragmentTransformer, MultiPartIdentifierCallTarget> VisForMultiPartIdentifierCallTarget {
+            get => this.visitorByTypeTag.TryGetValue(114, out object v) ? (Action<ScopedFragmentTransformer, MultiPartIdentifierCallTarget>)v : default;
+            set => this.visitorByTypeTag[114] = value;
+        }
+        public Action<ScopedFragmentTransformer, NamedTableReference> VisForNamedTableReference {
+            get => this.visitorByTypeTag.TryGetValue(55, out object v) ? (Action<ScopedFragmentTransformer, NamedTableReference>)v : default;
+            set => this.visitorByTypeTag[55] = value;
+        }
+        public Action<ScopedFragmentTransformer, NameFileDeclarationOption> VisForNameFileDeclarationOption {
+            get => this.visitorByTypeTag.TryGetValue(429, out object v) ? (Action<ScopedFragmentTransformer, NameFileDeclarationOption>)v : default;
+            set => this.visitorByTypeTag[429] = value;
+        }
+        public Action<ScopedFragmentTransformer, NextValueForExpression> VisForNextValueForExpression {
+            get => this.visitorByTypeTag.TryGetValue(212, out object v) ? (Action<ScopedFragmentTransformer, NextValueForExpression>)v : default;
+            set => this.visitorByTypeTag[212] = value;
+        }
+        public Action<ScopedFragmentTransformer, NullableConstraintDefinition> VisForNullableConstraintDefinition {
+            get => this.visitorByTypeTag.TryGetValue(530, out object v) ? (Action<ScopedFragmentTransformer, NullableConstraintDefinition>)v : default;
+            set => this.visitorByTypeTag[530] = value;
+        }
+        public Action<ScopedFragmentTransformer, NullIfExpression> VisForNullIfExpression {
+            get => this.visitorByTypeTag.TryGetValue(89, out object v) ? (Action<ScopedFragmentTransformer, NullIfExpression>)v : default;
+            set => this.visitorByTypeTag[89] = value;
+        }
+        public Action<ScopedFragmentTransformer, NullLiteral> VisForNullLiteral {
+            get => this.visitorByTypeTag.TryGetValue(197, out object v) ? (Action<ScopedFragmentTransformer, NullLiteral>)v : default;
+            set => this.visitorByTypeTag[197] = value;
+        }
+        public Action<ScopedFragmentTransformer, NumericLiteral> VisForNumericLiteral {
+            get => this.visitorByTypeTag.TryGetValue(192, out object v) ? (Action<ScopedFragmentTransformer, NumericLiteral>)v : default;
+            set => this.visitorByTypeTag[192] = value;
+        }
+        public Action<ScopedFragmentTransformer, OdbcConvertSpecification> VisForOdbcConvertSpecification {
+            get => this.visitorByTypeTag.TryGetValue(126, out object v) ? (Action<ScopedFragmentTransformer, OdbcConvertSpecification>)v : default;
+            set => this.visitorByTypeTag[126] = value;
+        }
+        public Action<ScopedFragmentTransformer, OdbcFunctionCall> VisForOdbcFunctionCall {
+            get => this.visitorByTypeTag.TryGetValue(124, out object v) ? (Action<ScopedFragmentTransformer, OdbcFunctionCall>)v : default;
+            set => this.visitorByTypeTag[124] = value;
+        }
+        public Action<ScopedFragmentTransformer, OdbcLiteral> VisForOdbcLiteral {
+            get => this.visitorByTypeTag.TryGetValue(201, out object v) ? (Action<ScopedFragmentTransformer, OdbcLiteral>)v : default;
+            set => this.visitorByTypeTag[201] = value;
+        }
+        public Action<ScopedFragmentTransformer, OdbcQualifiedJoinTableReference> VisForOdbcQualifiedJoinTableReference {
+            get => this.visitorByTypeTag.TryGetValue(650, out object v) ? (Action<ScopedFragmentTransformer, OdbcQualifiedJoinTableReference>)v : default;
+            set => this.visitorByTypeTag[650] = value;
+        }
+        public Action<ScopedFragmentTransformer, OffsetClause> VisForOffsetClause {
+            get => this.visitorByTypeTag.TryGetValue(663, out object v) ? (Action<ScopedFragmentTransformer, OffsetClause>)v : default;
+            set => this.visitorByTypeTag[663] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnFailureAuditOption> VisForOnFailureAuditOption {
+            get => this.visitorByTypeTag.TryGetValue(778, out object v) ? (Action<ScopedFragmentTransformer, OnFailureAuditOption>)v : default;
+            set => this.visitorByTypeTag[778] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnlineIndexLowPriorityLockWaitOption> VisForOnlineIndexLowPriorityLockWaitOption {
+            get => this.visitorByTypeTag.TryGetValue(335, out object v) ? (Action<ScopedFragmentTransformer, OnlineIndexLowPriorityLockWaitOption>)v : default;
+            set => this.visitorByTypeTag[335] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnlineIndexOption> VisForOnlineIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(332, out object v) ? (Action<ScopedFragmentTransformer, OnlineIndexOption>)v : default;
+            set => this.visitorByTypeTag[332] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffAssemblyOption> VisForOnOffAssemblyOption {
+            get => this.visitorByTypeTag.TryGetValue(261, out object v) ? (Action<ScopedFragmentTransformer, OnOffAssemblyOption>)v : default;
+            set => this.visitorByTypeTag[261] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffAtomicBlockOption> VisForOnOffAtomicBlockOption {
+            get => this.visitorByTypeTag.TryGetValue(132, out object v) ? (Action<ScopedFragmentTransformer, OnOffAtomicBlockOption>)v : default;
+            set => this.visitorByTypeTag[132] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffAuditTargetOption> VisForOnOffAuditTargetOption {
+            get => this.visitorByTypeTag.TryGetValue(785, out object v) ? (Action<ScopedFragmentTransformer, OnOffAuditTargetOption>)v : default;
+            set => this.visitorByTypeTag[785] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffDatabaseOption> VisForOnOffDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(455, out object v) ? (Action<ScopedFragmentTransformer, OnOffDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[455] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffDialogOption> VisForOnOffDialogOption {
+            get => this.visitorByTypeTag.TryGetValue(736, out object v) ? (Action<ScopedFragmentTransformer, OnOffDialogOption>)v : default;
+            set => this.visitorByTypeTag[736] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffFullTextCatalogOption> VisForOnOffFullTextCatalogOption {
+            get => this.visitorByTypeTag.TryGetValue(608, out object v) ? (Action<ScopedFragmentTransformer, OnOffFullTextCatalogOption>)v : default;
+            set => this.visitorByTypeTag[608] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffOptionValue> VisForOnOffOptionValue {
+            get => this.visitorByTypeTag.TryGetValue(204, out object v) ? (Action<ScopedFragmentTransformer, OnOffOptionValue>)v : default;
+            set => this.visitorByTypeTag[204] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffPrimaryConfigurationOption> VisForOnOffPrimaryConfigurationOption {
+            get => this.visitorByTypeTag.TryGetValue(439, out object v) ? (Action<ScopedFragmentTransformer, OnOffPrimaryConfigurationOption>)v : default;
+            set => this.visitorByTypeTag[439] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffPrincipalOption> VisForOnOffPrincipalOption {
+            get => this.visitorByTypeTag.TryGetValue(702, out object v) ? (Action<ScopedFragmentTransformer, OnOffPrincipalOption>)v : default;
+            set => this.visitorByTypeTag[702] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffRemoteServiceBindingOption> VisForOnOffRemoteServiceBindingOption {
+            get => this.visitorByTypeTag.TryGetValue(564, out object v) ? (Action<ScopedFragmentTransformer, OnOffRemoteServiceBindingOption>)v : default;
+            set => this.visitorByTypeTag[564] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffSessionOption> VisForOnOffSessionOption {
+            get => this.visitorByTypeTag.TryGetValue(839, out object v) ? (Action<ScopedFragmentTransformer, OnOffSessionOption>)v : default;
+            set => this.visitorByTypeTag[839] = value;
+        }
+        public Action<ScopedFragmentTransformer, OnOffStatisticsOption> VisForOnOffStatisticsOption {
+            get => this.visitorByTypeTag.TryGetValue(367, out object v) ? (Action<ScopedFragmentTransformer, OnOffStatisticsOption>)v : default;
+            set => this.visitorByTypeTag[367] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenCursorStatement> VisForOpenCursorStatement {
+            get => this.visitorByTypeTag.TryGetValue(377, out object v) ? (Action<ScopedFragmentTransformer, OpenCursorStatement>)v : default;
+            set => this.visitorByTypeTag[377] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenJsonTableReference> VisForOpenJsonTableReference {
+            get => this.visitorByTypeTag.TryGetValue(95, out object v) ? (Action<ScopedFragmentTransformer, OpenJsonTableReference>)v : default;
+            set => this.visitorByTypeTag[95] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenMasterKeyStatement> VisForOpenMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(382, out object v) ? (Action<ScopedFragmentTransformer, OpenMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[382] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenQueryTableReference> VisForOpenQueryTableReference {
+            get => this.visitorByTypeTag.TryGetValue(101, out object v) ? (Action<ScopedFragmentTransformer, OpenQueryTableReference>)v : default;
+            set => this.visitorByTypeTag[101] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenRowsetColumnDefinition> VisForOpenRowsetColumnDefinition {
+            get => this.visitorByTypeTag.TryGetValue(100, out object v) ? (Action<ScopedFragmentTransformer, OpenRowsetColumnDefinition>)v : default;
+            set => this.visitorByTypeTag[100] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenRowsetCosmos> VisForOpenRowsetCosmos {
+            get => this.visitorByTypeTag.TryGetValue(98, out object v) ? (Action<ScopedFragmentTransformer, OpenRowsetCosmos>)v : default;
+            set => this.visitorByTypeTag[98] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenRowsetCosmosOption> VisForOpenRowsetCosmosOption {
+            get => this.visitorByTypeTag.TryGetValue(550, out object v) ? (Action<ScopedFragmentTransformer, OpenRowsetCosmosOption>)v : default;
+            set => this.visitorByTypeTag[550] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenRowsetTableReference> VisForOpenRowsetTableReference {
+            get => this.visitorByTypeTag.TryGetValue(96, out object v) ? (Action<ScopedFragmentTransformer, OpenRowsetTableReference>)v : default;
+            set => this.visitorByTypeTag[96] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenSymmetricKeyStatement> VisForOpenSymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(380, out object v) ? (Action<ScopedFragmentTransformer, OpenSymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[380] = value;
+        }
+        public Action<ScopedFragmentTransformer, OpenXmlTableReference> VisForOpenXmlTableReference {
+            get => this.visitorByTypeTag.TryGetValue(94, out object v) ? (Action<ScopedFragmentTransformer, OpenXmlTableReference>)v : default;
+            set => this.visitorByTypeTag[94] = value;
+        }
+        public Action<ScopedFragmentTransformer, OperatorAuditOption> VisForOperatorAuditOption {
+            get => this.visitorByTypeTag.TryGetValue(779, out object v) ? (Action<ScopedFragmentTransformer, OperatorAuditOption>)v : default;
+            set => this.visitorByTypeTag[779] = value;
+        }
+        public Action<ScopedFragmentTransformer, OptimizeForOptimizerHint> VisForOptimizeForOptimizerHint {
+            get => this.visitorByTypeTag.TryGetValue(82, out object v) ? (Action<ScopedFragmentTransformer, OptimizeForOptimizerHint>)v : default;
+            set => this.visitorByTypeTag[82] = value;
+        }
+        public Action<ScopedFragmentTransformer, OptimizerHint> VisForOptimizerHint {
+            get => this.visitorByTypeTag.TryGetValue(78, out object v) ? (Action<ScopedFragmentTransformer, OptimizerHint>)v : default;
+            set => this.visitorByTypeTag[78] = value;
+        }
+        public Action<ScopedFragmentTransformer, OptionValue> VisForOptionValue {
+            get => this.visitorByTypeTag.TryGetValue(940, out object v) ? (Action<ScopedFragmentTransformer, OptionValue>)v : default;
+            set => this.visitorByTypeTag[940] = value;
+        }
+        public Action<ScopedFragmentTransformer, OrderBulkInsertOption> VisForOrderBulkInsertOption {
+            get => this.visitorByTypeTag.TryGetValue(553, out object v) ? (Action<ScopedFragmentTransformer, OrderBulkInsertOption>)v : default;
+            set => this.visitorByTypeTag[553] = value;
+        }
+        public Action<ScopedFragmentTransformer, OrderByClause> VisForOrderByClause {
+            get => this.visitorByTypeTag.TryGetValue(648, out object v) ? (Action<ScopedFragmentTransformer, OrderByClause>)v : default;
+            set => this.visitorByTypeTag[648] = value;
+        }
+        public Action<ScopedFragmentTransformer, OrderIndexOption> VisForOrderIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(334, out object v) ? (Action<ScopedFragmentTransformer, OrderIndexOption>)v : default;
+            set => this.visitorByTypeTag[334] = value;
+        }
+        public Action<ScopedFragmentTransformer, OutputClause> VisForOutputClause {
+            get => this.visitorByTypeTag.TryGetValue(643, out object v) ? (Action<ScopedFragmentTransformer, OutputClause>)v : default;
+            set => this.visitorByTypeTag[643] = value;
+        }
+        public Action<ScopedFragmentTransformer, OutputIntoClause> VisForOutputIntoClause {
+            get => this.visitorByTypeTag.TryGetValue(644, out object v) ? (Action<ScopedFragmentTransformer, OutputIntoClause>)v : default;
+            set => this.visitorByTypeTag[644] = value;
+        }
+        public Action<ScopedFragmentTransformer, OverClause> VisForOverClause {
+            get => this.visitorByTypeTag.TryGetValue(119, out object v) ? (Action<ScopedFragmentTransformer, OverClause>)v : default;
+            set => this.visitorByTypeTag[119] = value;
+        }
+        public Action<ScopedFragmentTransformer, PageVerifyDatabaseOption> VisForPageVerifyDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(464, out object v) ? (Action<ScopedFragmentTransformer, PageVerifyDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[464] = value;
+        }
+        public Action<ScopedFragmentTransformer, ParameterizationDatabaseOption> VisForParameterizationDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(467, out object v) ? (Action<ScopedFragmentTransformer, ParameterizationDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[467] = value;
+        }
+        public Action<ScopedFragmentTransformer, ParameterizedDataTypeReference> VisForParameterizedDataTypeReference {
+            get => this.visitorByTypeTag.TryGetValue(913, out object v) ? (Action<ScopedFragmentTransformer, ParameterizedDataTypeReference>)v : default;
+            set => this.visitorByTypeTag[913] = value;
+        }
+        public Action<ScopedFragmentTransformer, ParameterlessCall> VisForParameterlessCall {
+            get => this.visitorByTypeTag.TryGetValue(122, out object v) ? (Action<ScopedFragmentTransformer, ParameterlessCall>)v : default;
+            set => this.visitorByTypeTag[122] = value;
+        }
+        public Action<ScopedFragmentTransformer, ParenthesisExpression> VisForParenthesisExpression {
+            get => this.visitorByTypeTag.TryGetValue(210, out object v) ? (Action<ScopedFragmentTransformer, ParenthesisExpression>)v : default;
+            set => this.visitorByTypeTag[210] = value;
+        }
+        public Action<ScopedFragmentTransformer, ParseCall> VisForParseCall {
+            get => this.visitorByTypeTag.TryGetValue(107, out object v) ? (Action<ScopedFragmentTransformer, ParseCall>)v : default;
+            set => this.visitorByTypeTag[107] = value;
+        }
+        public Action<ScopedFragmentTransformer, PartitionFunctionCall> VisForPartitionFunctionCall {
+            get => this.visitorByTypeTag.TryGetValue(118, out object v) ? (Action<ScopedFragmentTransformer, PartitionFunctionCall>)v : default;
+            set => this.visitorByTypeTag[118] = value;
+        }
+        public Action<ScopedFragmentTransformer, PartitionParameterType> VisForPartitionParameterType {
+            get => this.visitorByTypeTag.TryGetValue(562, out object v) ? (Action<ScopedFragmentTransformer, PartitionParameterType>)v : default;
+            set => this.visitorByTypeTag[562] = value;
+        }
+        public Action<ScopedFragmentTransformer, PartitionSpecifications> VisForPartitionSpecifications {
+            get => this.visitorByTypeTag.TryGetValue(989, out object v) ? (Action<ScopedFragmentTransformer, PartitionSpecifications>)v : default;
+            set => this.visitorByTypeTag[989] = value;
+        }
+        public Action<ScopedFragmentTransformer, PartitionSpecifier> VisForPartitionSpecifier {
+            get => this.visitorByTypeTag.TryGetValue(322, out object v) ? (Action<ScopedFragmentTransformer, PartitionSpecifier>)v : default;
+            set => this.visitorByTypeTag[322] = value;
+        }
+        public Action<ScopedFragmentTransformer, PartnerDatabaseOption> VisForPartnerDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(465, out object v) ? (Action<ScopedFragmentTransformer, PartnerDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[465] = value;
+        }
+        public Action<ScopedFragmentTransformer, PasswordAlterPrincipalOption> VisForPasswordAlterPrincipalOption {
+            get => this.visitorByTypeTag.TryGetValue(709, out object v) ? (Action<ScopedFragmentTransformer, PasswordAlterPrincipalOption>)v : default;
+            set => this.visitorByTypeTag[709] = value;
+        }
+        public Action<ScopedFragmentTransformer, PasswordCreateLoginSource> VisForPasswordCreateLoginSource {
+            get => this.visitorByTypeTag.TryGetValue(700, out object v) ? (Action<ScopedFragmentTransformer, PasswordCreateLoginSource>)v : default;
+            set => this.visitorByTypeTag[700] = value;
+        }
+        public Action<ScopedFragmentTransformer, PayloadOption> VisForPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(1002, out object v) ? (Action<ScopedFragmentTransformer, PayloadOption>)v : default;
+            set => this.visitorByTypeTag[1002] = value;
+        }
+        public Action<ScopedFragmentTransformer, Permission> VisForPermission {
+            get => this.visitorByTypeTag.TryGetValue(170, out object v) ? (Action<ScopedFragmentTransformer, Permission>)v : default;
+            set => this.visitorByTypeTag[170] = value;
+        }
+        public Action<ScopedFragmentTransformer, PermissionSetAssemblyOption> VisForPermissionSetAssemblyOption {
+            get => this.visitorByTypeTag.TryGetValue(262, out object v) ? (Action<ScopedFragmentTransformer, PermissionSetAssemblyOption>)v : default;
+            set => this.visitorByTypeTag[262] = value;
+        }
+        public Action<ScopedFragmentTransformer, PivotedTableReference> VisForPivotedTableReference {
+            get => this.visitorByTypeTag.TryGetValue(619, out object v) ? (Action<ScopedFragmentTransformer, PivotedTableReference>)v : default;
+            set => this.visitorByTypeTag[619] = value;
+        }
+        public Action<ScopedFragmentTransformer, PortsEndpointProtocolOption> VisForPortsEndpointProtocolOption {
+            get => this.visitorByTypeTag.TryGetValue(586, out object v) ? (Action<ScopedFragmentTransformer, PortsEndpointProtocolOption>)v : default;
+            set => this.visitorByTypeTag[586] = value;
+        }
+        public Action<ScopedFragmentTransformer, PredicateSetStatement> VisForPredicateSetStatement {
+            get => this.visitorByTypeTag.TryGetValue(415, out object v) ? (Action<ScopedFragmentTransformer, PredicateSetStatement>)v : default;
+            set => this.visitorByTypeTag[415] = value;
+        }
+        public Action<ScopedFragmentTransformer, PredictTableReference> VisForPredictTableReference {
+            get => this.visitorByTypeTag.TryGetValue(654, out object v) ? (Action<ScopedFragmentTransformer, PredictTableReference>)v : default;
+            set => this.visitorByTypeTag[654] = value;
+        }
+        public Action<ScopedFragmentTransformer, PrimaryExpression> VisForPrimaryExpression {
+            get => this.visitorByTypeTag.TryGetValue(919, out object v) ? (Action<ScopedFragmentTransformer, PrimaryExpression>)v : default;
+            set => this.visitorByTypeTag[919] = value;
+        }
+        public Action<ScopedFragmentTransformer, PrimaryRoleReplicaOption> VisForPrimaryRoleReplicaOption {
+            get => this.visitorByTypeTag.TryGetValue(874, out object v) ? (Action<ScopedFragmentTransformer, PrimaryRoleReplicaOption>)v : default;
+            set => this.visitorByTypeTag[874] = value;
+        }
+        public Action<ScopedFragmentTransformer, PrincipalOption> VisForPrincipalOption {
+            get => this.visitorByTypeTag.TryGetValue(701, out object v) ? (Action<ScopedFragmentTransformer, PrincipalOption>)v : default;
+            set => this.visitorByTypeTag[701] = value;
+        }
+        public Action<ScopedFragmentTransformer, PrintStatement> VisForPrintStatement {
+            get => this.visitorByTypeTag.TryGetValue(188, out object v) ? (Action<ScopedFragmentTransformer, PrintStatement>)v : default;
+            set => this.visitorByTypeTag[188] = value;
+        }
+        public Action<ScopedFragmentTransformer, Privilege80> VisForPrivilege80 {
+            get => this.visitorByTypeTag.TryGetValue(179, out object v) ? (Action<ScopedFragmentTransformer, Privilege80>)v : default;
+            set => this.visitorByTypeTag[179] = value;
+        }
+        public Action<ScopedFragmentTransformer, PrivilegeSecurityElement80> VisForPrivilegeSecurityElement80 {
+            get => this.visitorByTypeTag.TryGetValue(178, out object v) ? (Action<ScopedFragmentTransformer, PrivilegeSecurityElement80>)v : default;
+            set => this.visitorByTypeTag[178] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProcedureOption> VisForProcedureOption {
+            get => this.visitorByTypeTag.TryGetValue(36, out object v) ? (Action<ScopedFragmentTransformer, ProcedureOption>)v : default;
+            set => this.visitorByTypeTag[36] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProcedureParameter> VisForProcedureParameter {
+            get => this.visitorByTypeTag.TryGetValue(152, out object v) ? (Action<ScopedFragmentTransformer, ProcedureParameter>)v : default;
+            set => this.visitorByTypeTag[152] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProcedureReference> VisForProcedureReference {
+            get => this.visitorByTypeTag.TryGetValue(34, out object v) ? (Action<ScopedFragmentTransformer, ProcedureReference>)v : default;
+            set => this.visitorByTypeTag[34] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProcedureReferenceName> VisForProcedureReferenceName {
+            get => this.visitorByTypeTag.TryGetValue(11, out object v) ? (Action<ScopedFragmentTransformer, ProcedureReferenceName>)v : default;
+            set => this.visitorByTypeTag[11] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProcedureStatementBody> VisForProcedureStatementBody {
+            get => this.visitorByTypeTag.TryGetValue(909, out object v) ? (Action<ScopedFragmentTransformer, ProcedureStatementBody>)v : default;
+            set => this.visitorByTypeTag[909] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProcedureStatementBodyBase> VisForProcedureStatementBodyBase {
+            get => this.visitorByTypeTag.TryGetValue(910, out object v) ? (Action<ScopedFragmentTransformer, ProcedureStatementBodyBase>)v : default;
+            set => this.visitorByTypeTag[910] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProcessAffinityRange> VisForProcessAffinityRange {
+            get => this.visitorByTypeTag.TryGetValue(851, out object v) ? (Action<ScopedFragmentTransformer, ProcessAffinityRange>)v : default;
+            set => this.visitorByTypeTag[851] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProviderEncryptionSource> VisForProviderEncryptionSource {
+            get => this.visitorByTypeTag.TryGetValue(570, out object v) ? (Action<ScopedFragmentTransformer, ProviderEncryptionSource>)v : default;
+            set => this.visitorByTypeTag[570] = value;
+        }
+        public Action<ScopedFragmentTransformer, ProviderKeyNameKeyOption> VisForProviderKeyNameKeyOption {
+            get => this.visitorByTypeTag.TryGetValue(605, out object v) ? (Action<ScopedFragmentTransformer, ProviderKeyNameKeyOption>)v : default;
+            set => this.visitorByTypeTag[605] = value;
+        }
+        public Action<ScopedFragmentTransformer, QualifiedJoin> VisForQualifiedJoin {
+            get => this.visitorByTypeTag.TryGetValue(649, out object v) ? (Action<ScopedFragmentTransformer, QualifiedJoin>)v : default;
+            set => this.visitorByTypeTag[649] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryDerivedTable> VisForQueryDerivedTable {
+            get => this.visitorByTypeTag.TryGetValue(60, out object v) ? (Action<ScopedFragmentTransformer, QueryDerivedTable>)v : default;
+            set => this.visitorByTypeTag[60] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryExpression> VisForQueryExpression {
+            get => this.visitorByTypeTag.TryGetValue(1010, out object v) ? (Action<ScopedFragmentTransformer, QueryExpression>)v : default;
+            set => this.visitorByTypeTag[1010] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryParenthesisExpression> VisForQueryParenthesisExpression {
+            get => this.visitorByTypeTag.TryGetValue(651, out object v) ? (Action<ScopedFragmentTransformer, QueryParenthesisExpression>)v : default;
+            set => this.visitorByTypeTag[651] = value;
+        }
+        public Action<ScopedFragmentTransformer, QuerySpecification> VisForQuerySpecification {
+            get => this.visitorByTypeTag.TryGetValue(652, out object v) ? (Action<ScopedFragmentTransformer, QuerySpecification>)v : default;
+            set => this.visitorByTypeTag[652] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreCapturePolicyOption> VisForQueryStoreCapturePolicyOption {
+            get => this.visitorByTypeTag.TryGetValue(476, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreCapturePolicyOption>)v : default;
+            set => this.visitorByTypeTag[476] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreDatabaseOption> VisForQueryStoreDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(474, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[474] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreDataFlushIntervalOption> VisForQueryStoreDataFlushIntervalOption {
+            get => this.visitorByTypeTag.TryGetValue(478, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreDataFlushIntervalOption>)v : default;
+            set => this.visitorByTypeTag[478] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreDesiredStateOption> VisForQueryStoreDesiredStateOption {
+            get => this.visitorByTypeTag.TryGetValue(475, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreDesiredStateOption>)v : default;
+            set => this.visitorByTypeTag[475] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreIntervalLengthOption> VisForQueryStoreIntervalLengthOption {
+            get => this.visitorByTypeTag.TryGetValue(479, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreIntervalLengthOption>)v : default;
+            set => this.visitorByTypeTag[479] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreMaxPlansPerQueryOption> VisForQueryStoreMaxPlansPerQueryOption {
+            get => this.visitorByTypeTag.TryGetValue(481, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreMaxPlansPerQueryOption>)v : default;
+            set => this.visitorByTypeTag[481] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreMaxStorageSizeOption> VisForQueryStoreMaxStorageSizeOption {
+            get => this.visitorByTypeTag.TryGetValue(480, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreMaxStorageSizeOption>)v : default;
+            set => this.visitorByTypeTag[480] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreOption> VisForQueryStoreOption {
+            get => this.visitorByTypeTag.TryGetValue(985, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreOption>)v : default;
+            set => this.visitorByTypeTag[985] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreSizeCleanupPolicyOption> VisForQueryStoreSizeCleanupPolicyOption {
+            get => this.visitorByTypeTag.TryGetValue(477, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreSizeCleanupPolicyOption>)v : default;
+            set => this.visitorByTypeTag[477] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreTimeCleanupPolicyOption> VisForQueryStoreTimeCleanupPolicyOption {
+            get => this.visitorByTypeTag.TryGetValue(482, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreTimeCleanupPolicyOption>)v : default;
+            set => this.visitorByTypeTag[482] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueryStoreWaitStatsCaptureOption> VisForQueryStoreWaitStatsCaptureOption {
+            get => this.visitorByTypeTag.TryGetValue(483, out object v) ? (Action<ScopedFragmentTransformer, QueryStoreWaitStatsCaptureOption>)v : default;
+            set => this.visitorByTypeTag[483] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueueDelayAuditOption> VisForQueueDelayAuditOption {
+            get => this.visitorByTypeTag.TryGetValue(776, out object v) ? (Action<ScopedFragmentTransformer, QueueDelayAuditOption>)v : default;
+            set => this.visitorByTypeTag[776] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueueExecuteAsOption> VisForQueueExecuteAsOption {
+            get => this.visitorByTypeTag.TryGetValue(313, out object v) ? (Action<ScopedFragmentTransformer, QueueExecuteAsOption>)v : default;
+            set => this.visitorByTypeTag[313] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueueOption> VisForQueueOption {
+            get => this.visitorByTypeTag.TryGetValue(309, out object v) ? (Action<ScopedFragmentTransformer, QueueOption>)v : default;
+            set => this.visitorByTypeTag[309] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueueProcedureOption> VisForQueueProcedureOption {
+            get => this.visitorByTypeTag.TryGetValue(311, out object v) ? (Action<ScopedFragmentTransformer, QueueProcedureOption>)v : default;
+            set => this.visitorByTypeTag[311] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueueStatement> VisForQueueStatement {
+            get => this.visitorByTypeTag.TryGetValue(966, out object v) ? (Action<ScopedFragmentTransformer, QueueStatement>)v : default;
+            set => this.visitorByTypeTag[966] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueueStateOption> VisForQueueStateOption {
+            get => this.visitorByTypeTag.TryGetValue(310, out object v) ? (Action<ScopedFragmentTransformer, QueueStateOption>)v : default;
+            set => this.visitorByTypeTag[310] = value;
+        }
+        public Action<ScopedFragmentTransformer, QueueValueOption> VisForQueueValueOption {
+            get => this.visitorByTypeTag.TryGetValue(312, out object v) ? (Action<ScopedFragmentTransformer, QueueValueOption>)v : default;
+            set => this.visitorByTypeTag[312] = value;
+        }
+        public Action<ScopedFragmentTransformer, RaiseErrorLegacyStatement> VisForRaiseErrorLegacyStatement {
+            get => this.visitorByTypeTag.TryGetValue(403, out object v) ? (Action<ScopedFragmentTransformer, RaiseErrorLegacyStatement>)v : default;
+            set => this.visitorByTypeTag[403] = value;
+        }
+        public Action<ScopedFragmentTransformer, RaiseErrorStatement> VisForRaiseErrorStatement {
+            get => this.visitorByTypeTag.TryGetValue(404, out object v) ? (Action<ScopedFragmentTransformer, RaiseErrorStatement>)v : default;
+            set => this.visitorByTypeTag[404] = value;
+        }
+        public Action<ScopedFragmentTransformer, ReadOnlyForClause> VisForReadOnlyForClause {
+            get => this.visitorByTypeTag.TryGetValue(71, out object v) ? (Action<ScopedFragmentTransformer, ReadOnlyForClause>)v : default;
+            set => this.visitorByTypeTag[71] = value;
+        }
+        public Action<ScopedFragmentTransformer, ReadTextStatement> VisForReadTextStatement {
+            get => this.visitorByTypeTag.TryGetValue(162, out object v) ? (Action<ScopedFragmentTransformer, ReadTextStatement>)v : default;
+            set => this.visitorByTypeTag[162] = value;
+        }
+        public Action<ScopedFragmentTransformer, RealLiteral> VisForRealLiteral {
+            get => this.visitorByTypeTag.TryGetValue(193, out object v) ? (Action<ScopedFragmentTransformer, RealLiteral>)v : default;
+            set => this.visitorByTypeTag[193] = value;
+        }
+        public Action<ScopedFragmentTransformer, ReceiveStatement> VisForReceiveStatement {
+            get => this.visitorByTypeTag.TryGetValue(728, out object v) ? (Action<ScopedFragmentTransformer, ReceiveStatement>)v : default;
+            set => this.visitorByTypeTag[728] = value;
+        }
+        public Action<ScopedFragmentTransformer, ReconfigureStatement> VisForReconfigureStatement {
+            get => this.visitorByTypeTag.TryGetValue(411, out object v) ? (Action<ScopedFragmentTransformer, ReconfigureStatement>)v : default;
+            set => this.visitorByTypeTag[411] = value;
+        }
+        public Action<ScopedFragmentTransformer, RecoveryDatabaseOption> VisForRecoveryDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(462, out object v) ? (Action<ScopedFragmentTransformer, RecoveryDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[462] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteDataArchiveAlterTableOption> VisForRemoteDataArchiveAlterTableOption {
+            get => this.visitorByTypeTag.TryGetValue(281, out object v) ? (Action<ScopedFragmentTransformer, RemoteDataArchiveAlterTableOption>)v : default;
+            set => this.visitorByTypeTag[281] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteDataArchiveDatabaseOption> VisForRemoteDataArchiveDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(282, out object v) ? (Action<ScopedFragmentTransformer, RemoteDataArchiveDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[282] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteDataArchiveDatabaseSetting> VisForRemoteDataArchiveDatabaseSetting {
+            get => this.visitorByTypeTag.TryGetValue(961, out object v) ? (Action<ScopedFragmentTransformer, RemoteDataArchiveDatabaseSetting>)v : default;
+            set => this.visitorByTypeTag[961] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteDataArchiveDbCredentialSetting> VisForRemoteDataArchiveDbCredentialSetting {
+            get => this.visitorByTypeTag.TryGetValue(284, out object v) ? (Action<ScopedFragmentTransformer, RemoteDataArchiveDbCredentialSetting>)v : default;
+            set => this.visitorByTypeTag[284] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteDataArchiveDbFederatedServiceAccountSetting> VisForRemoteDataArchiveDbFederatedServiceAccountSetting {
+            get => this.visitorByTypeTag.TryGetValue(285, out object v) ? (Action<ScopedFragmentTransformer, RemoteDataArchiveDbFederatedServiceAccountSetting>)v : default;
+            set => this.visitorByTypeTag[285] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteDataArchiveDbServerSetting> VisForRemoteDataArchiveDbServerSetting {
+            get => this.visitorByTypeTag.TryGetValue(283, out object v) ? (Action<ScopedFragmentTransformer, RemoteDataArchiveDbServerSetting>)v : default;
+            set => this.visitorByTypeTag[283] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteDataArchiveTableOption> VisForRemoteDataArchiveTableOption {
+            get => this.visitorByTypeTag.TryGetValue(280, out object v) ? (Action<ScopedFragmentTransformer, RemoteDataArchiveTableOption>)v : default;
+            set => this.visitorByTypeTag[280] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteServiceBindingOption> VisForRemoteServiceBindingOption {
+            get => this.visitorByTypeTag.TryGetValue(994, out object v) ? (Action<ScopedFragmentTransformer, RemoteServiceBindingOption>)v : default;
+            set => this.visitorByTypeTag[994] = value;
+        }
+        public Action<ScopedFragmentTransformer, RemoteServiceBindingStatementBase> VisForRemoteServiceBindingStatementBase {
+            get => this.visitorByTypeTag.TryGetValue(995, out object v) ? (Action<ScopedFragmentTransformer, RemoteServiceBindingStatementBase>)v : default;
+            set => this.visitorByTypeTag[995] = value;
+        }
+        public Action<ScopedFragmentTransformer, RenameAlterRoleAction> VisForRenameAlterRoleAction {
+            get => this.visitorByTypeTag.TryGetValue(355, out object v) ? (Action<ScopedFragmentTransformer, RenameAlterRoleAction>)v : default;
+            set => this.visitorByTypeTag[355] = value;
+        }
+        public Action<ScopedFragmentTransformer, RenameEntityStatement> VisForRenameEntityStatement {
+            get => this.visitorByTypeTag.TryGetValue(517, out object v) ? (Action<ScopedFragmentTransformer, RenameEntityStatement>)v : default;
+            set => this.visitorByTypeTag[517] = value;
+        }
+        public Action<ScopedFragmentTransformer, ResampleStatisticsOption> VisForResampleStatisticsOption {
+            get => this.visitorByTypeTag.TryGetValue(365, out object v) ? (Action<ScopedFragmentTransformer, ResampleStatisticsOption>)v : default;
+            set => this.visitorByTypeTag[365] = value;
+        }
+        public Action<ScopedFragmentTransformer, ResourcePoolAffinitySpecification> VisForResourcePoolAffinitySpecification {
+            get => this.visitorByTypeTag.TryGetValue(791, out object v) ? (Action<ScopedFragmentTransformer, ResourcePoolAffinitySpecification>)v : default;
+            set => this.visitorByTypeTag[791] = value;
+        }
+        public Action<ScopedFragmentTransformer, ResourcePoolParameter> VisForResourcePoolParameter {
+            get => this.visitorByTypeTag.TryGetValue(790, out object v) ? (Action<ScopedFragmentTransformer, ResourcePoolParameter>)v : default;
+            set => this.visitorByTypeTag[790] = value;
+        }
+        public Action<ScopedFragmentTransformer, ResourcePoolStatement> VisForResourcePoolStatement {
+            get => this.visitorByTypeTag.TryGetValue(789, out object v) ? (Action<ScopedFragmentTransformer, ResourcePoolStatement>)v : default;
+            set => this.visitorByTypeTag[789] = value;
+        }
+        public Action<ScopedFragmentTransformer, RestoreMasterKeyStatement> VisForRestoreMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(741, out object v) ? (Action<ScopedFragmentTransformer, RestoreMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[741] = value;
+        }
+        public Action<ScopedFragmentTransformer, RestoreOption> VisForRestoreOption {
+            get => this.visitorByTypeTag.TryGetValue(537, out object v) ? (Action<ScopedFragmentTransformer, RestoreOption>)v : default;
+            set => this.visitorByTypeTag[537] = value;
+        }
+        public Action<ScopedFragmentTransformer, RestoreServiceMasterKeyStatement> VisForRestoreServiceMasterKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(739, out object v) ? (Action<ScopedFragmentTransformer, RestoreServiceMasterKeyStatement>)v : default;
+            set => this.visitorByTypeTag[739] = value;
+        }
+        public Action<ScopedFragmentTransformer, RestoreStatement> VisForRestoreStatement {
+            get => this.visitorByTypeTag.TryGetValue(536, out object v) ? (Action<ScopedFragmentTransformer, RestoreStatement>)v : default;
+            set => this.visitorByTypeTag[536] = value;
+        }
+        public Action<ScopedFragmentTransformer, ResultColumnDefinition> VisForResultColumnDefinition {
+            get => this.visitorByTypeTag.TryGetValue(6, out object v) ? (Action<ScopedFragmentTransformer, ResultColumnDefinition>)v : default;
+            set => this.visitorByTypeTag[6] = value;
+        }
+        public Action<ScopedFragmentTransformer, ResultSetDefinition> VisForResultSetDefinition {
+            get => this.visitorByTypeTag.TryGetValue(4, out object v) ? (Action<ScopedFragmentTransformer, ResultSetDefinition>)v : default;
+            set => this.visitorByTypeTag[4] = value;
+        }
+        public Action<ScopedFragmentTransformer, ResultSetsExecuteOption> VisForResultSetsExecuteOption {
+            get => this.visitorByTypeTag.TryGetValue(3, out object v) ? (Action<ScopedFragmentTransformer, ResultSetsExecuteOption>)v : default;
+            set => this.visitorByTypeTag[3] = value;
+        }
+        public Action<ScopedFragmentTransformer, RetentionDaysAuditTargetOption> VisForRetentionDaysAuditTargetOption {
+            get => this.visitorByTypeTag.TryGetValue(782, out object v) ? (Action<ScopedFragmentTransformer, RetentionDaysAuditTargetOption>)v : default;
+            set => this.visitorByTypeTag[782] = value;
+        }
+        public Action<ScopedFragmentTransformer, RetentionPeriodDefinition> VisForRetentionPeriodDefinition {
+            get => this.visitorByTypeTag.TryGetValue(286, out object v) ? (Action<ScopedFragmentTransformer, RetentionPeriodDefinition>)v : default;
+            set => this.visitorByTypeTag[286] = value;
+        }
+        public Action<ScopedFragmentTransformer, ReturnStatement> VisForReturnStatement {
+            get => this.visitorByTypeTag.TryGetValue(371, out object v) ? (Action<ScopedFragmentTransformer, ReturnStatement>)v : default;
+            set => this.visitorByTypeTag[371] = value;
+        }
+        public Action<ScopedFragmentTransformer, RevertStatement> VisForRevertStatement {
+            get => this.visitorByTypeTag.TryGetValue(713, out object v) ? (Action<ScopedFragmentTransformer, RevertStatement>)v : default;
+            set => this.visitorByTypeTag[713] = value;
+        }
+        public Action<ScopedFragmentTransformer, RevokeStatement> VisForRevokeStatement {
+            get => this.visitorByTypeTag.TryGetValue(168, out object v) ? (Action<ScopedFragmentTransformer, RevokeStatement>)v : default;
+            set => this.visitorByTypeTag[168] = value;
+        }
+        public Action<ScopedFragmentTransformer, RevokeStatement80> VisForRevokeStatement80 {
+            get => this.visitorByTypeTag.TryGetValue(176, out object v) ? (Action<ScopedFragmentTransformer, RevokeStatement80>)v : default;
+            set => this.visitorByTypeTag[176] = value;
+        }
+        public Action<ScopedFragmentTransformer, RightFunctionCall> VisForRightFunctionCall {
+            get => this.visitorByTypeTag.TryGetValue(117, out object v) ? (Action<ScopedFragmentTransformer, RightFunctionCall>)v : default;
+            set => this.visitorByTypeTag[117] = value;
+        }
+        public Action<ScopedFragmentTransformer, RolePayloadOption> VisForRolePayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(598, out object v) ? (Action<ScopedFragmentTransformer, RolePayloadOption>)v : default;
+            set => this.visitorByTypeTag[598] = value;
+        }
+        public Action<ScopedFragmentTransformer, RoleStatement> VisForRoleStatement {
+            get => this.visitorByTypeTag.TryGetValue(974, out object v) ? (Action<ScopedFragmentTransformer, RoleStatement>)v : default;
+            set => this.visitorByTypeTag[974] = value;
+        }
+        public Action<ScopedFragmentTransformer, RollbackTransactionStatement> VisForRollbackTransactionStatement {
+            get => this.visitorByTypeTag.TryGetValue(137, out object v) ? (Action<ScopedFragmentTransformer, RollbackTransactionStatement>)v : default;
+            set => this.visitorByTypeTag[137] = value;
+        }
+        public Action<ScopedFragmentTransformer, RollupGroupingSpecification> VisForRollupGroupingSpecification {
+            get => this.visitorByTypeTag.TryGetValue(640, out object v) ? (Action<ScopedFragmentTransformer, RollupGroupingSpecification>)v : default;
+            set => this.visitorByTypeTag[640] = value;
+        }
+        public Action<ScopedFragmentTransformer, RouteOption> VisForRouteOption {
+            get => this.visitorByTypeTag.TryGetValue(314, out object v) ? (Action<ScopedFragmentTransformer, RouteOption>)v : default;
+            set => this.visitorByTypeTag[314] = value;
+        }
+        public Action<ScopedFragmentTransformer, RouteStatement> VisForRouteStatement {
+            get => this.visitorByTypeTag.TryGetValue(965, out object v) ? (Action<ScopedFragmentTransformer, RouteStatement>)v : default;
+            set => this.visitorByTypeTag[965] = value;
+        }
+        public Action<ScopedFragmentTransformer, RowValue> VisForRowValue {
+            get => this.visitorByTypeTag.TryGetValue(187, out object v) ? (Action<ScopedFragmentTransformer, RowValue>)v : default;
+            set => this.visitorByTypeTag[187] = value;
+        }
+        public Action<ScopedFragmentTransformer, SaveTransactionStatement> VisForSaveTransactionStatement {
+            get => this.visitorByTypeTag.TryGetValue(138, out object v) ? (Action<ScopedFragmentTransformer, SaveTransactionStatement>)v : default;
+            set => this.visitorByTypeTag[138] = value;
+        }
+        public Action<ScopedFragmentTransformer, ScalarExpression> VisForScalarExpression {
+            get => this.visitorByTypeTag.TryGetValue(920, out object v) ? (Action<ScopedFragmentTransformer, ScalarExpression>)v : default;
+            set => this.visitorByTypeTag[920] = value;
+        }
+        public Action<ScopedFragmentTransformer, ScalarExpressionDialogOption> VisForScalarExpressionDialogOption {
+            get => this.visitorByTypeTag.TryGetValue(735, out object v) ? (Action<ScopedFragmentTransformer, ScalarExpressionDialogOption>)v : default;
+            set => this.visitorByTypeTag[735] = value;
+        }
+        public Action<ScopedFragmentTransformer, ScalarExpressionRestoreOption> VisForScalarExpressionRestoreOption {
+            get => this.visitorByTypeTag.TryGetValue(538, out object v) ? (Action<ScopedFragmentTransformer, ScalarExpressionRestoreOption>)v : default;
+            set => this.visitorByTypeTag[538] = value;
+        }
+        public Action<ScopedFragmentTransformer, ScalarExpressionSequenceOption> VisForScalarExpressionSequenceOption {
+            get => this.visitorByTypeTag.TryGetValue(215, out object v) ? (Action<ScopedFragmentTransformer, ScalarExpressionSequenceOption>)v : default;
+            set => this.visitorByTypeTag[215] = value;
+        }
+        public Action<ScopedFragmentTransformer, ScalarExpressionSnippet> VisForScalarExpressionSnippet {
+            get => this.visitorByTypeTag.TryGetValue(742, out object v) ? (Action<ScopedFragmentTransformer, ScalarExpressionSnippet>)v : default;
+            set => this.visitorByTypeTag[742] = value;
+        }
+        public Action<ScopedFragmentTransformer, ScalarFunctionReturnType> VisForScalarFunctionReturnType {
+            get => this.visitorByTypeTag.TryGetValue(50, out object v) ? (Action<ScopedFragmentTransformer, ScalarFunctionReturnType>)v : default;
+            set => this.visitorByTypeTag[50] = value;
+        }
+        public Action<ScopedFragmentTransformer, ScalarSubquery> VisForScalarSubquery {
+            get => this.visitorByTypeTag.TryGetValue(123, out object v) ? (Action<ScopedFragmentTransformer, ScalarSubquery>)v : default;
+            set => this.visitorByTypeTag[123] = value;
+        }
+        public Action<ScopedFragmentTransformer, SchemaDeclarationItem> VisForSchemaDeclarationItem {
+            get => this.visitorByTypeTag.TryGetValue(103, out object v) ? (Action<ScopedFragmentTransformer, SchemaDeclarationItem>)v : default;
+            set => this.visitorByTypeTag[103] = value;
+        }
+        public Action<ScopedFragmentTransformer, SchemaDeclarationItemOpenjson> VisForSchemaDeclarationItemOpenjson {
+            get => this.visitorByTypeTag.TryGetValue(104, out object v) ? (Action<ScopedFragmentTransformer, SchemaDeclarationItemOpenjson>)v : default;
+            set => this.visitorByTypeTag[104] = value;
+        }
+        public Action<ScopedFragmentTransformer, SchemaObjectFunctionTableReference> VisForSchemaObjectFunctionTableReference {
+            get => this.visitorByTypeTag.TryGetValue(56, out object v) ? (Action<ScopedFragmentTransformer, SchemaObjectFunctionTableReference>)v : default;
+            set => this.visitorByTypeTag[56] = value;
+        }
+        public Action<ScopedFragmentTransformer, SchemaObjectName> VisForSchemaObjectName {
+            get => this.visitorByTypeTag.TryGetValue(150, out object v) ? (Action<ScopedFragmentTransformer, SchemaObjectName>)v : default;
+            set => this.visitorByTypeTag[150] = value;
+        }
+        public Action<ScopedFragmentTransformer, SchemaObjectNameOrValueExpression> VisForSchemaObjectNameOrValueExpression {
+            get => this.visitorByTypeTag.TryGetValue(209, out object v) ? (Action<ScopedFragmentTransformer, SchemaObjectNameOrValueExpression>)v : default;
+            set => this.visitorByTypeTag[209] = value;
+        }
+        public Action<ScopedFragmentTransformer, SchemaObjectNameSnippet> VisForSchemaObjectNameSnippet {
+            get => this.visitorByTypeTag.TryGetValue(746, out object v) ? (Action<ScopedFragmentTransformer, SchemaObjectNameSnippet>)v : default;
+            set => this.visitorByTypeTag[746] = value;
+        }
+        public Action<ScopedFragmentTransformer, SchemaObjectResultSetDefinition> VisForSchemaObjectResultSetDefinition {
+            get => this.visitorByTypeTag.TryGetValue(7, out object v) ? (Action<ScopedFragmentTransformer, SchemaObjectResultSetDefinition>)v : default;
+            set => this.visitorByTypeTag[7] = value;
+        }
+        public Action<ScopedFragmentTransformer, SchemaPayloadOption> VisForSchemaPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(596, out object v) ? (Action<ScopedFragmentTransformer, SchemaPayloadOption>)v : default;
+            set => this.visitorByTypeTag[596] = value;
+        }
+        public Action<ScopedFragmentTransformer, SearchedCaseExpression> VisForSearchedCaseExpression {
+            get => this.visitorByTypeTag.TryGetValue(88, out object v) ? (Action<ScopedFragmentTransformer, SearchedCaseExpression>)v : default;
+            set => this.visitorByTypeTag[88] = value;
+        }
+        public Action<ScopedFragmentTransformer, SearchedWhenClause> VisForSearchedWhenClause {
+            get => this.visitorByTypeTag.TryGetValue(86, out object v) ? (Action<ScopedFragmentTransformer, SearchedWhenClause>)v : default;
+            set => this.visitorByTypeTag[86] = value;
+        }
+        public Action<ScopedFragmentTransformer, SearchPropertyListAction> VisForSearchPropertyListAction {
+            get => this.visitorByTypeTag.TryGetValue(1013, out object v) ? (Action<ScopedFragmentTransformer, SearchPropertyListAction>)v : default;
+            set => this.visitorByTypeTag[1013] = value;
+        }
+        public Action<ScopedFragmentTransformer, SearchPropertyListFullTextIndexOption> VisForSearchPropertyListFullTextIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(342, out object v) ? (Action<ScopedFragmentTransformer, SearchPropertyListFullTextIndexOption>)v : default;
+            set => this.visitorByTypeTag[342] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecondaryRoleReplicaOption> VisForSecondaryRoleReplicaOption {
+            get => this.visitorByTypeTag.TryGetValue(875, out object v) ? (Action<ScopedFragmentTransformer, SecondaryRoleReplicaOption>)v : default;
+            set => this.visitorByTypeTag[875] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityElement80> VisForSecurityElement80 {
+            get => this.visitorByTypeTag.TryGetValue(935, out object v) ? (Action<ScopedFragmentTransformer, SecurityElement80>)v : default;
+            set => this.visitorByTypeTag[935] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityPolicyOption> VisForSecurityPolicyOption {
+            get => this.visitorByTypeTag.TryGetValue(220, out object v) ? (Action<ScopedFragmentTransformer, SecurityPolicyOption>)v : default;
+            set => this.visitorByTypeTag[220] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityPolicyStatement> VisForSecurityPolicyStatement {
+            get => this.visitorByTypeTag.TryGetValue(943, out object v) ? (Action<ScopedFragmentTransformer, SecurityPolicyStatement>)v : default;
+            set => this.visitorByTypeTag[943] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityPredicateAction> VisForSecurityPredicateAction {
+            get => this.visitorByTypeTag.TryGetValue(219, out object v) ? (Action<ScopedFragmentTransformer, SecurityPredicateAction>)v : default;
+            set => this.visitorByTypeTag[219] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityPrincipal> VisForSecurityPrincipal {
+            get => this.visitorByTypeTag.TryGetValue(173, out object v) ? (Action<ScopedFragmentTransformer, SecurityPrincipal>)v : default;
+            set => this.visitorByTypeTag[173] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityStatement> VisForSecurityStatement {
+            get => this.visitorByTypeTag.TryGetValue(933, out object v) ? (Action<ScopedFragmentTransformer, SecurityStatement>)v : default;
+            set => this.visitorByTypeTag[933] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityStatementBody80> VisForSecurityStatementBody80 {
+            get => this.visitorByTypeTag.TryGetValue(934, out object v) ? (Action<ScopedFragmentTransformer, SecurityStatementBody80>)v : default;
+            set => this.visitorByTypeTag[934] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityTargetObject> VisForSecurityTargetObject {
+            get => this.visitorByTypeTag.TryGetValue(171, out object v) ? (Action<ScopedFragmentTransformer, SecurityTargetObject>)v : default;
+            set => this.visitorByTypeTag[171] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityTargetObjectName> VisForSecurityTargetObjectName {
+            get => this.visitorByTypeTag.TryGetValue(172, out object v) ? (Action<ScopedFragmentTransformer, SecurityTargetObjectName>)v : default;
+            set => this.visitorByTypeTag[172] = value;
+        }
+        public Action<ScopedFragmentTransformer, SecurityUserClause80> VisForSecurityUserClause80 {
+            get => this.visitorByTypeTag.TryGetValue(180, out object v) ? (Action<ScopedFragmentTransformer, SecurityUserClause80>)v : default;
+            set => this.visitorByTypeTag[180] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectElement> VisForSelectElement {
+            get => this.visitorByTypeTag.TryGetValue(1011, out object v) ? (Action<ScopedFragmentTransformer, SelectElement>)v : default;
+            set => this.visitorByTypeTag[1011] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectFunctionReturnType> VisForSelectFunctionReturnType {
+            get => this.visitorByTypeTag.TryGetValue(51, out object v) ? (Action<ScopedFragmentTransformer, SelectFunctionReturnType>)v : default;
+            set => this.visitorByTypeTag[51] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectInsertSource> VisForSelectInsertSource {
+            get => this.visitorByTypeTag.TryGetValue(185, out object v) ? (Action<ScopedFragmentTransformer, SelectInsertSource>)v : default;
+            set => this.visitorByTypeTag[185] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectiveXmlIndexPromotedPath> VisForSelectiveXmlIndexPromotedPath {
+            get => this.visitorByTypeTag.TryGetValue(891, out object v) ? (Action<ScopedFragmentTransformer, SelectiveXmlIndexPromotedPath>)v : default;
+            set => this.visitorByTypeTag[891] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectScalarExpression> VisForSelectScalarExpression {
+            get => this.visitorByTypeTag.TryGetValue(655, out object v) ? (Action<ScopedFragmentTransformer, SelectScalarExpression>)v : default;
+            set => this.visitorByTypeTag[655] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectSetVariable> VisForSelectSetVariable {
+            get => this.visitorByTypeTag.TryGetValue(657, out object v) ? (Action<ScopedFragmentTransformer, SelectSetVariable>)v : default;
+            set => this.visitorByTypeTag[657] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectStarExpression> VisForSelectStarExpression {
+            get => this.visitorByTypeTag.TryGetValue(656, out object v) ? (Action<ScopedFragmentTransformer, SelectStarExpression>)v : default;
+            set => this.visitorByTypeTag[656] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectStatement> VisForSelectStatement {
+            get => this.visitorByTypeTag.TryGetValue(69, out object v) ? (Action<ScopedFragmentTransformer, SelectStatement>)v : default;
+            set => this.visitorByTypeTag[69] = value;
+        }
+        public Action<ScopedFragmentTransformer, SelectStatementSnippet> VisForSelectStatementSnippet {
+            get => this.visitorByTypeTag.TryGetValue(745, out object v) ? (Action<ScopedFragmentTransformer, SelectStatementSnippet>)v : default;
+            set => this.visitorByTypeTag[745] = value;
+        }
+        public Action<ScopedFragmentTransformer, SemanticTableReference> VisForSemanticTableReference {
+            get => this.visitorByTypeTag.TryGetValue(93, out object v) ? (Action<ScopedFragmentTransformer, SemanticTableReference>)v : default;
+            set => this.visitorByTypeTag[93] = value;
+        }
+        public Action<ScopedFragmentTransformer, SendStatement> VisForSendStatement {
+            get => this.visitorByTypeTag.TryGetValue(729, out object v) ? (Action<ScopedFragmentTransformer, SendStatement>)v : default;
+            set => this.visitorByTypeTag[729] = value;
+        }
+        public Action<ScopedFragmentTransformer, SensitivityClassificationOption> VisForSensitivityClassificationOption {
+            get => this.visitorByTypeTag.TryGetValue(759, out object v) ? (Action<ScopedFragmentTransformer, SensitivityClassificationOption>)v : default;
+            set => this.visitorByTypeTag[759] = value;
+        }
+        public Action<ScopedFragmentTransformer, SensitivityClassificationStatement> VisForSensitivityClassificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(1021, out object v) ? (Action<ScopedFragmentTransformer, SensitivityClassificationStatement>)v : default;
+            set => this.visitorByTypeTag[1021] = value;
+        }
+        public Action<ScopedFragmentTransformer, SequenceOption> VisForSequenceOption {
+            get => this.visitorByTypeTag.TryGetValue(213, out object v) ? (Action<ScopedFragmentTransformer, SequenceOption>)v : default;
+            set => this.visitorByTypeTag[213] = value;
+        }
+        public Action<ScopedFragmentTransformer, SequenceStatement> VisForSequenceStatement {
+            get => this.visitorByTypeTag.TryGetValue(941, out object v) ? (Action<ScopedFragmentTransformer, SequenceStatement>)v : default;
+            set => this.visitorByTypeTag[941] = value;
+        }
+        public Action<ScopedFragmentTransformer, ServerAuditStatement> VisForServerAuditStatement {
+            get => this.visitorByTypeTag.TryGetValue(1024, out object v) ? (Action<ScopedFragmentTransformer, ServerAuditStatement>)v : default;
+            set => this.visitorByTypeTag[1024] = value;
+        }
+        public Action<ScopedFragmentTransformer, ServiceContract> VisForServiceContract {
+            get => this.visitorByTypeTag.TryGetValue(613, out object v) ? (Action<ScopedFragmentTransformer, ServiceContract>)v : default;
+            set => this.visitorByTypeTag[613] = value;
+        }
+        public Action<ScopedFragmentTransformer, SessionOption> VisForSessionOption {
+            get => this.visitorByTypeTag.TryGetValue(1033, out object v) ? (Action<ScopedFragmentTransformer, SessionOption>)v : default;
+            set => this.visitorByTypeTag[1033] = value;
+        }
+        public Action<ScopedFragmentTransformer, SessionTimeoutPayloadOption> VisForSessionTimeoutPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(595, out object v) ? (Action<ScopedFragmentTransformer, SessionTimeoutPayloadOption>)v : default;
+            set => this.visitorByTypeTag[595] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetClause> VisForSetClause {
+            get => this.visitorByTypeTag.TryGetValue(936, out object v) ? (Action<ScopedFragmentTransformer, SetClause>)v : default;
+            set => this.visitorByTypeTag[936] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetCommand> VisForSetCommand {
+            get => this.visitorByTypeTag.TryGetValue(981, out object v) ? (Action<ScopedFragmentTransformer, SetCommand>)v : default;
+            set => this.visitorByTypeTag[981] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetCommandStatement> VisForSetCommandStatement {
+            get => this.visitorByTypeTag.TryGetValue(421, out object v) ? (Action<ScopedFragmentTransformer, SetCommandStatement>)v : default;
+            set => this.visitorByTypeTag[421] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetErrorLevelStatement> VisForSetErrorLevelStatement {
+            get => this.visitorByTypeTag.TryGetValue(425, out object v) ? (Action<ScopedFragmentTransformer, SetErrorLevelStatement>)v : default;
+            set => this.visitorByTypeTag[425] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetFipsFlaggerCommand> VisForSetFipsFlaggerCommand {
+            get => this.visitorByTypeTag.TryGetValue(420, out object v) ? (Action<ScopedFragmentTransformer, SetFipsFlaggerCommand>)v : default;
+            set => this.visitorByTypeTag[420] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetIdentityInsertStatement> VisForSetIdentityInsertStatement {
+            get => this.visitorByTypeTag.TryGetValue(424, out object v) ? (Action<ScopedFragmentTransformer, SetIdentityInsertStatement>)v : default;
+            set => this.visitorByTypeTag[424] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetOffsetsStatement> VisForSetOffsetsStatement {
+            get => this.visitorByTypeTag.TryGetValue(418, out object v) ? (Action<ScopedFragmentTransformer, SetOffsetsStatement>)v : default;
+            set => this.visitorByTypeTag[418] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetOnOffStatement> VisForSetOnOffStatement {
+            get => this.visitorByTypeTag.TryGetValue(980, out object v) ? (Action<ScopedFragmentTransformer, SetOnOffStatement>)v : default;
+            set => this.visitorByTypeTag[980] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetRowCountStatement> VisForSetRowCountStatement {
+            get => this.visitorByTypeTag.TryGetValue(417, out object v) ? (Action<ScopedFragmentTransformer, SetRowCountStatement>)v : default;
+            set => this.visitorByTypeTag[417] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetSearchPropertyListAlterFullTextIndexAction> VisForSetSearchPropertyListAlterFullTextIndexAction {
+            get => this.visitorByTypeTag.TryGetValue(690, out object v) ? (Action<ScopedFragmentTransformer, SetSearchPropertyListAlterFullTextIndexAction>)v : default;
+            set => this.visitorByTypeTag[690] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetStatisticsStatement> VisForSetStatisticsStatement {
+            get => this.visitorByTypeTag.TryGetValue(416, out object v) ? (Action<ScopedFragmentTransformer, SetStatisticsStatement>)v : default;
+            set => this.visitorByTypeTag[416] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetStopListAlterFullTextIndexAction> VisForSetStopListAlterFullTextIndexAction {
+            get => this.visitorByTypeTag.TryGetValue(689, out object v) ? (Action<ScopedFragmentTransformer, SetStopListAlterFullTextIndexAction>)v : default;
+            set => this.visitorByTypeTag[689] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetTextSizeStatement> VisForSetTextSizeStatement {
+            get => this.visitorByTypeTag.TryGetValue(423, out object v) ? (Action<ScopedFragmentTransformer, SetTextSizeStatement>)v : default;
+            set => this.visitorByTypeTag[423] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetTransactionIsolationLevelStatement> VisForSetTransactionIsolationLevelStatement {
+            get => this.visitorByTypeTag.TryGetValue(422, out object v) ? (Action<ScopedFragmentTransformer, SetTransactionIsolationLevelStatement>)v : default;
+            set => this.visitorByTypeTag[422] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetUserStatement> VisForSetUserStatement {
+            get => this.visitorByTypeTag.TryGetValue(413, out object v) ? (Action<ScopedFragmentTransformer, SetUserStatement>)v : default;
+            set => this.visitorByTypeTag[413] = value;
+        }
+        public Action<ScopedFragmentTransformer, SetVariableStatement> VisForSetVariableStatement {
+            get => this.visitorByTypeTag.TryGetValue(375, out object v) ? (Action<ScopedFragmentTransformer, SetVariableStatement>)v : default;
+            set => this.visitorByTypeTag[375] = value;
+        }
+        public Action<ScopedFragmentTransformer, ShutdownStatement> VisForShutdownStatement {
+            get => this.visitorByTypeTag.TryGetValue(412, out object v) ? (Action<ScopedFragmentTransformer, ShutdownStatement>)v : default;
+            set => this.visitorByTypeTag[412] = value;
+        }
+        public Action<ScopedFragmentTransformer, SignatureStatementBase> VisForSignatureStatementBase {
+            get => this.visitorByTypeTag.TryGetValue(1016, out object v) ? (Action<ScopedFragmentTransformer, SignatureStatementBase>)v : default;
+            set => this.visitorByTypeTag[1016] = value;
+        }
+        public Action<ScopedFragmentTransformer, SimpleAlterFullTextIndexAction> VisForSimpleAlterFullTextIndexAction {
+            get => this.visitorByTypeTag.TryGetValue(688, out object v) ? (Action<ScopedFragmentTransformer, SimpleAlterFullTextIndexAction>)v : default;
+            set => this.visitorByTypeTag[688] = value;
+        }
+        public Action<ScopedFragmentTransformer, SimpleCaseExpression> VisForSimpleCaseExpression {
+            get => this.visitorByTypeTag.TryGetValue(87, out object v) ? (Action<ScopedFragmentTransformer, SimpleCaseExpression>)v : default;
+            set => this.visitorByTypeTag[87] = value;
+        }
+        public Action<ScopedFragmentTransformer, SimpleWhenClause> VisForSimpleWhenClause {
+            get => this.visitorByTypeTag.TryGetValue(85, out object v) ? (Action<ScopedFragmentTransformer, SimpleWhenClause>)v : default;
+            set => this.visitorByTypeTag[85] = value;
+        }
+        public Action<ScopedFragmentTransformer, SingleValueTypeCopyOption> VisForSingleValueTypeCopyOption {
+            get => this.visitorByTypeTag.TryGetValue(521, out object v) ? (Action<ScopedFragmentTransformer, SingleValueTypeCopyOption>)v : default;
+            set => this.visitorByTypeTag[521] = value;
+        }
+        public Action<ScopedFragmentTransformer, SizeFileDeclarationOption> VisForSizeFileDeclarationOption {
+            get => this.visitorByTypeTag.TryGetValue(431, out object v) ? (Action<ScopedFragmentTransformer, SizeFileDeclarationOption>)v : default;
+            set => this.visitorByTypeTag[431] = value;
+        }
+        public Action<ScopedFragmentTransformer, SoapMethod> VisForSoapMethod {
+            get => this.visitorByTypeTag.TryGetValue(590, out object v) ? (Action<ScopedFragmentTransformer, SoapMethod>)v : default;
+            set => this.visitorByTypeTag[590] = value;
+        }
+        public Action<ScopedFragmentTransformer, SourceDeclaration> VisForSourceDeclaration {
+            get => this.visitorByTypeTag.TryGetValue(832, out object v) ? (Action<ScopedFragmentTransformer, SourceDeclaration>)v : default;
+            set => this.visitorByTypeTag[832] = value;
+        }
+        public Action<ScopedFragmentTransformer, SpatialIndexOption> VisForSpatialIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(1034, out object v) ? (Action<ScopedFragmentTransformer, SpatialIndexOption>)v : default;
+            set => this.visitorByTypeTag[1034] = value;
+        }
+        public Action<ScopedFragmentTransformer, SpatialIndexRegularOption> VisForSpatialIndexRegularOption {
+            get => this.visitorByTypeTag.TryGetValue(844, out object v) ? (Action<ScopedFragmentTransformer, SpatialIndexRegularOption>)v : default;
+            set => this.visitorByTypeTag[844] = value;
+        }
+        public Action<ScopedFragmentTransformer, SqlCommandIdentifier> VisForSqlCommandIdentifier {
+            get => this.visitorByTypeTag.TryGetValue(181, out object v) ? (Action<ScopedFragmentTransformer, SqlCommandIdentifier>)v : default;
+            set => this.visitorByTypeTag[181] = value;
+        }
+        public Action<ScopedFragmentTransformer, SqlDataTypeReference> VisForSqlDataTypeReference {
+            get => this.visitorByTypeTag.TryGetValue(47, out object v) ? (Action<ScopedFragmentTransformer, SqlDataTypeReference>)v : default;
+            set => this.visitorByTypeTag[47] = value;
+        }
+        public Action<ScopedFragmentTransformer, StateAuditOption> VisForStateAuditOption {
+            get => this.visitorByTypeTag.TryGetValue(780, out object v) ? (Action<ScopedFragmentTransformer, StateAuditOption>)v : default;
+            set => this.visitorByTypeTag[780] = value;
+        }
+        public Action<ScopedFragmentTransformer, StatementList> VisForStatementList {
+            get => this.visitorByTypeTag.TryGetValue(0, out object v) ? (Action<ScopedFragmentTransformer, StatementList>)v : default;
+            set => this.visitorByTypeTag[0] = value;
+        }
+        public Action<ScopedFragmentTransformer, StatementListSnippet> VisForStatementListSnippet {
+            get => this.visitorByTypeTag.TryGetValue(744, out object v) ? (Action<ScopedFragmentTransformer, StatementListSnippet>)v : default;
+            set => this.visitorByTypeTag[744] = value;
+        }
+        public Action<ScopedFragmentTransformer, StatementWithCtesAndXmlNamespaces> VisForStatementWithCtesAndXmlNamespaces {
+            get => this.visitorByTypeTag.TryGetValue(921, out object v) ? (Action<ScopedFragmentTransformer, StatementWithCtesAndXmlNamespaces>)v : default;
+            set => this.visitorByTypeTag[921] = value;
+        }
+        public Action<ScopedFragmentTransformer, StatisticsOption> VisForStatisticsOption {
+            get => this.visitorByTypeTag.TryGetValue(364, out object v) ? (Action<ScopedFragmentTransformer, StatisticsOption>)v : default;
+            set => this.visitorByTypeTag[364] = value;
+        }
+        public Action<ScopedFragmentTransformer, StatisticsPartitionRange> VisForStatisticsPartitionRange {
+            get => this.visitorByTypeTag.TryGetValue(366, out object v) ? (Action<ScopedFragmentTransformer, StatisticsPartitionRange>)v : default;
+            set => this.visitorByTypeTag[366] = value;
+        }
+        public Action<ScopedFragmentTransformer, StopListFullTextIndexOption> VisForStopListFullTextIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(341, out object v) ? (Action<ScopedFragmentTransformer, StopListFullTextIndexOption>)v : default;
+            set => this.visitorByTypeTag[341] = value;
+        }
+        public Action<ScopedFragmentTransformer, StopRestoreOption> VisForStopRestoreOption {
+            get => this.visitorByTypeTag.TryGetValue(540, out object v) ? (Action<ScopedFragmentTransformer, StopRestoreOption>)v : default;
+            set => this.visitorByTypeTag[540] = value;
+        }
+        public Action<ScopedFragmentTransformer, StringLiteral> VisForStringLiteral {
+            get => this.visitorByTypeTag.TryGetValue(196, out object v) ? (Action<ScopedFragmentTransformer, StringLiteral>)v : default;
+            set => this.visitorByTypeTag[196] = value;
+        }
+        public Action<ScopedFragmentTransformer, SubqueryComparisonPredicate> VisForSubqueryComparisonPredicate {
+            get => this.visitorByTypeTag.TryGetValue(62, out object v) ? (Action<ScopedFragmentTransformer, SubqueryComparisonPredicate>)v : default;
+            set => this.visitorByTypeTag[62] = value;
+        }
+        public Action<ScopedFragmentTransformer, SymmetricKeyStatement> VisForSymmetricKeyStatement {
+            get => this.visitorByTypeTag.TryGetValue(1003, out object v) ? (Action<ScopedFragmentTransformer, SymmetricKeyStatement>)v : default;
+            set => this.visitorByTypeTag[1003] = value;
+        }
+        public Action<ScopedFragmentTransformer, SystemTimePeriodDefinition> VisForSystemTimePeriodDefinition {
+            get => this.visitorByTypeTag.TryGetValue(320, out object v) ? (Action<ScopedFragmentTransformer, SystemTimePeriodDefinition>)v : default;
+            set => this.visitorByTypeTag[320] = value;
+        }
+        public Action<ScopedFragmentTransformer, SystemVersioningTableOption> VisForSystemVersioningTableOption {
+            get => this.visitorByTypeTag.TryGetValue(287, out object v) ? (Action<ScopedFragmentTransformer, SystemVersioningTableOption>)v : default;
+            set => this.visitorByTypeTag[287] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableClusteredIndexType> VisForTableClusteredIndexType {
+            get => this.visitorByTypeTag.TryGetValue(512, out object v) ? (Action<ScopedFragmentTransformer, TableClusteredIndexType>)v : default;
+            set => this.visitorByTypeTag[512] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableDataCompressionOption> VisForTableDataCompressionOption {
+            get => this.visitorByTypeTag.TryGetValue(505, out object v) ? (Action<ScopedFragmentTransformer, TableDataCompressionOption>)v : default;
+            set => this.visitorByTypeTag[505] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableDefinition> VisForTableDefinition {
+            get => this.visitorByTypeTag.TryGetValue(52, out object v) ? (Action<ScopedFragmentTransformer, TableDefinition>)v : default;
+            set => this.visitorByTypeTag[52] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableDistributionOption> VisForTableDistributionOption {
+            get => this.visitorByTypeTag.TryGetValue(507, out object v) ? (Action<ScopedFragmentTransformer, TableDistributionOption>)v : default;
+            set => this.visitorByTypeTag[507] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableDistributionPolicy> VisForTableDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(987, out object v) ? (Action<ScopedFragmentTransformer, TableDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[987] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableHashDistributionPolicy> VisForTableHashDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(510, out object v) ? (Action<ScopedFragmentTransformer, TableHashDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[510] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableHint> VisForTableHint {
+            get => this.visitorByTypeTag.TryGetValue(57, out object v) ? (Action<ScopedFragmentTransformer, TableHint>)v : default;
+            set => this.visitorByTypeTag[57] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableHintsOptimizerHint> VisForTableHintsOptimizerHint {
+            get => this.visitorByTypeTag.TryGetValue(80, out object v) ? (Action<ScopedFragmentTransformer, TableHintsOptimizerHint>)v : default;
+            set => this.visitorByTypeTag[80] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableIndexOption> VisForTableIndexOption {
+            get => this.visitorByTypeTag.TryGetValue(511, out object v) ? (Action<ScopedFragmentTransformer, TableIndexOption>)v : default;
+            set => this.visitorByTypeTag[511] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableIndexType> VisForTableIndexType {
+            get => this.visitorByTypeTag.TryGetValue(988, out object v) ? (Action<ScopedFragmentTransformer, TableIndexType>)v : default;
+            set => this.visitorByTypeTag[988] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableNonClusteredIndexType> VisForTableNonClusteredIndexType {
+            get => this.visitorByTypeTag.TryGetValue(513, out object v) ? (Action<ScopedFragmentTransformer, TableNonClusteredIndexType>)v : default;
+            set => this.visitorByTypeTag[513] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableOption> VisForTableOption {
+            get => this.visitorByTypeTag.TryGetValue(960, out object v) ? (Action<ScopedFragmentTransformer, TableOption>)v : default;
+            set => this.visitorByTypeTag[960] = value;
+        }
+        public Action<ScopedFragmentTransformer, TablePartitionOption> VisForTablePartitionOption {
+            get => this.visitorByTypeTag.TryGetValue(514, out object v) ? (Action<ScopedFragmentTransformer, TablePartitionOption>)v : default;
+            set => this.visitorByTypeTag[514] = value;
+        }
+        public Action<ScopedFragmentTransformer, TablePartitionOptionSpecifications> VisForTablePartitionOptionSpecifications {
+            get => this.visitorByTypeTag.TryGetValue(515, out object v) ? (Action<ScopedFragmentTransformer, TablePartitionOptionSpecifications>)v : default;
+            set => this.visitorByTypeTag[515] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableReference> VisForTableReference {
+            get => this.visitorByTypeTag.TryGetValue(916, out object v) ? (Action<ScopedFragmentTransformer, TableReference>)v : default;
+            set => this.visitorByTypeTag[916] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableReferenceWithAlias> VisForTableReferenceWithAlias {
+            get => this.visitorByTypeTag.TryGetValue(915, out object v) ? (Action<ScopedFragmentTransformer, TableReferenceWithAlias>)v : default;
+            set => this.visitorByTypeTag[915] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableReferenceWithAliasAndColumns> VisForTableReferenceWithAliasAndColumns {
+            get => this.visitorByTypeTag.TryGetValue(917, out object v) ? (Action<ScopedFragmentTransformer, TableReferenceWithAliasAndColumns>)v : default;
+            set => this.visitorByTypeTag[917] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableReplicateDistributionPolicy> VisForTableReplicateDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(508, out object v) ? (Action<ScopedFragmentTransformer, TableReplicateDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[508] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableRoundRobinDistributionPolicy> VisForTableRoundRobinDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(509, out object v) ? (Action<ScopedFragmentTransformer, TableRoundRobinDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[509] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableSampleClause> VisForTableSampleClause {
+            get => this.visitorByTypeTag.TryGetValue(622, out object v) ? (Action<ScopedFragmentTransformer, TableSampleClause>)v : default;
+            set => this.visitorByTypeTag[622] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableSwitchOption> VisForTableSwitchOption {
+            get => this.visitorByTypeTag.TryGetValue(962, out object v) ? (Action<ScopedFragmentTransformer, TableSwitchOption>)v : default;
+            set => this.visitorByTypeTag[962] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableValuedFunctionReturnType> VisForTableValuedFunctionReturnType {
+            get => this.visitorByTypeTag.TryGetValue(46, out object v) ? (Action<ScopedFragmentTransformer, TableValuedFunctionReturnType>)v : default;
+            set => this.visitorByTypeTag[46] = value;
+        }
+        public Action<ScopedFragmentTransformer, TableXmlCompressionOption> VisForTableXmlCompressionOption {
+            get => this.visitorByTypeTag.TryGetValue(506, out object v) ? (Action<ScopedFragmentTransformer, TableXmlCompressionOption>)v : default;
+            set => this.visitorByTypeTag[506] = value;
+        }
+        public Action<ScopedFragmentTransformer, TargetDeclaration> VisForTargetDeclaration {
+            get => this.visitorByTypeTag.TryGetValue(834, out object v) ? (Action<ScopedFragmentTransformer, TargetDeclaration>)v : default;
+            set => this.visitorByTypeTag[834] = value;
+        }
+        public Action<ScopedFragmentTransformer, TargetRecoveryTimeDatabaseOption> VisForTargetRecoveryTimeDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(463, out object v) ? (Action<ScopedFragmentTransformer, TargetRecoveryTimeDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[463] = value;
+        }
+        public Action<ScopedFragmentTransformer, TemporalClause> VisForTemporalClause {
+            get => this.visitorByTypeTag.TryGetValue(892, out object v) ? (Action<ScopedFragmentTransformer, TemporalClause>)v : default;
+            set => this.visitorByTypeTag[892] = value;
+        }
+        public Action<ScopedFragmentTransformer, TextModificationStatement> VisForTextModificationStatement {
+            get => this.visitorByTypeTag.TryGetValue(932, out object v) ? (Action<ScopedFragmentTransformer, TextModificationStatement>)v : default;
+            set => this.visitorByTypeTag[932] = value;
+        }
+        public Action<ScopedFragmentTransformer, ThrowStatement> VisForThrowStatement {
+            get => this.visitorByTypeTag.TryGetValue(405, out object v) ? (Action<ScopedFragmentTransformer, ThrowStatement>)v : default;
+            set => this.visitorByTypeTag[405] = value;
+        }
+        public Action<ScopedFragmentTransformer, TopRowFilter> VisForTopRowFilter {
+            get => this.visitorByTypeTag.TryGetValue(662, out object v) ? (Action<ScopedFragmentTransformer, TopRowFilter>)v : default;
+            set => this.visitorByTypeTag[662] = value;
+        }
+        public Action<ScopedFragmentTransformer, TransactionStatement> VisForTransactionStatement {
+            get => this.visitorByTypeTag.TryGetValue(928, out object v) ? (Action<ScopedFragmentTransformer, TransactionStatement>)v : default;
+            set => this.visitorByTypeTag[928] = value;
+        }
+        public Action<ScopedFragmentTransformer, TriggerAction> VisForTriggerAction {
+            get => this.visitorByTypeTag.TryGetValue(26, out object v) ? (Action<ScopedFragmentTransformer, TriggerAction>)v : default;
+            set => this.visitorByTypeTag[26] = value;
+        }
+        public Action<ScopedFragmentTransformer, TriggerObject> VisForTriggerObject {
+            get => this.visitorByTypeTag.TryGetValue(23, out object v) ? (Action<ScopedFragmentTransformer, TriggerObject>)v : default;
+            set => this.visitorByTypeTag[23] = value;
+        }
+        public Action<ScopedFragmentTransformer, TriggerOption> VisForTriggerOption {
+            get => this.visitorByTypeTag.TryGetValue(24, out object v) ? (Action<ScopedFragmentTransformer, TriggerOption>)v : default;
+            set => this.visitorByTypeTag[24] = value;
+        }
+        public Action<ScopedFragmentTransformer, TriggerStatementBody> VisForTriggerStatementBody {
+            get => this.visitorByTypeTag.TryGetValue(908, out object v) ? (Action<ScopedFragmentTransformer, TriggerStatementBody>)v : default;
+            set => this.visitorByTypeTag[908] = value;
+        }
+        public Action<ScopedFragmentTransformer, TruncateTableStatement> VisForTruncateTableStatement {
+            get => this.visitorByTypeTag.TryGetValue(414, out object v) ? (Action<ScopedFragmentTransformer, TruncateTableStatement>)v : default;
+            set => this.visitorByTypeTag[414] = value;
+        }
+        public Action<ScopedFragmentTransformer, TruncateTargetTableSwitchOption> VisForTruncateTargetTableSwitchOption {
+            get => this.visitorByTypeTag.TryGetValue(295, out object v) ? (Action<ScopedFragmentTransformer, TruncateTargetTableSwitchOption>)v : default;
+            set => this.visitorByTypeTag[295] = value;
+        }
+        public Action<ScopedFragmentTransformer, TryCastCall> VisForTryCastCall {
+            get => this.visitorByTypeTag.TryGetValue(110, out object v) ? (Action<ScopedFragmentTransformer, TryCastCall>)v : default;
+            set => this.visitorByTypeTag[110] = value;
+        }
+        public Action<ScopedFragmentTransformer, TryCatchStatement> VisForTryCatchStatement {
+            get => this.visitorByTypeTag.TryGetValue(304, out object v) ? (Action<ScopedFragmentTransformer, TryCatchStatement>)v : default;
+            set => this.visitorByTypeTag[304] = value;
+        }
+        public Action<ScopedFragmentTransformer, TryConvertCall> VisForTryConvertCall {
+            get => this.visitorByTypeTag.TryGetValue(106, out object v) ? (Action<ScopedFragmentTransformer, TryConvertCall>)v : default;
+            set => this.visitorByTypeTag[106] = value;
+        }
+        public Action<ScopedFragmentTransformer, TryParseCall> VisForTryParseCall {
+            get => this.visitorByTypeTag.TryGetValue(108, out object v) ? (Action<ScopedFragmentTransformer, TryParseCall>)v : default;
+            set => this.visitorByTypeTag[108] = value;
+        }
+        public Action<ScopedFragmentTransformer, TSEqualCall> VisForTSEqualCall {
+            get => this.visitorByTypeTag.TryGetValue(190, out object v) ? (Action<ScopedFragmentTransformer, TSEqualCall>)v : default;
+            set => this.visitorByTypeTag[190] = value;
+        }
+        public Action<ScopedFragmentTransformer, TSqlBatch> VisForTSqlBatch {
+            get => this.visitorByTypeTag.TryGetValue(751, out object v) ? (Action<ScopedFragmentTransformer, TSqlBatch>)v : default;
+            set => this.visitorByTypeTag[751] = value;
+        }
+        public Action<ScopedFragmentTransformer, TSqlFragment> VisForTSqlFragment {
+            get => this.visitorByTypeTag.TryGetValue(903, out object v) ? (Action<ScopedFragmentTransformer, TSqlFragment>)v : default;
+            set => this.visitorByTypeTag[903] = value;
+        }
+        public Action<ScopedFragmentTransformer, TSqlFragmentSnippet> VisForTSqlFragmentSnippet {
+            get => this.visitorByTypeTag.TryGetValue(747, out object v) ? (Action<ScopedFragmentTransformer, TSqlFragmentSnippet>)v : default;
+            set => this.visitorByTypeTag[747] = value;
+        }
+        public Action<ScopedFragmentTransformer, TSqlScript> VisForTSqlScript {
+            get => this.visitorByTypeTag.TryGetValue(750, out object v) ? (Action<ScopedFragmentTransformer, TSqlScript>)v : default;
+            set => this.visitorByTypeTag[750] = value;
+        }
+        public Action<ScopedFragmentTransformer, TSqlStatement> VisForTSqlStatement {
+            get => this.visitorByTypeTag.TryGetValue(904, out object v) ? (Action<ScopedFragmentTransformer, TSqlStatement>)v : default;
+            set => this.visitorByTypeTag[904] = value;
+        }
+        public Action<ScopedFragmentTransformer, TSqlStatementSnippet> VisForTSqlStatementSnippet {
+            get => this.visitorByTypeTag.TryGetValue(748, out object v) ? (Action<ScopedFragmentTransformer, TSqlStatementSnippet>)v : default;
+            set => this.visitorByTypeTag[748] = value;
+        }
+        public Action<ScopedFragmentTransformer, UnaryExpression> VisForUnaryExpression {
+            get => this.visitorByTypeTag.TryGetValue(664, out object v) ? (Action<ScopedFragmentTransformer, UnaryExpression>)v : default;
+            set => this.visitorByTypeTag[664] = value;
+        }
+        public Action<ScopedFragmentTransformer, UniqueConstraintDefinition> VisForUniqueConstraintDefinition {
+            get => this.visitorByTypeTag.TryGetValue(533, out object v) ? (Action<ScopedFragmentTransformer, UniqueConstraintDefinition>)v : default;
+            set => this.visitorByTypeTag[533] = value;
+        }
+        public Action<ScopedFragmentTransformer, UnpivotedTableReference> VisForUnpivotedTableReference {
+            get => this.visitorByTypeTag.TryGetValue(620, out object v) ? (Action<ScopedFragmentTransformer, UnpivotedTableReference>)v : default;
+            set => this.visitorByTypeTag[620] = value;
+        }
+        public Action<ScopedFragmentTransformer, UnqualifiedJoin> VisForUnqualifiedJoin {
+            get => this.visitorByTypeTag.TryGetValue(621, out object v) ? (Action<ScopedFragmentTransformer, UnqualifiedJoin>)v : default;
+            set => this.visitorByTypeTag[621] = value;
+        }
+        public Action<ScopedFragmentTransformer, UpdateCall> VisForUpdateCall {
+            get => this.visitorByTypeTag.TryGetValue(189, out object v) ? (Action<ScopedFragmentTransformer, UpdateCall>)v : default;
+            set => this.visitorByTypeTag[189] = value;
+        }
+        public Action<ScopedFragmentTransformer, UpdateDeleteSpecificationBase> VisForUpdateDeleteSpecificationBase {
+            get => this.visitorByTypeTag.TryGetValue(930, out object v) ? (Action<ScopedFragmentTransformer, UpdateDeleteSpecificationBase>)v : default;
+            set => this.visitorByTypeTag[930] = value;
+        }
+        public Action<ScopedFragmentTransformer, UpdateForClause> VisForUpdateForClause {
+            get => this.visitorByTypeTag.TryGetValue(77, out object v) ? (Action<ScopedFragmentTransformer, UpdateForClause>)v : default;
+            set => this.visitorByTypeTag[77] = value;
+        }
+        public Action<ScopedFragmentTransformer, UpdateMergeAction> VisForUpdateMergeAction {
+            get => this.visitorByTypeTag.TryGetValue(755, out object v) ? (Action<ScopedFragmentTransformer, UpdateMergeAction>)v : default;
+            set => this.visitorByTypeTag[755] = value;
+        }
+        public Action<ScopedFragmentTransformer, UpdateSpecification> VisForUpdateSpecification {
+            get => this.visitorByTypeTag.TryGetValue(159, out object v) ? (Action<ScopedFragmentTransformer, UpdateSpecification>)v : default;
+            set => this.visitorByTypeTag[159] = value;
+        }
+        public Action<ScopedFragmentTransformer, UpdateStatement> VisForUpdateStatement {
+            get => this.visitorByTypeTag.TryGetValue(158, out object v) ? (Action<ScopedFragmentTransformer, UpdateStatement>)v : default;
+            set => this.visitorByTypeTag[158] = value;
+        }
+        public Action<ScopedFragmentTransformer, UpdateStatisticsStatement> VisForUpdateStatisticsStatement {
+            get => this.visitorByTypeTag.TryGetValue(370, out object v) ? (Action<ScopedFragmentTransformer, UpdateStatisticsStatement>)v : default;
+            set => this.visitorByTypeTag[370] = value;
+        }
+        public Action<ScopedFragmentTransformer, UpdateTextStatement> VisForUpdateTextStatement {
+            get => this.visitorByTypeTag.TryGetValue(163, out object v) ? (Action<ScopedFragmentTransformer, UpdateTextStatement>)v : default;
+            set => this.visitorByTypeTag[163] = value;
+        }
+        public Action<ScopedFragmentTransformer, UseFederationStatement> VisForUseFederationStatement {
+            get => this.visitorByTypeTag.TryGetValue(884, out object v) ? (Action<ScopedFragmentTransformer, UseFederationStatement>)v : default;
+            set => this.visitorByTypeTag[884] = value;
+        }
+        public Action<ScopedFragmentTransformer, UseHintList> VisForUseHintList {
+            get => this.visitorByTypeTag.TryGetValue(83, out object v) ? (Action<ScopedFragmentTransformer, UseHintList>)v : default;
+            set => this.visitorByTypeTag[83] = value;
+        }
+        public Action<ScopedFragmentTransformer, UserDataTypeReference> VisForUserDataTypeReference {
+            get => this.visitorByTypeTag.TryGetValue(48, out object v) ? (Action<ScopedFragmentTransformer, UserDataTypeReference>)v : default;
+            set => this.visitorByTypeTag[48] = value;
+        }
+        public Action<ScopedFragmentTransformer, UserDefinedTypeCallTarget> VisForUserDefinedTypeCallTarget {
+            get => this.visitorByTypeTag.TryGetValue(115, out object v) ? (Action<ScopedFragmentTransformer, UserDefinedTypeCallTarget>)v : default;
+            set => this.visitorByTypeTag[115] = value;
+        }
+        public Action<ScopedFragmentTransformer, UserDefinedTypePropertyAccess> VisForUserDefinedTypePropertyAccess {
+            get => this.visitorByTypeTag.TryGetValue(68, out object v) ? (Action<ScopedFragmentTransformer, UserDefinedTypePropertyAccess>)v : default;
+            set => this.visitorByTypeTag[68] = value;
+        }
+        public Action<ScopedFragmentTransformer, UserLoginOption> VisForUserLoginOption {
+            get => this.visitorByTypeTag.TryGetValue(361, out object v) ? (Action<ScopedFragmentTransformer, UserLoginOption>)v : default;
+            set => this.visitorByTypeTag[361] = value;
+        }
+        public Action<ScopedFragmentTransformer, UserRemoteServiceBindingOption> VisForUserRemoteServiceBindingOption {
+            get => this.visitorByTypeTag.TryGetValue(565, out object v) ? (Action<ScopedFragmentTransformer, UserRemoteServiceBindingOption>)v : default;
+            set => this.visitorByTypeTag[565] = value;
+        }
+        public Action<ScopedFragmentTransformer, UserStatement> VisForUserStatement {
+            get => this.visitorByTypeTag.TryGetValue(976, out object v) ? (Action<ScopedFragmentTransformer, UserStatement>)v : default;
+            set => this.visitorByTypeTag[976] = value;
+        }
+        public Action<ScopedFragmentTransformer, UseStatement> VisForUseStatement {
+            get => this.visitorByTypeTag.TryGetValue(406, out object v) ? (Action<ScopedFragmentTransformer, UseStatement>)v : default;
+            set => this.visitorByTypeTag[406] = value;
+        }
+        public Action<ScopedFragmentTransformer, ValueExpression> VisForValueExpression {
+            get => this.visitorByTypeTag.TryGetValue(939, out object v) ? (Action<ScopedFragmentTransformer, ValueExpression>)v : default;
+            set => this.visitorByTypeTag[939] = value;
+        }
+        public Action<ScopedFragmentTransformer, ValuesInsertSource> VisForValuesInsertSource {
+            get => this.visitorByTypeTag.TryGetValue(184, out object v) ? (Action<ScopedFragmentTransformer, ValuesInsertSource>)v : default;
+            set => this.visitorByTypeTag[184] = value;
+        }
+        public Action<ScopedFragmentTransformer, VariableMethodCallTableReference> VisForVariableMethodCallTableReference {
+            get => this.visitorByTypeTag.TryGetValue(667, out object v) ? (Action<ScopedFragmentTransformer, VariableMethodCallTableReference>)v : default;
+            set => this.visitorByTypeTag[667] = value;
+        }
+        public Action<ScopedFragmentTransformer, VariableReference> VisForVariableReference {
+            get => this.visitorByTypeTag.TryGetValue(203, out object v) ? (Action<ScopedFragmentTransformer, VariableReference>)v : default;
+            set => this.visitorByTypeTag[203] = value;
+        }
+        public Action<ScopedFragmentTransformer, VariableTableReference> VisForVariableTableReference {
+            get => this.visitorByTypeTag.TryGetValue(666, out object v) ? (Action<ScopedFragmentTransformer, VariableTableReference>)v : default;
+            set => this.visitorByTypeTag[666] = value;
+        }
+        public Action<ScopedFragmentTransformer, VariableValuePair> VisForVariableValuePair {
+            get => this.visitorByTypeTag.TryGetValue(84, out object v) ? (Action<ScopedFragmentTransformer, VariableValuePair>)v : default;
+            set => this.visitorByTypeTag[84] = value;
+        }
+        public Action<ScopedFragmentTransformer, ViewDistributionOption> VisForViewDistributionOption {
+            get => this.visitorByTypeTag.TryGetValue(20, out object v) ? (Action<ScopedFragmentTransformer, ViewDistributionOption>)v : default;
+            set => this.visitorByTypeTag[20] = value;
+        }
+        public Action<ScopedFragmentTransformer, ViewDistributionPolicy> VisForViewDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(907, out object v) ? (Action<ScopedFragmentTransformer, ViewDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[907] = value;
+        }
+        public Action<ScopedFragmentTransformer, ViewForAppendOption> VisForViewForAppendOption {
+            get => this.visitorByTypeTag.TryGetValue(19, out object v) ? (Action<ScopedFragmentTransformer, ViewForAppendOption>)v : default;
+            set => this.visitorByTypeTag[19] = value;
+        }
+        public Action<ScopedFragmentTransformer, ViewHashDistributionPolicy> VisForViewHashDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(22, out object v) ? (Action<ScopedFragmentTransformer, ViewHashDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[22] = value;
+        }
+        public Action<ScopedFragmentTransformer, ViewOption> VisForViewOption {
+            get => this.visitorByTypeTag.TryGetValue(15, out object v) ? (Action<ScopedFragmentTransformer, ViewOption>)v : default;
+            set => this.visitorByTypeTag[15] = value;
+        }
+        public Action<ScopedFragmentTransformer, ViewRoundRobinDistributionPolicy> VisForViewRoundRobinDistributionPolicy {
+            get => this.visitorByTypeTag.TryGetValue(21, out object v) ? (Action<ScopedFragmentTransformer, ViewRoundRobinDistributionPolicy>)v : default;
+            set => this.visitorByTypeTag[21] = value;
+        }
+        public Action<ScopedFragmentTransformer, ViewStatementBody> VisForViewStatementBody {
+            get => this.visitorByTypeTag.TryGetValue(906, out object v) ? (Action<ScopedFragmentTransformer, ViewStatementBody>)v : default;
+            set => this.visitorByTypeTag[906] = value;
+        }
+        public Action<ScopedFragmentTransformer, WaitAtLowPriorityOption> VisForWaitAtLowPriorityOption {
+            get => this.visitorByTypeTag.TryGetValue(331, out object v) ? (Action<ScopedFragmentTransformer, WaitAtLowPriorityOption>)v : default;
+            set => this.visitorByTypeTag[331] = value;
+        }
+        public Action<ScopedFragmentTransformer, WaitForStatement> VisForWaitForStatement {
+            get => this.visitorByTypeTag.TryGetValue(161, out object v) ? (Action<ScopedFragmentTransformer, WaitForStatement>)v : default;
+            set => this.visitorByTypeTag[161] = value;
+        }
+        public Action<ScopedFragmentTransformer, WaitForSupportedStatement> VisForWaitForSupportedStatement {
+            get => this.visitorByTypeTag.TryGetValue(1017, out object v) ? (Action<ScopedFragmentTransformer, WaitForSupportedStatement>)v : default;
+            set => this.visitorByTypeTag[1017] = value;
+        }
+        public Action<ScopedFragmentTransformer, WhenClause> VisForWhenClause {
+            get => this.visitorByTypeTag.TryGetValue(923, out object v) ? (Action<ScopedFragmentTransformer, WhenClause>)v : default;
+            set => this.visitorByTypeTag[923] = value;
+        }
+        public Action<ScopedFragmentTransformer, WhereClause> VisForWhereClause {
+            get => this.visitorByTypeTag.TryGetValue(387, out object v) ? (Action<ScopedFragmentTransformer, WhereClause>)v : default;
+            set => this.visitorByTypeTag[387] = value;
+        }
+        public Action<ScopedFragmentTransformer, WhileStatement> VisForWhileStatement {
+            get => this.visitorByTypeTag.TryGetValue(153, out object v) ? (Action<ScopedFragmentTransformer, WhileStatement>)v : default;
+            set => this.visitorByTypeTag[153] = value;
+        }
+        public Action<ScopedFragmentTransformer, WindowClause> VisForWindowClause {
+            get => this.visitorByTypeTag.TryGetValue(120, out object v) ? (Action<ScopedFragmentTransformer, WindowClause>)v : default;
+            set => this.visitorByTypeTag[120] = value;
+        }
+        public Action<ScopedFragmentTransformer, WindowDefinition> VisForWindowDefinition {
+            get => this.visitorByTypeTag.TryGetValue(121, out object v) ? (Action<ScopedFragmentTransformer, WindowDefinition>)v : default;
+            set => this.visitorByTypeTag[121] = value;
+        }
+        public Action<ScopedFragmentTransformer, WindowDelimiter> VisForWindowDelimiter {
+            get => this.visitorByTypeTag.TryGetValue(889, out object v) ? (Action<ScopedFragmentTransformer, WindowDelimiter>)v : default;
+            set => this.visitorByTypeTag[889] = value;
+        }
+        public Action<ScopedFragmentTransformer, WindowFrameClause> VisForWindowFrameClause {
+            get => this.visitorByTypeTag.TryGetValue(888, out object v) ? (Action<ScopedFragmentTransformer, WindowFrameClause>)v : default;
+            set => this.visitorByTypeTag[888] = value;
+        }
+        public Action<ScopedFragmentTransformer, WindowsCreateLoginSource> VisForWindowsCreateLoginSource {
+            get => this.visitorByTypeTag.TryGetValue(705, out object v) ? (Action<ScopedFragmentTransformer, WindowsCreateLoginSource>)v : default;
+            set => this.visitorByTypeTag[705] = value;
+        }
+        public Action<ScopedFragmentTransformer, WithCtesAndXmlNamespaces> VisForWithCtesAndXmlNamespaces {
+            get => this.visitorByTypeTag.TryGetValue(45, out object v) ? (Action<ScopedFragmentTransformer, WithCtesAndXmlNamespaces>)v : default;
+            set => this.visitorByTypeTag[45] = value;
+        }
+        public Action<ScopedFragmentTransformer, WithinGroupClause> VisForWithinGroupClause {
+            get => this.visitorByTypeTag.TryGetValue(890, out object v) ? (Action<ScopedFragmentTransformer, WithinGroupClause>)v : default;
+            set => this.visitorByTypeTag[890] = value;
+        }
+        public Action<ScopedFragmentTransformer, WitnessDatabaseOption> VisForWitnessDatabaseOption {
+            get => this.visitorByTypeTag.TryGetValue(466, out object v) ? (Action<ScopedFragmentTransformer, WitnessDatabaseOption>)v : default;
+            set => this.visitorByTypeTag[466] = value;
+        }
+        public Action<ScopedFragmentTransformer, WlmTimeLiteral> VisForWlmTimeLiteral {
+            get => this.visitorByTypeTag.TryGetValue(813, out object v) ? (Action<ScopedFragmentTransformer, WlmTimeLiteral>)v : default;
+            set => this.visitorByTypeTag[813] = value;
+        }
+        public Action<ScopedFragmentTransformer, WorkloadClassifierOption> VisForWorkloadClassifierOption {
+            get => this.visitorByTypeTag.TryGetValue(1030, out object v) ? (Action<ScopedFragmentTransformer, WorkloadClassifierOption>)v : default;
+            set => this.visitorByTypeTag[1030] = value;
+        }
+        public Action<ScopedFragmentTransformer, WorkloadClassifierStatement> VisForWorkloadClassifierStatement {
+            get => this.visitorByTypeTag.TryGetValue(1031, out object v) ? (Action<ScopedFragmentTransformer, WorkloadClassifierStatement>)v : default;
+            set => this.visitorByTypeTag[1031] = value;
+        }
+        public Action<ScopedFragmentTransformer, WorkloadGroupImportanceParameter> VisForWorkloadGroupImportanceParameter {
+            get => this.visitorByTypeTag.TryGetValue(802, out object v) ? (Action<ScopedFragmentTransformer, WorkloadGroupImportanceParameter>)v : default;
+            set => this.visitorByTypeTag[802] = value;
+        }
+        public Action<ScopedFragmentTransformer, WorkloadGroupParameter> VisForWorkloadGroupParameter {
+            get => this.visitorByTypeTag.TryGetValue(1028, out object v) ? (Action<ScopedFragmentTransformer, WorkloadGroupParameter>)v : default;
+            set => this.visitorByTypeTag[1028] = value;
+        }
+        public Action<ScopedFragmentTransformer, WorkloadGroupResourceParameter> VisForWorkloadGroupResourceParameter {
+            get => this.visitorByTypeTag.TryGetValue(801, out object v) ? (Action<ScopedFragmentTransformer, WorkloadGroupResourceParameter>)v : default;
+            set => this.visitorByTypeTag[801] = value;
+        }
+        public Action<ScopedFragmentTransformer, WorkloadGroupStatement> VisForWorkloadGroupStatement {
+            get => this.visitorByTypeTag.TryGetValue(1029, out object v) ? (Action<ScopedFragmentTransformer, WorkloadGroupStatement>)v : default;
+            set => this.visitorByTypeTag[1029] = value;
+        }
+        public Action<ScopedFragmentTransformer, WriteTextStatement> VisForWriteTextStatement {
+            get => this.visitorByTypeTag.TryGetValue(164, out object v) ? (Action<ScopedFragmentTransformer, WriteTextStatement>)v : default;
+            set => this.visitorByTypeTag[164] = value;
+        }
+        public Action<ScopedFragmentTransformer, WsdlPayloadOption> VisForWsdlPayloadOption {
+            get => this.visitorByTypeTag.TryGetValue(592, out object v) ? (Action<ScopedFragmentTransformer, WsdlPayloadOption>)v : default;
+            set => this.visitorByTypeTag[592] = value;
+        }
+        public Action<ScopedFragmentTransformer, XmlCompressionOption> VisForXmlCompressionOption {
+            get => this.visitorByTypeTag.TryGetValue(525, out object v) ? (Action<ScopedFragmentTransformer, XmlCompressionOption>)v : default;
+            set => this.visitorByTypeTag[525] = value;
+        }
+        public Action<ScopedFragmentTransformer, XmlDataTypeReference> VisForXmlDataTypeReference {
+            get => this.visitorByTypeTag.TryGetValue(49, out object v) ? (Action<ScopedFragmentTransformer, XmlDataTypeReference>)v : default;
+            set => this.visitorByTypeTag[49] = value;
+        }
+        public Action<ScopedFragmentTransformer, XmlForClause> VisForXmlForClause {
+            get => this.visitorByTypeTag.TryGetValue(72, out object v) ? (Action<ScopedFragmentTransformer, XmlForClause>)v : default;
+            set => this.visitorByTypeTag[72] = value;
+        }
+        public Action<ScopedFragmentTransformer, XmlForClauseOption> VisForXmlForClauseOption {
+            get => this.visitorByTypeTag.TryGetValue(73, out object v) ? (Action<ScopedFragmentTransformer, XmlForClauseOption>)v : default;
+            set => this.visitorByTypeTag[73] = value;
+        }
+        public Action<ScopedFragmentTransformer, XmlNamespaces> VisForXmlNamespaces {
+            get => this.visitorByTypeTag.TryGetValue(41, out object v) ? (Action<ScopedFragmentTransformer, XmlNamespaces>)v : default;
+            set => this.visitorByTypeTag[41] = value;
+        }
+        public Action<ScopedFragmentTransformer, XmlNamespacesAliasElement> VisForXmlNamespacesAliasElement {
+            get => this.visitorByTypeTag.TryGetValue(43, out object v) ? (Action<ScopedFragmentTransformer, XmlNamespacesAliasElement>)v : default;
+            set => this.visitorByTypeTag[43] = value;
+        }
+        public Action<ScopedFragmentTransformer, XmlNamespacesDefaultElement> VisForXmlNamespacesDefaultElement {
+            get => this.visitorByTypeTag.TryGetValue(42, out object v) ? (Action<ScopedFragmentTransformer, XmlNamespacesDefaultElement>)v : default;
+            set => this.visitorByTypeTag[42] = value;
+        }
+        public Action<ScopedFragmentTransformer, XmlNamespacesElement> VisForXmlNamespacesElement {
+            get => this.visitorByTypeTag.TryGetValue(911, out object v) ? (Action<ScopedFragmentTransformer, XmlNamespacesElement>)v : default;
+            set => this.visitorByTypeTag[911] = value;
+        }
 
         public ScopedFragmentTransformer() : base() {}
 
@@ -14970,6 +18092,26 @@ namespace Xledger.Sql {
                 if (ShouldStop) { return; }
             }
             VisForQueryStoreTimeCleanupPolicyOption?.Invoke(this, node);
+            if (ShouldStop) { return; }
+
+            if (skipRequests == this.skipRequests) {
+                PushContext(node);
+                base.ExplicitVisit(node);
+                PopContext();
+            }
+
+            HandleOnLeave(node);
+        }
+
+        public override void ExplicitVisit(QueryStoreWaitStatsCaptureOption node) {
+            if (SkipList.Contains(node)) { return; }
+            if (ShouldStop) { return; }
+            var skipRequests = this.skipRequests;
+            if (VisitParentTypes) {
+                this.ExplicitBaseVisit((QueryStoreOption)node);
+                if (ShouldStop) { return; }
+            }
+            VisForQueryStoreWaitStatsCaptureOption?.Invoke(this, node);
             if (ShouldStop) { return; }
 
             if (skipRequests == this.skipRequests) {
