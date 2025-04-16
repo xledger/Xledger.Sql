@@ -19,7 +19,7 @@ void Main() {
     sb.AppendLine("    public HashSet<TSqlFragment> SkipList { get; } = new HashSet<TSqlFragment>();");
     sb.AppendLine("    ///<summary>Actions to perform when leaving a node.</summary>");
     sb.AppendLine("    public Dictionary<TSqlFragment, Queue<Action<TSqlFragment>>> PendingOnLeaveActionsByFragment { get; set; } = new Dictionary<TSqlFragment, Queue<Action<TSqlFragment>>>();");
-    sb.AppendLine("    Dictionary<int, object> visitorByTypeTag = new Dictionary<int, object>();");
+    sb.AppendLine("    Dictionary<ushort, object> visitorByTypeTag = new Dictionary<ushort, object>();");
 
     var varNameByType = new Dictionary<Type, string>();
     sb.AppendLine();
