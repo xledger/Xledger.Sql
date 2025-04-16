@@ -11,15 +11,18 @@ namespace Xledger.Sql.ImmutableDom {
         protected SchemaObjectName target;
         protected IReadOnlyList<Identifier> primaryKeyColumns;
         protected IReadOnlyList<ScalarExpression> primaryKeyValues;
+        protected bool forceSeek = false;
     
         public SchemaObjectName Target => target;
         public IReadOnlyList<Identifier> PrimaryKeyColumns => primaryKeyColumns;
         public IReadOnlyList<ScalarExpression> PrimaryKeyValues => primaryKeyValues;
+        public bool ForceSeek => forceSeek;
     
-        public ChangeTableVersionTableReference(SchemaObjectName target = null, IReadOnlyList<Identifier> primaryKeyColumns = null, IReadOnlyList<ScalarExpression> primaryKeyValues = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
+        public ChangeTableVersionTableReference(SchemaObjectName target = null, IReadOnlyList<Identifier> primaryKeyColumns = null, IReadOnlyList<ScalarExpression> primaryKeyValues = null, bool forceSeek = false, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
             this.target = target;
             this.primaryKeyColumns = ImmList<Identifier>.FromList(primaryKeyColumns);
             this.primaryKeyValues = ImmList<ScalarExpression>.FromList(primaryKeyValues);
+            this.forceSeek = forceSeek;
             this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
@@ -30,6 +33,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Target = (ScriptDom.SchemaObjectName)target?.ToMutable();
             ret.PrimaryKeyColumns.AddRange(primaryKeyColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.PrimaryKeyValues.AddRange(primaryKeyValues.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.ForceSeek = forceSeek;
             ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
@@ -47,6 +51,7 @@ namespace Xledger.Sql.ImmutableDom {
             }
             h = h * 23 + primaryKeyColumns.GetHashCode();
             h = h * 23 + primaryKeyValues.GetHashCode();
+            h = h * 23 + forceSeek.GetHashCode();
             h = h * 23 + columns.GetHashCode();
             if (!(alias is null)) {
                 h = h * 23 + alias.GetHashCode();
@@ -68,6 +73,9 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<IReadOnlyList<ScalarExpression>>.Default.Equals(other.PrimaryKeyValues, primaryKeyValues)) {
+                return false;
+            }
+            if (!EqualityComparer<bool>.Default.Equals(other.ForceSeek, forceSeek)) {
                 return false;
             }
             if (!EqualityComparer<IReadOnlyList<Identifier>>.Default.Equals(other.Columns, columns)) {
@@ -105,6 +113,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.primaryKeyValues, othr.primaryKeyValues);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.forceSeek, othr.forceSeek);
+            if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
@@ -126,6 +136,7 @@ namespace Xledger.Sql.ImmutableDom {
                 target: ImmutableDom.SchemaObjectName.FromMutable(fragment.Target),
                 primaryKeyColumns: fragment.PrimaryKeyColumns.SelectList(ImmutableDom.Identifier.FromMutable),
                 primaryKeyValues: fragment.PrimaryKeyValues.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                forceSeek: fragment.ForceSeek,
                 columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath

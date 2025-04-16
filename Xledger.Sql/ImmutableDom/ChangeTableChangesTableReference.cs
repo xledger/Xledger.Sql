@@ -10,13 +10,16 @@ namespace Xledger.Sql.ImmutableDom {
     public class ChangeTableChangesTableReference : TableReferenceWithAliasAndColumns, IEquatable<ChangeTableChangesTableReference> {
         protected SchemaObjectName target;
         protected ValueExpression sinceVersion;
+        protected bool forceSeek = false;
     
         public SchemaObjectName Target => target;
         public ValueExpression SinceVersion => sinceVersion;
+        public bool ForceSeek => forceSeek;
     
-        public ChangeTableChangesTableReference(SchemaObjectName target = null, ValueExpression sinceVersion = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
+        public ChangeTableChangesTableReference(SchemaObjectName target = null, ValueExpression sinceVersion = null, bool forceSeek = false, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
             this.target = target;
             this.sinceVersion = sinceVersion;
+            this.forceSeek = forceSeek;
             this.columns = ImmList<Identifier>.FromList(columns);
             this.alias = alias;
             this.forPath = forPath;
@@ -26,6 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.ChangeTableChangesTableReference();
             ret.Target = (ScriptDom.SchemaObjectName)target?.ToMutable();
             ret.SinceVersion = (ScriptDom.ValueExpression)sinceVersion?.ToMutable();
+            ret.ForceSeek = forceSeek;
             ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
@@ -44,6 +48,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (!(sinceVersion is null)) {
                 h = h * 23 + sinceVersion.GetHashCode();
             }
+            h = h * 23 + forceSeek.GetHashCode();
             h = h * 23 + columns.GetHashCode();
             if (!(alias is null)) {
                 h = h * 23 + alias.GetHashCode();
@@ -62,6 +67,9 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<ValueExpression>.Default.Equals(other.SinceVersion, sinceVersion)) {
+                return false;
+            }
+            if (!EqualityComparer<bool>.Default.Equals(other.ForceSeek, forceSeek)) {
                 return false;
             }
             if (!EqualityComparer<IReadOnlyList<Identifier>>.Default.Equals(other.Columns, columns)) {
@@ -97,6 +105,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.sinceVersion, othr.sinceVersion);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.forceSeek, othr.forceSeek);
+            if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.columns, othr.columns);
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.alias, othr.alias);
@@ -117,6 +127,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new ChangeTableChangesTableReference(
                 target: ImmutableDom.SchemaObjectName.FromMutable(fragment.Target),
                 sinceVersion: ImmutableDom.ValueExpression.FromMutable(fragment.SinceVersion),
+                forceSeek: fragment.ForceSeek,
                 columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
