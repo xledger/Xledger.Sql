@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ColumnReferenceExpression> Columns => columns;
     
         public OrderIndexOption(IReadOnlyList<ColumnReferenceExpression> columns = null, ScriptDom.IndexOptionKind optionKind = ScriptDom.IndexOptionKind.PadIndex) {
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
             this.optionKind = optionKind;
         }
     
         public ScriptDom.OrderIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.OrderIndexOption();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.OrderIndexOption)) { throw new NotImplementedException("Unexpected subtype of OrderIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OrderIndexOption(
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

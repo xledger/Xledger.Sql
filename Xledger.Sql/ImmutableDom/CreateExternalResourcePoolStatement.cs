@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,13 +10,13 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateExternalResourcePoolStatement : ExternalResourcePoolStatement, IEquatable<CreateExternalResourcePoolStatement> {
         public CreateExternalResourcePoolStatement(Identifier name = null, IReadOnlyList<ExternalResourcePoolParameter> externalResourcePoolParameters = null) {
             this.name = name;
-            this.externalResourcePoolParameters = ImmList<ExternalResourcePoolParameter>.FromList(externalResourcePoolParameters);
+            this.externalResourcePoolParameters = externalResourcePoolParameters.ToImmArray<ExternalResourcePoolParameter>();
         }
     
         public new ScriptDom.CreateExternalResourcePoolStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateExternalResourcePoolStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.ExternalResourcePoolParameters.AddRange(externalResourcePoolParameters.SelectList(c => (ScriptDom.ExternalResourcePoolParameter)c?.ToMutable()));
+            ret.ExternalResourcePoolParameters.AddRange(externalResourcePoolParameters.Select(c => (ScriptDom.ExternalResourcePoolParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -82,7 +82,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateExternalResourcePoolStatement)) { throw new NotImplementedException("Unexpected subtype of CreateExternalResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalResourcePoolStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(ImmutableDom.ExternalResourcePoolParameter.FromMutable)
+                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.ToImmArray(ImmutableDom.ExternalResourcePoolParameter.FromMutable)
             );
         }
     

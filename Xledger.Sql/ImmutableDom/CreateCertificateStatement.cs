@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateCertificateStatement(EncryptionSource certificateSource = null, IReadOnlyList<CertificateOption> certificateOptions = null, Identifier owner = null, Identifier name = null, ScriptDom.OptionState activeForBeginDialog = ScriptDom.OptionState.NotSet, Literal privateKeyPath = null, Literal encryptionPassword = null, Literal decryptionPassword = null) {
             this.certificateSource = certificateSource;
-            this.certificateOptions = ImmList<CertificateOption>.FromList(certificateOptions);
+            this.certificateOptions = certificateOptions.ToImmArray<CertificateOption>();
             this.owner = owner;
             this.name = name;
             this.activeForBeginDialog = activeForBeginDialog;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateCertificateStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateCertificateStatement();
             ret.CertificateSource = (ScriptDom.EncryptionSource)certificateSource?.ToMutable();
-            ret.CertificateOptions.AddRange(certificateOptions.SelectList(c => (ScriptDom.CertificateOption)c?.ToMutable()));
+            ret.CertificateOptions.AddRange(certificateOptions.Select(c => (ScriptDom.CertificateOption)c?.ToMutable()));
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.ActiveForBeginDialog = activeForBeginDialog;
@@ -148,7 +148,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateCertificateStatement)) { throw new NotImplementedException("Unexpected subtype of CreateCertificateStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateCertificateStatement(
                 certificateSource: ImmutableDom.EncryptionSource.FromMutable(fragment.CertificateSource),
-                certificateOptions: fragment.CertificateOptions.SelectList(ImmutableDom.CertificateOption.FromMutable),
+                certificateOptions: fragment.CertificateOptions.ToImmArray(ImmutableDom.CertificateOption.FromMutable),
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 activeForBeginDialog: fragment.ActiveForBeginDialog,

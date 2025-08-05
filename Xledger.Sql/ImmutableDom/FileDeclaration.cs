@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsPrimary => isPrimary;
     
         public FileDeclaration(IReadOnlyList<FileDeclarationOption> options = null, bool isPrimary = false) {
-            this.options = ImmList<FileDeclarationOption>.FromList(options);
+            this.options = options.ToImmArray<FileDeclarationOption>();
             this.isPrimary = isPrimary;
         }
     
         public ScriptDom.FileDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.FileDeclaration();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FileDeclarationOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.FileDeclarationOption)c?.ToMutable()));
             ret.IsPrimary = isPrimary;
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.FileDeclaration)) { throw new NotImplementedException("Unexpected subtype of FileDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileDeclaration(
-                options: fragment.Options.SelectList(ImmutableDom.FileDeclarationOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.FileDeclarationOption.FromMutable),
                 isPrimary: fragment.IsPrimary
             );
         }

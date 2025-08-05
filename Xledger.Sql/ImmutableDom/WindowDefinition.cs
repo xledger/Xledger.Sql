@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public WindowDefinition(Identifier windowName = null, Identifier refWindowName = null, IReadOnlyList<ScalarExpression> partitions = null, OrderByClause orderByClause = null, WindowFrameClause windowFrameClause = null) {
             this.windowName = windowName;
             this.refWindowName = refWindowName;
-            this.partitions = ImmList<ScalarExpression>.FromList(partitions);
+            this.partitions = partitions.ToImmArray<ScalarExpression>();
             this.orderByClause = orderByClause;
             this.windowFrameClause = windowFrameClause;
         }
@@ -32,7 +32,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.WindowDefinition();
             ret.WindowName = (ScriptDom.Identifier)windowName?.ToMutable();
             ret.RefWindowName = (ScriptDom.Identifier)refWindowName?.ToMutable();
-            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Partitions.AddRange(partitions.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause?.ToMutable();
             ret.WindowFrameClause = (ScriptDom.WindowFrameClause)windowFrameClause?.ToMutable();
             return ret;
@@ -125,7 +125,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new WindowDefinition(
                 windowName: ImmutableDom.Identifier.FromMutable(fragment.WindowName),
                 refWindowName: ImmutableDom.Identifier.FromMutable(fragment.RefWindowName),
-                partitions: fragment.Partitions.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                partitions: fragment.Partitions.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 orderByClause: ImmutableDom.OrderByClause.FromMutable(fragment.OrderByClause),
                 windowFrameClause: ImmutableDom.WindowFrameClause.FromMutable(fragment.WindowFrameClause)
             );

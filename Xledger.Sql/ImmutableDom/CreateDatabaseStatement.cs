@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -31,9 +31,9 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateDatabaseStatement(Identifier databaseName = null, ContainmentDatabaseOption containment = null, IReadOnlyList<FileGroupDefinition> fileGroups = null, IReadOnlyList<FileDeclaration> logOn = null, IReadOnlyList<DatabaseOption> options = null, ScriptDom.AttachMode attachMode = ScriptDom.AttachMode.None, Identifier databaseSnapshot = null, MultiPartIdentifier copyOf = null, Identifier collation = null) {
             this.databaseName = databaseName;
             this.containment = containment;
-            this.fileGroups = ImmList<FileGroupDefinition>.FromList(fileGroups);
-            this.logOn = ImmList<FileDeclaration>.FromList(logOn);
-            this.options = ImmList<DatabaseOption>.FromList(options);
+            this.fileGroups = fileGroups.ToImmArray<FileGroupDefinition>();
+            this.logOn = logOn.ToImmArray<FileDeclaration>();
+            this.options = options.ToImmArray<DatabaseOption>();
             this.attachMode = attachMode;
             this.databaseSnapshot = databaseSnapshot;
             this.copyOf = copyOf;
@@ -44,9 +44,9 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateDatabaseStatement();
             ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.Containment = (ScriptDom.ContainmentDatabaseOption)containment?.ToMutable();
-            ret.FileGroups.AddRange(fileGroups.SelectList(c => (ScriptDom.FileGroupDefinition)c?.ToMutable()));
-            ret.LogOn.AddRange(logOn.SelectList(c => (ScriptDom.FileDeclaration)c?.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DatabaseOption)c?.ToMutable()));
+            ret.FileGroups.AddRange(fileGroups.Select(c => (ScriptDom.FileGroupDefinition)c?.ToMutable()));
+            ret.LogOn.AddRange(logOn.Select(c => (ScriptDom.FileDeclaration)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.DatabaseOption)c?.ToMutable()));
             ret.AttachMode = attachMode;
             ret.DatabaseSnapshot = (ScriptDom.Identifier)databaseSnapshot?.ToMutable();
             ret.CopyOf = (ScriptDom.MultiPartIdentifier)copyOf?.ToMutable();
@@ -167,9 +167,9 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateDatabaseStatement(
                 databaseName: ImmutableDom.Identifier.FromMutable(fragment.DatabaseName),
                 containment: ImmutableDom.ContainmentDatabaseOption.FromMutable(fragment.Containment),
-                fileGroups: fragment.FileGroups.SelectList(ImmutableDom.FileGroupDefinition.FromMutable),
-                logOn: fragment.LogOn.SelectList(ImmutableDom.FileDeclaration.FromMutable),
-                options: fragment.Options.SelectList(ImmutableDom.DatabaseOption.FromMutable),
+                fileGroups: fragment.FileGroups.ToImmArray(ImmutableDom.FileGroupDefinition.FromMutable),
+                logOn: fragment.LogOn.ToImmArray(ImmutableDom.FileDeclaration.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.DatabaseOption.FromMutable),
                 attachMode: fragment.AttachMode,
                 databaseSnapshot: ImmutableDom.Identifier.FromMutable(fragment.DatabaseSnapshot),
                 copyOf: ImmutableDom.MultiPartIdentifier.FromMutable(fragment.CopyOf),

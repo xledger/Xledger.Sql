@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -14,13 +14,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public SchemaObjectNameSnippet(string script = null, IReadOnlyList<Identifier> identifiers = null) {
             this.script = script;
-            this.identifiers = ImmList<Identifier>.FromList(identifiers);
+            this.identifiers = identifiers.ToImmArray<Identifier>();
         }
     
         public new ScriptDom.SchemaObjectNameSnippet ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectNameSnippet();
             ret.Script = script;
-            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Identifiers.AddRange(identifiers.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -86,7 +86,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.SchemaObjectNameSnippet)) { throw new NotImplementedException("Unexpected subtype of SchemaObjectNameSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SchemaObjectNameSnippet(
                 script: fragment.Script,
-                identifiers: fragment.Identifiers.SelectList(ImmutableDom.Identifier.FromMutable)
+                identifiers: fragment.Identifiers.ToImmArray(ImmutableDom.Identifier.FromMutable)
             );
         }
     

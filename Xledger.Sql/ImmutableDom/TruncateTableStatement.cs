@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TruncateTableStatement(SchemaObjectName tableName = null, IReadOnlyList<CompressionPartitionRange> partitionRanges = null) {
             this.tableName = tableName;
-            this.partitionRanges = ImmList<CompressionPartitionRange>.FromList(partitionRanges);
+            this.partitionRanges = partitionRanges.ToImmArray<CompressionPartitionRange>();
         }
     
         public ScriptDom.TruncateTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.TruncateTableStatement();
             ret.TableName = (ScriptDom.SchemaObjectName)tableName?.ToMutable();
-            ret.PartitionRanges.AddRange(partitionRanges.SelectList(c => (ScriptDom.CompressionPartitionRange)c?.ToMutable()));
+            ret.PartitionRanges.AddRange(partitionRanges.Select(c => (ScriptDom.CompressionPartitionRange)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.TruncateTableStatement)) { throw new NotImplementedException("Unexpected subtype of TruncateTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TruncateTableStatement(
                 tableName: ImmutableDom.SchemaObjectName.FromMutable(fragment.TableName),
-                partitionRanges: fragment.PartitionRanges.SelectList(ImmutableDom.CompressionPartitionRange.FromMutable)
+                partitionRanges: fragment.PartitionRanges.ToImmArray(ImmutableDom.CompressionPartitionRange.FromMutable)
             );
         }
     

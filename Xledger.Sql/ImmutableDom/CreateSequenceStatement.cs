@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,13 +10,13 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateSequenceStatement : SequenceStatement, IEquatable<CreateSequenceStatement> {
         public CreateSequenceStatement(SchemaObjectName name = null, IReadOnlyList<SequenceOption> sequenceOptions = null) {
             this.name = name;
-            this.sequenceOptions = ImmList<SequenceOption>.FromList(sequenceOptions);
+            this.sequenceOptions = sequenceOptions.ToImmArray<SequenceOption>();
         }
     
         public ScriptDom.CreateSequenceStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSequenceStatement();
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
-            ret.SequenceOptions.AddRange(sequenceOptions.SelectList(c => (ScriptDom.SequenceOption)c?.ToMutable()));
+            ret.SequenceOptions.AddRange(sequenceOptions.Select(c => (ScriptDom.SequenceOption)c?.ToMutable()));
             return ret;
         }
         
@@ -82,7 +82,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateSequenceStatement)) { throw new NotImplementedException("Unexpected subtype of CreateSequenceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSequenceStatement(
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
-                sequenceOptions: fragment.SequenceOptions.SelectList(ImmutableDom.SequenceOption.FromMutable)
+                sequenceOptions: fragment.SequenceOptions.ToImmArray(ImmutableDom.SequenceOption.FromMutable)
             );
         }
     

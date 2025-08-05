@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ChangeTrackingDatabaseOption(ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet, IReadOnlyList<ChangeTrackingOptionDetail> details = null, ScriptDom.DatabaseOptionKind optionKind = ScriptDom.DatabaseOptionKind.Online) {
             this.optionState = optionState;
-            this.details = ImmList<ChangeTrackingOptionDetail>.FromList(details);
+            this.details = details.ToImmArray<ChangeTrackingOptionDetail>();
             this.optionKind = optionKind;
         }
     
         public new ScriptDom.ChangeTrackingDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.ChangeTrackingDatabaseOption();
             ret.OptionState = optionState;
-            ret.Details.AddRange(details.SelectList(c => (ScriptDom.ChangeTrackingOptionDetail)c?.ToMutable()));
+            ret.Details.AddRange(details.Select(c => (ScriptDom.ChangeTrackingOptionDetail)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -94,7 +94,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.ChangeTrackingDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of ChangeTrackingDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ChangeTrackingDatabaseOption(
                 optionState: fragment.OptionState,
-                details: fragment.Details.SelectList(ImmutableDom.ChangeTrackingOptionDetail.FromMutable),
+                details: fragment.Details.ToImmArray(ImmutableDom.ChangeTrackingOptionDetail.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

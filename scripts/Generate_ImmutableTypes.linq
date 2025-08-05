@@ -1,5 +1,6 @@
 <Query Kind="Program">
-  <NuGetReference>Microsoft.SqlServer.TransactSql.ScriptDom</NuGetReference>
+  <!-- Needs to reference the same version as in Xledger.Sql.csproj: -->
+  <NuGetReference Version="170.28.0">Microsoft.SqlServer.TransactSql.ScriptDom</NuGetReference>
   <Namespace>Microsoft.SqlServer.TransactSql.ScriptDom</Namespace>
   <Namespace>System.Globalization</Namespace>
 </Query>
@@ -342,7 +343,7 @@ public class ClassDef {
             var lowerName = LowerName(prop.Name);
             parameters.Add($"{prop.TypeLiteral} {lowerName} = {prop.DefaultLiteral ?? "null"}");
             if (prop.IsList) {
-                assigns.Add($"    this.{lowerName} = ImmList<{prop.InnerTypeLiteral}>.FromList({lowerName});");
+                assigns.Add($"    this.{lowerName} = {lowerName}.ToImmArray<{prop.InnerTypeLiteral}>();");
             } else {
                 assigns.Add($"    this.{lowerName} = {lowerName};");
             }
@@ -372,7 +373,7 @@ public class ClassDef {
         sb.AppendLine($"    var ret = new ScriptDom.{Name}();");
         foreach (var prop in this.Props) {
             if (prop.IsScriptDomType && prop.IsList) {
-                sb.AppendLine($"    ret.{prop.Name}.AddRange({LowerName(prop.Name)}.SelectList(c => (ScriptDom.{prop.InnerTypeLiteral})c?.ToMutable()));");
+                sb.AppendLine($"    ret.{prop.Name}.AddRange({LowerName(prop.Name)}.Select(c => (ScriptDom.{prop.InnerTypeLiteral})c?.ToMutable()));");
             } else if (prop.IsScriptDomType) {
                 sb.AppendLine($"    ret.{prop.Name} = (ScriptDom.{prop.TypeLiteral}){LowerName(prop.Name)}?.ToMutable();");
             } else {
@@ -605,9 +606,9 @@ public class ClassDef {
 			var ctorPms = new List<string>();
 			foreach (var prop in Props) {
 				if (prop.IsScriptDomType && prop.IsList) {
-					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}.SelectList(ImmutableDom.{prop.InnerTypeLiteral}.FromMutable)");
+					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}.ToImmArray(ImmutableDom.{prop.InnerTypeLiteral}.FromMutable)");
 				} else if (prop.IsList) {
-					ctorPms.Add($"{LowerName(prop.Name)}: ImmList<{prop.TypeLiteral}>.FromList(fragment.{prop.Name})");
+					ctorPms.Add($"{LowerName(prop.Name)}: fragment.{prop.Name}.ToImmArray<{prop.TypeLiteral}>()");
 				} else if (prop.IsScriptDomType) {
 					ctorPms.Add($"{LowerName(prop.Name)}: ImmutableDom.{prop.TypeLiteral}.FromMutable(fragment.{prop.Name})");
 				} else {
@@ -629,7 +630,7 @@ public class ClassDef {
         wl($"using System.Collections;");
         wl($"using System.Collections.Generic;");
         wl($"using System.Linq;");
-        wl($"using Xledger.Sql.Collections;");
+        wl($"using Xledger.Collections;");
         wl($"using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;");
         wl($"\n");
 

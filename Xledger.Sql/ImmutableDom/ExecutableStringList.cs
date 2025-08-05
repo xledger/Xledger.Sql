@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,14 +13,14 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ValueExpression> Strings => strings;
     
         public ExecutableStringList(IReadOnlyList<ValueExpression> strings = null, IReadOnlyList<ExecuteParameter> parameters = null) {
-            this.strings = ImmList<ValueExpression>.FromList(strings);
-            this.parameters = ImmList<ExecuteParameter>.FromList(parameters);
+            this.strings = strings.ToImmArray<ValueExpression>();
+            this.parameters = parameters.ToImmArray<ExecuteParameter>();
         }
     
         public ScriptDom.ExecutableStringList ToMutableConcrete() {
             var ret = new ScriptDom.ExecutableStringList();
-            ret.Strings.AddRange(strings.SelectList(c => (ScriptDom.ValueExpression)c?.ToMutable()));
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ExecuteParameter)c?.ToMutable()));
+            ret.Strings.AddRange(strings.Select(c => (ScriptDom.ValueExpression)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ExecuteParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -83,8 +83,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.ExecutableStringList)) { throw new NotImplementedException("Unexpected subtype of ExecutableStringList not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecutableStringList(
-                strings: fragment.Strings.SelectList(ImmutableDom.ValueExpression.FromMutable),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ExecuteParameter.FromMutable)
+                strings: fragment.Strings.ToImmArray(ImmutableDom.ValueExpression.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ExecuteParameter.FromMutable)
             );
         }
     

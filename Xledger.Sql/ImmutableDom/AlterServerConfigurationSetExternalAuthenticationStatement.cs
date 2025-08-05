@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> Options => options;
     
         public AlterServerConfigurationSetExternalAuthenticationStatement(IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> options = null) {
-            this.options = ImmList<AlterServerConfigurationExternalAuthenticationOption>.FromList(options);
+            this.options = options.ToImmArray<AlterServerConfigurationExternalAuthenticationOption>();
         }
     
         public ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationSetExternalAuthenticationStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetExternalAuthenticationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetExternalAuthenticationStatement(
-                options: fragment.Options.SelectList(ImmutableDom.AlterServerConfigurationExternalAuthenticationOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AlterServerConfigurationExternalAuthenticationOption.FromMutable)
             );
         }
     

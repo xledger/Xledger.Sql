@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.expression = expression;
             this.subquery = subquery;
             this.notDefined = notDefined;
-            this.values = ImmList<ScalarExpression>.FromList(values);
+            this.values = values.ToImmArray<ScalarExpression>();
         }
     
         public ScriptDom.InPredicate ToMutableConcrete() {
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.Subquery = (ScriptDom.ScalarSubquery)subquery?.ToMutable();
             ret.NotDefined = notDefined;
-            ret.Values.AddRange(values.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Values.AddRange(values.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -112,7 +112,7 @@ namespace Xledger.Sql.ImmutableDom {
                 expression: ImmutableDom.ScalarExpression.FromMutable(fragment.Expression),
                 subquery: ImmutableDom.ScalarSubquery.FromMutable(fragment.Subquery),
                 notDefined: fragment.NotDefined,
-                values: fragment.Values.SelectList(ImmutableDom.ScalarExpression.FromMutable)
+                values: fragment.Values.ToImmArray(ImmutableDom.ScalarExpression.FromMutable)
             );
         }
     

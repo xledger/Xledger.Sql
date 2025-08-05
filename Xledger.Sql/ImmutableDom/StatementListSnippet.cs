@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -14,13 +14,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public StatementListSnippet(string script = null, IReadOnlyList<TSqlStatement> statements = null) {
             this.script = script;
-            this.statements = ImmList<TSqlStatement>.FromList(statements);
+            this.statements = statements.ToImmArray<TSqlStatement>();
         }
     
         public new ScriptDom.StatementListSnippet ToMutableConcrete() {
             var ret = new ScriptDom.StatementListSnippet();
             ret.Script = script;
-            ret.Statements.AddRange(statements.SelectList(c => (ScriptDom.TSqlStatement)c?.ToMutable()));
+            ret.Statements.AddRange(statements.Select(c => (ScriptDom.TSqlStatement)c?.ToMutable()));
             return ret;
         }
         
@@ -86,7 +86,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.StatementListSnippet)) { throw new NotImplementedException("Unexpected subtype of StatementListSnippet not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new StatementListSnippet(
                 script: fragment.Script,
-                statements: fragment.Statements.SelectList(ImmutableDom.TSqlStatement.FromMutable)
+                statements: fragment.Statements.ToImmArray(ImmutableDom.TSqlStatement.FromMutable)
             );
         }
     

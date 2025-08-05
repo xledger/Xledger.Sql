@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SetCommand> Commands => commands;
     
         public SetCommandStatement(IReadOnlyList<SetCommand> commands = null) {
-            this.commands = ImmList<SetCommand>.FromList(commands);
+            this.commands = commands.ToImmArray<SetCommand>();
         }
     
         public ScriptDom.SetCommandStatement ToMutableConcrete() {
             var ret = new ScriptDom.SetCommandStatement();
-            ret.Commands.AddRange(commands.SelectList(c => (ScriptDom.SetCommand)c?.ToMutable()));
+            ret.Commands.AddRange(commands.Select(c => (ScriptDom.SetCommand)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.SetCommandStatement)) { throw new NotImplementedException("Unexpected subtype of SetCommandStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SetCommandStatement(
-                commands: fragment.Commands.SelectList(ImmutableDom.SetCommand.FromMutable)
+                commands: fragment.Commands.ToImmArray(ImmutableDom.SetCommand.FromMutable)
             );
         }
     

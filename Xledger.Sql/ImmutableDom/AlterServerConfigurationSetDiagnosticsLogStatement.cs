@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationDiagnosticsLogOption> Options => options;
     
         public AlterServerConfigurationSetDiagnosticsLogStatement(IReadOnlyList<AlterServerConfigurationDiagnosticsLogOption> options = null) {
-            this.options = ImmList<AlterServerConfigurationDiagnosticsLogOption>.FromList(options);
+            this.options = options.ToImmArray<AlterServerConfigurationDiagnosticsLogOption>();
         }
     
         public ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationDiagnosticsLogOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationDiagnosticsLogOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetDiagnosticsLogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetDiagnosticsLogStatement(
-                options: fragment.Options.SelectList(ImmutableDom.AlterServerConfigurationDiagnosticsLogOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AlterServerConfigurationDiagnosticsLogOption.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public PivotedTableReference(TableReference tableReference = null, IReadOnlyList<Identifier> inColumns = null, ColumnReferenceExpression pivotColumn = null, IReadOnlyList<ColumnReferenceExpression> valueColumns = null, MultiPartIdentifier aggregateFunctionIdentifier = null, Identifier alias = null, bool forPath = false) {
             this.tableReference = tableReference;
-            this.inColumns = ImmList<Identifier>.FromList(inColumns);
+            this.inColumns = inColumns.ToImmArray<Identifier>();
             this.pivotColumn = pivotColumn;
-            this.valueColumns = ImmList<ColumnReferenceExpression>.FromList(valueColumns);
+            this.valueColumns = valueColumns.ToImmArray<ColumnReferenceExpression>();
             this.aggregateFunctionIdentifier = aggregateFunctionIdentifier;
             this.alias = alias;
             this.forPath = forPath;
@@ -33,9 +33,9 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.PivotedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.PivotedTableReference();
             ret.TableReference = (ScriptDom.TableReference)tableReference?.ToMutable();
-            ret.InColumns.AddRange(inColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.InColumns.AddRange(inColumns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.PivotColumn = (ScriptDom.ColumnReferenceExpression)pivotColumn?.ToMutable();
-            ret.ValueColumns.AddRange(valueColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.ValueColumns.AddRange(valueColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.AggregateFunctionIdentifier = (ScriptDom.MultiPartIdentifier)aggregateFunctionIdentifier?.ToMutable();
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
@@ -140,9 +140,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.PivotedTableReference)) { throw new NotImplementedException("Unexpected subtype of PivotedTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PivotedTableReference(
                 tableReference: ImmutableDom.TableReference.FromMutable(fragment.TableReference),
-                inColumns: fragment.InColumns.SelectList(ImmutableDom.Identifier.FromMutable),
+                inColumns: fragment.InColumns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 pivotColumn: ImmutableDom.ColumnReferenceExpression.FromMutable(fragment.PivotColumn),
-                valueColumns: fragment.ValueColumns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                valueColumns: fragment.ValueColumns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 aggregateFunctionIdentifier: ImmutableDom.MultiPartIdentifier.FromMutable(fragment.AggregateFunctionIdentifier),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath

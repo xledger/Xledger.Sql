@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,14 +19,14 @@ namespace Xledger.Sql.ImmutableDom {
         public GroupByClause(ScriptDom.GroupByOption groupByOption = ScriptDom.GroupByOption.None, bool all = false, IReadOnlyList<GroupingSpecification> groupingSpecifications = null) {
             this.groupByOption = groupByOption;
             this.all = all;
-            this.groupingSpecifications = ImmList<GroupingSpecification>.FromList(groupingSpecifications);
+            this.groupingSpecifications = groupingSpecifications.ToImmArray<GroupingSpecification>();
         }
     
         public ScriptDom.GroupByClause ToMutableConcrete() {
             var ret = new ScriptDom.GroupByClause();
             ret.GroupByOption = groupByOption;
             ret.All = all;
-            ret.GroupingSpecifications.AddRange(groupingSpecifications.SelectList(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
+            ret.GroupingSpecifications.AddRange(groupingSpecifications.Select(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
             return ret;
         }
         
@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new GroupByClause(
                 groupByOption: fragment.GroupByOption,
                 all: fragment.All,
-                groupingSpecifications: fragment.GroupingSpecifications.SelectList(ImmutableDom.GroupingSpecification.FromMutable)
+                groupingSpecifications: fragment.GroupingSpecifications.ToImmArray(ImmutableDom.GroupingSpecification.FromMutable)
             );
         }
     

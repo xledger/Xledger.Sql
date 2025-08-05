@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsIfExists => isIfExists;
     
         public DropIndexStatement(IReadOnlyList<DropIndexClauseBase> dropIndexClauses = null, bool isIfExists = false) {
-            this.dropIndexClauses = ImmList<DropIndexClauseBase>.FromList(dropIndexClauses);
+            this.dropIndexClauses = dropIndexClauses.ToImmArray<DropIndexClauseBase>();
             this.isIfExists = isIfExists;
         }
     
         public ScriptDom.DropIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropIndexStatement();
-            ret.DropIndexClauses.AddRange(dropIndexClauses.SelectList(c => (ScriptDom.DropIndexClauseBase)c?.ToMutable()));
+            ret.DropIndexClauses.AddRange(dropIndexClauses.Select(c => (ScriptDom.DropIndexClauseBase)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.DropIndexStatement)) { throw new NotImplementedException("Unexpected subtype of DropIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropIndexStatement(
-                dropIndexClauses: fragment.DropIndexClauses.SelectList(ImmutableDom.DropIndexClauseBase.FromMutable),
+                dropIndexClauses: fragment.DropIndexClauses.ToImmArray(ImmutableDom.DropIndexClauseBase.FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }

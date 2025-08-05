@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,17 +19,17 @@ namespace Xledger.Sql.ImmutableDom {
         public SystemTimePeriodDefinition SystemTimePeriod => systemTimePeriod;
     
         public TableDefinition(IReadOnlyList<ColumnDefinition> columnDefinitions = null, IReadOnlyList<ConstraintDefinition> tableConstraints = null, IReadOnlyList<IndexDefinition> indexes = null, SystemTimePeriodDefinition systemTimePeriod = null) {
-            this.columnDefinitions = ImmList<ColumnDefinition>.FromList(columnDefinitions);
-            this.tableConstraints = ImmList<ConstraintDefinition>.FromList(tableConstraints);
-            this.indexes = ImmList<IndexDefinition>.FromList(indexes);
+            this.columnDefinitions = columnDefinitions.ToImmArray<ColumnDefinition>();
+            this.tableConstraints = tableConstraints.ToImmArray<ConstraintDefinition>();
+            this.indexes = indexes.ToImmArray<IndexDefinition>();
             this.systemTimePeriod = systemTimePeriod;
         }
     
         public ScriptDom.TableDefinition ToMutableConcrete() {
             var ret = new ScriptDom.TableDefinition();
-            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.ColumnDefinition)c?.ToMutable()));
-            ret.TableConstraints.AddRange(tableConstraints.SelectList(c => (ScriptDom.ConstraintDefinition)c?.ToMutable()));
-            ret.Indexes.AddRange(indexes.SelectList(c => (ScriptDom.IndexDefinition)c?.ToMutable()));
+            ret.ColumnDefinitions.AddRange(columnDefinitions.Select(c => (ScriptDom.ColumnDefinition)c?.ToMutable()));
+            ret.TableConstraints.AddRange(tableConstraints.Select(c => (ScriptDom.ConstraintDefinition)c?.ToMutable()));
+            ret.Indexes.AddRange(indexes.Select(c => (ScriptDom.IndexDefinition)c?.ToMutable()));
             ret.SystemTimePeriod = (ScriptDom.SystemTimePeriodDefinition)systemTimePeriod?.ToMutable();
             return ret;
         }
@@ -107,9 +107,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.TableDefinition)) { throw new NotImplementedException("Unexpected subtype of TableDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableDefinition(
-                columnDefinitions: fragment.ColumnDefinitions.SelectList(ImmutableDom.ColumnDefinition.FromMutable),
-                tableConstraints: fragment.TableConstraints.SelectList(ImmutableDom.ConstraintDefinition.FromMutable),
-                indexes: fragment.Indexes.SelectList(ImmutableDom.IndexDefinition.FromMutable),
+                columnDefinitions: fragment.ColumnDefinitions.ToImmArray(ImmutableDom.ColumnDefinition.FromMutable),
+                tableConstraints: fragment.TableConstraints.ToImmArray(ImmutableDom.ConstraintDefinition.FromMutable),
+                indexes: fragment.Indexes.ToImmArray(ImmutableDom.IndexDefinition.FromMutable),
                 systemTimePeriod: ImmutableDom.SystemTimePeriodDefinition.FromMutable(fragment.SystemTimePeriod)
             );
         }

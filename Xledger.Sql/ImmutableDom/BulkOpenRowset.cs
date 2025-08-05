@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,20 +17,20 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<OpenRowsetColumnDefinition> WithColumns => withColumns;
     
         public BulkOpenRowset(IReadOnlyList<StringLiteral> dataFiles = null, IReadOnlyList<BulkInsertOption> options = null, IReadOnlyList<OpenRowsetColumnDefinition> withColumns = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
-            this.dataFiles = ImmList<StringLiteral>.FromList(dataFiles);
-            this.options = ImmList<BulkInsertOption>.FromList(options);
-            this.withColumns = ImmList<OpenRowsetColumnDefinition>.FromList(withColumns);
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.dataFiles = dataFiles.ToImmArray<StringLiteral>();
+            this.options = options.ToImmArray<BulkInsertOption>();
+            this.withColumns = withColumns.ToImmArray<OpenRowsetColumnDefinition>();
+            this.columns = columns.ToImmArray<Identifier>();
             this.alias = alias;
             this.forPath = forPath;
         }
     
         public ScriptDom.BulkOpenRowset ToMutableConcrete() {
             var ret = new ScriptDom.BulkOpenRowset();
-            ret.DataFiles.AddRange(dataFiles.SelectList(c => (ScriptDom.StringLiteral)c?.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c?.ToMutable()));
-            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c?.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.DataFiles.AddRange(dataFiles.Select(c => (ScriptDom.StringLiteral)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.BulkInsertOption)c?.ToMutable()));
+            ret.WithColumns.AddRange(withColumns.Select(c => (ScriptDom.OpenRowsetColumnDefinition)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -121,10 +121,10 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.BulkOpenRowset)) { throw new NotImplementedException("Unexpected subtype of BulkOpenRowset not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BulkOpenRowset(
-                dataFiles: fragment.DataFiles.SelectList(ImmutableDom.StringLiteral.FromMutable),
-                options: fragment.Options.SelectList(ImmutableDom.BulkInsertOption.FromMutable),
-                withColumns: fragment.WithColumns.SelectList(ImmutableDom.OpenRowsetColumnDefinition.FromMutable),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                dataFiles: fragment.DataFiles.ToImmArray(ImmutableDom.StringLiteral.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.BulkInsertOption.FromMutable),
+                withColumns: fragment.WithColumns.ToImmArray(ImmutableDom.OpenRowsetColumnDefinition.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

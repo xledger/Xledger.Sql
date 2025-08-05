@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ReceiveStatement(ScalarExpression top = null, IReadOnlyList<SelectElement> selectElements = null, SchemaObjectName queue = null, VariableTableReference into = null, ValueExpression where = null, bool isConversationGroupIdWhere = false) {
             this.top = top;
-            this.selectElements = ImmList<SelectElement>.FromList(selectElements);
+            this.selectElements = selectElements.ToImmArray<SelectElement>();
             this.queue = queue;
             this.into = into;
             this.where = where;
@@ -34,7 +34,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.ReceiveStatement ToMutableConcrete() {
             var ret = new ScriptDom.ReceiveStatement();
             ret.Top = (ScriptDom.ScalarExpression)top?.ToMutable();
-            ret.SelectElements.AddRange(selectElements.SelectList(c => (ScriptDom.SelectElement)c?.ToMutable()));
+            ret.SelectElements.AddRange(selectElements.Select(c => (ScriptDom.SelectElement)c?.ToMutable()));
             ret.Queue = (ScriptDom.SchemaObjectName)queue?.ToMutable();
             ret.Into = (ScriptDom.VariableTableReference)into?.ToMutable();
             ret.Where = (ScriptDom.ValueExpression)where?.ToMutable();
@@ -134,7 +134,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.ReceiveStatement)) { throw new NotImplementedException("Unexpected subtype of ReceiveStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ReceiveStatement(
                 top: ImmutableDom.ScalarExpression.FromMutable(fragment.Top),
-                selectElements: fragment.SelectElements.SelectList(ImmutableDom.SelectElement.FromMutable),
+                selectElements: fragment.SelectElements.ToImmArray(ImmutableDom.SelectElement.FromMutable),
                 queue: ImmutableDom.SchemaObjectName.FromMutable(fragment.Queue),
                 into: ImmutableDom.VariableTableReference.FromMutable(fragment.Into),
                 where: ImmutableDom.ValueExpression.FromMutable(fragment.Where),

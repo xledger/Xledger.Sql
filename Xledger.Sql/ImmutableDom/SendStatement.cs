@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,14 +17,14 @@ namespace Xledger.Sql.ImmutableDom {
         public ScalarExpression MessageBody => messageBody;
     
         public SendStatement(IReadOnlyList<ScalarExpression> conversationHandles = null, IdentifierOrValueExpression messageTypeName = null, ScalarExpression messageBody = null) {
-            this.conversationHandles = ImmList<ScalarExpression>.FromList(conversationHandles);
+            this.conversationHandles = conversationHandles.ToImmArray<ScalarExpression>();
             this.messageTypeName = messageTypeName;
             this.messageBody = messageBody;
         }
     
         public ScriptDom.SendStatement ToMutableConcrete() {
             var ret = new ScriptDom.SendStatement();
-            ret.ConversationHandles.AddRange(conversationHandles.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.ConversationHandles.AddRange(conversationHandles.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.MessageTypeName = (ScriptDom.IdentifierOrValueExpression)messageTypeName?.ToMutable();
             ret.MessageBody = (ScriptDom.ScalarExpression)messageBody?.ToMutable();
             return ret;
@@ -99,7 +99,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.SendStatement)) { throw new NotImplementedException("Unexpected subtype of SendStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SendStatement(
-                conversationHandles: fragment.ConversationHandles.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                conversationHandles: fragment.ConversationHandles.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 messageTypeName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.MessageTypeName),
                 messageBody: ImmutableDom.ScalarExpression.FromMutable(fragment.MessageBody)
             );

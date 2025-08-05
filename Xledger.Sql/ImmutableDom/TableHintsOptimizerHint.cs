@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TableHintsOptimizerHint(SchemaObjectName objectName = null, IReadOnlyList<TableHint> tableHints = null, ScriptDom.OptimizerHintKind hintKind = ScriptDom.OptimizerHintKind.Unspecified) {
             this.objectName = objectName;
-            this.tableHints = ImmList<TableHint>.FromList(tableHints);
+            this.tableHints = tableHints.ToImmArray<TableHint>();
             this.hintKind = hintKind;
         }
     
         public new ScriptDom.TableHintsOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.TableHintsOptimizerHint();
             ret.ObjectName = (ScriptDom.SchemaObjectName)objectName?.ToMutable();
-            ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c?.ToMutable()));
+            ret.TableHints.AddRange(tableHints.Select(c => (ScriptDom.TableHint)c?.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }
@@ -96,7 +96,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.TableHintsOptimizerHint)) { throw new NotImplementedException("Unexpected subtype of TableHintsOptimizerHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableHintsOptimizerHint(
                 objectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.ObjectName),
-                tableHints: fragment.TableHints.SelectList(ImmutableDom.TableHint.FromMutable),
+                tableHints: fragment.TableHints.ToImmArray(ImmutableDom.TableHint.FromMutable),
                 hintKind: fragment.HintKind
             );
         }

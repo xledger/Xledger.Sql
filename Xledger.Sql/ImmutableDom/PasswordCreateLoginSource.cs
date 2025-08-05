@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.password = password;
             this.hashed = hashed;
             this.mustChange = mustChange;
-            this.options = ImmList<PrincipalOption>.FromList(options);
+            this.options = options.ToImmArray<PrincipalOption>();
         }
     
         public ScriptDom.PasswordCreateLoginSource ToMutableConcrete() {
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Password = (ScriptDom.Literal)password?.ToMutable();
             ret.Hashed = hashed;
             ret.MustChange = mustChange;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
             return ret;
         }
         
@@ -110,7 +110,7 @@ namespace Xledger.Sql.ImmutableDom {
                 password: ImmutableDom.Literal.FromMutable(fragment.Password),
                 hashed: fragment.Hashed,
                 mustChange: fragment.MustChange,
-                options: fragment.Options.SelectList(ImmutableDom.PrincipalOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.PrincipalOption.FromMutable)
             );
         }
     

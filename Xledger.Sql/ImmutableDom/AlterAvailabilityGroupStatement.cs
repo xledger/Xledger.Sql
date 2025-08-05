@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -18,9 +18,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.alterAvailabilityGroupStatementType = alterAvailabilityGroupStatementType;
             this.action = action;
             this.name = name;
-            this.options = ImmList<AvailabilityGroupOption>.FromList(options);
-            this.databases = ImmList<Identifier>.FromList(databases);
-            this.replicas = ImmList<AvailabilityReplica>.FromList(replicas);
+            this.options = options.ToImmArray<AvailabilityGroupOption>();
+            this.databases = databases.ToImmArray<Identifier>();
+            this.replicas = replicas.ToImmArray<AvailabilityReplica>();
         }
     
         public ScriptDom.AlterAvailabilityGroupStatement ToMutableConcrete() {
@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.AlterAvailabilityGroupStatementType = alterAvailabilityGroupStatementType;
             ret.Action = (ScriptDom.AlterAvailabilityGroupAction)action?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityGroupOption)c?.ToMutable()));
-            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
-            ret.Replicas.AddRange(replicas.SelectList(c => (ScriptDom.AvailabilityReplica)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AvailabilityGroupOption)c?.ToMutable()));
+            ret.Databases.AddRange(databases.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Replicas.AddRange(replicas.Select(c => (ScriptDom.AvailabilityReplica)c?.ToMutable()));
             return ret;
         }
         
@@ -124,9 +124,9 @@ namespace Xledger.Sql.ImmutableDom {
                 alterAvailabilityGroupStatementType: fragment.AlterAvailabilityGroupStatementType,
                 action: ImmutableDom.AlterAvailabilityGroupAction.FromMutable(fragment.Action),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(ImmutableDom.AvailabilityGroupOption.FromMutable),
-                databases: fragment.Databases.SelectList(ImmutableDom.Identifier.FromMutable),
-                replicas: fragment.Replicas.SelectList(ImmutableDom.AvailabilityReplica.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AvailabilityGroupOption.FromMutable),
+                databases: fragment.Databases.ToImmArray(ImmutableDom.Identifier.FromMutable),
+                replicas: fragment.Replicas.ToImmArray(ImmutableDom.AvailabilityReplica.FromMutable)
             );
         }
     

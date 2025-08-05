@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,14 +13,14 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> Suboptions => suboptions;
     
         public AlterServerConfigurationBufferPoolExtensionContainerOption(IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> suboptions = null, ScriptDom.AlterServerConfigurationBufferPoolExtensionOptionKind optionKind = ScriptDom.AlterServerConfigurationBufferPoolExtensionOptionKind.None, OptionValue optionValue = null) {
-            this.suboptions = ImmList<AlterServerConfigurationBufferPoolExtensionOption>.FromList(suboptions);
+            this.suboptions = suboptions.ToImmArray<AlterServerConfigurationBufferPoolExtensionOption>();
             this.optionKind = optionKind;
             this.optionValue = optionValue;
         }
     
         public new ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption();
-            ret.Suboptions.AddRange(suboptions.SelectList(c => (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)c?.ToMutable()));
+            ret.Suboptions.AddRange(suboptions.Select(c => (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             ret.OptionValue = (ScriptDom.OptionValue)optionValue?.ToMutable();
             return ret;
@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationBufferPoolExtensionContainerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationBufferPoolExtensionContainerOption(
-                suboptions: fragment.Suboptions.SelectList(ImmutableDom.AlterServerConfigurationBufferPoolExtensionOption.FromMutable),
+                suboptions: fragment.Suboptions.ToImmArray(ImmutableDom.AlterServerConfigurationBufferPoolExtensionOption.FromMutable),
                 optionKind: fragment.OptionKind,
                 optionValue: ImmutableDom.OptionValue.FromMutable(fragment.OptionValue)
             );

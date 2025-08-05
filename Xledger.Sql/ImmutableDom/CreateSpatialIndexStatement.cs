@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.@object = @object;
             this.spatialColumnName = spatialColumnName;
             this.spatialIndexingScheme = spatialIndexingScheme;
-            this.spatialIndexOptions = ImmList<SpatialIndexOption>.FromList(spatialIndexOptions);
+            this.spatialIndexOptions = spatialIndexOptions.ToImmArray<SpatialIndexOption>();
             this.onFileGroup = onFileGroup;
         }
     
@@ -37,7 +37,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Object = (ScriptDom.SchemaObjectName)@object?.ToMutable();
             ret.SpatialColumnName = (ScriptDom.Identifier)spatialColumnName?.ToMutable();
             ret.SpatialIndexingScheme = spatialIndexingScheme;
-            ret.SpatialIndexOptions.AddRange(spatialIndexOptions.SelectList(c => (ScriptDom.SpatialIndexOption)c?.ToMutable()));
+            ret.SpatialIndexOptions.AddRange(spatialIndexOptions.Select(c => (ScriptDom.SpatialIndexOption)c?.ToMutable()));
             ret.OnFileGroup = (ScriptDom.IdentifierOrValueExpression)onFileGroup?.ToMutable();
             return ret;
         }
@@ -137,7 +137,7 @@ namespace Xledger.Sql.ImmutableDom {
                 @object: ImmutableDom.SchemaObjectName.FromMutable(fragment.Object),
                 spatialColumnName: ImmutableDom.Identifier.FromMutable(fragment.SpatialColumnName),
                 spatialIndexingScheme: fragment.SpatialIndexingScheme,
-                spatialIndexOptions: fragment.SpatialIndexOptions.SelectList(ImmutableDom.SpatialIndexOption.FromMutable),
+                spatialIndexOptions: fragment.SpatialIndexOptions.ToImmArray(ImmutableDom.SpatialIndexOption.FromMutable),
                 onFileGroup: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.OnFileGroup)
             );
         }

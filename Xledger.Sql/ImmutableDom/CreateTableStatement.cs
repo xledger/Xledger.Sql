@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -43,9 +43,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
             this.federationScheme = federationScheme;
             this.textImageOn = textImageOn;
-            this.options = ImmList<TableOption>.FromList(options);
+            this.options = options.ToImmArray<TableOption>();
             this.selectStatement = selectStatement;
-            this.ctasColumns = ImmList<Identifier>.FromList(ctasColumns);
+            this.ctasColumns = ctasColumns.ToImmArray<Identifier>();
             this.fileStreamOn = fileStreamOn;
         }
     
@@ -59,9 +59,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
             ret.FederationScheme = (ScriptDom.FederationScheme)federationScheme?.ToMutable();
             ret.TextImageOn = (ScriptDom.IdentifierOrValueExpression)textImageOn?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.TableOption)c?.ToMutable()));
             ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement?.ToMutable();
-            ret.CtasColumns.AddRange(ctasColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.CtasColumns.AddRange(ctasColumns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn?.ToMutable();
             return ret;
         }
@@ -207,9 +207,9 @@ namespace Xledger.Sql.ImmutableDom {
                 onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
                 federationScheme: ImmutableDom.FederationScheme.FromMutable(fragment.FederationScheme),
                 textImageOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.TextImageOn),
-                options: fragment.Options.SelectList(ImmutableDom.TableOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.TableOption.FromMutable),
                 selectStatement: ImmutableDom.SelectStatement.FromMutable(fragment.SelectStatement),
-                ctasColumns: fragment.CtasColumns.SelectList(ImmutableDom.Identifier.FromMutable),
+                ctasColumns: fragment.CtasColumns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 fileStreamOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.FileStreamOn)
             );
         }

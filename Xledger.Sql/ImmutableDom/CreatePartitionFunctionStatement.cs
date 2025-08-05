@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.parameterType = parameterType;
             this.range = range;
-            this.boundaryValues = ImmList<ScalarExpression>.FromList(boundaryValues);
+            this.boundaryValues = boundaryValues.ToImmArray<ScalarExpression>();
         }
     
         public ScriptDom.CreatePartitionFunctionStatement ToMutableConcrete() {
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.ParameterType = (ScriptDom.PartitionParameterType)parameterType?.ToMutable();
             ret.Range = range;
-            ret.BoundaryValues.AddRange(boundaryValues.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.BoundaryValues.AddRange(boundaryValues.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -112,7 +112,7 @@ namespace Xledger.Sql.ImmutableDom {
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 parameterType: ImmutableDom.PartitionParameterType.FromMutable(fragment.ParameterType),
                 range: fragment.Range,
-                boundaryValues: fragment.BoundaryValues.SelectList(ImmutableDom.ScalarExpression.FromMutable)
+                boundaryValues: fragment.BoundaryValues.ToImmArray(ImmutableDom.ScalarExpression.FromMutable)
             );
         }
     

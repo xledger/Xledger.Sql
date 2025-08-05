@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -28,7 +28,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
             this.name = name;
             this.onName = onName;
-            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = indexOptions.ToImmArray<IndexOption>();
         }
     
         public ScriptDom.CreateXmlIndexStatement ToMutableConcrete() {
@@ -40,7 +40,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c?.ToMutable()));
             return ret;
         }
         
@@ -156,7 +156,7 @@ namespace Xledger.Sql.ImmutableDom {
                 onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 onName: ImmutableDom.SchemaObjectName.FromMutable(fragment.OnName),
-                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable)
+                indexOptions: fragment.IndexOptions.ToImmArray(ImmutableDom.IndexOption.FromMutable)
             );
         }
     

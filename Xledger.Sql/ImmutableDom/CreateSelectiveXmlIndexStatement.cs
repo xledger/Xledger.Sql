@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -25,26 +25,26 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateSelectiveXmlIndexStatement(bool isSecondary = false, Identifier xmlColumn = null, IReadOnlyList<SelectiveXmlIndexPromotedPath> promotedPaths = null, XmlNamespaces xmlNamespaces = null, Identifier usingXmlIndexName = null, Identifier pathName = null, Identifier name = null, SchemaObjectName onName = null, IReadOnlyList<IndexOption> indexOptions = null) {
             this.isSecondary = isSecondary;
             this.xmlColumn = xmlColumn;
-            this.promotedPaths = ImmList<SelectiveXmlIndexPromotedPath>.FromList(promotedPaths);
+            this.promotedPaths = promotedPaths.ToImmArray<SelectiveXmlIndexPromotedPath>();
             this.xmlNamespaces = xmlNamespaces;
             this.usingXmlIndexName = usingXmlIndexName;
             this.pathName = pathName;
             this.name = name;
             this.onName = onName;
-            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = indexOptions.ToImmArray<IndexOption>();
         }
     
         public ScriptDom.CreateSelectiveXmlIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSelectiveXmlIndexStatement();
             ret.IsSecondary = isSecondary;
             ret.XmlColumn = (ScriptDom.Identifier)xmlColumn?.ToMutable();
-            ret.PromotedPaths.AddRange(promotedPaths.SelectList(c => (ScriptDom.SelectiveXmlIndexPromotedPath)c?.ToMutable()));
+            ret.PromotedPaths.AddRange(promotedPaths.Select(c => (ScriptDom.SelectiveXmlIndexPromotedPath)c?.ToMutable()));
             ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces?.ToMutable();
             ret.UsingXmlIndexName = (ScriptDom.Identifier)usingXmlIndexName?.ToMutable();
             ret.PathName = (ScriptDom.Identifier)pathName?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c?.ToMutable()));
             return ret;
         }
         
@@ -163,13 +163,13 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateSelectiveXmlIndexStatement(
                 isSecondary: fragment.IsSecondary,
                 xmlColumn: ImmutableDom.Identifier.FromMutable(fragment.XmlColumn),
-                promotedPaths: fragment.PromotedPaths.SelectList(ImmutableDom.SelectiveXmlIndexPromotedPath.FromMutable),
+                promotedPaths: fragment.PromotedPaths.ToImmArray(ImmutableDom.SelectiveXmlIndexPromotedPath.FromMutable),
                 xmlNamespaces: ImmutableDom.XmlNamespaces.FromMutable(fragment.XmlNamespaces),
                 usingXmlIndexName: ImmutableDom.Identifier.FromMutable(fragment.UsingXmlIndexName),
                 pathName: ImmutableDom.Identifier.FromMutable(fragment.PathName),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 onName: ImmutableDom.SchemaObjectName.FromMutable(fragment.OnName),
-                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable)
+                indexOptions: fragment.IndexOptions.ToImmArray(ImmutableDom.IndexOption.FromMutable)
             );
         }
     

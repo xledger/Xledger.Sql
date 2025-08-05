@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,17 +10,17 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateAvailabilityGroupStatement : AvailabilityGroupStatement, IEquatable<CreateAvailabilityGroupStatement> {
         public CreateAvailabilityGroupStatement(Identifier name = null, IReadOnlyList<AvailabilityGroupOption> options = null, IReadOnlyList<Identifier> databases = null, IReadOnlyList<AvailabilityReplica> replicas = null) {
             this.name = name;
-            this.options = ImmList<AvailabilityGroupOption>.FromList(options);
-            this.databases = ImmList<Identifier>.FromList(databases);
-            this.replicas = ImmList<AvailabilityReplica>.FromList(replicas);
+            this.options = options.ToImmArray<AvailabilityGroupOption>();
+            this.databases = databases.ToImmArray<Identifier>();
+            this.replicas = replicas.ToImmArray<AvailabilityReplica>();
         }
     
         public ScriptDom.CreateAvailabilityGroupStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateAvailabilityGroupStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityGroupOption)c?.ToMutable()));
-            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
-            ret.Replicas.AddRange(replicas.SelectList(c => (ScriptDom.AvailabilityReplica)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AvailabilityGroupOption)c?.ToMutable()));
+            ret.Databases.AddRange(databases.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Replicas.AddRange(replicas.Select(c => (ScriptDom.AvailabilityReplica)c?.ToMutable()));
             return ret;
         }
         
@@ -98,9 +98,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateAvailabilityGroupStatement)) { throw new NotImplementedException("Unexpected subtype of CreateAvailabilityGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateAvailabilityGroupStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(ImmutableDom.AvailabilityGroupOption.FromMutable),
-                databases: fragment.Databases.SelectList(ImmutableDom.Identifier.FromMutable),
-                replicas: fragment.Replicas.SelectList(ImmutableDom.AvailabilityReplica.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AvailabilityGroupOption.FromMutable),
+                databases: fragment.Databases.ToImmArray(ImmutableDom.Identifier.FromMutable),
+                replicas: fragment.Replicas.ToImmArray(ImmutableDom.AvailabilityReplica.FromMutable)
             );
         }
     

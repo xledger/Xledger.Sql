@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateUserStatement(UserLoginOption userLoginOption = null, Identifier name = null, IReadOnlyList<PrincipalOption> userOptions = null) {
             this.userLoginOption = userLoginOption;
             this.name = name;
-            this.userOptions = ImmList<PrincipalOption>.FromList(userOptions);
+            this.userOptions = userOptions.ToImmArray<PrincipalOption>();
         }
     
         public ScriptDom.CreateUserStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateUserStatement();
             ret.UserLoginOption = (ScriptDom.UserLoginOption)userLoginOption?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.UserOptions.AddRange(userOptions.SelectList(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
+            ret.UserOptions.AddRange(userOptions.Select(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
             return ret;
         }
         
@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateUserStatement(
                 userLoginOption: ImmutableDom.UserLoginOption.FromMutable(fragment.UserLoginOption),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                userOptions: fragment.UserOptions.SelectList(ImmutableDom.PrincipalOption.FromMutable)
+                userOptions: fragment.UserOptions.ToImmArray(ImmutableDom.PrincipalOption.FromMutable)
             );
         }
     

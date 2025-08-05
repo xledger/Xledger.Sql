@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<PrincipalOption> Options => options;
     
         public AlterLoginOptionsStatement(IReadOnlyList<PrincipalOption> options = null, Identifier name = null) {
-            this.options = ImmList<PrincipalOption>.FromList(options);
+            this.options = options.ToImmArray<PrincipalOption>();
             this.name = name;
         }
     
         public ScriptDom.AlterLoginOptionsStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterLoginOptionsStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterLoginOptionsStatement)) { throw new NotImplementedException("Unexpected subtype of AlterLoginOptionsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterLoginOptionsStatement(
-                options: fragment.Options.SelectList(ImmutableDom.PrincipalOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.PrincipalOption.FromMutable),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name)
             );
         }

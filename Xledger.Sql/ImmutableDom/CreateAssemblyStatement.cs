@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,16 +15,16 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateAssemblyStatement(Identifier owner = null, Identifier name = null, IReadOnlyList<ScalarExpression> parameters = null, IReadOnlyList<AssemblyOption> options = null) {
             this.owner = owner;
             this.name = name;
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
-            this.options = ImmList<AssemblyOption>.FromList(options);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
+            this.options = options.ToImmArray<AssemblyOption>();
         }
     
         public ScriptDom.CreateAssemblyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateAssemblyStatement();
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AssemblyOption)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AssemblyOption)c?.ToMutable()));
             return ret;
         }
         
@@ -105,8 +105,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateAssemblyStatement(
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
-                options: fragment.Options.SelectList(ImmutableDom.AssemblyOption.FromMutable)
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.AssemblyOption.FromMutable)
             );
         }
     

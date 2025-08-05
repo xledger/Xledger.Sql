@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public OpenJsonTableReference(ScalarExpression variable = null, ScalarExpression rowPattern = null, IReadOnlyList<SchemaDeclarationItemOpenjson> schemaDeclarationItems = null, Identifier alias = null, bool forPath = false) {
             this.variable = variable;
             this.rowPattern = rowPattern;
-            this.schemaDeclarationItems = ImmList<SchemaDeclarationItemOpenjson>.FromList(schemaDeclarationItems);
+            this.schemaDeclarationItems = schemaDeclarationItems.ToImmArray<SchemaDeclarationItemOpenjson>();
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -28,7 +28,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.OpenJsonTableReference();
             ret.Variable = (ScriptDom.ScalarExpression)variable?.ToMutable();
             ret.RowPattern = (ScriptDom.ScalarExpression)rowPattern?.ToMutable();
-            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItemOpenjson)c?.ToMutable()));
+            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.Select(c => (ScriptDom.SchemaDeclarationItemOpenjson)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -119,7 +119,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new OpenJsonTableReference(
                 variable: ImmutableDom.ScalarExpression.FromMutable(fragment.Variable),
                 rowPattern: ImmutableDom.ScalarExpression.FromMutable(fragment.RowPattern),
-                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(ImmutableDom.SchemaDeclarationItemOpenjson.FromMutable),
+                schemaDeclarationItems: fragment.SchemaDeclarationItems.ToImmArray(ImmutableDom.SchemaDeclarationItemOpenjson.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

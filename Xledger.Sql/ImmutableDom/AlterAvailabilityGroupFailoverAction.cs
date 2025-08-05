@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterAvailabilityGroupFailoverOption> Options => options;
     
         public AlterAvailabilityGroupFailoverAction(IReadOnlyList<AlterAvailabilityGroupFailoverOption> options = null, ScriptDom.AlterAvailabilityGroupActionType actionType = ScriptDom.AlterAvailabilityGroupActionType.Failover) {
-            this.options = ImmList<AlterAvailabilityGroupFailoverOption>.FromList(options);
+            this.options = options.ToImmArray<AlterAvailabilityGroupFailoverOption>();
             this.actionType = actionType;
         }
     
         public new ScriptDom.AlterAvailabilityGroupFailoverAction ToMutableConcrete() {
             var ret = new ScriptDom.AlterAvailabilityGroupFailoverAction();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterAvailabilityGroupFailoverOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterAvailabilityGroupFailoverOption)c?.ToMutable()));
             ret.ActionType = actionType;
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterAvailabilityGroupFailoverAction)) { throw new NotImplementedException("Unexpected subtype of AlterAvailabilityGroupFailoverAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterAvailabilityGroupFailoverAction(
-                options: fragment.Options.SelectList(ImmutableDom.AlterAvailabilityGroupFailoverOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.AlterAvailabilityGroupFailoverOption.FromMutable),
                 actionType: fragment.ActionType
             );
         }

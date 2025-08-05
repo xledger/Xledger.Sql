@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<StatisticsPartitionRange> Partitions => partitions;
     
         public ResampleStatisticsOption(IReadOnlyList<StatisticsPartitionRange> partitions = null, ScriptDom.StatisticsOptionKind optionKind = ScriptDom.StatisticsOptionKind.FullScan) {
-            this.partitions = ImmList<StatisticsPartitionRange>.FromList(partitions);
+            this.partitions = partitions.ToImmArray<StatisticsPartitionRange>();
             this.optionKind = optionKind;
         }
     
         public new ScriptDom.ResampleStatisticsOption ToMutableConcrete() {
             var ret = new ScriptDom.ResampleStatisticsOption();
-            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.StatisticsPartitionRange)c?.ToMutable()));
+            ret.Partitions.AddRange(partitions.Select(c => (ScriptDom.StatisticsPartitionRange)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.ResampleStatisticsOption)) { throw new NotImplementedException("Unexpected subtype of ResampleStatisticsOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ResampleStatisticsOption(
-                partitions: fragment.Partitions.SelectList(ImmutableDom.StatisticsPartitionRange.FromMutable),
+                partitions: fragment.Partitions.ToImmArray(ImmutableDom.StatisticsPartitionRange.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

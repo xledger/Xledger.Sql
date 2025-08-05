@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.clear = clear;
             this.clearAll = clearAll;
             this.optionState = optionState;
-            this.options = ImmList<QueryStoreOption>.FromList(options);
+            this.options = options.ToImmArray<QueryStoreOption>();
             this.optionKind = optionKind;
         }
     
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Clear = clear;
             ret.ClearAll = clearAll;
             ret.OptionState = optionState;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.QueryStoreOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.QueryStoreOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -116,7 +116,7 @@ namespace Xledger.Sql.ImmutableDom {
                 clear: fragment.Clear,
                 clearAll: fragment.ClearAll,
                 optionState: fragment.OptionState,
-                options: fragment.Options.SelectList(ImmutableDom.QueryStoreOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.QueryStoreOption.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

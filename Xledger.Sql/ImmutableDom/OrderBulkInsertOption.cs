@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsUnique => isUnique;
     
         public OrderBulkInsertOption(IReadOnlyList<ColumnWithSortOrder> columns = null, bool isUnique = false, ScriptDom.BulkInsertOptionKind optionKind = ScriptDom.BulkInsertOptionKind.None) {
-            this.columns = ImmList<ColumnWithSortOrder>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnWithSortOrder>();
             this.isUnique = isUnique;
             this.optionKind = optionKind;
         }
     
         public new ScriptDom.OrderBulkInsertOption ToMutableConcrete() {
             var ret = new ScriptDom.OrderBulkInsertOption();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
             ret.IsUnique = isUnique;
             ret.OptionKind = optionKind;
             return ret;
@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.OrderBulkInsertOption)) { throw new NotImplementedException("Unexpected subtype of OrderBulkInsertOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OrderBulkInsertOption(
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnWithSortOrder.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnWithSortOrder.FromMutable),
                 isUnique: fragment.IsUnique,
                 optionKind: fragment.OptionKind
             );

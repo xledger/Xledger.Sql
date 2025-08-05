@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<WindowDefinition> WindowDefinition => windowDefinition;
     
         public WindowClause(IReadOnlyList<WindowDefinition> windowDefinition = null) {
-            this.windowDefinition = ImmList<WindowDefinition>.FromList(windowDefinition);
+            this.windowDefinition = windowDefinition.ToImmArray<WindowDefinition>();
         }
     
         public ScriptDom.WindowClause ToMutableConcrete() {
             var ret = new ScriptDom.WindowClause();
-            ret.WindowDefinition.AddRange(windowDefinition.SelectList(c => (ScriptDom.WindowDefinition)c?.ToMutable()));
+            ret.WindowDefinition.AddRange(windowDefinition.Select(c => (ScriptDom.WindowDefinition)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.WindowClause)) { throw new NotImplementedException("Unexpected subtype of WindowClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WindowClause(
-                windowDefinition: fragment.WindowDefinition.SelectList(ImmutableDom.WindowDefinition.FromMutable)
+                windowDefinition: fragment.WindowDefinition.ToImmArray(ImmutableDom.WindowDefinition.FromMutable)
             );
         }
     

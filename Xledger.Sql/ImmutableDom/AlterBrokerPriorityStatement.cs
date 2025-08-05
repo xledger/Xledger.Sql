@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,13 +10,13 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterBrokerPriorityStatement : BrokerPriorityStatement, IEquatable<AlterBrokerPriorityStatement> {
         public AlterBrokerPriorityStatement(Identifier name = null, IReadOnlyList<BrokerPriorityParameter> brokerPriorityParameters = null) {
             this.name = name;
-            this.brokerPriorityParameters = ImmList<BrokerPriorityParameter>.FromList(brokerPriorityParameters);
+            this.brokerPriorityParameters = brokerPriorityParameters.ToImmArray<BrokerPriorityParameter>();
         }
     
         public ScriptDom.AlterBrokerPriorityStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterBrokerPriorityStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.BrokerPriorityParameters.AddRange(brokerPriorityParameters.SelectList(c => (ScriptDom.BrokerPriorityParameter)c?.ToMutable()));
+            ret.BrokerPriorityParameters.AddRange(brokerPriorityParameters.Select(c => (ScriptDom.BrokerPriorityParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -82,7 +82,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AlterBrokerPriorityStatement)) { throw new NotImplementedException("Unexpected subtype of AlterBrokerPriorityStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterBrokerPriorityStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                brokerPriorityParameters: fragment.BrokerPriorityParameters.SelectList(ImmutableDom.BrokerPriorityParameter.FromMutable)
+                brokerPriorityParameters: fragment.BrokerPriorityParameters.ToImmArray(ImmutableDom.BrokerPriorityParameter.FromMutable)
             );
         }
     

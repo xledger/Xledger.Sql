@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -37,7 +37,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.dataType = dataType;
             this.alterTableAlterColumnOption = alterTableAlterColumnOption;
             this.storageOptions = storageOptions;
-            this.options = ImmList<IndexOption>.FromList(options);
+            this.options = options.ToImmArray<IndexOption>();
             this.generatedAlways = generatedAlways;
             this.isHidden = isHidden;
             this.encryption = encryption;
@@ -53,7 +53,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DataType = (ScriptDom.DataTypeReference)dataType?.ToMutable();
             ret.AlterTableAlterColumnOption = alterTableAlterColumnOption;
             ret.StorageOptions = (ScriptDom.ColumnStorageOptions)storageOptions?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.IndexOption)c?.ToMutable()));
             ret.GeneratedAlways = generatedAlways;
             ret.IsHidden = isHidden;
             ret.Encryption = (ScriptDom.ColumnEncryptionDefinition)encryption?.ToMutable();
@@ -201,7 +201,7 @@ namespace Xledger.Sql.ImmutableDom {
                 dataType: ImmutableDom.DataTypeReference.FromMutable(fragment.DataType),
                 alterTableAlterColumnOption: fragment.AlterTableAlterColumnOption,
                 storageOptions: ImmutableDom.ColumnStorageOptions.FromMutable(fragment.StorageOptions),
-                options: fragment.Options.SelectList(ImmutableDom.IndexOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.IndexOption.FromMutable),
                 generatedAlways: fragment.GeneratedAlways,
                 isHidden: fragment.IsHidden,
                 encryption: ImmutableDom.ColumnEncryptionDefinition.FromMutable(fragment.Encryption),

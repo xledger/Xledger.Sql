@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<GridParameter> GridParameters => gridParameters;
     
         public GridsSpatialIndexOption(IReadOnlyList<GridParameter> gridParameters = null) {
-            this.gridParameters = ImmList<GridParameter>.FromList(gridParameters);
+            this.gridParameters = gridParameters.ToImmArray<GridParameter>();
         }
     
         public ScriptDom.GridsSpatialIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.GridsSpatialIndexOption();
-            ret.GridParameters.AddRange(gridParameters.SelectList(c => (ScriptDom.GridParameter)c?.ToMutable()));
+            ret.GridParameters.AddRange(gridParameters.Select(c => (ScriptDom.GridParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.GridsSpatialIndexOption)) { throw new NotImplementedException("Unexpected subtype of GridsSpatialIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GridsSpatialIndexOption(
-                gridParameters: fragment.GridParameters.SelectList(ImmutableDom.GridParameter.FromMutable)
+                gridParameters: fragment.GridParameters.ToImmArray(ImmutableDom.GridParameter.FromMutable)
             );
         }
     

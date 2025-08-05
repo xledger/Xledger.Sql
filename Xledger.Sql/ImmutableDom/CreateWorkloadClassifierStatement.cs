@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,13 +10,13 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateWorkloadClassifierStatement : WorkloadClassifierStatement, IEquatable<CreateWorkloadClassifierStatement> {
         public CreateWorkloadClassifierStatement(Identifier classifierName = null, IReadOnlyList<WorkloadClassifierOption> options = null) {
             this.classifierName = classifierName;
-            this.options = ImmList<WorkloadClassifierOption>.FromList(options);
+            this.options = options.ToImmArray<WorkloadClassifierOption>();
         }
     
         public ScriptDom.CreateWorkloadClassifierStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateWorkloadClassifierStatement();
             ret.ClassifierName = (ScriptDom.Identifier)classifierName?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.WorkloadClassifierOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.WorkloadClassifierOption)c?.ToMutable()));
             return ret;
         }
         
@@ -82,7 +82,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateWorkloadClassifierStatement)) { throw new NotImplementedException("Unexpected subtype of CreateWorkloadClassifierStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateWorkloadClassifierStatement(
                 classifierName: ImmutableDom.Identifier.FromMutable(fragment.ClassifierName),
-                options: fragment.Options.SelectList(ImmutableDom.WorkloadClassifierOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.WorkloadClassifierOption.FromMutable)
             );
         }
     

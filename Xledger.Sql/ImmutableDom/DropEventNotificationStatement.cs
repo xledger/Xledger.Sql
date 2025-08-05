@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public EventNotificationObjectScope Scope => scope;
     
         public DropEventNotificationStatement(IReadOnlyList<Identifier> notifications = null, EventNotificationObjectScope scope = null) {
-            this.notifications = ImmList<Identifier>.FromList(notifications);
+            this.notifications = notifications.ToImmArray<Identifier>();
             this.scope = scope;
         }
     
         public ScriptDom.DropEventNotificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropEventNotificationStatement();
-            ret.Notifications.AddRange(notifications.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Notifications.AddRange(notifications.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Scope = (ScriptDom.EventNotificationObjectScope)scope?.ToMutable();
             return ret;
         }
@@ -87,7 +87,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.DropEventNotificationStatement)) { throw new NotImplementedException("Unexpected subtype of DropEventNotificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropEventNotificationStatement(
-                notifications: fragment.Notifications.SelectList(ImmutableDom.Identifier.FromMutable),
+                notifications: fragment.Notifications.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 scope: ImmutableDom.EventNotificationObjectScope.FromMutable(fragment.Scope)
             );
         }

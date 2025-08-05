@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -18,14 +18,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public WithCtesAndXmlNamespaces(XmlNamespaces xmlNamespaces = null, IReadOnlyList<CommonTableExpression> commonTableExpressions = null, ValueExpression changeTrackingContext = null) {
             this.xmlNamespaces = xmlNamespaces;
-            this.commonTableExpressions = ImmList<CommonTableExpression>.FromList(commonTableExpressions);
+            this.commonTableExpressions = commonTableExpressions.ToImmArray<CommonTableExpression>();
             this.changeTrackingContext = changeTrackingContext;
         }
     
         public ScriptDom.WithCtesAndXmlNamespaces ToMutableConcrete() {
             var ret = new ScriptDom.WithCtesAndXmlNamespaces();
             ret.XmlNamespaces = (ScriptDom.XmlNamespaces)xmlNamespaces?.ToMutable();
-            ret.CommonTableExpressions.AddRange(commonTableExpressions.SelectList(c => (ScriptDom.CommonTableExpression)c?.ToMutable()));
+            ret.CommonTableExpressions.AddRange(commonTableExpressions.Select(c => (ScriptDom.CommonTableExpression)c?.ToMutable()));
             ret.ChangeTrackingContext = (ScriptDom.ValueExpression)changeTrackingContext?.ToMutable();
             return ret;
         }
@@ -100,7 +100,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.WithCtesAndXmlNamespaces)) { throw new NotImplementedException("Unexpected subtype of WithCtesAndXmlNamespaces not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WithCtesAndXmlNamespaces(
                 xmlNamespaces: ImmutableDom.XmlNamespaces.FromMutable(fragment.XmlNamespaces),
-                commonTableExpressions: fragment.CommonTableExpressions.SelectList(ImmutableDom.CommonTableExpression.FromMutable),
+                commonTableExpressions: fragment.CommonTableExpressions.ToImmArray(ImmutableDom.CommonTableExpression.FromMutable),
                 changeTrackingContext: ImmutableDom.ValueExpression.FromMutable(fragment.ChangeTrackingContext)
             );
         }

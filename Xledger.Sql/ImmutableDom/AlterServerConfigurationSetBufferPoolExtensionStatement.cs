@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> Options => options;
     
         public AlterServerConfigurationSetBufferPoolExtensionStatement(IReadOnlyList<AlterServerConfigurationBufferPoolExtensionOption> options = null) {
-            this.options = ImmList<AlterServerConfigurationBufferPoolExtensionOption>.FromList(options);
+            this.options = options.ToImmArray<AlterServerConfigurationBufferPoolExtensionOption>();
         }
     
         public ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationBufferPoolExtensionOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetBufferPoolExtensionStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetBufferPoolExtensionStatement(
-                options: fragment.Options.SelectList(ImmutableDom.AlterServerConfigurationBufferPoolExtensionOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AlterServerConfigurationBufferPoolExtensionOption.FromMutable)
             );
         }
     

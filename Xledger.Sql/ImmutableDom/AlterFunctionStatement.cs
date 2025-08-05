@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -11,9 +11,9 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterFunctionStatement(SchemaObjectName name = null, FunctionReturnType returnType = null, IReadOnlyList<FunctionOption> options = null, OrderBulkInsertOption orderHint = null, IReadOnlyList<ProcedureParameter> parameters = null, StatementList statementList = null, MethodSpecifier methodSpecifier = null) {
             this.name = name;
             this.returnType = returnType;
-            this.options = ImmList<FunctionOption>.FromList(options);
+            this.options = options.ToImmArray<FunctionOption>();
             this.orderHint = orderHint;
-            this.parameters = ImmList<ProcedureParameter>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ProcedureParameter>();
             this.statementList = statementList;
             this.methodSpecifier = methodSpecifier;
         }
@@ -22,9 +22,9 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterFunctionStatement();
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.ReturnType = (ScriptDom.FunctionReturnType)returnType?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FunctionOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.FunctionOption)c?.ToMutable()));
             ret.OrderHint = (ScriptDom.OrderBulkInsertOption)orderHint?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ProcedureParameter)c?.ToMutable()));
             ret.StatementList = (ScriptDom.StatementList)statementList?.ToMutable();
             ret.MethodSpecifier = (ScriptDom.MethodSpecifier)methodSpecifier?.ToMutable();
             return ret;
@@ -131,9 +131,9 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterFunctionStatement(
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
                 returnType: ImmutableDom.FunctionReturnType.FromMutable(fragment.ReturnType),
-                options: fragment.Options.SelectList(ImmutableDom.FunctionOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.FunctionOption.FromMutable),
                 orderHint: ImmutableDom.OrderBulkInsertOption.FromMutable(fragment.OrderHint),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ProcedureParameter.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ProcedureParameter.FromMutable),
                 statementList: ImmutableDom.StatementList.FromMutable(fragment.StatementList),
                 methodSpecifier: ImmutableDom.MethodSpecifier.FromMutable(fragment.MethodSpecifier)
             );

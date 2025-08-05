@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -23,8 +23,8 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateStatisticsStatement(Identifier name = null, SchemaObjectName onName = null, IReadOnlyList<ColumnReferenceExpression> columns = null, IReadOnlyList<StatisticsOption> statisticsOptions = null, BooleanExpression filterPredicate = null) {
             this.name = name;
             this.onName = onName;
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
-            this.statisticsOptions = ImmList<StatisticsOption>.FromList(statisticsOptions);
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
+            this.statisticsOptions = statisticsOptions.ToImmArray<StatisticsOption>();
             this.filterPredicate = filterPredicate;
         }
     
@@ -32,8 +32,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateStatisticsStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
-            ret.StatisticsOptions.AddRange(statisticsOptions.SelectList(c => (ScriptDom.StatisticsOption)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.StatisticsOptions.AddRange(statisticsOptions.Select(c => (ScriptDom.StatisticsOption)c?.ToMutable()));
             ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate?.ToMutable();
             return ret;
         }
@@ -123,8 +123,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateStatisticsStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 onName: ImmutableDom.SchemaObjectName.FromMutable(fragment.OnName),
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
-                statisticsOptions: fragment.StatisticsOptions.SelectList(ImmutableDom.StatisticsOption.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                statisticsOptions: fragment.StatisticsOptions.ToImmArray(ImmutableDom.StatisticsOption.FromMutable),
                 filterPredicate: ImmutableDom.BooleanExpression.FromMutable(fragment.FilterPredicate)
             );
         }

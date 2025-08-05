@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -18,9 +18,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.state = state;
             this.affinity = affinity;
             this.protocol = protocol;
-            this.protocolOptions = ImmList<EndpointProtocolOption>.FromList(protocolOptions);
+            this.protocolOptions = protocolOptions.ToImmArray<EndpointProtocolOption>();
             this.endpointType = endpointType;
-            this.payloadOptions = ImmList<PayloadOption>.FromList(payloadOptions);
+            this.payloadOptions = payloadOptions.ToImmArray<PayloadOption>();
         }
     
         public ScriptDom.CreateEndpointStatement ToMutableConcrete() {
@@ -30,9 +30,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.State = state;
             ret.Affinity = (ScriptDom.EndpointAffinity)affinity?.ToMutable();
             ret.Protocol = protocol;
-            ret.ProtocolOptions.AddRange(protocolOptions.SelectList(c => (ScriptDom.EndpointProtocolOption)c?.ToMutable()));
+            ret.ProtocolOptions.AddRange(protocolOptions.Select(c => (ScriptDom.EndpointProtocolOption)c?.ToMutable()));
             ret.EndpointType = endpointType;
-            ret.PayloadOptions.AddRange(payloadOptions.SelectList(c => (ScriptDom.PayloadOption)c?.ToMutable()));
+            ret.PayloadOptions.AddRange(payloadOptions.Select(c => (ScriptDom.PayloadOption)c?.ToMutable()));
             return ret;
         }
         
@@ -142,9 +142,9 @@ namespace Xledger.Sql.ImmutableDom {
                 state: fragment.State,
                 affinity: ImmutableDom.EndpointAffinity.FromMutable(fragment.Affinity),
                 protocol: fragment.Protocol,
-                protocolOptions: fragment.ProtocolOptions.SelectList(ImmutableDom.EndpointProtocolOption.FromMutable),
+                protocolOptions: fragment.ProtocolOptions.ToImmArray(ImmutableDom.EndpointProtocolOption.FromMutable),
                 endpointType: fragment.EndpointType,
-                payloadOptions: fragment.PayloadOptions.SelectList(ImmutableDom.PayloadOption.FromMutable)
+                payloadOptions: fragment.PayloadOptions.ToImmArray(ImmutableDom.PayloadOption.FromMutable)
             );
         }
     

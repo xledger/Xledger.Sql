@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ResultSetsExecuteOption(ScriptDom.ResultSetsOptionKind resultSetsOptionKind = ScriptDom.ResultSetsOptionKind.Undefined, IReadOnlyList<ResultSetDefinition> definitions = null, ScriptDom.ExecuteOptionKind optionKind = ScriptDom.ExecuteOptionKind.Recompile) {
             this.resultSetsOptionKind = resultSetsOptionKind;
-            this.definitions = ImmList<ResultSetDefinition>.FromList(definitions);
+            this.definitions = definitions.ToImmArray<ResultSetDefinition>();
             this.optionKind = optionKind;
         }
     
         public new ScriptDom.ResultSetsExecuteOption ToMutableConcrete() {
             var ret = new ScriptDom.ResultSetsExecuteOption();
             ret.ResultSetsOptionKind = resultSetsOptionKind;
-            ret.Definitions.AddRange(definitions.SelectList(c => (ScriptDom.ResultSetDefinition)c?.ToMutable()));
+            ret.Definitions.AddRange(definitions.Select(c => (ScriptDom.ResultSetDefinition)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -94,7 +94,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.ResultSetsExecuteOption)) { throw new NotImplementedException("Unexpected subtype of ResultSetsExecuteOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ResultSetsExecuteOption(
                 resultSetsOptionKind: fragment.ResultSetsOptionKind,
-                definitions: fragment.Definitions.SelectList(ImmutableDom.ResultSetDefinition.FromMutable),
+                definitions: fragment.Definitions.ToImmArray(ImmutableDom.ResultSetDefinition.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

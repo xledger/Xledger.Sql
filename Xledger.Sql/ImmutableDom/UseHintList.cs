@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<StringLiteral> Hints => hints;
     
         public UseHintList(IReadOnlyList<StringLiteral> hints = null, ScriptDom.OptimizerHintKind hintKind = ScriptDom.OptimizerHintKind.Unspecified) {
-            this.hints = ImmList<StringLiteral>.FromList(hints);
+            this.hints = hints.ToImmArray<StringLiteral>();
             this.hintKind = hintKind;
         }
     
         public new ScriptDom.UseHintList ToMutableConcrete() {
             var ret = new ScriptDom.UseHintList();
-            ret.Hints.AddRange(hints.SelectList(c => (ScriptDom.StringLiteral)c?.ToMutable()));
+            ret.Hints.AddRange(hints.Select(c => (ScriptDom.StringLiteral)c?.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.UseHintList)) { throw new NotImplementedException("Unexpected subtype of UseHintList not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UseHintList(
-                hints: fragment.Hints.SelectList(ImmutableDom.StringLiteral.FromMutable),
+                hints: fragment.Hints.ToImmArray(ImmutableDom.StringLiteral.FromMutable),
                 hintKind: fragment.HintKind
             );
         }

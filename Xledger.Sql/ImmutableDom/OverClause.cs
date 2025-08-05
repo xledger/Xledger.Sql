@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public OverClause(Identifier windowName = null, IReadOnlyList<ScalarExpression> partitions = null, OrderByClause orderByClause = null, WindowFrameClause windowFrameClause = null) {
             this.windowName = windowName;
-            this.partitions = ImmList<ScalarExpression>.FromList(partitions);
+            this.partitions = partitions.ToImmArray<ScalarExpression>();
             this.orderByClause = orderByClause;
             this.windowFrameClause = windowFrameClause;
         }
@@ -28,7 +28,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.OverClause ToMutableConcrete() {
             var ret = new ScriptDom.OverClause();
             ret.WindowName = (ScriptDom.Identifier)windowName?.ToMutable();
-            ret.Partitions.AddRange(partitions.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Partitions.AddRange(partitions.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.OrderByClause = (ScriptDom.OrderByClause)orderByClause?.ToMutable();
             ret.WindowFrameClause = (ScriptDom.WindowFrameClause)windowFrameClause?.ToMutable();
             return ret;
@@ -112,7 +112,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.OverClause)) { throw new NotImplementedException("Unexpected subtype of OverClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OverClause(
                 windowName: ImmutableDom.Identifier.FromMutable(fragment.WindowName),
-                partitions: fragment.Partitions.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                partitions: fragment.Partitions.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 orderByClause: ImmutableDom.OrderByClause.FromMutable(fragment.OrderByClause),
                 windowFrameClause: ImmutableDom.WindowFrameClause.FromMutable(fragment.WindowFrameClause)
             );

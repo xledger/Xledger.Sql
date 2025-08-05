@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.owner = owner;
             this.name = name;
             this.queueName = queueName;
-            this.serviceContracts = ImmList<ServiceContract>.FromList(serviceContracts);
+            this.serviceContracts = serviceContracts.ToImmArray<ServiceContract>();
         }
     
         public ScriptDom.CreateServiceStatement ToMutableConcrete() {
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.QueueName = (ScriptDom.SchemaObjectName)queueName?.ToMutable();
-            ret.ServiceContracts.AddRange(serviceContracts.SelectList(c => (ScriptDom.ServiceContract)c?.ToMutable()));
+            ret.ServiceContracts.AddRange(serviceContracts.Select(c => (ScriptDom.ServiceContract)c?.ToMutable()));
             return ret;
         }
         
@@ -108,7 +108,7 @@ namespace Xledger.Sql.ImmutableDom {
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 queueName: ImmutableDom.SchemaObjectName.FromMutable(fragment.QueueName),
-                serviceContracts: fragment.ServiceContracts.SelectList(ImmutableDom.ServiceContract.FromMutable)
+                serviceContracts: fragment.ServiceContracts.ToImmArray(ImmutableDom.ServiceContract.FromMutable)
             );
         }
     

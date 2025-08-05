@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.dataSourceType = dataSourceType;
             this.location = location;
             this.pushdownOption = pushdownOption;
-            this.externalDataSourceOptions = ImmList<ExternalDataSourceOption>.FromList(externalDataSourceOptions);
+            this.externalDataSourceOptions = externalDataSourceOptions.ToImmArray<ExternalDataSourceOption>();
         }
     
         public ScriptDom.CreateExternalDataSourceStatement ToMutableConcrete() {
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DataSourceType = dataSourceType;
             ret.Location = (ScriptDom.Literal)location?.ToMutable();
             ret.PushdownOption = pushdownOption;
-            ret.ExternalDataSourceOptions.AddRange(externalDataSourceOptions.SelectList(c => (ScriptDom.ExternalDataSourceOption)c?.ToMutable()));
+            ret.ExternalDataSourceOptions.AddRange(externalDataSourceOptions.Select(c => (ScriptDom.ExternalDataSourceOption)c?.ToMutable()));
             return ret;
         }
         
@@ -111,7 +111,7 @@ namespace Xledger.Sql.ImmutableDom {
                 dataSourceType: fragment.DataSourceType,
                 location: ImmutableDom.Literal.FromMutable(fragment.Location),
                 pushdownOption: fragment.PushdownOption,
-                externalDataSourceOptions: fragment.ExternalDataSourceOptions.SelectList(ImmutableDom.ExternalDataSourceOption.FromMutable)
+                externalDataSourceOptions: fragment.ExternalDataSourceOptions.ToImmArray(ImmutableDom.ExternalDataSourceOption.FromMutable)
             );
         }
     

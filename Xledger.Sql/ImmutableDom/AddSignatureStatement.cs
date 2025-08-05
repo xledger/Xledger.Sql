@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -12,7 +12,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.isCounter = isCounter;
             this.elementKind = elementKind;
             this.element = element;
-            this.cryptos = ImmList<CryptoMechanism>.FromList(cryptos);
+            this.cryptos = cryptos.ToImmArray<CryptoMechanism>();
         }
     
         public ScriptDom.AddSignatureStatement ToMutableConcrete() {
@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.IsCounter = isCounter;
             ret.ElementKind = elementKind;
             ret.Element = (ScriptDom.SchemaObjectName)element?.ToMutable();
-            ret.Cryptos.AddRange(cryptos.SelectList(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
+            ret.Cryptos.AddRange(cryptos.Select(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
             return ret;
         }
         
@@ -100,7 +100,7 @@ namespace Xledger.Sql.ImmutableDom {
                 isCounter: fragment.IsCounter,
                 elementKind: fragment.ElementKind,
                 element: ImmutableDom.SchemaObjectName.FromMutable(fragment.Element),
-                cryptos: fragment.Cryptos.SelectList(ImmutableDom.CryptoMechanism.FromMutable)
+                cryptos: fragment.Cryptos.ToImmArray(ImmutableDom.CryptoMechanism.FromMutable)
             );
         }
     

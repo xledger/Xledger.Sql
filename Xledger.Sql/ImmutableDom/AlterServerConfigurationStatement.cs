@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AlterServerConfigurationStatement(ScriptDom.ProcessAffinityType processAffinity = ScriptDom.ProcessAffinityType.CpuAuto, IReadOnlyList<ProcessAffinityRange> processAffinityRanges = null) {
             this.processAffinity = processAffinity;
-            this.processAffinityRanges = ImmList<ProcessAffinityRange>.FromList(processAffinityRanges);
+            this.processAffinityRanges = processAffinityRanges.ToImmArray<ProcessAffinityRange>();
         }
     
         public ScriptDom.AlterServerConfigurationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationStatement();
             ret.ProcessAffinity = processAffinity;
-            ret.ProcessAffinityRanges.AddRange(processAffinityRanges.SelectList(c => (ScriptDom.ProcessAffinityRange)c?.ToMutable()));
+            ret.ProcessAffinityRanges.AddRange(processAffinityRanges.Select(c => (ScriptDom.ProcessAffinityRange)c?.ToMutable()));
             return ret;
         }
         
@@ -86,7 +86,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationStatement(
                 processAffinity: fragment.ProcessAffinity,
-                processAffinityRanges: fragment.ProcessAffinityRanges.SelectList(ImmutableDom.ProcessAffinityRange.FromMutable)
+                processAffinityRanges: fragment.ProcessAffinityRanges.ToImmArray(ImmutableDom.ProcessAffinityRange.FromMutable)
             );
         }
     

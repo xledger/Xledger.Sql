@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,14 +19,14 @@ namespace Xledger.Sql.ImmutableDom {
         public SecurityTargetObject(ScriptDom.SecurityObjectKind objectKind = ScriptDom.SecurityObjectKind.NotSpecified, SecurityTargetObjectName objectName = null, IReadOnlyList<Identifier> columns = null) {
             this.objectKind = objectKind;
             this.objectName = objectName;
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.columns = columns.ToImmArray<Identifier>();
         }
     
         public ScriptDom.SecurityTargetObject ToMutableConcrete() {
             var ret = new ScriptDom.SecurityTargetObject();
             ret.ObjectKind = objectKind;
             ret.ObjectName = (ScriptDom.SecurityTargetObjectName)objectName?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -99,7 +99,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new SecurityTargetObject(
                 objectKind: fragment.ObjectKind,
                 objectName: ImmutableDom.SecurityTargetObjectName.FromMutable(fragment.ObjectName),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable)
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable)
             );
         }
     

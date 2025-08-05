@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,14 +17,14 @@ namespace Xledger.Sql.ImmutableDom {
         public ExecutableProcedureReference(ProcedureReferenceName procedureReference = null, AdHocDataSource adHocDataSource = null, IReadOnlyList<ExecuteParameter> parameters = null) {
             this.procedureReference = procedureReference;
             this.adHocDataSource = adHocDataSource;
-            this.parameters = ImmList<ExecuteParameter>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ExecuteParameter>();
         }
     
         public ScriptDom.ExecutableProcedureReference ToMutableConcrete() {
             var ret = new ScriptDom.ExecutableProcedureReference();
             ret.ProcedureReference = (ScriptDom.ProcedureReferenceName)procedureReference?.ToMutable();
             ret.AdHocDataSource = (ScriptDom.AdHocDataSource)adHocDataSource?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ExecuteParameter)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ExecuteParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -99,7 +99,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new ExecutableProcedureReference(
                 procedureReference: ImmutableDom.ProcedureReferenceName.FromMutable(fragment.ProcedureReference),
                 adHocDataSource: ImmutableDom.AdHocDataSource.FromMutable(fragment.AdHocDataSource),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ExecuteParameter.FromMutable)
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ExecuteParameter.FromMutable)
             );
         }
     

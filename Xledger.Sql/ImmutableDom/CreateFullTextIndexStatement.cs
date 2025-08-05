@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,19 +22,19 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateFullTextIndexStatement(SchemaObjectName onName = null, IReadOnlyList<FullTextIndexColumn> fullTextIndexColumns = null, Identifier keyIndexName = null, FullTextCatalogAndFileGroup catalogAndFileGroup = null, IReadOnlyList<FullTextIndexOption> options = null) {
             this.onName = onName;
-            this.fullTextIndexColumns = ImmList<FullTextIndexColumn>.FromList(fullTextIndexColumns);
+            this.fullTextIndexColumns = fullTextIndexColumns.ToImmArray<FullTextIndexColumn>();
             this.keyIndexName = keyIndexName;
             this.catalogAndFileGroup = catalogAndFileGroup;
-            this.options = ImmList<FullTextIndexOption>.FromList(options);
+            this.options = options.ToImmArray<FullTextIndexOption>();
         }
     
         public ScriptDom.CreateFullTextIndexStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateFullTextIndexStatement();
             ret.OnName = (ScriptDom.SchemaObjectName)onName?.ToMutable();
-            ret.FullTextIndexColumns.AddRange(fullTextIndexColumns.SelectList(c => (ScriptDom.FullTextIndexColumn)c?.ToMutable()));
+            ret.FullTextIndexColumns.AddRange(fullTextIndexColumns.Select(c => (ScriptDom.FullTextIndexColumn)c?.ToMutable()));
             ret.KeyIndexName = (ScriptDom.Identifier)keyIndexName?.ToMutable();
             ret.CatalogAndFileGroup = (ScriptDom.FullTextCatalogAndFileGroup)catalogAndFileGroup?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextIndexOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.FullTextIndexOption)c?.ToMutable()));
             return ret;
         }
         
@@ -122,10 +122,10 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateFullTextIndexStatement)) { throw new NotImplementedException("Unexpected subtype of CreateFullTextIndexStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateFullTextIndexStatement(
                 onName: ImmutableDom.SchemaObjectName.FromMutable(fragment.OnName),
-                fullTextIndexColumns: fragment.FullTextIndexColumns.SelectList(ImmutableDom.FullTextIndexColumn.FromMutable),
+                fullTextIndexColumns: fragment.FullTextIndexColumns.ToImmArray(ImmutableDom.FullTextIndexColumn.FromMutable),
                 keyIndexName: ImmutableDom.Identifier.FromMutable(fragment.KeyIndexName),
                 catalogAndFileGroup: ImmutableDom.FullTextCatalogAndFileGroup.FromMutable(fragment.CatalogAndFileGroup),
-                options: fragment.Options.SelectList(ImmutableDom.FullTextIndexOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.FullTextIndexOption.FromMutable)
             );
         }
     

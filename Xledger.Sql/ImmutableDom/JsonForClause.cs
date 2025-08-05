@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<JsonForClauseOption> Options => options;
     
         public JsonForClause(IReadOnlyList<JsonForClauseOption> options = null) {
-            this.options = ImmList<JsonForClauseOption>.FromList(options);
+            this.options = options.ToImmArray<JsonForClauseOption>();
         }
     
         public ScriptDom.JsonForClause ToMutableConcrete() {
             var ret = new ScriptDom.JsonForClause();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.JsonForClauseOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.JsonForClauseOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.JsonForClause)) { throw new NotImplementedException("Unexpected subtype of JsonForClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new JsonForClause(
-                options: fragment.Options.SelectList(ImmutableDom.JsonForClauseOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.JsonForClauseOption.FromMutable)
             );
         }
     

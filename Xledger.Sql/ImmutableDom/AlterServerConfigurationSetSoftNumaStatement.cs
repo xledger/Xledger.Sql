@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationSoftNumaOption> Options => options;
     
         public AlterServerConfigurationSetSoftNumaStatement(IReadOnlyList<AlterServerConfigurationSoftNumaOption> options = null) {
-            this.options = ImmList<AlterServerConfigurationSoftNumaOption>.FromList(options);
+            this.options = options.ToImmArray<AlterServerConfigurationSoftNumaOption>();
         }
     
         public ScriptDom.AlterServerConfigurationSetSoftNumaStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetSoftNumaStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationSoftNumaOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationSoftNumaOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationSetSoftNumaStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetSoftNumaStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetSoftNumaStatement(
-                options: fragment.Options.SelectList(ImmutableDom.AlterServerConfigurationSoftNumaOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AlterServerConfigurationSoftNumaOption.FromMutable)
             );
         }
     

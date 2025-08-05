@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -18,14 +18,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CommonTableExpression(Identifier expressionName = null, IReadOnlyList<Identifier> columns = null, QueryExpression queryExpression = null) {
             this.expressionName = expressionName;
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.columns = columns.ToImmArray<Identifier>();
             this.queryExpression = queryExpression;
         }
     
         public ScriptDom.CommonTableExpression ToMutableConcrete() {
             var ret = new ScriptDom.CommonTableExpression();
             ret.ExpressionName = (ScriptDom.Identifier)expressionName?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression?.ToMutable();
             return ret;
         }
@@ -100,7 +100,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CommonTableExpression)) { throw new NotImplementedException("Unexpected subtype of CommonTableExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CommonTableExpression(
                 expressionName: ImmutableDom.Identifier.FromMutable(fragment.ExpressionName),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 queryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.QueryExpression)
             );
         }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,9 +17,9 @@ namespace Xledger.Sql.ImmutableDom {
         public RevokeStatement(bool grantOptionFor = false, bool cascadeOption = false, IReadOnlyList<Permission> permissions = null, SecurityTargetObject securityTargetObject = null, IReadOnlyList<SecurityPrincipal> principals = null, Identifier asClause = null) {
             this.grantOptionFor = grantOptionFor;
             this.cascadeOption = cascadeOption;
-            this.permissions = ImmList<Permission>.FromList(permissions);
+            this.permissions = permissions.ToImmArray<Permission>();
             this.securityTargetObject = securityTargetObject;
-            this.principals = ImmList<SecurityPrincipal>.FromList(principals);
+            this.principals = principals.ToImmArray<SecurityPrincipal>();
             this.asClause = asClause;
         }
     
@@ -27,9 +27,9 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.RevokeStatement();
             ret.GrantOptionFor = grantOptionFor;
             ret.CascadeOption = cascadeOption;
-            ret.Permissions.AddRange(permissions.SelectList(c => (ScriptDom.Permission)c?.ToMutable()));
+            ret.Permissions.AddRange(permissions.Select(c => (ScriptDom.Permission)c?.ToMutable()));
             ret.SecurityTargetObject = (ScriptDom.SecurityTargetObject)securityTargetObject?.ToMutable();
-            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c?.ToMutable()));
+            ret.Principals.AddRange(principals.Select(c => (ScriptDom.SecurityPrincipal)c?.ToMutable()));
             ret.AsClause = (ScriptDom.Identifier)asClause?.ToMutable();
             return ret;
         }
@@ -123,9 +123,9 @@ namespace Xledger.Sql.ImmutableDom {
             return new RevokeStatement(
                 grantOptionFor: fragment.GrantOptionFor,
                 cascadeOption: fragment.CascadeOption,
-                permissions: fragment.Permissions.SelectList(ImmutableDom.Permission.FromMutable),
+                permissions: fragment.Permissions.ToImmArray(ImmutableDom.Permission.FromMutable),
                 securityTargetObject: ImmutableDom.SecurityTargetObject.FromMutable(fragment.SecurityTargetObject),
-                principals: fragment.Principals.SelectList(ImmutableDom.SecurityPrincipal.FromMutable),
+                principals: fragment.Principals.ToImmArray(ImmutableDom.SecurityPrincipal.FromMutable),
                 asClause: ImmutableDom.Identifier.FromMutable(fragment.AsClause)
             );
         }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public FullTextPredicate(ScriptDom.FullTextFunctionType fullTextFunctionType = ScriptDom.FullTextFunctionType.None, IReadOnlyList<ColumnReferenceExpression> columns = null, ValueExpression @value = null, ValueExpression languageTerm = null, StringLiteral propertyName = null) {
             this.fullTextFunctionType = fullTextFunctionType;
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
             this.@value = @value;
             this.languageTerm = languageTerm;
             this.propertyName = propertyName;
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FullTextPredicate ToMutableConcrete() {
             var ret = new ScriptDom.FullTextPredicate();
             ret.FullTextFunctionType = fullTextFunctionType;
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.Value = (ScriptDom.ValueExpression)@value?.ToMutable();
             ret.LanguageTerm = (ScriptDom.ValueExpression)languageTerm?.ToMutable();
             ret.PropertyName = (ScriptDom.StringLiteral)propertyName?.ToMutable();
@@ -122,7 +122,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.FullTextPredicate)) { throw new NotImplementedException("Unexpected subtype of FullTextPredicate not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FullTextPredicate(
                 fullTextFunctionType: fragment.FullTextFunctionType,
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 @value: ImmutableDom.ValueExpression.FromMutable(fragment.Value),
                 languageTerm: ImmutableDom.ValueExpression.FromMutable(fragment.LanguageTerm),
                 propertyName: ImmutableDom.StringLiteral.FromMutable(fragment.PropertyName)

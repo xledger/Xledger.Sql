@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ColumnReferenceExpression> Columns => columns;
     
         public UpdateForClause(IReadOnlyList<ColumnReferenceExpression> columns = null) {
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
         }
     
         public ScriptDom.UpdateForClause ToMutableConcrete() {
             var ret = new ScriptDom.UpdateForClause();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.UpdateForClause)) { throw new NotImplementedException("Unexpected subtype of UpdateForClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateForClause(
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable)
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable)
             );
         }
     

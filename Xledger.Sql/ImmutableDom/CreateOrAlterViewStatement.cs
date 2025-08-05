@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,8 +10,8 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateOrAlterViewStatement : ViewStatementBody, IEquatable<CreateOrAlterViewStatement> {
         public CreateOrAlterViewStatement(SchemaObjectName schemaObjectName = null, IReadOnlyList<Identifier> columns = null, IReadOnlyList<ViewOption> viewOptions = null, SelectStatement selectStatement = null, bool withCheckOption = false, bool isMaterialized = false) {
             this.schemaObjectName = schemaObjectName;
-            this.columns = ImmList<Identifier>.FromList(columns);
-            this.viewOptions = ImmList<ViewOption>.FromList(viewOptions);
+            this.columns = columns.ToImmArray<Identifier>();
+            this.viewOptions = viewOptions.ToImmArray<ViewOption>();
             this.selectStatement = selectStatement;
             this.withCheckOption = withCheckOption;
             this.isMaterialized = isMaterialized;
@@ -20,8 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.CreateOrAlterViewStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateOrAlterViewStatement();
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
-            ret.ViewOptions.AddRange(viewOptions.SelectList(c => (ScriptDom.ViewOption)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.ViewOptions.AddRange(viewOptions.Select(c => (ScriptDom.ViewOption)c?.ToMutable()));
             ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement?.ToMutable();
             ret.WithCheckOption = withCheckOption;
             ret.IsMaterialized = isMaterialized;
@@ -116,8 +116,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateOrAlterViewStatement)) { throw new NotImplementedException("Unexpected subtype of CreateOrAlterViewStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateOrAlterViewStatement(
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
-                viewOptions: fragment.ViewOptions.SelectList(ImmutableDom.ViewOption.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
+                viewOptions: fragment.ViewOptions.ToImmArray(ImmutableDom.ViewOption.FromMutable),
                 selectStatement: ImmutableDom.SelectStatement.FromMutable(fragment.SelectStatement),
                 withCheckOption: fragment.WithCheckOption,
                 isMaterialized: fragment.IsMaterialized

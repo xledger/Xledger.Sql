@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsIfExists => isIfExists;
     
         public DropDatabaseStatement(IReadOnlyList<Identifier> databases = null, bool isIfExists = false) {
-            this.databases = ImmList<Identifier>.FromList(databases);
+            this.databases = databases.ToImmArray<Identifier>();
             this.isIfExists = isIfExists;
         }
     
         public ScriptDom.DropDatabaseStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropDatabaseStatement();
-            ret.Databases.AddRange(databases.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Databases.AddRange(databases.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.DropDatabaseStatement)) { throw new NotImplementedException("Unexpected subtype of DropDatabaseStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropDatabaseStatement(
-                databases: fragment.Databases.SelectList(ImmutableDom.Identifier.FromMutable),
+                databases: fragment.Databases.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }

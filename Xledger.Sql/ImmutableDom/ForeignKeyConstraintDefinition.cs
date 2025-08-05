@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -25,9 +25,9 @@ namespace Xledger.Sql.ImmutableDom {
         public bool? IsEnforced => isEnforced;
     
         public ForeignKeyConstraintDefinition(IReadOnlyList<Identifier> columns = null, SchemaObjectName referenceTableName = null, IReadOnlyList<Identifier> referencedTableColumns = null, ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified, ScriptDom.DeleteUpdateAction updateAction = ScriptDom.DeleteUpdateAction.NotSpecified, bool notForReplication = false, bool? isEnforced = null, Identifier constraintIdentifier = null) {
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.columns = columns.ToImmArray<Identifier>();
             this.referenceTableName = referenceTableName;
-            this.referencedTableColumns = ImmList<Identifier>.FromList(referencedTableColumns);
+            this.referencedTableColumns = referencedTableColumns.ToImmArray<Identifier>();
             this.deleteAction = deleteAction;
             this.updateAction = updateAction;
             this.notForReplication = notForReplication;
@@ -37,9 +37,9 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.ForeignKeyConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.ForeignKeyConstraintDefinition();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.ReferenceTableName = (ScriptDom.SchemaObjectName)referenceTableName?.ToMutable();
-            ret.ReferencedTableColumns.AddRange(referencedTableColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.ReferencedTableColumns.AddRange(referencedTableColumns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.DeleteAction = deleteAction;
             ret.UpdateAction = updateAction;
             ret.NotForReplication = notForReplication;
@@ -147,9 +147,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.ForeignKeyConstraintDefinition)) { throw new NotImplementedException("Unexpected subtype of ForeignKeyConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ForeignKeyConstraintDefinition(
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 referenceTableName: ImmutableDom.SchemaObjectName.FromMutable(fragment.ReferenceTableName),
-                referencedTableColumns: fragment.ReferencedTableColumns.SelectList(ImmutableDom.Identifier.FromMutable),
+                referencedTableColumns: fragment.ReferencedTableColumns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 deleteAction: fragment.DeleteAction,
                 updateAction: fragment.UpdateAction,
                 notForReplication: fragment.NotForReplication,

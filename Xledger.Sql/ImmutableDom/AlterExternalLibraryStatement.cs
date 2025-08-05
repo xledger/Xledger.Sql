@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.owner = owner;
             this.name = name;
             this.language = language;
-            this.externalLibraryFiles = ImmList<ExternalLibraryFileOption>.FromList(externalLibraryFiles);
+            this.externalLibraryFiles = externalLibraryFiles.ToImmArray<ExternalLibraryFileOption>();
         }
     
         public ScriptDom.AlterExternalLibraryStatement ToMutableConcrete() {
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.Language = (ScriptDom.StringLiteral)language?.ToMutable();
-            ret.ExternalLibraryFiles.AddRange(externalLibraryFiles.SelectList(c => (ScriptDom.ExternalLibraryFileOption)c?.ToMutable()));
+            ret.ExternalLibraryFiles.AddRange(externalLibraryFiles.Select(c => (ScriptDom.ExternalLibraryFileOption)c?.ToMutable()));
             return ret;
         }
         
@@ -108,7 +108,7 @@ namespace Xledger.Sql.ImmutableDom {
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 language: ImmutableDom.StringLiteral.FromMutable(fragment.Language),
-                externalLibraryFiles: fragment.ExternalLibraryFiles.SelectList(ImmutableDom.ExternalLibraryFileOption.FromMutable)
+                externalLibraryFiles: fragment.ExternalLibraryFiles.ToImmArray(ImmutableDom.ExternalLibraryFileOption.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -11,9 +11,9 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterTriggerStatement(SchemaObjectName name = null, TriggerObject triggerObject = null, IReadOnlyList<TriggerOption> options = null, ScriptDom.TriggerType triggerType = ScriptDom.TriggerType.Unknown, IReadOnlyList<TriggerAction> triggerActions = null, bool withAppend = false, bool isNotForReplication = false, StatementList statementList = null, MethodSpecifier methodSpecifier = null) {
             this.name = name;
             this.triggerObject = triggerObject;
-            this.options = ImmList<TriggerOption>.FromList(options);
+            this.options = options.ToImmArray<TriggerOption>();
             this.triggerType = triggerType;
-            this.triggerActions = ImmList<TriggerAction>.FromList(triggerActions);
+            this.triggerActions = triggerActions.ToImmArray<TriggerAction>();
             this.withAppend = withAppend;
             this.isNotForReplication = isNotForReplication;
             this.statementList = statementList;
@@ -24,9 +24,9 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTriggerStatement();
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.TriggerObject = (ScriptDom.TriggerObject)triggerObject?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TriggerOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.TriggerOption)c?.ToMutable()));
             ret.TriggerType = triggerType;
-            ret.TriggerActions.AddRange(triggerActions.SelectList(c => (ScriptDom.TriggerAction)c?.ToMutable()));
+            ret.TriggerActions.AddRange(triggerActions.Select(c => (ScriptDom.TriggerAction)c?.ToMutable()));
             ret.WithAppend = withAppend;
             ret.IsNotForReplication = isNotForReplication;
             ret.StatementList = (ScriptDom.StatementList)statementList?.ToMutable();
@@ -145,9 +145,9 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterTriggerStatement(
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
                 triggerObject: ImmutableDom.TriggerObject.FromMutable(fragment.TriggerObject),
-                options: fragment.Options.SelectList(ImmutableDom.TriggerOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.TriggerOption.FromMutable),
                 triggerType: fragment.TriggerType,
-                triggerActions: fragment.TriggerActions.SelectList(ImmutableDom.TriggerAction.FromMutable),
+                triggerActions: fragment.TriggerActions.ToImmArray(ImmutableDom.TriggerAction.FromMutable),
                 withAppend: fragment.WithAppend,
                 isNotForReplication: fragment.IsNotForReplication,
                 statementList: ImmutableDom.StatementList.FromMutable(fragment.StatementList),

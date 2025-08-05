@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -25,7 +25,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.modelSubquery = modelSubquery;
             this.dataSource = dataSource;
             this.runTime = runTime;
-            this.schemaDeclarationItems = ImmList<SchemaDeclarationItem>.FromList(schemaDeclarationItems);
+            this.schemaDeclarationItems = schemaDeclarationItems.ToImmArray<SchemaDeclarationItem>();
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -36,7 +36,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.ModelSubquery = (ScriptDom.ScalarSubquery)modelSubquery?.ToMutable();
             ret.DataSource = (ScriptDom.TableReferenceWithAlias)dataSource?.ToMutable();
             ret.RunTime = (ScriptDom.Identifier)runTime?.ToMutable();
-            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.SelectList(c => (ScriptDom.SchemaDeclarationItem)c?.ToMutable()));
+            ret.SchemaDeclarationItems.AddRange(schemaDeclarationItems.Select(c => (ScriptDom.SchemaDeclarationItem)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -145,7 +145,7 @@ namespace Xledger.Sql.ImmutableDom {
                 modelSubquery: ImmutableDom.ScalarSubquery.FromMutable(fragment.ModelSubquery),
                 dataSource: ImmutableDom.TableReferenceWithAlias.FromMutable(fragment.DataSource),
                 runTime: ImmutableDom.Identifier.FromMutable(fragment.RunTime),
-                schemaDeclarationItems: fragment.SchemaDeclarationItems.SelectList(ImmutableDom.SchemaDeclarationItem.FromMutable),
+                schemaDeclarationItems: fragment.SchemaDeclarationItems.ToImmArray(ImmutableDom.SchemaDeclarationItem.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

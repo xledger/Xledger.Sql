@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterTableAlterIndexStatement(Identifier indexIdentifier = null, ScriptDom.AlterIndexType alterIndexType = ScriptDom.AlterIndexType.Rebuild, IReadOnlyList<IndexOption> indexOptions = null, SchemaObjectName schemaObjectName = null) {
             this.indexIdentifier = indexIdentifier;
             this.alterIndexType = alterIndexType;
-            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = indexOptions.ToImmArray<IndexOption>();
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTableAlterIndexStatement();
             ret.IndexIdentifier = (ScriptDom.Identifier)indexIdentifier?.ToMutable();
             ret.AlterIndexType = alterIndexType;
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c?.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
@@ -109,7 +109,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterTableAlterIndexStatement(
                 indexIdentifier: ImmutableDom.Identifier.FromMutable(fragment.IndexIdentifier),
                 alterIndexType: fragment.AlterIndexType,
-                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable),
+                indexOptions: fragment.IndexOptions.ToImmArray(ImmutableDom.IndexOption.FromMutable),
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
             );
         }

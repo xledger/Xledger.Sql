@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,16 +17,16 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ColumnReferenceExpression> IntoTableColumns => intoTableColumns;
     
         public OutputIntoClause(IReadOnlyList<SelectElement> selectColumns = null, TableReference intoTable = null, IReadOnlyList<ColumnReferenceExpression> intoTableColumns = null) {
-            this.selectColumns = ImmList<SelectElement>.FromList(selectColumns);
+            this.selectColumns = selectColumns.ToImmArray<SelectElement>();
             this.intoTable = intoTable;
-            this.intoTableColumns = ImmList<ColumnReferenceExpression>.FromList(intoTableColumns);
+            this.intoTableColumns = intoTableColumns.ToImmArray<ColumnReferenceExpression>();
         }
     
         public ScriptDom.OutputIntoClause ToMutableConcrete() {
             var ret = new ScriptDom.OutputIntoClause();
-            ret.SelectColumns.AddRange(selectColumns.SelectList(c => (ScriptDom.SelectElement)c?.ToMutable()));
+            ret.SelectColumns.AddRange(selectColumns.Select(c => (ScriptDom.SelectElement)c?.ToMutable()));
             ret.IntoTable = (ScriptDom.TableReference)intoTable?.ToMutable();
-            ret.IntoTableColumns.AddRange(intoTableColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.IntoTableColumns.AddRange(intoTableColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -97,9 +97,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.OutputIntoClause)) { throw new NotImplementedException("Unexpected subtype of OutputIntoClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OutputIntoClause(
-                selectColumns: fragment.SelectColumns.SelectList(ImmutableDom.SelectElement.FromMutable),
+                selectColumns: fragment.SelectColumns.ToImmArray(ImmutableDom.SelectElement.FromMutable),
                 intoTable: ImmutableDom.TableReference.FromMutable(fragment.IntoTable),
-                intoTableColumns: fragment.IntoTableColumns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable)
+                intoTableColumns: fragment.IntoTableColumns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterTableDropTableElement> AlterTableDropTableElements => alterTableDropTableElements;
     
         public AlterTableDropTableElementStatement(IReadOnlyList<AlterTableDropTableElement> alterTableDropTableElements = null, SchemaObjectName schemaObjectName = null) {
-            this.alterTableDropTableElements = ImmList<AlterTableDropTableElement>.FromList(alterTableDropTableElements);
+            this.alterTableDropTableElements = alterTableDropTableElements.ToImmArray<AlterTableDropTableElement>();
             this.schemaObjectName = schemaObjectName;
         }
     
         public ScriptDom.AlterTableDropTableElementStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableDropTableElementStatement();
-            ret.AlterTableDropTableElements.AddRange(alterTableDropTableElements.SelectList(c => (ScriptDom.AlterTableDropTableElement)c?.ToMutable()));
+            ret.AlterTableDropTableElements.AddRange(alterTableDropTableElements.Select(c => (ScriptDom.AlterTableDropTableElement)c?.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterTableDropTableElementStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableDropTableElementStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableDropTableElementStatement(
-                alterTableDropTableElements: fragment.AlterTableDropTableElements.SelectList(ImmutableDom.AlterTableDropTableElement.FromMutable),
+                alterTableDropTableElements: fragment.AlterTableDropTableElements.ToImmArray(ImmutableDom.AlterTableDropTableElement.FromMutable),
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
             );
         }

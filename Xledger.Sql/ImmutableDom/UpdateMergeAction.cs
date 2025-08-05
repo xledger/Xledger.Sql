@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SetClause> SetClauses => setClauses;
     
         public UpdateMergeAction(IReadOnlyList<SetClause> setClauses = null) {
-            this.setClauses = ImmList<SetClause>.FromList(setClauses);
+            this.setClauses = setClauses.ToImmArray<SetClause>();
         }
     
         public ScriptDom.UpdateMergeAction ToMutableConcrete() {
             var ret = new ScriptDom.UpdateMergeAction();
-            ret.SetClauses.AddRange(setClauses.SelectList(c => (ScriptDom.SetClause)c?.ToMutable()));
+            ret.SetClauses.AddRange(setClauses.Select(c => (ScriptDom.SetClause)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.UpdateMergeAction)) { throw new NotImplementedException("Unexpected subtype of UpdateMergeAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateMergeAction(
-                setClauses: fragment.SetClauses.SelectList(ImmutableDom.SetClause.FromMutable)
+                setClauses: fragment.SetClauses.ToImmArray(ImmutableDom.SetClause.FromMutable)
             );
         }
     

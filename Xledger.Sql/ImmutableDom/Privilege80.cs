@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.PrivilegeType80 PrivilegeType80 => privilegeType80;
     
         public Privilege80(IReadOnlyList<Identifier> columns = null, ScriptDom.PrivilegeType80 privilegeType80 = ScriptDom.PrivilegeType80.All) {
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.columns = columns.ToImmArray<Identifier>();
             this.privilegeType80 = privilegeType80;
         }
     
         public ScriptDom.Privilege80 ToMutableConcrete() {
             var ret = new ScriptDom.Privilege80();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.PrivilegeType80 = privilegeType80;
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.Privilege80)) { throw new NotImplementedException("Unexpected subtype of Privilege80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new Privilege80(
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 privilegeType80: fragment.PrivilegeType80
             );
         }

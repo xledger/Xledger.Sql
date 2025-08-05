@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterServerAuditSpecificationStatement : AuditSpecificationStatement, IEquatable<AlterServerAuditSpecificationStatement> {
         public AlterServerAuditSpecificationStatement(ScriptDom.OptionState auditState = ScriptDom.OptionState.NotSet, IReadOnlyList<AuditSpecificationPart> parts = null, Identifier specificationName = null, Identifier auditName = null) {
             this.auditState = auditState;
-            this.parts = ImmList<AuditSpecificationPart>.FromList(parts);
+            this.parts = parts.ToImmArray<AuditSpecificationPart>();
             this.specificationName = specificationName;
             this.auditName = auditName;
         }
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterServerAuditSpecificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerAuditSpecificationStatement();
             ret.AuditState = auditState;
-            ret.Parts.AddRange(parts.SelectList(c => (ScriptDom.AuditSpecificationPart)c?.ToMutable()));
+            ret.Parts.AddRange(parts.Select(c => (ScriptDom.AuditSpecificationPart)c?.ToMutable()));
             ret.SpecificationName = (ScriptDom.Identifier)specificationName?.ToMutable();
             ret.AuditName = (ScriptDom.Identifier)auditName?.ToMutable();
             return ret;
@@ -100,7 +100,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AlterServerAuditSpecificationStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerAuditSpecificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerAuditSpecificationStatement(
                 auditState: fragment.AuditState,
-                parts: fragment.Parts.SelectList(ImmutableDom.AuditSpecificationPart.FromMutable),
+                parts: fragment.Parts.ToImmArray(ImmutableDom.AuditSpecificationPart.FromMutable),
                 specificationName: ImmutableDom.Identifier.FromMutable(fragment.SpecificationName),
                 auditName: ImmutableDom.Identifier.FromMutable(fragment.AuditName)
             );

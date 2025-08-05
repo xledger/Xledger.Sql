@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.tableAlias = tableAlias;
             this.tableReference = tableReference;
             this.searchCondition = searchCondition;
-            this.actionClauses = ImmList<MergeActionClause>.FromList(actionClauses);
+            this.actionClauses = actionClauses.ToImmArray<MergeActionClause>();
             this.target = target;
             this.topRowFilter = topRowFilter;
             this.outputIntoClause = outputIntoClause;
@@ -34,7 +34,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.TableAlias = (ScriptDom.Identifier)tableAlias?.ToMutable();
             ret.TableReference = (ScriptDom.TableReference)tableReference?.ToMutable();
             ret.SearchCondition = (ScriptDom.BooleanExpression)searchCondition?.ToMutable();
-            ret.ActionClauses.AddRange(actionClauses.SelectList(c => (ScriptDom.MergeActionClause)c?.ToMutable()));
+            ret.ActionClauses.AddRange(actionClauses.Select(c => (ScriptDom.MergeActionClause)c?.ToMutable()));
             ret.Target = (ScriptDom.TableReference)target?.ToMutable();
             ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter?.ToMutable();
             ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause?.ToMutable();
@@ -154,7 +154,7 @@ namespace Xledger.Sql.ImmutableDom {
                 tableAlias: ImmutableDom.Identifier.FromMutable(fragment.TableAlias),
                 tableReference: ImmutableDom.TableReference.FromMutable(fragment.TableReference),
                 searchCondition: ImmutableDom.BooleanExpression.FromMutable(fragment.SearchCondition),
-                actionClauses: fragment.ActionClauses.SelectList(ImmutableDom.MergeActionClause.FromMutable),
+                actionClauses: fragment.ActionClauses.ToImmArray(ImmutableDom.MergeActionClause.FromMutable),
                 target: ImmutableDom.TableReference.FromMutable(fragment.Target),
                 topRowFilter: ImmutableDom.TopRowFilter.FromMutable(fragment.TopRowFilter),
                 outputIntoClause: ImmutableDom.OutputIntoClause.FromMutable(fragment.OutputIntoClause),

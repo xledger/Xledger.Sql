@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TablePartitionOptionSpecifications(ScriptDom.PartitionTableOptionRange range = ScriptDom.PartitionTableOptionRange.NotSpecified, IReadOnlyList<ScalarExpression> boundaryValues = null) {
             this.range = range;
-            this.boundaryValues = ImmList<ScalarExpression>.FromList(boundaryValues);
+            this.boundaryValues = boundaryValues.ToImmArray<ScalarExpression>();
         }
     
         public ScriptDom.TablePartitionOptionSpecifications ToMutableConcrete() {
             var ret = new ScriptDom.TablePartitionOptionSpecifications();
             ret.Range = range;
-            ret.BoundaryValues.AddRange(boundaryValues.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.BoundaryValues.AddRange(boundaryValues.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -86,7 +86,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.TablePartitionOptionSpecifications)) { throw new NotImplementedException("Unexpected subtype of TablePartitionOptionSpecifications not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TablePartitionOptionSpecifications(
                 range: fragment.Range,
-                boundaryValues: fragment.BoundaryValues.SelectList(ImmutableDom.ScalarExpression.FromMutable)
+                boundaryValues: fragment.BoundaryValues.ToImmArray(ImmutableDom.ScalarExpression.FromMutable)
             );
         }
     

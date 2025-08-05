@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SelectElement> SelectColumns => selectColumns;
     
         public OutputClause(IReadOnlyList<SelectElement> selectColumns = null) {
-            this.selectColumns = ImmList<SelectElement>.FromList(selectColumns);
+            this.selectColumns = selectColumns.ToImmArray<SelectElement>();
         }
     
         public ScriptDom.OutputClause ToMutableConcrete() {
             var ret = new ScriptDom.OutputClause();
-            ret.SelectColumns.AddRange(selectColumns.SelectList(c => (ScriptDom.SelectElement)c?.ToMutable()));
+            ret.SelectColumns.AddRange(selectColumns.Select(c => (ScriptDom.SelectElement)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.OutputClause)) { throw new NotImplementedException("Unexpected subtype of OutputClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OutputClause(
-                selectColumns: fragment.SelectColumns.SelectList(ImmutableDom.SelectElement.FromMutable)
+                selectColumns: fragment.SelectColumns.ToImmArray(ImmutableDom.SelectElement.FromMutable)
             );
         }
     

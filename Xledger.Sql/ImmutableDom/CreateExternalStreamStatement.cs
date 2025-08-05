@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.location = location;
             this.inputOptions = inputOptions;
             this.outputOptions = outputOptions;
-            this.externalStreamOptions = ImmList<ExternalStreamOption>.FromList(externalStreamOptions);
+            this.externalStreamOptions = externalStreamOptions.ToImmArray<ExternalStreamOption>();
         }
     
         public ScriptDom.CreateExternalStreamStatement ToMutableConcrete() {
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Location = (ScriptDom.Literal)location?.ToMutable();
             ret.InputOptions = (ScriptDom.Literal)inputOptions?.ToMutable();
             ret.OutputOptions = (ScriptDom.Literal)outputOptions?.ToMutable();
-            ret.ExternalStreamOptions.AddRange(externalStreamOptions.SelectList(c => (ScriptDom.ExternalStreamOption)c?.ToMutable()));
+            ret.ExternalStreamOptions.AddRange(externalStreamOptions.Select(c => (ScriptDom.ExternalStreamOption)c?.ToMutable()));
             return ret;
         }
         
@@ -115,7 +115,7 @@ namespace Xledger.Sql.ImmutableDom {
                 location: ImmutableDom.Literal.FromMutable(fragment.Location),
                 inputOptions: ImmutableDom.Literal.FromMutable(fragment.InputOptions),
                 outputOptions: ImmutableDom.Literal.FromMutable(fragment.OutputOptions),
-                externalStreamOptions: fragment.ExternalStreamOptions.SelectList(ImmutableDom.ExternalStreamOption.FromMutable)
+                externalStreamOptions: fragment.ExternalStreamOptions.ToImmArray(ImmutableDom.ExternalStreamOption.FromMutable)
             );
         }
     

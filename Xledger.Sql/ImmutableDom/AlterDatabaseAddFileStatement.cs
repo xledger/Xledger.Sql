@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,7 +17,7 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsLog => isLog;
     
         public AlterDatabaseAddFileStatement(IReadOnlyList<FileDeclaration> fileDeclarations = null, Identifier fileGroup = null, bool isLog = false, Identifier databaseName = null, bool useCurrent = false) {
-            this.fileDeclarations = ImmList<FileDeclaration>.FromList(fileDeclarations);
+            this.fileDeclarations = fileDeclarations.ToImmArray<FileDeclaration>();
             this.fileGroup = fileGroup;
             this.isLog = isLog;
             this.databaseName = databaseName;
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.AlterDatabaseAddFileStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseAddFileStatement();
-            ret.FileDeclarations.AddRange(fileDeclarations.SelectList(c => (ScriptDom.FileDeclaration)c?.ToMutable()));
+            ret.FileDeclarations.AddRange(fileDeclarations.Select(c => (ScriptDom.FileDeclaration)c?.ToMutable()));
             ret.FileGroup = (ScriptDom.Identifier)fileGroup?.ToMutable();
             ret.IsLog = isLog;
             ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
@@ -115,7 +115,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterDatabaseAddFileStatement)) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseAddFileStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseAddFileStatement(
-                fileDeclarations: fragment.FileDeclarations.SelectList(ImmutableDom.FileDeclaration.FromMutable),
+                fileDeclarations: fragment.FileDeclarations.ToImmArray(ImmutableDom.FileDeclaration.FromMutable),
                 fileGroup: ImmutableDom.Identifier.FromMutable(fragment.FileGroup),
                 isLog: fragment.IsLog,
                 databaseName: ImmutableDom.Identifier.FromMutable(fragment.DatabaseName),

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -11,7 +11,7 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateServerAuditStatement(Identifier auditName = null, AuditTarget auditTarget = null, IReadOnlyList<AuditOption> options = null, BooleanExpression predicateExpression = null) {
             this.auditName = auditName;
             this.auditTarget = auditTarget;
-            this.options = ImmList<AuditOption>.FromList(options);
+            this.options = options.ToImmArray<AuditOption>();
             this.predicateExpression = predicateExpression;
         }
     
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateServerAuditStatement();
             ret.AuditName = (ScriptDom.Identifier)auditName?.ToMutable();
             ret.AuditTarget = (ScriptDom.AuditTarget)auditTarget?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AuditOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AuditOption)c?.ToMutable()));
             ret.PredicateExpression = (ScriptDom.BooleanExpression)predicateExpression?.ToMutable();
             return ret;
         }
@@ -103,7 +103,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateServerAuditStatement(
                 auditName: ImmutableDom.Identifier.FromMutable(fragment.AuditName),
                 auditTarget: ImmutableDom.AuditTarget.FromMutable(fragment.AuditTarget),
-                options: fragment.Options.SelectList(ImmutableDom.AuditOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.AuditOption.FromMutable),
                 predicateExpression: ImmutableDom.BooleanExpression.FromMutable(fragment.PredicateExpression)
             );
         }

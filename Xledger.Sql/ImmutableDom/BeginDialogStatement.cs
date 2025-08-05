@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.targetServiceName = targetServiceName;
             this.instanceSpec = instanceSpec;
             this.contractName = contractName;
-            this.options = ImmList<DialogOption>.FromList(options);
+            this.options = options.ToImmArray<DialogOption>();
         }
     
         public ScriptDom.BeginDialogStatement ToMutableConcrete() {
@@ -42,7 +42,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.TargetServiceName = (ScriptDom.ValueExpression)targetServiceName?.ToMutable();
             ret.InstanceSpec = (ScriptDom.ValueExpression)instanceSpec?.ToMutable();
             ret.ContractName = (ScriptDom.IdentifierOrValueExpression)contractName?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DialogOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.DialogOption)c?.ToMutable()));
             return ret;
         }
         
@@ -151,7 +151,7 @@ namespace Xledger.Sql.ImmutableDom {
                 targetServiceName: ImmutableDom.ValueExpression.FromMutable(fragment.TargetServiceName),
                 instanceSpec: ImmutableDom.ValueExpression.FromMutable(fragment.InstanceSpec),
                 contractName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.ContractName),
-                options: fragment.Options.SelectList(ImmutableDom.DialogOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.DialogOption.FromMutable)
             );
         }
     

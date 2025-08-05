@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<Identifier> Identifiers => identifiers;
     
         public MultiPartIdentifier(IReadOnlyList<Identifier> identifiers = null) {
-            this.identifiers = ImmList<Identifier>.FromList(identifiers);
+            this.identifiers = identifiers.ToImmArray<Identifier>();
         }
     
         public ScriptDom.MultiPartIdentifier ToMutableConcrete() {
             var ret = new ScriptDom.MultiPartIdentifier();
-            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Identifiers.AddRange(identifiers.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.MultiPartIdentifier)) { return TSqlFragment.FromMutable(fragment) as MultiPartIdentifier; }
             return new MultiPartIdentifier(
-                identifiers: fragment.Identifiers.SelectList(ImmutableDom.Identifier.FromMutable)
+                identifiers: fragment.Identifiers.ToImmArray(ImmutableDom.Identifier.FromMutable)
             );
         }
     

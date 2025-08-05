@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,18 +10,18 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateExternalTableStatement : ExternalTableStatement, IEquatable<CreateExternalTableStatement> {
         public CreateExternalTableStatement(SchemaObjectName schemaObjectName = null, IReadOnlyList<ExternalTableColumnDefinition> columnDefinitions = null, Identifier dataSource = null, IReadOnlyList<ExternalTableOption> externalTableOptions = null, SelectStatement selectStatement = null) {
             this.schemaObjectName = schemaObjectName;
-            this.columnDefinitions = ImmList<ExternalTableColumnDefinition>.FromList(columnDefinitions);
+            this.columnDefinitions = columnDefinitions.ToImmArray<ExternalTableColumnDefinition>();
             this.dataSource = dataSource;
-            this.externalTableOptions = ImmList<ExternalTableOption>.FromList(externalTableOptions);
+            this.externalTableOptions = externalTableOptions.ToImmArray<ExternalTableOption>();
             this.selectStatement = selectStatement;
         }
     
         public ScriptDom.CreateExternalTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateExternalTableStatement();
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
-            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.ExternalTableColumnDefinition)c?.ToMutable()));
+            ret.ColumnDefinitions.AddRange(columnDefinitions.Select(c => (ScriptDom.ExternalTableColumnDefinition)c?.ToMutable()));
             ret.DataSource = (ScriptDom.Identifier)dataSource?.ToMutable();
-            ret.ExternalTableOptions.AddRange(externalTableOptions.SelectList(c => (ScriptDom.ExternalTableOption)c?.ToMutable()));
+            ret.ExternalTableOptions.AddRange(externalTableOptions.Select(c => (ScriptDom.ExternalTableOption)c?.ToMutable()));
             ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement?.ToMutable();
             return ret;
         }
@@ -110,9 +110,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateExternalTableStatement)) { throw new NotImplementedException("Unexpected subtype of CreateExternalTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateExternalTableStatement(
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
-                columnDefinitions: fragment.ColumnDefinitions.SelectList(ImmutableDom.ExternalTableColumnDefinition.FromMutable),
+                columnDefinitions: fragment.ColumnDefinitions.ToImmArray(ImmutableDom.ExternalTableColumnDefinition.FromMutable),
                 dataSource: ImmutableDom.Identifier.FromMutable(fragment.DataSource),
-                externalTableOptions: fragment.ExternalTableOptions.SelectList(ImmutableDom.ExternalTableOption.FromMutable),
+                externalTableOptions: fragment.ExternalTableOptions.ToImmArray(ImmutableDom.ExternalTableOption.FromMutable),
                 selectStatement: ImmutableDom.SelectStatement.FromMutable(fragment.SelectStatement)
             );
         }

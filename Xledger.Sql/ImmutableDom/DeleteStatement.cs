@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public DeleteStatement(DeleteSpecification deleteSpecification = null, WithCtesAndXmlNamespaces withCtesAndXmlNamespaces = null, IReadOnlyList<OptimizerHint> optimizerHints = null) {
             this.deleteSpecification = deleteSpecification;
             this.withCtesAndXmlNamespaces = withCtesAndXmlNamespaces;
-            this.optimizerHints = ImmList<OptimizerHint>.FromList(optimizerHints);
+            this.optimizerHints = optimizerHints.ToImmArray<OptimizerHint>();
         }
     
         public ScriptDom.DeleteStatement ToMutableConcrete() {
             var ret = new ScriptDom.DeleteStatement();
             ret.DeleteSpecification = (ScriptDom.DeleteSpecification)deleteSpecification?.ToMutable();
             ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces?.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
             return ret;
         }
         
@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new DeleteStatement(
                 deleteSpecification: ImmutableDom.DeleteSpecification.FromMutable(fragment.DeleteSpecification),
                 withCtesAndXmlNamespaces: ImmutableDom.WithCtesAndXmlNamespaces.FromMutable(fragment.WithCtesAndXmlNamespaces),
-                optimizerHints: fragment.OptimizerHints.SelectList(ImmutableDom.OptimizerHint.FromMutable)
+                optimizerHints: fragment.OptimizerHints.ToImmArray(ImmutableDom.OptimizerHint.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,13 +10,13 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterQueueStatement : QueueStatement, IEquatable<AlterQueueStatement> {
         public AlterQueueStatement(SchemaObjectName name = null, IReadOnlyList<QueueOption> queueOptions = null) {
             this.name = name;
-            this.queueOptions = ImmList<QueueOption>.FromList(queueOptions);
+            this.queueOptions = queueOptions.ToImmArray<QueueOption>();
         }
     
         public ScriptDom.AlterQueueStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterQueueStatement();
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
-            ret.QueueOptions.AddRange(queueOptions.SelectList(c => (ScriptDom.QueueOption)c?.ToMutable()));
+            ret.QueueOptions.AddRange(queueOptions.Select(c => (ScriptDom.QueueOption)c?.ToMutable()));
             return ret;
         }
         
@@ -82,7 +82,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AlterQueueStatement)) { throw new NotImplementedException("Unexpected subtype of AlterQueueStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterQueueStatement(
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
-                queueOptions: fragment.QueueOptions.SelectList(ImmutableDom.QueueOption.FromMutable)
+                queueOptions: fragment.QueueOptions.ToImmArray(ImmutableDom.QueueOption.FromMutable)
             );
         }
     

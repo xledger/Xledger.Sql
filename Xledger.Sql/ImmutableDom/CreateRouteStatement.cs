@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateRouteStatement(Identifier owner = null, Identifier name = null, IReadOnlyList<RouteOption> routeOptions = null) {
             this.owner = owner;
             this.name = name;
-            this.routeOptions = ImmList<RouteOption>.FromList(routeOptions);
+            this.routeOptions = routeOptions.ToImmArray<RouteOption>();
         }
     
         public ScriptDom.CreateRouteStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateRouteStatement();
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.RouteOptions.AddRange(routeOptions.SelectList(c => (ScriptDom.RouteOption)c?.ToMutable()));
+            ret.RouteOptions.AddRange(routeOptions.Select(c => (ScriptDom.RouteOption)c?.ToMutable()));
             return ret;
         }
         
@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateRouteStatement(
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                routeOptions: fragment.RouteOptions.SelectList(ImmutableDom.RouteOption.FromMutable)
+                routeOptions: fragment.RouteOptions.ToImmArray(ImmutableDom.RouteOption.FromMutable)
             );
         }
     

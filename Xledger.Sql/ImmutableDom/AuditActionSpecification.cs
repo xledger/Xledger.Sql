@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,15 +17,15 @@ namespace Xledger.Sql.ImmutableDom {
         public SecurityTargetObject TargetObject => targetObject;
     
         public AuditActionSpecification(IReadOnlyList<DatabaseAuditAction> actions = null, IReadOnlyList<SecurityPrincipal> principals = null, SecurityTargetObject targetObject = null) {
-            this.actions = ImmList<DatabaseAuditAction>.FromList(actions);
-            this.principals = ImmList<SecurityPrincipal>.FromList(principals);
+            this.actions = actions.ToImmArray<DatabaseAuditAction>();
+            this.principals = principals.ToImmArray<SecurityPrincipal>();
             this.targetObject = targetObject;
         }
     
         public ScriptDom.AuditActionSpecification ToMutableConcrete() {
             var ret = new ScriptDom.AuditActionSpecification();
-            ret.Actions.AddRange(actions.SelectList(c => (ScriptDom.DatabaseAuditAction)c?.ToMutable()));
-            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c?.ToMutable()));
+            ret.Actions.AddRange(actions.Select(c => (ScriptDom.DatabaseAuditAction)c?.ToMutable()));
+            ret.Principals.AddRange(principals.Select(c => (ScriptDom.SecurityPrincipal)c?.ToMutable()));
             ret.TargetObject = (ScriptDom.SecurityTargetObject)targetObject?.ToMutable();
             return ret;
         }
@@ -97,8 +97,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AuditActionSpecification)) { throw new NotImplementedException("Unexpected subtype of AuditActionSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuditActionSpecification(
-                actions: fragment.Actions.SelectList(ImmutableDom.DatabaseAuditAction.FromMutable),
-                principals: fragment.Principals.SelectList(ImmutableDom.SecurityPrincipal.FromMutable),
+                actions: fragment.Actions.ToImmArray(ImmutableDom.DatabaseAuditAction.FromMutable),
+                principals: fragment.Principals.ToImmArray(ImmutableDom.SecurityPrincipal.FromMutable),
                 targetObject: ImmutableDom.SecurityTargetObject.FromMutable(fragment.TargetObject)
             );
         }

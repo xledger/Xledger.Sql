@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -29,7 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
         public QuerySpecification(ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified, TopRowFilter topRowFilter = null, IReadOnlyList<SelectElement> selectElements = null, FromClause fromClause = null, WhereClause whereClause = null, GroupByClause groupByClause = null, HavingClause havingClause = null, WindowClause windowClause = null, OrderByClause orderByClause = null, OffsetClause offsetClause = null, ForClause forClause = null) {
             this.uniqueRowFilter = uniqueRowFilter;
             this.topRowFilter = topRowFilter;
-            this.selectElements = ImmList<SelectElement>.FromList(selectElements);
+            this.selectElements = selectElements.ToImmArray<SelectElement>();
             this.fromClause = fromClause;
             this.whereClause = whereClause;
             this.groupByClause = groupByClause;
@@ -44,7 +44,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.QuerySpecification();
             ret.UniqueRowFilter = uniqueRowFilter;
             ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter?.ToMutable();
-            ret.SelectElements.AddRange(selectElements.SelectList(c => (ScriptDom.SelectElement)c?.ToMutable()));
+            ret.SelectElements.AddRange(selectElements.Select(c => (ScriptDom.SelectElement)c?.ToMutable()));
             ret.FromClause = (ScriptDom.FromClause)fromClause?.ToMutable();
             ret.WhereClause = (ScriptDom.WhereClause)whereClause?.ToMutable();
             ret.GroupByClause = (ScriptDom.GroupByClause)groupByClause?.ToMutable();
@@ -189,7 +189,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new QuerySpecification(
                 uniqueRowFilter: fragment.UniqueRowFilter,
                 topRowFilter: ImmutableDom.TopRowFilter.FromMutable(fragment.TopRowFilter),
-                selectElements: fragment.SelectElements.SelectList(ImmutableDom.SelectElement.FromMutable),
+                selectElements: fragment.SelectElements.ToImmArray(ImmutableDom.SelectElement.FromMutable),
                 fromClause: ImmutableDom.FromClause.FromMutable(fragment.FromClause),
                 whereClause: ImmutableDom.WhereClause.FromMutable(fragment.WhereClause),
                 groupByClause: ImmutableDom.GroupByClause.FromMutable(fragment.GroupByClause),

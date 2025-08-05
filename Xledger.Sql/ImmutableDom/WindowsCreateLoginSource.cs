@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<PrincipalOption> Options => options;
     
         public WindowsCreateLoginSource(IReadOnlyList<PrincipalOption> options = null) {
-            this.options = ImmList<PrincipalOption>.FromList(options);
+            this.options = options.ToImmArray<PrincipalOption>();
         }
     
         public ScriptDom.WindowsCreateLoginSource ToMutableConcrete() {
             var ret = new ScriptDom.WindowsCreateLoginSource();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.PrincipalOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.WindowsCreateLoginSource)) { throw new NotImplementedException("Unexpected subtype of WindowsCreateLoginSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WindowsCreateLoginSource(
-                options: fragment.Options.SelectList(ImmutableDom.PrincipalOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.PrincipalOption.FromMutable)
             );
         }
     

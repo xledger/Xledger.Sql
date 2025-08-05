@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -11,14 +11,14 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateExternalFileFormatStatement(Identifier name = null, ScriptDom.ExternalFileFormatType formatType = ScriptDom.ExternalFileFormatType.DelimitedText, IReadOnlyList<ExternalFileFormatOption> externalFileFormatOptions = null) {
             this.name = name;
             this.formatType = formatType;
-            this.externalFileFormatOptions = ImmList<ExternalFileFormatOption>.FromList(externalFileFormatOptions);
+            this.externalFileFormatOptions = externalFileFormatOptions.ToImmArray<ExternalFileFormatOption>();
         }
     
         public ScriptDom.CreateExternalFileFormatStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateExternalFileFormatStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.FormatType = formatType;
-            ret.ExternalFileFormatOptions.AddRange(externalFileFormatOptions.SelectList(c => (ScriptDom.ExternalFileFormatOption)c?.ToMutable()));
+            ret.ExternalFileFormatOptions.AddRange(externalFileFormatOptions.Select(c => (ScriptDom.ExternalFileFormatOption)c?.ToMutable()));
             return ret;
         }
         
@@ -91,7 +91,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateExternalFileFormatStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 formatType: fragment.FormatType,
-                externalFileFormatOptions: fragment.ExternalFileFormatOptions.SelectList(ImmutableDom.ExternalFileFormatOption.FromMutable)
+                externalFileFormatOptions: fragment.ExternalFileFormatOptions.ToImmArray(ImmutableDom.ExternalFileFormatOption.FromMutable)
             );
         }
     

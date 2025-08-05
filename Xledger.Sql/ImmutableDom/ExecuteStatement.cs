@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ExecuteStatement(ExecuteSpecification executeSpecification = null, IReadOnlyList<ExecuteOption> options = null) {
             this.executeSpecification = executeSpecification;
-            this.options = ImmList<ExecuteOption>.FromList(options);
+            this.options = options.ToImmArray<ExecuteOption>();
         }
     
         public ScriptDom.ExecuteStatement ToMutableConcrete() {
             var ret = new ScriptDom.ExecuteStatement();
             ret.ExecuteSpecification = (ScriptDom.ExecuteSpecification)executeSpecification?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.ExecuteOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.ExecuteOption)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.ExecuteStatement)) { throw new NotImplementedException("Unexpected subtype of ExecuteStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExecuteStatement(
                 executeSpecification: ImmutableDom.ExecuteSpecification.FromMutable(fragment.ExecuteSpecification),
-                options: fragment.Options.SelectList(ImmutableDom.ExecuteOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.ExecuteOption.FromMutable)
             );
         }
     

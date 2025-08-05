@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -14,14 +14,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public DropAssemblyStatement(bool withNoDependents = false, IReadOnlyList<SchemaObjectName> objects = null, bool isIfExists = false) {
             this.withNoDependents = withNoDependents;
-            this.objects = ImmList<SchemaObjectName>.FromList(objects);
+            this.objects = objects.ToImmArray<SchemaObjectName>();
             this.isIfExists = isIfExists;
         }
     
         public ScriptDom.DropAssemblyStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropAssemblyStatement();
             ret.WithNoDependents = withNoDependents;
-            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c?.ToMutable()));
+            ret.Objects.AddRange(objects.Select(c => (ScriptDom.SchemaObjectName)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }
@@ -92,7 +92,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.DropAssemblyStatement)) { throw new NotImplementedException("Unexpected subtype of DropAssemblyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropAssemblyStatement(
                 withNoDependents: fragment.WithNoDependents,
-                objects: fragment.Objects.SelectList(ImmutableDom.SchemaObjectName.FromMutable),
+                objects: fragment.Objects.ToImmArray(ImmutableDom.SchemaObjectName.FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }

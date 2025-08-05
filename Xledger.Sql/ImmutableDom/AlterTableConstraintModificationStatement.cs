@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.existingRowsCheckEnforcement = existingRowsCheckEnforcement;
             this.constraintEnforcement = constraintEnforcement;
             this.all = all;
-            this.constraintNames = ImmList<Identifier>.FromList(constraintNames);
+            this.constraintNames = constraintNames.ToImmArray<Identifier>();
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.ExistingRowsCheckEnforcement = existingRowsCheckEnforcement;
             ret.ConstraintEnforcement = constraintEnforcement;
             ret.All = all;
-            ret.ConstraintNames.AddRange(constraintNames.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.ConstraintNames.AddRange(constraintNames.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
@@ -118,7 +118,7 @@ namespace Xledger.Sql.ImmutableDom {
                 existingRowsCheckEnforcement: fragment.ExistingRowsCheckEnforcement,
                 constraintEnforcement: fragment.ConstraintEnforcement,
                 all: fragment.All,
-                constraintNames: fragment.ConstraintNames.SelectList(ImmutableDom.Identifier.FromMutable),
+                constraintNames: fragment.ConstraintNames.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
             );
         }

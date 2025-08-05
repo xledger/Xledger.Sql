@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,22 +17,22 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AddFileSpec> AddFiles => addFiles;
     
         public AlterAssemblyStatement(IReadOnlyList<Literal> dropFiles = null, bool isDropAll = false, IReadOnlyList<AddFileSpec> addFiles = null, Identifier name = null, IReadOnlyList<ScalarExpression> parameters = null, IReadOnlyList<AssemblyOption> options = null) {
-            this.dropFiles = ImmList<Literal>.FromList(dropFiles);
+            this.dropFiles = dropFiles.ToImmArray<Literal>();
             this.isDropAll = isDropAll;
-            this.addFiles = ImmList<AddFileSpec>.FromList(addFiles);
+            this.addFiles = addFiles.ToImmArray<AddFileSpec>();
             this.name = name;
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
-            this.options = ImmList<AssemblyOption>.FromList(options);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
+            this.options = options.ToImmArray<AssemblyOption>();
         }
     
         public ScriptDom.AlterAssemblyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterAssemblyStatement();
-            ret.DropFiles.AddRange(dropFiles.SelectList(c => (ScriptDom.Literal)c?.ToMutable()));
+            ret.DropFiles.AddRange(dropFiles.Select(c => (ScriptDom.Literal)c?.ToMutable()));
             ret.IsDropAll = isDropAll;
-            ret.AddFiles.AddRange(addFiles.SelectList(c => (ScriptDom.AddFileSpec)c?.ToMutable()));
+            ret.AddFiles.AddRange(addFiles.Select(c => (ScriptDom.AddFileSpec)c?.ToMutable()));
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AssemblyOption)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AssemblyOption)c?.ToMutable()));
             return ret;
         }
         
@@ -121,12 +121,12 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterAssemblyStatement)) { throw new NotImplementedException("Unexpected subtype of AlterAssemblyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterAssemblyStatement(
-                dropFiles: fragment.DropFiles.SelectList(ImmutableDom.Literal.FromMutable),
+                dropFiles: fragment.DropFiles.ToImmArray(ImmutableDom.Literal.FromMutable),
                 isDropAll: fragment.IsDropAll,
-                addFiles: fragment.AddFiles.SelectList(ImmutableDom.AddFileSpec.FromMutable),
+                addFiles: fragment.AddFiles.ToImmArray(ImmutableDom.AddFileSpec.FromMutable),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
-                options: fragment.Options.SelectList(ImmutableDom.AssemblyOption.FromMutable)
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.AssemblyOption.FromMutable)
             );
         }
     

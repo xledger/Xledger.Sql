@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationFailoverClusterPropertyOption> Options => options;
     
         public AlterServerConfigurationSetFailoverClusterPropertyStatement(IReadOnlyList<AlterServerConfigurationFailoverClusterPropertyOption> options = null) {
-            this.options = ImmList<AlterServerConfigurationFailoverClusterPropertyOption>.FromList(options);
+            this.options = options.ToImmArray<AlterServerConfigurationFailoverClusterPropertyOption>();
         }
     
         public ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetFailoverClusterPropertyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetFailoverClusterPropertyStatement(
-                options: fragment.Options.SelectList(ImmutableDom.AlterServerConfigurationFailoverClusterPropertyOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AlterServerConfigurationFailoverClusterPropertyOption.FromMutable)
             );
         }
     

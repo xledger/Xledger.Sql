@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AuditTarget(ScriptDom.AuditTargetKind targetKind = ScriptDom.AuditTargetKind.File, IReadOnlyList<AuditTargetOption> targetOptions = null) {
             this.targetKind = targetKind;
-            this.targetOptions = ImmList<AuditTargetOption>.FromList(targetOptions);
+            this.targetOptions = targetOptions.ToImmArray<AuditTargetOption>();
         }
     
         public ScriptDom.AuditTarget ToMutableConcrete() {
             var ret = new ScriptDom.AuditTarget();
             ret.TargetKind = targetKind;
-            ret.TargetOptions.AddRange(targetOptions.SelectList(c => (ScriptDom.AuditTargetOption)c?.ToMutable()));
+            ret.TargetOptions.AddRange(targetOptions.Select(c => (ScriptDom.AuditTargetOption)c?.ToMutable()));
             return ret;
         }
         
@@ -86,7 +86,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AuditTarget)) { throw new NotImplementedException("Unexpected subtype of AuditTarget not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AuditTarget(
                 targetKind: fragment.TargetKind,
-                targetOptions: fragment.TargetOptions.SelectList(ImmutableDom.AuditTargetOption.FromMutable)
+                targetOptions: fragment.TargetOptions.ToImmArray(ImmutableDom.AuditTargetOption.FromMutable)
             );
         }
     
