@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,16 +13,16 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<RowValue> RowValues => rowValues;
     
         public InlineDerivedTable(IReadOnlyList<RowValue> rowValues = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
-            this.rowValues = ImmList<RowValue>.FromList(rowValues);
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.rowValues = rowValues.ToImmArray<RowValue>();
+            this.columns = columns.ToImmArray<Identifier>();
             this.alias = alias;
             this.forPath = forPath;
         }
     
         public ScriptDom.InlineDerivedTable ToMutableConcrete() {
             var ret = new ScriptDom.InlineDerivedTable();
-            ret.RowValues.AddRange(rowValues.SelectList(c => (ScriptDom.RowValue)c?.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.RowValues.AddRange(rowValues.Select(c => (ScriptDom.RowValue)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -101,8 +101,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.InlineDerivedTable)) { throw new NotImplementedException("Unexpected subtype of InlineDerivedTable not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InlineDerivedTable(
-                rowValues: fragment.RowValues.SelectList(ImmutableDom.RowValue.FromMutable),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                rowValues: fragment.RowValues.ToImmArray(ImmutableDom.RowValue.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

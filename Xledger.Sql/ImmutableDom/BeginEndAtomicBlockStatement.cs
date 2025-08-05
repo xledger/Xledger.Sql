@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AtomicBlockOption> Options => options;
     
         public BeginEndAtomicBlockStatement(IReadOnlyList<AtomicBlockOption> options = null, StatementList statementList = null) {
-            this.options = ImmList<AtomicBlockOption>.FromList(options);
+            this.options = options.ToImmArray<AtomicBlockOption>();
             this.statementList = statementList;
         }
     
         public new ScriptDom.BeginEndAtomicBlockStatement ToMutableConcrete() {
             var ret = new ScriptDom.BeginEndAtomicBlockStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AtomicBlockOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AtomicBlockOption)c?.ToMutable()));
             ret.StatementList = (ScriptDom.StatementList)statementList?.ToMutable();
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.BeginEndAtomicBlockStatement)) { throw new NotImplementedException("Unexpected subtype of BeginEndAtomicBlockStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BeginEndAtomicBlockStatement(
-                options: fragment.Options.SelectList(ImmutableDom.AtomicBlockOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.AtomicBlockOption.FromMutable),
                 statementList: ImmutableDom.StatementList.FromMutable(fragment.StatementList)
             );
         }

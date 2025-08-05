@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TableHashDistributionPolicy(Identifier distributionColumn = null, IReadOnlyList<Identifier> distributionColumns = null) {
             this.distributionColumn = distributionColumn;
-            this.distributionColumns = ImmList<Identifier>.FromList(distributionColumns);
+            this.distributionColumns = distributionColumns.ToImmArray<Identifier>();
         }
     
         public ScriptDom.TableHashDistributionPolicy ToMutableConcrete() {
             var ret = new ScriptDom.TableHashDistributionPolicy();
             ret.DistributionColumn = (ScriptDom.Identifier)distributionColumn?.ToMutable();
-            ret.DistributionColumns.AddRange(distributionColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.DistributionColumns.AddRange(distributionColumns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.TableHashDistributionPolicy)) { throw new NotImplementedException("Unexpected subtype of TableHashDistributionPolicy not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableHashDistributionPolicy(
                 distributionColumn: ImmutableDom.Identifier.FromMutable(fragment.DistributionColumn),
-                distributionColumns: fragment.DistributionColumns.SelectList(ImmutableDom.Identifier.FromMutable)
+                distributionColumns: fragment.DistributionColumns.ToImmArray(ImmutableDom.Identifier.FromMutable)
             );
         }
     

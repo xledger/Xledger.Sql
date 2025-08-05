@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public PartitionFunctionCall(Identifier databaseName = null, Identifier functionName = null, IReadOnlyList<ScalarExpression> parameters = null, Identifier collation = null) {
             this.databaseName = databaseName;
             this.functionName = functionName;
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
             this.collation = collation;
         }
     
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.PartitionFunctionCall();
             ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.FunctionName = (ScriptDom.Identifier)functionName?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
@@ -111,7 +111,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new PartitionFunctionCall(
                 databaseName: ImmutableDom.Identifier.FromMutable(fragment.DatabaseName),
                 functionName: ImmutableDom.Identifier.FromMutable(fragment.FunctionName),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
             );
         }

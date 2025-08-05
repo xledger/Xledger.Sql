@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,9 +17,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.queryExpression = queryExpression;
             this.into = into;
             this.on = on;
-            this.computeClauses = ImmList<ComputeClause>.FromList(computeClauses);
+            this.computeClauses = computeClauses.ToImmArray<ComputeClause>();
             this.withCtesAndXmlNamespaces = withCtesAndXmlNamespaces;
-            this.optimizerHints = ImmList<OptimizerHint>.FromList(optimizerHints);
+            this.optimizerHints = optimizerHints.ToImmArray<OptimizerHint>();
         }
     
         public new ScriptDom.SelectStatementSnippet ToMutableConcrete() {
@@ -28,9 +28,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression?.ToMutable();
             ret.Into = (ScriptDom.SchemaObjectName)into?.ToMutable();
             ret.On = (ScriptDom.Identifier)on?.ToMutable();
-            ret.ComputeClauses.AddRange(computeClauses.SelectList(c => (ScriptDom.ComputeClause)c?.ToMutable()));
+            ret.ComputeClauses.AddRange(computeClauses.Select(c => (ScriptDom.ComputeClause)c?.ToMutable()));
             ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces?.ToMutable();
-            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
             return ret;
         }
         
@@ -137,9 +137,9 @@ namespace Xledger.Sql.ImmutableDom {
                 queryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.QueryExpression),
                 into: ImmutableDom.SchemaObjectName.FromMutable(fragment.Into),
                 on: ImmutableDom.Identifier.FromMutable(fragment.On),
-                computeClauses: fragment.ComputeClauses.SelectList(ImmutableDom.ComputeClause.FromMutable),
+                computeClauses: fragment.ComputeClauses.ToImmArray(ImmutableDom.ComputeClause.FromMutable),
                 withCtesAndXmlNamespaces: ImmutableDom.WithCtesAndXmlNamespaces.FromMutable(fragment.WithCtesAndXmlNamespaces),
-                optimizerHints: fragment.OptimizerHints.SelectList(ImmutableDom.OptimizerHint.FromMutable)
+                optimizerHints: fragment.OptimizerHints.ToImmArray(ImmutableDom.OptimizerHint.FromMutable)
             );
         }
     

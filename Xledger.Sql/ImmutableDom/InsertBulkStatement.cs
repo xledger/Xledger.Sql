@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,16 +13,16 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<InsertBulkColumnDefinition> ColumnDefinitions => columnDefinitions;
     
         public InsertBulkStatement(IReadOnlyList<InsertBulkColumnDefinition> columnDefinitions = null, SchemaObjectName to = null, IReadOnlyList<BulkInsertOption> options = null) {
-            this.columnDefinitions = ImmList<InsertBulkColumnDefinition>.FromList(columnDefinitions);
+            this.columnDefinitions = columnDefinitions.ToImmArray<InsertBulkColumnDefinition>();
             this.to = to;
-            this.options = ImmList<BulkInsertOption>.FromList(options);
+            this.options = options.ToImmArray<BulkInsertOption>();
         }
     
         public ScriptDom.InsertBulkStatement ToMutableConcrete() {
             var ret = new ScriptDom.InsertBulkStatement();
-            ret.ColumnDefinitions.AddRange(columnDefinitions.SelectList(c => (ScriptDom.InsertBulkColumnDefinition)c?.ToMutable()));
+            ret.ColumnDefinitions.AddRange(columnDefinitions.Select(c => (ScriptDom.InsertBulkColumnDefinition)c?.ToMutable()));
             ret.To = (ScriptDom.SchemaObjectName)to?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.BulkInsertOption)c?.ToMutable()));
             return ret;
         }
         
@@ -93,9 +93,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.InsertBulkStatement)) { throw new NotImplementedException("Unexpected subtype of InsertBulkStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InsertBulkStatement(
-                columnDefinitions: fragment.ColumnDefinitions.SelectList(ImmutableDom.InsertBulkColumnDefinition.FromMutable),
+                columnDefinitions: fragment.ColumnDefinitions.ToImmArray(ImmutableDom.InsertBulkColumnDefinition.FromMutable),
                 to: ImmutableDom.SchemaObjectName.FromMutable(fragment.To),
-                options: fragment.Options.SelectList(ImmutableDom.BulkInsertOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.BulkInsertOption.FromMutable)
             );
         }
     

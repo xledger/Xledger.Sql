@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
         public FullTextTableReference(ScriptDom.FullTextFunctionType fullTextFunctionType = ScriptDom.FullTextFunctionType.None, SchemaObjectName tableName = null, IReadOnlyList<ColumnReferenceExpression> columns = null, ValueExpression searchCondition = null, ValueExpression topN = null, ValueExpression language = null, StringLiteral propertyName = null, Identifier alias = null, bool forPath = false) {
             this.fullTextFunctionType = fullTextFunctionType;
             this.tableName = tableName;
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
             this.searchCondition = searchCondition;
             this.topN = topN;
             this.language = language;
@@ -40,7 +40,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.FullTextTableReference();
             ret.FullTextFunctionType = fullTextFunctionType;
             ret.TableName = (ScriptDom.SchemaObjectName)tableName?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.SearchCondition = (ScriptDom.ValueExpression)searchCondition?.ToMutable();
             ret.TopN = (ScriptDom.ValueExpression)topN?.ToMutable();
             ret.Language = (ScriptDom.ValueExpression)language?.ToMutable();
@@ -165,7 +165,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new FullTextTableReference(
                 fullTextFunctionType: fragment.FullTextFunctionType,
                 tableName: ImmutableDom.SchemaObjectName.FromMutable(fragment.TableName),
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 searchCondition: ImmutableDom.ValueExpression.FromMutable(fragment.SearchCondition),
                 topN: ImmutableDom.ValueExpression.FromMutable(fragment.TopN),
                 language: ImmutableDom.ValueExpression.FromMutable(fragment.Language),

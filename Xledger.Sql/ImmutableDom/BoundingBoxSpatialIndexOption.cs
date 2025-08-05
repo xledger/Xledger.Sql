@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<BoundingBoxParameter> BoundingBoxParameters => boundingBoxParameters;
     
         public BoundingBoxSpatialIndexOption(IReadOnlyList<BoundingBoxParameter> boundingBoxParameters = null) {
-            this.boundingBoxParameters = ImmList<BoundingBoxParameter>.FromList(boundingBoxParameters);
+            this.boundingBoxParameters = boundingBoxParameters.ToImmArray<BoundingBoxParameter>();
         }
     
         public ScriptDom.BoundingBoxSpatialIndexOption ToMutableConcrete() {
             var ret = new ScriptDom.BoundingBoxSpatialIndexOption();
-            ret.BoundingBoxParameters.AddRange(boundingBoxParameters.SelectList(c => (ScriptDom.BoundingBoxParameter)c?.ToMutable()));
+            ret.BoundingBoxParameters.AddRange(boundingBoxParameters.Select(c => (ScriptDom.BoundingBoxParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.BoundingBoxSpatialIndexOption)) { throw new NotImplementedException("Unexpected subtype of BoundingBoxSpatialIndexOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BoundingBoxSpatialIndexOption(
-                boundingBoxParameters: fragment.BoundingBoxParameters.SelectList(ImmutableDom.BoundingBoxParameter.FromMutable)
+                boundingBoxParameters: fragment.BoundingBoxParameters.ToImmArray(ImmutableDom.BoundingBoxParameter.FromMutable)
             );
         }
     

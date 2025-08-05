@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.UserType80 UserType80 => userType80;
     
         public SecurityUserClause80(IReadOnlyList<Identifier> users = null, ScriptDom.UserType80 userType80 = ScriptDom.UserType80.Null) {
-            this.users = ImmList<Identifier>.FromList(users);
+            this.users = users.ToImmArray<Identifier>();
             this.userType80 = userType80;
         }
     
         public ScriptDom.SecurityUserClause80 ToMutableConcrete() {
             var ret = new ScriptDom.SecurityUserClause80();
-            ret.Users.AddRange(users.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Users.AddRange(users.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.UserType80 = userType80;
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.SecurityUserClause80)) { throw new NotImplementedException("Unexpected subtype of SecurityUserClause80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SecurityUserClause80(
-                users: fragment.Users.SelectList(ImmutableDom.Identifier.FromMutable),
+                users: fragment.Users.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 userType80: fragment.UserType80
             );
         }

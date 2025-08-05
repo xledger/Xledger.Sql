@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public FetchCursorStatement(FetchType fetchType = null, IReadOnlyList<VariableReference> intoVariables = null, CursorId cursor = null) {
             this.fetchType = fetchType;
-            this.intoVariables = ImmList<VariableReference>.FromList(intoVariables);
+            this.intoVariables = intoVariables.ToImmArray<VariableReference>();
             this.cursor = cursor;
         }
     
         public ScriptDom.FetchCursorStatement ToMutableConcrete() {
             var ret = new ScriptDom.FetchCursorStatement();
             ret.FetchType = (ScriptDom.FetchType)fetchType?.ToMutable();
-            ret.IntoVariables.AddRange(intoVariables.SelectList(c => (ScriptDom.VariableReference)c?.ToMutable()));
+            ret.IntoVariables.AddRange(intoVariables.Select(c => (ScriptDom.VariableReference)c?.ToMutable()));
             ret.Cursor = (ScriptDom.CursorId)cursor?.ToMutable();
             return ret;
         }
@@ -98,7 +98,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.FetchCursorStatement)) { throw new NotImplementedException("Unexpected subtype of FetchCursorStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FetchCursorStatement(
                 fetchType: ImmutableDom.FetchType.FromMutable(fragment.FetchType),
-                intoVariables: fragment.IntoVariables.SelectList(ImmutableDom.VariableReference.FromMutable),
+                intoVariables: fragment.IntoVariables.ToImmArray(ImmutableDom.VariableReference.FromMutable),
                 cursor: ImmutableDom.CursorId.FromMutable(fragment.Cursor)
             );
         }

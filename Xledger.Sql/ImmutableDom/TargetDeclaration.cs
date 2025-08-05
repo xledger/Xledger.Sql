@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public TargetDeclaration(EventSessionObjectName objectName = null, IReadOnlyList<EventDeclarationSetParameter> targetDeclarationParameters = null) {
             this.objectName = objectName;
-            this.targetDeclarationParameters = ImmList<EventDeclarationSetParameter>.FromList(targetDeclarationParameters);
+            this.targetDeclarationParameters = targetDeclarationParameters.ToImmArray<EventDeclarationSetParameter>();
         }
     
         public ScriptDom.TargetDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.TargetDeclaration();
             ret.ObjectName = (ScriptDom.EventSessionObjectName)objectName?.ToMutable();
-            ret.TargetDeclarationParameters.AddRange(targetDeclarationParameters.SelectList(c => (ScriptDom.EventDeclarationSetParameter)c?.ToMutable()));
+            ret.TargetDeclarationParameters.AddRange(targetDeclarationParameters.Select(c => (ScriptDom.EventDeclarationSetParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.TargetDeclaration)) { throw new NotImplementedException("Unexpected subtype of TargetDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TargetDeclaration(
                 objectName: ImmutableDom.EventSessionObjectName.FromMutable(fragment.ObjectName),
-                targetDeclarationParameters: fragment.TargetDeclarationParameters.SelectList(ImmutableDom.EventDeclarationSetParameter.FromMutable)
+                targetDeclarationParameters: fragment.TargetDeclarationParameters.ToImmArray(ImmutableDom.EventDeclarationSetParameter.FromMutable)
             );
         }
     

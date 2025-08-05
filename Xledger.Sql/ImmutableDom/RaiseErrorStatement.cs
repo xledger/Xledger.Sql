@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.firstParameter = firstParameter;
             this.secondParameter = secondParameter;
             this.thirdParameter = thirdParameter;
-            this.optionalParameters = ImmList<ScalarExpression>.FromList(optionalParameters);
+            this.optionalParameters = optionalParameters.ToImmArray<ScalarExpression>();
             this.raiseErrorOptions = raiseErrorOptions;
         }
     
@@ -33,7 +33,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.FirstParameter = (ScriptDom.ScalarExpression)firstParameter?.ToMutable();
             ret.SecondParameter = (ScriptDom.ScalarExpression)secondParameter?.ToMutable();
             ret.ThirdParameter = (ScriptDom.ScalarExpression)thirdParameter?.ToMutable();
-            ret.OptionalParameters.AddRange(optionalParameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.OptionalParameters.AddRange(optionalParameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.RaiseErrorOptions = raiseErrorOptions;
             return ret;
         }
@@ -124,7 +124,7 @@ namespace Xledger.Sql.ImmutableDom {
                 firstParameter: ImmutableDom.ScalarExpression.FromMutable(fragment.FirstParameter),
                 secondParameter: ImmutableDom.ScalarExpression.FromMutable(fragment.SecondParameter),
                 thirdParameter: ImmutableDom.ScalarExpression.FromMutable(fragment.ThirdParameter),
-                optionalParameters: fragment.OptionalParameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                optionalParameters: fragment.OptionalParameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 raiseErrorOptions: fragment.RaiseErrorOptions
             );
         }

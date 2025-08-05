@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ExternalResourcePoolStatement(Identifier name = null, IReadOnlyList<ExternalResourcePoolParameter> externalResourcePoolParameters = null) {
             this.name = name;
-            this.externalResourcePoolParameters = ImmList<ExternalResourcePoolParameter>.FromList(externalResourcePoolParameters);
+            this.externalResourcePoolParameters = externalResourcePoolParameters.ToImmArray<ExternalResourcePoolParameter>();
         }
     
         public ScriptDom.ExternalResourcePoolStatement ToMutableConcrete() {
             var ret = new ScriptDom.ExternalResourcePoolStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.ExternalResourcePoolParameters.AddRange(externalResourcePoolParameters.SelectList(c => (ScriptDom.ExternalResourcePoolParameter)c?.ToMutable()));
+            ret.ExternalResourcePoolParameters.AddRange(externalResourcePoolParameters.Select(c => (ScriptDom.ExternalResourcePoolParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.ExternalResourcePoolStatement)) { return TSqlFragment.FromMutable(fragment) as ExternalResourcePoolStatement; }
             return new ExternalResourcePoolStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.SelectList(ImmutableDom.ExternalResourcePoolParameter.FromMutable)
+                externalResourcePoolParameters: fragment.ExternalResourcePoolParameters.ToImmArray(ImmutableDom.ExternalResourcePoolParameter.FromMutable)
             );
         }
     

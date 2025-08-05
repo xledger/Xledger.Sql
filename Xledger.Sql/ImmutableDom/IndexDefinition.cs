@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -32,9 +32,9 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.unique = unique;
             this.indexType = indexType;
-            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
-            this.columns = ImmList<ColumnWithSortOrder>.FromList(columns);
-            this.includeColumns = ImmList<ColumnReferenceExpression>.FromList(includeColumns);
+            this.indexOptions = indexOptions.ToImmArray<IndexOption>();
+            this.columns = columns.ToImmArray<ColumnWithSortOrder>();
+            this.includeColumns = includeColumns.ToImmArray<ColumnReferenceExpression>();
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
             this.filterPredicate = filterPredicate;
             this.fileStreamOn = fileStreamOn;
@@ -45,9 +45,9 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.Unique = unique;
             ret.IndexType = (ScriptDom.IndexType)indexType?.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
-            ret.IncludeColumns.AddRange(includeColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
+            ret.IncludeColumns.AddRange(includeColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
             ret.FilterPredicate = (ScriptDom.BooleanExpression)filterPredicate?.ToMutable();
             ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn?.ToMutable();
@@ -168,9 +168,9 @@ namespace Xledger.Sql.ImmutableDom {
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 unique: fragment.Unique,
                 indexType: ImmutableDom.IndexType.FromMutable(fragment.IndexType),
-                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable),
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnWithSortOrder.FromMutable),
-                includeColumns: fragment.IncludeColumns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                indexOptions: fragment.IndexOptions.ToImmArray(ImmutableDom.IndexOption.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnWithSortOrder.FromMutable),
+                includeColumns: fragment.IncludeColumns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
                 filterPredicate: ImmutableDom.BooleanExpression.FromMutable(fragment.FilterPredicate),
                 fileStreamOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.FileStreamOn)

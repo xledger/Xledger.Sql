@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> ByExpressions => byExpressions;
     
         public ComputeClause(IReadOnlyList<ComputeFunction> computeFunctions = null, IReadOnlyList<ScalarExpression> byExpressions = null) {
-            this.computeFunctions = ImmList<ComputeFunction>.FromList(computeFunctions);
-            this.byExpressions = ImmList<ScalarExpression>.FromList(byExpressions);
+            this.computeFunctions = computeFunctions.ToImmArray<ComputeFunction>();
+            this.byExpressions = byExpressions.ToImmArray<ScalarExpression>();
         }
     
         public ScriptDom.ComputeClause ToMutableConcrete() {
             var ret = new ScriptDom.ComputeClause();
-            ret.ComputeFunctions.AddRange(computeFunctions.SelectList(c => (ScriptDom.ComputeFunction)c?.ToMutable()));
-            ret.ByExpressions.AddRange(byExpressions.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.ComputeFunctions.AddRange(computeFunctions.Select(c => (ScriptDom.ComputeFunction)c?.ToMutable()));
+            ret.ByExpressions.AddRange(byExpressions.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -85,8 +85,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.ComputeClause)) { throw new NotImplementedException("Unexpected subtype of ComputeClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ComputeClause(
-                computeFunctions: fragment.ComputeFunctions.SelectList(ImmutableDom.ComputeFunction.FromMutable),
-                byExpressions: fragment.ByExpressions.SelectList(ImmutableDom.ScalarExpression.FromMutable)
+                computeFunctions: fragment.ComputeFunctions.ToImmArray(ImmutableDom.ComputeFunction.FromMutable),
+                byExpressions: fragment.ByExpressions.ToImmArray(ImmutableDom.ScalarExpression.FromMutable)
             );
         }
     

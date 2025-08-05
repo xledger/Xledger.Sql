@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -18,14 +18,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateContractStatement(Identifier name = null, IReadOnlyList<ContractMessage> messages = null, Identifier owner = null) {
             this.name = name;
-            this.messages = ImmList<ContractMessage>.FromList(messages);
+            this.messages = messages.ToImmArray<ContractMessage>();
             this.owner = owner;
         }
     
         public ScriptDom.CreateContractStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateContractStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Messages.AddRange(messages.SelectList(c => (ScriptDom.ContractMessage)c?.ToMutable()));
+            ret.Messages.AddRange(messages.Select(c => (ScriptDom.ContractMessage)c?.ToMutable()));
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             return ret;
         }
@@ -100,7 +100,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateContractStatement)) { throw new NotImplementedException("Unexpected subtype of CreateContractStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateContractStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                messages: fragment.Messages.SelectList(ImmutableDom.ContractMessage.FromMutable),
+                messages: fragment.Messages.ToImmArray(ImmutableDom.ContractMessage.FromMutable),
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner)
             );
         }

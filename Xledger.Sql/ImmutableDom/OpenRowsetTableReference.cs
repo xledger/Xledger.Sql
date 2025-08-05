@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -34,8 +34,8 @@ namespace Xledger.Sql.ImmutableDom {
             this.providerString = providerString;
             this.query = query;
             this.@object = @object;
-            this.withColumns = ImmList<OpenRowsetColumnDefinition>.FromList(withColumns);
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.withColumns = withColumns.ToImmArray<OpenRowsetColumnDefinition>();
+            this.columns = columns.ToImmArray<Identifier>();
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -49,8 +49,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.ProviderString = (ScriptDom.StringLiteral)providerString?.ToMutable();
             ret.Query = (ScriptDom.StringLiteral)query?.ToMutable();
             ret.Object = (ScriptDom.SchemaObjectName)@object?.ToMutable();
-            ret.WithColumns.AddRange(withColumns.SelectList(c => (ScriptDom.OpenRowsetColumnDefinition)c?.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.WithColumns.AddRange(withColumns.Select(c => (ScriptDom.OpenRowsetColumnDefinition)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -192,8 +192,8 @@ namespace Xledger.Sql.ImmutableDom {
                 providerString: ImmutableDom.StringLiteral.FromMutable(fragment.ProviderString),
                 query: ImmutableDom.StringLiteral.FromMutable(fragment.Query),
                 @object: ImmutableDom.SchemaObjectName.FromMutable(fragment.Object),
-                withColumns: fragment.WithColumns.SelectList(ImmutableDom.OpenRowsetColumnDefinition.FromMutable),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                withColumns: fragment.WithColumns.ToImmArray(ImmutableDom.OpenRowsetColumnDefinition.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,7 +13,7 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SetClause> SetClauses => setClauses;
     
         public UpdateSpecification(IReadOnlyList<SetClause> setClauses = null, FromClause fromClause = null, WhereClause whereClause = null, TableReference target = null, TopRowFilter topRowFilter = null, OutputIntoClause outputIntoClause = null, OutputClause outputClause = null) {
-            this.setClauses = ImmList<SetClause>.FromList(setClauses);
+            this.setClauses = setClauses.ToImmArray<SetClause>();
             this.fromClause = fromClause;
             this.whereClause = whereClause;
             this.target = target;
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ScriptDom.UpdateSpecification ToMutableConcrete() {
             var ret = new ScriptDom.UpdateSpecification();
-            ret.SetClauses.AddRange(setClauses.SelectList(c => (ScriptDom.SetClause)c?.ToMutable()));
+            ret.SetClauses.AddRange(setClauses.Select(c => (ScriptDom.SetClause)c?.ToMutable()));
             ret.FromClause = (ScriptDom.FromClause)fromClause?.ToMutable();
             ret.WhereClause = (ScriptDom.WhereClause)whereClause?.ToMutable();
             ret.Target = (ScriptDom.TableReference)target?.ToMutable();
@@ -135,7 +135,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.UpdateSpecification)) { throw new NotImplementedException("Unexpected subtype of UpdateSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateSpecification(
-                setClauses: fragment.SetClauses.SelectList(ImmutableDom.SetClause.FromMutable),
+                setClauses: fragment.SetClauses.ToImmArray(ImmutableDom.SetClause.FromMutable),
                 fromClause: ImmutableDom.FromClause.FromMutable(fragment.FromClause),
                 whereClause: ImmutableDom.WhereClause.FromMutable(fragment.WhereClause),
                 target: ImmutableDom.TableReference.FromMutable(fragment.Target),

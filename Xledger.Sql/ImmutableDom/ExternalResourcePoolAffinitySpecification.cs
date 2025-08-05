@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.affinityType = affinityType;
             this.parameterValue = parameterValue;
             this.isAuto = isAuto;
-            this.poolAffinityRanges = ImmList<LiteralRange>.FromList(poolAffinityRanges);
+            this.poolAffinityRanges = poolAffinityRanges.ToImmArray<LiteralRange>();
         }
     
         public ScriptDom.ExternalResourcePoolAffinitySpecification ToMutableConcrete() {
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.AffinityType = affinityType;
             ret.ParameterValue = (ScriptDom.Literal)parameterValue?.ToMutable();
             ret.IsAuto = isAuto;
-            ret.PoolAffinityRanges.AddRange(poolAffinityRanges.SelectList(c => (ScriptDom.LiteralRange)c?.ToMutable()));
+            ret.PoolAffinityRanges.AddRange(poolAffinityRanges.Select(c => (ScriptDom.LiteralRange)c?.ToMutable()));
             return ret;
         }
         
@@ -110,7 +110,7 @@ namespace Xledger.Sql.ImmutableDom {
                 affinityType: fragment.AffinityType,
                 parameterValue: ImmutableDom.Literal.FromMutable(fragment.ParameterValue),
                 isAuto: fragment.IsAuto,
-                poolAffinityRanges: fragment.PoolAffinityRanges.SelectList(ImmutableDom.LiteralRange.FromMutable)
+                poolAffinityRanges: fragment.PoolAffinityRanges.ToImmArray(ImmutableDom.LiteralRange.FromMutable)
             );
         }
     

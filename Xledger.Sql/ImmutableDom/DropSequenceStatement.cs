@@ -2,20 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropSequenceStatement : DropObjectsStatement, IEquatable<DropSequenceStatement> {
         public DropSequenceStatement(IReadOnlyList<SchemaObjectName> objects = null, bool isIfExists = false) {
-            this.objects = ImmList<SchemaObjectName>.FromList(objects);
+            this.objects = objects.ToImmArray<SchemaObjectName>();
             this.isIfExists = isIfExists;
         }
     
         public ScriptDom.DropSequenceStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropSequenceStatement();
-            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.SchemaObjectName)c?.ToMutable()));
+            ret.Objects.AddRange(objects.Select(c => (ScriptDom.SchemaObjectName)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }
@@ -79,7 +79,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.DropSequenceStatement)) { throw new NotImplementedException("Unexpected subtype of DropSequenceStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSequenceStatement(
-                objects: fragment.Objects.SelectList(ImmutableDom.SchemaObjectName.FromMutable),
+                objects: fragment.Objects.ToImmArray(ImmutableDom.SchemaObjectName.FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }

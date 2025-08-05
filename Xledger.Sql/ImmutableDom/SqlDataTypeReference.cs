@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -14,14 +14,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public SqlDataTypeReference(ScriptDom.SqlDataTypeOption sqlDataTypeOption = ScriptDom.SqlDataTypeOption.None, IReadOnlyList<Literal> parameters = null, SchemaObjectName name = null) {
             this.sqlDataTypeOption = sqlDataTypeOption;
-            this.parameters = ImmList<Literal>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<Literal>();
             this.name = name;
         }
     
         public ScriptDom.SqlDataTypeReference ToMutableConcrete() {
             var ret = new ScriptDom.SqlDataTypeReference();
             ret.SqlDataTypeOption = sqlDataTypeOption;
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.Literal)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.Literal)c?.ToMutable()));
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
@@ -94,7 +94,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.SqlDataTypeReference)) { throw new NotImplementedException("Unexpected subtype of SqlDataTypeReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SqlDataTypeReference(
                 sqlDataTypeOption: fragment.SqlDataTypeOption,
-                parameters: fragment.Parameters.SelectList(ImmutableDom.Literal.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.Literal.FromMutable),
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name)
             );
         }

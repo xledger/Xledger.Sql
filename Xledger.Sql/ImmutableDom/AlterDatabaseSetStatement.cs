@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AlterDatabaseSetStatement(AlterDatabaseTermination termination = null, IReadOnlyList<DatabaseOption> options = null, Identifier databaseName = null, bool useCurrent = false) {
             this.termination = termination;
-            this.options = ImmList<DatabaseOption>.FromList(options);
+            this.options = options.ToImmArray<DatabaseOption>();
             this.databaseName = databaseName;
             this.useCurrent = useCurrent;
         }
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterDatabaseSetStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterDatabaseSetStatement();
             ret.Termination = (ScriptDom.AlterDatabaseTermination)termination?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DatabaseOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.DatabaseOption)c?.ToMutable()));
             ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.UseCurrent = useCurrent;
             return ret;
@@ -106,7 +106,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AlterDatabaseSetStatement)) { throw new NotImplementedException("Unexpected subtype of AlterDatabaseSetStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterDatabaseSetStatement(
                 termination: ImmutableDom.AlterDatabaseTermination.FromMutable(fragment.Termination),
-                options: fragment.Options.SelectList(ImmutableDom.DatabaseOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.DatabaseOption.FromMutable),
                 databaseName: ImmutableDom.Identifier.FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );

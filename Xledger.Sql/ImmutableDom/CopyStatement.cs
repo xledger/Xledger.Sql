@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,18 +19,18 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<OptimizerHint> OptimizerHints => optimizerHints;
     
         public CopyStatement(IReadOnlyList<StringLiteral> from = null, SchemaObjectName into = null, IReadOnlyList<CopyOption> options = null, IReadOnlyList<OptimizerHint> optimizerHints = null) {
-            this.from = ImmList<StringLiteral>.FromList(from);
+            this.from = from.ToImmArray<StringLiteral>();
             this.into = into;
-            this.options = ImmList<CopyOption>.FromList(options);
-            this.optimizerHints = ImmList<OptimizerHint>.FromList(optimizerHints);
+            this.options = options.ToImmArray<CopyOption>();
+            this.optimizerHints = optimizerHints.ToImmArray<OptimizerHint>();
         }
     
         public ScriptDom.CopyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CopyStatement();
-            ret.From.AddRange(from.SelectList(c => (ScriptDom.StringLiteral)c?.ToMutable()));
+            ret.From.AddRange(from.Select(c => (ScriptDom.StringLiteral)c?.ToMutable()));
             ret.Into = (ScriptDom.SchemaObjectName)into?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CopyOption)c?.ToMutable()));
-            ret.OptimizerHints.AddRange(optimizerHints.SelectList(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.CopyOption)c?.ToMutable()));
+            ret.OptimizerHints.AddRange(optimizerHints.Select(c => (ScriptDom.OptimizerHint)c?.ToMutable()));
             return ret;
         }
         
@@ -107,10 +107,10 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.CopyStatement)) { throw new NotImplementedException("Unexpected subtype of CopyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CopyStatement(
-                from: fragment.From.SelectList(ImmutableDom.StringLiteral.FromMutable),
+                from: fragment.From.ToImmArray(ImmutableDom.StringLiteral.FromMutable),
                 into: ImmutableDom.SchemaObjectName.FromMutable(fragment.Into),
-                options: fragment.Options.SelectList(ImmutableDom.CopyOption.FromMutable),
-                optimizerHints: fragment.OptimizerHints.SelectList(ImmutableDom.OptimizerHint.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.CopyOption.FromMutable),
+                optimizerHints: fragment.OptimizerHints.ToImmArray(ImmutableDom.OptimizerHint.FromMutable)
             );
         }
     

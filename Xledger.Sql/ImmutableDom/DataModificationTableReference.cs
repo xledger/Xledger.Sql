@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -14,7 +14,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public DataModificationTableReference(DataModificationSpecification dataModificationSpecification = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
             this.dataModificationSpecification = dataModificationSpecification;
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.columns = columns.ToImmArray<Identifier>();
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DataModificationTableReference ToMutableConcrete() {
             var ret = new ScriptDom.DataModificationTableReference();
             ret.DataModificationSpecification = (ScriptDom.DataModificationSpecification)dataModificationSpecification?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -104,7 +104,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.DataModificationTableReference)) { throw new NotImplementedException("Unexpected subtype of DataModificationTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DataModificationTableReference(
                 dataModificationSpecification: ImmutableDom.DataModificationSpecification.FromMutable(fragment.DataModificationSpecification),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

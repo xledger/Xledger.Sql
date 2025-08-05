@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ColumnEncryptionKeyValueParameter> Parameters => parameters;
     
         public ColumnEncryptionKeyValue(IReadOnlyList<ColumnEncryptionKeyValueParameter> parameters = null) {
-            this.parameters = ImmList<ColumnEncryptionKeyValueParameter>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ColumnEncryptionKeyValueParameter>();
         }
     
         public ScriptDom.ColumnEncryptionKeyValue ToMutableConcrete() {
             var ret = new ScriptDom.ColumnEncryptionKeyValue();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ColumnEncryptionKeyValueParameter)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ColumnEncryptionKeyValueParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.ColumnEncryptionKeyValue)) { throw new NotImplementedException("Unexpected subtype of ColumnEncryptionKeyValue not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ColumnEncryptionKeyValue(
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ColumnEncryptionKeyValueParameter.FromMutable)
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ColumnEncryptionKeyValueParameter.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<XmlNamespacesElement> XmlNamespacesElements => xmlNamespacesElements;
     
         public XmlNamespaces(IReadOnlyList<XmlNamespacesElement> xmlNamespacesElements = null) {
-            this.xmlNamespacesElements = ImmList<XmlNamespacesElement>.FromList(xmlNamespacesElements);
+            this.xmlNamespacesElements = xmlNamespacesElements.ToImmArray<XmlNamespacesElement>();
         }
     
         public ScriptDom.XmlNamespaces ToMutableConcrete() {
             var ret = new ScriptDom.XmlNamespaces();
-            ret.XmlNamespacesElements.AddRange(xmlNamespacesElements.SelectList(c => (ScriptDom.XmlNamespacesElement)c?.ToMutable()));
+            ret.XmlNamespacesElements.AddRange(xmlNamespacesElements.Select(c => (ScriptDom.XmlNamespacesElement)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.XmlNamespaces)) { throw new NotImplementedException("Unexpected subtype of XmlNamespaces not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlNamespaces(
-                xmlNamespacesElements: fragment.XmlNamespacesElements.SelectList(ImmutableDom.XmlNamespacesElement.FromMutable)
+                xmlNamespacesElements: fragment.XmlNamespacesElements.ToImmArray(ImmutableDom.XmlNamespacesElement.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateTypeTableStatement(TableDefinition definition = null, IReadOnlyList<TableOption> options = null, SchemaObjectName name = null) {
             this.definition = definition;
-            this.options = ImmList<TableOption>.FromList(options);
+            this.options = options.ToImmArray<TableOption>();
             this.name = name;
         }
     
         public ScriptDom.CreateTypeTableStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateTypeTableStatement();
             ret.Definition = (ScriptDom.TableDefinition)definition?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.TableOption)c?.ToMutable()));
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
@@ -98,7 +98,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateTypeTableStatement)) { throw new NotImplementedException("Unexpected subtype of CreateTypeTableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateTypeTableStatement(
                 definition: ImmutableDom.TableDefinition.FromMutable(fragment.Definition),
-                options: fragment.Options.SelectList(ImmutableDom.TableOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.TableOption.FromMutable),
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name)
             );
         }

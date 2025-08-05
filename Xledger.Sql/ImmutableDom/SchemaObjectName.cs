@@ -2,19 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
 namespace Xledger.Sql.ImmutableDom {
     public class SchemaObjectName : MultiPartIdentifier, IEquatable<SchemaObjectName> {
         public SchemaObjectName(IReadOnlyList<Identifier> identifiers = null) {
-            this.identifiers = ImmList<Identifier>.FromList(identifiers);
+            this.identifiers = identifiers.ToImmArray<Identifier>();
         }
     
         public new ScriptDom.SchemaObjectName ToMutableConcrete() {
             var ret = new ScriptDom.SchemaObjectName();
-            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Identifiers.AddRange(identifiers.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.SchemaObjectName)) { return TSqlFragment.FromMutable(fragment) as SchemaObjectName; }
             return new SchemaObjectName(
-                identifiers: fragment.Identifiers.SelectList(ImmutableDom.Identifier.FromMutable)
+                identifiers: fragment.Identifiers.ToImmArray(ImmutableDom.Identifier.FromMutable)
             );
         }
     

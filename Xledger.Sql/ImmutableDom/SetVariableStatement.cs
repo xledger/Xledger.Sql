@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.separatorType = separatorType;
             this.identifier = identifier;
             this.functionCallExists = functionCallExists;
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
             this.expression = expression;
             this.cursorDefinition = cursorDefinition;
             this.assignmentKind = assignmentKind;
@@ -43,7 +43,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.SeparatorType = separatorType;
             ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
             ret.FunctionCallExists = functionCallExists;
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.CursorDefinition = (ScriptDom.CursorDefinition)cursorDefinition?.ToMutable();
             ret.AssignmentKind = assignmentKind;
@@ -157,7 +157,7 @@ namespace Xledger.Sql.ImmutableDom {
                 separatorType: fragment.SeparatorType,
                 identifier: ImmutableDom.Identifier.FromMutable(fragment.Identifier),
                 functionCallExists: fragment.FunctionCallExists,
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 expression: ImmutableDom.ScalarExpression.FromMutable(fragment.Expression),
                 cursorDefinition: ImmutableDom.CursorDefinition.FromMutable(fragment.CursorDefinition),
                 assignmentKind: fragment.AssignmentKind

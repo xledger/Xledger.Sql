@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -23,7 +23,7 @@ namespace Xledger.Sql.ImmutableDom {
         public GraphMatchRecursivePredicate(ScriptDom.GraphMatchRecursivePredicateKind function = ScriptDom.GraphMatchRecursivePredicateKind.ShortestPath, GraphMatchNodeExpression outerNodeExpression = null, IReadOnlyList<BooleanExpression> expression = null, GraphRecursiveMatchQuantifier recursiveQuantifier = null, bool anchorOnLeft = false) {
             this.function = function;
             this.outerNodeExpression = outerNodeExpression;
-            this.expression = ImmList<BooleanExpression>.FromList(expression);
+            this.expression = expression.ToImmArray<BooleanExpression>();
             this.recursiveQuantifier = recursiveQuantifier;
             this.anchorOnLeft = anchorOnLeft;
         }
@@ -32,7 +32,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.GraphMatchRecursivePredicate();
             ret.Function = function;
             ret.OuterNodeExpression = (ScriptDom.GraphMatchNodeExpression)outerNodeExpression?.ToMutable();
-            ret.Expression.AddRange(expression.SelectList(c => (ScriptDom.BooleanExpression)c?.ToMutable()));
+            ret.Expression.AddRange(expression.Select(c => (ScriptDom.BooleanExpression)c?.ToMutable()));
             ret.RecursiveQuantifier = (ScriptDom.GraphRecursiveMatchQuantifier)recursiveQuantifier?.ToMutable();
             ret.AnchorOnLeft = anchorOnLeft;
             return ret;
@@ -121,7 +121,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new GraphMatchRecursivePredicate(
                 function: fragment.Function,
                 outerNodeExpression: ImmutableDom.GraphMatchNodeExpression.FromMutable(fragment.OuterNodeExpression),
-                expression: fragment.Expression.SelectList(ImmutableDom.BooleanExpression.FromMutable),
+                expression: fragment.Expression.ToImmArray(ImmutableDom.BooleanExpression.FromMutable),
                 recursiveQuantifier: ImmutableDom.GraphRecursiveMatchQuantifier.FromMutable(fragment.RecursiveQuantifier),
                 anchorOnLeft: fragment.AnchorOnLeft
             );

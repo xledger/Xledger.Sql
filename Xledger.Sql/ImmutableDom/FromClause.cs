@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<PredictTableReference> PredictTableReference => predictTableReference;
     
         public FromClause(IReadOnlyList<TableReference> tableReferences = null, IReadOnlyList<PredictTableReference> predictTableReference = null) {
-            this.tableReferences = ImmList<TableReference>.FromList(tableReferences);
-            this.predictTableReference = ImmList<PredictTableReference>.FromList(predictTableReference);
+            this.tableReferences = tableReferences.ToImmArray<TableReference>();
+            this.predictTableReference = predictTableReference.ToImmArray<PredictTableReference>();
         }
     
         public ScriptDom.FromClause ToMutableConcrete() {
             var ret = new ScriptDom.FromClause();
-            ret.TableReferences.AddRange(tableReferences.SelectList(c => (ScriptDom.TableReference)c?.ToMutable()));
-            ret.PredictTableReference.AddRange(predictTableReference.SelectList(c => (ScriptDom.PredictTableReference)c?.ToMutable()));
+            ret.TableReferences.AddRange(tableReferences.Select(c => (ScriptDom.TableReference)c?.ToMutable()));
+            ret.PredictTableReference.AddRange(predictTableReference.Select(c => (ScriptDom.PredictTableReference)c?.ToMutable()));
             return ret;
         }
         
@@ -85,8 +85,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.FromClause)) { throw new NotImplementedException("Unexpected subtype of FromClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FromClause(
-                tableReferences: fragment.TableReferences.SelectList(ImmutableDom.TableReference.FromMutable),
-                predictTableReference: fragment.PredictTableReference.SelectList(ImmutableDom.PredictTableReference.FromMutable)
+                tableReferences: fragment.TableReferences.ToImmArray(ImmutableDom.TableReference.FromMutable),
+                predictTableReference: fragment.PredictTableReference.ToImmArray(ImmutableDom.PredictTableReference.FromMutable)
             );
         }
     

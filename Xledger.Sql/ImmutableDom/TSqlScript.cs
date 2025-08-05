@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<TSqlBatch> Batches => batches;
     
         public TSqlScript(IReadOnlyList<TSqlBatch> batches = null) {
-            this.batches = ImmList<TSqlBatch>.FromList(batches);
+            this.batches = batches.ToImmArray<TSqlBatch>();
         }
     
         public ScriptDom.TSqlScript ToMutableConcrete() {
             var ret = new ScriptDom.TSqlScript();
-            ret.Batches.AddRange(batches.SelectList(c => (ScriptDom.TSqlBatch)c?.ToMutable()));
+            ret.Batches.AddRange(batches.Select(c => (ScriptDom.TSqlBatch)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.TSqlScript)) { throw new NotImplementedException("Unexpected subtype of TSqlScript not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TSqlScript(
-                batches: fragment.Batches.SelectList(ImmutableDom.TSqlBatch.FromMutable)
+                batches: fragment.Batches.ToImmArray(ImmutableDom.TSqlBatch.FromMutable)
             );
         }
     

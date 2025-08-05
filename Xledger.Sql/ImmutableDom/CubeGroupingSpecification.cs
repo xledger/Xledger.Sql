@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<GroupingSpecification> Arguments => arguments;
     
         public CubeGroupingSpecification(IReadOnlyList<GroupingSpecification> arguments = null) {
-            this.arguments = ImmList<GroupingSpecification>.FromList(arguments);
+            this.arguments = arguments.ToImmArray<GroupingSpecification>();
         }
     
         public ScriptDom.CubeGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.CubeGroupingSpecification();
-            ret.Arguments.AddRange(arguments.SelectList(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
+            ret.Arguments.AddRange(arguments.Select(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.CubeGroupingSpecification)) { throw new NotImplementedException("Unexpected subtype of CubeGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CubeGroupingSpecification(
-                arguments: fragment.Arguments.SelectList(ImmutableDom.GroupingSpecification.FromMutable)
+                arguments: fragment.Arguments.ToImmArray(ImmutableDom.GroupingSpecification.FromMutable)
             );
         }
     

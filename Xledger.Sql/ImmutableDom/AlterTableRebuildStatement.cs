@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AlterTableRebuildStatement(PartitionSpecifier partition = null, IReadOnlyList<IndexOption> indexOptions = null, SchemaObjectName schemaObjectName = null) {
             this.partition = partition;
-            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
+            this.indexOptions = indexOptions.ToImmArray<IndexOption>();
             this.schemaObjectName = schemaObjectName;
         }
     
         public ScriptDom.AlterTableRebuildStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableRebuildStatement();
             ret.Partition = (ScriptDom.PartitionSpecifier)partition?.ToMutable();
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c?.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
@@ -98,7 +98,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AlterTableRebuildStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableRebuildStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableRebuildStatement(
                 partition: ImmutableDom.PartitionSpecifier.FromMutable(fragment.Partition),
-                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable),
+                indexOptions: fragment.IndexOptions.ToImmArray(ImmutableDom.IndexOption.FromMutable),
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
             );
         }

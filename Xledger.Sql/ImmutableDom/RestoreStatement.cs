@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,18 +22,18 @@ namespace Xledger.Sql.ImmutableDom {
     
         public RestoreStatement(IdentifierOrValueExpression databaseName = null, IReadOnlyList<DeviceInfo> devices = null, IReadOnlyList<BackupRestoreFileInfo> files = null, IReadOnlyList<RestoreOption> options = null, ScriptDom.RestoreStatementKind kind = ScriptDom.RestoreStatementKind.None) {
             this.databaseName = databaseName;
-            this.devices = ImmList<DeviceInfo>.FromList(devices);
-            this.files = ImmList<BackupRestoreFileInfo>.FromList(files);
-            this.options = ImmList<RestoreOption>.FromList(options);
+            this.devices = devices.ToImmArray<DeviceInfo>();
+            this.files = files.ToImmArray<BackupRestoreFileInfo>();
+            this.options = options.ToImmArray<RestoreOption>();
             this.kind = kind;
         }
     
         public ScriptDom.RestoreStatement ToMutableConcrete() {
             var ret = new ScriptDom.RestoreStatement();
             ret.DatabaseName = (ScriptDom.IdentifierOrValueExpression)databaseName?.ToMutable();
-            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
-            ret.Files.AddRange(files.SelectList(c => (ScriptDom.BackupRestoreFileInfo)c?.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RestoreOption)c?.ToMutable()));
+            ret.Devices.AddRange(devices.Select(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
+            ret.Files.AddRange(files.Select(c => (ScriptDom.BackupRestoreFileInfo)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.RestoreOption)c?.ToMutable()));
             ret.Kind = kind;
             return ret;
         }
@@ -118,9 +118,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.RestoreStatement)) { throw new NotImplementedException("Unexpected subtype of RestoreStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RestoreStatement(
                 databaseName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.DatabaseName),
-                devices: fragment.Devices.SelectList(ImmutableDom.DeviceInfo.FromMutable),
-                files: fragment.Files.SelectList(ImmutableDom.BackupRestoreFileInfo.FromMutable),
-                options: fragment.Options.SelectList(ImmutableDom.RestoreOption.FromMutable),
+                devices: fragment.Devices.ToImmArray(ImmutableDom.DeviceInfo.FromMutable),
+                files: fragment.Files.ToImmArray(ImmutableDom.BackupRestoreFileInfo.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.RestoreOption.FromMutable),
                 kind: fragment.Kind
             );
         }

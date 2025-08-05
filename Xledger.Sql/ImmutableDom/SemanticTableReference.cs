@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -25,7 +25,7 @@ namespace Xledger.Sql.ImmutableDom {
         public SemanticTableReference(ScriptDom.SemanticFunctionType semanticFunctionType = ScriptDom.SemanticFunctionType.None, SchemaObjectName tableName = null, IReadOnlyList<ColumnReferenceExpression> columns = null, ScalarExpression sourceKey = null, ColumnReferenceExpression matchedColumn = null, ScalarExpression matchedKey = null, Identifier alias = null, bool forPath = false) {
             this.semanticFunctionType = semanticFunctionType;
             this.tableName = tableName;
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
             this.sourceKey = sourceKey;
             this.matchedColumn = matchedColumn;
             this.matchedKey = matchedKey;
@@ -37,7 +37,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.SemanticTableReference();
             ret.SemanticFunctionType = semanticFunctionType;
             ret.TableName = (ScriptDom.SchemaObjectName)tableName?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.SourceKey = (ScriptDom.ScalarExpression)sourceKey?.ToMutable();
             ret.MatchedColumn = (ScriptDom.ColumnReferenceExpression)matchedColumn?.ToMutable();
             ret.MatchedKey = (ScriptDom.ScalarExpression)matchedKey?.ToMutable();
@@ -153,7 +153,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new SemanticTableReference(
                 semanticFunctionType: fragment.SemanticFunctionType,
                 tableName: ImmutableDom.SchemaObjectName.FromMutable(fragment.TableName),
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 sourceKey: ImmutableDom.ScalarExpression.FromMutable(fragment.SourceKey),
                 matchedColumn: ImmutableDom.ColumnReferenceExpression.FromMutable(fragment.MatchedColumn),
                 matchedKey: ImmutableDom.ScalarExpression.FromMutable(fragment.MatchedKey),

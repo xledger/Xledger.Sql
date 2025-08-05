@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<TableOption> Options => options;
     
         public AlterTableSetStatement(IReadOnlyList<TableOption> options = null, SchemaObjectName schemaObjectName = null) {
-            this.options = ImmList<TableOption>.FromList(options);
+            this.options = options.ToImmArray<TableOption>();
             this.schemaObjectName = schemaObjectName;
         }
     
         public ScriptDom.AlterTableSetStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterTableSetStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.TableOption)c?.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterTableSetStatement)) { throw new NotImplementedException("Unexpected subtype of AlterTableSetStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterTableSetStatement(
-                options: fragment.Options.SelectList(ImmutableDom.TableOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.TableOption.FromMutable),
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
             );
         }

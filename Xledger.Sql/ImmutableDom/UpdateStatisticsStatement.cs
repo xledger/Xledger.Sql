@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -18,15 +18,15 @@ namespace Xledger.Sql.ImmutableDom {
     
         public UpdateStatisticsStatement(SchemaObjectName schemaObjectName = null, IReadOnlyList<Identifier> subElements = null, IReadOnlyList<StatisticsOption> statisticsOptions = null) {
             this.schemaObjectName = schemaObjectName;
-            this.subElements = ImmList<Identifier>.FromList(subElements);
-            this.statisticsOptions = ImmList<StatisticsOption>.FromList(statisticsOptions);
+            this.subElements = subElements.ToImmArray<Identifier>();
+            this.statisticsOptions = statisticsOptions.ToImmArray<StatisticsOption>();
         }
     
         public ScriptDom.UpdateStatisticsStatement ToMutableConcrete() {
             var ret = new ScriptDom.UpdateStatisticsStatement();
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
-            ret.SubElements.AddRange(subElements.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
-            ret.StatisticsOptions.AddRange(statisticsOptions.SelectList(c => (ScriptDom.StatisticsOption)c?.ToMutable()));
+            ret.SubElements.AddRange(subElements.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.StatisticsOptions.AddRange(statisticsOptions.Select(c => (ScriptDom.StatisticsOption)c?.ToMutable()));
             return ret;
         }
         
@@ -98,8 +98,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.UpdateStatisticsStatement)) { throw new NotImplementedException("Unexpected subtype of UpdateStatisticsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UpdateStatisticsStatement(
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
-                subElements: fragment.SubElements.SelectList(ImmutableDom.Identifier.FromMutable),
-                statisticsOptions: fragment.StatisticsOptions.SelectList(ImmutableDom.StatisticsOption.FromMutable)
+                subElements: fragment.SubElements.ToImmArray(ImmutableDom.Identifier.FromMutable),
+                statisticsOptions: fragment.StatisticsOptions.ToImmArray(ImmutableDom.StatisticsOption.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public XmlCompressionOption(ScriptDom.XmlCompressionOptionState isCompressed = ScriptDom.XmlCompressionOptionState.Off, IReadOnlyList<CompressionPartitionRange> partitionRanges = null, ScriptDom.IndexOptionKind optionKind = ScriptDom.IndexOptionKind.PadIndex) {
             this.isCompressed = isCompressed;
-            this.partitionRanges = ImmList<CompressionPartitionRange>.FromList(partitionRanges);
+            this.partitionRanges = partitionRanges.ToImmArray<CompressionPartitionRange>();
             this.optionKind = optionKind;
         }
     
         public ScriptDom.XmlCompressionOption ToMutableConcrete() {
             var ret = new ScriptDom.XmlCompressionOption();
             ret.IsCompressed = isCompressed;
-            ret.PartitionRanges.AddRange(partitionRanges.SelectList(c => (ScriptDom.CompressionPartitionRange)c?.ToMutable()));
+            ret.PartitionRanges.AddRange(partitionRanges.Select(c => (ScriptDom.CompressionPartitionRange)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -94,7 +94,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.XmlCompressionOption)) { throw new NotImplementedException("Unexpected subtype of XmlCompressionOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlCompressionOption(
                 isCompressed: fragment.IsCompressed,
-                partitionRanges: fragment.PartitionRanges.SelectList(ImmutableDom.CompressionPartitionRange.FromMutable),
+                partitionRanges: fragment.PartitionRanges.ToImmArray(ImmutableDom.CompressionPartitionRange.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

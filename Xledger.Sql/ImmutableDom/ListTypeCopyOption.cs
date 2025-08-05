@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<CopyStatementOptionBase> Options => options;
     
         public ListTypeCopyOption(IReadOnlyList<CopyStatementOptionBase> options = null) {
-            this.options = ImmList<CopyStatementOptionBase>.FromList(options);
+            this.options = options.ToImmArray<CopyStatementOptionBase>();
         }
     
         public ScriptDom.ListTypeCopyOption ToMutableConcrete() {
             var ret = new ScriptDom.ListTypeCopyOption();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CopyStatementOptionBase)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.CopyStatementOptionBase)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.ListTypeCopyOption)) { throw new NotImplementedException("Unexpected subtype of ListTypeCopyOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ListTypeCopyOption(
-                options: fragment.Options.SelectList(ImmutableDom.CopyStatementOptionBase.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.CopyStatementOptionBase.FromMutable)
             );
         }
     

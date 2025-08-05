@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public CreateAggregateStatement(SchemaObjectName name = null, AssemblyName assemblyName = null, IReadOnlyList<ProcedureParameter> parameters = null, DataTypeReference returnType = null) {
             this.name = name;
             this.assemblyName = assemblyName;
-            this.parameters = ImmList<ProcedureParameter>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ProcedureParameter>();
             this.returnType = returnType;
         }
     
@@ -29,7 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.CreateAggregateStatement();
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.AssemblyName = (ScriptDom.AssemblyName)assemblyName?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ProcedureParameter)c?.ToMutable()));
             ret.ReturnType = (ScriptDom.DataTypeReference)returnType?.ToMutable();
             return ret;
         }
@@ -113,7 +113,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new CreateAggregateStatement(
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
                 assemblyName: ImmutableDom.AssemblyName.FromMutable(fragment.AssemblyName),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ProcedureParameter.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ProcedureParameter.FromMutable),
                 returnType: ImmutableDom.DataTypeReference.FromMutable(fragment.ReturnType)
             );
         }

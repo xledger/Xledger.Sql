@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public OdbcFunctionCall(Identifier name = null, bool parametersUsed = false, IReadOnlyList<ScalarExpression> parameters = null, Identifier collation = null) {
             this.name = name;
             this.parametersUsed = parametersUsed;
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
             this.collation = collation;
         }
     
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.OdbcFunctionCall();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.ParametersUsed = parametersUsed;
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
@@ -109,7 +109,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new OdbcFunctionCall(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 parametersUsed: fragment.ParametersUsed,
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
             );
         }

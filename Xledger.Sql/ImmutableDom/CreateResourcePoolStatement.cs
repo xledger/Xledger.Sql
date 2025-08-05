@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,13 +10,13 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateResourcePoolStatement : ResourcePoolStatement, IEquatable<CreateResourcePoolStatement> {
         public CreateResourcePoolStatement(Identifier name = null, IReadOnlyList<ResourcePoolParameter> resourcePoolParameters = null) {
             this.name = name;
-            this.resourcePoolParameters = ImmList<ResourcePoolParameter>.FromList(resourcePoolParameters);
+            this.resourcePoolParameters = resourcePoolParameters.ToImmArray<ResourcePoolParameter>();
         }
     
         public new ScriptDom.CreateResourcePoolStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateResourcePoolStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.ResourcePoolParameters.AddRange(resourcePoolParameters.SelectList(c => (ScriptDom.ResourcePoolParameter)c?.ToMutable()));
+            ret.ResourcePoolParameters.AddRange(resourcePoolParameters.Select(c => (ScriptDom.ResourcePoolParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -82,7 +82,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateResourcePoolStatement)) { throw new NotImplementedException("Unexpected subtype of CreateResourcePoolStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateResourcePoolStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                resourcePoolParameters: fragment.ResourcePoolParameters.SelectList(ImmutableDom.ResourcePoolParameter.FromMutable)
+                resourcePoolParameters: fragment.ResourcePoolParameters.ToImmArray(ImmutableDom.ResourcePoolParameter.FromMutable)
             );
         }
     

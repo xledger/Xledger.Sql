@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,16 +17,16 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ColumnReferenceExpression> OrderedColumns => orderedColumns;
     
         public TableClusteredIndexType(IReadOnlyList<ColumnWithSortOrder> columns = null, bool columnStore = false, IReadOnlyList<ColumnReferenceExpression> orderedColumns = null) {
-            this.columns = ImmList<ColumnWithSortOrder>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnWithSortOrder>();
             this.columnStore = columnStore;
-            this.orderedColumns = ImmList<ColumnReferenceExpression>.FromList(orderedColumns);
+            this.orderedColumns = orderedColumns.ToImmArray<ColumnReferenceExpression>();
         }
     
         public ScriptDom.TableClusteredIndexType ToMutableConcrete() {
             var ret = new ScriptDom.TableClusteredIndexType();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
             ret.ColumnStore = columnStore;
-            ret.OrderedColumns.AddRange(orderedColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.OrderedColumns.AddRange(orderedColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -95,9 +95,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.TableClusteredIndexType)) { throw new NotImplementedException("Unexpected subtype of TableClusteredIndexType not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TableClusteredIndexType(
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnWithSortOrder.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnWithSortOrder.FromMutable),
                 columnStore: fragment.ColumnStore,
-                orderedColumns: fragment.OrderedColumns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable)
+                orderedColumns: fragment.OrderedColumns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable)
             );
         }
     

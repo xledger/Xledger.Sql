@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.partitionFunction = partitionFunction;
             this.isAll = isAll;
-            this.fileGroups = ImmList<IdentifierOrValueExpression>.FromList(fileGroups);
+            this.fileGroups = fileGroups.ToImmArray<IdentifierOrValueExpression>();
         }
     
         public ScriptDom.CreatePartitionSchemeStatement ToMutableConcrete() {
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.PartitionFunction = (ScriptDom.Identifier)partitionFunction?.ToMutable();
             ret.IsAll = isAll;
-            ret.FileGroups.AddRange(fileGroups.SelectList(c => (ScriptDom.IdentifierOrValueExpression)c?.ToMutable()));
+            ret.FileGroups.AddRange(fileGroups.Select(c => (ScriptDom.IdentifierOrValueExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -112,7 +112,7 @@ namespace Xledger.Sql.ImmutableDom {
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 partitionFunction: ImmutableDom.Identifier.FromMutable(fragment.PartitionFunction),
                 isAll: fragment.IsAll,
-                fileGroups: fragment.FileGroups.SelectList(ImmutableDom.IdentifierOrValueExpression.FromMutable)
+                fileGroups: fragment.FileGroups.ToImmArray(ImmutableDom.IdentifierOrValueExpression.FromMutable)
             );
         }
     

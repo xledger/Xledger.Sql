@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> Parameters => parameters;
     
         public LeftFunctionCall(IReadOnlyList<ScalarExpression> parameters = null, Identifier collation = null) {
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
             this.collation = collation;
         }
     
         public ScriptDom.LeftFunctionCall ToMutableConcrete() {
             var ret = new ScriptDom.LeftFunctionCall();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.LeftFunctionCall)) { throw new NotImplementedException("Unexpected subtype of LeftFunctionCall not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new LeftFunctionCall(
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
             );
         }

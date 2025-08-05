@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public BulkInsertStatement(IdentifierOrValueExpression from = null, SchemaObjectName to = null, IReadOnlyList<BulkInsertOption> options = null) {
             this.from = from;
             this.to = to;
-            this.options = ImmList<BulkInsertOption>.FromList(options);
+            this.options = options.ToImmArray<BulkInsertOption>();
         }
     
         public ScriptDom.BulkInsertStatement ToMutableConcrete() {
             var ret = new ScriptDom.BulkInsertStatement();
             ret.From = (ScriptDom.IdentifierOrValueExpression)from?.ToMutable();
             ret.To = (ScriptDom.SchemaObjectName)to?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BulkInsertOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.BulkInsertOption)c?.ToMutable()));
             return ret;
         }
         
@@ -97,7 +97,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new BulkInsertStatement(
                 from: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.From),
                 to: ImmutableDom.SchemaObjectName.FromMutable(fragment.To),
-                options: fragment.Options.SelectList(ImmutableDom.BulkInsertOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.BulkInsertOption.FromMutable)
             );
         }
     

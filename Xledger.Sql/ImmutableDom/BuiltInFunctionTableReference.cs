@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public BuiltInFunctionTableReference(Identifier name = null, IReadOnlyList<ScalarExpression> parameters = null, Identifier alias = null, bool forPath = false) {
             this.name = name;
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BuiltInFunctionTableReference ToMutableConcrete() {
             var ret = new ScriptDom.BuiltInFunctionTableReference();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -106,7 +106,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.BuiltInFunctionTableReference)) { throw new NotImplementedException("Unexpected subtype of BuiltInFunctionTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BuiltInFunctionTableReference(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

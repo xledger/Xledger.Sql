@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public SelectStatement Select => select;
     
         public CursorDefinition(IReadOnlyList<CursorOption> options = null, SelectStatement select = null) {
-            this.options = ImmList<CursorOption>.FromList(options);
+            this.options = options.ToImmArray<CursorOption>();
             this.select = select;
         }
     
         public ScriptDom.CursorDefinition ToMutableConcrete() {
             var ret = new ScriptDom.CursorDefinition();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.CursorOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.CursorOption)c?.ToMutable()));
             ret.Select = (ScriptDom.SelectStatement)select?.ToMutable();
             return ret;
         }
@@ -87,7 +87,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.CursorDefinition)) { throw new NotImplementedException("Unexpected subtype of CursorDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CursorDefinition(
-                options: fragment.Options.SelectList(ImmutableDom.CursorOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.CursorOption.FromMutable),
                 select: ImmutableDom.SelectStatement.FromMutable(fragment.Select)
             );
         }

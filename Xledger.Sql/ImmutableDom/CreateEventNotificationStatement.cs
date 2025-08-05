@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.name = name;
             this.scope = scope;
             this.withFanIn = withFanIn;
-            this.eventTypeGroups = ImmList<EventTypeGroupContainer>.FromList(eventTypeGroups);
+            this.eventTypeGroups = eventTypeGroups.ToImmArray<EventTypeGroupContainer>();
             this.brokerService = brokerService;
             this.brokerInstanceSpecifier = brokerInstanceSpecifier;
         }
@@ -36,7 +36,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
             ret.Scope = (ScriptDom.EventNotificationObjectScope)scope?.ToMutable();
             ret.WithFanIn = withFanIn;
-            ret.EventTypeGroups.AddRange(eventTypeGroups.SelectList(c => (ScriptDom.EventTypeGroupContainer)c?.ToMutable()));
+            ret.EventTypeGroups.AddRange(eventTypeGroups.Select(c => (ScriptDom.EventTypeGroupContainer)c?.ToMutable()));
             ret.BrokerService = (ScriptDom.Literal)brokerService?.ToMutable();
             ret.BrokerInstanceSpecifier = (ScriptDom.Literal)brokerInstanceSpecifier?.ToMutable();
             return ret;
@@ -136,7 +136,7 @@ namespace Xledger.Sql.ImmutableDom {
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
                 scope: ImmutableDom.EventNotificationObjectScope.FromMutable(fragment.Scope),
                 withFanIn: fragment.WithFanIn,
-                eventTypeGroups: fragment.EventTypeGroups.SelectList(ImmutableDom.EventTypeGroupContainer.FromMutable),
+                eventTypeGroups: fragment.EventTypeGroups.ToImmArray(ImmutableDom.EventTypeGroupContainer.FromMutable),
                 brokerService: ImmutableDom.Literal.FromMutable(fragment.BrokerService),
                 brokerInstanceSpecifier: ImmutableDom.Literal.FromMutable(fragment.BrokerInstanceSpecifier)
             );

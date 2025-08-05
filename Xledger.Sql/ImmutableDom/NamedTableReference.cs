@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public NamedTableReference(SchemaObjectName schemaObject = null, IReadOnlyList<TableHint> tableHints = null, TableSampleClause tableSampleClause = null, TemporalClause temporalClause = null, Identifier alias = null, bool forPath = false) {
             this.schemaObject = schemaObject;
-            this.tableHints = ImmList<TableHint>.FromList(tableHints);
+            this.tableHints = tableHints.ToImmArray<TableHint>();
             this.tableSampleClause = tableSampleClause;
             this.temporalClause = temporalClause;
             this.alias = alias;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.NamedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.NamedTableReference();
             ret.SchemaObject = (ScriptDom.SchemaObjectName)schemaObject?.ToMutable();
-            ret.TableHints.AddRange(tableHints.SelectList(c => (ScriptDom.TableHint)c?.ToMutable()));
+            ret.TableHints.AddRange(tableHints.Select(c => (ScriptDom.TableHint)c?.ToMutable()));
             ret.TableSampleClause = (ScriptDom.TableSampleClause)tableSampleClause?.ToMutable();
             ret.TemporalClause = (ScriptDom.TemporalClause)temporalClause?.ToMutable();
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
@@ -130,7 +130,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.NamedTableReference)) { throw new NotImplementedException("Unexpected subtype of NamedTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new NamedTableReference(
                 schemaObject: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObject),
-                tableHints: fragment.TableHints.SelectList(ImmutableDom.TableHint.FromMutable),
+                tableHints: fragment.TableHints.ToImmArray(ImmutableDom.TableHint.FromMutable),
                 tableSampleClause: ImmutableDom.TableSampleClause.FromMutable(fragment.TableSampleClause),
                 temporalClause: ImmutableDom.TemporalClause.FromMutable(fragment.TemporalClause),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),

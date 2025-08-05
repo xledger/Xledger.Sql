@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AutomaticTuningDatabaseOption(ScriptDom.AutomaticTuningState automaticTuningState = ScriptDom.AutomaticTuningState.NotSet, IReadOnlyList<AutomaticTuningOption> options = null, ScriptDom.DatabaseOptionKind optionKind = ScriptDom.DatabaseOptionKind.Online) {
             this.automaticTuningState = automaticTuningState;
-            this.options = ImmList<AutomaticTuningOption>.FromList(options);
+            this.options = options.ToImmArray<AutomaticTuningOption>();
             this.optionKind = optionKind;
         }
     
         public new ScriptDom.AutomaticTuningDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.AutomaticTuningDatabaseOption();
             ret.AutomaticTuningState = automaticTuningState;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AutomaticTuningOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AutomaticTuningOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -94,7 +94,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AutomaticTuningDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of AutomaticTuningDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AutomaticTuningDatabaseOption(
                 automaticTuningState: fragment.AutomaticTuningState,
-                options: fragment.Options.SelectList(ImmutableDom.AutomaticTuningOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.AutomaticTuningOption.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

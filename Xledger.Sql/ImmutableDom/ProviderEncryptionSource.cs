@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ProviderEncryptionSource(Identifier name = null, IReadOnlyList<KeyOption> keyOptions = null) {
             this.name = name;
-            this.keyOptions = ImmList<KeyOption>.FromList(keyOptions);
+            this.keyOptions = keyOptions.ToImmArray<KeyOption>();
         }
     
         public ScriptDom.ProviderEncryptionSource ToMutableConcrete() {
             var ret = new ScriptDom.ProviderEncryptionSource();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.KeyOptions.AddRange(keyOptions.SelectList(c => (ScriptDom.KeyOption)c?.ToMutable()));
+            ret.KeyOptions.AddRange(keyOptions.Select(c => (ScriptDom.KeyOption)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.ProviderEncryptionSource)) { throw new NotImplementedException("Unexpected subtype of ProviderEncryptionSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ProviderEncryptionSource(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                keyOptions: fragment.KeyOptions.SelectList(ImmutableDom.KeyOption.FromMutable)
+                keyOptions: fragment.KeyOptions.ToImmArray(ImmutableDom.KeyOption.FromMutable)
             );
         }
     

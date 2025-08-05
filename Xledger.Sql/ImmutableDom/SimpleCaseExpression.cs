@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public SimpleCaseExpression(ScalarExpression inputExpression = null, IReadOnlyList<SimpleWhenClause> whenClauses = null, ScalarExpression elseExpression = null, Identifier collation = null) {
             this.inputExpression = inputExpression;
-            this.whenClauses = ImmList<SimpleWhenClause>.FromList(whenClauses);
+            this.whenClauses = whenClauses.ToImmArray<SimpleWhenClause>();
             this.elseExpression = elseExpression;
             this.collation = collation;
         }
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.SimpleCaseExpression ToMutableConcrete() {
             var ret = new ScriptDom.SimpleCaseExpression();
             ret.InputExpression = (ScriptDom.ScalarExpression)inputExpression?.ToMutable();
-            ret.WhenClauses.AddRange(whenClauses.SelectList(c => (ScriptDom.SimpleWhenClause)c?.ToMutable()));
+            ret.WhenClauses.AddRange(whenClauses.Select(c => (ScriptDom.SimpleWhenClause)c?.ToMutable()));
             ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression?.ToMutable();
             ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
@@ -108,7 +108,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.SimpleCaseExpression)) { throw new NotImplementedException("Unexpected subtype of SimpleCaseExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SimpleCaseExpression(
                 inputExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.InputExpression),
-                whenClauses: fragment.WhenClauses.SelectList(ImmutableDom.SimpleWhenClause.FromMutable),
+                whenClauses: fragment.WhenClauses.ToImmArray(ImmutableDom.SimpleWhenClause.FromMutable),
                 elseExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.ElseExpression),
                 collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
             );

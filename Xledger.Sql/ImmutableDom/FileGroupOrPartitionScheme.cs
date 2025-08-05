@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public FileGroupOrPartitionScheme(IdentifierOrValueExpression name = null, IReadOnlyList<Identifier> partitionSchemeColumns = null) {
             this.name = name;
-            this.partitionSchemeColumns = ImmList<Identifier>.FromList(partitionSchemeColumns);
+            this.partitionSchemeColumns = partitionSchemeColumns.ToImmArray<Identifier>();
         }
     
         public ScriptDom.FileGroupOrPartitionScheme ToMutableConcrete() {
             var ret = new ScriptDom.FileGroupOrPartitionScheme();
             ret.Name = (ScriptDom.IdentifierOrValueExpression)name?.ToMutable();
-            ret.PartitionSchemeColumns.AddRange(partitionSchemeColumns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.PartitionSchemeColumns.AddRange(partitionSchemeColumns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.FileGroupOrPartitionScheme)) { throw new NotImplementedException("Unexpected subtype of FileGroupOrPartitionScheme not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileGroupOrPartitionScheme(
                 name: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.Name),
-                partitionSchemeColumns: fragment.PartitionSchemeColumns.SelectList(ImmutableDom.Identifier.FromMutable)
+                partitionSchemeColumns: fragment.PartitionSchemeColumns.ToImmArray(ImmutableDom.Identifier.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public AvailabilityReplica(StringLiteral serverName = null, IReadOnlyList<AvailabilityReplicaOption> options = null) {
             this.serverName = serverName;
-            this.options = ImmList<AvailabilityReplicaOption>.FromList(options);
+            this.options = options.ToImmArray<AvailabilityReplicaOption>();
         }
     
         public ScriptDom.AvailabilityReplica ToMutableConcrete() {
             var ret = new ScriptDom.AvailabilityReplica();
             ret.ServerName = (ScriptDom.StringLiteral)serverName?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AvailabilityReplicaOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AvailabilityReplicaOption)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AvailabilityReplica)) { throw new NotImplementedException("Unexpected subtype of AvailabilityReplica not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AvailabilityReplica(
                 serverName: ImmutableDom.StringLiteral.FromMutable(fragment.ServerName),
-                options: fragment.Options.SelectList(ImmutableDom.AvailabilityReplicaOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AvailabilityReplicaOption.FromMutable)
             );
         }
     

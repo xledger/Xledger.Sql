@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -33,14 +33,14 @@ namespace Xledger.Sql.ImmutableDom {
         public FunctionCall(CallTarget callTarget = null, Identifier functionName = null, IReadOnlyList<ScalarExpression> parameters = null, ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified, OverClause overClause = null, WithinGroupClause withinGroupClause = null, IReadOnlyList<Identifier> ignoreRespectNulls = null, Identifier trimOptions = null, IReadOnlyList<JsonKeyValue> jsonParameters = null, IReadOnlyList<Identifier> absentOrNullOnNull = null, Identifier collation = null) {
             this.callTarget = callTarget;
             this.functionName = functionName;
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
             this.uniqueRowFilter = uniqueRowFilter;
             this.overClause = overClause;
             this.withinGroupClause = withinGroupClause;
-            this.ignoreRespectNulls = ImmList<Identifier>.FromList(ignoreRespectNulls);
+            this.ignoreRespectNulls = ignoreRespectNulls.ToImmArray<Identifier>();
             this.trimOptions = trimOptions;
-            this.jsonParameters = ImmList<JsonKeyValue>.FromList(jsonParameters);
-            this.absentOrNullOnNull = ImmList<Identifier>.FromList(absentOrNullOnNull);
+            this.jsonParameters = jsonParameters.ToImmArray<JsonKeyValue>();
+            this.absentOrNullOnNull = absentOrNullOnNull.ToImmArray<Identifier>();
             this.collation = collation;
         }
     
@@ -48,14 +48,14 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.FunctionCall();
             ret.CallTarget = (ScriptDom.CallTarget)callTarget?.ToMutable();
             ret.FunctionName = (ScriptDom.Identifier)functionName?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.UniqueRowFilter = uniqueRowFilter;
             ret.OverClause = (ScriptDom.OverClause)overClause?.ToMutable();
             ret.WithinGroupClause = (ScriptDom.WithinGroupClause)withinGroupClause?.ToMutable();
-            ret.IgnoreRespectNulls.AddRange(ignoreRespectNulls.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.IgnoreRespectNulls.AddRange(ignoreRespectNulls.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.TrimOptions = (ScriptDom.Identifier)trimOptions?.ToMutable();
-            ret.JsonParameters.AddRange(jsonParameters.SelectList(c => (ScriptDom.JsonKeyValue)c?.ToMutable()));
-            ret.AbsentOrNullOnNull.AddRange(absentOrNullOnNull.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.JsonParameters.AddRange(jsonParameters.Select(c => (ScriptDom.JsonKeyValue)c?.ToMutable()));
+            ret.AbsentOrNullOnNull.AddRange(absentOrNullOnNull.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
@@ -187,14 +187,14 @@ namespace Xledger.Sql.ImmutableDom {
             return new FunctionCall(
                 callTarget: ImmutableDom.CallTarget.FromMutable(fragment.CallTarget),
                 functionName: ImmutableDom.Identifier.FromMutable(fragment.FunctionName),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 uniqueRowFilter: fragment.UniqueRowFilter,
                 overClause: ImmutableDom.OverClause.FromMutable(fragment.OverClause),
                 withinGroupClause: ImmutableDom.WithinGroupClause.FromMutable(fragment.WithinGroupClause),
-                ignoreRespectNulls: fragment.IgnoreRespectNulls.SelectList(ImmutableDom.Identifier.FromMutable),
+                ignoreRespectNulls: fragment.IgnoreRespectNulls.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 trimOptions: ImmutableDom.Identifier.FromMutable(fragment.TrimOptions),
-                jsonParameters: fragment.JsonParameters.SelectList(ImmutableDom.JsonKeyValue.FromMutable),
-                absentOrNullOnNull: fragment.AbsentOrNullOnNull.SelectList(ImmutableDom.Identifier.FromMutable),
+                jsonParameters: fragment.JsonParameters.ToImmArray(ImmutableDom.JsonKeyValue.FromMutable),
+                absentOrNullOnNull: fragment.AbsentOrNullOnNull.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
             );
         }

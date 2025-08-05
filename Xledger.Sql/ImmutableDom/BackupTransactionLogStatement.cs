@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,17 +10,17 @@ namespace Xledger.Sql.ImmutableDom {
     public class BackupTransactionLogStatement : BackupStatement, IEquatable<BackupTransactionLogStatement> {
         public BackupTransactionLogStatement(IdentifierOrValueExpression databaseName = null, IReadOnlyList<BackupOption> options = null, IReadOnlyList<MirrorToClause> mirrorToClauses = null, IReadOnlyList<DeviceInfo> devices = null) {
             this.databaseName = databaseName;
-            this.options = ImmList<BackupOption>.FromList(options);
-            this.mirrorToClauses = ImmList<MirrorToClause>.FromList(mirrorToClauses);
-            this.devices = ImmList<DeviceInfo>.FromList(devices);
+            this.options = options.ToImmArray<BackupOption>();
+            this.mirrorToClauses = mirrorToClauses.ToImmArray<MirrorToClause>();
+            this.devices = devices.ToImmArray<DeviceInfo>();
         }
     
         public ScriptDom.BackupTransactionLogStatement ToMutableConcrete() {
             var ret = new ScriptDom.BackupTransactionLogStatement();
             ret.DatabaseName = (ScriptDom.IdentifierOrValueExpression)databaseName?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.BackupOption)c?.ToMutable()));
-            ret.MirrorToClauses.AddRange(mirrorToClauses.SelectList(c => (ScriptDom.MirrorToClause)c?.ToMutable()));
-            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.BackupOption)c?.ToMutable()));
+            ret.MirrorToClauses.AddRange(mirrorToClauses.Select(c => (ScriptDom.MirrorToClause)c?.ToMutable()));
+            ret.Devices.AddRange(devices.Select(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
             return ret;
         }
         
@@ -98,9 +98,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.BackupTransactionLogStatement)) { throw new NotImplementedException("Unexpected subtype of BackupTransactionLogStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupTransactionLogStatement(
                 databaseName: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.DatabaseName),
-                options: fragment.Options.SelectList(ImmutableDom.BackupOption.FromMutable),
-                mirrorToClauses: fragment.MirrorToClauses.SelectList(ImmutableDom.MirrorToClause.FromMutable),
-                devices: fragment.Devices.SelectList(ImmutableDom.DeviceInfo.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.BackupOption.FromMutable),
+                mirrorToClauses: fragment.MirrorToClauses.ToImmArray(ImmutableDom.MirrorToClause.FromMutable),
+                devices: fragment.Devices.ToImmArray(ImmutableDom.DeviceInfo.FromMutable)
             );
         }
     

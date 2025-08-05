@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,8 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
         public VariableMethodCallTableReference(VariableReference variable = null, Identifier methodName = null, IReadOnlyList<ScalarExpression> parameters = null, IReadOnlyList<Identifier> columns = null, Identifier alias = null, bool forPath = false) {
             this.variable = variable;
             this.methodName = methodName;
-            this.parameters = ImmList<ScalarExpression>.FromList(parameters);
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.parameters = parameters.ToImmArray<ScalarExpression>();
+            this.columns = columns.ToImmArray<Identifier>();
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -29,8 +29,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.VariableMethodCallTableReference();
             ret.Variable = (ScriptDom.VariableReference)variable?.ToMutable();
             ret.MethodName = (ScriptDom.Identifier)methodName?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -127,8 +127,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new VariableMethodCallTableReference(
                 variable: ImmutableDom.VariableReference.FromMutable(fragment.Variable),
                 methodName: ImmutableDom.Identifier.FromMutable(fragment.MethodName),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ScalarExpression.FromMutable),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

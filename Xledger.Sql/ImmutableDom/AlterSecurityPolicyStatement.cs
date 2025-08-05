@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -11,8 +11,8 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterSecurityPolicyStatement(SchemaObjectName name = null, bool notForReplication = false, IReadOnlyList<SecurityPolicyOption> securityPolicyOptions = null, IReadOnlyList<SecurityPredicateAction> securityPredicateActions = null, ScriptDom.SecurityPolicyActionType actionType = ScriptDom.SecurityPolicyActionType.Create) {
             this.name = name;
             this.notForReplication = notForReplication;
-            this.securityPolicyOptions = ImmList<SecurityPolicyOption>.FromList(securityPolicyOptions);
-            this.securityPredicateActions = ImmList<SecurityPredicateAction>.FromList(securityPredicateActions);
+            this.securityPolicyOptions = securityPolicyOptions.ToImmArray<SecurityPolicyOption>();
+            this.securityPredicateActions = securityPredicateActions.ToImmArray<SecurityPredicateAction>();
             this.actionType = actionType;
         }
     
@@ -20,8 +20,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterSecurityPolicyStatement();
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             ret.NotForReplication = notForReplication;
-            ret.SecurityPolicyOptions.AddRange(securityPolicyOptions.SelectList(c => (ScriptDom.SecurityPolicyOption)c?.ToMutable()));
-            ret.SecurityPredicateActions.AddRange(securityPredicateActions.SelectList(c => (ScriptDom.SecurityPredicateAction)c?.ToMutable()));
+            ret.SecurityPolicyOptions.AddRange(securityPolicyOptions.Select(c => (ScriptDom.SecurityPolicyOption)c?.ToMutable()));
+            ret.SecurityPredicateActions.AddRange(securityPredicateActions.Select(c => (ScriptDom.SecurityPredicateAction)c?.ToMutable()));
             ret.ActionType = actionType;
             return ret;
         }
@@ -107,8 +107,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterSecurityPolicyStatement(
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name),
                 notForReplication: fragment.NotForReplication,
-                securityPolicyOptions: fragment.SecurityPolicyOptions.SelectList(ImmutableDom.SecurityPolicyOption.FromMutable),
-                securityPredicateActions: fragment.SecurityPredicateActions.SelectList(ImmutableDom.SecurityPredicateAction.FromMutable),
+                securityPolicyOptions: fragment.SecurityPolicyOptions.ToImmArray(ImmutableDom.SecurityPolicyOption.FromMutable),
+                securityPredicateActions: fragment.SecurityPredicateActions.ToImmArray(ImmutableDom.SecurityPredicateAction.FromMutable),
                 actionType: fragment.ActionType
             );
         }

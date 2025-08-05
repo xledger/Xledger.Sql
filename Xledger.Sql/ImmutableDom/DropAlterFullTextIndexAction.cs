@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public bool WithNoPopulation => withNoPopulation;
     
         public DropAlterFullTextIndexAction(IReadOnlyList<Identifier> columns = null, bool withNoPopulation = false) {
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.columns = columns.ToImmArray<Identifier>();
             this.withNoPopulation = withNoPopulation;
         }
     
         public ScriptDom.DropAlterFullTextIndexAction ToMutableConcrete() {
             var ret = new ScriptDom.DropAlterFullTextIndexAction();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.WithNoPopulation = withNoPopulation;
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.DropAlterFullTextIndexAction)) { throw new NotImplementedException("Unexpected subtype of DropAlterFullTextIndexAction not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropAlterFullTextIndexAction(
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 withNoPopulation: fragment.WithNoPopulation
             );
         }

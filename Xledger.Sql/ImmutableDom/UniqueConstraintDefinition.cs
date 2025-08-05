@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -30,8 +30,8 @@ namespace Xledger.Sql.ImmutableDom {
             this.clustered = clustered;
             this.isPrimaryKey = isPrimaryKey;
             this.isEnforced = isEnforced;
-            this.columns = ImmList<ColumnWithSortOrder>.FromList(columns);
-            this.indexOptions = ImmList<IndexOption>.FromList(indexOptions);
+            this.columns = columns.ToImmArray<ColumnWithSortOrder>();
+            this.indexOptions = indexOptions.ToImmArray<IndexOption>();
             this.onFileGroupOrPartitionScheme = onFileGroupOrPartitionScheme;
             this.indexType = indexType;
             this.fileStreamOn = fileStreamOn;
@@ -43,8 +43,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Clustered = clustered;
             ret.IsPrimaryKey = isPrimaryKey;
             ret.IsEnforced = isEnforced;
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
-            ret.IndexOptions.AddRange(indexOptions.SelectList(c => (ScriptDom.IndexOption)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnWithSortOrder)c?.ToMutable()));
+            ret.IndexOptions.AddRange(indexOptions.Select(c => (ScriptDom.IndexOption)c?.ToMutable()));
             ret.OnFileGroupOrPartitionScheme = (ScriptDom.FileGroupOrPartitionScheme)onFileGroupOrPartitionScheme?.ToMutable();
             ret.IndexType = (ScriptDom.IndexType)indexType?.ToMutable();
             ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn?.ToMutable();
@@ -164,8 +164,8 @@ namespace Xledger.Sql.ImmutableDom {
                 clustered: fragment.Clustered,
                 isPrimaryKey: fragment.IsPrimaryKey,
                 isEnforced: fragment.IsEnforced,
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnWithSortOrder.FromMutable),
-                indexOptions: fragment.IndexOptions.SelectList(ImmutableDom.IndexOption.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnWithSortOrder.FromMutable),
+                indexOptions: fragment.IndexOptions.ToImmArray(ImmutableDom.IndexOption.FromMutable),
                 onFileGroupOrPartitionScheme: ImmutableDom.FileGroupOrPartitionScheme.FromMutable(fragment.OnFileGroupOrPartitionScheme),
                 indexType: ImmutableDom.IndexType.FromMutable(fragment.IndexType),
                 fileStreamOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.FileStreamOn),

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterSymmetricKeyStatement(bool isAdd = false, Identifier name = null, IReadOnlyList<CryptoMechanism> encryptingMechanisms = null) {
             this.isAdd = isAdd;
             this.name = name;
-            this.encryptingMechanisms = ImmList<CryptoMechanism>.FromList(encryptingMechanisms);
+            this.encryptingMechanisms = encryptingMechanisms.ToImmArray<CryptoMechanism>();
         }
     
         public ScriptDom.AlterSymmetricKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterSymmetricKeyStatement();
             ret.IsAdd = isAdd;
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.SelectList(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
+            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.Select(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
             return ret;
         }
         
@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterSymmetricKeyStatement(
                 isAdd: fragment.IsAdd,
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                encryptingMechanisms: fragment.EncryptingMechanisms.SelectList(ImmutableDom.CryptoMechanism.FromMutable)
+                encryptingMechanisms: fragment.EncryptingMechanisms.ToImmArray(ImmutableDom.CryptoMechanism.FromMutable)
             );
         }
     

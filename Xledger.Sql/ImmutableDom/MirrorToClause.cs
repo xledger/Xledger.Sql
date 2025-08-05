@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<DeviceInfo> Devices => devices;
     
         public MirrorToClause(IReadOnlyList<DeviceInfo> devices = null) {
-            this.devices = ImmList<DeviceInfo>.FromList(devices);
+            this.devices = devices.ToImmArray<DeviceInfo>();
         }
     
         public ScriptDom.MirrorToClause ToMutableConcrete() {
             var ret = new ScriptDom.MirrorToClause();
-            ret.Devices.AddRange(devices.SelectList(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
+            ret.Devices.AddRange(devices.Select(c => (ScriptDom.DeviceInfo)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.MirrorToClause)) { throw new NotImplementedException("Unexpected subtype of MirrorToClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new MirrorToClause(
-                devices: fragment.Devices.SelectList(ImmutableDom.DeviceInfo.FromMutable)
+                devices: fragment.Devices.ToImmArray(ImmutableDom.DeviceInfo.FromMutable)
             );
         }
     

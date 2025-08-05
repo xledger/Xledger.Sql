@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.service = service;
             this.owner = owner;
             this.name = name;
-            this.options = ImmList<RemoteServiceBindingOption>.FromList(options);
+            this.options = options.ToImmArray<RemoteServiceBindingOption>();
         }
     
         public ScriptDom.CreateRemoteServiceBindingStatement ToMutableConcrete() {
@@ -26,7 +26,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Service = (ScriptDom.Literal)service?.ToMutable();
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.RemoteServiceBindingOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.RemoteServiceBindingOption)c?.ToMutable()));
             return ret;
         }
         
@@ -110,7 +110,7 @@ namespace Xledger.Sql.ImmutableDom {
                 service: ImmutableDom.Literal.FromMutable(fragment.Service),
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(ImmutableDom.RemoteServiceBindingOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.RemoteServiceBindingOption.FromMutable)
             );
         }
     

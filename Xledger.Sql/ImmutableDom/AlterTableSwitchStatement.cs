@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.sourcePartitionNumber = sourcePartitionNumber;
             this.targetPartitionNumber = targetPartitionNumber;
             this.targetTable = targetTable;
-            this.options = ImmList<TableSwitchOption>.FromList(options);
+            this.options = options.ToImmArray<TableSwitchOption>();
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.SourcePartitionNumber = (ScriptDom.ScalarExpression)sourcePartitionNumber?.ToMutable();
             ret.TargetPartitionNumber = (ScriptDom.ScalarExpression)targetPartitionNumber?.ToMutable();
             ret.TargetTable = (ScriptDom.SchemaObjectName)targetTable?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.TableSwitchOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.TableSwitchOption)c?.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
@@ -124,7 +124,7 @@ namespace Xledger.Sql.ImmutableDom {
                 sourcePartitionNumber: ImmutableDom.ScalarExpression.FromMutable(fragment.SourcePartitionNumber),
                 targetPartitionNumber: ImmutableDom.ScalarExpression.FromMutable(fragment.TargetPartitionNumber),
                 targetTable: ImmutableDom.SchemaObjectName.FromMutable(fragment.TargetTable),
-                options: fragment.Options.SelectList(ImmutableDom.TableSwitchOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.TableSwitchOption.FromMutable),
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
             );
         }

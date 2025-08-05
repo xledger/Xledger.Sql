@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<GroupingSpecification> Sets => sets;
     
         public GroupingSetsGroupingSpecification(IReadOnlyList<GroupingSpecification> sets = null) {
-            this.sets = ImmList<GroupingSpecification>.FromList(sets);
+            this.sets = sets.ToImmArray<GroupingSpecification>();
         }
     
         public ScriptDom.GroupingSetsGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.GroupingSetsGroupingSpecification();
-            ret.Sets.AddRange(sets.SelectList(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
+            ret.Sets.AddRange(sets.Select(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.GroupingSetsGroupingSpecification)) { throw new NotImplementedException("Unexpected subtype of GroupingSetsGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GroupingSetsGroupingSpecification(
-                sets: fragment.Sets.SelectList(ImmutableDom.GroupingSpecification.FromMutable)
+                sets: fragment.Sets.ToImmArray(ImmutableDom.GroupingSpecification.FromMutable)
             );
         }
     

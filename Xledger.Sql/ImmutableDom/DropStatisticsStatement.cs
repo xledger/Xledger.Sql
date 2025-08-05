@@ -2,19 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropStatisticsStatement : DropChildObjectsStatement, IEquatable<DropStatisticsStatement> {
         public DropStatisticsStatement(IReadOnlyList<ChildObjectName> objects = null) {
-            this.objects = ImmList<ChildObjectName>.FromList(objects);
+            this.objects = objects.ToImmArray<ChildObjectName>();
         }
     
         public ScriptDom.DropStatisticsStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropStatisticsStatement();
-            ret.Objects.AddRange(objects.SelectList(c => (ScriptDom.ChildObjectName)c?.ToMutable()));
+            ret.Objects.AddRange(objects.Select(c => (ScriptDom.ChildObjectName)c?.ToMutable()));
             return ret;
         }
         
@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.DropStatisticsStatement)) { throw new NotImplementedException("Unexpected subtype of DropStatisticsStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropStatisticsStatement(
-                objects: fragment.Objects.SelectList(ImmutableDom.ChildObjectName.FromMutable)
+                objects: fragment.Objects.ToImmArray(ImmutableDom.ChildObjectName.FromMutable)
             );
         }
     

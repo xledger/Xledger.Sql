@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<IdentifierOrValueExpression> IndexValues => indexValues;
     
         public IndexTableHint(IReadOnlyList<IdentifierOrValueExpression> indexValues = null, ScriptDom.TableHintKind hintKind = ScriptDom.TableHintKind.None) {
-            this.indexValues = ImmList<IdentifierOrValueExpression>.FromList(indexValues);
+            this.indexValues = indexValues.ToImmArray<IdentifierOrValueExpression>();
             this.hintKind = hintKind;
         }
     
         public new ScriptDom.IndexTableHint ToMutableConcrete() {
             var ret = new ScriptDom.IndexTableHint();
-            ret.IndexValues.AddRange(indexValues.SelectList(c => (ScriptDom.IdentifierOrValueExpression)c?.ToMutable()));
+            ret.IndexValues.AddRange(indexValues.Select(c => (ScriptDom.IdentifierOrValueExpression)c?.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.IndexTableHint)) { throw new NotImplementedException("Unexpected subtype of IndexTableHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new IndexTableHint(
-                indexValues: fragment.IndexValues.SelectList(ImmutableDom.IdentifierOrValueExpression.FromMutable),
+                indexValues: fragment.IndexValues.ToImmArray(ImmutableDom.IdentifierOrValueExpression.FromMutable),
                 hintKind: fragment.HintKind
             );
         }

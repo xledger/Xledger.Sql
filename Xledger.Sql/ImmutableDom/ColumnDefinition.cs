@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -42,7 +42,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.defaultConstraint = defaultConstraint;
             this.identityOptions = identityOptions;
             this.isRowGuidCol = isRowGuidCol;
-            this.constraints = ImmList<ConstraintDefinition>.FromList(constraints);
+            this.constraints = constraints.ToImmArray<ConstraintDefinition>();
             this.storageOptions = storageOptions;
             this.index = index;
             this.generatedAlways = generatedAlways;
@@ -62,7 +62,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DefaultConstraint = (ScriptDom.DefaultConstraintDefinition)defaultConstraint?.ToMutable();
             ret.IdentityOptions = (ScriptDom.IdentityOptions)identityOptions?.ToMutable();
             ret.IsRowGuidCol = isRowGuidCol;
-            ret.Constraints.AddRange(constraints.SelectList(c => (ScriptDom.ConstraintDefinition)c?.ToMutable()));
+            ret.Constraints.AddRange(constraints.Select(c => (ScriptDom.ConstraintDefinition)c?.ToMutable()));
             ret.StorageOptions = (ScriptDom.ColumnStorageOptions)storageOptions?.ToMutable();
             ret.Index = (ScriptDom.IndexDefinition)index?.ToMutable();
             ret.GeneratedAlways = generatedAlways;
@@ -244,7 +244,7 @@ namespace Xledger.Sql.ImmutableDom {
                 defaultConstraint: ImmutableDom.DefaultConstraintDefinition.FromMutable(fragment.DefaultConstraint),
                 identityOptions: ImmutableDom.IdentityOptions.FromMutable(fragment.IdentityOptions),
                 isRowGuidCol: fragment.IsRowGuidCol,
-                constraints: fragment.Constraints.SelectList(ImmutableDom.ConstraintDefinition.FromMutable),
+                constraints: fragment.Constraints.ToImmArray(ImmutableDom.ConstraintDefinition.FromMutable),
                 storageOptions: ImmutableDom.ColumnStorageOptions.FromMutable(fragment.StorageOptions),
                 index: ImmutableDom.IndexDefinition.FromMutable(fragment.Index),
                 generatedAlways: fragment.GeneratedAlways,

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public RemoteDataArchiveDatabaseOption(ScriptDom.OptionState optionState = ScriptDom.OptionState.NotSet, IReadOnlyList<RemoteDataArchiveDatabaseSetting> settings = null, ScriptDom.DatabaseOptionKind optionKind = ScriptDom.DatabaseOptionKind.Online) {
             this.optionState = optionState;
-            this.settings = ImmList<RemoteDataArchiveDatabaseSetting>.FromList(settings);
+            this.settings = settings.ToImmArray<RemoteDataArchiveDatabaseSetting>();
             this.optionKind = optionKind;
         }
     
         public new ScriptDom.RemoteDataArchiveDatabaseOption ToMutableConcrete() {
             var ret = new ScriptDom.RemoteDataArchiveDatabaseOption();
             ret.OptionState = optionState;
-            ret.Settings.AddRange(settings.SelectList(c => (ScriptDom.RemoteDataArchiveDatabaseSetting)c?.ToMutable()));
+            ret.Settings.AddRange(settings.Select(c => (ScriptDom.RemoteDataArchiveDatabaseSetting)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -94,7 +94,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.RemoteDataArchiveDatabaseOption)) { throw new NotImplementedException("Unexpected subtype of RemoteDataArchiveDatabaseOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RemoteDataArchiveDatabaseOption(
                 optionState: fragment.OptionState,
-                settings: fragment.Settings.SelectList(ImmutableDom.RemoteDataArchiveDatabaseSetting.FromMutable),
+                settings: fragment.Settings.ToImmArray(ImmutableDom.RemoteDataArchiveDatabaseSetting.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

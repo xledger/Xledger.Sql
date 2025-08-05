@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,13 +10,13 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateApplicationRoleStatement : ApplicationRoleStatement, IEquatable<CreateApplicationRoleStatement> {
         public CreateApplicationRoleStatement(Identifier name = null, IReadOnlyList<ApplicationRoleOption> applicationRoleOptions = null) {
             this.name = name;
-            this.applicationRoleOptions = ImmList<ApplicationRoleOption>.FromList(applicationRoleOptions);
+            this.applicationRoleOptions = applicationRoleOptions.ToImmArray<ApplicationRoleOption>();
         }
     
         public ScriptDom.CreateApplicationRoleStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateApplicationRoleStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.ApplicationRoleOptions.AddRange(applicationRoleOptions.SelectList(c => (ScriptDom.ApplicationRoleOption)c?.ToMutable()));
+            ret.ApplicationRoleOptions.AddRange(applicationRoleOptions.Select(c => (ScriptDom.ApplicationRoleOption)c?.ToMutable()));
             return ret;
         }
         
@@ -82,7 +82,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateApplicationRoleStatement)) { throw new NotImplementedException("Unexpected subtype of CreateApplicationRoleStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateApplicationRoleStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                applicationRoleOptions: fragment.ApplicationRoleOptions.SelectList(ImmutableDom.ApplicationRoleOption.FromMutable)
+                applicationRoleOptions: fragment.ApplicationRoleOptions.ToImmArray(ImmutableDom.ApplicationRoleOption.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,20 +17,20 @@ namespace Xledger.Sql.ImmutableDom {
         public Identifier Owner => owner;
     
         public CreateSymmetricKeyStatement(IReadOnlyList<KeyOption> keyOptions = null, Identifier provider = null, Identifier owner = null, Identifier name = null, IReadOnlyList<CryptoMechanism> encryptingMechanisms = null) {
-            this.keyOptions = ImmList<KeyOption>.FromList(keyOptions);
+            this.keyOptions = keyOptions.ToImmArray<KeyOption>();
             this.provider = provider;
             this.owner = owner;
             this.name = name;
-            this.encryptingMechanisms = ImmList<CryptoMechanism>.FromList(encryptingMechanisms);
+            this.encryptingMechanisms = encryptingMechanisms.ToImmArray<CryptoMechanism>();
         }
     
         public ScriptDom.CreateSymmetricKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateSymmetricKeyStatement();
-            ret.KeyOptions.AddRange(keyOptions.SelectList(c => (ScriptDom.KeyOption)c?.ToMutable()));
+            ret.KeyOptions.AddRange(keyOptions.Select(c => (ScriptDom.KeyOption)c?.ToMutable()));
             ret.Provider = (ScriptDom.Identifier)provider?.ToMutable();
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.SelectList(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
+            ret.EncryptingMechanisms.AddRange(encryptingMechanisms.Select(c => (ScriptDom.CryptoMechanism)c?.ToMutable()));
             return ret;
         }
         
@@ -117,11 +117,11 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.CreateSymmetricKeyStatement)) { throw new NotImplementedException("Unexpected subtype of CreateSymmetricKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateSymmetricKeyStatement(
-                keyOptions: fragment.KeyOptions.SelectList(ImmutableDom.KeyOption.FromMutable),
+                keyOptions: fragment.KeyOptions.ToImmArray(ImmutableDom.KeyOption.FromMutable),
                 provider: ImmutableDom.Identifier.FromMutable(fragment.Provider),
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                encryptingMechanisms: fragment.EncryptingMechanisms.SelectList(ImmutableDom.CryptoMechanism.FromMutable)
+                encryptingMechanisms: fragment.EncryptingMechanisms.ToImmArray(ImmutableDom.CryptoMechanism.FromMutable)
             );
         }
     

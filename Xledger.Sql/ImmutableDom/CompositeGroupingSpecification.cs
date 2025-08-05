@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<GroupingSpecification> Items => items;
     
         public CompositeGroupingSpecification(IReadOnlyList<GroupingSpecification> items = null) {
-            this.items = ImmList<GroupingSpecification>.FromList(items);
+            this.items = items.ToImmArray<GroupingSpecification>();
         }
     
         public ScriptDom.CompositeGroupingSpecification ToMutableConcrete() {
             var ret = new ScriptDom.CompositeGroupingSpecification();
-            ret.Items.AddRange(items.SelectList(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
+            ret.Items.AddRange(items.Select(c => (ScriptDom.GroupingSpecification)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.CompositeGroupingSpecification)) { throw new NotImplementedException("Unexpected subtype of CompositeGroupingSpecification not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CompositeGroupingSpecification(
-                items: fragment.Items.SelectList(ImmutableDom.GroupingSpecification.FromMutable)
+                items: fragment.Items.ToImmArray(ImmutableDom.GroupingSpecification.FromMutable)
             );
         }
     

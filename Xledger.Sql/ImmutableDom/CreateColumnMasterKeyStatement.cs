@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public CreateColumnMasterKeyStatement(Identifier name = null, IReadOnlyList<ColumnMasterKeyParameter> parameters = null) {
             this.name = name;
-            this.parameters = ImmList<ColumnMasterKeyParameter>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<ColumnMasterKeyParameter>();
         }
     
         public ScriptDom.CreateColumnMasterKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateColumnMasterKeyStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ColumnMasterKeyParameter)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ColumnMasterKeyParameter)c?.ToMutable()));
             return ret;
         }
         
@@ -88,7 +88,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateColumnMasterKeyStatement)) { throw new NotImplementedException("Unexpected subtype of CreateColumnMasterKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateColumnMasterKeyStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ColumnMasterKeyParameter.FromMutable)
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ColumnMasterKeyParameter.FromMutable)
             );
         }
     

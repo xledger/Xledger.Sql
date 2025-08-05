@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public InsertSpecification(ScriptDom.InsertOption insertOption = ScriptDom.InsertOption.None, InsertSource insertSource = null, IReadOnlyList<ColumnReferenceExpression> columns = null, TableReference target = null, TopRowFilter topRowFilter = null, OutputIntoClause outputIntoClause = null, OutputClause outputClause = null) {
             this.insertOption = insertOption;
             this.insertSource = insertSource;
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
             this.target = target;
             this.topRowFilter = topRowFilter;
             this.outputIntoClause = outputIntoClause;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.InsertSpecification();
             ret.InsertOption = insertOption;
             ret.InsertSource = (ScriptDom.InsertSource)insertSource?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.Target = (ScriptDom.TableReference)target?.ToMutable();
             ret.TopRowFilter = (ScriptDom.TopRowFilter)topRowFilter?.ToMutable();
             ret.OutputIntoClause = (ScriptDom.OutputIntoClause)outputIntoClause?.ToMutable();
@@ -139,7 +139,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new InsertSpecification(
                 insertOption: fragment.InsertOption,
                 insertSource: ImmutableDom.InsertSource.FromMutable(fragment.InsertSource),
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 target: ImmutableDom.TableReference.FromMutable(fragment.Target),
                 topRowFilter: ImmutableDom.TopRowFilter.FromMutable(fragment.TopRowFilter),
                 outputIntoClause: ImmutableDom.OutputIntoClause.FromMutable(fragment.OutputIntoClause),

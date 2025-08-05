@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ExpressionWithSortOrder> OrderByElements => orderByElements;
     
         public OrderByClause(IReadOnlyList<ExpressionWithSortOrder> orderByElements = null) {
-            this.orderByElements = ImmList<ExpressionWithSortOrder>.FromList(orderByElements);
+            this.orderByElements = orderByElements.ToImmArray<ExpressionWithSortOrder>();
         }
     
         public ScriptDom.OrderByClause ToMutableConcrete() {
             var ret = new ScriptDom.OrderByClause();
-            ret.OrderByElements.AddRange(orderByElements.SelectList(c => (ScriptDom.ExpressionWithSortOrder)c?.ToMutable()));
+            ret.OrderByElements.AddRange(orderByElements.Select(c => (ScriptDom.ExpressionWithSortOrder)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.OrderByClause)) { throw new NotImplementedException("Unexpected subtype of OrderByClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OrderByClause(
-                orderByElements: fragment.OrderByElements.SelectList(ImmutableDom.ExpressionWithSortOrder.FromMutable)
+                orderByElements: fragment.OrderByElements.ToImmArray(ImmutableDom.ExpressionWithSortOrder.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -17,16 +17,16 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<Identifier> Columns => columns;
     
         public PrivilegeSecurityElement80(IReadOnlyList<Privilege80> privileges = null, SchemaObjectName schemaObjectName = null, IReadOnlyList<Identifier> columns = null) {
-            this.privileges = ImmList<Privilege80>.FromList(privileges);
+            this.privileges = privileges.ToImmArray<Privilege80>();
             this.schemaObjectName = schemaObjectName;
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.columns = columns.ToImmArray<Identifier>();
         }
     
         public ScriptDom.PrivilegeSecurityElement80 ToMutableConcrete() {
             var ret = new ScriptDom.PrivilegeSecurityElement80();
-            ret.Privileges.AddRange(privileges.SelectList(c => (ScriptDom.Privilege80)c?.ToMutable()));
+            ret.Privileges.AddRange(privileges.Select(c => (ScriptDom.Privilege80)c?.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -97,9 +97,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.PrivilegeSecurityElement80)) { throw new NotImplementedException("Unexpected subtype of PrivilegeSecurityElement80 not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new PrivilegeSecurityElement80(
-                privileges: fragment.Privileges.SelectList(ImmutableDom.Privilege80.FromMutable),
+                privileges: fragment.Privileges.ToImmArray(ImmutableDom.Privilege80.FromMutable),
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable)
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable)
             );
         }
     

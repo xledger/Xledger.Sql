@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<Identifier> Columns => columns;
     
         public Permission(IReadOnlyList<Identifier> identifiers = null, IReadOnlyList<Identifier> columns = null) {
-            this.identifiers = ImmList<Identifier>.FromList(identifiers);
-            this.columns = ImmList<Identifier>.FromList(columns);
+            this.identifiers = identifiers.ToImmArray<Identifier>();
+            this.columns = columns.ToImmArray<Identifier>();
         }
     
         public ScriptDom.Permission ToMutableConcrete() {
             var ret = new ScriptDom.Permission();
-            ret.Identifiers.AddRange(identifiers.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Identifiers.AddRange(identifiers.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             return ret;
         }
         
@@ -85,8 +85,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.Permission)) { throw new NotImplementedException("Unexpected subtype of Permission not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new Permission(
-                identifiers: fragment.Identifiers.SelectList(ImmutableDom.Identifier.FromMutable),
-                columns: fragment.Columns.SelectList(ImmutableDom.Identifier.FromMutable)
+                identifiers: fragment.Identifiers.ToImmArray(ImmutableDom.Identifier.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable)
             );
         }
     

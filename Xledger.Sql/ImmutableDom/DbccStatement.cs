@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -26,8 +26,8 @@ namespace Xledger.Sql.ImmutableDom {
             this.dllName = dllName;
             this.command = command;
             this.parenthesisRequired = parenthesisRequired;
-            this.literals = ImmList<DbccNamedLiteral>.FromList(literals);
-            this.options = ImmList<DbccOption>.FromList(options);
+            this.literals = literals.ToImmArray<DbccNamedLiteral>();
+            this.options = options.ToImmArray<DbccOption>();
             this.optionsUseJoin = optionsUseJoin;
         }
     
@@ -36,8 +36,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.DllName = dllName;
             ret.Command = command;
             ret.ParenthesisRequired = parenthesisRequired;
-            ret.Literals.AddRange(literals.SelectList(c => (ScriptDom.DbccNamedLiteral)c?.ToMutable()));
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DbccOption)c?.ToMutable()));
+            ret.Literals.AddRange(literals.Select(c => (ScriptDom.DbccNamedLiteral)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.DbccOption)c?.ToMutable()));
             ret.OptionsUseJoin = optionsUseJoin;
             return ret;
         }
@@ -130,8 +130,8 @@ namespace Xledger.Sql.ImmutableDom {
                 dllName: fragment.DllName,
                 command: fragment.Command,
                 parenthesisRequired: fragment.ParenthesisRequired,
-                literals: fragment.Literals.SelectList(ImmutableDom.DbccNamedLiteral.FromMutable),
-                options: fragment.Options.SelectList(ImmutableDom.DbccOption.FromMutable),
+                literals: fragment.Literals.ToImmArray(ImmutableDom.DbccNamedLiteral.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.DbccOption.FromMutable),
                 optionsUseJoin: fragment.OptionsUseJoin
             );
         }

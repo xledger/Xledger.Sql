@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ResultColumnDefinition> ResultColumnDefinitions => resultColumnDefinitions;
     
         public InlineResultSetDefinition(IReadOnlyList<ResultColumnDefinition> resultColumnDefinitions = null, ScriptDom.ResultSetType resultSetType = ScriptDom.ResultSetType.Inline) {
-            this.resultColumnDefinitions = ImmList<ResultColumnDefinition>.FromList(resultColumnDefinitions);
+            this.resultColumnDefinitions = resultColumnDefinitions.ToImmArray<ResultColumnDefinition>();
             this.resultSetType = resultSetType;
         }
     
         public new ScriptDom.InlineResultSetDefinition ToMutableConcrete() {
             var ret = new ScriptDom.InlineResultSetDefinition();
-            ret.ResultColumnDefinitions.AddRange(resultColumnDefinitions.SelectList(c => (ScriptDom.ResultColumnDefinition)c?.ToMutable()));
+            ret.ResultColumnDefinitions.AddRange(resultColumnDefinitions.Select(c => (ScriptDom.ResultColumnDefinition)c?.ToMutable()));
             ret.ResultSetType = resultSetType;
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.InlineResultSetDefinition)) { throw new NotImplementedException("Unexpected subtype of InlineResultSetDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InlineResultSetDefinition(
-                resultColumnDefinitions: fragment.ResultColumnDefinitions.SelectList(ImmutableDom.ResultColumnDefinition.FromMutable),
+                resultColumnDefinitions: fragment.ResultColumnDefinitions.ToImmArray(ImmutableDom.ResultColumnDefinition.FromMutable),
                 resultSetType: fragment.ResultSetType
             );
         }

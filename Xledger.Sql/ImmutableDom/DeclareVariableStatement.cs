@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<DeclareVariableElement> Declarations => declarations;
     
         public DeclareVariableStatement(IReadOnlyList<DeclareVariableElement> declarations = null) {
-            this.declarations = ImmList<DeclareVariableElement>.FromList(declarations);
+            this.declarations = declarations.ToImmArray<DeclareVariableElement>();
         }
     
         public ScriptDom.DeclareVariableStatement ToMutableConcrete() {
             var ret = new ScriptDom.DeclareVariableStatement();
-            ret.Declarations.AddRange(declarations.SelectList(c => (ScriptDom.DeclareVariableElement)c?.ToMutable()));
+            ret.Declarations.AddRange(declarations.Select(c => (ScriptDom.DeclareVariableElement)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.DeclareVariableStatement)) { throw new NotImplementedException("Unexpected subtype of DeclareVariableStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DeclareVariableStatement(
-                declarations: fragment.Declarations.SelectList(ImmutableDom.DeclareVariableElement.FromMutable)
+                declarations: fragment.Declarations.ToImmArray(ImmutableDom.DeclareVariableElement.FromMutable)
             );
         }
     

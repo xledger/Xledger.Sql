@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,14 +13,14 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SearchedWhenClause> WhenClauses => whenClauses;
     
         public SearchedCaseExpression(IReadOnlyList<SearchedWhenClause> whenClauses = null, ScalarExpression elseExpression = null, Identifier collation = null) {
-            this.whenClauses = ImmList<SearchedWhenClause>.FromList(whenClauses);
+            this.whenClauses = whenClauses.ToImmArray<SearchedWhenClause>();
             this.elseExpression = elseExpression;
             this.collation = collation;
         }
     
         public ScriptDom.SearchedCaseExpression ToMutableConcrete() {
             var ret = new ScriptDom.SearchedCaseExpression();
-            ret.WhenClauses.AddRange(whenClauses.SelectList(c => (ScriptDom.SearchedWhenClause)c?.ToMutable()));
+            ret.WhenClauses.AddRange(whenClauses.Select(c => (ScriptDom.SearchedWhenClause)c?.ToMutable()));
             ret.ElseExpression = (ScriptDom.ScalarExpression)elseExpression?.ToMutable();
             ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.SearchedCaseExpression)) { throw new NotImplementedException("Unexpected subtype of SearchedCaseExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new SearchedCaseExpression(
-                whenClauses: fragment.WhenClauses.SelectList(ImmutableDom.SearchedWhenClause.FromMutable),
+                whenClauses: fragment.WhenClauses.ToImmArray(ImmutableDom.SearchedWhenClause.FromMutable),
                 elseExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.ElseExpression),
                 collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
             );

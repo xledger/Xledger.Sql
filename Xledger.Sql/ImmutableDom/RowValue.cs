@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> ColumnValues => columnValues;
     
         public RowValue(IReadOnlyList<ScalarExpression> columnValues = null) {
-            this.columnValues = ImmList<ScalarExpression>.FromList(columnValues);
+            this.columnValues = columnValues.ToImmArray<ScalarExpression>();
         }
     
         public ScriptDom.RowValue ToMutableConcrete() {
             var ret = new ScriptDom.RowValue();
-            ret.ColumnValues.AddRange(columnValues.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.ColumnValues.AddRange(columnValues.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.RowValue)) { throw new NotImplementedException("Unexpected subtype of RowValue not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new RowValue(
-                columnValues: fragment.ColumnValues.SelectList(ImmutableDom.ScalarExpression.FromMutable)
+                columnValues: fragment.ColumnValues.ToImmArray(ImmutableDom.ScalarExpression.FromMutable)
             );
         }
     

@@ -2,19 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
 namespace Xledger.Sql.ImmutableDom {
     public class DropSensitivityClassificationStatement : SensitivityClassificationStatement, IEquatable<DropSensitivityClassificationStatement> {
         public DropSensitivityClassificationStatement(IReadOnlyList<ColumnReferenceExpression> columns = null) {
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
         }
     
         public ScriptDom.DropSensitivityClassificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.DropSensitivityClassificationStatement();
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -71,7 +71,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.DropSensitivityClassificationStatement)) { throw new NotImplementedException("Unexpected subtype of DropSensitivityClassificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DropSensitivityClassificationStatement(
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable)
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ScalarExpression> Expressions => expressions;
     
         public CoalesceExpression(IReadOnlyList<ScalarExpression> expressions = null, Identifier collation = null) {
-            this.expressions = ImmList<ScalarExpression>.FromList(expressions);
+            this.expressions = expressions.ToImmArray<ScalarExpression>();
             this.collation = collation;
         }
     
         public ScriptDom.CoalesceExpression ToMutableConcrete() {
             var ret = new ScriptDom.CoalesceExpression();
-            ret.Expressions.AddRange(expressions.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.Expressions.AddRange(expressions.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.CoalesceExpression)) { throw new NotImplementedException("Unexpected subtype of CoalesceExpression not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CoalesceExpression(
-                expressions: fragment.Expressions.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                expressions: fragment.Expressions.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
             );
         }

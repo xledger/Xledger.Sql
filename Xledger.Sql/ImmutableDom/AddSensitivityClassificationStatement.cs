@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,14 +13,14 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<SensitivityClassificationOption> Options => options;
     
         public AddSensitivityClassificationStatement(IReadOnlyList<SensitivityClassificationOption> options = null, IReadOnlyList<ColumnReferenceExpression> columns = null) {
-            this.options = ImmList<SensitivityClassificationOption>.FromList(options);
-            this.columns = ImmList<ColumnReferenceExpression>.FromList(columns);
+            this.options = options.ToImmArray<SensitivityClassificationOption>();
+            this.columns = columns.ToImmArray<ColumnReferenceExpression>();
         }
     
         public ScriptDom.AddSensitivityClassificationStatement ToMutableConcrete() {
             var ret = new ScriptDom.AddSensitivityClassificationStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.SensitivityClassificationOption)c?.ToMutable()));
-            ret.Columns.AddRange(columns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.SensitivityClassificationOption)c?.ToMutable()));
+            ret.Columns.AddRange(columns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             return ret;
         }
         
@@ -83,8 +83,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AddSensitivityClassificationStatement)) { throw new NotImplementedException("Unexpected subtype of AddSensitivityClassificationStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AddSensitivityClassificationStatement(
-                options: fragment.Options.SelectList(ImmutableDom.SensitivityClassificationOption.FromMutable),
-                columns: fragment.Columns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.SensitivityClassificationOption.FromMutable),
+                columns: fragment.Columns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable)
             );
         }
     

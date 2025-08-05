@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -20,16 +20,16 @@ namespace Xledger.Sql.ImmutableDom {
     
         public EventDeclaration(EventSessionObjectName objectName = null, IReadOnlyList<EventDeclarationSetParameter> eventDeclarationSetParameters = null, IReadOnlyList<EventSessionObjectName> eventDeclarationActionParameters = null, BooleanExpression eventDeclarationPredicateParameter = null) {
             this.objectName = objectName;
-            this.eventDeclarationSetParameters = ImmList<EventDeclarationSetParameter>.FromList(eventDeclarationSetParameters);
-            this.eventDeclarationActionParameters = ImmList<EventSessionObjectName>.FromList(eventDeclarationActionParameters);
+            this.eventDeclarationSetParameters = eventDeclarationSetParameters.ToImmArray<EventDeclarationSetParameter>();
+            this.eventDeclarationActionParameters = eventDeclarationActionParameters.ToImmArray<EventSessionObjectName>();
             this.eventDeclarationPredicateParameter = eventDeclarationPredicateParameter;
         }
     
         public ScriptDom.EventDeclaration ToMutableConcrete() {
             var ret = new ScriptDom.EventDeclaration();
             ret.ObjectName = (ScriptDom.EventSessionObjectName)objectName?.ToMutable();
-            ret.EventDeclarationSetParameters.AddRange(eventDeclarationSetParameters.SelectList(c => (ScriptDom.EventDeclarationSetParameter)c?.ToMutable()));
-            ret.EventDeclarationActionParameters.AddRange(eventDeclarationActionParameters.SelectList(c => (ScriptDom.EventSessionObjectName)c?.ToMutable()));
+            ret.EventDeclarationSetParameters.AddRange(eventDeclarationSetParameters.Select(c => (ScriptDom.EventDeclarationSetParameter)c?.ToMutable()));
+            ret.EventDeclarationActionParameters.AddRange(eventDeclarationActionParameters.Select(c => (ScriptDom.EventSessionObjectName)c?.ToMutable()));
             ret.EventDeclarationPredicateParameter = (ScriptDom.BooleanExpression)eventDeclarationPredicateParameter?.ToMutable();
             return ret;
         }
@@ -110,8 +110,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.EventDeclaration)) { throw new NotImplementedException("Unexpected subtype of EventDeclaration not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new EventDeclaration(
                 objectName: ImmutableDom.EventSessionObjectName.FromMutable(fragment.ObjectName),
-                eventDeclarationSetParameters: fragment.EventDeclarationSetParameters.SelectList(ImmutableDom.EventDeclarationSetParameter.FromMutable),
-                eventDeclarationActionParameters: fragment.EventDeclarationActionParameters.SelectList(ImmutableDom.EventSessionObjectName.FromMutable),
+                eventDeclarationSetParameters: fragment.EventDeclarationSetParameters.ToImmArray(ImmutableDom.EventDeclarationSetParameter.FromMutable),
+                eventDeclarationActionParameters: fragment.EventDeclarationActionParameters.ToImmArray(ImmutableDom.EventSessionObjectName.FromMutable),
                 eventDeclarationPredicateParameter: ImmutableDom.BooleanExpression.FromMutable(fragment.EventDeclarationPredicateParameter)
             );
         }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ValuesInsertSource(bool isDefaultValues = false, IReadOnlyList<RowValue> rowValues = null) {
             this.isDefaultValues = isDefaultValues;
-            this.rowValues = ImmList<RowValue>.FromList(rowValues);
+            this.rowValues = rowValues.ToImmArray<RowValue>();
         }
     
         public ScriptDom.ValuesInsertSource ToMutableConcrete() {
             var ret = new ScriptDom.ValuesInsertSource();
             ret.IsDefaultValues = isDefaultValues;
-            ret.RowValues.AddRange(rowValues.SelectList(c => (ScriptDom.RowValue)c?.ToMutable()));
+            ret.RowValues.AddRange(rowValues.Select(c => (ScriptDom.RowValue)c?.ToMutable()));
             return ret;
         }
         
@@ -86,7 +86,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.ValuesInsertSource)) { throw new NotImplementedException("Unexpected subtype of ValuesInsertSource not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ValuesInsertSource(
                 isDefaultValues: fragment.IsDefaultValues,
-                rowValues: fragment.RowValues.SelectList(ImmutableDom.RowValue.FromMutable)
+                rowValues: fragment.RowValues.ToImmArray(ImmutableDom.RowValue.FromMutable)
             );
         }
     

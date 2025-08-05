@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -22,7 +22,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public FileGroupDefinition(Identifier name = null, IReadOnlyList<FileDeclaration> fileDeclarations = null, bool isDefault = false, bool containsFileStream = false, bool containsMemoryOptimizedData = false) {
             this.name = name;
-            this.fileDeclarations = ImmList<FileDeclaration>.FromList(fileDeclarations);
+            this.fileDeclarations = fileDeclarations.ToImmArray<FileDeclaration>();
             this.isDefault = isDefault;
             this.containsFileStream = containsFileStream;
             this.containsMemoryOptimizedData = containsMemoryOptimizedData;
@@ -31,7 +31,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.FileGroupDefinition ToMutableConcrete() {
             var ret = new ScriptDom.FileGroupDefinition();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.FileDeclarations.AddRange(fileDeclarations.SelectList(c => (ScriptDom.FileDeclaration)c?.ToMutable()));
+            ret.FileDeclarations.AddRange(fileDeclarations.Select(c => (ScriptDom.FileDeclaration)c?.ToMutable()));
             ret.IsDefault = isDefault;
             ret.ContainsFileStream = containsFileStream;
             ret.ContainsMemoryOptimizedData = containsMemoryOptimizedData;
@@ -118,7 +118,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.FileGroupDefinition)) { throw new NotImplementedException("Unexpected subtype of FileGroupDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new FileGroupDefinition(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                fileDeclarations: fragment.FileDeclarations.SelectList(ImmutableDom.FileDeclaration.FromMutable),
+                fileDeclarations: fragment.FileDeclarations.ToImmArray(ImmutableDom.FileDeclaration.FromMutable),
                 isDefault: fragment.IsDefault,
                 containsFileStream: fragment.ContainsFileStream,
                 containsMemoryOptimizedData: fragment.ContainsMemoryOptimizedData

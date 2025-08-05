@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<XmlForClauseOption> Options => options;
     
         public XmlForClause(IReadOnlyList<XmlForClauseOption> options = null) {
-            this.options = ImmList<XmlForClauseOption>.FromList(options);
+            this.options = options.ToImmArray<XmlForClauseOption>();
         }
     
         public ScriptDom.XmlForClause ToMutableConcrete() {
             var ret = new ScriptDom.XmlForClause();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.XmlForClauseOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.XmlForClauseOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.XmlForClause)) { throw new NotImplementedException("Unexpected subtype of XmlForClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new XmlForClause(
-                options: fragment.Options.SelectList(ImmutableDom.XmlForClauseOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.XmlForClauseOption.FromMutable)
             );
         }
     

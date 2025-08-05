@@ -2,20 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
 namespace Xledger.Sql.ImmutableDom {
     public class UserDataTypeReference : ParameterizedDataTypeReference, IEquatable<UserDataTypeReference> {
         public UserDataTypeReference(IReadOnlyList<Literal> parameters = null, SchemaObjectName name = null) {
-            this.parameters = ImmList<Literal>.FromList(parameters);
+            this.parameters = parameters.ToImmArray<Literal>();
             this.name = name;
         }
     
         public ScriptDom.UserDataTypeReference ToMutableConcrete() {
             var ret = new ScriptDom.UserDataTypeReference();
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.Literal)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.Literal)c?.ToMutable()));
             ret.Name = (ScriptDom.SchemaObjectName)name?.ToMutable();
             return ret;
         }
@@ -81,7 +81,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.UserDataTypeReference)) { throw new NotImplementedException("Unexpected subtype of UserDataTypeReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UserDataTypeReference(
-                parameters: fragment.Parameters.SelectList(ImmutableDom.Literal.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.Literal.FromMutable),
                 name: ImmutableDom.SchemaObjectName.FromMutable(fragment.Name)
             );
         }

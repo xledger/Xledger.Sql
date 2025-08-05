@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,12 +13,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationHadrClusterOption> Options => options;
     
         public AlterServerConfigurationSetHadrClusterStatement(IReadOnlyList<AlterServerConfigurationHadrClusterOption> options = null) {
-            this.options = ImmList<AlterServerConfigurationHadrClusterOption>.FromList(options);
+            this.options = options.ToImmArray<AlterServerConfigurationHadrClusterOption>();
         }
     
         public ScriptDom.AlterServerConfigurationSetHadrClusterStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationSetHadrClusterStatement();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.AlterServerConfigurationHadrClusterOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.AlterServerConfigurationHadrClusterOption)c?.ToMutable()));
             return ret;
         }
         
@@ -75,7 +75,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationSetHadrClusterStatement)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationSetHadrClusterStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationSetHadrClusterStatement(
-                options: fragment.Options.SelectList(ImmutableDom.AlterServerConfigurationHadrClusterOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.AlterServerConfigurationHadrClusterOption.FromMutable)
             );
         }
     

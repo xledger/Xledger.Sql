@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<ExternalFileFormatOption> Suboptions => suboptions;
     
         public ExternalFileFormatContainerOption(IReadOnlyList<ExternalFileFormatOption> suboptions = null, ScriptDom.ExternalFileFormatOptionKind optionKind = ScriptDom.ExternalFileFormatOptionKind.SerDeMethod) {
-            this.suboptions = ImmList<ExternalFileFormatOption>.FromList(suboptions);
+            this.suboptions = suboptions.ToImmArray<ExternalFileFormatOption>();
             this.optionKind = optionKind;
         }
     
         public ScriptDom.ExternalFileFormatContainerOption ToMutableConcrete() {
             var ret = new ScriptDom.ExternalFileFormatContainerOption();
-            ret.Suboptions.AddRange(suboptions.SelectList(c => (ScriptDom.ExternalFileFormatOption)c?.ToMutable()));
+            ret.Suboptions.AddRange(suboptions.Select(c => (ScriptDom.ExternalFileFormatOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.ExternalFileFormatContainerOption)) { throw new NotImplementedException("Unexpected subtype of ExternalFileFormatContainerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ExternalFileFormatContainerOption(
-                suboptions: fragment.Suboptions.SelectList(ImmutableDom.ExternalFileFormatOption.FromMutable),
+                suboptions: fragment.Suboptions.ToImmArray(ImmutableDom.ExternalFileFormatOption.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

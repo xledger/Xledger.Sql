@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,14 +13,14 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> Suboptions => suboptions;
     
         public AlterServerConfigurationExternalAuthenticationContainerOption(IReadOnlyList<AlterServerConfigurationExternalAuthenticationOption> suboptions = null, ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind optionKind = ScriptDom.AlterServerConfigurationExternalAuthenticationOptionKind.None, OptionValue optionValue = null) {
-            this.suboptions = ImmList<AlterServerConfigurationExternalAuthenticationOption>.FromList(suboptions);
+            this.suboptions = suboptions.ToImmArray<AlterServerConfigurationExternalAuthenticationOption>();
             this.optionKind = optionKind;
             this.optionValue = optionValue;
         }
     
         public new ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption ToMutableConcrete() {
             var ret = new ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption();
-            ret.Suboptions.AddRange(suboptions.SelectList(c => (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)c?.ToMutable()));
+            ret.Suboptions.AddRange(suboptions.Select(c => (ScriptDom.AlterServerConfigurationExternalAuthenticationOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             ret.OptionValue = (ScriptDom.OptionValue)optionValue?.ToMutable();
             return ret;
@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.AlterServerConfigurationExternalAuthenticationContainerOption)) { throw new NotImplementedException("Unexpected subtype of AlterServerConfigurationExternalAuthenticationContainerOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterServerConfigurationExternalAuthenticationContainerOption(
-                suboptions: fragment.Suboptions.SelectList(ImmutableDom.AlterServerConfigurationExternalAuthenticationOption.FromMutable),
+                suboptions: fragment.Suboptions.ToImmArray(ImmutableDom.AlterServerConfigurationExternalAuthenticationOption.FromMutable),
                 optionKind: fragment.OptionKind,
                 optionValue: ImmutableDom.OptionValue.FromMutable(fragment.OptionValue)
             );

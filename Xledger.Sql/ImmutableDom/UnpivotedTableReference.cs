@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -20,7 +20,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public UnpivotedTableReference(TableReference tableReference = null, IReadOnlyList<ColumnReferenceExpression> inColumns = null, Identifier pivotColumn = null, Identifier valueColumn = null, Identifier alias = null, bool forPath = false) {
             this.tableReference = tableReference;
-            this.inColumns = ImmList<ColumnReferenceExpression>.FromList(inColumns);
+            this.inColumns = inColumns.ToImmArray<ColumnReferenceExpression>();
             this.pivotColumn = pivotColumn;
             this.valueColumn = valueColumn;
             this.alias = alias;
@@ -30,7 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.UnpivotedTableReference ToMutableConcrete() {
             var ret = new ScriptDom.UnpivotedTableReference();
             ret.TableReference = (ScriptDom.TableReference)tableReference?.ToMutable();
-            ret.InColumns.AddRange(inColumns.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.InColumns.AddRange(inColumns.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.PivotColumn = (ScriptDom.Identifier)pivotColumn?.ToMutable();
             ret.ValueColumn = (ScriptDom.Identifier)valueColumn?.ToMutable();
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
@@ -130,7 +130,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.UnpivotedTableReference)) { throw new NotImplementedException("Unexpected subtype of UnpivotedTableReference not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new UnpivotedTableReference(
                 tableReference: ImmutableDom.TableReference.FromMutable(fragment.TableReference),
-                inColumns: fragment.InColumns.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                inColumns: fragment.InColumns.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 pivotColumn: ImmutableDom.Identifier.FromMutable(fragment.PivotColumn),
                 valueColumn: ImmutableDom.Identifier.FromMutable(fragment.ValueColumn),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),

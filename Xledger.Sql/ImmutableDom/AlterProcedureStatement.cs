@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -11,8 +11,8 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterProcedureStatement(ProcedureReference procedureReference = null, bool isForReplication = false, IReadOnlyList<ProcedureOption> options = null, IReadOnlyList<ProcedureParameter> parameters = null, StatementList statementList = null, MethodSpecifier methodSpecifier = null) {
             this.procedureReference = procedureReference;
             this.isForReplication = isForReplication;
-            this.options = ImmList<ProcedureOption>.FromList(options);
-            this.parameters = ImmList<ProcedureParameter>.FromList(parameters);
+            this.options = options.ToImmArray<ProcedureOption>();
+            this.parameters = parameters.ToImmArray<ProcedureParameter>();
             this.statementList = statementList;
             this.methodSpecifier = methodSpecifier;
         }
@@ -21,8 +21,8 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterProcedureStatement();
             ret.ProcedureReference = (ScriptDom.ProcedureReference)procedureReference?.ToMutable();
             ret.IsForReplication = isForReplication;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.ProcedureOption)c?.ToMutable()));
-            ret.Parameters.AddRange(parameters.SelectList(c => (ScriptDom.ProcedureParameter)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.ProcedureOption)c?.ToMutable()));
+            ret.Parameters.AddRange(parameters.Select(c => (ScriptDom.ProcedureParameter)c?.ToMutable()));
             ret.StatementList = (ScriptDom.StatementList)statementList?.ToMutable();
             ret.MethodSpecifier = (ScriptDom.MethodSpecifier)methodSpecifier?.ToMutable();
             return ret;
@@ -119,8 +119,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterProcedureStatement(
                 procedureReference: ImmutableDom.ProcedureReference.FromMutable(fragment.ProcedureReference),
                 isForReplication: fragment.IsForReplication,
-                options: fragment.Options.SelectList(ImmutableDom.ProcedureOption.FromMutable),
-                parameters: fragment.Parameters.SelectList(ImmutableDom.ProcedureParameter.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.ProcedureOption.FromMutable),
+                parameters: fragment.Parameters.ToImmArray(ImmutableDom.ProcedureParameter.FromMutable),
                 statementList: ImmutableDom.StatementList.FromMutable(fragment.StatementList),
                 methodSpecifier: ImmutableDom.MethodSpecifier.FromMutable(fragment.MethodSpecifier)
             );

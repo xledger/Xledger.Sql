@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,13 +15,13 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.BackupRestoreItemKind ItemKind => itemKind;
     
         public BackupRestoreFileInfo(IReadOnlyList<ValueExpression> items = null, ScriptDom.BackupRestoreItemKind itemKind = ScriptDom.BackupRestoreItemKind.None) {
-            this.items = ImmList<ValueExpression>.FromList(items);
+            this.items = items.ToImmArray<ValueExpression>();
             this.itemKind = itemKind;
         }
     
         public ScriptDom.BackupRestoreFileInfo ToMutableConcrete() {
             var ret = new ScriptDom.BackupRestoreFileInfo();
-            ret.Items.AddRange(items.SelectList(c => (ScriptDom.ValueExpression)c?.ToMutable()));
+            ret.Items.AddRange(items.Select(c => (ScriptDom.ValueExpression)c?.ToMutable()));
             ret.ItemKind = itemKind;
             return ret;
         }
@@ -85,7 +85,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.BackupRestoreFileInfo)) { throw new NotImplementedException("Unexpected subtype of BackupRestoreFileInfo not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new BackupRestoreFileInfo(
-                items: fragment.Items.SelectList(ImmutableDom.ValueExpression.FromMutable),
+                items: fragment.Items.ToImmArray(ImmutableDom.ValueExpression.FromMutable),
                 itemKind: fragment.ItemKind
             );
         }

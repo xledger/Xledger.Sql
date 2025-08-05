@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,7 +10,7 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterWorkloadGroupStatement : WorkloadGroupStatement, IEquatable<AlterWorkloadGroupStatement> {
         public AlterWorkloadGroupStatement(Identifier name = null, IReadOnlyList<WorkloadGroupParameter> workloadGroupParameters = null, Identifier poolName = null, Identifier externalPoolName = null) {
             this.name = name;
-            this.workloadGroupParameters = ImmList<WorkloadGroupParameter>.FromList(workloadGroupParameters);
+            this.workloadGroupParameters = workloadGroupParameters.ToImmArray<WorkloadGroupParameter>();
             this.poolName = poolName;
             this.externalPoolName = externalPoolName;
         }
@@ -18,7 +18,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.AlterWorkloadGroupStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterWorkloadGroupStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.WorkloadGroupParameters.AddRange(workloadGroupParameters.SelectList(c => (ScriptDom.WorkloadGroupParameter)c?.ToMutable()));
+            ret.WorkloadGroupParameters.AddRange(workloadGroupParameters.Select(c => (ScriptDom.WorkloadGroupParameter)c?.ToMutable()));
             ret.PoolName = (ScriptDom.Identifier)poolName?.ToMutable();
             ret.ExternalPoolName = (ScriptDom.Identifier)externalPoolName?.ToMutable();
             return ret;
@@ -102,7 +102,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.AlterWorkloadGroupStatement)) { throw new NotImplementedException("Unexpected subtype of AlterWorkloadGroupStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new AlterWorkloadGroupStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                workloadGroupParameters: fragment.WorkloadGroupParameters.SelectList(ImmutableDom.WorkloadGroupParameter.FromMutable),
+                workloadGroupParameters: fragment.WorkloadGroupParameters.ToImmArray(ImmutableDom.WorkloadGroupParameter.FromMutable),
                 poolName: ImmutableDom.Identifier.FromMutable(fragment.PoolName),
                 externalPoolName: ImmutableDom.Identifier.FromMutable(fragment.ExternalPoolName)
             );

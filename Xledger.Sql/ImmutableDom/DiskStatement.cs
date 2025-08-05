@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,13 +16,13 @@ namespace Xledger.Sql.ImmutableDom {
     
         public DiskStatement(ScriptDom.DiskStatementType diskStatementType = ScriptDom.DiskStatementType.Init, IReadOnlyList<DiskStatementOption> options = null) {
             this.diskStatementType = diskStatementType;
-            this.options = ImmList<DiskStatementOption>.FromList(options);
+            this.options = options.ToImmArray<DiskStatementOption>();
         }
     
         public ScriptDom.DiskStatement ToMutableConcrete() {
             var ret = new ScriptDom.DiskStatement();
             ret.DiskStatementType = diskStatementType;
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.DiskStatementOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.DiskStatementOption)c?.ToMutable()));
             return ret;
         }
         
@@ -86,7 +86,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.DiskStatement)) { throw new NotImplementedException("Unexpected subtype of DiskStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new DiskStatement(
                 diskStatementType: fragment.DiskStatementType,
-                options: fragment.Options.SelectList(ImmutableDom.DiskStatementOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.DiskStatementOption.FromMutable)
             );
         }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public bool IsForUnknown => isForUnknown;
     
         public OptimizeForOptimizerHint(IReadOnlyList<VariableValuePair> pairs = null, bool isForUnknown = false, ScriptDom.OptimizerHintKind hintKind = ScriptDom.OptimizerHintKind.Unspecified) {
-            this.pairs = ImmList<VariableValuePair>.FromList(pairs);
+            this.pairs = pairs.ToImmArray<VariableValuePair>();
             this.isForUnknown = isForUnknown;
             this.hintKind = hintKind;
         }
     
         public new ScriptDom.OptimizeForOptimizerHint ToMutableConcrete() {
             var ret = new ScriptDom.OptimizeForOptimizerHint();
-            ret.Pairs.AddRange(pairs.SelectList(c => (ScriptDom.VariableValuePair)c?.ToMutable()));
+            ret.Pairs.AddRange(pairs.Select(c => (ScriptDom.VariableValuePair)c?.ToMutable()));
             ret.IsForUnknown = isForUnknown;
             ret.HintKind = hintKind;
             return ret;
@@ -93,7 +93,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.OptimizeForOptimizerHint)) { throw new NotImplementedException("Unexpected subtype of OptimizeForOptimizerHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OptimizeForOptimizerHint(
-                pairs: fragment.Pairs.SelectList(ImmutableDom.VariableValuePair.FromMutable),
+                pairs: fragment.Pairs.ToImmArray(ImmutableDom.VariableValuePair.FromMutable),
                 isForUnknown: fragment.IsForUnknown,
                 hintKind: fragment.HintKind
             );

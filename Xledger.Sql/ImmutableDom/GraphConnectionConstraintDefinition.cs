@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.DeleteUpdateAction DeleteAction => deleteAction;
     
         public GraphConnectionConstraintDefinition(IReadOnlyList<GraphConnectionBetweenNodes> fromNodeToNodeList = null, ScriptDom.DeleteUpdateAction deleteAction = ScriptDom.DeleteUpdateAction.NotSpecified, Identifier constraintIdentifier = null) {
-            this.fromNodeToNodeList = ImmList<GraphConnectionBetweenNodes>.FromList(fromNodeToNodeList);
+            this.fromNodeToNodeList = fromNodeToNodeList.ToImmArray<GraphConnectionBetweenNodes>();
             this.deleteAction = deleteAction;
             this.constraintIdentifier = constraintIdentifier;
         }
     
         public ScriptDom.GraphConnectionConstraintDefinition ToMutableConcrete() {
             var ret = new ScriptDom.GraphConnectionConstraintDefinition();
-            ret.FromNodeToNodeList.AddRange(fromNodeToNodeList.SelectList(c => (ScriptDom.GraphConnectionBetweenNodes)c?.ToMutable()));
+            ret.FromNodeToNodeList.AddRange(fromNodeToNodeList.Select(c => (ScriptDom.GraphConnectionBetweenNodes)c?.ToMutable()));
             ret.DeleteAction = deleteAction;
             ret.ConstraintIdentifier = (ScriptDom.Identifier)constraintIdentifier?.ToMutable();
             return ret;
@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.GraphConnectionConstraintDefinition)) { throw new NotImplementedException("Unexpected subtype of GraphConnectionConstraintDefinition not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GraphConnectionConstraintDefinition(
-                fromNodeToNodeList: fragment.FromNodeToNodeList.SelectList(ImmutableDom.GraphConnectionBetweenNodes.FromMutable),
+                fromNodeToNodeList: fragment.FromNodeToNodeList.ToImmArray(ImmutableDom.GraphConnectionBetweenNodes.FromMutable),
                 deleteAction: fragment.DeleteAction,
                 constraintIdentifier: ImmutableDom.Identifier.FromMutable(fragment.ConstraintIdentifier)
             );

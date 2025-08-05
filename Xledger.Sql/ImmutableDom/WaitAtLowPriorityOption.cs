@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -13,13 +13,13 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<LowPriorityLockWaitOption> Options => options;
     
         public WaitAtLowPriorityOption(IReadOnlyList<LowPriorityLockWaitOption> options = null, ScriptDom.IndexOptionKind optionKind = ScriptDom.IndexOptionKind.PadIndex) {
-            this.options = ImmList<LowPriorityLockWaitOption>.FromList(options);
+            this.options = options.ToImmArray<LowPriorityLockWaitOption>();
             this.optionKind = optionKind;
         }
     
         public ScriptDom.WaitAtLowPriorityOption ToMutableConcrete() {
             var ret = new ScriptDom.WaitAtLowPriorityOption();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.LowPriorityLockWaitOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.LowPriorityLockWaitOption)c?.ToMutable()));
             ret.OptionKind = optionKind;
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.WaitAtLowPriorityOption)) { throw new NotImplementedException("Unexpected subtype of WaitAtLowPriorityOption not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new WaitAtLowPriorityOption(
-                options: fragment.Options.SelectList(ImmutableDom.LowPriorityLockWaitOption.FromMutable),
+                options: fragment.Options.ToImmArray(ImmutableDom.LowPriorityLockWaitOption.FromMutable),
                 optionKind: fragment.OptionKind
             );
         }

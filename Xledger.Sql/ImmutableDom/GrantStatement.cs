@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -14,18 +14,18 @@ namespace Xledger.Sql.ImmutableDom {
     
         public GrantStatement(bool withGrantOption = false, IReadOnlyList<Permission> permissions = null, SecurityTargetObject securityTargetObject = null, IReadOnlyList<SecurityPrincipal> principals = null, Identifier asClause = null) {
             this.withGrantOption = withGrantOption;
-            this.permissions = ImmList<Permission>.FromList(permissions);
+            this.permissions = permissions.ToImmArray<Permission>();
             this.securityTargetObject = securityTargetObject;
-            this.principals = ImmList<SecurityPrincipal>.FromList(principals);
+            this.principals = principals.ToImmArray<SecurityPrincipal>();
             this.asClause = asClause;
         }
     
         public ScriptDom.GrantStatement ToMutableConcrete() {
             var ret = new ScriptDom.GrantStatement();
             ret.WithGrantOption = withGrantOption;
-            ret.Permissions.AddRange(permissions.SelectList(c => (ScriptDom.Permission)c?.ToMutable()));
+            ret.Permissions.AddRange(permissions.Select(c => (ScriptDom.Permission)c?.ToMutable()));
             ret.SecurityTargetObject = (ScriptDom.SecurityTargetObject)securityTargetObject?.ToMutable();
-            ret.Principals.AddRange(principals.SelectList(c => (ScriptDom.SecurityPrincipal)c?.ToMutable()));
+            ret.Principals.AddRange(principals.Select(c => (ScriptDom.SecurityPrincipal)c?.ToMutable()));
             ret.AsClause = (ScriptDom.Identifier)asClause?.ToMutable();
             return ret;
         }
@@ -112,9 +112,9 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.GrantStatement)) { throw new NotImplementedException("Unexpected subtype of GrantStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new GrantStatement(
                 withGrantOption: fragment.WithGrantOption,
-                permissions: fragment.Permissions.SelectList(ImmutableDom.Permission.FromMutable),
+                permissions: fragment.Permissions.ToImmArray(ImmutableDom.Permission.FromMutable),
                 securityTargetObject: ImmutableDom.SecurityTargetObject.FromMutable(fragment.SecurityTargetObject),
-                principals: fragment.Principals.SelectList(ImmutableDom.SecurityPrincipal.FromMutable),
+                principals: fragment.Principals.ToImmArray(ImmutableDom.SecurityPrincipal.FromMutable),
                 asClause: ImmutableDom.Identifier.FromMutable(fragment.AsClause)
             );
         }

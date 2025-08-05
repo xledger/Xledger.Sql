@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,7 +16,7 @@ namespace Xledger.Sql.ImmutableDom {
     
         public InternalOpenRowset(Identifier identifier = null, IReadOnlyList<ScalarExpression> varArgs = null, Identifier alias = null, bool forPath = false) {
             this.identifier = identifier;
-            this.varArgs = ImmList<ScalarExpression>.FromList(varArgs);
+            this.varArgs = varArgs.ToImmArray<ScalarExpression>();
             this.alias = alias;
             this.forPath = forPath;
         }
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
         public ScriptDom.InternalOpenRowset ToMutableConcrete() {
             var ret = new ScriptDom.InternalOpenRowset();
             ret.Identifier = (ScriptDom.Identifier)identifier?.ToMutable();
-            ret.VarArgs.AddRange(varArgs.SelectList(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
+            ret.VarArgs.AddRange(varArgs.Select(c => (ScriptDom.ScalarExpression)c?.ToMutable()));
             ret.Alias = (ScriptDom.Identifier)alias?.ToMutable();
             ret.ForPath = forPath;
             return ret;
@@ -106,7 +106,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.InternalOpenRowset)) { throw new NotImplementedException("Unexpected subtype of InternalOpenRowset not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new InternalOpenRowset(
                 identifier: ImmutableDom.Identifier.FromMutable(fragment.Identifier),
-                varArgs: fragment.VarArgs.SelectList(ImmutableDom.ScalarExpression.FromMutable),
+                varArgs: fragment.VarArgs.ToImmArray(ImmutableDom.ScalarExpression.FromMutable),
                 alias: ImmutableDom.Identifier.FromMutable(fragment.Alias),
                 forPath: fragment.ForPath
             );

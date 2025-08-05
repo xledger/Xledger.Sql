@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -21,7 +21,7 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterTableDropTableElement(ScriptDom.TableElementType tableElementType = ScriptDom.TableElementType.NotSpecified, Identifier name = null, IReadOnlyList<DropClusteredConstraintOption> dropClusteredConstraintOptions = null, bool isIfExists = false) {
             this.tableElementType = tableElementType;
             this.name = name;
-            this.dropClusteredConstraintOptions = ImmList<DropClusteredConstraintOption>.FromList(dropClusteredConstraintOptions);
+            this.dropClusteredConstraintOptions = dropClusteredConstraintOptions.ToImmArray<DropClusteredConstraintOption>();
             this.isIfExists = isIfExists;
         }
     
@@ -29,7 +29,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTableDropTableElement();
             ret.TableElementType = tableElementType;
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.DropClusteredConstraintOptions.AddRange(dropClusteredConstraintOptions.SelectList(c => (ScriptDom.DropClusteredConstraintOption)c?.ToMutable()));
+            ret.DropClusteredConstraintOptions.AddRange(dropClusteredConstraintOptions.Select(c => (ScriptDom.DropClusteredConstraintOption)c?.ToMutable()));
             ret.IsIfExists = isIfExists;
             return ret;
         }
@@ -109,7 +109,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterTableDropTableElement(
                 tableElementType: fragment.TableElementType,
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                dropClusteredConstraintOptions: fragment.DropClusteredConstraintOptions.SelectList(ImmutableDom.DropClusteredConstraintOption.FromMutable),
+                dropClusteredConstraintOptions: fragment.DropClusteredConstraintOptions.ToImmArray(ImmutableDom.DropClusteredConstraintOption.FromMutable),
                 isIfExists: fragment.IsIfExists
             );
         }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -19,7 +19,7 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterTableTriggerModificationStatement(ScriptDom.TriggerEnforcement triggerEnforcement = ScriptDom.TriggerEnforcement.Disable, bool all = false, IReadOnlyList<Identifier> triggerNames = null, SchemaObjectName schemaObjectName = null) {
             this.triggerEnforcement = triggerEnforcement;
             this.all = all;
-            this.triggerNames = ImmList<Identifier>.FromList(triggerNames);
+            this.triggerNames = triggerNames.ToImmArray<Identifier>();
             this.schemaObjectName = schemaObjectName;
         }
     
@@ -27,7 +27,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterTableTriggerModificationStatement();
             ret.TriggerEnforcement = triggerEnforcement;
             ret.All = all;
-            ret.TriggerNames.AddRange(triggerNames.SelectList(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.TriggerNames.AddRange(triggerNames.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.SchemaObjectName = (ScriptDom.SchemaObjectName)schemaObjectName?.ToMutable();
             return ret;
         }
@@ -107,7 +107,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterTableTriggerModificationStatement(
                 triggerEnforcement: fragment.TriggerEnforcement,
                 all: fragment.All,
-                triggerNames: fragment.TriggerNames.SelectList(ImmutableDom.Identifier.FromMutable),
+                triggerNames: fragment.TriggerNames.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 schemaObjectName: ImmutableDom.SchemaObjectName.FromMutable(fragment.SchemaObjectName)
             );
         }

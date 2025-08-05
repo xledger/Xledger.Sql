@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -15,14 +15,14 @@ namespace Xledger.Sql.ImmutableDom {
         public AlterFullTextCatalogStatement(ScriptDom.AlterFullTextCatalogAction action = ScriptDom.AlterFullTextCatalogAction.None, Identifier name = null, IReadOnlyList<FullTextCatalogOption> options = null) {
             this.action = action;
             this.name = name;
-            this.options = ImmList<FullTextCatalogOption>.FromList(options);
+            this.options = options.ToImmArray<FullTextCatalogOption>();
         }
     
         public ScriptDom.AlterFullTextCatalogStatement ToMutableConcrete() {
             var ret = new ScriptDom.AlterFullTextCatalogStatement();
             ret.Action = action;
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextCatalogOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.FullTextCatalogOption)c?.ToMutable()));
             return ret;
         }
         
@@ -95,7 +95,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterFullTextCatalogStatement(
                 action: fragment.Action,
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(ImmutableDom.FullTextCatalogOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.FullTextCatalogOption.FromMutable)
             );
         }
     

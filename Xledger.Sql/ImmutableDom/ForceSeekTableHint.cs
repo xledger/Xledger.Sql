@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -16,14 +16,14 @@ namespace Xledger.Sql.ImmutableDom {
     
         public ForceSeekTableHint(IdentifierOrValueExpression indexValue = null, IReadOnlyList<ColumnReferenceExpression> columnValues = null, ScriptDom.TableHintKind hintKind = ScriptDom.TableHintKind.None) {
             this.indexValue = indexValue;
-            this.columnValues = ImmList<ColumnReferenceExpression>.FromList(columnValues);
+            this.columnValues = columnValues.ToImmArray<ColumnReferenceExpression>();
             this.hintKind = hintKind;
         }
     
         public new ScriptDom.ForceSeekTableHint ToMutableConcrete() {
             var ret = new ScriptDom.ForceSeekTableHint();
             ret.IndexValue = (ScriptDom.IdentifierOrValueExpression)indexValue?.ToMutable();
-            ret.ColumnValues.AddRange(columnValues.SelectList(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
+            ret.ColumnValues.AddRange(columnValues.Select(c => (ScriptDom.ColumnReferenceExpression)c?.ToMutable()));
             ret.HintKind = hintKind;
             return ret;
         }
@@ -96,7 +96,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.ForceSeekTableHint)) { throw new NotImplementedException("Unexpected subtype of ForceSeekTableHint not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new ForceSeekTableHint(
                 indexValue: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.IndexValue),
-                columnValues: fragment.ColumnValues.SelectList(ImmutableDom.ColumnReferenceExpression.FromMutable),
+                columnValues: fragment.ColumnValues.ToImmArray(ImmutableDom.ColumnReferenceExpression.FromMutable),
                 hintKind: fragment.HintKind
             );
         }

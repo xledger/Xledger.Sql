@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -24,7 +24,7 @@ namespace Xledger.Sql.ImmutableDom {
             this.isDefault = isDefault;
             this.owner = owner;
             this.name = name;
-            this.options = ImmList<FullTextCatalogOption>.FromList(options);
+            this.options = options.ToImmArray<FullTextCatalogOption>();
         }
     
         public ScriptDom.CreateFullTextCatalogStatement ToMutableConcrete() {
@@ -34,7 +34,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.IsDefault = isDefault;
             ret.Owner = (ScriptDom.Identifier)owner?.ToMutable();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.Options.AddRange(options.SelectList(c => (ScriptDom.FullTextCatalogOption)c?.ToMutable()));
+            ret.Options.AddRange(options.Select(c => (ScriptDom.FullTextCatalogOption)c?.ToMutable()));
             return ret;
         }
         
@@ -134,7 +134,7 @@ namespace Xledger.Sql.ImmutableDom {
                 isDefault: fragment.IsDefault,
                 owner: ImmutableDom.Identifier.FromMutable(fragment.Owner),
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                options: fragment.Options.SelectList(ImmutableDom.FullTextCatalogOption.FromMutable)
+                options: fragment.Options.ToImmArray(ImmutableDom.FullTextCatalogOption.FromMutable)
             );
         }
     

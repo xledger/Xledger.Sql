@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xledger.Sql.Collections;
+using Xledger.Collections;
 using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 
 
@@ -10,13 +10,13 @@ namespace Xledger.Sql.ImmutableDom {
     public class CreateColumnEncryptionKeyStatement : ColumnEncryptionKeyStatement, IEquatable<CreateColumnEncryptionKeyStatement> {
         public CreateColumnEncryptionKeyStatement(Identifier name = null, IReadOnlyList<ColumnEncryptionKeyValue> columnEncryptionKeyValues = null) {
             this.name = name;
-            this.columnEncryptionKeyValues = ImmList<ColumnEncryptionKeyValue>.FromList(columnEncryptionKeyValues);
+            this.columnEncryptionKeyValues = columnEncryptionKeyValues.ToImmArray<ColumnEncryptionKeyValue>();
         }
     
         public ScriptDom.CreateColumnEncryptionKeyStatement ToMutableConcrete() {
             var ret = new ScriptDom.CreateColumnEncryptionKeyStatement();
             ret.Name = (ScriptDom.Identifier)name?.ToMutable();
-            ret.ColumnEncryptionKeyValues.AddRange(columnEncryptionKeyValues.SelectList(c => (ScriptDom.ColumnEncryptionKeyValue)c?.ToMutable()));
+            ret.ColumnEncryptionKeyValues.AddRange(columnEncryptionKeyValues.Select(c => (ScriptDom.ColumnEncryptionKeyValue)c?.ToMutable()));
             return ret;
         }
         
@@ -82,7 +82,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.CreateColumnEncryptionKeyStatement)) { throw new NotImplementedException("Unexpected subtype of CreateColumnEncryptionKeyStatement not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new CreateColumnEncryptionKeyStatement(
                 name: ImmutableDom.Identifier.FromMutable(fragment.Name),
-                columnEncryptionKeyValues: fragment.ColumnEncryptionKeyValues.SelectList(ImmutableDom.ColumnEncryptionKeyValue.FromMutable)
+                columnEncryptionKeyValues: fragment.ColumnEncryptionKeyValues.ToImmArray(ImmutableDom.ColumnEncryptionKeyValue.FromMutable)
             );
         }
     
