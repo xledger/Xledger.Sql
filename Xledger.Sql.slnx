@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Xledger.Sql.Test/Xledger.Sql.Test.csproj" />
+  <Project Path="Xledger.Sql/Xledger.Sql.csproj" />
+</Solution>
