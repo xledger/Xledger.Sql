@@ -10,19 +10,23 @@ namespace Xledger.Sql.ImmutableDom {
     public class OffsetClause : TSqlFragment, IEquatable<OffsetClause> {
         protected ScalarExpression offsetExpression;
         protected ScalarExpression fetchExpression;
+        protected bool withApproximate = false;
     
         public ScalarExpression OffsetExpression => offsetExpression;
         public ScalarExpression FetchExpression => fetchExpression;
+        public bool WithApproximate => withApproximate;
     
-        public OffsetClause(ScalarExpression offsetExpression = null, ScalarExpression fetchExpression = null) {
+        public OffsetClause(ScalarExpression offsetExpression = null, ScalarExpression fetchExpression = null, bool withApproximate = false) {
             this.offsetExpression = offsetExpression;
             this.fetchExpression = fetchExpression;
+            this.withApproximate = withApproximate;
         }
     
         public ScriptDom.OffsetClause ToMutableConcrete() {
             var ret = new ScriptDom.OffsetClause();
             ret.OffsetExpression = (ScriptDom.ScalarExpression)offsetExpression?.ToMutable();
             ret.FetchExpression = (ScriptDom.ScalarExpression)fetchExpression?.ToMutable();
+            ret.WithApproximate = withApproximate;
             return ret;
         }
         
@@ -38,6 +42,7 @@ namespace Xledger.Sql.ImmutableDom {
             if (!(fetchExpression is null)) {
                 h = h * 23 + fetchExpression.GetHashCode();
             }
+            h = h * 23 + withApproximate.GetHashCode();
             return h;
         }
     
@@ -51,6 +56,9 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<ScalarExpression>.Default.Equals(other.FetchExpression, fetchExpression)) {
+                return false;
+            }
+            if (!EqualityComparer<bool>.Default.Equals(other.WithApproximate, withApproximate)) {
                 return false;
             }
             return true;
@@ -77,6 +85,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.fetchExpression, othr.fetchExpression);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.withApproximate, othr.withApproximate);
+            if (compare != 0) { return compare; }
             return compare;
         } 
         
@@ -90,7 +100,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment.GetType() != typeof(ScriptDom.OffsetClause)) { throw new NotImplementedException("Unexpected subtype of OffsetClause not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new OffsetClause(
                 offsetExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.OffsetExpression),
-                fetchExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.FetchExpression)
+                fetchExpression: ImmutableDom.ScalarExpression.FromMutable(fragment.FetchExpression),
+                withApproximate: fragment.WithApproximate
             );
         }
     

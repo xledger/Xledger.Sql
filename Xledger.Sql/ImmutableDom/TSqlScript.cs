@@ -9,16 +9,20 @@ using ScriptDom = Microsoft.SqlServer.TransactSql.ScriptDom;
 namespace Xledger.Sql.ImmutableDom {
     public class TSqlScript : TSqlFragment, IEquatable<TSqlScript> {
         protected IReadOnlyList<TSqlBatch> batches;
+        protected int trailingGoCount = 0;
     
         public IReadOnlyList<TSqlBatch> Batches => batches;
+        public int TrailingGoCount => trailingGoCount;
     
-        public TSqlScript(IReadOnlyList<TSqlBatch> batches = null) {
+        public TSqlScript(IReadOnlyList<TSqlBatch> batches = null, int trailingGoCount = 0) {
             this.batches = batches.ToImmArray<TSqlBatch>();
+            this.trailingGoCount = trailingGoCount;
         }
     
         public ScriptDom.TSqlScript ToMutableConcrete() {
             var ret = new ScriptDom.TSqlScript();
             ret.Batches.AddRange(batches.Select(c => (ScriptDom.TSqlBatch)c?.ToMutable()));
+            ret.TrailingGoCount = trailingGoCount;
             return ret;
         }
         
@@ -29,6 +33,7 @@ namespace Xledger.Sql.ImmutableDom {
         public override int GetHashCode() {
             var h = 17;
             h = h * 23 + batches.GetHashCode();
+            h = h * 23 + trailingGoCount.GetHashCode();
             return h;
         }
     
@@ -39,6 +44,9 @@ namespace Xledger.Sql.ImmutableDom {
         public bool Equals(TSqlScript other) {
             if (other is null) { return false; }
             if (!EqualityComparer<IReadOnlyList<TSqlBatch>>.Default.Equals(other.Batches, batches)) {
+                return false;
+            }
+            if (!EqualityComparer<int>.Default.Equals(other.TrailingGoCount, trailingGoCount)) {
                 return false;
             }
             return true;
@@ -63,6 +71,8 @@ namespace Xledger.Sql.ImmutableDom {
             var othr = (TSqlScript)that;
             compare = Comparer.DefaultInvariant.Compare(this.batches, othr.batches);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.trailingGoCount, othr.trailingGoCount);
+            if (compare != 0) { return compare; }
             return compare;
         } 
         
@@ -75,7 +85,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (fragment is null) { return null; }
             if (fragment.GetType() != typeof(ScriptDom.TSqlScript)) { throw new NotImplementedException("Unexpected subtype of TSqlScript not implemented: " + fragment.GetType().Name + ". Regenerate immutable type library."); }
             return new TSqlScript(
-                batches: fragment.Batches.ToImmArray(ImmutableDom.TSqlBatch.FromMutable)
+                batches: fragment.Batches.ToImmArray(ImmutableDom.TSqlBatch.FromMutable),
+                trailingGoCount: fragment.TrailingGoCount
             );
         }
     

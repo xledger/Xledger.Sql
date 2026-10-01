@@ -10,13 +10,16 @@ namespace Xledger.Sql.ImmutableDom {
     public class AlterDatabaseSetStatement : AlterDatabaseStatement, IEquatable<AlterDatabaseSetStatement> {
         protected AlterDatabaseTermination termination;
         protected IReadOnlyList<DatabaseOption> options;
+        protected bool withManualCutover = false;
     
         public AlterDatabaseTermination Termination => termination;
         public IReadOnlyList<DatabaseOption> Options => options;
+        public bool WithManualCutover => withManualCutover;
     
-        public AlterDatabaseSetStatement(AlterDatabaseTermination termination = null, IReadOnlyList<DatabaseOption> options = null, Identifier databaseName = null, bool useCurrent = false) {
+        public AlterDatabaseSetStatement(AlterDatabaseTermination termination = null, IReadOnlyList<DatabaseOption> options = null, bool withManualCutover = false, Identifier databaseName = null, bool useCurrent = false) {
             this.termination = termination;
             this.options = options.ToImmArray<DatabaseOption>();
+            this.withManualCutover = withManualCutover;
             this.databaseName = databaseName;
             this.useCurrent = useCurrent;
         }
@@ -25,6 +28,7 @@ namespace Xledger.Sql.ImmutableDom {
             var ret = new ScriptDom.AlterDatabaseSetStatement();
             ret.Termination = (ScriptDom.AlterDatabaseTermination)termination?.ToMutable();
             ret.Options.AddRange(options.Select(c => (ScriptDom.DatabaseOption)c?.ToMutable()));
+            ret.WithManualCutover = withManualCutover;
             ret.DatabaseName = (ScriptDom.Identifier)databaseName?.ToMutable();
             ret.UseCurrent = useCurrent;
             return ret;
@@ -40,6 +44,7 @@ namespace Xledger.Sql.ImmutableDom {
                 h = h * 23 + termination.GetHashCode();
             }
             h = h * 23 + options.GetHashCode();
+            h = h * 23 + withManualCutover.GetHashCode();
             if (!(databaseName is null)) {
                 h = h * 23 + databaseName.GetHashCode();
             }
@@ -57,6 +62,9 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<IReadOnlyList<DatabaseOption>>.Default.Equals(other.Options, options)) {
+                return false;
+            }
+            if (!EqualityComparer<bool>.Default.Equals(other.WithManualCutover, withManualCutover)) {
                 return false;
             }
             if (!EqualityComparer<Identifier>.Default.Equals(other.DatabaseName, databaseName)) {
@@ -89,6 +97,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.options, othr.options);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.withManualCutover, othr.withManualCutover);
+            if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.databaseName, othr.databaseName);
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.useCurrent, othr.useCurrent);
@@ -107,6 +117,7 @@ namespace Xledger.Sql.ImmutableDom {
             return new AlterDatabaseSetStatement(
                 termination: ImmutableDom.AlterDatabaseTermination.FromMutable(fragment.Termination),
                 options: fragment.Options.ToImmArray(ImmutableDom.DatabaseOption.FromMutable),
+                withManualCutover: fragment.WithManualCutover,
                 databaseName: ImmutableDom.Identifier.FromMutable(fragment.DatabaseName),
                 useCurrent: fragment.UseCurrent
             );
