@@ -1,6 +1,6 @@
 <Query Kind="Program">
   <!-- Needs to reference the same version as in Xledger.Sql.csproj: -->
-  <NuGetReference Version="170.28.0">Microsoft.SqlServer.TransactSql.ScriptDom</NuGetReference>
+  <NuGetReference Version="180.117.0">Microsoft.SqlServer.TransactSql.ScriptDom</NuGetReference>
   <Namespace>Microsoft.SqlServer.TransactSql.ScriptDom</Namespace>
   <Namespace>System.Globalization</Namespace>
 </Query>

@@ -11,15 +11,18 @@ namespace Xledger.Sql.ImmutableDom {
         protected ScalarExpression expression;
         protected bool percent = false;
         protected bool withTies = false;
+        protected bool withApproximate = false;
     
         public ScalarExpression Expression => expression;
         public bool Percent => percent;
         public bool WithTies => withTies;
+        public bool WithApproximate => withApproximate;
     
-        public TopRowFilter(ScalarExpression expression = null, bool percent = false, bool withTies = false) {
+        public TopRowFilter(ScalarExpression expression = null, bool percent = false, bool withTies = false, bool withApproximate = false) {
             this.expression = expression;
             this.percent = percent;
             this.withTies = withTies;
+            this.withApproximate = withApproximate;
         }
     
         public ScriptDom.TopRowFilter ToMutableConcrete() {
@@ -27,6 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Expression = (ScriptDom.ScalarExpression)expression?.ToMutable();
             ret.Percent = percent;
             ret.WithTies = withTies;
+            ret.WithApproximate = withApproximate;
             return ret;
         }
         
@@ -41,6 +45,7 @@ namespace Xledger.Sql.ImmutableDom {
             }
             h = h * 23 + percent.GetHashCode();
             h = h * 23 + withTies.GetHashCode();
+            h = h * 23 + withApproximate.GetHashCode();
             return h;
         }
     
@@ -57,6 +62,9 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<bool>.Default.Equals(other.WithTies, withTies)) {
+                return false;
+            }
+            if (!EqualityComparer<bool>.Default.Equals(other.WithApproximate, withApproximate)) {
                 return false;
             }
             return true;
@@ -85,6 +93,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.withTies, othr.withTies);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.withApproximate, othr.withApproximate);
+            if (compare != 0) { return compare; }
             return compare;
         } 
         
@@ -99,7 +109,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new TopRowFilter(
                 expression: ImmutableDom.ScalarExpression.FromMutable(fragment.Expression),
                 percent: fragment.Percent,
-                withTies: fragment.WithTies
+                withTies: fragment.WithTies,
+                withApproximate: fragment.WithApproximate
             );
         }
     

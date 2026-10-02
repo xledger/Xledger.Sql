@@ -19,6 +19,8 @@ namespace Xledger.Sql.ImmutableDom {
         protected IReadOnlyList<TableOption> options;
         protected SelectStatement selectStatement;
         protected IReadOnlyList<Identifier> ctasColumns;
+        protected SchemaObjectName cloneSource;
+        protected ScalarExpression clonePointInTime;
         protected IdentifierOrValueExpression fileStreamOn;
     
         public SchemaObjectName SchemaObjectName => schemaObjectName;
@@ -32,9 +34,11 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<TableOption> Options => options;
         public SelectStatement SelectStatement => selectStatement;
         public IReadOnlyList<Identifier> CtasColumns => ctasColumns;
+        public SchemaObjectName CloneSource => cloneSource;
+        public ScalarExpression ClonePointInTime => clonePointInTime;
         public IdentifierOrValueExpression FileStreamOn => fileStreamOn;
     
-        public CreateTableStatement(SchemaObjectName schemaObjectName = null, bool asEdge = false, bool asFileTable = false, bool asNode = false, TableDefinition definition = null, FileGroupOrPartitionScheme onFileGroupOrPartitionScheme = null, FederationScheme federationScheme = null, IdentifierOrValueExpression textImageOn = null, IReadOnlyList<TableOption> options = null, SelectStatement selectStatement = null, IReadOnlyList<Identifier> ctasColumns = null, IdentifierOrValueExpression fileStreamOn = null) {
+        public CreateTableStatement(SchemaObjectName schemaObjectName = null, bool asEdge = false, bool asFileTable = false, bool asNode = false, TableDefinition definition = null, FileGroupOrPartitionScheme onFileGroupOrPartitionScheme = null, FederationScheme federationScheme = null, IdentifierOrValueExpression textImageOn = null, IReadOnlyList<TableOption> options = null, SelectStatement selectStatement = null, IReadOnlyList<Identifier> ctasColumns = null, SchemaObjectName cloneSource = null, ScalarExpression clonePointInTime = null, IdentifierOrValueExpression fileStreamOn = null) {
             this.schemaObjectName = schemaObjectName;
             this.asEdge = asEdge;
             this.asFileTable = asFileTable;
@@ -46,6 +50,8 @@ namespace Xledger.Sql.ImmutableDom {
             this.options = options.ToImmArray<TableOption>();
             this.selectStatement = selectStatement;
             this.ctasColumns = ctasColumns.ToImmArray<Identifier>();
+            this.cloneSource = cloneSource;
+            this.clonePointInTime = clonePointInTime;
             this.fileStreamOn = fileStreamOn;
         }
     
@@ -62,6 +68,8 @@ namespace Xledger.Sql.ImmutableDom {
             ret.Options.AddRange(options.Select(c => (ScriptDom.TableOption)c?.ToMutable()));
             ret.SelectStatement = (ScriptDom.SelectStatement)selectStatement?.ToMutable();
             ret.CtasColumns.AddRange(ctasColumns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.CloneSource = (ScriptDom.SchemaObjectName)cloneSource?.ToMutable();
+            ret.ClonePointInTime = (ScriptDom.ScalarExpression)clonePointInTime?.ToMutable();
             ret.FileStreamOn = (ScriptDom.IdentifierOrValueExpression)fileStreamOn?.ToMutable();
             return ret;
         }
@@ -95,6 +103,12 @@ namespace Xledger.Sql.ImmutableDom {
                 h = h * 23 + selectStatement.GetHashCode();
             }
             h = h * 23 + ctasColumns.GetHashCode();
+            if (!(cloneSource is null)) {
+                h = h * 23 + cloneSource.GetHashCode();
+            }
+            if (!(clonePointInTime is null)) {
+                h = h * 23 + clonePointInTime.GetHashCode();
+            }
             if (!(fileStreamOn is null)) {
                 h = h * 23 + fileStreamOn.GetHashCode();
             }
@@ -138,6 +152,12 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<IReadOnlyList<Identifier>>.Default.Equals(other.CtasColumns, ctasColumns)) {
+                return false;
+            }
+            if (!EqualityComparer<SchemaObjectName>.Default.Equals(other.CloneSource, cloneSource)) {
+                return false;
+            }
+            if (!EqualityComparer<ScalarExpression>.Default.Equals(other.ClonePointInTime, clonePointInTime)) {
                 return false;
             }
             if (!EqualityComparer<IdentifierOrValueExpression>.Default.Equals(other.FileStreamOn, fileStreamOn)) {
@@ -185,6 +205,10 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.ctasColumns, othr.ctasColumns);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.cloneSource, othr.cloneSource);
+            if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.clonePointInTime, othr.clonePointInTime);
+            if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.fileStreamOn, othr.fileStreamOn);
             if (compare != 0) { return compare; }
             return compare;
@@ -210,6 +234,8 @@ namespace Xledger.Sql.ImmutableDom {
                 options: fragment.Options.ToImmArray(ImmutableDom.TableOption.FromMutable),
                 selectStatement: ImmutableDom.SelectStatement.FromMutable(fragment.SelectStatement),
                 ctasColumns: fragment.CtasColumns.ToImmArray(ImmutableDom.Identifier.FromMutable),
+                cloneSource: ImmutableDom.SchemaObjectName.FromMutable(fragment.CloneSource),
+                clonePointInTime: ImmutableDom.ScalarExpression.FromMutable(fragment.ClonePointInTime),
                 fileStreamOn: ImmutableDom.IdentifierOrValueExpression.FromMutable(fragment.FileStreamOn)
             );
         }

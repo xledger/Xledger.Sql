@@ -17,7 +17,10 @@ namespace Xledger.Sql.ImmutableDom {
         protected IReadOnlyList<Identifier> ignoreRespectNulls;
         protected Identifier trimOptions;
         protected IReadOnlyList<JsonKeyValue> jsonParameters;
+        protected OrderByClause jsonOrderByClause;
         protected IReadOnlyList<Identifier> absentOrNullOnNull;
+        protected IReadOnlyList<DataTypeReference> returnType;
+        protected bool withArrayWrapper = false;
     
         public CallTarget CallTarget => callTarget;
         public Identifier FunctionName => functionName;
@@ -28,9 +31,12 @@ namespace Xledger.Sql.ImmutableDom {
         public IReadOnlyList<Identifier> IgnoreRespectNulls => ignoreRespectNulls;
         public Identifier TrimOptions => trimOptions;
         public IReadOnlyList<JsonKeyValue> JsonParameters => jsonParameters;
+        public OrderByClause JsonOrderByClause => jsonOrderByClause;
         public IReadOnlyList<Identifier> AbsentOrNullOnNull => absentOrNullOnNull;
+        public IReadOnlyList<DataTypeReference> ReturnType => returnType;
+        public bool WithArrayWrapper => withArrayWrapper;
     
-        public FunctionCall(CallTarget callTarget = null, Identifier functionName = null, IReadOnlyList<ScalarExpression> parameters = null, ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified, OverClause overClause = null, WithinGroupClause withinGroupClause = null, IReadOnlyList<Identifier> ignoreRespectNulls = null, Identifier trimOptions = null, IReadOnlyList<JsonKeyValue> jsonParameters = null, IReadOnlyList<Identifier> absentOrNullOnNull = null, Identifier collation = null) {
+        public FunctionCall(CallTarget callTarget = null, Identifier functionName = null, IReadOnlyList<ScalarExpression> parameters = null, ScriptDom.UniqueRowFilter uniqueRowFilter = ScriptDom.UniqueRowFilter.NotSpecified, OverClause overClause = null, WithinGroupClause withinGroupClause = null, IReadOnlyList<Identifier> ignoreRespectNulls = null, Identifier trimOptions = null, IReadOnlyList<JsonKeyValue> jsonParameters = null, OrderByClause jsonOrderByClause = null, IReadOnlyList<Identifier> absentOrNullOnNull = null, IReadOnlyList<DataTypeReference> returnType = null, bool withArrayWrapper = false, Identifier collation = null) {
             this.callTarget = callTarget;
             this.functionName = functionName;
             this.parameters = parameters.ToImmArray<ScalarExpression>();
@@ -40,7 +46,10 @@ namespace Xledger.Sql.ImmutableDom {
             this.ignoreRespectNulls = ignoreRespectNulls.ToImmArray<Identifier>();
             this.trimOptions = trimOptions;
             this.jsonParameters = jsonParameters.ToImmArray<JsonKeyValue>();
+            this.jsonOrderByClause = jsonOrderByClause;
             this.absentOrNullOnNull = absentOrNullOnNull.ToImmArray<Identifier>();
+            this.returnType = returnType.ToImmArray<DataTypeReference>();
+            this.withArrayWrapper = withArrayWrapper;
             this.collation = collation;
         }
     
@@ -55,7 +64,10 @@ namespace Xledger.Sql.ImmutableDom {
             ret.IgnoreRespectNulls.AddRange(ignoreRespectNulls.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.TrimOptions = (ScriptDom.Identifier)trimOptions?.ToMutable();
             ret.JsonParameters.AddRange(jsonParameters.Select(c => (ScriptDom.JsonKeyValue)c?.ToMutable()));
+            ret.JsonOrderByClause = (ScriptDom.OrderByClause)jsonOrderByClause?.ToMutable();
             ret.AbsentOrNullOnNull.AddRange(absentOrNullOnNull.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
+            ret.ReturnType.AddRange(returnType.Select(c => (ScriptDom.DataTypeReference)c?.ToMutable()));
+            ret.WithArrayWrapper = withArrayWrapper;
             ret.Collation = (ScriptDom.Identifier)collation?.ToMutable();
             return ret;
         }
@@ -85,7 +97,12 @@ namespace Xledger.Sql.ImmutableDom {
                 h = h * 23 + trimOptions.GetHashCode();
             }
             h = h * 23 + jsonParameters.GetHashCode();
+            if (!(jsonOrderByClause is null)) {
+                h = h * 23 + jsonOrderByClause.GetHashCode();
+            }
             h = h * 23 + absentOrNullOnNull.GetHashCode();
+            h = h * 23 + returnType.GetHashCode();
+            h = h * 23 + withArrayWrapper.GetHashCode();
             if (!(collation is null)) {
                 h = h * 23 + collation.GetHashCode();
             }
@@ -125,7 +142,16 @@ namespace Xledger.Sql.ImmutableDom {
             if (!EqualityComparer<IReadOnlyList<JsonKeyValue>>.Default.Equals(other.JsonParameters, jsonParameters)) {
                 return false;
             }
+            if (!EqualityComparer<OrderByClause>.Default.Equals(other.JsonOrderByClause, jsonOrderByClause)) {
+                return false;
+            }
             if (!EqualityComparer<IReadOnlyList<Identifier>>.Default.Equals(other.AbsentOrNullOnNull, absentOrNullOnNull)) {
+                return false;
+            }
+            if (!EqualityComparer<IReadOnlyList<DataTypeReference>>.Default.Equals(other.ReturnType, returnType)) {
+                return false;
+            }
+            if (!EqualityComparer<bool>.Default.Equals(other.WithArrayWrapper, withArrayWrapper)) {
                 return false;
             }
             if (!EqualityComparer<Identifier>.Default.Equals(other.Collation, collation)) {
@@ -169,7 +195,13 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.jsonParameters, othr.jsonParameters);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.jsonOrderByClause, othr.jsonOrderByClause);
+            if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.absentOrNullOnNull, othr.absentOrNullOnNull);
+            if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.returnType, othr.returnType);
+            if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.withArrayWrapper, othr.withArrayWrapper);
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.collation, othr.collation);
             if (compare != 0) { return compare; }
@@ -194,7 +226,10 @@ namespace Xledger.Sql.ImmutableDom {
                 ignoreRespectNulls: fragment.IgnoreRespectNulls.ToImmArray(ImmutableDom.Identifier.FromMutable),
                 trimOptions: ImmutableDom.Identifier.FromMutable(fragment.TrimOptions),
                 jsonParameters: fragment.JsonParameters.ToImmArray(ImmutableDom.JsonKeyValue.FromMutable),
+                jsonOrderByClause: ImmutableDom.OrderByClause.FromMutable(fragment.JsonOrderByClause),
                 absentOrNullOnNull: fragment.AbsentOrNullOnNull.ToImmArray(ImmutableDom.Identifier.FromMutable),
+                returnType: fragment.ReturnType.ToImmArray(ImmutableDom.DataTypeReference.FromMutable),
+                withArrayWrapper: fragment.WithArrayWrapper,
                 collation: ImmutableDom.Identifier.FromMutable(fragment.Collation)
             );
         }

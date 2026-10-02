@@ -11,15 +11,18 @@ namespace Xledger.Sql.ImmutableDom {
         protected Identifier expressionName;
         protected IReadOnlyList<Identifier> columns;
         protected QueryExpression queryExpression;
+        protected WithCtesAndXmlNamespaces withCtesAndXmlNamespaces;
     
         public Identifier ExpressionName => expressionName;
         public IReadOnlyList<Identifier> Columns => columns;
         public QueryExpression QueryExpression => queryExpression;
+        public WithCtesAndXmlNamespaces WithCtesAndXmlNamespaces => withCtesAndXmlNamespaces;
     
-        public CommonTableExpression(Identifier expressionName = null, IReadOnlyList<Identifier> columns = null, QueryExpression queryExpression = null) {
+        public CommonTableExpression(Identifier expressionName = null, IReadOnlyList<Identifier> columns = null, QueryExpression queryExpression = null, WithCtesAndXmlNamespaces withCtesAndXmlNamespaces = null) {
             this.expressionName = expressionName;
             this.columns = columns.ToImmArray<Identifier>();
             this.queryExpression = queryExpression;
+            this.withCtesAndXmlNamespaces = withCtesAndXmlNamespaces;
         }
     
         public ScriptDom.CommonTableExpression ToMutableConcrete() {
@@ -27,6 +30,7 @@ namespace Xledger.Sql.ImmutableDom {
             ret.ExpressionName = (ScriptDom.Identifier)expressionName?.ToMutable();
             ret.Columns.AddRange(columns.Select(c => (ScriptDom.Identifier)c?.ToMutable()));
             ret.QueryExpression = (ScriptDom.QueryExpression)queryExpression?.ToMutable();
+            ret.WithCtesAndXmlNamespaces = (ScriptDom.WithCtesAndXmlNamespaces)withCtesAndXmlNamespaces?.ToMutable();
             return ret;
         }
         
@@ -42,6 +46,9 @@ namespace Xledger.Sql.ImmutableDom {
             h = h * 23 + columns.GetHashCode();
             if (!(queryExpression is null)) {
                 h = h * 23 + queryExpression.GetHashCode();
+            }
+            if (!(withCtesAndXmlNamespaces is null)) {
+                h = h * 23 + withCtesAndXmlNamespaces.GetHashCode();
             }
             return h;
         }
@@ -59,6 +66,9 @@ namespace Xledger.Sql.ImmutableDom {
                 return false;
             }
             if (!EqualityComparer<QueryExpression>.Default.Equals(other.QueryExpression, queryExpression)) {
+                return false;
+            }
+            if (!EqualityComparer<WithCtesAndXmlNamespaces>.Default.Equals(other.WithCtesAndXmlNamespaces, withCtesAndXmlNamespaces)) {
                 return false;
             }
             return true;
@@ -87,6 +97,8 @@ namespace Xledger.Sql.ImmutableDom {
             if (compare != 0) { return compare; }
             compare = Comparer.DefaultInvariant.Compare(this.queryExpression, othr.queryExpression);
             if (compare != 0) { return compare; }
+            compare = Comparer.DefaultInvariant.Compare(this.withCtesAndXmlNamespaces, othr.withCtesAndXmlNamespaces);
+            if (compare != 0) { return compare; }
             return compare;
         } 
         
@@ -101,7 +113,8 @@ namespace Xledger.Sql.ImmutableDom {
             return new CommonTableExpression(
                 expressionName: ImmutableDom.Identifier.FromMutable(fragment.ExpressionName),
                 columns: fragment.Columns.ToImmArray(ImmutableDom.Identifier.FromMutable),
-                queryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.QueryExpression)
+                queryExpression: ImmutableDom.QueryExpression.FromMutable(fragment.QueryExpression),
+                withCtesAndXmlNamespaces: ImmutableDom.WithCtesAndXmlNamespaces.FromMutable(fragment.WithCtesAndXmlNamespaces)
             );
         }
     
